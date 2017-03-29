@@ -1,0 +1,117 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal">
+		
+			<input type="hidden" id="id" value="">
+
+			<!-- 左侧信息 -->
+			<div class="row">
+				<div class="col-sm-6 b-r">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">账户</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="account" name="account">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">性别</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="sex" name="sex">
+								<option value="1">男</option>
+								<option value="2">女</option>
+							</select>
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">密码</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="password" id="password"
+								name="password">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">角色</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="roleid"
+								disabled="disabled">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">邮箱</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="email" id="email" name="email">
+							<!-- 家的纬度 -->
+						</div>
+					</div>
+				</div>
+				<!-- 左侧信息结束 -->
+
+				<div class="col-sm-6">
+					<div id="driverInfoContent">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">姓名</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="name" name="name">
+							</div>
+						</div>
+						<div class="hr-line-dashed "></div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">出生日期</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="date" id="birthday"
+									name="birthday"	onclick="laydate({istime: false, format: 'YYYY-MM-DD'})">
+							</div>
+						</div>
+						<div class="hr-line-dashed "></div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">确认密码</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="password" id="rePassword">
+							</div>
+						</div>
+						<div class="hr-line-dashed "></div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">部门</label>
+							<div class="col-sm-8">
+								<input class="form-control"	type="text" id="citySel" style="background-color: #ffffff !important;" onclick="UserInfoDlg.showDeptSelectTree(); return false;" readonly="readonly"> 
+								<input class="form-control"	type="hidden" name="deptid" id="deptid">
+							</div>
+						</div>
+						<div class="hr-line-dashed "></div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">电话</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="phone" name="phone">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 这是部门选择的下拉框 -->
+			<div id="menuContent" class="menuContent"
+				style="display: none; position: absolute; z-index: 200;">
+				<ul id="treeDemo" class="ztree tree-box" style="width: 214px !important;"></ul>
+			</div>
+
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10">
+					<button class="btn btn-info" id="ensure" type="submit" onclick="UserInfoDlg.addSubmit()">
+						<i class="fa fa-check"></i>&nbsp;提交
+					</button>
+					<button class="btn btn-danger" id="cancel" onclick="UserInfoDlg.close()">
+						<i class="fa fa-eraser"></i>&nbsp;取消
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/user_info.js"></script>
+@}

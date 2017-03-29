@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="row">
+	<div class="col-sm-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>角色管理</h5>
+			</div>
+			<div class="ibox-content">
+				<div class="row row-lg">
+					<div class="col-sm-12">
+						<!-- 成员列表 -->
+						<div class="example-wrap">
+							<div class="example">
+								<div class="hidden-xs" id="roleTableToolbar" role="group">
+									<button type="button" class="btn btn-primary" onclick="Role.openAddRole()"><i class="fa fa-plus"></i>&nbsp;添加</button>
+									<button type="button" class="btn btn-primary button-margin" onclick="Role.openChangeRole()"><i class="fa fa-edit"></i>&nbsp;修改</button>
+									<button type="button" class="btn btn-primary button-margin" onclick="Role.delRole()"><i class="fa fa-remove"></i>&nbsp;删除</button>
+									<button type="button" class="btn btn-primary button-margin" onclick="Role.assign()"><i class="fa fa-user-secret"></i>&nbsp;权限配置</button>
+								</div>
+								<table id="roleTable" data-mobile-responsive="true"
+									data-click-to-select="true">
+									<thead>
+										<tr>
+											<th data-field="selectItem" data-checkbox="true"></th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+						</div>
+						<!-- End 成员列表 -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/system/role/role.js"></script>
+@}

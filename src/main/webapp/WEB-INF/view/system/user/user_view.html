@@ -1,0 +1,124 @@
+@layout("/common/_container.html"){
+<div class="col-sm-6  col-sm-offset-3">
+	<div class="ibox float-e-margins">
+		<div class="ibox-title">
+			<h5>用户管理</h5>
+		</div>
+		<div class="ibox-content">
+			<div class="row row-lg">
+				<div class="col-sm-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content" style="border:none !important; ">
+							<div class="form-horizontal">
+
+								<input type="hidden" id="id" value="${user.id}">
+
+								<!-- 左侧信息 -->
+								<div class="row">
+									<div class="col-sm-6 b-r">
+										<div class="form-group">
+											<label class="col-sm-3 control-label">账户</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" id="account"
+													name="account" value="${user.account}" disabled="disabled">
+											</div>
+										</div>
+										<div class="hr-line-dashed"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">性别</label>
+											<div class="col-sm-9">
+												<select class="form-control" id="sex" name="sex"
+													value="${user.sex}">
+													<option value="1">男</option>
+													<option value="2">女</option>
+												</select>
+											</div>
+										</div>
+										<div class="hr-line-dashed"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">角色</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="text" id="roleid"
+													value="${roleName}" disabled="disabled">
+											</div>
+										</div>
+										<div class="hr-line-dashed"></div>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">邮箱</label>
+											<div class="col-sm-9">
+												<input class="form-control" type="email" id="email"
+													name="email" value="${user.email}">
+												<!-- 家的纬度 -->
+											</div>
+										</div>
+									</div>
+									<!-- 左侧信息结束 -->
+
+									<div class="col-sm-6">
+										<div id="driverInfoContent">
+											<div class="form-group">
+												<label class="col-sm-3 control-label">姓名</label>
+												<div class="col-sm-8">
+													<input class="form-control" type="text" id="name"
+														name="name" value="${user.name}">
+												</div>
+											</div>
+											<div class="hr-line-dashed "></div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">出生日期</label>
+												<div class="col-sm-8">
+													<input class="form-control" type="date" id="birthday"
+														name="birthday"
+														onclick="laydate({istime: false, format: 'YYYY-MM-DD'})"
+														value="${user.birthday,dateFormat="yyyy-MM-dd"}">
+												</div>
+											</div>
+											<div class="hr-line-dashed "></div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">部门</label>
+												<div class="col-sm-8">
+													<input class="form-control"
+														style="background-color: #ffffff !important;" type="text"
+														id="citySel"
+														onclick="UserInfoDlg.showDeptSelectTree(); return false;"
+														readonly="readonly" value="${deptName}" disabled="disabled"> <input
+														class="form-control" type="hidden" name="deptid"
+														id="deptid" value="${user.deptid}">
+												</div>
+											</div>
+											<div class="hr-line-dashed "></div>
+											<div class="form-group">
+												<label class="col-sm-3 control-label">电话</label>
+												<div class="col-sm-8">
+													<input class="form-control" type="text" id="phone"
+														name="phone" value="${user.phone}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- 这是部门选择的下拉框 -->
+								<div id="menuContent" class="menuContent"
+									style="display: none; position: absolute; z-index: 200;">
+									<ul id="treeDemo" class="ztree tree-box" style=""></ul>
+								</div>
+
+								<div class="row btn-group-m-t">
+									<div class="col-sm-10">
+										<button class="btn btn-info" id="ensure" type="submit"
+											onclick="UserInfoDlg.editSubmit()">
+											<i class="fa fa-check"></i>&nbsp;提交
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/user_info.js"></script>
+@}

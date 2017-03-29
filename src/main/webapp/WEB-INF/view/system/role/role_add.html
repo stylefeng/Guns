@@ -1,0 +1,80 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal">
+		
+			<input type="hidden" id="id" value="">
+
+			<!-- 左侧信息 -->
+			<div class="row">
+				<div class="col-sm-6 b-r">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">角色名称</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="name">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">上级名称</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="pName" style="background-color: #ffffff !important;" onclick="RolInfoDlg.showPNameSelectTree(); return false;" readonly="readonly">
+							<input class="form-control" type="hidden" id="pid">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">部门名称</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="deptName" style="background-color: #ffffff !important;" onclick="RolInfoDlg.showDeptSelectTree(); return false;" readonly="readonly">
+							<input class="form-control" type="hidden" id="deptid">
+						</div>
+					</div>
+				</div>
+				<!-- 左侧信息结束 -->
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">别名</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="text" id="tips">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">排序</label>
+						<div class="col-sm-9">
+							<input class="form-control" type="number" id="num">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 这是部门下拉框 -->
+			<div id="deptContent" class="menuContent"
+				style="display: none; position: absolute; z-index: 200;">
+				<ul id="deptTree" class="ztree tree-box" style="width: 250px !important;"></ul>
+			</div>
+			
+			<!-- 这是父级菜单下拉框 -->
+			<div id="pNameContent" class="menuContent"
+				style="display: none; position: absolute; z-index: 200;">
+				<ul id="pNameTree" class="ztree tree-box" style="width: 250px !important;"></ul>
+			</div>
+
+			<div class="row btn-group-m-t">
+				<div class="col-sm-10">
+					<button class="btn btn-info" id="ensure" type="submit" onclick="RolInfoDlg.addSubmit()">
+						<i class="fa fa-check"></i>&nbsp;提交
+					</button>
+					<button class="btn btn-danger" id="cancel" onclick="RolInfoDlg.close()">
+						<i class="fa fa-eraser"></i>&nbsp;取消
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<script src="${ctxPath}/static/modular/system/role/role_info.js"></script>
+@}

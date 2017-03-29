@@ -1,0 +1,45 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i>
+    </div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span><img alt="image" class="img-circle" src="${ctxPath}/static/img/profile_small.jpg" /></span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                       <span class="block m-t-xs"><strong class="font-bold">${shiro.getUser().name}</strong></span>
+                        <span class="text-muted text-xs block">${shiro.getUser().roleNames[0]}<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a class="J_menuItem" href="${ctxPath}/mgr/user_info/${shiro.getUser().id}">个人资料</a></li>
+                        <li class="divider"></li>
+                        <li><a href="${ctxPath}/logout">安全退出</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">Mx
+                </div>
+            </li>
+            
+            @for(title in titles){
+            	<li>
+	                <a href="#">
+	                    <i class="fa ${title.icon}"></i>
+	                    <span class="nav-label">${title.name}</span>
+	                    <span class="fa arrow"></span>
+	                </a>
+	                <ul class="nav nav-second-level">
+	                	@for(subTitle in title.children){
+		                    <li>
+		                        <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
+		                    </li>
+		                @}
+	                </ul>
+	            </li>
+            @}
+            
+        </ul>
+    </div>
+</nav>
