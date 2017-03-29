@@ -1,16 +1,14 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.modular.system.dao.DeptDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.stylefeng.guns.modular.system.dao.DeptDao;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 部门控制器
@@ -31,9 +29,8 @@ public class DeptController extends BaseController {
      * 获取部门的tree列表
      */
     @RequestMapping(value = "/tree")
-    public
     @ResponseBody
-    List<ZTreeNode> tree() {
+    public List<ZTreeNode> tree() {
         return this.deptDao.tree();
     }
 

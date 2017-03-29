@@ -1,21 +1,19 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.validation.Valid;
-
+import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.tips.Tip;
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
-import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.core.util.Convert;
+import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.RoleDao;
 import com.stylefeng.guns.modular.system.service.IRoleService;
 import com.stylefeng.guns.modular.system.warpper.RoleWarpper;
+import com.stylefeng.guns.persistence.dao.RoleMapper;
 import com.stylefeng.guns.persistence.dao.UserMapper;
 import com.stylefeng.guns.persistence.model.Role;
 import com.stylefeng.guns.persistence.model.User;
@@ -27,10 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
-import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.persistence.dao.RoleMapper;
+import javax.annotation.Resource;
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 角色控制器
@@ -104,9 +102,8 @@ public class RoleController extends BaseController {
      * 获取角色列表
      */
     @RequestMapping(value = "/list")
-    public
     @ResponseBody
-    Object list() {
+    public Object list() {
         List<Map<String, Object>> roles = this.roleDao.selectRoles(super.getPara("condition"));
         return super.warpObject(new RoleWarpper(roles));
     }
@@ -116,9 +113,8 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
-    public
     @ResponseBody
-    Tip add(@Valid Role role, BindingResult result) {
+    public Tip add(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -132,9 +128,8 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
-    public
     @ResponseBody
-    Tip edit(@Valid Role role, BindingResult result) {
+    public Tip edit(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -147,9 +142,8 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove/{roleId}")
-    public
     @ResponseBody
-    Tip remove(@PathVariable Integer roleId) {
+    public Tip remove(@PathVariable Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -164,9 +158,8 @@ public class RoleController extends BaseController {
      * 查看角色
      */
     @RequestMapping(value = "/view/{roleId}")
-    public
     @ResponseBody
-    Tip view(@PathVariable Integer roleId) {
+    public Tip view(@PathVariable Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -179,9 +172,8 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setAuthority")
-    public
     @ResponseBody
-    Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
+    public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -193,9 +185,8 @@ public class RoleController extends BaseController {
      * 获取角色列表
      */
     @RequestMapping(value = "/roleTreeList")
-    public
     @ResponseBody
-    List<ZTreeNode> roleTreeList() {
+    public List<ZTreeNode> roleTreeList() {
         List<ZTreeNode> roleTreeList = this.roleDao.roleTreeList();
         roleTreeList.add(ZTreeNode.createParent());
         return roleTreeList;
@@ -205,9 +196,8 @@ public class RoleController extends BaseController {
      * 获取角色列表
      */
     @RequestMapping(value = "/roleTreeListByUserId/{userId}")
-    public
     @ResponseBody
-    List<ZTreeNode> roleTreeListByUserId(@PathVariable Integer userId) {
+    public List<ZTreeNode> roleTreeListByUserId(@PathVariable Integer userId) {
         User theUser = this.userMapper.selectById(userId);
         String roleid = theUser.getRoleid();
         if (ToolUtil.isEmpty(roleid)) {

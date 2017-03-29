@@ -1,14 +1,21 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.naming.NoPermissionException;
-import javax.validation.Valid;
-
+import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.common.constant.state.ManagerStatus;
+import com.stylefeng.guns.common.constant.tips.Tip;
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.core.db.Db;
+import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.core.util.ToolUtil;
+import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.warpper.UserWarpper;
+import com.stylefeng.guns.persistence.dao.UserMapper;
+import com.stylefeng.guns.persistence.model.User;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,21 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.constant.state.ManagerStatus;
-import com.stylefeng.guns.common.constant.tips.Tip;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
-import com.stylefeng.guns.common.annotion.Permission;
-import com.stylefeng.guns.core.db.Db;
-import com.stylefeng.guns.core.shiro.ShiroKit;
-import com.stylefeng.guns.core.shiro.ShiroUser;
-import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.UserMgrDao;
-import com.stylefeng.guns.modular.system.warpper.UserWarpper;
-import com.stylefeng.guns.persistence.dao.UserMapper;
-import com.stylefeng.guns.persistence.model.User;
+import javax.annotation.Resource;
+import javax.naming.NoPermissionException;
+import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 系统管理员控制器
@@ -116,9 +114,8 @@ public class UserMgrController extends BaseController {
      * 查询管理员列表
      */
     @RequestMapping("/list")
-    public
     @ResponseBody
-    Object list() {
+    public Object list() {
         List<Map<String, Object>> users = managerDao.selectUsers(super.getPara("condition"));
         return new UserWarpper(users).warp();
     }
@@ -128,9 +125,8 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/add")
-    public
     @ResponseBody
-    Tip add(@Valid User user, BindingResult result) {
+    public Tip add(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -156,9 +152,8 @@ public class UserMgrController extends BaseController {
      * @throws NoPermissionException
      */
     @RequestMapping("/edit")
-    public
     @ResponseBody
-    Tip edit(@Valid User user, BindingResult result) throws NoPermissionException {
+    public Tip edit(@Valid User user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -181,9 +176,8 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/delete/{userId}")
-    public
     @ResponseBody
-    Tip delete(@PathVariable Integer userId) {
+    public Tip delete(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -195,9 +189,8 @@ public class UserMgrController extends BaseController {
      * 查看管理员详情
      */
     @RequestMapping("/view/{userId}")
-    public
     @ResponseBody
-    User view(@PathVariable Integer userId) {
+    public User view(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -209,9 +202,8 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/reset/{userId}")
-    public
     @ResponseBody
-    Tip reset(@PathVariable Integer userId) {
+    public Tip reset(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -227,9 +219,8 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/freeze/{userId}")
-    public
     @ResponseBody
-    Tip freeze(@PathVariable Integer userId) {
+    public Tip freeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -242,9 +233,8 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/unfreeze/{userId}")
-    public
     @ResponseBody
-    Tip unfreeze(@PathVariable Integer userId) {
+    public Tip unfreeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -257,9 +247,8 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setRole")
-    public
     @ResponseBody
-    Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
+    public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
