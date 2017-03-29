@@ -23,7 +23,6 @@ import javax.sql.DataSource;
  * @date 2016年11月12日 下午4:55:09
  */
 @Configuration
-@EnableTransactionManagement(order = 2)//由于引入多数据源，所以让spring事务的aop要在多数据源切换aop的后面
 @Import(value = DruidPoolConfig.class)
 public class DataSourceConfig {
 
