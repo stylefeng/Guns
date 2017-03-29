@@ -20,8 +20,6 @@ import java.util.List;
 @RequestMapping("/dept")
 public class DeptController extends BaseController {
 
-//	private static String PREFIX = "/dept/";
-
     @Resource
     DeptDao deptDao;
 
