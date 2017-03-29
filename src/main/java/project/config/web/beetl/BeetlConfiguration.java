@@ -1,4 +1,4 @@
-package project.config.web;
+package project.config.web.beetl;
 
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 

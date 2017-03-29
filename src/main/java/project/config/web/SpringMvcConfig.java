@@ -21,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import project.config.web.beetl.BeetlConfiguration;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.stylefeng.guns.**.controller", "com.stylefeng.guns.common.controller"})
 @EnableAspectJAutoProxy
-@Import(value = {ControllerAopConfig.class})
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+//@Import(value = {ControllerAopConfig.class})
+public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     // beetl的配置
     @Bean(initMethod = "init")

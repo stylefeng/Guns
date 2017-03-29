@@ -28,7 +28,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     // springmvc 上下文
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebMvcConfig.class};
+        return new Class[]{SpringMvcConfig.class};
     }
 
     // 将DispatcherServlet映射到"/"

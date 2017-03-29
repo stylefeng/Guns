@@ -1,4 +1,4 @@
-package project.config.druid;
+package project.config.web.monitor;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by fsn on 2017/3/9.
  */
 @Configuration
-public class DruidConfig {
+public class DruidMonitorConfig {
 
     @Bean
     public DruidStatInterceptor druidStatInterceptor(){

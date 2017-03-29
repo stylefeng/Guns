@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 import com.stylefeng.guns.core.util.HttpSessionHolder;
+import org.springframework.stereotype.Component;
 
 /**
  * 静态调用session的拦截器
@@ -15,6 +16,7 @@ import com.stylefeng.guns.core.util.HttpSessionHolder;
  * @date 2016年11月13日 下午10:15:42
  */
 @Aspect
+@Component
 public class SessionInterceptor extends BaseController {
 
     @Pointcut("execution(* com.stylefeng.guns.*..controller.*.*(..))")
