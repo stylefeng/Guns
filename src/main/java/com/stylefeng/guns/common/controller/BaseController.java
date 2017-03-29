@@ -1,7 +1,6 @@
 package com.stylefeng.guns.common.controller;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.tips.SuccessTip;
 import com.stylefeng.guns.common.page.PageInfoBT;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
@@ -24,8 +23,6 @@ import java.io.UnsupportedEncodingException;
 @Component
 @Scope(scopeName = WebApplicationContext.SCOPE_REQUEST)
 public class BaseController {
-
-    protected static String ADMIN_NAME = Const.ADMIN_NAME;
 
     protected static String SUCCESS = "SUCCESS";
     protected static String ERROR = "ERROR";
