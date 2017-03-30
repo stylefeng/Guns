@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-26
+ * @since 2017-03-30
  */
 @TableName("_dict")
 public class Dict extends Model<Dict> {

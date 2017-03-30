@@ -1,39 +1,53 @@
 package com.stylefeng.guns.core.log;
 
-import com.stylefeng.guns.core.shiro.ShiroKit;
-import com.stylefeng.guns.core.shiro.ShiroUser;
-import com.stylefeng.guns.persistence.dao.OperationLogMapper;
+import com.stylefeng.guns.common.constant.state.LogSucceed;
+import com.stylefeng.guns.common.constant.state.LogType;
+import com.stylefeng.guns.core.support.HttpKit;
+import com.stylefeng.guns.persistence.model.LoginLog;
 import com.stylefeng.guns.persistence.model.OperationLog;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 /**
- * 日志记录工厂
+ * 日志对象创建工厂
  *
  * @author fengshuonan
  * @date 2016年12月6日 下午9:18:27
  */
-@Component
-public class LogFactory implements ILog {
+public class LogFactory {
 
-    @Autowired
-    OperationLogMapper operationLogMapper;
+    /**
+     * 创建操作日志
+     *
+     * @author fengshuonan
+     * @Date 2017/3/30 18:45
+     */
+    public static OperationLog createOperationLog(LogType logType, Integer userId, String clazzName, String methodName, String msg) {
+        OperationLog operationLog = new OperationLog();
+        operationLog.setLogtype(logType.getMessage());
+        operationLog.setLogname(ConcreteLogNameHolder.me().get(methodName));
+        operationLog.setUserid(userId);
+        operationLog.setClassname(clazzName);
+        operationLog.setMethod(methodName);
+        operationLog.setCreatetime(new Date());
+        operationLog.setSucceed(LogSucceed.SUCCESS.getMessage());
+        operationLog.setMessage(msg);
+        return operationLog;
+    }
 
-    @Override
-    public void doLog(String logName, String msg, boolean succeed) {
-        ShiroUser user = ShiroKit.getUser();
-        OperationLog log = new OperationLog();
-        log.setMethod(msg);
-        log.setCreatetime(new Date());
-        log.setSucceed((succeed) ? "1" : "0");
-        log.setUserid(String.valueOf(user.getId()));
-        log.setLogname(logName);
-        try {
-            operationLogMapper.insert(log);
-        }catch (Exception e){
-            //e.printStackTrace();
-        }
+    /**
+     * 创建登录日志
+     *
+     * @author fengshuonan
+     * @Date 2017/3/30 18:46
+     */
+    public static LoginLog createLoginLog(LogType logType, Integer userId) {
+        LoginLog loginLog = new LoginLog();
+        loginLog.setLogname(logType.getMessage());
+        loginLog.setUserid(userId);
+        loginLog.setCreatetime(new Date());
+        loginLog.setSucceed(LogSucceed.SUCCESS.getMessage());
+        loginLog.setIp(HttpKit.getRequest().getRemoteHost());
+        return loginLog;
     }
 }

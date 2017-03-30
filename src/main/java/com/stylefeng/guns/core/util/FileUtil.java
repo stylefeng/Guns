@@ -1,15 +1,14 @@
 package com.stylefeng.guns.core.util;
 
+import com.stylefeng.guns.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.common.exception.BussinessException;
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-
-import org.apache.log4j.Logger;
-
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 
 public class FileUtil {
 	
@@ -18,7 +17,7 @@ public class FileUtil {
 	/**
 	 * NIO way
 	 */
-	public static byte[] toByteArray2(String filename) {
+	public static byte[] toByteArray(String filename) {
 
 		File f = new File(filename);
 		if (!f.exists()) {

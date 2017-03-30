@@ -48,6 +48,9 @@ public class MenuController extends BaseController {
      */
     @RequestMapping("")
     public String index() {
+
+        int i = 1/0;
+
         return PREFIX + "menu.html";
     }
 

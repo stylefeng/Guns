@@ -1,10 +1,11 @@
 package com.stylefeng.guns.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -13,7 +14,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-26
+ * @since 2017-03-30
  */
 @TableName("_operation_log")
 public class OperationLog extends Model<OperationLog> {
@@ -22,8 +23,9 @@ public class OperationLog extends Model<OperationLog> {
 
 	@TableId
 	private Integer id;
+	private String logtype;
 	private String logname;
-	private String userid;
+	private Integer userid;
 	private String classname;
 	private String method;
 	private Date createtime;
@@ -39,6 +41,14 @@ public class OperationLog extends Model<OperationLog> {
 		this.id = id;
 	}
 
+	public String getLogtype() {
+		return logtype;
+	}
+
+	public void setLogtype(String logtype) {
+		this.logtype = logtype;
+	}
+
 	public String getLogname() {
 		return logname;
 	}
@@ -47,11 +57,11 @@ public class OperationLog extends Model<OperationLog> {
 		this.logname = logname;
 	}
 
-	public String getUserid() {
+	public Integer getUserid() {
 		return userid;
 	}
 
-	public void setUserid(String userid) {
+	public void setUserid(Integer userid) {
 		this.userid = userid;
 	}
 

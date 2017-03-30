@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-26
+ * @since 2017-03-30
  */
 @TableName("_login_log")
 public class LoginLog extends Model<LoginLog> {
@@ -23,12 +23,11 @@ public class LoginLog extends Model<LoginLog> {
 	@TableId
 	private Integer id;
 	private String logname;
-	private String userid;
-	private String classname;
-	private String method;
+	private Integer userid;
 	private Date createtime;
 	private String succeed;
 	private String message;
+	private String ip;
 
 
 	public Integer getId() {
@@ -47,28 +46,12 @@ public class LoginLog extends Model<LoginLog> {
 		this.logname = logname;
 	}
 
-	public String getUserid() {
+	public Integer getUserid() {
 		return userid;
 	}
 
-	public void setUserid(String userid) {
+	public void setUserid(Integer userid) {
 		this.userid = userid;
-	}
-
-	public String getClassname() {
-		return classname;
-	}
-
-	public void setClassname(String classname) {
-		this.classname = classname;
-	}
-
-	public String getMethod() {
-		return method;
-	}
-
-	public void setMethod(String method) {
-		this.method = method;
 	}
 
 	public Date getCreatetime() {
@@ -93,6 +76,14 @@ public class LoginLog extends Model<LoginLog> {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	@Override

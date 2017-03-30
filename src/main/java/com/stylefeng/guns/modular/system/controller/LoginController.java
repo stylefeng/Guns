@@ -1,10 +1,11 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.common.node.MenuNode;
+import com.stylefeng.guns.core.log.LogManager;
+import com.stylefeng.guns.core.shiro.ShiroKit;
+import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.modular.system.dao.MenuDao;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.stylefeng.guns.common.node.MenuNode;
-import com.stylefeng.guns.core.shiro.ShiroKit;
-import com.stylefeng.guns.core.shiro.ShiroUser;
-import com.stylefeng.guns.modular.system.dao.MenuDao;
+import java.util.List;
 
 /**
  * 登录控制器
@@ -60,7 +58,7 @@ public class LoginController extends BaseController {
      * 点击登录执行的动作
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginVali(HttpServletRequest req) {
+    public String loginVali() {
         String username = super.getPara("username");
         String password = super.getPara("password");
 
@@ -73,6 +71,8 @@ public class LoginController extends BaseController {
         ShiroUser shiroUser = ShiroKit.getUser();
         super.getSession().setAttribute("shiroUser", shiroUser);
 
+        LogManager.loginLog(shiroUser.getId());
+
         return REDIRECT + "/";
     }
 
@@ -81,6 +81,7 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logOut() {
+        LogManager.exitLog(ShiroKit.getUser().getId());
         ShiroKit.getSubject().logout();
         super.getSession().invalidate();
         return REDIRECT + "/login";

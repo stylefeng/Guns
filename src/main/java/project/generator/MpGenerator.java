@@ -61,8 +61,6 @@ public class MpGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.remove_prefix_and_camel);// 表名生成策略
-        // strategy.setInclude(new String[] { "user" }); // 需要生成的表
-        // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 字段名生成策略
         strategy.setFieldNaming(NamingStrategy.nochange);
         mpg.setStrategy(strategy);
@@ -73,9 +71,9 @@ public class MpGenerator {
         pc.setEntity("com.stylefeng.guns.persistence.model");
         pc.setMapper("com.stylefeng.guns.persistence.dao");
         pc.setXml("com.stylefeng.guns.persistence.dao.mapping");
-        pc.setService("TTT");
-        pc.setServiceImpl("TTT");
-        pc.setController("TTT");
+        pc.setService("TTT");       //本项目没用
+        pc.setServiceImpl("TTT");   //本项目没用
+        pc.setController("TTT");    //本项目没用
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值

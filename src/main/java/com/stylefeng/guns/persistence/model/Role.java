@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-26
+ * @since 2017-03-30
  */
 @TableName("_role")
 public class Role extends Model<Role> {

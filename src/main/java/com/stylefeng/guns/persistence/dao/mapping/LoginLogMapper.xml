@@ -7,11 +7,10 @@
 		<id column="id" property="id" />
 		<result column="logname" property="logname" />
 		<result column="userid" property="userid" />
-		<result column="classname" property="classname" />
-		<result column="method" property="method" />
 		<result column="createtime" property="createtime" />
 		<result column="succeed" property="succeed" />
 		<result column="message" property="message" />
+		<result column="ip" property="ip" />
 	</resultMap>
 
 </mapper>

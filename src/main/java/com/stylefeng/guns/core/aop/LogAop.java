@@ -1,6 +1,6 @@
 package com.stylefeng.guns.core.aop;
 
-import com.stylefeng.guns.core.log.ILog;
+import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.support.StrKit;
@@ -12,14 +12,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
 /**
+ * 日志记录
+ *
  * @author fengshuonan
- * @Description 日志记录
  * @date 2016年12月6日 下午8:48:30
  */
 @Aspect
@@ -27,9 +27,6 @@ import java.lang.reflect.Method;
 public class LogAop {
 
     private Logger log = Logger.getLogger(this.getClass());
-
-    @Autowired
-    ILog factory;
 
     @Pointcut("execution(* com.stylefeng.guns..service.*.*(..))")
     public void cutService() {
@@ -60,9 +57,9 @@ public class LogAop {
         }
 
         String msg = ToolUtil.format("[时间]:{}  [类名]:{}  [方法]:{}  [参数]:{}", DateUtil.getTime(), className, methodName, sb.toString());
-        log.info(StrKit.removeSuffix(msg, "& "));
-        factory.doLog(methodName, StrKit.removeSuffix(msg, "& "), true);
-
+        msg = StrKit.removeSuffix(msg, "& ");
+        log.info(msg);
+        LogManager.bussinessLog(user.getId(),className,methodName,msg);
         return point.proceed();
     }
 }

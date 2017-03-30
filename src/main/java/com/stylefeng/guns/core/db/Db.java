@@ -10,15 +10,13 @@ import java.util.List;
  * <p>
  * 便捷数据库操作类
  * <p>
- *
  * <p>
- * 本类的两种情景：<br>
- * <br>
- * 1.现有Mapper不满足简单业务的查询!<br>
- * Db.create(UserLoginMapper.class).selectByPhone("18200001111");<br>
- * <br>
- * 2.单纯想创建现有的Mapper<br>
+ * 本类的使用情景：
+ * <p>
+ * 1.单纯想创建现有的Mapper
+ * <p>例如:
  * Db.getMapper(UserLoginMapper.class).selectById("14779707158513204");<br>
+ * <p>
  *
  * @author fengshuonan
  * @date 2017年2月22日 下午8:07:17

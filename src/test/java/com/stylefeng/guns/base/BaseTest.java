@@ -1,7 +1,5 @@
 package com.stylefeng.guns.base;
 
-import com.stylefeng.guns.core.log.ILog;
-import com.stylefeng.guns.core.util.SpringContextHolder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,8 +14,6 @@ public class BaseTest {
     @Test
     public void test() {
 
-        ILog logFactory = SpringContextHolder.getBean(ILog.class);
-        logFactory.doLog("12", "message", true);
     }
 
 }

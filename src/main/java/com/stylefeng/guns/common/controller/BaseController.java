@@ -91,7 +91,7 @@ public class BaseController {
      * @date 2017年2月28日 下午2:53:19
      */
     protected ResponseEntity<byte[]> renderFile(String fileName, String filePath) {
-        byte[] bytes = FileUtil.toByteArray2(filePath);
+        byte[] bytes = FileUtil.toByteArray(filePath);
         return renderFile(fileName, bytes);
     }
 
