@@ -80,6 +80,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DisabledAccountException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String accountLocked(DisabledAccountException e, Model model) {
+        String username = HttpKit.getRequest().getParameter("username");
+        LogManager.loginLog(username,"账号被冻结");
         model.addAttribute("tips", "账号被冻结");
         return "/login.html";
     }
@@ -92,6 +94,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CredentialsException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String credentials(CredentialsException e, Model model) {
+        String username = HttpKit.getRequest().getParameter("username");
+        LogManager.loginLog(username,"账号密码错误");
         model.addAttribute("tips", "账号密码错误");
         return "/login.html";
     }
