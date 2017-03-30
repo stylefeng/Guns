@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.DisabledAccountException;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,7 +26,6 @@ import javax.naming.NoPermissionException;
  * @date 2016年11月12日 下午3:19:56
  */
 @ControllerAdvice
-@DependsOn("springContextHolder")
 public class GlobalExceptionHandler {
 
     private Logger log = Logger.getLogger(this.getClass());
