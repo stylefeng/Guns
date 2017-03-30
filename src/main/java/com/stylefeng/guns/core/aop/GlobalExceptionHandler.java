@@ -3,11 +3,15 @@ package com.stylefeng.guns.core.aop;
 import com.stylefeng.guns.common.constant.tips.ErrorTip;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.core.log.ILog;
 import com.stylefeng.guns.core.support.HttpKit;
+import com.stylefeng.guns.core.util.SpringContextHolder;
+import com.stylefeng.guns.core.util.ToolUtil;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.DisabledAccountException;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,9 +28,13 @@ import javax.naming.NoPermissionException;
  * @date 2016年11月12日 下午3:19:56
  */
 @ControllerAdvice
+@DependsOn("springContextHolder")
 public class GlobalExceptionHandler {
 
     private Logger log = Logger.getLogger(this.getClass());
+
+    private ILog logFactory = SpringContextHolder.getBean(ILog.class);
+
 
     /**
      * 拦截业务异常
@@ -37,6 +45,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorTip notFount(BussinessException e) {
+        logFactory.doLog("业务异常", e.toString(), false);
         HttpKit.getRequest().setAttribute("tip", e.getMessage());
         return new ErrorTip(e.getCode(), e.getMessage());
     }
@@ -50,6 +59,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorTip notFount(RuntimeException e) {
+        String msg = ToolUtil.getExceptionMsg(e);
+        logFactory.doLog("Runtime异常", msg, false);
         log.error("服务器异常：", e);
         HttpKit.getRequest().setAttribute("tip", "服务器未知运行时异常");
         return new ErrorTip(BizExceptionEnum.SERVER_ERROR);

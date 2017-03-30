@@ -30,6 +30,10 @@ public class LogFactory implements ILog {
         log.setSucceed((succeed) ? "1" : "0");
         log.setUserid(String.valueOf(user.getId()));
         log.setLogname(logName);
-        operationLogMapper.insert(log);
+        try {
+            operationLogMapper.insert(log);
+        }catch (Exception e){
+            //e.printStackTrace();
+        }
     }
 }
