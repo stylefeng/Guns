@@ -22,7 +22,7 @@ public class LogManager {
     private static OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
 
     public static void loginLog(Integer userId) {
-        LoginLog loginLog = LogFactory.createLoginLog(LogType.LOGIN, userId);
+        LoginLog loginLog = LogFactory.createLoginLog(LogType.LOGIN, userId, null);
         try {
             loginLogMapper.insert(loginLog);
         } catch (Exception e) {
@@ -30,8 +30,17 @@ public class LogManager {
         }
     }
 
+    public static void loginLog(String username, String msg) {
+        LoginLog loginLog = LogFactory.createLoginLog(LogType.LOGIN_FAIL, null, "账号:" + username + "," + msg);
+        try {
+            loginLogMapper.insert(loginLog);
+        } catch (Exception e) {
+            logger.error("创建登录失败异常!", e);
+        }
+    }
+
     public static void exitLog(Integer userId) {
-        LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId);
+        LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId, null);
         try {
             loginLogMapper.insert(loginLog);
         } catch (Exception e) {
@@ -50,7 +59,7 @@ public class LogManager {
 
     public static void exceptionLog(Integer userId, Exception exception) {
         String msg = ToolUtil.getExceptionMsg(exception);
-        OperationLog operationLog = LogFactory.createOperationLog(LogType.EXCEPTION, userId, "", "", msg);
+        OperationLog operationLog = LogFactory.createOperationLog(LogType.EXCEPTION, userId, null, null, msg);
         try {
             operationLogMapper.insert(operationLog);
         } catch (Exception e) {

@@ -64,7 +64,7 @@ public class ShiroConfig {
     @Bean
     public CookieRememberMeManager rememberMeManager(SimpleCookie rememberMeCookie) {
         CookieRememberMeManager manager = new CookieRememberMeManager();
-        manager.setCipherKey(Base64.decode("ZGluZ2RpbmdtYW5hZ2VyAA=="));
+        manager.setCipherKey(Base64.decode("Z3VucwAAAAAAAAAAAAAAAA=="));
         manager.setCookie(rememberMeCookie);
         return manager;
     }

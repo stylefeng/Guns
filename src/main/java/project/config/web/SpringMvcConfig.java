@@ -37,7 +37,7 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.stylefeng.guns.**.controller", "com.stylefeng.guns.common.controller"})
 @EnableAspectJAutoProxy
-//@Import(value = {ControllerAopConfig.class})
+@Import({ControllerAopConfig.class})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     // beetl的配置

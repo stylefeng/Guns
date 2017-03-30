@@ -2,7 +2,6 @@ package com.stylefeng.guns.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 全局的控制器
@@ -19,7 +18,7 @@ public class GlobalController {
      *
      * @author fengshuonan
      */
-    @RequestMapping(path = "/error", method = RequestMethod.GET)
+    @RequestMapping(path = "/error")
     public String errorPage() {
         return "/404.html";
     }

@@ -41,13 +41,14 @@ public class LogFactory {
      * @author fengshuonan
      * @Date 2017/3/30 18:46
      */
-    public static LoginLog createLoginLog(LogType logType, Integer userId) {
+    public static LoginLog createLoginLog(LogType logType, Integer userId, String msg) {
         LoginLog loginLog = new LoginLog();
         loginLog.setLogname(logType.getMessage());
         loginLog.setUserid(userId);
         loginLog.setCreatetime(new Date());
         loginLog.setSucceed(LogSucceed.SUCCESS.getMessage());
         loginLog.setIp(HttpKit.getRequest().getRemoteHost());
+        loginLog.setMessage(msg);
         return loginLog;
     }
 }
