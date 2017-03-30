@@ -9,7 +9,8 @@ package com.stylefeng.guns.core.log;
 public interface ILog {
 
     /**
-     * @Description 日志记录
+     * 日志记录
+     *
      * @author fengshuonan
      */
     void doLog(String logName, String msg, boolean succeed);

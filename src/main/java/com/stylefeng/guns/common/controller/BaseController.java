@@ -73,7 +73,7 @@ public class BaseController {
     /**
      * 删除cookie
      */
-    protected void deletePhoneCookie(String cookieName) {
+    protected void deleteCookieByName(String cookieName) {
         Cookie[] cookies = this.getHttpServletRequest().getCookies();
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(cookieName)) {
