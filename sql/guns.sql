@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地的
+Source Server         : localhost
 Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : guns
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-03-29 18:57:46
+Date: 2017-03-30 08:38:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -213,12 +213,41 @@ CREATE TABLE `_operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _operation_log
 -- ----------------------------
 INSERT INTO `_operation_log` VALUES ('1', '异常日志', '1', null, 'Missing URI template variable \'tablePath\' for method parameter of type String', '2016-11-01 09:29:09', '0', null);
+INSERT INTO `_operation_log` VALUES ('2', '12312312', '123123', null, '123123', '2017-03-29 22:59:04', '1', null);
+INSERT INTO `_operation_log` VALUES ('3', '12', '2', null, 'message', '2017-03-29 23:02:16', '1', null);
+INSERT INTO `_operation_log` VALUES ('4', 'index', '1', null, '[时间]:2017-03-29 23:11:45  [类名]:com.stylefeng.guns.modular.system.controller.LoginController  [方法]:index  [参数]:{} & ', '2017-03-29 23:11:45', '1', null);
+INSERT INTO `_operation_log` VALUES ('5', 'blackboard', '1', null, '[时间]:2017-03-29 23:11:45  [类名]:com.stylefeng.guns.modular.system.controller.BlackboardController  [方法]:blackboard  [参数]:', '2017-03-29 23:11:46', '1', null);
+INSERT INTO `_operation_log` VALUES ('6', 'index', '1', null, '[时间]:2017-03-29 23:12:10  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:index  [参数]:', '2017-03-29 23:12:11', '1', null);
+INSERT INTO `_operation_log` VALUES ('7', 'list', '1', null, '[时间]:2017-03-29 23:12:11  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:list  [参数]:', '2017-03-29 23:12:11', '1', null);
+INSERT INTO `_operation_log` VALUES ('8', 'index', '1', null, '[时间]:2017-03-29 23:12:11  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:index  [参数]:', '2017-03-29 23:12:11', '1', null);
+INSERT INTO `_operation_log` VALUES ('9', 'list', '1', null, '[时间]:2017-03-29 23:12:11  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:list  [参数]:', '2017-03-29 23:12:12', '1', null);
+INSERT INTO `_operation_log` VALUES ('10', 'index', '1', null, '[时间]:2017-03-29 23:12:13  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:index  [参数]:', '2017-03-29 23:12:13', '1', null);
+INSERT INTO `_operation_log` VALUES ('11', 'list', '1', null, '[时间]:2017-03-29 23:12:13  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:list  [参数]:', '2017-03-29 23:12:13', '1', null);
+INSERT INTO `_operation_log` VALUES ('12', 'roleAssign', '1', null, '[时间]:2017-03-29 23:12:15  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:roleAssign  [参数]:1 & {} & ', '2017-03-29 23:12:15', '1', null);
+INSERT INTO `_operation_log` VALUES ('13', 'roleTreeListByUserId', '1', null, '[时间]:2017-03-29 23:12:15  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:roleTreeListByUserId  [参数]:1 & ', '2017-03-29 23:12:16', '1', null);
+INSERT INTO `_operation_log` VALUES ('14', 'setRole', '1', null, '[时间]:2017-03-29 23:12:16  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:setRole  [参数]:1 & 1 & ', '2017-03-29 23:12:16', '1', null);
+INSERT INTO `_operation_log` VALUES ('15', 'list', '1', null, '[时间]:2017-03-29 23:12:16  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:list  [参数]:', '2017-03-29 23:12:17', '1', null);
+INSERT INTO `_operation_log` VALUES ('16', 'roleAssign', '1', null, '[时间]:2017-03-29 23:12:17  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:roleAssign  [参数]:1 & {} & ', '2017-03-29 23:12:18', '1', null);
+INSERT INTO `_operation_log` VALUES ('17', 'roleTreeListByUserId', '1', null, '[时间]:2017-03-29 23:12:17  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:roleTreeListByUserId  [参数]:1 & ', '2017-03-29 23:12:18', '1', null);
+INSERT INTO `_operation_log` VALUES ('18', 'index', '1', null, '[时间]:2017-03-29 23:15:49  [类名]:com.stylefeng.guns.modular.system.controller.LoginController  [方法]:index  [参数]:{} & ', '2017-03-29 23:15:50', '1', null);
+INSERT INTO `_operation_log` VALUES ('19', 'blackboard', '1', null, '[时间]:2017-03-29 23:15:50  [类名]:com.stylefeng.guns.modular.system.controller.BlackboardController  [方法]:blackboard  [参数]:', '2017-03-29 23:15:50', '1', null);
+INSERT INTO `_operation_log` VALUES ('20', 'index', '1', null, '[时间]:2017-03-29 23:16:01  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:index  [参数]:', '2017-03-29 23:16:02', '1', null);
+INSERT INTO `_operation_log` VALUES ('21', 'list', '1', null, '[时间]:2017-03-29 23:16:02  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:list  [参数]:', '2017-03-29 23:16:02', '1', null);
+INSERT INTO `_operation_log` VALUES ('22', 'index', '1', null, '[时间]:2017-03-29 23:16:02  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:index  [参数]:', '2017-03-29 23:16:03', '1', null);
+INSERT INTO `_operation_log` VALUES ('23', 'list', '1', null, '[时间]:2017-03-29 23:16:03  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:list  [参数]:', '2017-03-29 23:16:03', '1', null);
+INSERT INTO `_operation_log` VALUES ('24', 'index', '1', null, '[时间]:2017-03-29 23:16:03  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:index  [参数]:', '2017-03-29 23:16:04', '1', null);
+INSERT INTO `_operation_log` VALUES ('25', 'list', '1', null, '[时间]:2017-03-29 23:16:04  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:list  [参数]:', '2017-03-29 23:16:04', '1', null);
+INSERT INTO `_operation_log` VALUES ('26', 'menuEdit', '1', null, '[时间]:2017-03-29 23:16:13  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:menuEdit  [参数]:106 & {} & ', '2017-03-29 23:16:13', '1', null);
+INSERT INTO `_operation_log` VALUES ('27', 'edit', '1', null, '[时间]:2017-03-29 23:16:14  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:edit  [参数]:com.stylefeng.guns.persistence.model.Menu@32fd2e34 & org.springframework.validation.BeanPropertyBindingResult: 0 errors & ', '2017-03-29 23:16:15', '1', null);
+INSERT INTO `_operation_log` VALUES ('28', 'list', '1', null, '[时间]:2017-03-29 23:16:14  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:list  [参数]:', '2017-03-29 23:16:15', '1', null);
+INSERT INTO `_operation_log` VALUES ('29', 'setAuthority', '1', null, '[时间]:2017-03-29 23:55:33  [类名]:com.stylefeng.guns.modular.system.service.impl.RoleServiceImpl  [方法]:setAuthority  [参数]:1 & 105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122 & ', '2017-03-29 23:55:34', '1', null);
+INSERT INTO `_operation_log` VALUES ('30', 'setAuthority', '1', null, '[时间]:2017-03-29 23:56:36  [类名]:com.stylefeng.guns.modular.system.service.impl.RoleServiceImpl  [方法]:setAuthority  [参数]:1 & 105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122 ', '2017-03-29 23:56:36', '1', null);
 
 -- ----------------------------
 -- Table structure for _parameter
@@ -250,29 +279,29 @@ CREATE TABLE `_relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2637 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2691 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _relation
 -- ----------------------------
-INSERT INTO `_relation` VALUES ('2600', '105', '1');
-INSERT INTO `_relation` VALUES ('2601', '106', '1');
-INSERT INTO `_relation` VALUES ('2602', '107', '1');
-INSERT INTO `_relation` VALUES ('2603', '108', '1');
-INSERT INTO `_relation` VALUES ('2604', '109', '1');
-INSERT INTO `_relation` VALUES ('2605', '110', '1');
-INSERT INTO `_relation` VALUES ('2606', '111', '1');
-INSERT INTO `_relation` VALUES ('2607', '112', '1');
-INSERT INTO `_relation` VALUES ('2608', '113', '1');
-INSERT INTO `_relation` VALUES ('2609', '114', '1');
-INSERT INTO `_relation` VALUES ('2610', '115', '1');
-INSERT INTO `_relation` VALUES ('2611', '116', '1');
-INSERT INTO `_relation` VALUES ('2612', '117', '1');
-INSERT INTO `_relation` VALUES ('2613', '118', '1');
-INSERT INTO `_relation` VALUES ('2614', '119', '1');
-INSERT INTO `_relation` VALUES ('2615', '120', '1');
-INSERT INTO `_relation` VALUES ('2616', '121', '1');
-INSERT INTO `_relation` VALUES ('2617', '122', '1');
+INSERT INTO `_relation` VALUES ('2673', '105', '1');
+INSERT INTO `_relation` VALUES ('2674', '106', '1');
+INSERT INTO `_relation` VALUES ('2675', '107', '1');
+INSERT INTO `_relation` VALUES ('2676', '108', '1');
+INSERT INTO `_relation` VALUES ('2677', '109', '1');
+INSERT INTO `_relation` VALUES ('2678', '110', '1');
+INSERT INTO `_relation` VALUES ('2679', '111', '1');
+INSERT INTO `_relation` VALUES ('2680', '112', '1');
+INSERT INTO `_relation` VALUES ('2681', '113', '1');
+INSERT INTO `_relation` VALUES ('2682', '114', '1');
+INSERT INTO `_relation` VALUES ('2683', '115', '1');
+INSERT INTO `_relation` VALUES ('2684', '116', '1');
+INSERT INTO `_relation` VALUES ('2685', '117', '1');
+INSERT INTO `_relation` VALUES ('2686', '118', '1');
+INSERT INTO `_relation` VALUES ('2687', '119', '1');
+INSERT INTO `_relation` VALUES ('2688', '120', '1');
+INSERT INTO `_relation` VALUES ('2689', '121', '1');
+INSERT INTO `_relation` VALUES ('2690', '122', '1');
 
 -- ----------------------------
 -- Table structure for _role
@@ -293,10 +322,6 @@ CREATE TABLE `_role` (
 -- Records of _role
 -- ----------------------------
 INSERT INTO `_role` VALUES ('1', '1', '0', '超级管理员', '1', 'administrator', '1');
-INSERT INTO `_role` VALUES ('9', '1', '1', '服务器研发', '2', 'server', null);
-INSERT INTO `_role` VALUES ('10', '1', '1', '安卓研发', '14', 'android', null);
-INSERT INTO `_role` VALUES ('11', '1', '1', 'IOS研发', '15', 'ios', null);
-INSERT INTO `_role` VALUES ('12', '1', '1', '运营', '1', 'bussiness', null);
 
 -- ----------------------------
 -- Table structure for _role_ext
