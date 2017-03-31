@@ -1,13 +1,8 @@
 package com.stylefeng.guns.core.log;
 
-import com.stylefeng.guns.common.constant.state.LogType;
-import com.stylefeng.guns.core.db.Db;
-import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.persistence.dao.LoginLogMapper;
-import com.stylefeng.guns.persistence.dao.OperationLogMapper;
-import com.stylefeng.guns.persistence.model.LoginLog;
-import com.stylefeng.guns.persistence.model.OperationLog;
-import org.apache.log4j.Logger;
+import java.util.TimerTask;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 日志管理器
@@ -17,54 +12,22 @@ import org.apache.log4j.Logger;
  */
 public class LogManager {
 
-    private static Logger logger = Logger.getLogger(LogManager.class);
-    private static LoginLogMapper loginLogMapper = Db.getMapper(LoginLogMapper.class);
-    private static OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
+    //日志记录操作延时
+    private final int OPERATE_DELAY_TIME = 10;
 
-    public static void loginLog(Integer userId) {
-        LoginLog loginLog = LogFactory.createLoginLog(LogType.LOGIN, userId, null);
-        try {
-            loginLogMapper.insert(loginLog);
-        } catch (Exception e) {
-            logger.error("创建登录日志异常!", e);
-        }
+    //异步操作记录日志的线程池
+    private ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(10);
+
+    private LogManager() {
     }
 
-    public static void loginLog(String username, String msg) {
-        LoginLog loginLog = LogFactory.createLoginLog(LogType.LOGIN_FAIL, null, "账号:" + username + "," + msg);
-        try {
-            loginLogMapper.insert(loginLog);
-        } catch (Exception e) {
-            logger.error("创建登录失败异常!", e);
-        }
+    public static LogManager logManager = new LogManager();
+
+    public static LogManager me() {
+        return logManager;
     }
 
-    public static void exitLog(Integer userId) {
-        LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId, null);
-        try {
-            loginLogMapper.insert(loginLog);
-        } catch (Exception e) {
-            logger.error("创建退出日志异常!", e);
-        }
+    public void executeLog(TimerTask task) {
+        executor.schedule(task, OPERATE_DELAY_TIME, TimeUnit.MILLISECONDS);
     }
-
-    public static void bussinessLog(Integer userId, String clazzName, String methodName, String msg) {
-        OperationLog operationLog = LogFactory.createOperationLog(LogType.BUSSINESS, userId, clazzName, methodName, msg);
-        try {
-            operationLogMapper.insert(operationLog);
-        } catch (Exception e) {
-            logger.error("创建业务日志异常!", e);
-        }
-    }
-
-    public static void exceptionLog(Integer userId, Exception exception) {
-        String msg = ToolUtil.getExceptionMsg(exception);
-        OperationLog operationLog = LogFactory.createOperationLog(LogType.EXCEPTION, userId, null, null, msg);
-        try {
-            operationLogMapper.insert(operationLog);
-        } catch (Exception e) {
-            logger.error("创建异常日志异常!", e);
-        }
-    }
-
 }

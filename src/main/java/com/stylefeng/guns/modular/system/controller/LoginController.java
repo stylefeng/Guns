@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.node.MenuNode;
 import com.stylefeng.guns.core.log.LogManager;
+import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+
+import static com.stylefeng.guns.core.support.HttpKit.getIp;
 
 /**
  * 登录控制器
@@ -71,7 +74,7 @@ public class LoginController extends BaseController {
         ShiroUser shiroUser = ShiroKit.getUser();
         super.getSession().setAttribute("shiroUser", shiroUser);
 
-        LogManager.loginLog(shiroUser.getId());
+        LogManager.me().executeLog(LogTaskFactory.loginLog(shiroUser.getId(), getIp()));
 
         return REDIRECT + "/";
     }
@@ -81,7 +84,7 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logOut() {
-        LogManager.exitLog(ShiroKit.getUser().getId());
+        LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroKit.getUser().getId(), getIp()));
         ShiroKit.getSubject().logout();
         super.getSession().invalidate();
         return REDIRECT + "/login";

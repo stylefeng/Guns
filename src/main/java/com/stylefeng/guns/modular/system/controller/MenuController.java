@@ -8,6 +8,8 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.core.util.Contrast;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
@@ -48,7 +50,6 @@ public class MenuController extends BaseController {
      */
     @RequestMapping("")
     public String index() {
-
         return PREFIX + "menu.html";
     }
 
@@ -61,7 +62,7 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * 跳转到菜单列表列表页面
+     * 跳转到菜单详情列表页面
      */
     @RequestMapping(value = "/menu_edit/{menuId}")
     public String menuEdit(@PathVariable Integer menuId, Model model) {
@@ -69,6 +70,9 @@ public class MenuController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuMapper.selectById(menuId);
+
+        LogObjectHolder.me().set(menu);
+
         model.addAttribute(menu);
         return PREFIX + "menu_edit.html";
     }
@@ -121,6 +125,11 @@ public class MenuController extends BaseController {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        Object obj1 = LogObjectHolder.me().get();
+        Object obj2 = menu;
+
+        System.out.println(Contrast.contrastObj(obj1,obj2));
         this.menuMapper.updateById(menu);
         return SUCCESS_TIP;
     }

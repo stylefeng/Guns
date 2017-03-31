@@ -4,8 +4,8 @@ import com.stylefeng.guns.common.constant.tips.ErrorTip;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.core.log.LogManager;
+import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
-import com.stylefeng.guns.core.support.HttpKit;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 import javax.naming.NoPermissionException;
+import static com.stylefeng.guns.core.support.HttpKit.getIp;
+import static com.stylefeng.guns.core.support.HttpKit.getRequest;
 
 /**
  * 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
@@ -39,8 +40,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorTip notFount(BussinessException e) {
-        LogManager.exceptionLog(ShiroKit.getUser().getId(), e);
-        HttpKit.getRequest().setAttribute("tip", e.getMessage());
+        LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
+        getRequest().setAttribute("tip", e.getMessage());
         return new ErrorTip(e.getCode(), e.getMessage());
     }
 
@@ -53,8 +54,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorTip notFount(RuntimeException e) {
-        LogManager.exceptionLog(ShiroKit.getUser().getId(), e);
-        HttpKit.getRequest().setAttribute("tip", "服务器未知运行时异常");
+        LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
+        getRequest().setAttribute("tip", "服务器未知运行时异常");
         return new ErrorTip(BizExceptionEnum.SERVER_ERROR);
     }
 
@@ -78,8 +79,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DisabledAccountException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String accountLocked(DisabledAccountException e, Model model) {
-        String username = HttpKit.getRequest().getParameter("username");
-        LogManager.loginLog(username,"账号被冻结");
+        String username = getRequest().getParameter("username");
+        LogManager.me().executeLog(LogTaskFactory.loginLog(username, "账号被冻结", getIp()));
         model.addAttribute("tips", "账号被冻结");
         return "/login.html";
     }
@@ -92,8 +93,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CredentialsException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String credentials(CredentialsException e, Model model) {
-        String username = HttpKit.getRequest().getParameter("username");
-        LogManager.loginLog(username,"账号密码错误");
+        String username = getRequest().getParameter("username");
+        LogManager.me().executeLog(LogTaskFactory.loginLog(username, "账号密码错误", getIp()));
         model.addAttribute("tips", "账号密码错误");
         return "/login.html";
     }
@@ -107,7 +108,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     public ErrorTip credentials(NoPermissionException e, Model model) {
-        HttpKit.getRequest().setAttribute("tip", "权限异常");
+        getRequest().setAttribute("tip", "权限异常");
         return new ErrorTip(BizExceptionEnum.NO_PERMITION);
     }
 

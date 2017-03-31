@@ -1,6 +1,8 @@
 package com.stylefeng.guns.core.aop;
 
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.core.log.LogManager;
+import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.support.StrKit;
@@ -28,7 +30,7 @@ public class LogAop {
 
     private Logger log = Logger.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.stylefeng.guns..service.*.*(..))")
+    @Pointcut(value = "@annotation(com.stylefeng.guns.common.annotion.log.BussinessLog)")
     public void cutService() {
     }
 
@@ -50,6 +52,10 @@ public class LogAop {
         String className = point.getTarget().getClass().getName();
         Object[] params = point.getArgs();
 
+        //获取操作名称
+        BussinessLog annotation = method.getAnnotation(BussinessLog.class);
+        String bussinessName = annotation.value();
+
         StringBuilder sb = new StringBuilder();
         for (Object param : params) {
             sb.append(param);
@@ -59,7 +65,7 @@ public class LogAop {
         String msg = ToolUtil.format("[时间]:{}  [类名]:{}  [方法]:{}  [参数]:{}", DateUtil.getTime(), className, methodName, sb.toString());
         msg = StrKit.removeSuffix(msg, "& ");
         log.info(msg);
-        LogManager.bussinessLog(user.getId(),className,methodName,msg);
+        LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(),bussinessName,className,methodName,msg));
         return point.proceed();
     }
 }
