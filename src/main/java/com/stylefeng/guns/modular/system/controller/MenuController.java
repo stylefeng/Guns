@@ -1,6 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.constant.tips.Tip;
@@ -9,7 +10,6 @@ import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
 import com.stylefeng.guns.core.log.LogObjectHolder;
-import com.stylefeng.guns.core.util.Contrast;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
@@ -78,6 +78,21 @@ public class MenuController extends BaseController {
     }
 
     /**
+     * 修该菜单
+     */
+    @Permission(Const.ADMIN_NAME)
+    @RequestMapping(value = "/edit")
+    @ResponseBody
+    @BussinessLog("修改菜单")
+    public Tip edit(@Valid Menu menu, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        this.menuMapper.updateById(menu);
+        return SUCCESS_TIP;
+    }
+
+    /**
      * 获取菜单列表
      */
     @RequestMapping(value = "/list")
@@ -112,25 +127,6 @@ public class MenuController extends BaseController {
         }
         menu.setStatus(MenuStatus.ENABLE.getCode());
         this.menuMapper.insert(menu);
-        return SUCCESS_TIP;
-    }
-
-    /**
-     * 修该菜单
-     */
-    @Permission(Const.ADMIN_NAME)
-    @RequestMapping(value = "/edit")
-    @ResponseBody
-    public Tip edit(@Valid Menu menu, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
-        }
-
-        Object obj1 = LogObjectHolder.me().get();
-        Object obj2 = menu;
-
-        System.out.println(Contrast.contrastObj(obj1,obj2));
-        this.menuMapper.updateById(menu);
         return SUCCESS_TIP;
     }
 
