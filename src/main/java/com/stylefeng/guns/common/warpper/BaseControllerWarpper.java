@@ -34,5 +34,5 @@ public abstract class BaseControllerWarpper {
         }
     }
 
-    public abstract void warpTheMap(Map<String, Object> map);
+    protected abstract void warpTheMap(Map<String, Object> map);
 }

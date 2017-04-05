@@ -2,16 +2,16 @@
  * 日志管理初始化
  */
 var OptLog = {
-		id : "OptLogTable",	//表格id
-		seItem : null,		//选中的条目
-		table : null,
-		layerIndex : -1
+    id: "OptLogTable",	//表格id
+    seItem: null,		//选中的条目
+    table: null,
+    layerIndex: -1
 };
 
 /**
  * 初始化表格的列
  */
-OptLog.initColumn = function(){
+OptLog.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
@@ -27,7 +27,7 @@ OptLog.initColumn = function(){
 /**
  * 绑定表格的事件
  */
-OptLog.bindEvent = function(){
+OptLog.bindEvent = function () {
     $('#' + this.id).on('click-row.bs.table', function (e, row) {
         OptLog.seItem = row;
     });
@@ -36,26 +36,33 @@ OptLog.bindEvent = function(){
 /**
  * 检查是否选中
  */
-OptLog.check = function(){
-	if(this.seItem == null){
-		Feng.info("请先选中表格中的某一记录！");
-		return false;
-	}else{
-		return true;
-	}
+OptLog.check = function () {
+    if (this.seItem == null) {
+        Feng.info("请先选中表格中的某一记录！");
+        return false;
+    } else {
+        return true;
+    }
 };
 
 /**
  * 查看日志详情
  */
-OptLog.detail = function(){
+OptLog.detail = function () {
+    if (this.check()) {
+        var ajax = new $ax(Feng.ctxPath + "/log/detail/" +this.seItem.id, function (data) {
 
+        }, function (data) {
+
+        });
+        ajax.start();
+    }
 };
 
-$(function(){
+$(function () {
     var defaultColunms = OptLog.initColumn();
-	var table = new BSTable(OptLog.id,"/log/list",defaultColunms);
-    table.setPaginationType("client");
+    var table = new BSTable(OptLog.id, "/log/list", defaultColunms);
+    table.setPaginationType("server");
     table.init();
     OptLog.bindEvent();
     OptLog.table = table;

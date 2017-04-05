@@ -1,13 +1,19 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.persistence.dao.OperationLogMapper;
-import org.apache.ibatis.session.RowBounds;
+import com.stylefeng.guns.persistence.model.OperationLog;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 日志管理的控制器
@@ -38,6 +44,18 @@ public class LogController extends BaseController {
     @RequestMapping("/list")
     @ResponseBody
     public Object list(){
-        return operationLogMapper.selectPage(new RowBounds(10,2), null);
+        Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
+        List<Map<String, Object>> operationLogs = operationLogMapper.selectMapsPage(page, null);
+        page.setRecords((List<OperationLog>) new LogWarpper(operationLogs).warp());
+        return super.packForBT(page);
+    }
+
+    /**
+     * 查询操作日志详情
+     */
+    @RequestMapping("/detail/{id}")
+    @ResponseBody
+    public Object detail(@PathVariable Integer id){
+        return operationLogMapper.selectById(id);
     }
 }
