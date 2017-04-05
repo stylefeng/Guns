@@ -2,7 +2,7 @@
  * 日志管理初始化
  */
 var OptLog = {
-		id : "logTable",	//表格id
+		id : "OptLogTable",	//表格id
 		seItem : null,		//选中的条目
 		table : null,
 		layerIndex : -1
@@ -55,8 +55,8 @@ OptLog.detail = function(){
 $(function(){
     var defaultColunms = OptLog.initColumn();
 	var table = new BSTable(OptLog.id,"/log/list",defaultColunms);
-	table.setPaginationType("client");
-	table.init();
+    table.setPaginationType("client");
+    table.init();
     OptLog.bindEvent();
     OptLog.table = table;
 });
