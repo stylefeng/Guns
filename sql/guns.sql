@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-04-06 23:51:19
+Date: 2017-04-07 00:13:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -122,7 +122,7 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
@@ -141,6 +141,10 @@ INSERT INTO `_login_log` VALUES ('51', '登录失败日志', null, '2017-03-31 1
 INSERT INTO `_login_log` VALUES ('52', '登录日志', '1', '2017-03-31 14:09:12', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('53', '登录日志', '1', '2017-04-05 20:45:05', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('54', '登录日志', '1', '2017-04-05 20:50:40', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('55', '退出日志', '1', '2017-04-06 23:57:04', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('56', '登录失败日志', null, '2017-04-06 23:57:07', '成功', '账号:admin,账号密码错误', '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('57', '登录失败日志', null, '2017-04-06 23:57:11', '成功', '账号:admin,账号密码错误', '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('58', '登录日志', '1', '2017-04-06 23:57:15', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -369,4 +373,4 @@ CREATE TABLE `_user` (
 -- ----------------------------
 -- Records of _user
 -- ----------------------------
-INSERT INTO `_user` VALUES ('1', 'admin', '13c12b0b12fc76d994d68478ff476e1a', 'u9oqh', '冯硕楠', '2017-02-13 00:00:00', '1', 'sn93@qq.com', '18201309300', '1', '1', '1', '2016-01-29 08:49:53', '25');
+INSERT INTO `_user` VALUES ('1', 'admin', '13c12b0b12fc76d994d68478ff476e1a', 'u9oqh', '张三', '2017-02-13 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '1', '1', '2016-01-29 08:49:53', '25');
