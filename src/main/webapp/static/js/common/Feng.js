@@ -28,10 +28,7 @@ var Feng = {
             type: 1,
             skin: 'layui-layer-rim', //加上边框
             area: ['950px', '600px'], //宽高
-            content: info
-        });
-        layer.style(index, {
-            padding : "20px"
+            content: '<div style="padding: 20px;">' + info + '</div>'
         });
     },
     writeObj: function (obj) {

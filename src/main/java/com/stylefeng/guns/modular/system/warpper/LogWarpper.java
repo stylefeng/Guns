@@ -23,10 +23,10 @@ public class LogWarpper extends BaseControllerWarpper {
         String message = (String) map.get("message");
         if (ToolUtil.isNotEmpty(message) && message.length() >= 100) {
             message = message.substring(0, 100) + "...";
+            map.put("message", message);
         } else {
-            message = null;
+            return;
         }
-        map.put("message", message);
     }
 
 }

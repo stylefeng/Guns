@@ -70,10 +70,8 @@ public class MenuController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuMapper.selectById(menuId);
-
-        LogObjectHolder.me().set(menu);
-
         model.addAttribute(menu);
+        LogObjectHolder.me().set(menu);
         return PREFIX + "menu_edit.html";
     }
 
@@ -120,6 +118,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
+    @BussinessLog("菜单新增")
     @ResponseBody
     public Tip add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -135,6 +134,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove/{menuId}")
+    @BussinessLog(value = "删除菜单",key = "menuId")
     @ResponseBody
     public Tip remove(@PathVariable Integer menuId) {
         if (ToolUtil.isEmpty(menuId)) {

@@ -1,6 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
@@ -9,6 +10,7 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.core.db.Db;
+import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ToolUtil;
@@ -92,6 +94,7 @@ public class UserMgrController extends BaseController {
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.getDeptName(user.getDeptid()));
+        LogObjectHolder.me().set(user);
         return PREFIX + "user_edit.html";
     }
 
@@ -125,6 +128,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/add")
+    @BussinessLog("添加管理员")
     @ResponseBody
     public Tip add(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -152,6 +156,7 @@ public class UserMgrController extends BaseController {
      * @throws NoPermissionException
      */
     @RequestMapping("/edit")
+    @BussinessLog("修改管理员")
     @ResponseBody
     public Tip edit(@Valid User user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
@@ -176,6 +181,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/delete/{userId}")
+    @BussinessLog(value = "删除管理员",key = "userId")
     @ResponseBody
     public Tip delete(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -202,6 +208,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/reset/{userId}")
+    @BussinessLog(value = "重置管理员密码",key = "userId")
     @ResponseBody
     public Tip reset(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -219,6 +226,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/freeze/{userId}")
+    @BussinessLog(value = "冻结用户",key = "userId")
     @ResponseBody
     public Tip freeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -233,6 +241,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/unfreeze/{userId}")
+    @BussinessLog(value = "解除冻结用户",key = "userId")
     @ResponseBody
     public Tip unfreeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -247,6 +256,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setRole")
+    @BussinessLog(value = "分配角色",key = "userId")
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {

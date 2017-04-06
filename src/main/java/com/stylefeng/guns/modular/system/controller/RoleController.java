@@ -1,6 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.tips.Tip;
@@ -8,6 +9,7 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.RoleDao;
@@ -82,6 +84,7 @@ public class RoleController extends BaseController {
         model.addAttribute(role);
         model.addAttribute("pName", ConstantFactory.getSingleRoleName(role.getPid()));
         model.addAttribute("deptName", ConstantFactory.getDeptName(role.getDeptid()));
+        LogObjectHolder.me().set(role);
         return PREFIX + "/role_edit.html";
     }
 
@@ -113,6 +116,7 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
+    @BussinessLog("添加角色")
     @ResponseBody
     public Tip add(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
@@ -128,6 +132,7 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
+    @BussinessLog("修改角色")
     @ResponseBody
     public Tip edit(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
@@ -142,6 +147,7 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove/{roleId}")
+    @BussinessLog(value = "删除角色",key = "roleId")
     @ResponseBody
     public Tip remove(@PathVariable Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
@@ -172,6 +178,7 @@ public class RoleController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setAuthority")
+    @BussinessLog(value = "配置权限",key = "roleId")
     @ResponseBody
     public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {
