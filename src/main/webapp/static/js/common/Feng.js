@@ -22,6 +22,18 @@ var Feng = {
     error: function (info) {
         Feng.alert(info, 2);
     },
+    infoDetail: function (title, info) {
+        var index = parent.layer.open({
+            title: title,
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['950px', '600px'], //宽高
+            content: info
+        });
+        layer.style(index, {
+            padding : "20px"
+        });
+    },
     writeObj: function (obj) {
         var description = "";
         for (var i in obj) {
