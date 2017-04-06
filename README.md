@@ -1,5 +1,5 @@
 #Guns
-一款简洁通用的后台管理系统!整合了spring+mybatis-plus+beetl!
+一款简洁通用的后台管理系统!整合了spring + mybatis-plus + beetl!零spring XML配置!适合二次开发!
 
 ##功能简介
 1. 用户管理
