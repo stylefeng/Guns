@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.core.support.BeanKit;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.persistence.dao.OperationLogMapper;
 import com.stylefeng.guns.persistence.model.OperationLog;
@@ -56,6 +57,8 @@ public class LogController extends BaseController {
     @RequestMapping("/detail/{id}")
     @ResponseBody
     public Object detail(@PathVariable Integer id){
-        return operationLogMapper.selectById(id);
+        OperationLog operationLog = operationLogMapper.selectById(id);
+        Map<String, Object> stringObjectMap = BeanKit.beanToMap(operationLog);
+        return super.warpObject(new LogWarpper(stringObjectMap));
     }
 }

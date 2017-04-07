@@ -23,12 +23,23 @@ var Feng = {
         Feng.alert(info, 2);
     },
     infoDetail: function (title, info) {
+        var display = "";
+        if (typeof info == "string") {
+            display = info;
+        } else {
+            if (info instanceof Array) {
+                for (var i = 0; i < info.length; i++) {
+                    display = display + info[i] + "<br/>";
+                }
+            }
+        }
+
         var index = parent.layer.open({
             title: title,
             type: 1,
             skin: 'layui-layer-rim', //加上边框
             area: ['950px', '600px'], //宽高
-            content: '<div style="padding: 20px;">' + info + '</div>'
+            content: '<div style="padding: 20px;">' + display + '</div>'
         });
     },
     writeObj: function (obj) {

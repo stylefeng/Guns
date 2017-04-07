@@ -51,7 +51,7 @@ OptLog.check = function () {
 OptLog.detail = function () {
     if (this.check()) {
         var ajax = new $ax(Feng.ctxPath + "/log/detail/" + this.seItem.id, function (data) {
-            Feng.infoDetail("日志详情", data.message);
+            Feng.infoDetail("日志详情", data.regularMessage);
         }, function (data) {
             Feng.error("获取详情失败!");
         });
