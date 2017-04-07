@@ -28,13 +28,14 @@ var Feng = {
             display = info;
         } else {
             if (info instanceof Array) {
-                for (var i = 0; i < info.length; i++) {
-                    display = display + info[i] + "<br/>";
+                for(var x in info){
+                    display = display + info[x] + "<br/>";
                 }
+            }else{
+                display = info;
             }
         }
-
-        var index = parent.layer.open({
+        parent.layer.open({
             title: title,
             type: 1,
             skin: 'layui-layer-rim', //加上边框
