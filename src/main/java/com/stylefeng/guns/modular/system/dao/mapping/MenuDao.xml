@@ -4,24 +4,17 @@
 
 
 	<sql id="Base_Column_List">
-		id, code, pcode, alias, name, icon, url, num, levels, path,
-		tips, status,
-		isopen,
-		istemplate, version
-	</sql>
-
-	<sql id="Blob_Column_List">
-		source
+		id, code, pcode, name, icon, url, num, levels,
+		tips, status,isopen
 	</sql>
 
 	<select id="selectMenus" resultType="map">
 		select
 		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
 		from _menu
+		where status = 1
 		<if test="condition != null and condition != ''">
-			where name = #{condition}
+			and name = #{condition}
 		</if>
 	</select>
 
@@ -134,7 +127,8 @@
 		) AS parentId,
 		m1.NAME as name,
 		m1.url as url,
-		m1.levels as levels
+		m1.levels as levels,
+		m1.num as num
 		FROM
 		_menu m1
 		LEFT JOIN _menu m2 ON m1.pcode = m2. CODE
