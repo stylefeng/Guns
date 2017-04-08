@@ -1,13 +1,11 @@
 package com.stylefeng.guns.persistence.model;
 
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.io.Serializable;
+import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
-
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -15,21 +13,19 @@ import java.util.Date;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-30
+ * @since 2017-04-08
  */
 @TableName("_user")
 public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
-	@TableId
+	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
 	private String account;
 	private String password;
 	private String salt;
 	private String name;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 	private Integer sex;
 	private String email;
@@ -37,8 +33,6 @@ public class User extends Model<User> {
 	private String roleid;
 	private Integer deptid;
 	private Integer status;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createtime;
 	private Integer version;
 

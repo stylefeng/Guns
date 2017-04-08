@@ -1,11 +1,11 @@
 package com.stylefeng.guns.persistence.model;
 
-import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
-import com.baomidou.mybatisplus.annotations.TableId;
-
 
 /**
  * <p>
@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-30
+ * @since 2017-04-08
  */
 @TableName("_notice")
 public class Notice extends Model<Notice> {
@@ -23,7 +23,7 @@ public class Notice extends Model<Notice> {
     /**
      * 序列
      */
-	@TableId
+	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
     /**
      * 标题

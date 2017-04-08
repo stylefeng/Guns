@@ -1,10 +1,10 @@
 package com.stylefeng.guns.persistence.model;
 
+import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
-import com.baomidou.mybatisplus.annotations.TableId;
-
 
 /**
  * <p>
@@ -12,33 +12,55 @@ import com.baomidou.mybatisplus.annotations.TableId;
  * </p>
  *
  * @author stylefeng
- * @since 2017-03-30
+ * @since 2017-04-08
  */
 @TableName("_menu")
 public class Menu extends Model<Menu> {
 
     private static final long serialVersionUID = 1L;
 
-	@TableId
+	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
     /**
      * 菜单编号
      */
 	private String code;
+    /**
+     * 菜单父编号
+     */
 	private String pcode;
-	private String alias;
+    /**
+     * 菜单名称
+     */
 	private String name;
+    /**
+     * 菜单图标
+     */
 	private String icon;
+    /**
+     * url地址
+     */
 	private String url;
+    /**
+     * 菜单排序号
+     */
 	private Integer num;
+    /**
+     * 菜单层级
+     */
 	private Integer levels;
-	private String source;
-	private String path;
+    /**
+     * 备注
+     */
 	private String tips;
+    /**
+     * 菜单状态 :  1:启用   0:不启用
+     */
 	private Integer status;
-	private String isopen;
-	private String istemplate;
-	private Integer version;
+    /**
+     * 是否打开:    1:打开   0:不打开
+     */
+	private Integer isopen;
 
 
 	public Integer getId() {
@@ -63,14 +85,6 @@ public class Menu extends Model<Menu> {
 
 	public void setPcode(String pcode) {
 		this.pcode = pcode;
-	}
-
-	public String getAlias() {
-		return alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
 	}
 
 	public String getName() {
@@ -113,22 +127,6 @@ public class Menu extends Model<Menu> {
 		this.levels = levels;
 	}
 
-	public String getSource() {
-		return source;
-	}
-
-	public void setSource(String source) {
-		this.source = source;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
 	public String getTips() {
 		return tips;
 	}
@@ -145,28 +143,12 @@ public class Menu extends Model<Menu> {
 		this.status = status;
 	}
 
-	public String getIsopen() {
+	public Integer getIsopen() {
 		return isopen;
 	}
 
-	public void setIsopen(String isopen) {
+	public void setIsopen(Integer isopen) {
 		this.isopen = isopen;
-	}
-
-	public String getIstemplate() {
-		return istemplate;
-	}
-
-	public void setIstemplate(String istemplate) {
-		this.istemplate = istemplate;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
 	}
 
 	@Override

@@ -10,29 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-04-07 00:13:44
+Date: 2017-04-08 10:13:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for _attach
--- ----------------------------
-DROP TABLE IF EXISTS `_attach`;
-CREATE TABLE `_attach` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `url` text,
-  `status` int(11) DEFAULT NULL,
-  `creater` int(11) DEFAULT NULL,
-  `createtime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of _attach
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for _dept
@@ -89,27 +70,6 @@ INSERT INTO `_dict` VALUES ('12', '902', '1', '11', '启用', null, '0');
 INSERT INTO `_dict` VALUES ('13', '902', '2', '11', '禁用', null, '0');
 
 -- ----------------------------
--- Table structure for _generate
--- ----------------------------
-DROP TABLE IF EXISTS `_generate`;
-CREATE TABLE `_generate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `realpath` varchar(255) DEFAULT NULL,
-  `packagename` varchar(255) DEFAULT NULL,
-  `modelname` varchar(255) DEFAULT NULL,
-  `tablename` varchar(255) DEFAULT NULL,
-  `pkname` varchar(255) DEFAULT NULL,
-  `tips` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of _generate
--- ----------------------------
-INSERT INTO `_generate` VALUES ('1', '测试', 'E:\\Workspaces\\blade\\SpringBlade', 'com.smallchill.gen', 'Notice', '_notice', 'id', null);
-
--- ----------------------------
 -- Table structure for _login_log
 -- ----------------------------
 DROP TABLE IF EXISTS `_login_log`;
@@ -153,45 +113,40 @@ DROP TABLE IF EXISTS `_menu`;
 CREATE TABLE `_menu` (
   `id` int(65) NOT NULL AUTO_INCREMENT,
   `code` varchar(255) DEFAULT NULL COMMENT '菜单编号',
-  `pcode` varchar(255) DEFAULT NULL,
-  `alias` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `num` int(65) DEFAULT NULL,
-  `levels` int(65) DEFAULT NULL,
-  `source` text,
-  `path` varchar(255) DEFAULT NULL,
-  `tips` varchar(255) DEFAULT NULL,
-  `status` int(65) DEFAULT NULL,
-  `isopen` varchar(255) DEFAULT NULL,
-  `istemplate` varchar(255) DEFAULT NULL,
-  `version` int(11) DEFAULT NULL,
+  `pcode` varchar(255) DEFAULT NULL COMMENT '菜单父编号',
+  `name` varchar(255) DEFAULT NULL COMMENT '菜单名称',
+  `icon` varchar(255) DEFAULT NULL COMMENT '菜单图标',
+  `url` varchar(255) DEFAULT NULL COMMENT 'url地址',
+  `num` int(65) DEFAULT NULL COMMENT '菜单排序号',
+  `levels` int(65) DEFAULT NULL COMMENT '菜单层级',
+  `tips` varchar(255) DEFAULT NULL COMMENT '备注',
+  `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
+  `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _menu
 -- ----------------------------
-INSERT INTO `_menu` VALUES ('105', 'system', '0', null, '系统管理', 'fa-user', '', '2', '2', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('106', 'mgr', 'system', null, '用户管理', null, '/mgr', '1', '2', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('107', 'mgr_add', 'mgr', null, '添加用户', null, '/mgr/add', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('108', 'mgr_edit', 'mgr', null, '修改用户', null, '/mgr/edit', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('109', 'mgr_delete', 'mgr', null, '删除用户', null, '/mgr/delete', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('110', 'mgr_reset', 'mgr', null, '重置密码', null, '/mgr/reset', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('111', 'mgr_freeze', 'mgr', null, '冻结用户', null, '/mgr/freeze', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('112', 'mgr_unfreeze', 'mgr', null, '解除冻结用户', null, '/mgr/unfreeze', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('113', 'mgr_setRole', 'mgr', null, '分配角色', null, '/mgr/setRole', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('114', 'role', 'system', null, '角色管理', null, '/role', '1', '2', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('115', 'role_add', 'role', null, '添加角色', null, '/role/add', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('116', 'role_edit', 'role', null, '修改角色', null, '/role/edit', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('117', 'role_remove', 'role', null, '删除角色', null, '/role/remove', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('118', 'role_setAuthority', 'role', null, '配置权限', null, '/role/setAuthority', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('119', 'menu', 'system', null, '菜单管理', null, '/menu', '1', '2', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('120', 'menu_add', 'menu', null, '添加菜单', null, '/menu/add', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('121', 'menu_edit', 'menu', null, '修改菜单', null, '/menu/edit', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('122', 'menu_remove', 'menu', null, '删除菜单', null, '/menu/remove', '1', '3', null, null, null, '1', null, null, null);
-INSERT INTO `_menu` VALUES ('128', 'log', 'system', null, '日志管理', null, '/log', '1', '1', null, null, null, '1', null, null, null);
+INSERT INTO `_menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '2', '2', null, '1', '1');
+INSERT INTO `_menu` VALUES ('106', 'mgr', 'system', '用户管理', null, '/mgr', '1', '2', null, '1', '0');
+INSERT INTO `_menu` VALUES ('107', 'mgr_add', 'mgr', '添加用户', null, '/mgr/add', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('108', 'mgr_edit', 'mgr', '修改用户', null, '/mgr/edit', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('109', 'mgr_delete', 'mgr', '删除用户', null, '/mgr/delete', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('110', 'mgr_reset', 'mgr', '重置密码', null, '/mgr/reset', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('111', 'mgr_freeze', 'mgr', '冻结用户', null, '/mgr/freeze', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('112', 'mgr_unfreeze', 'mgr', '解除冻结用户', null, '/mgr/unfreeze', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('113', 'mgr_setRole', 'mgr', '分配角色', null, '/mgr/setRole', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('114', 'role', 'system', '角色管理', null, '/role', '1', '2', null, '1', '0');
+INSERT INTO `_menu` VALUES ('115', 'role_add', 'role', '添加角色', null, '/role/add', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('116', 'role_edit', 'role', '修改角色', null, '/role/edit', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('117', 'role_remove', 'role', '删除角色', null, '/role/remove', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('118', 'role_setAuthority', 'role', '配置权限', null, '/role/setAuthority', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('119', 'menu', 'system', '菜单管理', null, '/menu', '1', '2', null, '1', '0');
+INSERT INTO `_menu` VALUES ('120', 'menu_add', 'menu', '添加菜单', null, '/menu/add', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('121', 'menu_edit', 'menu', '修改菜单', null, '/menu/edit', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('122', 'menu_remove', 'menu', '删除菜单', null, '/menu/remove', '1', '3', null, '1', '0');
+INSERT INTO `_menu` VALUES ('128', 'log', 'system', '日志管理', null, '/log', '1', '1', null, '1', '0');
 
 -- ----------------------------
 -- Table structure for _notice
@@ -214,8 +169,6 @@ CREATE TABLE `_notice` (
 -- Records of _notice
 -- ----------------------------
 INSERT INTO `_notice` VALUES ('6', '通知1', '10', '通知111', '2017-01-16 00:00:00', '2017-01-11 08:53:20', '1', null, '3');
-INSERT INTO `_notice` VALUES ('7', '通知22222', '1', '123123123', '2017-02-02 00:00:00', '2017-01-12 16:22:10', '1', null, '1');
-INSERT INTO `_notice` VALUES ('8', '123123', '10', '123123', '2017-02-07 00:00:00', '2017-02-20 12:38:46', '1', null, null);
 
 -- ----------------------------
 -- Table structure for _operation_log

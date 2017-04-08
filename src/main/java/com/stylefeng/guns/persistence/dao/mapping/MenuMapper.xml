@@ -7,19 +7,14 @@
 		<id column="id" property="id" />
 		<result column="code" property="code" />
 		<result column="pcode" property="pcode" />
-		<result column="alias" property="alias" />
 		<result column="name" property="name" />
 		<result column="icon" property="icon" />
 		<result column="url" property="url" />
 		<result column="num" property="num" />
 		<result column="levels" property="levels" />
-		<result column="source" property="source" />
-		<result column="path" property="path" />
 		<result column="tips" property="tips" />
 		<result column="status" property="status" />
 		<result column="isopen" property="isopen" />
-		<result column="istemplate" property="istemplate" />
-		<result column="version" property="version" />
 	</resultMap>
 
 </mapper>

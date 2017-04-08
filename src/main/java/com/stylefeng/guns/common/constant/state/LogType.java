@@ -1,7 +1,7 @@
 package com.stylefeng.guns.common.constant.state;
 
 /**
- * 用户的状态
+ * 日志类型
  *
  * @author fengshuonan
  * @Date 2017年1月22日 下午12:14:59
