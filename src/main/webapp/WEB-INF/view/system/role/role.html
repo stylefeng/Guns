@@ -11,6 +11,18 @@
 						<!-- 成员列表 -->
 						<div class="example-wrap">
 							<div class="example">
+								<!-- 搜索条件 -->
+								<div class="row">
+									<div class="col-sm-3">
+										<#NameCon id="roleName" name="角色名称" />
+									</div>
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-primary" onclick="clickSearch()"><i
+												class="fa fa-search"></i>&nbsp;搜索
+										</button>
+									</div>
+								</div>
+								<!-- End 搜索条件 -->
 								<div class="hidden-xs" id="roleTableToolbar" role="group">
 									<button type="button" class="btn btn-primary" onclick="Role.openAddRole()"><i class="fa fa-plus"></i>&nbsp;添加</button>
 									<button type="button" class="btn btn-primary button-margin" onclick="Role.openChangeRole()"><i class="fa fa-edit"></i>&nbsp;修改</button>

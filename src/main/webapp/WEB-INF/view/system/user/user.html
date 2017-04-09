@@ -1,41 +1,65 @@
 @layout("/common/_container.html"){
 <div class="row">
-	<div class="col-sm-12">
-		<div class="ibox float-e-margins">
-			<div class="ibox-title">
-				<h5>用户管理</h5>
-			</div>
-			<div class="ibox-content">
-				<div class="row row-lg">
-					<div class="col-sm-12">
-						<!-- 成员列表 -->
-						<div class="example-wrap">
-							<div class="example">
-								<div class="hidden-xs" id="managerTableToolbar" role="group">
-									<button type="button" class="btn btn-primary" onclick="MgrUser.openAddMgr()"><i class="fa fa-plus"></i>&nbsp;添加</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="MgrUser.openChangeUser()"><i class="fa fa-edit"></i>&nbsp;修改</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="MgrUser.delMgrUser()"><i class="fa fa-remove"></i>&nbsp;删除</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="MgrUser.resetPwd()"><i class="fa fa-refresh"></i>&nbsp;重置密码</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="MgrUser.freezeAccount()"><i class="fa fa-warning"></i>&nbsp;冻结</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="MgrUser.unfreeze()"><i class="fa fa-check-circle"></i>&nbsp;解除冻结</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="MgrUser.roleAssign()"><i class="fa fa-user-secret"></i>&nbsp;角色分配</button>
-								</div>
-								<table id="managerTable" data-mobile-responsive="true"
-									data-click-to-select="true">
-									<thead>
-										<tr>
-											<th data-field="selectItem" data-checkbox="true"></th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-						<!-- End 成员列表 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>用户管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <!-- 成员列表 -->
+
+                        <!-- 搜索条件 -->
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="userName" name="用户名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary" onclick="clickSearch()"><i
+                                        class="fa fa-search"></i>&nbsp;搜索
+                                </button>
+                            </div>
+                        </div>
+                        <!-- End 搜索条件 -->
+
+                        <div class="hidden-xs" id="managerTableToolbar" role="group">
+                            <button type="button" class="btn btn-primary" onclick="MgrUser.openAddMgr()"><i
+                                    class="fa fa-plus"></i>&nbsp;添加
+                            </button>
+                            <button type="button" class="btn btn-primary button-margin"
+                                    onclick="MgrUser.openChangeUser()"><i class="fa fa-edit"></i>&nbsp;修改
+                            </button>
+                            <button type="button" class="btn btn-primary button-margin" onclick="MgrUser.delMgrUser()">
+                                <i class="fa fa-remove"></i>&nbsp;删除
+                            </button>
+                            <button type="button" class="btn btn-primary button-margin" onclick="MgrUser.resetPwd()"><i
+                                    class="fa fa-refresh"></i>&nbsp;重置密码
+                            </button>
+                            <button type="button" class="btn btn-primary button-margin"
+                                    onclick="MgrUser.freezeAccount()"><i class="fa fa-warning"></i>&nbsp;冻结
+                            </button>
+                            <button type="button" class="btn btn-primary button-margin" onclick="MgrUser.unfreeze()"><i
+                                    class="fa fa-check-circle"></i>&nbsp;解除冻结
+                            </button>
+                            <button type="button" class="btn btn-primary button-margin" onclick="MgrUser.roleAssign()">
+                                <i class="fa fa-user-secret"></i>&nbsp;角色分配
+                            </button>
+                        </div>
+                        <table id="managerTable" data-mobile-responsive="true"
+                               data-click-to-select="true">
+                            <thead>
+                            <tr>
+                                <th data-field="selectItem" data-checkbox="true"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <!-- End 成员列表 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="${ctxPath}/static/modular/system/user/user.js"></script>
 @}

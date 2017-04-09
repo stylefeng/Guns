@@ -1,35 +1,56 @@
 @layout("/common/_container.html"){
 <div class="row">
-	<div class="col-sm-12">
-		<div class="ibox float-e-margins">
-			<div class="ibox-title">
-				<h5>日志管理</h5>
-			</div>
-			<div class="ibox-content">
-				<div class="row row-lg">
-					<div class="col-sm-12">
-						<!-- 成员列表 -->
-						<div class="example-wrap">
-							<div class="example">
-								<div class="hidden-xs" id="OptLogTableToolbar" role="group">
-									<button type="button" class="btn btn-primary" onclick="OptLog.detail()"><i class="fa fa-plus"></i>&nbsp;查看详情</button>
-								</div>
-								<table id="OptLogTable" data-mobile-responsive="true"
-									data-click-to-select="true">
-									<thead>
-										<tr>
-											<th data-field="selectItem" data-checkbox="true"></th>
-										</tr>
-									</thead>
-								</table>
-							</div>
-						</div>
-						<!-- End 成员列表 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>日志管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <!-- 日志列表 -->
+                        <div class="example-wrap">
+                            <div class="example">
+                                <!-- 搜索条件 -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <#TimeCon id="beginTime" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#TimeCon id="endTime" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <#NameCon id="logName" name="日志名称" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-primary" onclick="clickSearch()"><i
+                                                class="fa fa-search"></i>&nbsp;搜索
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- End 搜索条件 -->
+
+                                <div class="hidden-xs" id="OptLogTableToolbar" role="group">
+                                    <button type="button" class="btn btn-primary" onclick="OptLog.detail()"><i
+                                            class="fa fa-plus"></i>&nbsp;查看详情
+                                    </button>
+                                </div>
+                                <table id="OptLogTable" data-mobile-responsive="true"
+                                       data-click-to-select="true">
+                                    <thead>
+                                    <tr>
+                                        <th data-field="selectItem" data-checkbox="true"></th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- End 日志列表 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="${ctxPath}/static/modular/system/log/log.js"></script>
 @}

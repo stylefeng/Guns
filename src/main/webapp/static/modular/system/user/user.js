@@ -176,4 +176,6 @@ $(function(){
 	table.init();
 	MgrUser.bindEvent();
 	MgrUser.table = table;
+    //默认收起来查询条件
+    $(".collapse-link").click();
 });
