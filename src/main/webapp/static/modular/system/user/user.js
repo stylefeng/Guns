@@ -169,6 +169,10 @@ MgrUser.resetPwd = function(){
 	}
 };
 
+MgrUser.search = function(){
+	alert("abcd");
+}
+
 $(function(){
 	var defaultColunms = MgrUser.initColumn();
 	var table = new BSTable("managerTable","/mgr/list",defaultColunms);
