@@ -23,17 +23,13 @@
                                         <#NameCon id="logName" name="日志名称" />
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="button" class="btn btn-primary" onclick="clickSearch()"><i
-                                                class="fa fa-search"></i>&nbsp;搜索
-                                        </button>
+                                        <#button name="搜索" icon="fa-search" clickFun="search()"/>
                                     </div>
                                 </div>
                                 <!-- End 搜索条件 -->
 
                                 <div class="hidden-xs" id="OptLogTableToolbar" role="group">
-                                    <button type="button" class="btn btn-primary" onclick="OptLog.detail()"><i
-                                            class="fa fa-plus"></i>&nbsp;查看详情
-                                    </button>
+                                    <#button name="查看详情" icon="fa-plus" clickFun="OptLog.detail()"/>
                                 </div>
                                 <table id="OptLogTable" data-mobile-responsive="true"
                                        data-click-to-select="true">

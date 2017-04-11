@@ -17,16 +17,14 @@
 										<#NameCon id="menuName" name="菜单名称" />
 									</div>
 									<div class="col-sm-3">
-										<button type="button" class="btn btn-primary" onclick="clickSearch()"><i
-												class="fa fa-search"></i>&nbsp;搜索
-										</button>
+										<#button name="搜索" icon="fa-search" clickFun="search()"/>
 									</div>
 								</div>
 								<!-- End 搜索条件 -->
 								<div class="hidden-xs" id="menuTableToolbar" role="group">
-									<button type="button" class="btn btn-primary" onclick="Menu.openAddMenu()"><i class="fa fa-plus"></i>&nbsp;添加</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="Menu.openChangeMenu()"><i class="fa fa-edit"></i>&nbsp;修改</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="Menu.delMenu()"><i class="fa fa-remove"></i>&nbsp;删除</button>
+									<#button name="添加" icon="fa-plus" clickFun="Menu.openAddMenu()"/>
+									<#nbutton name="修改" icon="fa-edit" clickFun="Menu.openChangeMenu()"/>
+									<#nbutton name="删除" icon="fa-remove" clickFun="Menu.delMenu()"/>
 								</div>
 								<table id="menuTable" data-mobile-responsive="true"
 									data-click-to-select="true">

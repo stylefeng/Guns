@@ -17,17 +17,15 @@
 										<#NameCon id="roleName" name="角色名称" />
 									</div>
 									<div class="col-sm-3">
-										<button type="button" class="btn btn-primary" onclick="clickSearch()"><i
-												class="fa fa-search"></i>&nbsp;搜索
-										</button>
+										<#button name="搜索" icon="fa-search" clickFun="search()"/>
 									</div>
 								</div>
 								<!-- End 搜索条件 -->
 								<div class="hidden-xs" id="roleTableToolbar" role="group">
-									<button type="button" class="btn btn-primary" onclick="Role.openAddRole()"><i class="fa fa-plus"></i>&nbsp;添加</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="Role.openChangeRole()"><i class="fa fa-edit"></i>&nbsp;修改</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="Role.delRole()"><i class="fa fa-remove"></i>&nbsp;删除</button>
-									<button type="button" class="btn btn-primary button-margin" onclick="Role.assign()"><i class="fa fa-user-secret"></i>&nbsp;权限配置</button>
+									<#button name="添加" icon="fa-plus" clickFun="Role.openAddRole()"/>
+									<#nbutton name="修改" icon="fa-edit" clickFun="Role.openChangeRole()"/>
+									<#nbutton name="删除" icon="fa-remove" clickFun="Role.delRole()"/>
+									<#nbutton name="权限配置" icon="fa-user-secret" clickFun="Role.assign()"/>
 								</div>
 								<table id="roleTable" data-mobile-responsive="true"
 									data-click-to-select="true">
