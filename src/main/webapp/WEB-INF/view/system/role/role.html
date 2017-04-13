@@ -1,43 +1,33 @@
 @layout("/common/_container.html"){
 <div class="row">
-	<div class="col-sm-12">
-		<div class="ibox float-e-margins">
-			<div class="ibox-title">
-				<h5>角色管理</h5>
-			</div>
-			<div class="ibox-content">
-				<div class="row row-lg">
-					<div class="col-sm-12">
-						<!-- 成员列表 -->
-						<div class="example-wrap">
-							<div class="example">
-								<!-- 搜索条件 -->
-								<div class="row">
-									<div class="col-sm-3">
-										<#NameCon id="roleName" name="角色名称" />
-									</div>
-									<div class="col-sm-3">
-										<#button name="搜索" icon="fa-search" clickFun="search()"/>
-									</div>
-								</div>
-								<!-- End 搜索条件 -->
-								<div class="hidden-xs" id="roleTableToolbar" role="group">
-									<#button name="添加" icon="fa-plus" clickFun="Role.openAddRole()"/>
-									<#nbutton name="修改" icon="fa-edit" clickFun="Role.openChangeRole()"/>
-									<#nbutton name="删除" icon="fa-remove" clickFun="Role.delRole()"/>
-									<#nbutton name="权限配置" icon="fa-user-secret" clickFun="Role.assign()"/>
-								</div>
-
-								<#table id="roleTable"/>
-
-							</div>
-						</div>
-						<!-- End 成员列表 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>角色管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="roleName" name="角色名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="roleTableToolbar" role="group">
+                            <#button name="添加" icon="fa-plus" clickFun="Role.openAddRole()"/>
+                            <#nbutton name="修改" icon="fa-edit" clickFun="Role.openChangeRole()"/>
+                            <#nbutton name="删除" icon="fa-remove" clickFun="Role.delRole()"/>
+                            <#nbutton name="权限配置" icon="fa-user-secret" clickFun="Role.assign()"/>
+                        </div>
+                        <#table id="roleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="${ctxPath}/static/modular/system/role/role.js"></script>
 @}

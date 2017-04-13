@@ -8,9 +8,6 @@
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
-                        <!-- 成员列表 -->
-
-                        <!-- 搜索条件 -->
                         <div class="row">
                             <div class="col-sm-3">
                                 <#NameCon id="userName" name="用户名称" />
@@ -19,8 +16,6 @@
                                 <#button name="搜索" icon="fa-search" clickFun="MgrUser.search()"/>
                             </div>
                         </div>
-                        <!-- End 搜索条件 -->
-
                         <div class="hidden-xs" id="managerTableToolbar" role="group">
                             <#button name="添加" icon="fa-plus" clickFun="MgrUser.openAddMgr()"/>
                             <#nbutton name="修改" icon="fa-edit" clickFun="MgrUser.openChangeUser()"/>
@@ -30,7 +25,6 @@
                             <#nbutton name="解除冻结" icon="fa-check-circle" clickFun="MgrUser.unfreeze()"/>
                             <#nbutton name="角色分配" icon="fa-user-secret" clickFun="MgrUser.roleAssign()"/>
                         </div>
-
                         <#table id="managerTable"/>
                     </div>
                 </div>

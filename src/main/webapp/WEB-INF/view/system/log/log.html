@@ -8,34 +8,24 @@
             <div class="ibox-content">
                 <div class="row row-lg">
                     <div class="col-sm-12">
-                        <!-- 日志列表 -->
-                        <div class="example-wrap">
-                            <div class="example">
-                                <!-- 搜索条件 -->
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <#TimeCon id="beginTime" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <#TimeCon id="endTime" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <#NameCon id="logName" name="日志名称" />
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <#button name="搜索" icon="fa-search" clickFun="search()"/>
-                                    </div>
-                                </div>
-                                <!-- End 搜索条件 -->
-
-                                <div class="hidden-xs" id="OptLogTableToolbar" role="group">
-                                    <#button name="查看详情" icon="fa-plus" clickFun="OptLog.detail()"/>
-                                </div>
-
-                                <#table id="OptLogTable"/>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#TimeCon id="beginTime" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="endTime" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#NameCon id="logName" name="日志名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="search()"/>
                             </div>
                         </div>
-                        <!-- End 日志列表 -->
+                        <div class="hidden-xs" id="OptLogTableToolbar" role="group">
+                            <#button name="查看详情" icon="fa-plus" clickFun="OptLog.detail()"/>
+                        </div>
+                        <#table id="OptLogTable"/>
                     </div>
                 </div>
             </div>
