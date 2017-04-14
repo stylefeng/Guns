@@ -18,12 +18,12 @@
                         </div>
                         <div class="hidden-xs" id="managerTableToolbar" role="group">
                             <#button name="添加" icon="fa-plus" clickFun="MgrUser.openAddMgr()"/>
-                            <#nbutton name="修改" icon="fa-edit" clickFun="MgrUser.openChangeUser()"/>
-                            <#nbutton name="删除" icon="fa-remove" clickFun="MgrUser.delMgrUser()"/>
-                            <#nbutton name="重置密码" icon="fa-refresh" clickFun="MgrUser.resetPwd()"/>
-                            <#nbutton name="冻结" icon="fa-warning" clickFun="MgrUser.freezeAccount()"/>
-                            <#nbutton name="解除冻结" icon="fa-check-circle" clickFun="MgrUser.unfreeze()"/>
-                            <#nbutton name="角色分配" icon="fa-user-secret" clickFun="MgrUser.roleAssign()"/>
+                            <#button name="修改" icon="fa-edit" clickFun="MgrUser.openChangeUser()" space="true"/>
+                            <#button name="删除" icon="fa-remove" clickFun="MgrUser.delMgrUser()" space="true"/>
+                            <#button name="重置密码" icon="fa-refresh" clickFun="MgrUser.resetPwd()" space="true"/>
+                            <#button name="冻结" icon="fa-warning" clickFun="MgrUser.freezeAccount()" space="true"/>
+                            <#button name="解除冻结" icon="fa-check-circle" clickFun="MgrUser.unfreeze()" space="true"/>
+                            <#button name="角色分配" icon="fa-user-secret" clickFun="MgrUser.roleAssign()" space="true"/>
                         </div>
                         <#table id="managerTable"/>
                     </div>
