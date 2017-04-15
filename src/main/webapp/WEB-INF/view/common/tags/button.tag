@@ -8,12 +8,18 @@
 @*/
 
 @var spaceCss = "";
+@var btnType = "";
 @if(isEmpty(space)){
 @   spaceCss = "";
 @}else{
 @   spaceCss = "button-margin";
 @}
-<button type="button" class="btn btn-primary ${spaceCss}" onclick="${clickFun}">
+@if(isEmpty(btnCss)){
+@   btnType = "primary";
+@}else{
+@   btnType = btnCss;
+@}
+<button type="button" class="btn btn-${btnType} ${spaceCss}" onclick="${clickFun!}" id="${id!}">
     <i class="fa ${icon}"></i>&nbsp;${name}
 </button>
 
