@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class LogController extends BaseController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public Object list(){
+    public Object list(Date beginTime,Date endTime,String logName){
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
         List<Map<String, Object>> operationLogs = operationLogMapper.selectMapsPage(page, null);
         page.setRecords((List<OperationLog>) new LogWarpper(operationLogs).warp());

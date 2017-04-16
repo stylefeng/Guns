@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-08
+ * @since 2017-04-16
  */
 @TableName("_login_log")
 public class LoginLog extends Model<LoginLog> {

@@ -59,11 +59,23 @@ OptLog.detail = function () {
     }
 };
 
+/**
+ * 查询日志列表
+ */
+OptLog.search = function () {
+    var queryData = {};
+
+    queryData['logName'] = $("#logName").val();
+    queryData['beginTime'] = $("#beginTime").val();
+    queryData['endTime'] = $("#endTime").val();
+
+    OptLog.table.refresh({query: queryData});
+};
+
 $(function () {
     var defaultColunms = OptLog.initColumn();
     var table = new BSTable(OptLog.id, "/log/list", defaultColunms);
     table.setPaginationType("server");
-    table.init();
+    OptLog.table = table.init();
     OptLog.bindEvent();
-    OptLog.table = table;
 });

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-08
+ * @since 2017-04-16
  */
 @TableName("_role_ext")
 public class RoleExt extends Model<RoleExt> {

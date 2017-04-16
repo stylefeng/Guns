@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-08
+ * @since 2017-04-16
  */
 @TableName("_relation")
 public class Relation extends Model<Relation> {
