@@ -4,16 +4,17 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.core.support.BeanKit;
+import com.stylefeng.guns.modular.system.dao.LogDao;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import com.stylefeng.guns.persistence.dao.OperationLogMapper;
 import com.stylefeng.guns.persistence.model.OperationLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,9 @@ public class LogController extends BaseController {
     @Resource
     private OperationLogMapper operationLogMapper;
 
+    @Resource
+    private LogDao logDao;
+
     /**
      * 跳转到日志管理的首页
      */
@@ -39,16 +43,16 @@ public class LogController extends BaseController {
     public String index() {
         return PREFIX + "log.html";
     }
-    
+
     /**
      * 查询操作日志列表
      */
     @RequestMapping("/list")
     @ResponseBody
-    public Object list(Date beginTime,Date endTime,String logName){
+    public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
-        List<Map<String, Object>> operationLogs = operationLogMapper.selectMapsPage(page, null);
-        page.setRecords((List<OperationLog>) new LogWarpper(operationLogs).warp());
+        List<Map<String, Object>> result = logDao.getOperationLogs(page, beginTime, endTime, logName);
+        page.setRecords((List<OperationLog>) new LogWarpper(result).warp());
         return super.packForBT(page);
     }
 
@@ -57,7 +61,7 @@ public class LogController extends BaseController {
      */
     @RequestMapping("/detail/{id}")
     @ResponseBody
-    public Object detail(@PathVariable Integer id){
+    public Object detail(@PathVariable Integer id) {
         OperationLog operationLog = operationLogMapper.selectById(id);
         Map<String, Object> stringObjectMap = BeanKit.beanToMap(operationLog);
         return super.warpObject(new LogWarpper(stringObjectMap));
