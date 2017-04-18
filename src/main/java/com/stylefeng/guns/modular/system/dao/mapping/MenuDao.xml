@@ -14,7 +14,7 @@
 		from _menu
 		where status = 1
 		<if test="condition != null and condition != ''">
-			and name = #{condition}
+			and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
 		</if>
 	</select>
 

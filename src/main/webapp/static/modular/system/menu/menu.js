@@ -93,6 +93,17 @@ Menu.delMenu = function(){
 	}
 };
 
+/**
+ * 搜索
+ */
+Menu.search = function(){
+    var queryData = {};
+
+    queryData['menuName'] = $("#menuName").val();
+
+    Menu.table.refresh({query: queryData});
+}
+
 $(function(){
 	var defaultColunms = Menu.initColumn();
 	var table = new BSTable(Menu.id,"/menu/list",defaultColunms);

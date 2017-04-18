@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -95,21 +96,8 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list() {
-        List<Map<String, Object>> menus = this.menuDao.selectMenus(null);
-        return super.warpObject(new MenuWarpper(menus));
-    }
-
-    /**
-     * 获取菜单列表
-     */
-    @RequestMapping(value = "/list/{condition}")
-    @ResponseBody
-    public Object list(@PathVariable String condition) {
-        if (ToolUtil.isEmpty(condition)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
-        }
-        List<Map<String, Object>> menus = this.menuDao.selectMenus(condition);
+    public Object list(@RequestParam(required = false) String menuName) {
+        List<Map<String, Object>> menus = this.menuDao.selectMenus(menuName);
         return super.warpObject(new MenuWarpper(menus));
     }
 
