@@ -21,7 +21,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Map<String, Object>> selectMenus(@Param("condition") String condition);
+    public List<Map<String, Object>> selectMenus(@Param("condition") String condition,@Param("level") String level);
 
     /**
      * 根据条件查询菜单

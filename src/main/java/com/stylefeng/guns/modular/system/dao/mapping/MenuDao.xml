@@ -16,6 +16,9 @@
 		<if test="condition != null and condition != ''">
 			and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
 		</if>
+		<if test="level != null and level != ''">
+			and levels = #{level}
+		</if>
 	</select>
 
 	<select id="getMenuIdsByRoleId" resultType="int">
