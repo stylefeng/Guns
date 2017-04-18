@@ -23,8 +23,8 @@
 						<#input id="name" name="姓名" underline="true" value="${user.name}"/>
 
 						<#input id="birthday" name="出生日期" underline="true" type="date"
-								value="${user.birthday,dateFormat="yyyy-MM-dd"}"
-								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+								value="${user.birthday}"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
 
 						<#input id="citySel" name="部门" underline="true" readonly="readonly" hidden="deptid" hiddenValue="${user.deptid}" value="${deptName}"
 								clickFun="UserInfoDlg.showDeptSelectTree(); return false;"

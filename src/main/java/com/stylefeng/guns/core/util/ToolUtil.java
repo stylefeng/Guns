@@ -28,6 +28,20 @@ import java.util.Map.Entry;
  * 高频方法集合类
  */
 public class ToolUtil {
+    
+    /**
+     * 判断一个对象是否是时间类型
+     * 
+     * @author stylefeng
+     * @Date 2017/4/18 12:55
+     */
+    public static String dateType(Object o){
+        if(o instanceof Date){
+            return DateUtil.getDay((Date) o);
+        }else{
+            return o.toString();
+        }
+    }
 
     /**
      * 获取异常的具体信息
