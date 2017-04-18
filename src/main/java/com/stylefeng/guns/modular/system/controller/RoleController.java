@@ -106,8 +106,8 @@ public class RoleController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list() {
-        List<Map<String, Object>> roles = this.roleDao.selectRoles(super.getPara("condition"));
+    public Object list(@RequestParam(required = false) String roleName) {
+        List<Map<String, Object>> roles = this.roleDao.selectRoles(super.getPara("roleName"));
         return super.warpObject(new RoleWarpper(roles));
     }
 

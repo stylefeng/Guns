@@ -107,6 +107,15 @@ Role.assign = function(){
 	}
 };
 
+/**
+ * 搜索角色
+ */
+Role.search = function(){
+    var queryData = {};
+    queryData['roleName'] = $("#roleName").val();
+    Role.table.refresh({query: queryData});
+}
+
 $(function(){
 	var defaultColunms = Role.initColumn();
 	var table = new BSTable(Role.id,"/role/list",defaultColunms);
