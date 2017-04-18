@@ -1,52 +1,23 @@
-@layout("/common/_container.html"){
+ @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
 	<div class="ibox-content">
 		<div class="form-horizontal">
 		
 			<input type="hidden" id="id" value="${role.id}">
 
-			<!-- 左侧信息 -->
 			<div class="row">
 				<div class="col-sm-6 b-r">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">角色名称</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="text" id="name" value="${role.name}">
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">上级名称</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="text" id="pName" value="${pName}" style="background-color: #ffffff !important;" onclick="RolInfoDlg.showPNameSelectTree(); return false;" readonly="readonly">
-							<input class="form-control" type="hidden" id="pid" value="${role.pid}">
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">部门名称</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="text" id="deptName" value="${deptName}" style="background-color: #ffffff !important;" onclick="RolInfoDlg.showDeptSelectTree(); return false;" readonly="readonly">
-							<input class="form-control" type="hidden" id="deptid" value="${role.deptid}">
-						</div>
-					</div>
+					<#input id="name" name="角色名称" underline="true" value="${role.name}"/>
+					<#input id="pName" name="上级名称" underline="true" hidden="pid" hiddenValue="${role.pid}" readonly="readonly" value="${pName}"
+							clickFun="RolInfoDlg.showPNameSelectTree(); return false;"
+							style="background-color: #ffffff !important;"/>
+					<#input id="deptName" name="部门名称" hidden="deptid" hiddenValue="${role.deptid}" readonly="readonly" value="${deptName}"
+							clickFun="RolInfoDlg.showDeptSelectTree(); return false;"
+							style="background-color: #ffffff !important;"/>
 				</div>
-				<!-- 左侧信息结束 -->
-
 				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">别名</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="text" id="tips" value="${role.tips}">
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">排序</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="number" id="num" value="${role.num}">
-						</div>
-					</div>
+					<#input id="tips" name="别名" underline="true" value="${role.tips}"/>
+					<#input id="num" name="排序" value="${role.num}"/>
 				</div>
 			</div>
 
@@ -64,12 +35,8 @@
 
 			<div class="row btn-group-m-t">
 				<div class="col-sm-10">
-					<button class="btn btn-info" id="ensure" type="submit" onclick="RolInfoDlg.editSubmit()">
-						<i class="fa fa-check"></i>&nbsp;提交
-					</button>
-					<button class="btn btn-danger" id="cancel" onclick="RolInfoDlg.close()">
-						<i class="fa fa-eraser"></i>&nbsp;取消
-					</button>
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="RolInfoDlg.editSubmit()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="RolInfoDlg.close()"/>
 				</div>
 			</div>
 		</div>

@@ -5,75 +5,32 @@
 			
 			<input type="hidden" id="id" value="${user.id}">
 			
-			<!-- 左侧信息 -->
 			<div class="row">
 				<div class="col-sm-6 b-r">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">账户</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="text" id="account" name="account" value="${user.account}">
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">性别</label>
-						<div class="col-sm-9">
-							<select class="form-control" id="sex" name="sex" value="${user.sex}">
-								<option value="1">男</option>
-								<option value="2">女</option>
-							</select>
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">角色</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="text" id="roleid" value="${roleName}"
-								disabled="disabled">
-						</div>
-					</div>
-					<div class="hr-line-dashed"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">邮箱</label>
-						<div class="col-sm-9">
-							<input class="form-control" type="email" id="email" name="email" value="${user.email}">
-							<!-- 家的纬度 -->
-						</div>
-					</div>
-				</div>
-				<!-- 左侧信息结束 -->
+					<#input id="account" name="账户" underline="true" value="${user.account}"/>
 
+					<#select id="sex" name="性别" underline="true" value="${user.sex}">
+						<option value="1">男</option>
+						<option value="2">女</option>
+					</#select>
+
+					<#input id="roleid" name="角色" underline="true" value="${roleName}" disabled="disabled"/>
+
+					<#input id="email" name="邮箱" type="email" value="${user.email}"/>
+				</div>
 				<div class="col-sm-6">
 					<div id="driverInfoContent">
-						<div class="form-group">
-							<label class="col-sm-3 control-label">姓名</label>
-							<div class="col-sm-8">
-								<input class="form-control" type="text" id="name" name="name" value="${user.name}">
-							</div>
-						</div>
-						<div class="hr-line-dashed "></div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">出生日期</label>
-							<div class="col-sm-8">
-								<input class="form-control" type="date" id="birthday"
-									name="birthday"	onclick="laydate({istime: false, format: 'YYYY-MM-DD'})" value="${user.birthday,dateFormat="yyyy-MM-dd"}">
-							</div>
-						</div>
-						<div class="hr-line-dashed "></div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">部门</label>
-							<div class="col-sm-8">
-								<input class="form-control"	style="background-color: #ffffff !important;" type="text" id="citySel" onclick="UserInfoDlg.showDeptSelectTree(); return false;" readonly="readonly" value="${deptName}"> 
-								<input class="form-control" type="hidden" name="deptid" id="deptid" value="${user.deptid}">
-							</div>
-						</div>
-						<div class="hr-line-dashed "></div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">电话</label>
-							<div class="col-sm-8">
-								<input class="form-control" type="text" id="phone" name="phone" value="${user.phone}">
-							</div>
-						</div>
+						<#input id="name" name="姓名" underline="true" value="${user.name}"/>
+
+						<#input id="birthday" name="出生日期" underline="true" type="date"
+								value="${user.birthday,dateFormat="yyyy-MM-dd"}"
+								clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+
+						<#input id="citySel" name="部门" underline="true" readonly="readonly" hidden="deptid" hiddenValue="${user.deptid}" value="${deptName}"
+								clickFun="UserInfoDlg.showDeptSelectTree(); return false;"
+								style="background-color: #ffffff !important;"/>
+
+						<#input id="phone" name="电话" value="${user.phone}"/>
 					</div>
 				</div>
 			</div>
@@ -86,12 +43,8 @@
 
 			<div class="row btn-group-m-t">
 				<div class="col-sm-10">
-					<button class="btn btn-info" id="ensure" type="submit" onclick="UserInfoDlg.editSubmit()">
-						<i class="fa fa-check"></i>&nbsp;提交
-					</button>
-					<button class="btn btn-danger" id="cancel" onclick="UserInfoDlg.close()">
-						<i class="fa fa-eraser"></i>&nbsp;取消
-					</button>
+					<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.editSubmit()"/>
+					<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
 				</div>
 			</div>
 		</div>
