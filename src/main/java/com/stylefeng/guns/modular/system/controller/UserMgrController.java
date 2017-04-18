@@ -118,8 +118,8 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public Object list() {
-        List<Map<String, Object>> users = managerDao.selectUsers(super.getPara("condition"));
+    public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime) {
+        List<Map<String, Object>> users = managerDao.selectUsers(name,beginTime,endTime);
         return new UserWarpper(users).warp();
     }
 
@@ -181,7 +181,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/delete/{userId}")
-    @BussinessLog(value = "删除管理员",key = "userId")
+    @BussinessLog(value = "删除管理员", key = "userId")
     @ResponseBody
     public Tip delete(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -208,7 +208,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/reset/{userId}")
-    @BussinessLog(value = "重置管理员密码",key = "userId")
+    @BussinessLog(value = "重置管理员密码", key = "userId")
     @ResponseBody
     public Tip reset(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -226,7 +226,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/freeze/{userId}")
-    @BussinessLog(value = "冻结用户",key = "userId")
+    @BussinessLog(value = "冻结用户", key = "userId")
     @ResponseBody
     public Tip freeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -241,7 +241,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/unfreeze/{userId}")
-    @BussinessLog(value = "解除冻结用户",key = "userId")
+    @BussinessLog(value = "解除冻结用户", key = "userId")
     @ResponseBody
     public Tip unfreeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -256,7 +256,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setRole")
-    @BussinessLog(value = "分配角色",key = "userId")
+    @BussinessLog(value = "分配角色", key = "userId")
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {

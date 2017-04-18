@@ -10,5 +10,5 @@
                 type="button">${name}
         </button>
     </div>
-    <input type="text" class="form-control" id="${id}" />
+    <input type="text" class="form-control" id="${id}" placeholder="${placeholder!}" />
 </div>

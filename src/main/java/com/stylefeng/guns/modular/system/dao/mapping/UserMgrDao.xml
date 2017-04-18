@@ -21,10 +21,13 @@
 		<include refid="Base_Column_List" />
 		from _user
 		where status != 5
-		<if test="condition != null and condition != ''">
-			and (phone like CONCAT('%',#{condition},'%') 
-			or account like CONCAT('%',#{condition},'%') 
-			or name like CONCAT('%',#{condition},'%'))
+		<if test="name != null and name != ''">
+			and (phone like CONCAT('%',#{name},'%')
+			or account like CONCAT('%',#{name},'%')
+			or name like CONCAT('%',#{name},'%'))
+		</if>
+		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
 		</if>
 	</select>
 

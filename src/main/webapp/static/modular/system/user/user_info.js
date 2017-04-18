@@ -137,4 +137,7 @@ $(function() {
 	ztree.bindOnClick(UserInfoDlg.onClickDept);
 	ztree.init();
 	instance = ztree;
+
+	//初始化性别选项
+    $("#sex").val($("#sexValue").val());
 });

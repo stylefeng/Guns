@@ -10,7 +10,13 @@
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-sm-3">
-                                <#NameCon id="userName" name="用户名称" />
+                                <#NameCon id="name" name="用户名称" placeholder="帐号/姓名/手机号"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="beginTime" name="注册开始日期" isTime="false" pattern="YYYY-MM-DD"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="endTime" name="注册结束日期" isTime="false" pattern="YYYY-MM-DD"/>
                             </div>
                             <div class="col-sm-3">
                                 <#button name="搜索" icon="fa-search" clickFun="MgrUser.search()"/>

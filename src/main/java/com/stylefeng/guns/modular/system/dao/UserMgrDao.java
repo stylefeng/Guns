@@ -38,7 +38,7 @@ public interface UserMgrDao {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Map<String, Object>> selectUsers(@Param("condition") String condition);
+    public List<Map<String, Object>> selectUsers(@Param("name") String name, @Param("beginTime") String beginTime, @Param("endTime") String endTime);
 
     /**
      * 设置用户的角色
