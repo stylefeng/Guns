@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
@@ -65,5 +66,15 @@ public class LogController extends BaseController {
         OperationLog operationLog = operationLogMapper.selectById(id);
         Map<String, Object> stringObjectMap = BeanKit.beanToMap(operationLog);
         return super.warpObject(new LogWarpper(stringObjectMap));
+    }
+
+    /**
+     * 清空日志
+     */
+    @RequestMapping("/delLog")
+    @ResponseBody
+    public Object delLog() {
+        SqlRunner.db().delete("delete from _operation_log");
+        return super.SUCCESS_TIP;
     }
 }
