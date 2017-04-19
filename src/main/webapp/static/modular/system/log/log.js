@@ -64,10 +64,10 @@ OptLog.detail = function () {
  * 清空日志
  */
 OptLog.delLog = function () {
-    // Feng.confirm("是否清空所有日志?",function(){
+    Feng.confirm("是否清空所有日志?",function(){
         var ajax = Feng.baseAjax("/log/delLog","清空日志");
         ajax.start();
-    // });
+    });
 }
 
 /**
