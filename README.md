@@ -7,6 +7,10 @@
 3. 菜单管理
 4. 日志管理
 
+##使用说明
+1. 导入sql/guns.sql文件到数据库
+2. 启动项目,管理员账号admin/密码111111
+
 ##效果图
 ![效果图](http://git.oschina.net/uploads/images/2017/0406/235944_e724c701_551203.png "效果图")
 ![效果图](http://git.oschina.net/uploads/images/2017/0407/001345_ca4643e8_551203.png "效果图")
