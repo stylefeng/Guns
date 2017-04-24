@@ -2,6 +2,7 @@ package project.config.web;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.stylefeng.guns.core.listener.ConfigListener;
+import com.stylefeng.guns.core.util.xss.XssFilter;
 import project.config.root.RootSpringConfig;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.*;
 import javax.servlet.ServletRegistration.Dynamic;
+import java.util.EnumSet;
 
 /**
  * tomcat启动初始化整个应用的类（代替了web.xml）
@@ -68,6 +70,11 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         // 用来非Controller层获取HttpServletRequest
         servletContext.addListener(RequestContextListener.class);
         servletContext.addListener(ConfigListener.class);
+
+        //防止xss攻击的filter
+        FilterRegistration.Dynamic xssFilter = servletContext.addFilter("xssSqlFilter",
+                new XssFilter());
+        xssFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
 
         super.onStartup(servletContext);
     }
