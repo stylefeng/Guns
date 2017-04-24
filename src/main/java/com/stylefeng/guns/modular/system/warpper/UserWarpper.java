@@ -20,10 +20,10 @@ public class UserWarpper extends BaseControllerWarpper {
 
     @Override
     public void warpTheMap(Map<String, Object> map) {
-        map.put("sexName", ConstantFactory.getSexName((Integer) map.get("sex")));
-        map.put("roleName", ConstantFactory.getRoleName((String) map.get("roleid")));
-        map.put("deptName", ConstantFactory.getDeptName((Integer) map.get("deptid")));
-        map.put("statusName", ConstantFactory.getStatusName((Integer) map.get("status")));
+        map.put("sexName", ConstantFactory.me().getSexName((Integer) map.get("sex")));
+        map.put("roleName", ConstantFactory.me().getRoleName((String) map.get("roleid")));
+        map.put("deptName", ConstantFactory.me().getDeptName((Integer) map.get("deptid")));
+        map.put("statusName", ConstantFactory.me().getStatusName((Integer) map.get("status")));
     }
 
 }

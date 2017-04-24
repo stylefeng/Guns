@@ -48,7 +48,7 @@ public class DataSourceConfig {
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
         sqlSessionFactory.setDataSource(dataSource);
         sqlSessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-        Resource[] classPathResources = ResKit.getClassPathResources("classpath:com/stylefeng/guns/**/mapping/*.xml");
+        Resource[] classPathResources = ResKit.getClassPathResources("classpath*:com/stylefeng/guns/**/mapping/*.xml");
         sqlSessionFactory.setMapperLocations(classPathResources);
 
         //以下为mybatis-plus配置

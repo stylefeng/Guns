@@ -82,8 +82,8 @@ public class RoleController extends BaseController {
         }
         Role role = this.roleMapper.selectById(roleId);
         model.addAttribute(role);
-        model.addAttribute("pName", ConstantFactory.getSingleRoleName(role.getPid()));
-        model.addAttribute("deptName", ConstantFactory.getDeptName(role.getDeptid()));
+        model.addAttribute("pName", ConstantFactory.me().getSingleRoleName(role.getPid()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(role.getDeptid()));
         LogObjectHolder.me().set(role);
         return PREFIX + "/role_edit.html";
     }
@@ -97,7 +97,7 @@ public class RoleController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         model.addAttribute("roleId", roleId);
-        model.addAttribute("roleName", ConstantFactory.getSingleRoleName(roleId));
+        model.addAttribute("roleName", ConstantFactory.me().getSingleRoleName(roleId));
         return PREFIX + "/role_assign.html";
     }
 

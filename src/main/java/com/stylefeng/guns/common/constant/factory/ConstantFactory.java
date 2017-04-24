@@ -1,5 +1,6 @@
 package com.stylefeng.guns.common.constant.factory;
 
+import com.stylefeng.guns.common.constant.Cache;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.constant.state.Sex;
@@ -12,6 +13,8 @@ import com.stylefeng.guns.persistence.dao.RoleMapper;
 import com.stylefeng.guns.persistence.model.Dept;
 import com.stylefeng.guns.persistence.model.Role;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
 
 /**
  * 常量的生产工厂
@@ -19,17 +22,22 @@ import org.springframework.cache.annotation.Cacheable;
  * @author fengshuonan
  * @date 2017年2月13日 下午10:55:21
  */
-@Cacheable("CONSTANT")
+@Component
+@DependsOn("springContextHolder")
 public class ConstantFactory {
 
-    private static RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
-    private static DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
+    private RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
+    private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
 
+    public static ConstantFactory me(){
+        return SpringContextHolder.getBean("constantFactory");
+    }
 
     /**
      * 通过角色ids获取角色名称
      */
-    public static String getRoleName(String roleIds) {
+    @Cacheable(Cache.CONSTANT)
+    public String getRoleName(String roleIds) {
         Integer[] roles = Convert.toIntArray(roleIds);
         StringBuilder sb = new StringBuilder();
         for (int role : roles) {
@@ -44,7 +52,8 @@ public class ConstantFactory {
     /**
      * 通过角色id获取角色名称
      */
-    public static String getSingleRoleName(Integer roleId) {
+    @Cacheable(Cache.CONSTANT)
+    public String getSingleRoleName(Integer roleId) {
         if (0 == roleId) {
             return "--";
         }
@@ -58,7 +67,8 @@ public class ConstantFactory {
     /**
      * 通过角色id获取角色英文名称
      */
-    public static String getSingleRoleTip(Integer roleId) {
+    @Cacheable(Cache.CONSTANT)
+    public String getSingleRoleTip(Integer roleId) {
         if (0 == roleId) {
             return "--";
         }
@@ -72,7 +82,8 @@ public class ConstantFactory {
     /**
      * 获取部门名称
      */
-    public static String getDeptName(Integer deptId) {
+    @Cacheable(Cache.CONSTANT)
+    public String getDeptName(Integer deptId) {
         Dept dept = deptMapper.selectById(deptId);
         if (ToolUtil.isNotEmpty(dept) && ToolUtil.isNotEmpty(dept.getFullname())) {
             return dept.getFullname();
@@ -83,21 +94,21 @@ public class ConstantFactory {
     /**
      * 获取性别名称
      */
-    public static String getSexName(Integer sex) {
+    public String getSexName(Integer sex) {
         return Sex.valueOf(sex);
     }
 
     /**
      * 获取用户登录状态
      */
-    public static String getStatusName(Integer status) {
+    public String getStatusName(Integer status) {
         return ManagerStatus.valueOf(status);
     }
 
     /**
      * 获取菜单状态
      */
-    public static String getMenuStatusName(Integer status) {
+    public String getMenuStatusName(Integer status) {
         return MenuStatus.valueOf(status);
     }
 

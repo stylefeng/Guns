@@ -92,8 +92,8 @@ public class UserMgrController extends BaseController {
         }
         User user = this.userMapper.selectById(userId);
         model.addAttribute(user);
-        model.addAttribute("roleName", ConstantFactory.getRoleName(user.getRoleid()));
-        model.addAttribute("deptName", ConstantFactory.getDeptName(user.getDeptid()));
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
         LogObjectHolder.me().set(user);
         return PREFIX + "user_edit.html";
     }
@@ -108,8 +108,8 @@ public class UserMgrController extends BaseController {
         }
         User user = this.userMapper.selectById(userId);
         model.addAttribute(user);
-        model.addAttribute("roleName", ConstantFactory.getRoleName(user.getRoleid()));
-        model.addAttribute("deptName", ConstantFactory.getDeptName(user.getDeptid()));
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
         return PREFIX + "user_view.html";
     }
 
