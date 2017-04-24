@@ -1,6 +1,8 @@
 package com.stylefeng.guns.common.constant.factory;
 
-import com.stylefeng.guns.common.constant.state.*;
+import com.stylefeng.guns.common.constant.state.ManagerStatus;
+import com.stylefeng.guns.common.constant.state.MenuStatus;
+import com.stylefeng.guns.common.constant.state.Sex;
 import com.stylefeng.guns.core.support.StrKit;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
@@ -9,6 +11,7 @@ import com.stylefeng.guns.persistence.dao.DeptMapper;
 import com.stylefeng.guns.persistence.dao.RoleMapper;
 import com.stylefeng.guns.persistence.model.Dept;
 import com.stylefeng.guns.persistence.model.Role;
+import org.springframework.cache.annotation.Cacheable;
 
 /**
  * 常量的生产工厂
@@ -16,6 +19,7 @@ import com.stylefeng.guns.persistence.model.Role;
  * @author fengshuonan
  * @date 2017年2月13日 下午10:55:21
  */
+@Cacheable("CONSTANT")
 public class ConstantFactory {
 
     private static RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);

@@ -19,6 +19,13 @@
 
     <dependencies>
 
+        <!--缓存框架-->
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
         <!-- mock数据和测试 -->
         <dependency>
             <groupId>org.powermock</groupId>
