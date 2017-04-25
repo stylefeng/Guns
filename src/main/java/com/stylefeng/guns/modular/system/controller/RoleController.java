@@ -3,12 +3,14 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.cache.Cache;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.tips.Tip;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.core.cache.CacheKit;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.ToolUtil;
@@ -139,6 +141,9 @@ public class RoleController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleMapper.updateById(role);
+
+        //删除缓存
+        CacheKit.removeAll(Cache.CONSTANT);
         return SUCCESS_TIP;
     }
 
@@ -157,6 +162,9 @@ public class RoleController extends BaseController {
 
         // 删除该角色所有的权限
         this.roleDao.deleteRolesById(roleId);
+
+        //删除缓存
+        CacheKit.removeAll(Cache.CONSTANT);
         return SUCCESS_TIP;
     }
 
