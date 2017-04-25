@@ -72,7 +72,9 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/tree")
     @ResponseBody
     public List<ZTreeNode> tree() {
-        return this.deptDao.tree();
+        List<ZTreeNode> tree = this.deptDao.tree();
+        tree.add(ZTreeNode.createParent());
+        return tree;
     }
 
     /**
