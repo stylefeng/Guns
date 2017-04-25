@@ -14,4 +14,12 @@
 		) as open from _dept
 	</select>
 
+	<select id="list" resultType="dept">
+		select * from _dept
+		<if test="condition != null and condition != ''">
+			where simplename like CONCAT('%',#{condition},'%') or fullname like CONCAT('%',#{condition},'%')
+		</if>
+		order by num ASC
+	</select>
+
 </mapper>

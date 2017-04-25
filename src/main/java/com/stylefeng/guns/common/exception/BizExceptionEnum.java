@@ -7,15 +7,31 @@ package com.stylefeng.guns.common.exception;
  */
 public enum BizExceptionEnum {
 
+
+	/**
+	 * 文件上传
+	 */
 	FILE_READING_ERROR(400,"FILE_READING_ERROR!"),
 	FILE_NOT_FOUND(400,"FILE_NOT_FOUND!"),
+
+	/**
+	 * 权限和数据问题
+	 */
 	DB_RESOURCE_NULL(400,"数据库中没有该资源"),
 	NO_PERMITION(405, "无权访问该资源"),
+	REQUEST_INVALIDATE(400,"请求数据格式不正确"),
+
+	/**
+	 * 账户问题
+	 */
 	USER_ALREADY_REG(401,"该用户已经注册"),
 	NO_THIS_USER(400,"没有此用户"),
-	REQUEST_INVALIDATE(400,"请求数据格式不正确"),
 	USER_NOT_EXISTED(400, "没有此用户"),
 	ACCOUNT_FREEZED(401, "账号被冻结"),
+
+	/**
+	 * 错误的请求
+	 */
 	REQUEST_NULL(400, "请求为空"),
 	SERVER_ERROR(500, "服务器异常");
 
