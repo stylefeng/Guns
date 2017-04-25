@@ -10,6 +10,7 @@
         <if test="logName != null and logName !=''">
             and logname like CONCAT('%',#{logName},'%')
         </if>
+        order by createTime DESC
     </select>
 
 </mapper>
