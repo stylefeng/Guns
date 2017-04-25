@@ -21,7 +21,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Map<String, Object>> selectMenus(@Param("condition") String condition,@Param("level") String level);
+    List<Map<String, Object>> selectMenus(@Param("condition") String condition,@Param("level") String level);
 
     /**
      * 根据条件查询菜单
@@ -29,7 +29,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Integer> getMenuIdsByRoleId(@Param("roleId") Integer roleId);
+    List<Integer> getMenuIdsByRoleId(@Param("roleId") Integer roleId);
 
     /**
      * 获取菜单列表树
@@ -37,7 +37,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午1:33:51
      */
-    public List<ZTreeNode> menuTreeList();
+    List<ZTreeNode> menuTreeList();
 
     /**
      * 获取菜单列表树
@@ -45,7 +45,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午1:33:51
      */
-    public List<ZTreeNode> menuTreeListByMenuIds(List<Integer> menuIds);
+    List<ZTreeNode> menuTreeListByMenuIds(List<Integer> menuIds);
 
     /**
      * 删除menu关联的relation
@@ -54,7 +54,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午4:10:59
      */
-    public int deleteRelationByMenu(Integer menuId);
+    int deleteRelationByMenu(Integer menuId);
 
     /**
      * 获取资源url通过角色id
@@ -63,7 +63,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午7:12:38
      */
-    public List<String> getResUrlsByRoleId(Integer roleId);
+    List<String> getResUrlsByRoleId(Integer roleId);
 
     /**
      * 根据角色获取菜单
@@ -72,7 +72,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午10:35:40
      */
-    public List<MenuNode> getMenusByRoleIds(List<Integer> roleIds);
+    List<MenuNode> getMenusByRoleIds(List<Integer> roleIds);
 
 
 }

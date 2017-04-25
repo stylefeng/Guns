@@ -19,32 +19,32 @@ public interface IShiro {
      *
      * @param account 账号
      */
-    public User user(String account);
+    User user(String account);
 
     /**
      * 根据系统用户获取Shiro的用户
      *
      * @param user 系统用户
      */
-    public ShiroUser shiroUser(User user);
+    ShiroUser shiroUser(User user);
 
     /**
      * 获取权限列表通过角色id
      *
      * @param roleId 角色id
      */
-    public List<String> findPermissionsByRoleId(Integer roleId);
+    List<String> findPermissionsByRoleId(Integer roleId);
 
     /**
      * 根据角色id获取角色名称
      *
      * @param roleId 角色id
      */
-    public String findRoleNameByRoleId(Integer roleId);
+    String findRoleNameByRoleId(Integer roleId);
 
     /**
      * 获取shiro的认证信息
      */
-    public SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName);
+    SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName);
 
 }

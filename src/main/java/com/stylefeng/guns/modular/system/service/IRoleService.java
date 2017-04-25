@@ -15,5 +15,5 @@ public interface IRoleService {
      * @param ids    权限的id
      * @date 2017年2月13日 下午8:26:53
      */
-    public void setAuthority(Integer roleId, String ids);
+    void setAuthority(Integer roleId, String ids);
 }

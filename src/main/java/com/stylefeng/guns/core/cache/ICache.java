@@ -22,19 +22,19 @@ import java.util.List;
  */
 public interface ICache {
 	
-	public void put(String cacheName, Object key, Object value);
+	void put(String cacheName, Object key, Object value);
 	
-	public <T> T get(String cacheName, Object key);
+	<T> T get(String cacheName, Object key);
 	
 	@SuppressWarnings("rawtypes")
-	public List getKeys(String cacheName);
+	List getKeys(String cacheName);
 	
-	public void remove(String cacheName, Object key);
+	void remove(String cacheName, Object key);
 	
-	public void removeAll(String cacheName);
+	void removeAll(String cacheName);
 	
-	public <T> T get(String cacheName, Object key, ILoader iLoader);
+	<T> T get(String cacheName, Object key, ILoader iLoader);
 	
-	public <T> T get(String cacheName, Object key, Class<? extends ILoader> iLoaderClass);
+	<T> T get(String cacheName, Object key, Class<? extends ILoader> iLoaderClass);
 	
 }

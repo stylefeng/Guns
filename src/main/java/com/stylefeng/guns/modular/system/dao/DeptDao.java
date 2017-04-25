@@ -18,5 +18,5 @@ public interface DeptDao {
      * @return
      * @date 2017年2月17日 下午8:28:43
      */
-    public List<ZTreeNode> tree();
+    List<ZTreeNode> tree();
 }
