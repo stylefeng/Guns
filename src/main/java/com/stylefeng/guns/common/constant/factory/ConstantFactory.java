@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.constant.factory;
 
-import com.stylefeng.guns.common.constant.Cache;
+import com.stylefeng.guns.common.constant.cache.Cache;
+import com.stylefeng.guns.common.constant.cache.CacheKey;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.constant.state.Sex;
@@ -29,14 +30,14 @@ public class ConstantFactory {
     private RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
     private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
 
-    public static ConstantFactory me(){
+    public static ConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
     }
 
     /**
      * 通过角色ids获取角色名称
      */
-    @Cacheable(Cache.CONSTANT)
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.ROLES_NAME + "'+#roleIds")
     public String getRoleName(String roleIds) {
         Integer[] roles = Convert.toIntArray(roleIds);
         StringBuilder sb = new StringBuilder();
@@ -52,7 +53,7 @@ public class ConstantFactory {
     /**
      * 通过角色id获取角色名称
      */
-    @Cacheable(Cache.CONSTANT)
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_NAME + "'+#roleId")
     public String getSingleRoleName(Integer roleId) {
         if (0 == roleId) {
             return "--";
@@ -67,7 +68,7 @@ public class ConstantFactory {
     /**
      * 通过角色id获取角色英文名称
      */
-    @Cacheable(Cache.CONSTANT)
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_TIP + "'+#roleId")
     public String getSingleRoleTip(Integer roleId) {
         if (0 == roleId) {
             return "--";
@@ -82,7 +83,7 @@ public class ConstantFactory {
     /**
      * 获取部门名称
      */
-    @Cacheable(Cache.CONSTANT)
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
     public String getDeptName(Integer deptId) {
         Dept dept = deptMapper.selectById(deptId);
         if (ToolUtil.isNotEmpty(dept) && ToolUtil.isNotEmpty(dept.getFullname())) {

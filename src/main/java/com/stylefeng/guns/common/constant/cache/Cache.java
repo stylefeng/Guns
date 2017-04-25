@@ -1,4 +1,4 @@
-package com.stylefeng.guns.common.constant;
+package com.stylefeng.guns.common.constant.cache;
 
 /**
  * 所有缓存名称的集合

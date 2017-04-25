@@ -54,9 +54,6 @@ public class CacheTest extends BaseTest{
         System.out.println();
         System.out.println();
 
-        Object constant = CacheKit.get("CONSTANT", 1);
-        System.out.println(constant);
-
         List constant1 = CacheKit.getKeys("CONSTANT");
         System.out.println(JSON.toJSONString(constant1));
     }
