@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.stylefeng.guns.core.support.cache;
+package com.stylefeng.guns.core.cache;
 
 import java.util.List;
 

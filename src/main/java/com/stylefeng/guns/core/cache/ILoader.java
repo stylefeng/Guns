@@ -13,28 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.guns.core.support.cache;
-
-import java.util.List;
+package com.stylefeng.guns.core.cache;
 
 /**
- * 通用缓存接口
+ *  数据重载
  */
-public interface ICache {
-	
-	public void put(String cacheName, Object key, Object value);
-	
-	public <T> T get(String cacheName, Object key);
-	
-	@SuppressWarnings("rawtypes")
-	public List getKeys(String cacheName);
-	
-	public void remove(String cacheName, Object key);
-	
-	public void removeAll(String cacheName);
-	
-	public <T> T get(String cacheName, Object key, ILoader iLoader);
-	
-	public <T> T get(String cacheName, Object key, Class<? extends ILoader> iLoaderClass);
-	
+public interface ILoader {
+	Object load();
 }
