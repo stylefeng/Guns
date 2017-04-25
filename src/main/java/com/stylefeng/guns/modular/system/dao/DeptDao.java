@@ -1,10 +1,10 @@
 package com.stylefeng.guns.modular.system.dao;
 
 import com.stylefeng.guns.common.node.ZTreeNode;
-import com.stylefeng.guns.persistence.model.Dept;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门dao
@@ -22,5 +22,5 @@ public interface DeptDao {
      */
     List<ZTreeNode> tree();
 
-    List<Dept> list(@Param("condition") String condition);
+    List<Map<String, Object>> list(@Param("condition") String condition);
 }

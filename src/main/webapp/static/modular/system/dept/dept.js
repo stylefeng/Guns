@@ -15,7 +15,7 @@ Dept.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', align: 'center', valign: 'middle'},
-        {title: '父级id', field: 'pid', align: 'center', valign: 'middle'},
+        {title: '父级部门', field: 'pName', align: 'center', valign: 'middle'},
         {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle'},
         {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle'},
         {title: '排序', field: 'num', align: 'center', valign: 'middle'},

@@ -14,7 +14,7 @@
 		) as open from _dept
 	</select>
 
-	<select id="list" resultType="dept">
+	<select id="list" resultType="map">
 		select * from _dept
 		<if test="condition != null and condition != ''">
 			where simplename like CONCAT('%',#{condition},'%') or fullname like CONCAT('%',#{condition},'%')

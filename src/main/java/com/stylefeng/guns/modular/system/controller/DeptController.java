@@ -9,6 +9,7 @@ import com.stylefeng.guns.common.node.ZTreeNode;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DeptDao;
+import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import com.stylefeng.guns.persistence.dao.DeptMapper;
 import com.stylefeng.guns.persistence.model.Dept;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 部门控制器
@@ -96,7 +98,8 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return this.deptDao.list(condition);
+        List<Map<String, Object>> list = this.deptDao.list(condition);
+        return super.warpObject(new DeptWarpper(list));
     }
 
     /**
