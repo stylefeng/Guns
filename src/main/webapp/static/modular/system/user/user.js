@@ -28,22 +28,15 @@ MgrUser.initColumn = function () {
 };
 
 /**
- * 绑定表格的事件
- */
-MgrUser.bindEvent = function () {
-    $('#' + this.id).on('click-row.bs.table', function (e, row, $element) {
-        MgrUser.seItem = row;
-    });
-};
-
-/**
  * 检查是否选中
  */
 MgrUser.check = function () {
-    if (this.seItem == null) {
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if (selected.length == 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
+        MgrUser.seItem = selected[0];
         return true;
     }
 };
@@ -184,5 +177,4 @@ $(function () {
     var table = new BSTable("managerTable", "/mgr/list", defaultColunms);
     table.setPaginationType("client");
     MgrUser.table = table.init();
-    MgrUser.bindEvent();
 });

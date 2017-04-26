@@ -23,22 +23,15 @@ Dept.initColumn = function () {
 };
 
 /**
- * 绑定表格的事件
- */
-Dept.bindEvent = function () {
-    $('#' + this.id).on('click-row.bs.table', function (e, row) {
-        Dept.seItem = row;
-    });
-};
-
-/**
  * 检查是否选中
  */
 Dept.check = function () {
-    if (this.seItem == null) {
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
-    } else {
+    }else{
+        Dept.seItem = selected[0];
         return true;
     }
 };
@@ -95,9 +88,7 @@ Dept.delete = function () {
  */
 Dept.search = function () {
     var queryData = {};
-
     queryData['condition'] = $("#condition").val();
-
     Dept.table.refresh({query: queryData});
 };
 
@@ -106,5 +97,4 @@ $(function () {
     var table = new BSTable(Dept.id, "/dept/list", defaultColunms);
     table.setPaginationType("client");
     Dept.table = table.init();
-    Dept.bindEvent();
 });

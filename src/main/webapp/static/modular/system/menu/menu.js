@@ -25,23 +25,17 @@ Menu.initColumn = function () {
     return columns;
 };
 
-/**
- * 绑定表格的事件
- */
-Menu.bindEvent = function () {
-    $('#' + this.id).on('click-row.bs.table', function (e, row, $element) {
-        Menu.seItem = row;
-    });
-};
 
 /**
  * 检查是否选中
  */
 Menu.check = function () {
-    if (this.seItem == null) {
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if (selected.length == 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
+        Menu.seItem = selected[0];
         return true;
     }
 };
@@ -110,6 +104,5 @@ $(function () {
     var table = new BSTable(Menu.id, "/menu/list", defaultColunms);
     table.setPaginationType("client");
     table.init();
-    Menu.bindEvent();
     Menu.table = table;
 });

@@ -25,22 +25,15 @@ OptLog.initColumn = function () {
 };
 
 /**
- * 绑定表格的事件
- */
-OptLog.bindEvent = function () {
-    $('#' + this.id).on('click-row.bs.table', function (e, row) {
-        OptLog.seItem = row;
-    });
-};
-
-/**
  * 检查是否选中
  */
 OptLog.check = function () {
-    if (this.seItem == null) {
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
-    } else {
+    }else{
+        OptLog.seItem = selected[0];
         return true;
     }
 };
@@ -88,5 +81,4 @@ $(function () {
     var table = new BSTable(OptLog.id, "/log/list", defaultColunms);
     table.setPaginationType("server");
     OptLog.table = table.init();
-    OptLog.bindEvent();
 });
