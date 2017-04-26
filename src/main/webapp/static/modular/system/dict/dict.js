@@ -1,8 +1,8 @@
 /**
- * 部门管理初始化
+ * 字典管理初始化
  */
-var Dept = {
-    id: "DeptTable",	//表格id
+var Dict = {
+    id: "DictTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
     layerIndex: -1
@@ -11,71 +11,71 @@ var Dept = {
 /**
  * 初始化表格的列
  */
-Dept.initColumn = function () {
+Dict.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', align: 'center', valign: 'middle'},
-        {title: '父级部门', field: 'pName', align: 'center', valign: 'middle'},
-        {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle'},
-        {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle'},
-        {title: '排序', field: 'num', align: 'center', valign: 'middle'},
+        {title: '编号', field: 'code', align: 'center', valign: 'middle'},
+        {title: '值', field: 'num', align: 'center', valign: 'middle'},
+        {title: '父id', field: 'pid', align: 'center', valign: 'middle'},
+        {title: '名称', field: 'name', align: 'center', valign: 'middle'},
         {title: '备注', field: 'tips', align: 'center', valign: 'middle'}];
 };
 
 /**
  * 检查是否选中
  */
-Dept.check = function () {
+Dict.check = function () {
     var selected = $('#' + this.id).bootstrapTable('getSelections');
     if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
     }else{
-        Dept.seItem = selected[0];
+        Dict.seItem = selected[0];
         return true;
     }
 };
 
 /**
- * 点击添加部门
+ * 点击添加字典
  */
-Dept.openAddDept = function () {
+Dict.openAddDict = function () {
     var index = layer.open({
         type: 2,
-        title: '添加部门',
+        title: '添加字典',
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/dept/dept_add'
+        content: Feng.ctxPath + '/dict/dict_add'
     });
     this.layerIndex = index;
 };
 
 /**
- * 打开查看部门详情
+ * 打开查看字典详情
  */
-Dept.openDeptDetail = function () {
+Dict.openDictDetail = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
-            title: '部门详情',
+            title: '字典详情',
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/dept/dept_update/' + Dept.seItem.id
+            content: Feng.ctxPath + '/dict/dict_edit/' + Dict.seItem.id
         });
         this.layerIndex = index;
     }
 };
 
 /**
- * 删除部门
+ * 删除字典
  */
-Dept.delete = function () {
+Dict.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/dept/delete/" + this.seItem.id, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/dict/delete/" + this.seItem.id, function (data) {
             Feng.success("删除成功!");
-            Dept.table.refresh();
+            Dict.table.refresh();
         }, function (data) {
             Feng.error("删除失败!");
         });
@@ -84,17 +84,17 @@ Dept.delete = function () {
 };
 
 /**
- * 查询部门列表
+ * 查询字典列表
  */
-Dept.search = function () {
+Dict.search = function () {
     var queryData = {};
     queryData['condition'] = $("#condition").val();
-    Dept.table.refresh({query: queryData});
+    Dict.table.refresh({query: queryData});
 };
 
 $(function () {
-    var defaultColunms = Dept.initColumn();
-    var table = new BSTable(Dept.id, "/dept/list", defaultColunms);
+    var defaultColunms = Dict.initColumn();
+    var table = new BSTable(Dict.id, "/dict/list", defaultColunms);
     table.setPaginationType("client");
-    Dept.table = table.init();
+    Dict.table = table.init();
 });

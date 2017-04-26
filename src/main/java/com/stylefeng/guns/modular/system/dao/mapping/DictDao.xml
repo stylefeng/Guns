@@ -13,4 +13,12 @@
 		where code = #{code}
 	</select>
 
+	<select id="list" resultType="map">
+		select * from _dict
+		<if test="condition != null and condition != ''">
+			where name like CONCAT('%',#{condition},'%') or num like CONCAT('%',#{condition},'%')
+		</if>
+		order by code ASC
+	</select>
+
 </mapper>
