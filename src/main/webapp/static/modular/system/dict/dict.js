@@ -14,11 +14,9 @@ var Dict = {
 Dict.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', align: 'center', valign: 'middle'},
-        {title: '编号', field: 'code', align: 'center', valign: 'middle'},
-        {title: '值', field: 'num', align: 'center', valign: 'middle'},
-        {title: '父id', field: 'pid', align: 'center', valign: 'middle'},
+        {title: 'id', field: 'id', visible: true, align: 'center', valign: 'middle'},
         {title: '名称', field: 'name', align: 'center', valign: 'middle'},
+        {title: '详情', field: 'detail', align: 'center', valign: 'middle'},
         {title: '备注', field: 'tips', align: 'center', valign: 'middle'}];
 };
 

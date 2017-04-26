@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.modular.system.dao.DictDao">
 
 	<sql id="Base_Column_List">
-		id, code, num, pid, name, tips, version
+		id, num, pid, name, tips
 	</sql>
 
 	<select id="selectByCode" resultType="dict">
@@ -15,10 +15,11 @@
 
 	<select id="list" resultType="map">
 		select * from _dict
+		where num = 0
 		<if test="condition != null and condition != ''">
-			where name like CONCAT('%',#{condition},'%') or num like CONCAT('%',#{condition},'%')
+			AND name like CONCAT('%',#{condition},'%')
 		</if>
-		order by code ASC
+		order by id ASC
 	</select>
 
 </mapper>

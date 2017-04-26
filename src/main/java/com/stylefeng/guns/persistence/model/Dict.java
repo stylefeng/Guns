@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-16
+ * @since 2017-04-26
  */
 @TableName("_dict")
 public class Dict extends Model<Dict> {
@@ -21,12 +21,10 @@ public class Dict extends Model<Dict> {
 
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
-	private String code;
 	private Integer num;
 	private Integer pid;
 	private String name;
 	private String tips;
-	private Integer version;
 
 
 	public Integer getId() {
@@ -35,14 +33,6 @@ public class Dict extends Model<Dict> {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public Integer getNum() {
@@ -75,14 +65,6 @@ public class Dict extends Model<Dict> {
 
 	public void setTips(String tips) {
 		this.tips = tips;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-16
+ * @since 2017-04-26
  */
 public interface OperationLogMapper extends BaseMapper<OperationLog> {
 

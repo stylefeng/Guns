@@ -6,6 +6,7 @@ import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DictDao;
+import com.stylefeng.guns.modular.system.warpper.DictWarpper;
 import com.stylefeng.guns.persistence.dao.DictMapper;
 import com.stylefeng.guns.persistence.model.Dict;
 import org.springframework.stereotype.Controller;
@@ -82,7 +83,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
         List<Map<String, Object>> list = this.dictDao.list(condition);
-        return list;
+        return super.warpObject(new DictWarpper(list));
     }
 
     /**

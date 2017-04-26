@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-08
+ * @since 2017-04-26
  */
 @TableName("_attach")
 public class Attach extends Model<Attach> {
