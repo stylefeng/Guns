@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-04-25 18:06:38
+Date: 2017-04-26 13:25:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -70,7 +70,7 @@ CREATE TABLE `_dict` (
   `tips` varchar(255) DEFAULT NULL,
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _dict
@@ -122,7 +122,7 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
@@ -151,6 +151,10 @@ INSERT INTO `_login_log` VALUES ('61', '登录日志', '1', '2017-04-19 12:45:21
 INSERT INTO `_login_log` VALUES ('62', '登录日志', '1', '2017-04-25 16:41:26', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('63', '登录日志', '1', '2017-04-25 17:48:07', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('64', '登录日志', '1', '2017-04-25 18:00:17', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('65', '登录日志', '1', '2017-04-26 12:40:22', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('66', '退出日志', '1', '2017-04-26 12:50:34', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('67', '登录日志', '1', '2017-04-26 12:50:42', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('68', '登录日志', '1', '2017-04-26 13:20:33', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -169,7 +173,7 @@ CREATE TABLE `_menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _menu
@@ -195,6 +199,7 @@ INSERT INTO `_menu` VALUES ('122', 'menu_remove', 'menu', '删除菜单', null, 
 INSERT INTO `_menu` VALUES ('128', 'log', 'system', '日志管理', null, '/log', '4', '2', null, '1', '0');
 INSERT INTO `_menu` VALUES ('130', 'druid', 'system', '监控管理', null, '/druid', '5', '2', null, '1', null);
 INSERT INTO `_menu` VALUES ('131', 'dept', 'system', '部门管理', null, '/dept', '5', '2', null, '1', null);
+INSERT INTO `_menu` VALUES ('132', 'dict', 'system', '字典管理', null, '/dict', '7', '2', null, '1', null);
 
 -- ----------------------------
 -- Table structure for _notice
@@ -211,7 +216,7 @@ CREATE TABLE `_notice` (
   `pic` int(11) DEFAULT NULL COMMENT '图片',
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _notice
@@ -233,7 +238,7 @@ CREATE TABLE `_operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _operation_log
@@ -333,6 +338,36 @@ INSERT INTO `_operation_log` VALUES ('214', '业务日志', '添加部门', '1',
 INSERT INTO `_operation_log` VALUES ('215', '业务日志', '添加部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'add', '2017-04-25 18:03:45', '成功', '[时间]:2017-04-25 18:03:45  [类名]:com.stylefeng.guns.modular.system.controller.DeptController  [方法]:add  [参数]:com.stylefeng.guns.persistence.model.Dept@3172283d ');
 INSERT INTO `_operation_log` VALUES ('216', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-25 18:03:53', '成功', 'id=27;;;字段名称simplename,旧值:战略部,新值:战略部1;;;字段名称fullname,旧值:战略部,新值:战略部1');
 INSERT INTO `_operation_log` VALUES ('217', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-25 18:03:58', '成功', 'id=27;;;字段名称simplename,旧值:战略部1,新值:战略部;;;字段名称fullname,旧值:战略部1,新值:战略部');
+INSERT INTO `_operation_log` VALUES ('218', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:23:16', '成功', 'id=24;;;');
+INSERT INTO `_operation_log` VALUES ('219', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:23:19', '成功', 'id=24;;;');
+INSERT INTO `_operation_log` VALUES ('220', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:23:23', '成功', 'id=25;;;');
+INSERT INTO `_operation_log` VALUES ('221', '业务日志', '添加部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'add', '2017-04-26 12:27:11', '成功', '[时间]:2017-04-26 12:27:11  [类名]:com.stylefeng.guns.modular.system.controller.DeptController  [方法]:add  [参数]:com.stylefeng.guns.persistence.model.Dept@40eff2f4 ');
+INSERT INTO `_operation_log` VALUES ('222', '异常日志', '', '1', null, null, '2017-04-26 12:27:11', '失败', 'com.stylefeng.guns.common.exception.BussinessException: 请求为空\r\n	at com.stylefeng.guns.modular.system.controller.DeptController.add(DeptController.java:90)\r\n	at com.stylefeng.guns.modular.system.controller.DeptControllerTTFastClassBySpringCGLIBTTb168ad81.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)\r\n	at org.springframework.aop.framework.CglibAopProxyTCglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:720)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:85)\r\n	at com.stylefeng.guns.core.aop.LogAop.recordSysLog(LogAop.java:89)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:620)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:609)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:68)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:85)\r\n	at com.stylefeng.guns.core.intercept.SessionInterceptor.sessionKit(SessionInterceptor.java:31)\r\n	at sun.reflect.GeneratedMethodAccessor60.invoke(Unknown Source)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:620)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:609)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:68)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\r\n	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\r\n	at org.springframework.aop.framework.CglibAopProxyTDynamicAdvisedInterceptor.intercept(CglibAopProxy.java:655)\r\n	at com.stylefeng.guns.modular.system.controller.DeptControllerTTEnhancerBySpringCGLIBTT77e6ee74_2.add(<generated>)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:221)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:136)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:110)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:832)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:743)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:961)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:895)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:967)\r\n	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:869)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:843)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)\r\n	at com.stylefeng.guns.core.util.xss.XssFilter.doFilter(XssFilter.java:32)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:121)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilterT1.call(AbstractShiroFilter.java:365)\r\n	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)\r\n	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)\r\n	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:383)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:346)\r\n	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:262)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:240)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:212)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)\r\n	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:528)\r\n	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1100)\r\n	at org.apache.coyote.AbstractProtocolTAbstractConnectionHandler.process(AbstractProtocol.java:687)\r\n	at org.apache.tomcat.util.net.AprEndpointTSocketProcessor.doRun(AprEndpoint.java:2508)\r\n	at org.apache.tomcat.util.net.AprEndpointTSocketProcessor.run(AprEndpoint.java:2497)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\r\n	at java.util.concurrent.ThreadPoolExecutorTWorker.run(ThreadPoolExecutor.java:617)\r\n	at org.apache.tomcat.util.threads.TaskThreadTWrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:745)\r\n');
+INSERT INTO `_operation_log` VALUES ('223', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:27:16', '成功', 'id=24;;;');
+INSERT INTO `_operation_log` VALUES ('224', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:42:42', '成功', 'id=25;;;');
+INSERT INTO `_operation_log` VALUES ('225', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:42:45', '成功', 'id=26;;;');
+INSERT INTO `_operation_log` VALUES ('226', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:43:55', '成功', 'id=25;;;字段名称fullname,旧值:开发部,新值:开发部1');
+INSERT INTO `_operation_log` VALUES ('227', '业务日志', '修改部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'update', '2017-04-26 12:44:01', '成功', 'id=25;;;字段名称fullname,旧值:开发部1,新值:开发部');
+INSERT INTO `_operation_log` VALUES ('228', '业务日志', '解除冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'unfreeze', '2017-04-26 12:49:36', '成功', '[时间]:2017-04-26 12:49:35  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:unfreeze  [参数]:1 ');
+INSERT INTO `_operation_log` VALUES ('229', '业务日志', '冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'freeze', '2017-04-26 12:49:38', '成功', '[时间]:2017-04-26 12:49:38  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:freeze  [参数]:1 ');
+INSERT INTO `_operation_log` VALUES ('230', '业务日志', '解除冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'unfreeze', '2017-04-26 12:49:39', '成功', '[时间]:2017-04-26 12:49:39  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:unfreeze  [参数]:1 ');
+INSERT INTO `_operation_log` VALUES ('231', '业务日志', '冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'freeze', '2017-04-26 12:49:40', '成功', '[时间]:2017-04-26 12:49:40  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:freeze  [参数]:1 ');
+INSERT INTO `_operation_log` VALUES ('232', '业务日志', '解除冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'unfreeze', '2017-04-26 12:49:41', '成功', '[时间]:2017-04-26 12:49:41  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:unfreeze  [参数]:1 ');
+INSERT INTO `_operation_log` VALUES ('233', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-04-26 13:17:24', '成功', '[时间]:2017-04-26 13:17:24  [类名]:com.stylefeng.guns.modular.system.controller.MenuController  [方法]:add  [参数]:com.stylefeng.guns.persistence.model.Menu@5097ece & org.springframework.validation.BeanPropertyBindingResult: 0 errors ');
+INSERT INTO `_operation_log` VALUES ('234', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-04-26 13:17:35', '成功', '[时间]:2017-04-26 13:17:35  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:setAuthority  [参数]:1 & 105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,128,130,131,132 ');
+INSERT INTO `_operation_log` VALUES ('235', '业务日志', '分配角色权限', '1', 'com.stylefeng.guns.modular.system.service.impl.RoleServiceImpl', 'setAuthority', '2017-04-26 13:17:35', '成功', '[时间]:2017-04-26 13:17:35  [类名]:com.stylefeng.guns.modular.system.service.impl.RoleServiceImpl  [方法]:setAuthority  [参数]:1 & 105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,128,130,131,132 ');
+INSERT INTO `_operation_log` VALUES ('236', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:42', '成功', '[时间]:2017-04-26 13:20:42  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:2 ');
+INSERT INTO `_operation_log` VALUES ('237', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:48', '成功', '[时间]:2017-04-26 13:20:47  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:1 ');
+INSERT INTO `_operation_log` VALUES ('238', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:49', '成功', '[时间]:2017-04-26 13:20:48  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:3 ');
+INSERT INTO `_operation_log` VALUES ('239', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:50', '成功', '[时间]:2017-04-26 13:20:49  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:5 ');
+INSERT INTO `_operation_log` VALUES ('240', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:50', '成功', '[时间]:2017-04-26 13:20:50  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:6 ');
+INSERT INTO `_operation_log` VALUES ('241', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:51', '成功', '[时间]:2017-04-26 13:20:51  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:7 ');
+INSERT INTO `_operation_log` VALUES ('242', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:52', '成功', '[时间]:2017-04-26 13:20:51  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:8 ');
+INSERT INTO `_operation_log` VALUES ('243', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:53', '成功', '[时间]:2017-04-26 13:20:52  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:9 ');
+INSERT INTO `_operation_log` VALUES ('244', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:54', '成功', '[时间]:2017-04-26 13:20:53  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:10 ');
+INSERT INTO `_operation_log` VALUES ('245', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:20:55', '成功', '[时间]:2017-04-26 13:20:54  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:11 ');
+INSERT INTO `_operation_log` VALUES ('246', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:23:57', '成功', '[时间]:2017-04-26 13:23:56  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:12 ');
+INSERT INTO `_operation_log` VALUES ('247', '业务日志', '删除字典记录', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'delete', '2017-04-26 13:23:58', '成功', '[时间]:2017-04-26 13:23:57  [类名]:com.stylefeng.guns.modular.system.controller.DictController  [方法]:delete  [参数]:13 ');
 
 -- ----------------------------
 -- Table structure for _parameter
@@ -364,32 +399,33 @@ CREATE TABLE `_relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2913 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2935 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _relation
 -- ----------------------------
-INSERT INTO `_relation` VALUES ('2892', '105', '1');
-INSERT INTO `_relation` VALUES ('2893', '106', '1');
-INSERT INTO `_relation` VALUES ('2894', '107', '1');
-INSERT INTO `_relation` VALUES ('2895', '108', '1');
-INSERT INTO `_relation` VALUES ('2896', '109', '1');
-INSERT INTO `_relation` VALUES ('2897', '110', '1');
-INSERT INTO `_relation` VALUES ('2898', '111', '1');
-INSERT INTO `_relation` VALUES ('2899', '112', '1');
-INSERT INTO `_relation` VALUES ('2900', '113', '1');
-INSERT INTO `_relation` VALUES ('2901', '114', '1');
-INSERT INTO `_relation` VALUES ('2902', '115', '1');
-INSERT INTO `_relation` VALUES ('2903', '116', '1');
-INSERT INTO `_relation` VALUES ('2904', '117', '1');
-INSERT INTO `_relation` VALUES ('2905', '118', '1');
-INSERT INTO `_relation` VALUES ('2906', '119', '1');
-INSERT INTO `_relation` VALUES ('2907', '120', '1');
-INSERT INTO `_relation` VALUES ('2908', '121', '1');
-INSERT INTO `_relation` VALUES ('2909', '122', '1');
-INSERT INTO `_relation` VALUES ('2910', '128', '1');
-INSERT INTO `_relation` VALUES ('2911', '130', '1');
-INSERT INTO `_relation` VALUES ('2912', '131', '1');
+INSERT INTO `_relation` VALUES ('2913', '105', '1');
+INSERT INTO `_relation` VALUES ('2914', '106', '1');
+INSERT INTO `_relation` VALUES ('2915', '107', '1');
+INSERT INTO `_relation` VALUES ('2916', '108', '1');
+INSERT INTO `_relation` VALUES ('2917', '109', '1');
+INSERT INTO `_relation` VALUES ('2918', '110', '1');
+INSERT INTO `_relation` VALUES ('2919', '111', '1');
+INSERT INTO `_relation` VALUES ('2920', '112', '1');
+INSERT INTO `_relation` VALUES ('2921', '113', '1');
+INSERT INTO `_relation` VALUES ('2922', '114', '1');
+INSERT INTO `_relation` VALUES ('2923', '115', '1');
+INSERT INTO `_relation` VALUES ('2924', '116', '1');
+INSERT INTO `_relation` VALUES ('2925', '117', '1');
+INSERT INTO `_relation` VALUES ('2926', '118', '1');
+INSERT INTO `_relation` VALUES ('2927', '119', '1');
+INSERT INTO `_relation` VALUES ('2928', '120', '1');
+INSERT INTO `_relation` VALUES ('2929', '121', '1');
+INSERT INTO `_relation` VALUES ('2930', '122', '1');
+INSERT INTO `_relation` VALUES ('2931', '128', '1');
+INSERT INTO `_relation` VALUES ('2932', '130', '1');
+INSERT INTO `_relation` VALUES ('2933', '131', '1');
+INSERT INTO `_relation` VALUES ('2934', '132', '1');
 
 -- ----------------------------
 -- Table structure for _role
@@ -404,7 +440,7 @@ CREATE TABLE `_role` (
   `tips` varchar(255) DEFAULT NULL,
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _role
