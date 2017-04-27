@@ -1,17 +1,21 @@
 package project.config.datasource;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 import com.stylefeng.guns.core.util.ResKit;
 import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -22,8 +26,11 @@ import javax.sql.DataSource;
  * @date 2016年11月12日 下午4:55:09
  */
 @Configuration
-@Import(value = DruidPoolConfig.class)
-public class DataSourceConfig {
+@EnableTransactionManagement
+@PropertySource("classpath:jdbc.properties")
+public class DataSourceConfig implements EnvironmentAware {
+
+    private Environment em;
 
     /**
      * 扫描所有mybatis的接口
@@ -75,18 +82,6 @@ public class DataSourceConfig {
          * UUID->`3`("全局唯一ID")
          */
         globalConfig.setIdType(1);
-
-        /**
-         * MYSQL->`mysql`
-         * ORACLE->`oracle`
-         * DB2->`db2`
-         * H2->`h2`
-         * HSQL->`hsql`
-         * SQLITE->`sqlite`
-         * POSTGRE->`postgresql`
-         * SQLSERVER2005->`sqlserver2005`
-         * SQLSERVER->`sqlserver`
-         */
         globalConfig.setDbType("mysql");
 
         /**
@@ -107,6 +102,28 @@ public class DataSourceConfig {
         DataSourceTransactionManager manager = new DataSourceTransactionManager();
         manager.setDataSource(dataSource);
         return manager;
+    }
+
+    /**
+     * 第三方数据库连接池的配置
+     *
+     * @author fengshuonan
+     * @Date 2017/4/27 17:24
+     */
+    @Bean(initMethod = "init")
+    public DruidDataSource dataSource() {
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setUrl(em.getProperty("jdbc.url").trim());
+        dataSource.setUsername(em.getProperty("jdbc.username").trim());
+        dataSource.setPassword(em.getProperty("jdbc.password").trim());
+
+        DataSourceConfigTemplate.config(dataSource);
+        return dataSource;
+    }
+
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.em = environment;
     }
 
 }
