@@ -62,6 +62,8 @@ public class DictController extends BaseController {
     public String deptUpdate(@PathVariable Integer dictId, Model model) {
         Dict dict = dictMapper.selectById(dictId);
         model.addAttribute(dict);
+        List<Dict> subDicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("pid", dictId));
+        model.addAttribute(subDicts);
         return PREFIX + "dict_edit.html";
     }
 
