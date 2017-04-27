@@ -7,6 +7,11 @@ package com.stylefeng.guns.common.exception;
  */
 public enum BizExceptionEnum {
 
+	/**
+	 * 字典
+	 */
+	DICT_EXISTED(400,"字典已经存在"),
+
 
 	/**
 	 * 文件上传
