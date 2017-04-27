@@ -1,5 +1,6 @@
 package com.stylefeng.guns.common.constant.factory;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.common.constant.cache.Cache;
 import com.stylefeng.guns.common.constant.cache.CacheKey;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
@@ -10,12 +11,16 @@ import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.persistence.dao.DeptMapper;
+import com.stylefeng.guns.persistence.dao.DictMapper;
 import com.stylefeng.guns.persistence.dao.RoleMapper;
 import com.stylefeng.guns.persistence.model.Dept;
+import com.stylefeng.guns.persistence.model.Dict;
 import com.stylefeng.guns.persistence.model.Role;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 常量的生产工厂
@@ -29,6 +34,7 @@ public class ConstantFactory {
 
     private RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
     private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
+    private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
 
     public static ConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
@@ -111,6 +117,23 @@ public class ConstantFactory {
      */
     public String getMenuStatusName(Integer status) {
         return MenuStatus.valueOf(status);
+    }
+
+    /**
+     * 查询字典
+     */
+    public List<Dict> findInDict(Integer id){
+        if(ToolUtil.isEmpty(id)){
+            return null;
+        }else{
+            EntityWrapper<Dict> wrapper = new EntityWrapper<>();
+            List<Dict> dicts = dictMapper.selectList(wrapper.eq("pid", id));
+            if(dicts == null || dicts.size() ==  0){
+                return null;
+            }else{
+                return dicts;
+            }
+        }
     }
 
 }
