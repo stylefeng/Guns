@@ -24,4 +24,12 @@ public interface IDictService {
      */
     void editDict(String dicts);
 
+    /**
+     * 删除字典
+     *
+     * @author fengshuonan
+     * @Date 2017/4/28 11:39
+     */
+    void delteDict(Integer dictId);
+
 }

@@ -1,6 +1,7 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.modular.system.dao.DictDao;
@@ -67,5 +68,17 @@ public class DictServiceImpl implements IDictService {
             dict.setName(item.get(MUTI_STR_VALUE));
             dict.updateById();
         }
+    }
+
+    @Override
+    public void delteDict(Integer dictId) {
+
+        //删除这个字典的子词典
+        Wrapper<Dict> dictEntityWrapper = new EntityWrapper<>();
+        dictEntityWrapper = dictEntityWrapper.eq("pid", dictId);
+        dictMapper.delete(dictEntityWrapper);
+
+        //删除这个词典
+        dictMapper.deleteById(dictId);
     }
 }

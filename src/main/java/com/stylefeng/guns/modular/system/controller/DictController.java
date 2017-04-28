@@ -1,7 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
@@ -83,9 +82,7 @@ public class DictController extends BaseController {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-
         this.dictService.addDict(dictName, dictValues);
-
         return SUCCESS_TIP;
     }
 
@@ -129,15 +126,7 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/delete/{dictId}")
     @ResponseBody
     public Object delete(@PathVariable("dictId") Integer dictId) {
-
-        //删除这个字典的子词典
-        Wrapper<Dict> dictEntityWrapper = new EntityWrapper<>();
-        dictEntityWrapper = dictEntityWrapper.eq("pid", dictId);
-        dictMapper.delete(dictEntityWrapper);
-
-        //删除这个词典
-        dictMapper.deleteById(dictId);
-
+        this.dictService.delteDict(dictId);
         return SUCCESS_TIP;
     }
 
