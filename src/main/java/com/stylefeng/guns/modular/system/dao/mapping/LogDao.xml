@@ -13,4 +13,14 @@
         order by createTime DESC
     </select>
 
+    <select id="getLoginLogs" resultType="map">
+        select * from _login_log where 1 = 1
+        <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
+            and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+        </if>
+        <if test="logName != null and logName !=''">
+            and logname like CONCAT('%',#{logName},'%')
+        </if>
+        order by createTime DESC
+    </select>
 </mapper>

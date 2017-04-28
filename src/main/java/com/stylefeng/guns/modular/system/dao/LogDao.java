@@ -23,4 +23,11 @@ public interface LogDao{
      */
     List<Map<String, Object>> getOperationLogs(Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName);
 
+    /**
+     * 获取登录日志
+     *
+     * @author stylefeng
+     * @Date 2017/4/16 23:48
+     */
+    List<Map<String, Object>> getLoginLogs(Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName);
 }
