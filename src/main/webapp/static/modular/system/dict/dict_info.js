@@ -106,10 +106,3 @@ DictInfoDlg.editSubmit = function () {
     ajax.set('dictValues',this.mutiString);
     ajax.start();
 };
-
-$(function () {
-    var ztree = new $ZTree("parentDeptMenuTree", "/dept/tree");
-    ztree.bindOnClick(DictInfoDlg.onClickDept);
-    ztree.init();
-    instance = ztree;
-});

@@ -135,5 +135,4 @@ $(function() {
     var ztree = new $ZTree("parentDeptMenuTree", "/dept/tree");
     ztree.bindOnClick(DeptInfoDlg.onClickDept);
     ztree.init();
-    instance = ztree;
 });
