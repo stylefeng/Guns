@@ -16,4 +16,12 @@ public interface IDictService {
      */
     void addDict(String dictName,String dictValues);
 
+    /**
+     * 编辑字典
+     *
+     * @author fengshuonan
+     * @Date 2017/4/28 11:01
+     */
+    void editDict(String dicts);
+
 }

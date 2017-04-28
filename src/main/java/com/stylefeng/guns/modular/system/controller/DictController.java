@@ -114,11 +114,11 @@ public class DictController extends BaseController {
     @BussinessLog("修改字典")
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update(Dict dict) {
-        if (ToolUtil.isEmpty(dict) || dict.getId() == null) {
+    public Object update(String mutiString) {
+        if (ToolUtil.isEmpty(mutiString)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-        dictMapper.updateById(dict);
+        dictService.editDict(mutiString);
         return super.SUCCESS_TIP;
     }
 
