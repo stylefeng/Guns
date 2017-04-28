@@ -5,13 +5,13 @@ var Feng = {
             this.ctxPath = ctx;
         }
     },
-    confirm : function(tip,ensure){//询问框
+    confirm: function (tip, ensure) {//询问框
         parent.layer.confirm(tip, {
-            btn: ['确定','取消']
-        }, function(index){
+            btn: ['确定', '取消']
+        }, function (index) {
             ensure();
             parent.layer.close(index);
-        }, function(index){
+        }, function (index) {
             parent.layer.close(index);
         });
     },
@@ -38,10 +38,10 @@ var Feng = {
             display = info;
         } else {
             if (info instanceof Array) {
-                for(var x in info){
+                for (var x in info) {
                     display = display + info[x] + "<br/>";
                 }
-            }else{
+            } else {
                 display = info;
             }
         }
@@ -101,5 +101,10 @@ var Feng = {
             ids += "," + nodes[i].id;
         }
         return ids.substring(1);
+    },
+    eventParseObject: function (event) {//获取点击事件的源对象
+        event = event ? event : window.event;
+        var obj = event.srcElement ? event.srcElement : event.target;
+        return $(obj);
     }
 };

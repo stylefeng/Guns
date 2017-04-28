@@ -1,139 +1,110 @@
 /**
- * 初始化部门详情对话框
+ * 初始化字典详情对话框
  */
-var DeptInfoDlg = {
-	deptInfoData : {}
+var DictInfoDlg = {
+    count: 0,
+    dictName: '',			//字典的名称
+    mutiString: '',		//拼接字符串内容(拼接字典条目)
+    itemTemplate: $("#itemTemplate").html()
 };
 
 /**
- * 清除数据
+ * item获取新的id
  */
-DeptInfoDlg.clearData = function() {
-	this.deptInfoData = {};
-}
-
-/**
- * 设置对话框中的数据
- * 
- * @param key 数据的名称
- * @param val 数据的具体值
- */
-DeptInfoDlg.set = function(key, val) {
-	this.deptInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
-	return this;
-}
-
-/**
- * 设置对话框中的数据
- * 
- * @param key 数据的名称
- * @param val 数据的具体值
- */
-DeptInfoDlg.get = function(key) {
-	return $("#" + key).val();
-}
+DictInfoDlg.newId = function () {
+    this.count = this.count + 1;
+    return "dictItem" + this.count;
+};
 
 /**
  * 关闭此对话框
  */
-DeptInfoDlg.close = function() {
-	parent.layer.close(window.parent.Dept.layerIndex);
-}
+DictInfoDlg.close = function () {
+    parent.layer.close(window.parent.Dict.layerIndex);
+};
 
 /**
- * 点击部门ztree列表的选项时
- * 
- * @param e
- * @param treeId
- * @param treeNode
- * @returns
+ * 添加条目
  */
-DeptInfoDlg.onClickDept = function(e, treeId, treeNode) {
-	$("#pName").attr("value", instance.getSelectedVal());
-	$("#pid").attr("value", treeNode.id);
-}
+DictInfoDlg.addItem = function () {
+    $("#itemsArea").append(this.itemTemplate);
+    $("#dictItem").attr("id", this.newId());
+};
 
 /**
- * 显示部门选择的树
- * 
- * @returns
+ * 删除item
  */
-DeptInfoDlg.showDeptSelectTree = function() {
-	var pName = $("#pName");
-	var pNameOffset = $("#pName").offset();
-	$("#parentDeptMenu").css({
-		left : pNameOffset.left + "px",
-		top : pNameOffset.top + pName.outerHeight() + "px"
-	}).slideDown("fast");
-
-	$("body").bind("mousedown", onBodyDown);
-}
+DictInfoDlg.deleteItem = function (event) {
+    var obj = Feng.eventParseObject(event);
+    obj.parent().parent().remove();
+};
 
 /**
- * 隐藏部门选择的树
+ * 清除为空的item Dom
  */
-DeptInfoDlg.hideDeptSelectTree = function() {
-	$("#parentDeptMenu").fadeOut("fast");
-	$("body").unbind("mousedown", onBodyDown);// mousedown当鼠标按下就可以触发，不用弹起
-}
+DictInfoDlg.clearNullDom = function(){
+    $("[name='dictItem']").each(function(){
+        var num = $(this).find("[name='itemNum']").val();
+        var name = $(this).find("[name='itemName']").val();
+        if(num == '' || name == ''){
+            $(this).remove();
+        }
+    });
+};
 
 /**
- * 收集数据
+ * 收集添加字典的数据
  */
-DeptInfoDlg.collectData = function() {
-	this.set('id').set('simplename').set('fullname').set('tips').set('num').set('pid');
-}
+DictInfoDlg.collectData = function () {
+    this.clearNullDom();
+    var mutiString = "";
+    $("[name='dictItem']").each(function(){
+        var num = $(this).find("[name='itemNum']").val();
+        var name = $(this).find("[name='itemName']").val();
+        mutiString = mutiString + (num + ":" + name + ";");
+    });
+    this.dictName = $("#dictName").val();
+    this.mutiString = mutiString;
+};
+
 
 /**
- * 提交添加部门
+ * 提交添加字典
  */
-DeptInfoDlg.addSubmit = function() {
-	
-	this.clearData();
-	this.collectData();
-	
-	//提交信息
-	var ajax = new $ax(Feng.ctxPath + "/dept/add", function(data){
-		Feng.success("添加成功!");
-		window.parent.Dept.table.refresh();
-		DeptInfoDlg.close();
-	},function(data){
-		Feng.error("添加失败!" + data.responseJSON.message + "!");
-	});
-	ajax.set(this.deptInfoData);
-	ajax.start();
-}
+DictInfoDlg.addSubmit = function () {
+    this.collectData();
+    //提交信息
+    var ajax = new $ax(Feng.ctxPath + "/dict/add", function (data) {
+        Feng.success("添加成功!");
+        window.parent.Dict.table.refresh();
+        DictInfoDlg.close();
+    }, function (data) {
+        Feng.error("添加失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set('dictName',this.dictName);
+    ajax.set('dictValues',this.mutiString);
+    ajax.start();
+};
 
 /**
  * 提交修改
  */
-DeptInfoDlg.editSubmit = function() {
-	
-	this.clearData();
-	this.collectData();
-	
-	//提交信息
-	var ajax = new $ax(Feng.ctxPath + "/dept/update", function(data){
-		Feng.success("修改成功!");
-		window.parent.Dept.table.refresh();
-		DeptInfoDlg.close();
-	},function(data){
-		Feng.error("修改失败!" + data.responseJSON.message + "!");
-	});
-	ajax.set(this.deptInfoData);
-	ajax.start();
-}
+DictInfoDlg.editSubmit = function () {
+    this.collectData();
+    var ajax = new $ax(Feng.ctxPath + "/dict/update", function (data) {
+        Feng.success("修改成功!");
+        window.parent.Dept.table.refresh();
+        DictInfoDlg.close();
+    }, function (data) {
+        Feng.error("修改失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set(this.dictInfoData);
+    ajax.start();
+};
 
-function onBodyDown(event) {
-	if (!(event.target.id == "menuBtn" || event.target.id == "parentDeptMenu" || $(
-			event.target).parents("#parentDeptMenu").length > 0)) {
-		DeptInfoDlg.hideDeptSelectTree();
-	}
-}
-
-$(function() {
-	var ztree = new $ZTree("parentDeptMenuTree", "/dept/tree");
-	ztree.bindOnClick(DeptInfoDlg.onClickDept);
-	ztree.init();
-	instance = ztree;
+$(function () {
+    var ztree = new $ZTree("parentDeptMenuTree", "/dept/tree");
+    ztree.bindOnClick(DictInfoDlg.onClickDept);
+    ztree.init();
+    instance = ztree;
 });
