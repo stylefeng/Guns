@@ -15,4 +15,5 @@ public interface IDictService {
      * @Date 2017/4/27 17:01
      */
     void addDict(String dictName,String dictValues);
+
 }

@@ -6,9 +6,9 @@ import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
-import com.stylefeng.guns.core.support.StrKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DictDao;
+import com.stylefeng.guns.modular.system.service.IDictService;
 import com.stylefeng.guns.modular.system.warpper.DictWarpper;
 import com.stylefeng.guns.persistence.dao.DictMapper;
 import com.stylefeng.guns.persistence.model.Dict;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +39,9 @@ public class DictController extends BaseController {
 
     @Resource
     DictMapper dictMapper;
+
+    @Resource
+    IDictService dictService;
 
     /**
      * 跳转到字典管理首页
@@ -71,17 +73,18 @@ public class DictController extends BaseController {
 
     /**
      * 新增字典
-     * @param dictValues 格式例如   1:启用;2:禁用;3:冻结
+     *
+     * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
-    @BussinessLog(value = "添加字典记录",key = "dictName")
+    @BussinessLog(value = "添加字典记录", key = "dictName")
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add(String dictName,String dictValues) {
+    public Object add(String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
 
-
+        this.dictService.addDict(dictName, dictValues);
 
         return SUCCESS_TIP;
     }
@@ -138,8 +141,4 @@ public class DictController extends BaseController {
         return SUCCESS_TIP;
     }
 
-    public static void main(String[] args){
-        String[] split = StrKit.split("1:启用;2:禁用;3:冻结;", ";");
-        System.out.println(Arrays.toString(split));
-    }
 }
