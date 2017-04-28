@@ -2,7 +2,8 @@
  * 初始化部门详情对话框
  */
 var DeptInfoDlg = {
-    deptInfoData : {}
+    deptInfoData : {},
+    zTreeInstance : null
 };
 
 /**
@@ -49,7 +50,7 @@ DeptInfoDlg.close = function() {
  * @returns
  */
 DeptInfoDlg.onClickDept = function(e, treeId, treeNode) {
-    $("#pName").attr("value", instance.getSelectedVal());
+    $("#pName").attr("value", DeptInfoDlg.zTreeInstance.getSelectedVal());
     $("#pid").attr("value", treeNode.id);
 }
 
@@ -135,4 +136,5 @@ $(function() {
     var ztree = new $ZTree("parentDeptMenuTree", "/dept/tree");
     ztree.bindOnClick(DeptInfoDlg.onClickDept);
     ztree.init();
+    DeptInfoDlg.zTreeInstance = ztree;
 });
