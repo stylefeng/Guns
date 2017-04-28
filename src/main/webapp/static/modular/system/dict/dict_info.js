@@ -2,7 +2,7 @@
  * 初始化字典详情对话框
  */
 var DictInfoDlg = {
-    count: 0,
+    count: $("#itemSize").val(),
     dictName: '',			//字典的名称
     mutiString: '',		//拼接字符串内容(拼接字典条目)
     itemTemplate: $("#itemTemplate").html()
@@ -12,6 +12,9 @@ var DictInfoDlg = {
  * item获取新的id
  */
 DictInfoDlg.newId = function () {
+    if(this.count == undefined){
+        this.count = 0;
+    }
     this.count = this.count + 1;
     return "dictItem" + this.count;
 };
@@ -93,12 +96,14 @@ DictInfoDlg.editSubmit = function () {
     this.collectData();
     var ajax = new $ax(Feng.ctxPath + "/dict/update", function (data) {
         Feng.success("修改成功!");
-        window.parent.Dept.table.refresh();
+        window.parent.Dict.table.refresh();
         DictInfoDlg.close();
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.dictInfoData);
+    ajax.set('dictId',$("#dictId").val());
+    ajax.set('dictName',this.dictName);
+    ajax.set('dictValues',this.mutiString);
     ajax.start();
 };
 

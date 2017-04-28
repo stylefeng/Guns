@@ -29,7 +29,6 @@ public class DictServiceImpl implements IDictService {
 
     @Override
     public void addDict(String dictName, String dictValues) {
-
         //判断有没有该字典
         List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("name", dictName).and().eq("pid", 0));
         if(dicts != null && dicts.size() > 0){
@@ -59,20 +58,16 @@ public class DictServiceImpl implements IDictService {
     }
 
     @Override
-    public void editDict(String dicts) {
-        List<Map<String, String>> items = parseIdKeyValue(dicts);
-        for (Map<String, String> item : items) {
-            String dictId = item.get(MUTI_STR_ID);
-            Dict dict = dictMapper.selectById(dictId);
-            dict.setNum(Integer.valueOf(item.get(MUTI_STR_KEY)));
-            dict.setName(item.get(MUTI_STR_VALUE));
-            dict.updateById();
-        }
+    public void editDict(Integer dictId, String dictName, String dicts) {
+        //删除之前的字典
+        this.delteDict(dictId);
+
+        //重新添加新的字典
+        this.addDict(dictName,dicts);
     }
 
     @Override
     public void delteDict(Integer dictId) {
-
         //删除这个字典的子词典
         Wrapper<Dict> dictEntityWrapper = new EntityWrapper<>();
         dictEntityWrapper = dictEntityWrapper.eq("pid", dictId);

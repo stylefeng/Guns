@@ -5,6 +5,7 @@ import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DictDao;
 import com.stylefeng.guns.modular.system.service.IDictService;
@@ -64,9 +65,10 @@ public class DictController extends BaseController {
     @RequestMapping("/dict_edit/{dictId}")
     public String deptUpdate(@PathVariable Integer dictId, Model model) {
         Dict dict = dictMapper.selectById(dictId);
-        model.addAttribute(dict);
+        model.addAttribute("dict",dict);
         List<Dict> subDicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("pid", dictId));
-        model.addAttribute(subDicts);
+        model.addAttribute("subDicts",subDicts);
+        LogObjectHolder.me().set(dict);
         return PREFIX + "dict_edit.html";
     }
 
@@ -111,11 +113,11 @@ public class DictController extends BaseController {
     @BussinessLog("修改字典")
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update(String mutiString) {
-        if (ToolUtil.isEmpty(mutiString)) {
+    public Object update(Integer dictId, String dictName, String dictValues) {
+        if (ToolUtil.isOneEmpty(dictId,dictName,dictValues)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-        dictService.editDict(mutiString);
+        dictService.editDict(dictId,dictName,dictValues);
         return super.SUCCESS_TIP;
     }
 

@@ -14,7 +14,7 @@ public interface IDictService {
      * @author fengshuonan
      * @Date 2017/4/27 17:01
      */
-    void addDict(String dictName,String dictValues);
+    void addDict(String dictName, String dictValues);
 
     /**
      * 编辑字典
@@ -22,7 +22,7 @@ public interface IDictService {
      * @author fengshuonan
      * @Date 2017/4/28 11:01
      */
-    void editDict(String dicts);
+    void editDict(Integer dictId, String dictName, String dicts);
 
     /**
      * 删除字典

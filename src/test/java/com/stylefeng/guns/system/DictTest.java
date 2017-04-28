@@ -24,6 +24,6 @@ public class DictTest extends BaseTest{
 
     @Test
     public void editTest() {
-        dictService.editDict("45:0:测试1;46:1:冻结1;47:4:sd1;48:3:接触1;");
+        dictService.editDict(1,"测试","");
     }
 }
