@@ -1,5 +1,5 @@
 #Guns
-通用后台管理系统！代码设计简洁，清晰，拿来即用！整合主流的springmvc + mybatis-plus + beetl！
+含有用户管理，权限管理等多个模块的通用后台管理系统！代码设计简洁，清晰，容易上手！整合主流的springmvc + mybatis-plus + beetl！
 
 ##功能简介
 1. 用户管理
