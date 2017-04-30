@@ -14,7 +14,34 @@
 1. 导入sql/guns.sql文件到数据库
 2. 启动项目,管理员账号admin/密码111111
 
-##零spring xml配置
+##所用框架
+###前端
+1. bootstrap
+2. jquery
+3. 表格框架bootstrap-table
+4. 弹出层框架layer
+5. 树形显示ztree
+6. 图片上传框架webuploader
+
+###后端
+1. springmvc
+2. mybatis
+3. mybatis-plus
+4. spring
+5. 模板引擎beetl
+6. 校验层框架hibernate-validator
+7. 缓存框架ehcache
+
+##项目特点
+1. 零springxml配置，完全采用javabean方式配置spring，新思路，配置简洁，不易出错。详情请见com.stylefeng.guns.project.config包中具体类。
+2. 完善的日志记录体系，可记录登录日志，业务操作日志，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，详情请见@BussinessLog注解和LogObjectHolder类。
+3. 利用beetl模板引擎对前台页面进行封装和拆分，使臃肿的html代码变得简洁，更加易维护。
+4. 对常用js插件进行二次封装，使js代码变得简洁，更加易维护，具体请见webapp/static/js/common文件夹内js代码。
+5. 利用ehcache框架对经常调用的查询进行缓存，提升运行速度，具体请见ConstantFactory类。
+6. controller层采用map + warpper方式的返回结果，返回给前端更为灵活的数据，具体参见com.stylefeng.guns.modular.system.warpper包中具体类。
+
+##零spring xml配置示例
+以下配置示例仅列出部分spring配置，详情请见com.stylefeng.guns.project.config包中具体的配置类
 ###根配置
 ```
 @Configuration
@@ -37,19 +64,6 @@ public class DataSourceConfig implements EnvironmentAware {
     private Environment em;
 
     /**
-     * 扫描所有mybatis的接口
-     *
-     * @author fengshuonan
-     */
-    @Bean
-    public MapperScannerConfigurer mappers() {
-        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setBasePackage("com.stylefeng.guns.modular.*.dao;com.stylefeng.guns.persistence.dao");
-        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        return mapperScannerConfigurer;
-    }
-
-    /**
      * spring和MyBatis整合
      */
     @Bean
@@ -67,59 +81,6 @@ public class DataSourceConfig implements EnvironmentAware {
         sqlSessionFactory.setGlobalConfig(globalConfig);
         return sqlSessionFactory;
     }
-
-    /**
-     * mybatis-plus的配置
-     */
-    @Bean
-    public GlobalConfiguration globalConfig() {
-        GlobalConfiguration globalConfig = new GlobalConfiguration();
-        /**
-         * AUTO->`0`("数据库ID自增")
-         * INPUT->`1`(用户输入ID")
-         * ID_WORKER->`2`("全局唯一ID")
-         * UUID->`3`("全局唯一ID")
-         */
-        globalConfig.setIdType(1);
-        globalConfig.setDbType("mysql");
-
-        /**
-         * 全局表为下划线命名设置
-         */
-        globalConfig.setDbColumnUnderline(false);
-
-        return globalConfig;
-    }
-
-    /**
-     * 事务管理, 声明式事务的开启
-     */
-    @Bean
-    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
-        DataSourceTransactionManager manager = new DataSourceTransactionManager();
-        manager.setDataSource(dataSource);
-        return manager;
-    }
-
-    /**
-     * 第三方数据库连接池的配置
-     */
-    @Bean(initMethod = "init")
-    public DruidDataSource dataSource() {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl(em.getProperty("jdbc.url").trim());
-        dataSource.setUsername(em.getProperty("jdbc.username").trim());
-        dataSource.setPassword(em.getProperty("jdbc.password").trim());
-
-        DataSourceConfigTemplate.config(dataSource);
-        return dataSource;
-    }
-
-    @Override
-    public void setEnvironment(Environment environment) {
-        this.em = environment;
-    }
-
 }
 ```
 
@@ -144,62 +105,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-
-    // 通过重载这个方法可以对DispatcherServlt进行额外的配置
-    @Override
-    protected void customizeRegistration(Dynamic registration) {
-        // 上传文件路径的配置
-        registration.setMultipartConfig(new MultipartConfigElement("e:/tmp"));
-    }
-
-    // 这里注册的Filter只能过滤DispatherServlet
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{};
-    }
-
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-
-//		 Apache Shiro
-        FilterRegistration.Dynamic shiroFilter = servletContext.addFilter("shiroFilter", new DelegatingFilterProxy());
-        shiroFilter.setInitParameter("targetFilterLifecycle", "true");
-        shiroFilter.addMappingForUrlPatterns(null, false, "/*");
-
-        // Encoding Filter
-        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter",
-                new CharacterEncodingFilter());
-        encodingFilter.setInitParameter("encoding", "UTF-8");
-        encodingFilter.setInitParameter("forceEncoding", "true");
-        encodingFilter.addMappingForUrlPatterns(null, false, "/*");
-
-        // 用来非Controller层获取HttpServletRequest
-        servletContext.addListener(RequestContextListener.class);
-        servletContext.addListener(ConfigListener.class);
-
-        //防止xss攻击的filter
-        FilterRegistration.Dynamic xssFilter = servletContext.addFilter("xssSqlFilter",
-                new XssFilter());
-        xssFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, "/*");
-
-        super.onStartup(servletContext);
-    }
-
-    /**
-     * 添加其他servlet
-     *
-     * @param servletContext
-     */
-    @Override
-    protected void registerDispatcherServlet(ServletContext servletContext) {
-        super.registerDispatcherServlet(servletContext);
-        try {
-            ServletRegistration.Dynamic dynamic = servletContext.addServlet("DruidStatView", StatViewServlet.class);
-            dynamic.addMapping("/druid/*");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
 ```
 
@@ -212,14 +117,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 @Import({ControllerAopConfig.class})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
-    // beetl的配置
-    @Bean(initMethod = "init")
-    public BeetlConfiguration beetlConfiguration() {
-        BeetlConfiguration beetlConfiguration = new BeetlConfiguration();
-        beetlConfiguration.setConfigFileResource(new ClassPathResource("beetl.properties"));
-        return beetlConfiguration;
-    }
-
     // beetl的视图解析器
     @Bean
     public BeetlSpringViewResolver beetlViewResolver() {
@@ -228,93 +125,13 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
         beetlSpringViewResolver.setOrder(0);
         return beetlSpringViewResolver;
-    }
-
+    }   
+    
     // 配置静态资源的处理,对静态资源的请求转发到servlet容器中默认的servlet上(对静态资源的请求不做处理)
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
-
-    // 文件上传用的resolver
-    @Bean
-    public MultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
-    }
-
-    // 校验器的配置
-    @Bean
-    public LocalValidatorFactoryBean validator(ReloadableResourceBundleMessageSource messageSource) {
-        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
-        localValidatorFactoryBean.setProviderClass(HibernateValidator.class);
-        localValidatorFactoryBean.setValidationMessageSource(messageSource);
-        return localValidatorFactoryBean;
-    }
-
-    // 国际化消息资源文件配置(本系统中主要用于显示/错误消息定制)
-    @Bean
-    public ReloadableResourceBundleMessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("classpath:org/hibernate/validator/ValidationMessages");
-        messageSource.setUseCodeAsDefaultMessage(false);
-        messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setCacheSeconds(60);
-        return messageSource;
-    }
-
-    // 配置全局的验证器实例
-    @Override
-    public Validator getValidator() {
-        return this.validator(messageSource());
-    }
-
-    // 配置spring mvc的拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-
-    }
-
-    // messageConverter
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(byteMsgConverter());
-        converters.add(stringHttpMessageConverter());
-        converters.add(fastJsonHttpMessageConverter());
-        super.configureMessageConverters(converters);
-    }
-
-    @Bean
-    public ByteArrayHttpMessageConverter byteMsgConverter() {
-        return new ByteArrayHttpMessageConverter();
-    }
-
-    @Bean
-    public StringHttpMessageConverter stringHttpMessageConverter() {
-        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter(
-                Charset.forName("UTF-8"));
-        List<MediaType> list = new ArrayList<MediaType>();
-        list.add(MediaType.TEXT_PLAIN);
-        stringHttpMessageConverter.setSupportedMediaTypes(list);
-        return stringHttpMessageConverter;
-    }
-
-    @Bean
-    public FastJsonHttpMessageConverter4 fastJsonHttpMessageConverter() {
-        FastJsonHttpMessageConverter4 convert = new FastJsonHttpMessageConverter4();
-        List<MediaType> list = new ArrayList<MediaType>();
-        list.add(MediaType.TEXT_HTML);
-        list.add(MediaType.APPLICATION_JSON_UTF8);
-        convert.setSupportedMediaTypes(list);
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setFeatures(Feature.AllowArbitraryCommas, Feature.AllowUnQuotedFieldNames,
-                Feature.DisableCircularReferenceDetect);
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteMapNullValue,
-                SerializerFeature.WriteNullStringAsEmpty);
-        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        convert.setFastJsonConfig(fastJsonConfig);
-        return convert;
-    }
-
 }
 ```
 
