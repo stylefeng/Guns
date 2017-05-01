@@ -34,10 +34,10 @@
 
 ##项目特点
 1. 零springxml配置，完全采用javabean方式配置spring，新思路，配置简洁，不易出错。详情请见com.stylefeng.guns.project.config包中具体类。
-2. 完善的日志记录体系，可记录登录日志，业务操作日志，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，详情请见@BussinessLog注解和LogObjectHolder类。
+2. 完善的日志记录体系，可记录登录日志，业务操作日志，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，并且日志记录为异步执行，详情请见@BussinessLog注解和LogObjectHolder,LogManager,LogAop类。
 3. 利用beetl模板引擎对前台页面进行封装和拆分，使臃肿的html代码变得简洁，更加易维护。
 4. 对常用js插件进行二次封装，使js代码变得简洁，更加易维护，具体请见webapp/static/js/common文件夹内js代码。
-5. 利用ehcache框架对经常调用的查询进行缓存，提升运行速度，具体请见ConstantFactory类。
+5. 利用ehcache框架对经常调用的查询进行缓存，提升运行速度，具体请见ConstantFactory类中@Cacheable标记的方法。
 6. controller层采用map + warpper方式的返回结果，返回给前端更为灵活的数据，具体参见com.stylefeng.guns.modular.system.warpper包中具体类。
 
 ##零spring xml配置示例
@@ -84,7 +84,7 @@ public class DataSourceConfig implements EnvironmentAware {
 }
 ```
 
-##零web.xml配置
+###零web.xml配置
 ```
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -134,6 +134,9 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
     }
 }
 ```
+##业务日志记录原理
+日志记录采用aop(LogAop类)方式对所有包含@BussinessLog注解的方法进行aop切入，会记录下当前用户执行了哪些操作（即@BussinessLog value属性的内容），如果涉及到数据修改，会取当前http请求的所有requestParameters与LogObjectHolder类中缓存的Object对象的所有字段作比较（所以在编辑之前的获取详情接口中需要缓存被修改对象之前的字段信息），日志内容会异步存入数据库中（通过ScheduledThreadPoolExecutor类）。
+
 
 
 ##效果图
