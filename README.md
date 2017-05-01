@@ -137,6 +137,62 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 ##业务日志记录原理
 日志记录采用aop(LogAop类)方式对所有包含@BussinessLog注解的方法进行aop切入，会记录下当前用户执行了哪些操作（即@BussinessLog value属性的内容），如果涉及到数据修改，会取当前http请求的所有requestParameters与LogObjectHolder类中缓存的Object对象的所有字段作比较（所以在编辑之前的获取详情接口中需要缓存被修改对象之前的字段信息），日志内容会异步存入数据库中（通过ScheduledThreadPoolExecutor类）。
 
+##beetl对前台页面的拆分与包装
+例如，把主页拆分成三部分，每个部分单独一个页面，更加便于维护
+```
+<!--左侧导航开始-->
+    @include("/common/_tab.html"){}
+<!--左侧导航结束-->
+
+<!--右侧部分开始-->
+    @include("/common/_right.html"){}
+<!--右侧部分结束-->
+
+<!--右侧边栏开始-->
+    @include("/common/_theme.html"){}
+<!--右侧边栏结束-->
+```
+以及对重复的html进行包装，使前端页面更加专注于业务实现，例如,把所有页面引用包进行提取
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit" /><!-- 让360浏览器默认选择webkit内核 -->
+
+<!-- 全局css -->
+<link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+<!-- 全局js -->
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content animated fadeInRight">
+		${layoutContent}
+	</div>
+	<script src="${ctxPath}/static/js/content.js?v=1.0.0"></script>
+</body>
+</html>
+```
+开发页面时，只需编写如下代码即可
+```
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>部门管理</h5>
+            </div>
+            <div class="ibox-content">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/dept/dept.js"></script>
+@}
+```
+以上beetl的用法请参考beetl说明文档。
+
+
 
 
 ##效果图
