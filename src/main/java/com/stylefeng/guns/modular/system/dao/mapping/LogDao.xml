@@ -10,6 +10,9 @@
         <if test="logName != null and logName !=''">
             and logname like CONCAT('%',#{logName},'%')
         </if>
+        <if test="logType != null and logType !=''">
+            and logtype like CONCAT('%',#{logType},'%')
+        </if>
         order by createTime DESC
     </select>
 

@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
+import com.stylefeng.guns.common.constant.state.BizLogType;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.core.support.BeanKit;
 import com.stylefeng.guns.modular.system.dao.LogDao;
@@ -50,9 +51,9 @@ public class LogController extends BaseController {
      */
     @RequestMapping("/list")
     @ResponseBody
-    public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName) {
+    public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName, @RequestParam(required = false) Integer logType) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
-        List<Map<String, Object>> result = logDao.getOperationLogs(page, beginTime, endTime, logName);
+        List<Map<String, Object>> result = logDao.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType));
         page.setRecords((List<OperationLog>) new LogWarpper(result).warp());
         return super.packForBT(page);
     }

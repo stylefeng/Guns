@@ -13,7 +13,7 @@ import java.util.Map;
  * @author stylefeng
  * @Date 2017/4/16 23:44
  */
-public interface LogDao{
+public interface LogDao {
 
     /**
      * 获取操作日志
@@ -21,7 +21,7 @@ public interface LogDao{
      * @author stylefeng
      * @Date 2017/4/16 23:48
      */
-    List<Map<String, Object>> getOperationLogs(Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName);
+    List<Map<String, Object>> getOperationLogs(Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName, @Param("logType") String logType);
 
     /**
      * 获取登录日志

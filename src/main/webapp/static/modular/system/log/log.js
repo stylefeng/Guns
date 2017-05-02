@@ -73,6 +73,7 @@ OptLog.search = function () {
     queryData['logName'] = $("#logName").val();
     queryData['beginTime'] = $("#beginTime").val();
     queryData['endTime'] = $("#endTime").val();
+    queryData['logType'] = $("#logType").val();
 
     OptLog.table.refresh({query: queryData});
 };
