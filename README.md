@@ -39,6 +39,7 @@
 4. 对常用js插件进行二次封装，使js代码变得简洁，更加易维护，具体请见webapp/static/js/common文件夹内js代码。
 5. 利用ehcache框架对经常调用的查询进行缓存，提升运行速度，具体请见ConstantFactory类中@Cacheable标记的方法。
 6. controller层采用map + warpper方式的返回结果，返回给前端更为灵活的数据，具体参见com.stylefeng.guns.modular.system.warpper包中具体类。
+7. 防止XSS攻击,通过XssFilter类对所有的输入的非法字符串进行过滤以及替换。
 
 ##零spring xml配置示例
 以下配置示例仅列出部分spring配置，详情请见com.stylefeng.guns.project.config包中具体的配置类
