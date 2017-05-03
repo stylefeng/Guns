@@ -36,6 +36,12 @@
         @if(isNotEmpty(hidden)){
             <input class="form-control" type="hidden" id="${hidden}" value="${hiddenValue!}">
         @}
+
+        @if(isNotEmpty(selectFlag)){
+            <div id="${selectId}" style="display: none; position: absolute; z-index: 200;">
+                <ul id="${selectTreeId}" class="ztree tree-box" style="${selectStyle!}"></ul>
+            </div>
+        @}
     </div>
 </div>
 @if(isNotEmpty(underline) && underline == 'true'){

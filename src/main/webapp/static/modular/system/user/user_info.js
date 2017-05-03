@@ -70,6 +70,22 @@ UserInfoDlg.showDeptSelectTree = function() {
 };
 
 /**
+ * 显示用户详情部门选择的树
+ *
+ * @returns
+ */
+UserInfoDlg.showInfoDeptSelectTree = function() {
+    var cityObj = $("#citySel");
+    var cityPosition = $("#citySel").position();
+    $("#menuContent").css({
+        left : cityPosition.left + "px",
+        top : cityPosition.top + cityObj.outerHeight() + "px"
+    }).slideDown("fast");
+
+    $("body").bind("mousedown", onBodyDown);
+};
+
+/**
  * 隐藏部门选择的树
  */
 UserInfoDlg.hideDeptSelectTree = function() {

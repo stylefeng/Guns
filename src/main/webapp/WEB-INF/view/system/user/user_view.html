@@ -37,18 +37,13 @@
 
                                             <#input id="citySel" name="部门" underline="true" readonly="readonly" value="${deptName}"
                                                     hidden="deptid" hiddenValue="${user.deptid}"
-                                                    clickFun="UserInfoDlg.showDeptSelectTree(); return false;"
-                                                    style="background-color: #ffffff !important;"/>
+                                                    clickFun="UserInfoDlg.showInfoDeptSelectTree(); return false;"
+                                                    style="background-color: #ffffff !important;"
+                                                    selectFlag="true" selectId="menuContent" selectTreeId="treeDemo" selectStyle="width:250px !important;"/>
 
                                             <#input id="phone" name="电话" value="${user.phone}"/>
                                         </div>
                                     </div>
-                                </div>
-
-                                <!-- 这是部门选择的下拉框 -->
-                                <div id="menuContent" class="menuContent"
-                                     style="display: none; position: absolute; z-index: 200;">
-                                    <ul id="treeDemo" class="ztree tree-box" style=""></ul>
                                 </div>
 
                                 <div class="row btn-group-m-t">
