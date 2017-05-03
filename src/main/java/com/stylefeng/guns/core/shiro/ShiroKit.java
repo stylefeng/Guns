@@ -15,14 +15,14 @@
  */
 package com.stylefeng.guns.core.shiro;
 
-import java.util.Random;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
+
+import java.util.Random;
 
 /**
  * shiro工具类
@@ -36,18 +36,18 @@ public class ShiroKit {
     /**
      * 加盐参数
      */
-    final static String hashAlgorithmName = "MD5";
+    public final static String hashAlgorithmName = "MD5";
 
     /**
      * 循环次数
      */
-    final static int hashIterations = 1024;
+    public final static int hashIterations = 1024;
 
     /**
      * shiro密码加密工具类
      *
-     * @param 密码
-     * @param 密码盐
+     * @param credentials 密码
+     * @param saltSource 密码盐
      * @return
      */
     public static String md5(String credentials, String saltSource) {

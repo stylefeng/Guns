@@ -114,6 +114,36 @@ public class UserMgrController extends BaseController {
     }
 
     /**
+     * 跳转到修改密码界面
+     */
+    @RequestMapping("/user_chpwd")
+    public String chPwd(){
+        return PREFIX + "user_chpwd.html";
+    }
+
+    /**
+     * 修改当前用户的密码
+     */
+    @RequestMapping("/changePwd")
+    @ResponseBody
+    public Object changePwd(@RequestParam String oldPwd,@RequestParam String newPwd,@RequestParam String rePwd){
+        if(!newPwd.equals(rePwd)){
+            throw new BussinessException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
+        }
+        Integer userId = ShiroKit.getUser().getId();
+        User user = userMapper.selectById(userId);
+        String oldMd5 = ShiroKit.md5(oldPwd, user.getSalt());
+        if(user.getPassword().equals(oldMd5)){
+            String newMd5 = ShiroKit.md5(newPwd,user.getSalt());
+            user.setPassword(newMd5);
+            user.updateById();
+            return SUCCESS_TIP;
+        }else{
+            throw new BussinessException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
+        }
+    }
+
+    /**
      * 查询管理员列表
      */
     @RequestMapping("/list")
