@@ -1,6 +1,8 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
@@ -85,6 +87,7 @@ public class DeptController extends BaseController {
     @BussinessLog("添加部门")
     @RequestMapping(value = "/add")
     @ResponseBody
+    @Permission(Const.ADMIN_NAME)
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -117,6 +120,7 @@ public class DeptController extends BaseController {
     @BussinessLog("修改部门")
     @RequestMapping(value = "/update")
     @ResponseBody
+    @Permission(Const.ADMIN_NAME)
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -131,6 +135,7 @@ public class DeptController extends BaseController {
     @BussinessLog(value = "删除部门", key = "deptId")
     @RequestMapping(value = "/delete/{deptId}")
     @ResponseBody
+    @Permission(Const.ADMIN_NAME)
     public Object delete(@PathVariable("deptId") Integer deptId) {
         deptMapper.deleteById(deptId);
         return SUCCESS_TIP;

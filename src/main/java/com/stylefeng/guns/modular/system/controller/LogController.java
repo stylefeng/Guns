@@ -2,6 +2,8 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.constant.state.BizLogType;
 import com.stylefeng.guns.common.controller.BaseController;
@@ -73,6 +75,7 @@ public class LogController extends BaseController {
      * 清空日志
      */
     @RequestMapping("/delLog")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object delLog() {
         SqlRunner.db().delete("delete from _operation_log");

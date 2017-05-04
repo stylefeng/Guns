@@ -156,9 +156,9 @@ public class UserMgrController extends BaseController {
     /**
      * 添加管理员
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/add")
     @BussinessLog("添加管理员")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip add(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
@@ -187,6 +187,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/edit")
     @BussinessLog("修改管理员")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip edit(@Valid User user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
@@ -209,9 +210,9 @@ public class UserMgrController extends BaseController {
     /**
      * 删除管理员（逻辑删除）
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/delete/{userId}")
     @BussinessLog(value = "删除管理员", key = "userId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip delete(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -236,9 +237,9 @@ public class UserMgrController extends BaseController {
     /**
      * 重置管理员的密码
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/reset/{userId}")
     @BussinessLog(value = "重置管理员密码", key = "userId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip reset(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -254,9 +255,9 @@ public class UserMgrController extends BaseController {
     /**
      * 冻结用户
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/freeze/{userId}")
     @BussinessLog(value = "冻结用户", key = "userId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip freeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -269,9 +270,9 @@ public class UserMgrController extends BaseController {
     /**
      * 解除冻结用户
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/unfreeze/{userId}")
     @BussinessLog(value = "解除冻结用户", key = "userId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip unfreeze(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -284,9 +285,9 @@ public class UserMgrController extends BaseController {
     /**
      * 分配角色
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setRole")
     @BussinessLog(value = "分配角色", key = "userId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {

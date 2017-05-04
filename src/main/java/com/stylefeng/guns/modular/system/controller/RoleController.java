@@ -116,9 +116,9 @@ public class RoleController extends BaseController {
     /**
      * 角色新增
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
     @BussinessLog("添加角色")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip add(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
@@ -132,9 +132,9 @@ public class RoleController extends BaseController {
     /**
      * 角色修改
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
     @BussinessLog("修改角色")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip edit(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
@@ -150,9 +150,9 @@ public class RoleController extends BaseController {
     /**
      * 删除角色
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove/{roleId}")
     @BussinessLog(value = "删除角色",key = "roleId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip remove(@PathVariable Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
@@ -184,9 +184,9 @@ public class RoleController extends BaseController {
     /**
      * 配置权限
      */
-    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/setAuthority")
     @BussinessLog(value = "配置权限",key = "roleId")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {

@@ -1,7 +1,9 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
@@ -79,6 +81,7 @@ public class DictController extends BaseController {
      */
     @BussinessLog(value = "添加字典记录", key = "dictName")
     @RequestMapping(value = "/add")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object add(String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
@@ -112,6 +115,7 @@ public class DictController extends BaseController {
      */
     @BussinessLog("修改字典")
     @RequestMapping(value = "/update")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object update(Integer dictId, String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictId,dictName,dictValues)) {
@@ -126,6 +130,7 @@ public class DictController extends BaseController {
      */
     @BussinessLog(value = "删除字典记录", key = "dictId")
     @RequestMapping(value = "/delete/{dictId}")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object delete(@PathVariable("dictId") Integer dictId) {
         this.dictService.delteDict(dictId);
