@@ -18,19 +18,19 @@
 ###前端
 1. bootstrap
 2. jquery
-3. 表格框架bootstrap-table
-4. 弹出层框架layer
-5. 树形显示ztree
-6. 图片上传框架webuploader
+3. bootstrap-table
+4. layer
+5. ztree
+6. webuploader
 
 ###后端
 1. springmvc
 2. mybatis
 3. mybatis-plus
 4. spring
-5. 模板引擎beetl
-6. 校验层框架hibernate-validator
-7. 缓存框架ehcache
+5. beetl
+6. hibernate-validator
+7. ehcache
 
 ##项目特点
 1. 零springxml配置，完全采用javabean方式配置spring，新思路，配置简洁，不易出错。详情请见com.stylefeng.guns.project.config包中具体类。
@@ -192,8 +192,6 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 @}
 ```
 以上beetl的用法请参考beetl说明文档。
-
-
 
 
 ##效果图
