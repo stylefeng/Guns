@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-04 13:58:39
+Date: 2017-05-04 13:59:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,9 +56,6 @@ INSERT INTO `_dept` VALUES ('24', '1', '0', '总公司', '总公司', '', null);
 INSERT INTO `_dept` VALUES ('25', '2', '24', '开发部', '开发部', '', null);
 INSERT INTO `_dept` VALUES ('26', '3', '24', '运营部', '运营部', '', null);
 INSERT INTO `_dept` VALUES ('27', '4', '24', '战略部', '战略部', '', null);
-INSERT INTO `_dept` VALUES ('28', '123', '25', '123', '123', '123', null);
-INSERT INTO `_dept` VALUES ('29', '11', '26', '123123123', '123', '123123', null);
-INSERT INTO `_dept` VALUES ('30', '123', '26', '1231', '123', '123123', null);
 
 -- ----------------------------
 -- Table structure for _dict
@@ -122,7 +119,7 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
@@ -148,6 +145,7 @@ INSERT INTO `_login_log` VALUES ('96', '登录日志', '42', '2017-05-04 13:57:2
 INSERT INTO `_login_log` VALUES ('97', '退出日志', '42', '2017-05-04 13:57:36', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('98', '登录日志', '1', '2017-05-04 13:57:39', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('99', '退出日志', '1', '2017-05-04 13:58:27', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('100', '登录日志', '1', '2017-05-04 13:59:30', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -239,7 +237,7 @@ CREATE TABLE `_operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=335 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=340 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _operation_log
@@ -302,6 +300,11 @@ INSERT INTO `_operation_log` VALUES ('331', '业务日志', '添加角色', '1',
 INSERT INTO `_operation_log` VALUES ('332', '业务日志', '分配角色', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2017-05-04 13:56:30', '成功', '[时间]:2017-05-04 13:56:30  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:setRole  [参数]:42 & 3 ');
 INSERT INTO `_operation_log` VALUES ('333', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-05-04 13:57:20', '成功', '[时间]:2017-05-04 13:57:19  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:setAuthority  [参数]:3 & 105,106,109,110,111,112,113,114,117,118,128,134,130,131,135,136,137 ');
 INSERT INTO `_operation_log` VALUES ('334', '业务日志', '分配角色权限', '1', 'com.stylefeng.guns.modular.system.service.impl.RoleServiceImpl', 'setAuthority', '2017-05-04 13:57:20', '成功', '[时间]:2017-05-04 13:57:19  [类名]:com.stylefeng.guns.modular.system.service.impl.RoleServiceImpl  [方法]:setAuthority  [参数]:3 & 105,106,109,110,111,112,113,114,117,118,128,134,130,131,135,136,137 ');
+INSERT INTO `_operation_log` VALUES ('335', '业务日志', '删除管理员', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'delete', '2017-05-04 13:59:33', '成功', '[时间]:2017-05-04 13:59:32  [类名]:com.stylefeng.guns.modular.system.controller.UserMgrController  [方法]:delete  [参数]:42 ');
+INSERT INTO `_operation_log` VALUES ('336', '业务日志', '删除角色', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'remove', '2017-05-04 13:59:36', '成功', '[时间]:2017-05-04 13:59:35  [类名]:com.stylefeng.guns.modular.system.controller.RoleController  [方法]:remove  [参数]:3 ');
+INSERT INTO `_operation_log` VALUES ('337', '业务日志', '删除部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'delete', '2017-05-04 13:59:41', '成功', '[时间]:2017-05-04 13:59:41  [类名]:com.stylefeng.guns.modular.system.controller.DeptController  [方法]:delete  [参数]:29 ');
+INSERT INTO `_operation_log` VALUES ('338', '业务日志', '删除部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'delete', '2017-05-04 13:59:42', '成功', '[时间]:2017-05-04 13:59:42  [类名]:com.stylefeng.guns.modular.system.controller.DeptController  [方法]:delete  [参数]:28 ');
+INSERT INTO `_operation_log` VALUES ('339', '业务日志', '删除部门', '1', 'com.stylefeng.guns.modular.system.controller.DeptController', 'delete', '2017-05-04 13:59:44', '成功', '[时间]:2017-05-04 13:59:43  [类名]:com.stylefeng.guns.modular.system.controller.DeptController  [方法]:delete  [参数]:30 ');
 
 -- ----------------------------
 -- Table structure for _parameter
@@ -368,23 +371,6 @@ INSERT INTO `_relation` VALUES ('3103', '138', '1');
 INSERT INTO `_relation` VALUES ('3104', '139', '1');
 INSERT INTO `_relation` VALUES ('3105', '140', '1');
 INSERT INTO `_relation` VALUES ('3106', '133', '1');
-INSERT INTO `_relation` VALUES ('3107', '105', '3');
-INSERT INTO `_relation` VALUES ('3108', '106', '3');
-INSERT INTO `_relation` VALUES ('3109', '109', '3');
-INSERT INTO `_relation` VALUES ('3110', '110', '3');
-INSERT INTO `_relation` VALUES ('3111', '111', '3');
-INSERT INTO `_relation` VALUES ('3112', '112', '3');
-INSERT INTO `_relation` VALUES ('3113', '113', '3');
-INSERT INTO `_relation` VALUES ('3114', '114', '3');
-INSERT INTO `_relation` VALUES ('3115', '117', '3');
-INSERT INTO `_relation` VALUES ('3116', '118', '3');
-INSERT INTO `_relation` VALUES ('3117', '128', '3');
-INSERT INTO `_relation` VALUES ('3118', '134', '3');
-INSERT INTO `_relation` VALUES ('3119', '130', '3');
-INSERT INTO `_relation` VALUES ('3120', '131', '3');
-INSERT INTO `_relation` VALUES ('3121', '135', '3');
-INSERT INTO `_relation` VALUES ('3122', '136', '3');
-INSERT INTO `_relation` VALUES ('3123', '137', '3');
 
 -- ----------------------------
 -- Table structure for _role
@@ -405,7 +391,6 @@ CREATE TABLE `_role` (
 -- Records of _role
 -- ----------------------------
 INSERT INTO `_role` VALUES ('1', '1', '0', '超级管理员', '1', 'administrator', '1');
-INSERT INTO `_role` VALUES ('3', '1', '1', 'test', '27', 'test', null);
 
 -- ----------------------------
 -- Table structure for _role_ext
@@ -452,4 +437,4 @@ CREATE TABLE `_user` (
 INSERT INTO `_user` VALUES ('1', 'admin', 'bfb6b46de0ad31442adbed56bb2adc4e', 'elv4a', '张三', '2017-02-13 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '1', '2016-01-29 08:49:53', '25');
 INSERT INTO `_user` VALUES ('40', 'test1', 'ec813b86e5e47ecbb61d2902dbb956b5', '74jpt', 'test1', '2017-04-21 00:00:00', '2', 'sn93@qq.com', '11122233344', null, '14', '5', '2017-04-18 12:30:08', null);
 INSERT INTO `_user` VALUES ('41', 'test', 'd716ce8bc61e286598f110441c6486f3', 'hb04u', 'testtest', '2017-04-29 00:00:00', '1', 'sn93@qq.com', '18201309300', null, '2', '5', '2017-04-18 12:36:57', null);
-INSERT INTO `_user` VALUES ('42', 'test', '769021b0bfc90c120d96aa45159d4f45', 'syw87', 'test', '2017-05-02 00:00:00', '1', '', '', '3', '26', '1', '2017-05-04 12:47:21', null);
+INSERT INTO `_user` VALUES ('42', 'test', '769021b0bfc90c120d96aa45159d4f45', 'syw87', 'test', '2017-05-02 00:00:00', '1', '', '', '3', '26', '5', '2017-05-04 12:47:21', null);
