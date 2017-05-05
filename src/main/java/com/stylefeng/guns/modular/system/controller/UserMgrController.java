@@ -15,6 +15,8 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.factory.UserFactory;
+import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
 import com.stylefeng.guns.persistence.dao.UserMapper;
 import com.stylefeng.guns.persistence.model.User;
@@ -160,7 +162,7 @@ public class UserMgrController extends BaseController {
     @BussinessLog("添加管理员")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip add(@Valid User user, BindingResult result) {
+    public Tip add(@Valid UserDto user, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -176,7 +178,8 @@ public class UserMgrController extends BaseController {
         user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
         user.setStatus(ManagerStatus.OK.getCode());
         user.setCreatetime(new Date());
-        this.userMapper.insert(user);
+
+        this.userMapper.insert(UserFactory.createUser(user));
         return SUCCESS_TIP;
     }
 
@@ -189,17 +192,17 @@ public class UserMgrController extends BaseController {
     @BussinessLog("修改管理员")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip edit(@Valid User user, BindingResult result) throws NoPermissionException {
+    public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
-            this.userMapper.updateById(user);
+            this.userMapper.updateById(UserFactory.createUser(user));
             return SUCCESS_TIP;
         } else {
             ShiroUser shiroUser = ShiroKit.getUser();
             if (shiroUser.getId() == user.getId()) {
-                this.userMapper.updateById(user);
+                this.userMapper.updateById(UserFactory.createUser(user));
                 return SUCCESS_TIP;
             } else {
                 throw new AuthenticationException();
