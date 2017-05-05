@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-26
+ * @since 2017-05-05
  */
 @TableName("_menu")
 public class Menu extends Model<Menu> {

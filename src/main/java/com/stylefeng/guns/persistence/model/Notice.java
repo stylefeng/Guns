@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-04-26
+ * @since 2017-05-05
  */
 @TableName("_notice")
 public class Notice extends Model<Notice> {
