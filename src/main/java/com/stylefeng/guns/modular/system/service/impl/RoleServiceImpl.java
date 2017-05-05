@@ -5,6 +5,7 @@ import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.system.dao.RoleDao;
 import com.stylefeng.guns.modular.system.service.IRoleService;
 import com.stylefeng.guns.persistence.dao.RelationMapper;
+import com.stylefeng.guns.persistence.dao.RoleMapper;
 import com.stylefeng.guns.persistence.model.Relation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,9 @@ import javax.annotation.Resource;
 
 @Service
 public class RoleServiceImpl implements IRoleService {
+
+    @Resource
+    RoleMapper roleMapper;
 
     @Resource
     RoleDao roleDao;
@@ -35,6 +39,15 @@ public class RoleServiceImpl implements IRoleService {
             relation.setMenuid(id);
             this.relationMapper.insert(relation);
         }
+    }
+
+    @Override
+    public void delRoleById(Integer roleId) {
+        //删除角色
+        this.roleMapper.deleteById(roleId);
+
+        // 删除该角色所有的权限
+        this.roleDao.deleteRolesById(roleId);
     }
 
 }

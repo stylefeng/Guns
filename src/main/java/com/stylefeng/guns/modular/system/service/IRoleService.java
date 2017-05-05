@@ -16,4 +16,12 @@ public interface IRoleService {
      * @date 2017年2月13日 下午8:26:53
      */
     void setAuthority(Integer roleId, String ids);
+
+    /**
+     * 删除角色
+     *
+     * @author stylefeng
+     * @Date 2017/5/5 22:24
+     */
+    void delRoleById(Integer roleId);
 }

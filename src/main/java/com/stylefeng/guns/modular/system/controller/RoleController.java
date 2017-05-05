@@ -158,10 +158,7 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.roleMapper.deleteById(roleId);
-
-        // 删除该角色所有的权限
-        this.roleDao.deleteRolesById(roleId);
+        this.roleService.delRoleById(roleId);
 
         //删除缓存
         CacheKit.removeAll(Cache.CONSTANT);

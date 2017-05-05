@@ -12,6 +12,7 @@ import com.stylefeng.guns.common.node.ZTreeNode;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
+import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
 import com.stylefeng.guns.persistence.dao.MenuMapper;
 import com.stylefeng.guns.persistence.model.Menu;
@@ -45,6 +46,9 @@ public class MenuController extends BaseController {
 
     @Resource
     MenuDao menuDao;
+
+    @Resource
+    IMenuService menuService;
 
     /**
      * 跳转到菜单列表列表页面
@@ -128,13 +132,7 @@ public class MenuController extends BaseController {
         if (ToolUtil.isEmpty(menuId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-
-        //删除菜单
-        this.menuMapper.deleteById(menuId);
-
-        //删除关联的relation
-        this.menuDao.deleteRelationByMenu(menuId);
-
+        this.menuService.delMenu(menuId);
         return SUCCESS_TIP;
     }
 
