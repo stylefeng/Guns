@@ -1,11 +1,14 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.google.code.kaptcha.Constants;
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.common.node.MenuNode;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -62,8 +65,16 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginVali() {
+
         String username = super.getPara("username");
         String password = super.getPara("password");
+        String kaptcha = super.getPara("kaptcha");
+
+        //验证验证码是否正确
+        String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        if(ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)){
+            throw new InvalidKaptchaException();
+        }
 
         Subject currentUser = ShiroKit.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());

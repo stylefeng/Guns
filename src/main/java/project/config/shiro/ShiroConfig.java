@@ -114,7 +114,7 @@ public class ShiroConfig {
         Map<String, String> hashMap = new HashMap<String, String>();
         hashMap.put("/static/**", "anon");
         hashMap.put("/login", "anon");
-        hashMap.put("/captcha", "anon");
+        hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");
 
         shiroFilter.setFilterChainDefinitionMap(hashMap);

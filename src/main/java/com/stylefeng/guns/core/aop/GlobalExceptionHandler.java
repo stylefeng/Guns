@@ -3,6 +3,7 @@ package com.stylefeng.guns.core.aop;
 import com.stylefeng.guns.common.constant.tips.ErrorTip;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
@@ -85,6 +86,20 @@ public class GlobalExceptionHandler {
         String username = getRequest().getParameter("username");
         LogManager.me().executeLog(LogTaskFactory.loginLog(username, "账号密码错误", getIp()));
         model.addAttribute("tips", "账号密码错误");
+        return "/login.html";
+    }
+
+    /**
+     * 验证码错误
+     *
+     * @author fengshuonan
+     */
+    @ExceptionHandler(InvalidKaptchaException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String credentials(InvalidKaptchaException e, Model model) {
+        String username = getRequest().getParameter("username");
+        LogManager.me().executeLog(LogTaskFactory.loginLog(username, "验证码错误", getIp()));
+        model.addAttribute("tips", "验证码错误");
         return "/login.html";
     }
 
