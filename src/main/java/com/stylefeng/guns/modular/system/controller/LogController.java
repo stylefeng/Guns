@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.constant.state.BizLogType;
@@ -74,6 +75,7 @@ public class LogController extends BaseController {
     /**
      * 清空日志
      */
+    @BussinessLog(value = "清空业务日志")
     @RequestMapping("/delLog")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody

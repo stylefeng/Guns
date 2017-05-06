@@ -25,10 +25,10 @@ Dict.initColumn = function () {
  */
 Dict.check = function () {
     var selected = $('#' + this.id).bootstrapTable('getSelections');
-    if(selected.length == 0){
+    if (selected.length == 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
-    }else{
+    } else {
         Dict.seItem = selected[0];
         return true;
     }
@@ -71,12 +71,13 @@ Dict.openDictDetail = function () {
  */
 Dict.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/dict/delete/" + this.seItem.id, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
             Feng.success("删除成功!");
             Dict.table.refresh();
         }, function (data) {
             Feng.error("删除失败!");
         });
+        ajax.set("dictId", this.seItem.id);
         ajax.start();
     }
 };

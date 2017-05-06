@@ -86,7 +86,7 @@ public class MenuController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
     @ResponseBody
-    @BussinessLog("修改菜单")
+    @BussinessLog(value = "修改菜单", dict = "MenuDict")
     public Tip edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -100,8 +100,8 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(@RequestParam(required = false) String menuName,@RequestParam(required = false) String level) {
-        List<Map<String, Object>> menus = this.menuDao.selectMenus(menuName,level);
+    public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
+        List<Map<String, Object>> menus = this.menuDao.selectMenus(menuName, level);
         return super.warpObject(new MenuWarpper(menus));
     }
 
@@ -110,7 +110,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
-    @BussinessLog("菜单新增")
+    @BussinessLog(value = "菜单新增", key = "name", dict = "MenuDict")
     @ResponseBody
     public Tip add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -125,10 +125,10 @@ public class MenuController extends BaseController {
      * 删除菜单
      */
     @Permission(Const.ADMIN_NAME)
-    @RequestMapping(value = "/remove/{menuId}")
-    @BussinessLog(value = "删除菜单",key = "menuId")
+    @RequestMapping(value = "/remove")
+    @BussinessLog(value = "删除菜单", key = "menuId", dict = "MenuDict")
     @ResponseBody
-    public Tip remove(@PathVariable Integer menuId) {
+    public Tip remove(@RequestParam Integer menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }

@@ -77,12 +77,13 @@ Menu.openChangeMenu = function () {
  */
 Menu.delMenu = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/menu/remove/" + this.seItem.id, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/menu/remove", function (data) {
             Feng.success("删除成功!");
             Menu.table.refresh();
         }, function (data) {
             Feng.error("删除失败!");
         });
+        ajax.set("menuId", this.seItem.id);
         ajax.start();
     }
 };

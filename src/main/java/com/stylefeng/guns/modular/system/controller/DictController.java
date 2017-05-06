@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -67,9 +68,9 @@ public class DictController extends BaseController {
     @RequestMapping("/dict_edit/{dictId}")
     public String deptUpdate(@PathVariable Integer dictId, Model model) {
         Dict dict = dictMapper.selectById(dictId);
-        model.addAttribute("dict",dict);
+        model.addAttribute("dict", dict);
         List<Dict> subDicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("pid", dictId));
-        model.addAttribute("subDicts",subDicts);
+        model.addAttribute("subDicts", subDicts);
         LogObjectHolder.me().set(dict);
         return PREFIX + "dict_edit.html";
     }
@@ -79,7 +80,7 @@ public class DictController extends BaseController {
      *
      * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
-    @BussinessLog(value = "添加字典记录", key = "dictName")
+    @BussinessLog(value = "添加字典记录", key = "dictName", dict = "DictMap")
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -113,26 +114,26 @@ public class DictController extends BaseController {
     /**
      * 修改字典
      */
-    @BussinessLog("修改字典")
+    @BussinessLog(value = "修改字典", key = "dictName", dict = "DictMap")
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object update(Integer dictId, String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictId,dictName,dictValues)) {
+        if (ToolUtil.isOneEmpty(dictId, dictName, dictValues)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
-        dictService.editDict(dictId,dictName,dictValues);
+        dictService.editDict(dictId, dictName, dictValues);
         return super.SUCCESS_TIP;
     }
 
     /**
      * 删除字典记录
      */
-    @BussinessLog(value = "删除字典记录", key = "dictId")
-    @RequestMapping(value = "/delete/{dictId}")
+    @BussinessLog(value = "删除字典记录", key = "dictId", dict = "DictMap")
+    @RequestMapping(value = "/delete")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object delete(@PathVariable("dictId") Integer dictId) {
+    public Object delete(@RequestParam Integer dictId) {
         this.dictService.delteDict(dictId);
         return SUCCESS_TIP;
     }

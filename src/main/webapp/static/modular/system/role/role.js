@@ -74,12 +74,13 @@ Role.openChangeRole = function () {
  */
 Role.delRole = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/role/remove/" + this.seItem.id, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/role/remove", function (data) {
             Feng.success("删除成功!");
             Role.table.refresh();
         }, function (data) {
             Feng.error("删除失败!");
         });
+        ajax.set("roleId", this.seItem.id);
         ajax.start();
     }
 };

@@ -22,4 +22,9 @@ public @interface BussinessLog {
      * 被修改的实体的唯一标识,例如:菜单实体的唯一标识为"id"
      */
     String key() default "id";
+
+    /**
+     * 字典(用于查找key的中文名称和字段的中文名称)
+     */
+    String dict() default "SystemDict";
 }

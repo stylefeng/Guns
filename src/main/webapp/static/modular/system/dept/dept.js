@@ -73,12 +73,13 @@ Dept.openDeptDetail = function () {
  */
 Dept.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/dept/delete/" + this.seItem.id, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/dept/delete", function (data) {
             Feng.success("删除成功!");
             Dept.table.refresh();
         }, function (data) {
             Feng.error("删除失败!");
         });
+        ajax.set("deptId",this.seItem.id);
         ajax.start();
     }
 };

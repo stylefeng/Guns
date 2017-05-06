@@ -1,6 +1,5 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
-import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.system.dao.RoleDao;
 import com.stylefeng.guns.modular.system.service.IRoleService;
@@ -25,7 +24,6 @@ public class RoleServiceImpl implements IRoleService {
     RelationMapper relationMapper;
 
     @Override
-    @BussinessLog("分配角色权限")
     @Transactional(readOnly = false)
     public void setAuthority(Integer roleId, String ids) {
 

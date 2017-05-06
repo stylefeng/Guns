@@ -2,6 +2,7 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.modular.system.dao.LogDao;
@@ -54,6 +55,7 @@ public class LoginLogController extends BaseController {
     /**
      * 清空日志
      */
+    @BussinessLog("清空登录日志")
     @RequestMapping("/delLoginLog")
     @ResponseBody
     public Object delLog() {

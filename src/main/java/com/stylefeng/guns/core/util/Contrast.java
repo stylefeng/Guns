@@ -1,5 +1,7 @@
 package com.stylefeng.guns.core.util;
 
+import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
+import com.stylefeng.guns.common.constant.dictmap.factory.DictMapFactory;
 import com.stylefeng.guns.core.support.StrKit;
 
 import java.beans.PropertyDescriptor;
@@ -49,9 +51,10 @@ public class Contrast {
         return str;
     }
 
-    public static String contrastObj(String key, Object pojo1, Map<String, String> pojo2) {
+    public static String contrastObj(String dictClass, String key, Object pojo1, Map<String, String> pojo2) {
+        AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
         String value = pojo2.get(key);
-        String str = key + "=" + value + separator;
+        String str = dictMap.get(key) + "=" + value + separator;
         try {
             Class clazz = pojo1.getClass();
             Field[] fields = pojo1.getClass().getDeclaredFields();
@@ -71,7 +74,8 @@ public class Contrast {
                     if (i != 1) {
                         str += separator;
                     }
-                    str += "字段名称" + field.getName() + ",旧值:" + o1 + ",新值:" + o2;
+                    String fieldName = dictMap.get(field.getName());
+                    str += "字段名称:" + fieldName + ",旧值:" + o1 + ",新值:" + o2;
                     i++;
                 }
             }

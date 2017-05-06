@@ -117,7 +117,7 @@ public class RoleController extends BaseController {
      * 角色新增
      */
     @RequestMapping(value = "/add")
-    @BussinessLog("添加角色")
+    @BussinessLog(value = "添加角色", key = "name", dict = "RoleDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip add(@Valid Role role, BindingResult result) {
@@ -133,7 +133,7 @@ public class RoleController extends BaseController {
      * 角色修改
      */
     @RequestMapping(value = "/edit")
-    @BussinessLog("修改角色")
+    @BussinessLog(value = "修改角色", key = "name", dict = "RoleDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip edit(@Valid Role role, BindingResult result) {
@@ -150,11 +150,11 @@ public class RoleController extends BaseController {
     /**
      * 删除角色
      */
-    @RequestMapping(value = "/remove/{roleId}")
-    @BussinessLog(value = "删除角色",key = "roleId")
+    @RequestMapping(value = "/remove")
+    @BussinessLog(value = "删除角色", key = "roleId", dict = "RoleDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip remove(@PathVariable Integer roleId) {
+    public Tip remove(@RequestParam Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -182,7 +182,7 @@ public class RoleController extends BaseController {
      * 配置权限
      */
     @RequestMapping("/setAuthority")
-    @BussinessLog(value = "配置权限",key = "roleId")
+    @BussinessLog(value = "配置权限", key = "roleId", dict = "RoleDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -84,7 +85,7 @@ public class DeptController extends BaseController {
     /**
      * 新增部门
      */
-    @BussinessLog("添加部门")
+    @BussinessLog(value = "添加部门", key = "simplename", dict = "DeptDict")
     @RequestMapping(value = "/add")
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
@@ -117,7 +118,7 @@ public class DeptController extends BaseController {
     /**
      * 修改部门
      */
-    @BussinessLog("修改部门")
+    @BussinessLog(value = "修改部门", key = "simplename", dict = "DeptDict")
     @RequestMapping(value = "/update")
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
@@ -132,11 +133,11 @@ public class DeptController extends BaseController {
     /**
      * 删除部门
      */
-    @BussinessLog(value = "删除部门", key = "deptId")
-    @RequestMapping(value = "/delete/{deptId}")
+    @BussinessLog(value = "删除部门", key = "deptId", dict = "DeptDict")
+    @RequestMapping(value = "/delete")
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
-    public Object delete(@PathVariable("deptId") Integer deptId) {
+    public Object delete(@RequestParam Integer deptId) {
         deptMapper.deleteById(deptId);
         return SUCCESS_TIP;
     }

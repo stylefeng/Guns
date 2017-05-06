@@ -98,12 +98,13 @@ MgrUser.roleAssign = function () {
 MgrUser.delMgrUser = function () {
     if (this.check()) {
         var userId = this.seItem.id;
-        var ajax = new $ax(Feng.ctxPath + "/mgr/delete/" + userId, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function (data) {
             Feng.success("删除成功!");
             MgrUser.table.refresh();
         }, function (data) {
             Feng.error("删除失败!");
         });
+        ajax.set("userId", userId);
         ajax.start();
     }
 };
@@ -115,12 +116,13 @@ MgrUser.delMgrUser = function () {
 MgrUser.freezeAccount = function () {
     if (this.check()) {
         var userId = this.seItem.id;
-        var ajax = new $ax(Feng.ctxPath + "/mgr/freeze/" + userId, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/mgr/freeze", function (data) {
             Feng.success("冻结成功!");
             MgrUser.table.refresh();
         }, function (data) {
             Feng.error("冻结失败!");
         });
+        ajax.set("userId", userId);
         ajax.start();
     }
 };
@@ -132,12 +134,13 @@ MgrUser.freezeAccount = function () {
 MgrUser.unfreeze = function () {
     if (this.check()) {
         var userId = this.seItem.id;
-        var ajax = new $ax(Feng.ctxPath + "/mgr/unfreeze/" + userId, function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/mgr/unfreeze", function (data) {
             Feng.success("解除冻结成功!");
             MgrUser.table.refresh();
         }, function (data) {
             Feng.error("解除冻结失败!");
         });
+        ajax.set("userId", userId);
         ajax.start();
     }
 }
@@ -152,11 +155,12 @@ MgrUser.resetPwd = function () {
             btn: ['确定', '取消'],
             shade: false //不显示遮罩
         }, function () {
-            var ajax = new $ax(Feng.ctxPath + "/mgr/reset/" + userId, function (data) {
+            var ajax = new $ax(Feng.ctxPath + "/mgr/reset", function (data) {
                 Feng.success("重置密码成功!");
             }, function (data) {
                 Feng.error("重置密码失败!");
             });
+            ajax.set("userId", userId);
             ajax.start();
         });
     }

@@ -1,15 +1,15 @@
 package com.stylefeng.guns.core.aop;
 
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
+import com.stylefeng.guns.common.constant.dictmap.factory.DictMapFactory;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.support.HttpKit;
-import com.stylefeng.guns.core.support.StrKit;
 import com.stylefeng.guns.core.util.Contrast;
-import com.stylefeng.guns.core.util.DateUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -67,6 +67,7 @@ public class LogAop {
         BussinessLog annotation = currentMethod.getAnnotation(BussinessLog.class);
         String bussinessName = annotation.value();
         String key = annotation.key();
+        String dictClass = annotation.dict();
 
         StringBuilder sb = new StringBuilder();
         for (Object param : params) {
@@ -75,14 +76,20 @@ public class LogAop {
         }
 
         //如果涉及到修改,比对变化
-        String msg = null;
+        String msg;
         if (bussinessName.indexOf("修改") != -1 || bussinessName.indexOf("编辑") != -1) {
             Object obj1 = LogObjectHolder.me().get();
             Map<String, String> obj2 = HttpKit.getRequestParameters();
-            msg = Contrast.contrastObj(key, obj1, obj2);
+            msg = Contrast.contrastObj(dictClass, key, obj1, obj2);
         } else {
-            msg = ToolUtil.format("[时间]:{}  [类名]:{}  [方法]:{}  [参数]:{}", DateUtil.getTime(), className, methodName, sb.toString());
-            msg = StrKit.removeSuffix(msg, "& ");
+            Map<String, String> parameters = HttpKit.getRequestParameters();
+            String value = parameters.get(key);
+            if(ToolUtil.isNotEmpty(value)){
+                AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
+                msg = dictMap.get(key) + ":" + value;
+            }else{
+                msg = "无";
+            }
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));

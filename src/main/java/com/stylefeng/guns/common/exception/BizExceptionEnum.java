@@ -11,6 +11,7 @@ public enum BizExceptionEnum {
 	 * 字典
 	 */
 	DICT_EXISTED(400,"字典已经存在"),
+	ERROR_CREATE_DICT(500,"创建字典失败"),
 
 
 	/**

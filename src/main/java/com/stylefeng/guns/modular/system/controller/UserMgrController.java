@@ -119,7 +119,7 @@ public class UserMgrController extends BaseController {
      * 跳转到修改密码界面
      */
     @RequestMapping("/user_chpwd")
-    public String chPwd(){
+    public String chPwd() {
         return PREFIX + "user_chpwd.html";
     }
 
@@ -128,19 +128,19 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/changePwd")
     @ResponseBody
-    public Object changePwd(@RequestParam String oldPwd,@RequestParam String newPwd,@RequestParam String rePwd){
-        if(!newPwd.equals(rePwd)){
+    public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
+        if (!newPwd.equals(rePwd)) {
             throw new BussinessException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
         Integer userId = ShiroKit.getUser().getId();
         User user = userMapper.selectById(userId);
         String oldMd5 = ShiroKit.md5(oldPwd, user.getSalt());
-        if(user.getPassword().equals(oldMd5)){
-            String newMd5 = ShiroKit.md5(newPwd,user.getSalt());
+        if (user.getPassword().equals(oldMd5)) {
+            String newMd5 = ShiroKit.md5(newPwd, user.getSalt());
             user.setPassword(newMd5);
             user.updateById();
             return SUCCESS_TIP;
-        }else{
+        } else {
             throw new BussinessException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
         }
     }
@@ -151,7 +151,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime) {
-        List<Map<String, Object>> users = managerDao.selectUsers(name,beginTime,endTime);
+        List<Map<String, Object>> users = managerDao.selectUsers(name, beginTime, endTime);
         return new UserWarpper(users).warp();
     }
 
@@ -159,7 +159,7 @@ public class UserMgrController extends BaseController {
      * 添加管理员
      */
     @RequestMapping("/add")
-    @BussinessLog("添加管理员")
+    @BussinessLog(value = "添加管理员", key = "name", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip add(@Valid UserDto user, BindingResult result) {
@@ -189,7 +189,7 @@ public class UserMgrController extends BaseController {
      * @throws NoPermissionException
      */
     @RequestMapping("/edit")
-    @BussinessLog("修改管理员")
+    @BussinessLog(value = "修改管理员", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
@@ -213,11 +213,11 @@ public class UserMgrController extends BaseController {
     /**
      * 删除管理员（逻辑删除）
      */
-    @RequestMapping("/delete/{userId}")
-    @BussinessLog(value = "删除管理员", key = "userId")
+    @RequestMapping("/delete")
+    @BussinessLog(value = "删除管理员", key = "userId", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip delete(@PathVariable Integer userId) {
+    public Tip delete(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -240,11 +240,11 @@ public class UserMgrController extends BaseController {
     /**
      * 重置管理员的密码
      */
-    @RequestMapping("/reset/{userId}")
-    @BussinessLog(value = "重置管理员密码", key = "userId")
+    @RequestMapping("/reset")
+    @BussinessLog(value = "重置管理员密码", key = "userId", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip reset(@PathVariable Integer userId) {
+    public Tip reset(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -258,11 +258,11 @@ public class UserMgrController extends BaseController {
     /**
      * 冻结用户
      */
-    @RequestMapping("/freeze/{userId}")
-    @BussinessLog(value = "冻结用户", key = "userId")
+    @RequestMapping("/freeze")
+    @BussinessLog(value = "冻结用户", key = "userId", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip freeze(@PathVariable Integer userId) {
+    public Tip freeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -273,11 +273,11 @@ public class UserMgrController extends BaseController {
     /**
      * 解除冻结用户
      */
-    @RequestMapping("/unfreeze/{userId}")
-    @BussinessLog(value = "解除冻结用户", key = "userId")
+    @RequestMapping("/unfreeze")
+    @BussinessLog(value = "解除冻结用户", key = "userId", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip unfreeze(@PathVariable Integer userId) {
+    public Tip unfreeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -289,7 +289,7 @@ public class UserMgrController extends BaseController {
      * 分配角色
      */
     @RequestMapping("/setRole")
-    @BussinessLog(value = "分配角色", key = "userId")
+    @BussinessLog(value = "分配角色", key = "userId", dict = "UserDict")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
