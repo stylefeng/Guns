@@ -1,0 +1,78 @@
+package ${packageName};
+
+@for(import in imports!){
+import ${import};
+@}
+
+/**
+ * ${bizChName}控制器
+ *
+ * \@author fengshuonan
+ * \@Date ${tool.currentTime()}
+ */
+\@Controller
+\@RequestMapping("/${bizEnName}")
+public class ${tool.firstLetterToUpper(bizEnName)}Controller extends BaseController {
+
+    private String PREFIX = "/system/${bizEnName}/";
+
+    /**
+     * 跳转到${bizChName}首页
+     */
+    \@RequestMapping("")
+    public String index() {
+        return PREFIX + "${bizEnName}.html";
+    }
+
+    /**
+     * 跳转到添加${bizChName}
+     */
+    \@RequestMapping("/${bizEnName}_add")
+    public String ${bizEnName}Add() {
+        return PREFIX + "${bizEnName}_add.html";
+    }
+
+    /**
+     * 跳转到修改${bizChName}
+     */
+    \@RequestMapping("/${bizEnName}_update")
+    public String ${bizEnName}Update() {
+        return PREFIX + "${bizEnName}_edit.html";
+    }
+
+    /**
+     * 新增${bizChName}
+     */
+    \@RequestMapping(value = "/add")
+    \@ResponseBody
+    public Object add() {
+        return super.SUCCESS_TIP;
+    }
+
+    /**
+     * ${bizChName}详情
+     */
+    \@RequestMapping(value = "/detail")
+    \@ResponseBody
+    public Object detail() {
+        return null;
+    }
+
+    /**
+     * 修改${bizChName}
+     */
+    \@RequestMapping(value = "/update")
+    \@ResponseBody
+    public Object update() {
+        return super.SUCCESS_TIP;
+    }
+
+    /**
+     * 删除${bizChName}
+     */
+    \@RequestMapping(value = "/delete")
+    \@ResponseBody
+    public Object delete() {
+        return SUCCESS_TIP;
+    }
+}

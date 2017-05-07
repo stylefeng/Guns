@@ -493,4 +493,34 @@ public class ToolUtil {
         }
         return str;
     }
+
+    /**
+     * 当前时间
+     *
+     * @author stylefeng
+     * @Date 2017/5/7 21:56
+     */
+    public static String currentTime(){
+        return DateUtil.getTime();
+    }
+
+    /**
+     * 首字母大写
+     *
+     * @author stylefeng
+     * @Date 2017/5/7 22:01
+     */
+    public static String firstLetterToUpper(String val){
+        return StrKit.firstCharToUpperCase(val);
+    }
+
+    /**
+     * 首字母小写
+     *
+     * @author stylefeng
+     * @Date 2017/5/7 22:02
+     */
+    public static String firstLetterToLower(String val){
+        return StrKit.firstCharToLowerCase(val);
+    }
 }
