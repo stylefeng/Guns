@@ -12,7 +12,7 @@ import ${import};
  */
 @Controller
 @RequestMapping("/${context.bizEnName}")
-public class ${tool.firstLetterToUpper(context.bizEnName)}Controller extends BaseController {
+public class ${context.bizEnBigName}Controller extends BaseController {
 
     private String PREFIX = "/system/${context.bizEnName}/";
 
