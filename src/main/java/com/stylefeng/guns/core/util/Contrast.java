@@ -7,6 +7,7 @@ import com.stylefeng.guns.core.support.StrKit;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -36,6 +37,9 @@ public class Contrast {
                 Object o2 = getMethod.invoke(pojo2);
                 if (o1 == null || o2 == null) {
                     continue;
+                }
+                if(o1 instanceof Date){
+                    o1 = DateUtil.getDay((Date) o1);
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
@@ -69,6 +73,9 @@ public class Contrast {
                 Object o2 = pojo2.get(StrKit.firstCharToLowerCase(getMethod.getName().substring(3)));
                 if (o1 == null || o2 == null) {
                     continue;
+                }
+                if(o1 instanceof Date){
+                    o1 = DateUtil.getDay((Date) o1);
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
