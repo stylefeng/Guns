@@ -11,10 +11,9 @@ import java.util.List;
  */
 public class ControllerConfig {
 
-    private String bizChName;
-    private String bizEnName;
-    private String packageName;
-    private List<String> imports;
+    private String controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\controller\\{}Controller.java";
+    private String packageName;//包名称
+    private List<String> imports;//所引入的包
 
     public ControllerConfig(){
         init();
@@ -28,22 +27,6 @@ public class ControllerConfig {
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
         this.imports = imports;
         this.packageName = "com.stylefeng.guns.modular.system.controller";
-    }
-
-    public String getBizChName() {
-        return bizChName;
-    }
-
-    public void setBizChName(String bizChName) {
-        this.bizChName = bizChName;
-    }
-
-    public String getBizEnName() {
-        return bizEnName;
-    }
-
-    public void setBizEnName(String bizEnName) {
-        this.bizEnName = bizEnName;
     }
 
     public String getPackageName() {
@@ -60,5 +43,13 @@ public class ControllerConfig {
 
     public void setImports(List<String> imports) {
         this.imports = imports;
+    }
+
+    public String getControllerPathTemplate() {
+        return controllerPathTemplate;
+    }
+
+    public void setControllerPathTemplate(String controllerPathTemplate) {
+        this.controllerPathTemplate = controllerPathTemplate;
     }
 }
