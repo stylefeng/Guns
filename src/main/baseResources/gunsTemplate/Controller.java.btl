@@ -41,6 +41,15 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     }
 
     /**
+     * 获取${context.bizChName}列表
+     */
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object list(String condition) {
+        return null;
+    }
+
+    /**
      * 新增${context.bizChName}
      */
     @RequestMapping(value = "/add")
