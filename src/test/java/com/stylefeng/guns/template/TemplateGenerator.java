@@ -16,8 +16,8 @@ public class TemplateGenerator {
 
     public static void main(String[] args) throws IOException {
         ContextConfig contextConfig = new ContextConfig();
-        contextConfig.setBizChName("测试");
-        contextConfig.setBizEnName("test");
+        contextConfig.setBizChName("通知");
+        contextConfig.setBizEnName("notice");
 
         GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
         gunsTemplateEngine.setContextConfig(contextConfig);
