@@ -1,6 +1,5 @@
 package com.stylefeng.guns.core.template.engine;
 
-import com.stylefeng.guns.core.template.config.ContextConfig;
 import com.stylefeng.guns.core.util.ToolUtil;
 import org.beetl.core.Configuration;
 import org.beetl.core.GroupTemplate;
@@ -71,13 +70,4 @@ public class GunsTemplateEngine extends AbstractTemplateEngine {
         System.out.println("生成页面成功!");
     }
 
-    public static void main(String[] args) throws IOException {
-        ContextConfig contextConfig = new ContextConfig();
-        contextConfig.setBizChName("测试");
-        contextConfig.setBizEnName("test");
-
-        GunsTemplateEngine gunsTemplateEngine = new GunsTemplateEngine();
-        gunsTemplateEngine.setContextConfig(contextConfig);
-        gunsTemplateEngine.start();
-    }
 }
