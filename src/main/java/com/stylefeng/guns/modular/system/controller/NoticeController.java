@@ -6,9 +6,11 @@ import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.NoticeDao;
+import com.stylefeng.guns.persistence.dao.NoticeMapper;
 import com.stylefeng.guns.persistence.model.Notice;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +31,9 @@ import java.util.Map;
 public class NoticeController extends BaseController {
 
     private String PREFIX = "/system/notice/";
+
+    @Resource
+    private NoticeMapper noticeMapper;
 
     @Resource
     private NoticeDao noticeDao;
@@ -87,7 +92,8 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete() {
+    public Object delete(@RequestParam Integer noticeId) {
+        this.noticeMapper.deleteById(noticeId);
         return SUCCESS_TIP;
     }
 
@@ -97,7 +103,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update() {
+    public Object update(Notice notice) {
         return super.SUCCESS_TIP;
     }
 
