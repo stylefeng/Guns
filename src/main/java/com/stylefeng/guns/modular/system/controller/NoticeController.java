@@ -59,6 +59,8 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/notice_update/{noticeId}")
     public String noticeUpdate(@PathVariable Integer noticeId, Model model) {
+        Notice notice = this.noticeMapper.selectById(noticeId);
+        model.addAttribute("notice",notice);
         return PREFIX + "notice_edit.html";
     }
 
@@ -78,7 +80,7 @@ public class NoticeController extends BaseController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public Object add(Notice notice) {
-        if(ToolUtil.isOneEmpty(notice,notice.getTitle(),notice.getContent())){
+        if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         notice.setCreater(ShiroKit.getUser().getId());
@@ -97,13 +99,19 @@ public class NoticeController extends BaseController {
         return SUCCESS_TIP;
     }
 
-
     /**
      * 修改通知
      */
     @RequestMapping(value = "/update")
     @ResponseBody
     public Object update(Notice notice) {
+        if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        Notice old = this.noticeMapper.selectById(notice.getId());
+        old.setTitle(notice.getTitle());
+        old.setContent(notice.getContent());
+        old.updateById();
         return super.SUCCESS_TIP;
     }
 

@@ -6,12 +6,20 @@
             <input type="hidden" id="id" value="${notice.id}">
 
             <div class="row">
-                <div class="col-sm-6 b-r">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">标题</label>
+                        <div class="col-sm-11">
+                            <input class="form-control" id="title" type="text" value="${notice.title}">
 
-                </div>
-
-                <div class="col-sm-6">
-
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">内容</label>
+                        <div class="col-sm-11">
+                            <textarea class="form-control" id="content" type="text">${notice.content}</textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
 
