@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-05
+ * @since 2017-05-09
  */
 @TableName("_role")
 public class Role extends Model<Role> {

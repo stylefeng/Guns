@@ -1,11 +1,12 @@
 package com.stylefeng.guns.persistence.model;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-05
+ * @since 2017-05-09
  */
 @TableName("_notice")
 public class Notice extends Model<Notice> {
@@ -38,10 +39,6 @@ public class Notice extends Model<Notice> {
      */
 	private String content;
     /**
-     * 发布时间
-     */
-	private Date publishtime;
-    /**
      * 创建时间
      */
 	private Date createtime;
@@ -49,11 +46,6 @@ public class Notice extends Model<Notice> {
      * 创建人
      */
 	private Integer creater;
-    /**
-     * 图片
-     */
-	private Integer pic;
-	private Integer version;
 
 
 	public Integer getId() {
@@ -88,14 +80,6 @@ public class Notice extends Model<Notice> {
 		this.content = content;
 	}
 
-	public Date getPublishtime() {
-		return publishtime;
-	}
-
-	public void setPublishtime(Date publishtime) {
-		this.publishtime = publishtime;
-	}
-
 	public Date getCreatetime() {
 		return createtime;
 	}
@@ -110,22 +94,6 @@ public class Notice extends Model<Notice> {
 
 	public void setCreater(Integer creater) {
 		this.creater = creater;
-	}
-
-	public Integer getPic() {
-		return pic;
-	}
-
-	public void setPic(Integer pic) {
-		this.pic = pic;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
 	}
 
 	@Override

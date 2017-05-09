@@ -8,11 +8,8 @@
 		<result column="title" property="title" />
 		<result column="type" property="type" />
 		<result column="content" property="content" />
-		<result column="publishtime" property="publishtime" />
 		<result column="createtime" property="createtime" />
 		<result column="creater" property="creater" />
-		<result column="pic" property="pic" />
-		<result column="version" property="version" />
 	</resultMap>
 
 </mapper>
