@@ -8,8 +8,11 @@ package com.stylefeng.guns.core.template.config;
  */
 public class PageConfig {
 
-    private String pageJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\system\\{}\\{}.js";
     private String pagePathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\system\\{}\\{}.html";
+    private String pageAddPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\system\\{}\\{}_add.html";
+    private String pageEditPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\system\\{}\\{}_edit.html";
+    private String pageJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\system\\{}\\{}.js";
+    private String pageInfoJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\system\\{}\\{}_info.js";
 
     public String getPagePathTemplate() {
         return pagePathTemplate;
@@ -25,5 +28,29 @@ public class PageConfig {
 
     public void setPageJsPathTemplate(String pageJsPathTemplate) {
         this.pageJsPathTemplate = pageJsPathTemplate;
+    }
+
+    public String getPageAddPathTemplate() {
+        return pageAddPathTemplate;
+    }
+
+    public void setPageAddPathTemplate(String pageAddPathTemplate) {
+        this.pageAddPathTemplate = pageAddPathTemplate;
+    }
+
+    public String getPageEditPathTemplate() {
+        return pageEditPathTemplate;
+    }
+
+    public void setPageEditPathTemplate(String pageEditPathTemplate) {
+        this.pageEditPathTemplate = pageEditPathTemplate;
+    }
+
+    public String getPageInfoJsPathTemplate() {
+        return pageInfoJsPathTemplate;
+    }
+
+    public void setPageInfoJsPathTemplate(String pageInfoJsPathTemplate) {
+        this.pageInfoJsPathTemplate = pageInfoJsPathTemplate;
     }
 }

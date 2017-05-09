@@ -6,6 +6,9 @@ import org.beetl.core.GroupTemplate;
 import org.beetl.core.Template;
 import org.beetl.core.resource.ClasspathResourceLoader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -45,11 +48,35 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         template.binding("context", super.getContextConfig());
     }
 
+    public void generateFile(String template,String filePath){
+        Template pageTemplate = groupTemplate.getTemplate(template);
+        configTemplate(pageTemplate);
+        File file = new File(filePath);
+        File parentFile = file.getParentFile();
+        if(!parentFile.exists()){
+            parentFile.mkdirs();
+        }
+        try {
+            pageTemplate.renderTo(new FileOutputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void start() {
         generateController();
         generatePageHtml();
+        generatePageAddHtml();
+        generatePageEditHtml();
         generatePageJs();
+        generatePageInfoJs();
     }
+
+    protected abstract void generatePageEditHtml();
+
+    protected abstract void generatePageAddHtml();
+
+    protected abstract void generatePageInfoJs();
 
     protected abstract void generatePageJs();
 

@@ -26,6 +26,7 @@ public class ControllerConfig {
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
         imports.add("org.springframework.ui.Model");
+        imports.add("org.springframework.web.bind.annotation.PathVariable");
         this.imports = imports;
         this.packageName = "com.stylefeng.guns.modular.system.controller";
     }

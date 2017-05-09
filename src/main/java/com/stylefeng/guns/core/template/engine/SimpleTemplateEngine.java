@@ -2,11 +2,6 @@ package com.stylefeng.guns.core.template.engine;
 
 import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 import com.stylefeng.guns.core.util.ToolUtil;
-import org.beetl.core.Template;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 
 /**
  * 通用的模板生成引擎
@@ -17,54 +12,50 @@ import java.io.FileOutputStream;
 public class SimpleTemplateEngine extends GunsTemplateEngine {
 
     @Override
-    protected void generatePageJs() {
-        Template pageTemplate = groupTemplate.getTemplate("gunsTemplate/page.js.btl");
-        configTemplate(pageTemplate);
-        String jsPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getPageConfig().getPageJsPathTemplate(),
+    protected void generatePageEditHtml() {
+        String path = ToolUtil.format(super.getContextConfig().getProjectPath() + getPageConfig().getPageEditPathTemplate(),
                 super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
-        File file = new File(jsPath);
-        File parentFile = file.getParentFile();
-        if(!parentFile.exists()){
-            parentFile.mkdirs();
-        }
-        try {
-            pageTemplate.renderTo(new FileOutputStream(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        generateFile("gunsTemplate/page_edit.html.btl", path);
+        System.out.println("生成编辑页面成功!");
+    }
+
+    @Override
+    protected void generatePageAddHtml() {
+        String path = ToolUtil.format(super.getContextConfig().getProjectPath() + getPageConfig().getPageAddPathTemplate(),
+                super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
+        generateFile("gunsTemplate/page_add.html.btl", path);
+        System.out.println("生成添加页面成功!");
+    }
+
+    @Override
+    protected void generatePageInfoJs() {
+        String path = ToolUtil.format(super.getContextConfig().getProjectPath() + getPageConfig().getPageInfoJsPathTemplate(),
+                super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
+        generateFile("gunsTemplate/page_info.js.btl", path);
+        System.out.println("生成页面详情js成功!");
+    }
+
+    @Override
+    protected void generatePageJs() {
+        String path = ToolUtil.format(super.getContextConfig().getProjectPath() + getPageConfig().getPageJsPathTemplate(),
+                super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
+        generateFile("gunsTemplate/page.js.btl", path);
         System.out.println("生成页面js成功!");
     }
 
     @Override
     protected void generatePageHtml() {
-        Template pageTemplate = groupTemplate.getTemplate("gunsTemplate/page.html.btl");
-        configTemplate(pageTemplate);
-        String pagePath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getPageConfig().getPagePathTemplate(),
+        String path = ToolUtil.format(super.getContextConfig().getProjectPath() + getPageConfig().getPagePathTemplate(),
                 super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
-        File file = new File(pagePath);
-        File parentFile = file.getParentFile();
-        if(!parentFile.exists()){
-            parentFile.mkdirs();
-        }
-        try {
-            pageTemplate.renderTo(new FileOutputStream(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        generateFile("gunsTemplate/page.html.btl", path);
         System.out.println("生成页面成功!");
     }
 
     @Override
     protected void generateController() {
-        Template controllerTemplate = super.groupTemplate.getTemplate("gunsTemplate/Controller.java.btl");
-        configTemplate(controllerTemplate);
         String controllerPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getControllerConfig().getControllerPathTemplate(),
                 ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
-        try {
-            controllerTemplate.renderTo(new FileOutputStream(controllerPath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        generateFile("gunsTemplate/Controller.java.btl", controllerPath);
         System.out.println("生成控制器成功!");
     }
 }
