@@ -1,7 +1,8 @@
 package com.stylefeng.guns.template;
 
 import com.stylefeng.guns.core.template.config.ContextConfig;
-import com.stylefeng.guns.core.template.engine.GunsTemplateEngine;
+import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
+import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class TemplateGenerator {
         contextConfig.setBizChName("测试");
         contextConfig.setBizEnName("test");
 
-        GunsTemplateEngine gunsTemplateEngine = new GunsTemplateEngine();
+        GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
         gunsTemplateEngine.setContextConfig(contextConfig);
         gunsTemplateEngine.start();
     }
