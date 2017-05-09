@@ -12,4 +12,9 @@ public class SystemDict extends AbstractDictMap {
     public void init() {
 
     }
+
+    @Override
+    protected void initBeWrapped() {
+
+    }
 }

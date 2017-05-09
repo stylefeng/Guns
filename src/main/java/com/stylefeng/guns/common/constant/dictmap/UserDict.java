@@ -23,4 +23,11 @@ public class UserDict extends AbstractDictMap {
         put("roleid","角色id");
         put("deptid","部门id");
     }
+
+    @Override
+    protected void initBeWrapped() {
+        putFieldWrapperMethodName("sex","getSexName");
+        putFieldWrapperMethodName("deptid","getDeptName");
+        putFieldWrapperMethodName("roleid","getSingleRoleName");
+    }
 }

@@ -14,4 +14,9 @@ public class LogDict extends AbstractDictMap {
     public void init() {
         put("tips","备注");
     }
+
+    @Override
+    protected void initBeWrapped() {
+
+    }
 }

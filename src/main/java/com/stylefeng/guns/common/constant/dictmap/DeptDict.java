@@ -19,4 +19,9 @@ public class DeptDict extends AbstractDictMap {
         put("fullname","部门全称");
         put("tips","备注");
     }
+
+    @Override
+    protected void initBeWrapped() {
+
+    }
 }

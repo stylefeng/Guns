@@ -1,6 +1,7 @@
 package com.stylefeng.guns.core.util;
 
 import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
+import com.stylefeng.guns.common.constant.dictmap.factory.DictFieldWarpperFactory;
 import com.stylefeng.guns.common.constant.dictmap.factory.DictMapFactory;
 import com.stylefeng.guns.core.support.StrKit;
 
@@ -21,6 +22,12 @@ public class Contrast {
     //记录每个修改字段的分隔符
     public static final String separator = ";;;";
 
+    /**
+     * 比较两个对象,并返回不一致的信息
+     *
+     * @author stylefeng
+     * @Date 2017/5/9 19:34
+     */
     public static String contrastObj(Object pojo1, Object pojo2) {
         String str = "";
         try {
@@ -38,7 +45,7 @@ public class Contrast {
                 if (o1 == null || o2 == null) {
                     continue;
                 }
-                if(o1 instanceof Date){
+                if (o1 instanceof Date) {
                     o1 = DateUtil.getDay((Date) o1);
                 }
                 if (!o1.toString().equals(o2.toString())) {
@@ -55,6 +62,12 @@ public class Contrast {
         return str;
     }
 
+    /**
+     * 比较两个对象pojo1和pojo2,并输出不一致信息
+     *
+     * @author stylefeng
+     * @Date 2017/5/9 19:34
+     */
     public static String contrastObj(String dictClass, String key, Object pojo1, Map<String, String> pojo2) {
         AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
         String value = pojo2.get(key);
@@ -74,15 +87,24 @@ public class Contrast {
                 if (o1 == null || o2 == null) {
                     continue;
                 }
-                if(o1 instanceof Date){
+                if (o1 instanceof Date) {
                     o1 = DateUtil.getDay((Date) o1);
+                } else if (o1 instanceof Integer) {
+                    o2 = Integer.parseInt(o2.toString());
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
                         str += separator;
                     }
                     String fieldName = dictMap.get(field.getName());
-                    str += "字段名称:" + fieldName + ",旧值:" + o1 + ",新值:" + o2;
+                    String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(field.getName());
+                    if (fieldWarpperMethodName != null) {
+                        Object o1Warpper = DictFieldWarpperFactory.createFieldWarpper(o1, fieldWarpperMethodName);
+                        Object o2Warpper = DictFieldWarpperFactory.createFieldWarpper(o2, fieldWarpperMethodName);
+                        str += "字段名称:" + fieldName + ",旧值:" + o1Warpper + ",新值:" + o2Warpper;
+                    } else {
+                        str += "字段名称:" + fieldName + ",旧值:" + o1 + ",新值:" + o2;
+                    }
                     i++;
                 }
             }
@@ -91,4 +113,5 @@ public class Contrast {
         }
         return str;
     }
+
 }

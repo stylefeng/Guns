@@ -9,9 +9,15 @@ import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
  * @date 2017-05-06 15:43
  */
 public class DictMap extends AbstractDictMap {
+
     @Override
     public void init() {
         put("dictId","字典id");
         put("dictName","字典名称");
+    }
+
+    @Override
+    protected void initBeWrapped() {
+
     }
 }

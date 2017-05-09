@@ -26,4 +26,9 @@ public class MenuDict extends AbstractDictMap {
         put("isopen","是否打开");
         put("","");
     }
+
+    @Override
+    protected void initBeWrapped() {
+
+    }
 }

@@ -20,4 +20,9 @@ public class RoleDict extends AbstractDictMap {
         put("deptid","部门id");
         put("tips","备注");
     }
+
+    @Override
+    protected void initBeWrapped() {
+
+    }
 }
