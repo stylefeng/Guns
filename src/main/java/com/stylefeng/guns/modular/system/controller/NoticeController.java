@@ -115,12 +115,4 @@ public class NoticeController extends BaseController {
         return super.SUCCESS_TIP;
     }
 
-    /**
-     * 通知详情
-     */
-    @RequestMapping(value = "/detail")
-    @ResponseBody
-    public Object detail() {
-        return null;
-    }
 }
