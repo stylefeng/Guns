@@ -1,23 +1,31 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.modular.system.dao.NoticeDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 通知控制器
  *
  * @author fengshuonan
- * @Date 2017-05-09 22:44:57
+ * @Date 2017-05-09 23:02:21
  */
 @Controller
 @RequestMapping("/notice")
 public class NoticeController extends BaseController {
 
     private String PREFIX = "/system/notice/";
+
+    @Resource
+    private NoticeDao noticeDao;
 
     /**
      * 跳转到通知首页
@@ -41,6 +49,16 @@ public class NoticeController extends BaseController {
     @RequestMapping("/notice_update/{noticeId}")
     public String noticeUpdate(@PathVariable Integer noticeId, Model model) {
         return PREFIX + "notice_edit.html";
+    }
+
+    /**
+     * 获取通知列表
+     */
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object list(String condition) {
+        List<Map<String, Object>> list = this.noticeDao.list(condition);
+        return list;
     }
 
     /**
