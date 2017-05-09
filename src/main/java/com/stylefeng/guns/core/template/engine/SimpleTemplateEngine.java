@@ -17,6 +17,25 @@ import java.io.FileOutputStream;
 public class SimpleTemplateEngine extends GunsTemplateEngine {
 
     @Override
+    protected void generatePageJs() {
+        Template pageTemplate = groupTemplate.getTemplate("gunsTemplate/page.js.btl");
+        configTemplate(pageTemplate);
+        String jsPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getPageConfig().getPageJsPathTemplate(),
+                super.getContextConfig().getBizEnName(),super.getContextConfig().getBizEnName());
+        File file = new File(jsPath);
+        File parentFile = file.getParentFile();
+        if(!parentFile.exists()){
+            parentFile.mkdirs();
+        }
+        try {
+            pageTemplate.renderTo(new FileOutputStream(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("生成页面js成功!");
+    }
+
+    @Override
     protected void generatePageHtml() {
         Template pageTemplate = groupTemplate.getTemplate("gunsTemplate/page.html.btl");
         configTemplate(pageTemplate);

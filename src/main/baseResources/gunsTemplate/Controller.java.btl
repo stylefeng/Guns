@@ -35,8 +35,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     /**
      * 跳转到修改${context.bizChName}
      */
-    @RequestMapping("/${context.bizEnName}_update")
-    public String ${context.bizEnName}Update() {
+    @RequestMapping("/${context.bizEnName}_update/{${context.bizEnName}Id}")
+    public String ${context.bizEnName}Update(@PathVariable Integer ${context.bizEnName}Id, Model model) {
         return PREFIX + "${context.bizEnName}_edit.html";
     }
 

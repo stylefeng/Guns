@@ -48,7 +48,10 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     public void start() {
         generateController();
         generatePageHtml();
+        generatePageJs();
     }
+
+    protected abstract void generatePageJs();
 
     protected abstract void generatePageHtml();
 

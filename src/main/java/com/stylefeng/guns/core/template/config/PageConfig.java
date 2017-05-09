@@ -8,6 +8,7 @@ package com.stylefeng.guns.core.template.config;
  */
 public class PageConfig {
 
+    private String pageJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\system\\{}\\{}.js";
     private String pagePathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\system\\{}\\{}.html";
 
     public String getPagePathTemplate() {
@@ -16,5 +17,13 @@ public class PageConfig {
 
     public void setPagePathTemplate(String pagePathTemplate) {
         this.pagePathTemplate = pagePathTemplate;
+    }
+
+    public String getPageJsPathTemplate() {
+        return pageJsPathTemplate;
+    }
+
+    public void setPageJsPathTemplate(String pageJsPathTemplate) {
+        this.pageJsPathTemplate = pageJsPathTemplate;
     }
 }

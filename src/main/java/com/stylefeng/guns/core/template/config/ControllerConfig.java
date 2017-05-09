@@ -25,6 +25,7 @@ public class ControllerConfig {
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
+        imports.add("org.springframework.ui.Model");
         this.imports = imports;
         this.packageName = "com.stylefeng.guns.modular.system.controller";
     }
