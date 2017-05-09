@@ -23,6 +23,7 @@ public class RoleDict extends AbstractDictMap {
 
     @Override
     protected void initBeWrapped() {
-
+        putFieldWrapperMethodName("pid","getSingleRoleName");
+        putFieldWrapperMethodName("deptid","getDeptName");
     }
 }
