@@ -6,6 +6,7 @@ import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.NoticeDao;
+import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 import com.stylefeng.guns.persistence.dao.NoticeMapper;
 import com.stylefeng.guns.persistence.model.Notice;
 import org.springframework.stereotype.Controller;
@@ -71,7 +72,7 @@ public class NoticeController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
         List<Map<String, Object>> list = this.noticeDao.list(condition);
-        return list;
+        return super.warpObject(new NoticeWrapper(list));
     }
 
     /**

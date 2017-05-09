@@ -13,9 +13,11 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.persistence.dao.DeptMapper;
 import com.stylefeng.guns.persistence.dao.DictMapper;
 import com.stylefeng.guns.persistence.dao.RoleMapper;
+import com.stylefeng.guns.persistence.dao.UserMapper;
 import com.stylefeng.guns.persistence.model.Dept;
 import com.stylefeng.guns.persistence.model.Dict;
 import com.stylefeng.guns.persistence.model.Role;
+import com.stylefeng.guns.persistence.model.User;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -35,9 +37,25 @@ public class ConstantFactory {
     private RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
     private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
     private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
+    private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
 
     public static ConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
+    }
+
+    /**
+     * 根据用户id获取用户名称
+     *
+     * @author stylefeng
+     * @Date 2017/5/9 23:41
+     */
+    public String getUserNameById(Integer userId){
+        User user = userMapper.selectById(userId);
+        if(user != null){
+            return user.getName();
+        }else{
+            return "--";
+        }
     }
 
     /**

@@ -17,7 +17,7 @@ Notice.initColumn = function () {
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '标题', field: 'title', align: 'center', valign: 'middle'},
         {title: '内容', field: 'content', align: 'center', valign: 'middle'},
-        {title: '发布者', field: 'creater', align: 'center', valign: 'middle'},
+        {title: '发布者', field: 'createrName', align: 'center', valign: 'middle'},
         {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle'}
     ];
 };
