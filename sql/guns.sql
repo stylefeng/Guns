@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-09 23:54:49
+Date: 2017-05-10 22:27:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -100,11 +100,12 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
 -- ----------------------------
+INSERT INTO `_login_log` VALUES ('102', '登录日志', '1', '2017-05-10 21:31:48', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -128,7 +129,7 @@ CREATE TABLE `_menu` (
 -- ----------------------------
 -- Records of _menu
 -- ----------------------------
-INSERT INTO `_menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '1', '1', null, '1', '1');
+INSERT INTO `_menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '2', '1', null, '1', '1');
 INSERT INTO `_menu` VALUES ('106', 'mgr', 'system', '用户管理', null, '/mgr', '1', '2', null, '1', '0');
 INSERT INTO `_menu` VALUES ('107', 'mgr_add', 'mgr', '添加用户', null, '/mgr/add', '1', '3', null, '1', '0');
 INSERT INTO `_menu` VALUES ('108', 'mgr_edit', 'mgr', '修改用户', null, '/mgr/edit', '2', '3', null, '1', '0');
@@ -162,7 +163,7 @@ INSERT INTO `_menu` VALUES ('141', 'notice', 'system', '通知管理', null, '/n
 INSERT INTO `_menu` VALUES ('142', 'notice_add', 'notice', '添加通知', null, '/notice/add', '1', '3', null, '1', null);
 INSERT INTO `_menu` VALUES ('143', 'notice_update', 'notice', '修改通知', null, '/notice/update', '2', '3', null, '1', null);
 INSERT INTO `_menu` VALUES ('144', 'notice_delete', 'notice', '删除通知', null, '/notice/delete', '3', '3', null, '1', null);
-INSERT INTO `_menu` VALUES ('145', 'hello', '0', '通知', null, '/hello', '1', '1', null, '1', null);
+INSERT INTO `_menu` VALUES ('145', 'hello', '0', '通知', 'fa-rocket', '/notice/hello', '1', '1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for _notice
@@ -176,12 +177,13 @@ CREATE TABLE `_notice` (
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `creater` int(11) DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _notice
 -- ----------------------------
 INSERT INTO `_notice` VALUES ('6', '你好', '10', '欢迎使用Guns管理系统!', '2017-01-11 08:53:20', '1');
+INSERT INTO `_notice` VALUES ('8', '你好2', null, '欢迎使用Guns管护系统', '2017-05-10 19:28:57', '1');
 
 -- ----------------------------
 -- Table structure for _operation_log
@@ -198,12 +200,14 @@ CREATE TABLE `_operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=362 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _operation_log
 -- ----------------------------
 INSERT INTO `_operation_log` VALUES ('361', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-05-09 23:54:30', '成功', '无');
+INSERT INTO `_operation_log` VALUES ('362', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-05-10 22:06:02', '成功', '菜单id=105;;;字段名称:菜单排序号,旧值:1,新值:2');
+INSERT INTO `_operation_log` VALUES ('363', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-05-10 22:15:31', '成功', '菜单id=145;;;字段名称:url地址,旧值:/hello,新值:/notice/hello');
 
 -- ----------------------------
 -- Table structure for _parameter
