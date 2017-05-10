@@ -17,7 +17,7 @@ OptLog.initColumn = function () {
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '日志类型', field: 'logtype', align: 'center', valign: 'middle'},
         {title: '日志名称', field: 'logname', align: 'center', valign: 'middle'},
-        {title: '用户id', field: 'userid', align: 'center', valign: 'middle'},
+        {title: '用户名称', field: 'userName', align: 'center', valign: 'middle'},
         {title: '类名', field: 'classname', align: 'center', valign: 'middle'},
         {title: '方法名', field: 'method', align: 'center', valign: 'middle'},
         {title: '时间', field: 'createtime', align: 'center', valign: 'middle'},

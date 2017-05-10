@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.system.warpper;
 
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.util.Contrast;
 import com.stylefeng.guns.core.util.ToolUtil;
@@ -21,6 +22,9 @@ public class LogWarpper extends BaseControllerWarpper {
     @Override
     public void warpTheMap(Map<String, Object> map) {
         String message = (String) map.get("message");
+
+        Integer userid = (Integer) map.get("userid");
+        map.put("userName", ConstantFactory.me().getUserNameById(userid));
 
         //如果信息过长,则只截取前100位字符串
         if (ToolUtil.isNotEmpty(message) && message.length() >= 100) {
