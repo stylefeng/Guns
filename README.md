@@ -1,6 +1,11 @@
 #Guns
 不用写xml配置的后台管理系统！包含权限管理等模块！整合主流的springmvc + mybatis-plus + beetl！
 
+## 鸣谢
+1.[SpringBlade](http://git.oschina.net/smallc/SpringBlade)
+2.[beetl](http://ibeetl.com/)
+3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
+
 ##功能简介
 1. 用户管理
 2. 角色管理
@@ -203,3 +208,5 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0429/233402_594a588a_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0429/233410_6c4061e0_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0429/233417_6e9ecf5e_551203.png "在这里输入图片标题")
+
+
