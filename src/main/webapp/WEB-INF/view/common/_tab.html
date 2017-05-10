@@ -25,22 +25,31 @@
             </li>
             
             @for(title in titles){
-            	<li>
-	                <a href="#">
-	                    <i class="fa ${title.icon}"></i>
-	                    <span class="nav-label">${title.name}</span>
-	                    <span class="fa arrow"></span>
-	                </a>
-	                <ul class="nav nav-second-level">
-	                	@for(subTitle in title.children){
-		                    <li>
-		                        <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
-		                    </li>
-		                @}
-	                </ul>
-	            </li>
+                @if(tool.isEmpty(title.children)){
+                    <li>
+                        <a class="J_menuItem" href="${ctxPath}${title.url}">
+                            <i class="fa ${title.icon}"></i>
+                            <span class="nav-label">${title.name}</span>
+                        </a>
+                    </li>
+                @}else{
+                    <li>
+                        <a href="#">
+                            <i class="fa ${title.icon}"></i>
+                            <span class="nav-label">${title.name}</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            @for(subTitle in title.children){
+                            <li>
+                                <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
+                            </li>
+                            @}
+                        </ul>
+                    </li>
+                @}
             @}
-            
+
         </ul>
     </div>
 </nav>
