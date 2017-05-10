@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-10 22:27:00
+Date: 2017-05-10 22:48:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,22 +49,21 @@ CREATE TABLE `_dict` (
   `name` varchar(255) DEFAULT NULL,
   `tips` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _dict
 -- ----------------------------
-INSERT INTO `_dict` VALUES ('5', '0', '0', '账号状态', null);
-INSERT INTO `_dict` VALUES ('6', '1', '5', '启用', null);
-INSERT INTO `_dict` VALUES ('7', '2', '5', '冻结', null);
-INSERT INTO `_dict` VALUES ('8', '3', '5', '待审核', null);
-INSERT INTO `_dict` VALUES ('9', '4', '5', '审核拒绝', null);
-INSERT INTO `_dict` VALUES ('10', '5', '5', '已删除', null);
-INSERT INTO `_dict` VALUES ('14', '0', '0', '性别', null);
-INSERT INTO `_dict` VALUES ('15', '1', '14', '男', null);
 INSERT INTO `_dict` VALUES ('16', '0', '0', '状态', null);
 INSERT INTO `_dict` VALUES ('17', '1', '16', '启用', null);
 INSERT INTO `_dict` VALUES ('18', '2', '16', '禁用', null);
+INSERT INTO `_dict` VALUES ('19', '0', '0', '性别', null);
+INSERT INTO `_dict` VALUES ('20', '1', '19', '男', null);
+INSERT INTO `_dict` VALUES ('21', '2', '19', '女', null);
+INSERT INTO `_dict` VALUES ('22', '0', '0', '账号状态', null);
+INSERT INTO `_dict` VALUES ('23', '1', '22', '启用', null);
+INSERT INTO `_dict` VALUES ('24', '2', '22', '冻结', null);
+INSERT INTO `_dict` VALUES ('25', '3', '22', '已删除', null);
 
 -- ----------------------------
 -- Table structure for _generate
@@ -100,12 +99,14 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
 -- ----------------------------
 INSERT INTO `_login_log` VALUES ('102', '登录日志', '1', '2017-05-10 21:31:48', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('103', '退出日志', '1', '2017-05-10 22:41:37', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('104', '登录日志', '1', '2017-05-10 22:42:32', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -124,13 +125,13 @@ CREATE TABLE `_menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _menu
 -- ----------------------------
 INSERT INTO `_menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '2', '1', null, '1', '1');
-INSERT INTO `_menu` VALUES ('106', 'mgr', 'system', '用户管理', null, '/mgr', '1', '2', null, '1', '0');
+INSERT INTO `_menu` VALUES ('106', 'mgr', 'system', '用户管理', '', '/mgr', '1', '2', null, '1', '0');
 INSERT INTO `_menu` VALUES ('107', 'mgr_add', 'mgr', '添加用户', null, '/mgr/add', '1', '3', null, '1', '0');
 INSERT INTO `_menu` VALUES ('108', 'mgr_edit', 'mgr', '修改用户', null, '/mgr/edit', '2', '3', null, '1', '0');
 INSERT INTO `_menu` VALUES ('109', 'mgr_delete', 'mgr', '删除用户', null, '/mgr/delete', '3', '3', null, '1', '0');
@@ -200,7 +201,7 @@ CREATE TABLE `_operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=364 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _operation_log
@@ -208,6 +209,15 @@ CREATE TABLE `_operation_log` (
 INSERT INTO `_operation_log` VALUES ('361', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-05-09 23:54:30', '成功', '无');
 INSERT INTO `_operation_log` VALUES ('362', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-05-10 22:06:02', '成功', '菜单id=105;;;字段名称:菜单排序号,旧值:1,新值:2');
 INSERT INTO `_operation_log` VALUES ('363', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-05-10 22:15:31', '成功', '菜单id=145;;;字段名称:url地址,旧值:/hello,新值:/notice/hello');
+INSERT INTO `_operation_log` VALUES ('364', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-05-10 22:38:01', '成功', '菜单id=106;;;');
+INSERT INTO `_operation_log` VALUES ('365', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-05-10 22:38:16', '成功', '菜单id=106;;;字段名称:菜单图标,旧值:fa-user,新值:');
+INSERT INTO `_operation_log` VALUES ('366', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-05-10 22:38:27', '成功', '菜单名称:test');
+INSERT INTO `_operation_log` VALUES ('367', '业务日志', '删除菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'remove', '2017-05-10 22:38:37', '成功', '菜单id:146');
+INSERT INTO `_operation_log` VALUES ('368', '业务日志', '重置管理员密码', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'reset', '2017-05-10 22:40:42', '成功', '用户id:1');
+INSERT INTO `_operation_log` VALUES ('369', '业务日志', '删除管理员', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'delete', '2017-05-10 22:40:43', '成功', '用户id:1');
+INSERT INTO `_operation_log` VALUES ('370', '业务日志', '修改字典', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'update', '2017-05-10 22:42:59', '成功', '字典名称=性别;;;');
+INSERT INTO `_operation_log` VALUES ('371', '业务日志', '修改字典', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'update', '2017-05-10 22:44:12', '成功', '字典名称=账号状态;;;');
+INSERT INTO `_operation_log` VALUES ('372', '业务日志', '删除管理员', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'delete', '2017-05-10 22:45:27', '成功', '用户id:1');
 
 -- ----------------------------
 -- Table structure for _parameter
@@ -342,7 +352,7 @@ CREATE TABLE `_user` (
 -- ----------------------------
 -- Records of _user
 -- ----------------------------
-INSERT INTO `_user` VALUES ('1', 'admin', 'bfb6b46de0ad31442adbed56bb2adc4e', 'elv4a', '张三', '2017-05-05 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '1', '2016-01-29 08:49:53', '25');
+INSERT INTO `_user` VALUES ('1', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '3', '2016-01-29 08:49:53', '25');
 INSERT INTO `_user` VALUES ('40', 'test1', 'ec813b86e5e47ecbb61d2902dbb956b5', '74jpt', 'test1', '2017-04-21 00:00:00', '2', 'sn93@qq.com', '11122233344', null, '14', '5', '2017-04-18 12:30:08', null);
 INSERT INTO `_user` VALUES ('41', 'test', 'd716ce8bc61e286598f110441c6486f3', 'hb04u', 'testtest', '2017-04-29 00:00:00', '1', 'sn93@qq.com', '18201309300', null, '2', '5', '2017-04-18 12:36:57', null);
 INSERT INTO `_user` VALUES ('42', 'test', '769021b0bfc90c120d96aa45159d4f45', 'syw87', 'test', '2017-05-02 00:00:00', '1', '', '', '3', '26', '5', '2017-05-04 12:47:21', null);
