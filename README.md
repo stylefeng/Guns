@@ -1,5 +1,5 @@
 #Guns
-不用写xml配置的后台管理系统！包含权限管理等模块！整合springmvc + mybatis-plus + beetl！
+不用写xml配置的后台管理系统！独特的日志记录方式！包含用户和权限管理等模块！整合springmvc + mybatis-plus + beetl！
 
 ## 鸣谢
 1.[SpringBlade](http://git.oschina.net/smallc/SpringBlade)
