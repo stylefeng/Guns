@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-11 08:38:52
+Date: 2017-05-11 08:57:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,7 +99,7 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
@@ -111,6 +111,9 @@ INSERT INTO `_login_log` VALUES ('105', '退出日志', '1', '2017-05-11 08:37:4
 INSERT INTO `_login_log` VALUES ('106', '登录日志', '1', '2017-05-11 08:37:56', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('107', '退出日志', '1', '2017-05-11 08:38:39', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('108', '登录日志', '1', '2017-05-11 08:38:45', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('109', '退出日志', '1', '2017-05-11 08:49:06', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('110', '登录失败日志', null, '2017-05-11 08:49:16', '成功', '账号:admin,验证码错误', '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('111', '登录日志', '1', '2017-05-11 08:49:24', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -188,7 +191,7 @@ CREATE TABLE `_notice` (
 -- Records of _notice
 -- ----------------------------
 INSERT INTO `_notice` VALUES ('6', '你好', '10', '欢迎使用Guns管理系统!', '2017-01-11 08:53:20', '1');
-INSERT INTO `_notice` VALUES ('8', '你好2', null, '欢迎使用Guns管护系统', '2017-05-10 19:28:57', '1');
+INSERT INTO `_notice` VALUES ('8', '你好世界', null, '欢迎使用Guns管理系统! ', '2017-05-10 19:28:57', '1');
 
 -- ----------------------------
 -- Table structure for _operation_log
