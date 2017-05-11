@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 数据库
+Source Server         : 本地的
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : guns
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-10 22:48:15
+Date: 2017-05-11 08:38:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,7 +99,7 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
@@ -107,6 +107,10 @@ CREATE TABLE `_login_log` (
 INSERT INTO `_login_log` VALUES ('102', '登录日志', '1', '2017-05-10 21:31:48', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('103', '退出日志', '1', '2017-05-10 22:41:37', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('104', '登录日志', '1', '2017-05-10 22:42:32', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('105', '退出日志', '1', '2017-05-11 08:37:46', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('106', '登录日志', '1', '2017-05-11 08:37:56', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('107', '退出日志', '1', '2017-05-11 08:38:39', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('108', '登录日志', '1', '2017-05-11 08:38:45', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -352,8 +356,4 @@ CREATE TABLE `_user` (
 -- ----------------------------
 -- Records of _user
 -- ----------------------------
-INSERT INTO `_user` VALUES ('1', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '3', '2016-01-29 08:49:53', '25');
-INSERT INTO `_user` VALUES ('40', 'test1', 'ec813b86e5e47ecbb61d2902dbb956b5', '74jpt', 'test1', '2017-04-21 00:00:00', '2', 'sn93@qq.com', '11122233344', null, '14', '5', '2017-04-18 12:30:08', null);
-INSERT INTO `_user` VALUES ('41', 'test', 'd716ce8bc61e286598f110441c6486f3', 'hb04u', 'testtest', '2017-04-29 00:00:00', '1', 'sn93@qq.com', '18201309300', null, '2', '5', '2017-04-18 12:36:57', null);
-INSERT INTO `_user` VALUES ('42', 'test', '769021b0bfc90c120d96aa45159d4f45', 'syw87', 'test', '2017-05-02 00:00:00', '1', '', '', '3', '26', '5', '2017-05-04 12:47:21', null);
-INSERT INTO `_user` VALUES ('43', 'test', 'bb352046708a83df21ee45d2ccfd0edb', '92azk', 'feng', '2017-05-13 00:00:00', '1', 'abc@123.com', '12312312312', null, '25', '5', '2017-05-05 22:48:44', null);
+INSERT INTO `_user` VALUES ('1', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '1', '2016-01-29 08:49:53', '25');
