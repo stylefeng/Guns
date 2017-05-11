@@ -16,7 +16,7 @@ LoginLog.initColumn = function () {
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '日志名称', field: 'logname', align: 'center', valign: 'middle'},
-        {title: '用户id', field: 'userid', align: 'center', valign: 'middle'},
+        {title: '用户名称', field: 'userName', align: 'center', valign: 'middle'},
         {title: '时间', field: 'createtime', align: 'center', valign: 'middle'},
         {title: '具体消息', field: 'message', align: 'center', valign: 'middle'},
         {title: 'ip', field: 'ip', align: 'center', valign: 'middle'}];

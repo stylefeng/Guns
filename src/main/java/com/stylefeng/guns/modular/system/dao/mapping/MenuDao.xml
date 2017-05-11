@@ -153,7 +153,7 @@
 		</foreach>
 		))
 		) m3 ON m1.id = m3.id
-		order by id asc
+		order by levels,num asc
 	</select>
 
 

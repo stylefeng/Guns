@@ -1,7 +1,5 @@
 package com.stylefeng.guns.common.node;
 
-import com.stylefeng.guns.core.util.ToolUtil;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -250,14 +248,15 @@ public class MenuNode implements Comparable {
     }
 
     /**
-     * 清除不包含子节点的节点
+     * 清除所有二级菜单
      *
      * @date 2017年2月19日 下午11:18:19
      */
-    public static List<MenuNode> clearNoChild(List<MenuNode> nodes) {
+    public static List<MenuNode> clearLevelTwo(List<MenuNode> nodes) {
         ArrayList<MenuNode> results = new ArrayList<MenuNode>();
         for (MenuNode node : nodes) {
-            if (ToolUtil.isNotEmpty(node.getChildren())) {
+            Integer levels = node.getLevels();
+            if (levels.equals(1)) {
                 results.add(node);
             }
         }
@@ -272,7 +271,7 @@ public class MenuNode implements Comparable {
     public static List<MenuNode> buildTitle(List<MenuNode> nodes) {
         List<MenuNode> clearBtn = clearBtn(nodes);
         new MenuNode().buildNodeTree(clearBtn);
-        List<MenuNode> menuNodes = clearNoChild(clearBtn);
+        List<MenuNode> menuNodes = clearLevelTwo(clearBtn);
 
         //对菜单排序
         Collections.sort(menuNodes);

@@ -20,7 +20,7 @@
 		select
 		<include refid="Base_Column_List" />
 		from _user
-		where status != 5
+		where status != 3
 		<if test="name != null and name != ''">
 			and (phone like CONCAT('%',#{name},'%')
 			or account like CONCAT('%',#{name},'%')
@@ -49,7 +49,7 @@
 	<select id="getByAccount" resultType="user">
 		select
 		<include refid="Base_Column_List_With_Pwd" />
-		from _user where account = #{account} and status != 5
+		from _user where account = #{account} and status != 3
 	</select>
 
 </mapper>

@@ -40,7 +40,7 @@ public class NoticeController extends BaseController {
     private NoticeDao noticeDao;
 
     /**
-     * 跳转到通知首页
+     * 跳转到通知列表首页
      */
     @RequestMapping("")
     public String index() {
@@ -63,6 +63,16 @@ public class NoticeController extends BaseController {
         Notice notice = this.noticeMapper.selectById(noticeId);
         model.addAttribute("notice",notice);
         return PREFIX + "notice_edit.html";
+    }
+
+    /**
+     * 跳转到首页通知
+     */
+    @RequestMapping("/hello")
+    public String hello() {
+        List<Map<String, Object>> notices = noticeDao.list(null);
+        super.setAttr("noticeList",notices);
+        return "blackboard.html";
     }
 
     /**
