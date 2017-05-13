@@ -203,7 +203,8 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 ```
 以上beetl的用法请参考beetl说明文档。
 
-
+##对js常用代码的封装
+在webapp/static/js/common目录中，有对常用js代码的封装，例如Feng.js,其中Feng.info(),Feng.success(),Feng.error()三个方法，分别封装了普通提示，成功提示，错误提示的代码，简化了layer提示层插件的使用。
 
 
 ##效果图
