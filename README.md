@@ -206,6 +206,8 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 ##对js常用代码的封装
 在webapp/static/js/common目录中，有对常用js代码的封装，例如Feng.js,其中Feng.info(),Feng.success(),Feng.error()三个方法，分别封装了普通提示，成功提示，错误提示的代码，简化了layer提示层插件的使用。
 
+##controller层，map+warpper返回方式介绍
+map+warpper方式即为把controller层的返回结果使用BeanKit工具类把原有bean转化为Map的的形式(或者原有bean直接是map的形式)，再用单独写的一个包装类再包装一次这个map，使里面的参数更加具体，更加有含义，下面举一个例子，例如，在返回给前台一个性别时，数据库查出来1是男2是女，假如直接返回给前台，那么前台显示的时候还需要增加一次判断，并且前后端分离开发时又增加了一次交流和文档的成本，但是采用warpper包装的形式，可以直接把返回结果包装一下，例如动态增加一个字段sexName直接返回给前台性别的中文名称即可。
 
 ##效果图
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160059_b7a5d4d5_551203.jpeg "在这里输入图片标题")
