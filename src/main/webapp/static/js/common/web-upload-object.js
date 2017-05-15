@@ -13,7 +13,7 @@
 		this.pictureId = pictureId;
 		this.uploadBtnId = pictureId + "BtnId";
 		this.uploadPreId = pictureId + "PreId";
-		this.uploadUrl = Feng.ctxPath + '/user/upload';
+		this.uploadUrl = Feng.ctxPath + '/mgr/upload';
 		this.fileSizeLimit = 10 * 1024 * 1024;
 		this.picWidth = 800;
 		this.picHeight = 800;
