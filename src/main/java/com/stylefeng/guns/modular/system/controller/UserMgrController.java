@@ -10,6 +10,7 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.core.db.Db;
+import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
@@ -34,6 +35,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 系统管理员控制器
@@ -111,6 +113,7 @@ public class UserMgrController extends BaseController {
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+        LogObjectHolder.me().set(user);
         return PREFIX + "user_view.html";
     }
 
@@ -300,16 +303,17 @@ public class UserMgrController extends BaseController {
     }
 
     /**
-     * 上传图片
-     * @return
+     * 上传图片(上传到项目的webapp/static/img)
      */
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
     public @ResponseBody String upload(@RequestPart("file") MultipartFile picture){
+        String pictureName = UUID.randomUUID().toString() + ".jpg";
         try {
-            picture.transferTo(new File("e:/tmp/" + picture.getOriginalFilename()));
+            String fileSavePath = ConfigListener.getConf().get("realPath") + "static\\img\\";
+            picture.transferTo(new File(fileSavePath + pictureName));
         } catch (Exception e) {
             throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
         }
-        return "succesPic";
+        return pictureName;
     }
 }
