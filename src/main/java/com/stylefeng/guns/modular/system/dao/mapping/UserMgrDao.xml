@@ -3,14 +3,14 @@
 <mapper namespace="com.stylefeng.guns.modular.system.dao.UserMgrDao">
 
 	<sql id="Base_Column_List">
-		id, account, name, birthday, sex, email,avatar,
+		id, account, name, birthday, sex, email, avatar,
 		phone, roleid,
 		deptid, status,
 		createtime, version
 	</sql>
 	
 	<sql id="Base_Column_List_With_Pwd">
-		id, account, name, birthday,password, sex, email,avatar,
+		id, account, name, birthday,password, sex, email, avatar,
 		phone, roleid,salt,
 		deptid, status,
 		createtime, version

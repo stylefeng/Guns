@@ -38,7 +38,9 @@ public class ShiroFactroy implements IShiro {
 
     @Override
     public User user(String account) {
+
         User user = userMgrDao.getByAccount(account);
+
         // 账号不存在
         if (null == user) {
             throw new CredentialsException();
