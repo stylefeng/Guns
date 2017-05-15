@@ -42,8 +42,9 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     // 通过重载这个方法可以对DispatcherServlt进行额外的配置
     @Override
     protected void customizeRegistration(Dynamic registration) {
-        // 上传文件路径的配置
-        registration.setMultipartConfig(new MultipartConfigElement("e:/tmp"));
+        // 上传文件临时路径的配置
+        String folder = System.getProperty("java.io.tmpdir");
+        registration.setMultipartConfig(new MultipartConfigElement(folder));
     }
 
     // 这里注册的Filter只能过滤DispatherServlet
