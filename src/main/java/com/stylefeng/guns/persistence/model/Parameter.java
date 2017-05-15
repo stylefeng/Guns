@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-09
+ * @since 2017-05-15
  */
 @TableName("_parameter")
 public class Parameter extends Model<Parameter> {

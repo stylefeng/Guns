@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地的
+Source Server         : 数据库
 Source Server Version : 50621
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : guns
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-11 08:57:30
+Date: 2017-05-15 20:54:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -99,7 +99,7 @@ CREATE TABLE `_login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _login_log
@@ -107,13 +107,10 @@ CREATE TABLE `_login_log` (
 INSERT INTO `_login_log` VALUES ('102', '登录日志', '1', '2017-05-10 21:31:48', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('103', '退出日志', '1', '2017-05-10 22:41:37', '成功', null, '127.0.0.1');
 INSERT INTO `_login_log` VALUES ('104', '登录日志', '1', '2017-05-10 22:42:32', '成功', null, '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('105', '退出日志', '1', '2017-05-11 08:37:46', '成功', null, '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('106', '登录日志', '1', '2017-05-11 08:37:56', '成功', null, '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('107', '退出日志', '1', '2017-05-11 08:38:39', '成功', null, '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('108', '登录日志', '1', '2017-05-11 08:38:45', '成功', null, '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('109', '退出日志', '1', '2017-05-11 08:49:06', '成功', null, '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('110', '登录失败日志', null, '2017-05-11 08:49:16', '成功', '账号:admin,验证码错误', '127.0.0.1');
-INSERT INTO `_login_log` VALUES ('111', '登录日志', '1', '2017-05-11 08:49:24', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('105', '退出日志', '1', '2017-05-10 23:20:02', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('106', '登录失败日志', null, '2017-05-10 23:20:09', '成功', '账号:admin,账号密码错误', '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('107', '登录日志', '1', '2017-05-10 23:20:22', '成功', null, '127.0.0.1');
+INSERT INTO `_login_log` VALUES ('108', '登录日志', '1', '2017-05-15 20:21:31', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for _menu
@@ -191,7 +188,7 @@ CREATE TABLE `_notice` (
 -- Records of _notice
 -- ----------------------------
 INSERT INTO `_notice` VALUES ('6', '你好', '10', '欢迎使用Guns管理系统!', '2017-01-11 08:53:20', '1');
-INSERT INTO `_notice` VALUES ('8', '你好世界', null, '欢迎使用Guns管理系统! ', '2017-05-10 19:28:57', '1');
+INSERT INTO `_notice` VALUES ('8', '你好2', null, '欢迎使用Guns管护系统', '2017-05-10 19:28:57', '1');
 
 -- ----------------------------
 -- Table structure for _operation_log
@@ -208,7 +205,7 @@ CREATE TABLE `_operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=376 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of _operation_log
@@ -225,6 +222,9 @@ INSERT INTO `_operation_log` VALUES ('369', '业务日志', '删除管理员', '
 INSERT INTO `_operation_log` VALUES ('370', '业务日志', '修改字典', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'update', '2017-05-10 22:42:59', '成功', '字典名称=性别;;;');
 INSERT INTO `_operation_log` VALUES ('371', '业务日志', '修改字典', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'update', '2017-05-10 22:44:12', '成功', '字典名称=账号状态;;;');
 INSERT INTO `_operation_log` VALUES ('372', '业务日志', '删除管理员', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'delete', '2017-05-10 22:45:27', '成功', '用户id:1');
+INSERT INTO `_operation_log` VALUES ('373', '业务日志', '冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'freeze', '2017-05-10 22:49:44', '成功', '用户id:1');
+INSERT INTO `_operation_log` VALUES ('374', '业务日志', '解除冻结用户', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'unfreeze', '2017-05-10 22:49:45', '成功', '用户id:1');
+INSERT INTO `_operation_log` VALUES ('375', '业务日志', '删除管理员', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'delete', '2017-05-10 22:49:47', '成功', '用户id:1');
 
 -- ----------------------------
 -- Table structure for _parameter
@@ -340,6 +340,7 @@ INSERT INTO `_role_ext` VALUES ('27', '66', '1,44,49', '45');
 DROP TABLE IF EXISTS `_user`;
 CREATE TABLE `_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `avatar` varchar(255) DEFAULT NULL,
   `account` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `salt` varchar(45) DEFAULT NULL,
@@ -359,4 +360,4 @@ CREATE TABLE `_user` (
 -- ----------------------------
 -- Records of _user
 -- ----------------------------
-INSERT INTO `_user` VALUES ('1', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '1', '2016-01-29 08:49:53', '25');
+INSERT INTO `_user` VALUES ('1', 'boy.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '1', 'sn93@qq.com', '18200000000', '1', '24', '1', '2016-01-29 08:49:53', '25');

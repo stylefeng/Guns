@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-09
+ * @since 2017-05-15
  */
 public interface ParameterMapper extends BaseMapper<Parameter> {
 

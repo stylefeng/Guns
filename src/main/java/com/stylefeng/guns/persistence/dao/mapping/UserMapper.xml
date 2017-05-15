@@ -5,6 +5,7 @@
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.stylefeng.guns.persistence.model.User">
 		<id column="id" property="id" />
+		<result column="avatar" property="avatar" />
 		<result column="account" property="account" />
 		<result column="password" property="password" />
 		<result column="salt" property="salt" />
