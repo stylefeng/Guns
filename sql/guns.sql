@@ -188,7 +188,7 @@ CREATE TABLE `_notice` (
 -- Records of _notice
 -- ----------------------------
 INSERT INTO `_notice` VALUES ('6', '你好', '10', '欢迎使用Guns管理系统!', '2017-01-11 08:53:20', '1');
-INSERT INTO `_notice` VALUES ('8', '你好2', null, '欢迎使用Guns管护系统', '2017-05-10 19:28:57', '1');
+INSERT INTO `_notice` VALUES ('8', '世界', null, '欢迎使用Guns管护系统!', '2017-05-10 19:28:57', '1');
 
 -- ----------------------------
 -- Table structure for _operation_log
