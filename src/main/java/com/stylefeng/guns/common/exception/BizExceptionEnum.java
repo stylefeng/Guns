@@ -20,6 +20,7 @@ public enum BizExceptionEnum {
 	 */
 	FILE_READING_ERROR(400,"FILE_READING_ERROR!"),
 	FILE_NOT_FOUND(400,"FILE_NOT_FOUND!"),
+	UPLOAD_ERROR(500,"上传图片出错"),
 
 	/**
 	 * 权限和数据问题

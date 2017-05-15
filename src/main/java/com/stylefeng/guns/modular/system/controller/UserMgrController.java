@@ -24,14 +24,13 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.naming.NoPermissionException;
 import javax.validation.Valid;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -298,5 +297,19 @@ public class UserMgrController extends BaseController {
         }
         this.managerDao.setRoles(userId, roleIds);
         return SUCCESS_TIP;
+    }
+
+    /**
+     * 上传图片
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, path = "/upload")
+    public @ResponseBody String upload(@RequestPart("file") MultipartFile picture){
+        try {
+            picture.transferTo(new File("e:/tmp/" + picture.getOriginalFilename()));
+        } catch (Exception e) {
+            throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+        }
+        return "succesPic";
     }
 }
