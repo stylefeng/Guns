@@ -56,19 +56,19 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
-//		 Apache Shiro
+        //Apache Shiro
         FilterRegistration.Dynamic shiroFilter = servletContext.addFilter("shiroFilter", new DelegatingFilterProxy());
         shiroFilter.setInitParameter("targetFilterLifecycle", "true");
         shiroFilter.addMappingForUrlPatterns(null, false, "/*");
 
-        // Encoding Filter
+        //Encoding Filter
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter",
                 new CharacterEncodingFilter());
         encodingFilter.setInitParameter("encoding", "UTF-8");
         encodingFilter.setInitParameter("forceEncoding", "true");
         encodingFilter.addMappingForUrlPatterns(null, false, "/*");
 
-        // 用来非Controller层获取HttpServletRequest
+        //用来非Controller层获取HttpServletRequest
         servletContext.addListener(RequestContextListener.class);
         servletContext.addListener(ConfigListener.class);
 
