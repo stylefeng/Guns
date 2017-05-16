@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.Dict;
 import com.stylefeng.guns.common.constant.cache.Cache;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.tips.Tip;
@@ -117,7 +118,7 @@ public class RoleController extends BaseController {
      * 角色新增
      */
     @RequestMapping(value = "/add")
-    @BussinessLog(value = "添加角色", key = "name", dict = "RoleDict")
+    @BussinessLog(value = "添加角色", key = "name", dict = Dict.RoleDict)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip add(@Valid Role role, BindingResult result) {
@@ -133,7 +134,7 @@ public class RoleController extends BaseController {
      * 角色修改
      */
     @RequestMapping(value = "/edit")
-    @BussinessLog(value = "修改角色", key = "name", dict = "RoleDict")
+    @BussinessLog(value = "修改角色", key = "name", dict = Dict.RoleDict)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip edit(@Valid Role role, BindingResult result) {
@@ -151,13 +152,17 @@ public class RoleController extends BaseController {
      * 删除角色
      */
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除角色", key = "roleId", dict = "RoleDict")
+    @BussinessLog(value = "删除角色", key = "roleId", dict = Dict.DeleteDict)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip remove(@RequestParam Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        //缓存被删除的角色名称
+        LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
+
         this.roleService.delRoleById(roleId);
 
         //删除缓存
@@ -182,7 +187,7 @@ public class RoleController extends BaseController {
      * 配置权限
      */
     @RequestMapping("/setAuthority")
-    @BussinessLog(value = "配置权限", key = "roleId", dict = "RoleDict")
+    @BussinessLog(value = "配置权限", key = "roleId,ids", dict = Dict.RoleDict)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {

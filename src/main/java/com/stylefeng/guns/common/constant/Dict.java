@@ -13,4 +13,14 @@ public interface Dict {
      */
     String UserDict = "UserDict";
 
+    /**
+     * 角色管理员字典
+     */
+    String RoleDict = "RoleDict";
+
+    /**
+     * 删除业务的字典
+     */
+    String DeleteDict = "DeleteDict";
+
 }

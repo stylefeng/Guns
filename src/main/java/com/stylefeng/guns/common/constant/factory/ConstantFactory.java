@@ -6,18 +6,13 @@ import com.stylefeng.guns.common.constant.cache.CacheKey;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.constant.state.Sex;
+import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.support.StrKit;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.persistence.dao.DeptMapper;
-import com.stylefeng.guns.persistence.dao.DictMapper;
-import com.stylefeng.guns.persistence.dao.RoleMapper;
-import com.stylefeng.guns.persistence.dao.UserMapper;
-import com.stylefeng.guns.persistence.model.Dept;
-import com.stylefeng.guns.persistence.model.Dict;
-import com.stylefeng.guns.persistence.model.Role;
-import com.stylefeng.guns.persistence.model.User;
+import com.stylefeng.guns.persistence.dao.*;
+import com.stylefeng.guns.persistence.model.*;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -38,6 +33,7 @@ public class ConstantFactory {
     private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
     private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
     private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
+    private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
 
     public static ConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
@@ -49,11 +45,11 @@ public class ConstantFactory {
      * @author stylefeng
      * @Date 2017/5/9 23:41
      */
-    public String getUserNameById(Integer userId){
+    public String getUserNameById(Integer userId) {
         User user = userMapper.selectById(userId);
-        if(user != null){
+        if (user != null) {
             return user.getName();
-        }else{
+        } else {
             return "--";
         }
     }
@@ -64,11 +60,11 @@ public class ConstantFactory {
      * @author stylefeng
      * @date 2017年5月16日21:55:371
      */
-    public String getUserAccountById(Integer userId){
+    public String getUserAccountById(Integer userId) {
         User user = userMapper.selectById(userId);
-        if(user != null){
+        if (user != null) {
             return user.getAccount();
-        }else{
+        } else {
             return "--";
         }
     }
@@ -132,6 +128,21 @@ public class ConstantFactory {
     }
 
     /**
+     * 获取菜单的名称们(多个)
+     */
+    public String getMenuNames(String menuIds) {
+        Integer[] menus = Convert.toIntArray(menuIds);
+        StringBuilder sb = new StringBuilder();
+        for (int menu : menus) {
+            Menu menuObj = menuMapper.selectById(menu);
+            if (ToolUtil.isNotEmpty(menuObj) && ToolUtil.isNotEmpty(menuObj.getName())) {
+                sb.append(menuObj.getName()).append(",");
+            }
+        }
+        return StrKit.removeSuffix(sb.toString(), ",");
+    }
+
+    /**
      * 获取性别名称
      */
     public String getSexName(Integer sex) {
@@ -155,18 +166,25 @@ public class ConstantFactory {
     /**
      * 查询字典
      */
-    public List<Dict> findInDict(Integer id){
-        if(ToolUtil.isEmpty(id)){
+    public List<Dict> findInDict(Integer id) {
+        if (ToolUtil.isEmpty(id)) {
             return null;
-        }else{
+        } else {
             EntityWrapper<Dict> wrapper = new EntityWrapper<>();
             List<Dict> dicts = dictMapper.selectList(wrapper.eq("pid", id));
-            if(dicts == null || dicts.size() ==  0){
+            if (dicts == null || dicts.size() == 0) {
                 return null;
-            }else{
+            } else {
                 return dicts;
             }
         }
+    }
+
+    /**
+     * 获取被缓存的对象(用户删除业务)
+     */
+    public String getCacheObject(String para) {
+        return LogObjectHolder.me().get().toString();
     }
 
 }
