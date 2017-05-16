@@ -23,4 +23,9 @@ public interface Dict {
      */
     String DeleteDict = "DeleteDict";
 
+    /**
+     * 部门管理业务的字典
+     */
+    String DeptDict = "DeptDict";
+
 }

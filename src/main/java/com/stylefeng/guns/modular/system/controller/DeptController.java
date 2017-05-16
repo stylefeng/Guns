@@ -3,6 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.Dict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
@@ -85,7 +86,7 @@ public class DeptController extends BaseController {
     /**
      * 新增部门
      */
-    @BussinessLog(value = "添加部门", key = "simplename", dict = "DeptDict")
+    @BussinessLog(value = "添加部门", key = "simplename", dict = Dict.DeptDict)
     @RequestMapping(value = "/add")
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
@@ -118,7 +119,7 @@ public class DeptController extends BaseController {
     /**
      * 修改部门
      */
-    @BussinessLog(value = "修改部门", key = "simplename", dict = "DeptDict")
+    @BussinessLog(value = "修改部门", key = "simplename", dict = Dict.DeptDict)
     @RequestMapping(value = "/update")
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
@@ -133,12 +134,17 @@ public class DeptController extends BaseController {
     /**
      * 删除部门
      */
-    @BussinessLog(value = "删除部门", key = "deptId", dict = "DeptDict")
+    @BussinessLog(value = "删除部门", key = "deptId", dict = Dict.DeleteDict)
     @RequestMapping(value = "/delete")
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
     public Object delete(@RequestParam Integer deptId) {
+
+        //缓存被删除的部门名称
+        LogObjectHolder.me().set(ConstantFactory.me().getDeptName(deptId));
+
         deptMapper.deleteById(deptId);
+
         return SUCCESS_TIP;
     }
 }

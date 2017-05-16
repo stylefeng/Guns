@@ -13,10 +13,13 @@ public class DeleteDict extends AbstractDictMap {
     @Override
     public void init() {
         put("roleId","角色名称");
+        put("deptId", "部门名称");
     }
 
     @Override
     protected void initBeWrapped() {
         putFieldWrapperMethodName("roleId","getCacheObject");
+        putFieldWrapperMethodName("deptId","getCacheObject");
+
     }
 }
