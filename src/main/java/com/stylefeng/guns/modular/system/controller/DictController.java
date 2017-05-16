@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
@@ -80,7 +81,7 @@ public class DictController extends BaseController {
      *
      * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
-    @BussinessLog(value = "添加字典记录", key = "dictName", dict = "DictMap")
+    @BussinessLog(value = "添加字典记录", key = "dictName,dictValues", dict = com.stylefeng.guns.common.constant.Dict.DictMap)
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -114,7 +115,7 @@ public class DictController extends BaseController {
     /**
      * 修改字典
      */
-    @BussinessLog(value = "修改字典", key = "dictName", dict = "DictMap")
+    @BussinessLog(value = "修改字典", key = "dictName,dictValues", dict = com.stylefeng.guns.common.constant.Dict.DictMap)
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -129,11 +130,15 @@ public class DictController extends BaseController {
     /**
      * 删除字典记录
      */
-    @BussinessLog(value = "删除字典记录", key = "dictId", dict = "DictMap")
+    @BussinessLog(value = "删除字典记录", key = "dictId", dict = com.stylefeng.guns.common.constant.Dict.DeleteDict)
     @RequestMapping(value = "/delete")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object delete(@RequestParam Integer dictId) {
+
+        //缓存被删除的名称
+        LogObjectHolder.me().set(ConstantFactory.me().getDictName(dictId));
+
         this.dictService.delteDict(dictId);
         return SUCCESS_TIP;
     }

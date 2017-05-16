@@ -33,5 +33,9 @@ public interface Dict {
      */
     String MenuDict = "MenuDict";
 
+    /**
+     * 字典管理业务的字典
+     */
+    String DictMap = "DictMap";
 
 }

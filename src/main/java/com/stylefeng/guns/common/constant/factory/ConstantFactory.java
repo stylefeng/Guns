@@ -159,6 +159,22 @@ public class ConstantFactory {
     }
 
     /**
+     * 获取字典名称
+     */
+    public String getDictName(Integer dictId){
+        if (ToolUtil.isEmpty(dictId)) {
+            return "";
+        } else {
+            Dict dict = dictMapper.selectById(dictId);
+            if (dict == null) {
+                return "";
+            } else {
+                return dict.getName();
+            }
+        }
+    }
+
+    /**
      * 获取性别名称
      */
     public String getSexName(Integer sex) {
