@@ -16,7 +16,7 @@ public class DeleteDict extends AbstractDictMap {
         put("deptId", "部门名称");
         put("menuId", "菜单名称");
         put("dictId", "字典名称");
-        put("noticeId", "通知名称");
+        put("noticeId", "标题");
     }
 
     @Override
