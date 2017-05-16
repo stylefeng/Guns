@@ -10,7 +10,6 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.Contrast;
-import com.stylefeng.guns.core.util.ToolUtil;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -55,6 +54,7 @@ public class LogAop {
     }
 
     private void handle(ProceedingJoinPoint point) throws Exception {
+
         //获取拦截的方法名
         Signature sig = point.getSignature();
         MethodSignature msig = null;
@@ -96,13 +96,8 @@ public class LogAop {
             msg = Contrast.contrastObj(dictClass, key, obj1, obj2);
         } else {
             Map<String, String> parameters = HttpKit.getRequestParameters();
-            String value = parameters.get(key);
-            if (ToolUtil.isNotEmpty(value)) {
-                AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
-                msg = dictMap.get(key) + ":" + value;
-            } else {
-                msg = "无";
-            }
+            AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
+            msg = Contrast.parseMutiKey(dictMap,key,parameters);
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));

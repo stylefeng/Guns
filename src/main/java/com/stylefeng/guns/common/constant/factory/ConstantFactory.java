@@ -59,6 +59,21 @@ public class ConstantFactory {
     }
 
     /**
+     * 根据用户id获取用户账号
+     *
+     * @author stylefeng
+     * @date 2017年5月16日21:55:371
+     */
+    public String getUserAccountById(Integer userId){
+        User user = userMapper.selectById(userId);
+        if(user != null){
+            return user.getAccount();
+        }else{
+            return "--";
+        }
+    }
+
+    /**
      * 通过角色ids获取角色名称
      */
     @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.ROLES_NAME + "'+#roleIds")

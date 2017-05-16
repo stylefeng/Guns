@@ -70,8 +70,7 @@ public class Contrast {
      */
     public static String contrastObj(String dictClass, String key, Object pojo1, Map<String, String> pojo2) {
         AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
-        String value = pojo2.get(key);
-        String str = dictMap.get(key) + "=" + value + separator;
+        String str = parseMutiKey(dictMap, key, pojo2) + separator;
         try {
             Class clazz = pojo1.getClass();
             Field[] fields = pojo1.getClass().getDeclaredFields();
@@ -112,6 +111,40 @@ public class Contrast {
             e.printStackTrace();
         }
         return str;
+    }
+
+    /**
+     * 解析多个key(逗号隔开的)
+     *
+     * @author stylefeng
+     * @Date 2017/5/16 22:19
+     */
+    public static String parseMutiKey(AbstractDictMap dictMap, String key, Map<String, String> requests) {
+        StringBuilder sb = new StringBuilder();
+        if (key.indexOf(",") != -1) {
+            String[] keys = key.split(",");
+            for (String item : keys) {
+                String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(item);
+                String value = requests.get(item);
+                if (fieldWarpperMethodName != null) {
+                    Object valueWarpper = DictFieldWarpperFactory.createFieldWarpper(value, fieldWarpperMethodName);
+                    sb.append(dictMap.get(item) + "=" + valueWarpper + ",");
+                } else {
+                    sb.append(dictMap.get(item) + "=" + value + ",");
+                }
+            }
+            return StrKit.removeSuffix(sb.toString(), ",");
+        } else {
+            String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(key);
+            String value = requests.get(key);
+            if (fieldWarpperMethodName != null) {
+                Object valueWarpper = DictFieldWarpperFactory.createFieldWarpper(value, fieldWarpperMethodName);
+                sb.append(dictMap.get(key) + "=" + valueWarpper);
+            } else {
+                sb.append(dictMap.get(key) + "=" + value);
+            }
+            return sb.toString();
+        }
     }
 
 }

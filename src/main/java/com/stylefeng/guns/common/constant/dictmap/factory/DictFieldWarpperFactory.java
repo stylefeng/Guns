@@ -21,7 +21,13 @@ public class DictFieldWarpperFactory {
             Object result = method.invoke(me, field);
             return result;
         } catch (Exception e) {
-            throw new BussinessException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+            try {
+                Method method = ConstantFactory.class.getMethod(methodName, Integer.class);
+                Object result = method.invoke(me, Integer.parseInt(field.toString()));
+                return result;
+            } catch (Exception e1) {
+                throw new BussinessException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+            }
         }
     }
 
