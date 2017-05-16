@@ -150,8 +150,10 @@ UserInfoDlg.editSubmit = function () {
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
         Feng.success("修改成功!");
-        window.parent.MgrUser.table.refresh();
-        UserInfoDlg.close();
+        if(window.parent.MgrUser != undefined){
+            window.parent.MgrUser.table.refresh();
+            UserInfoDlg.close();
+        }
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
