@@ -3,6 +3,8 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.Dict;
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.constant.tips.Tip;
 import com.stylefeng.guns.common.controller.BaseController;
@@ -86,7 +88,7 @@ public class MenuController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
     @ResponseBody
-    @BussinessLog(value = "修改菜单", dict = "MenuDict")
+    @BussinessLog(value = "修改菜单", key = "name", dict = Dict.MenuDict)
     public Tip edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -110,7 +112,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
-    @BussinessLog(value = "菜单新增", key = "name", dict = "MenuDict")
+    @BussinessLog(value = "菜单新增", key = "name", dict = Dict.MenuDict)
     @ResponseBody
     public Tip add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -126,12 +128,16 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除菜单", key = "menuId", dict = "MenuDict")
+    @BussinessLog(value = "删除菜单", key = "menuId", dict = Dict.DeleteDict)
     @ResponseBody
     public Tip remove(@RequestParam Integer menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        //缓存菜单的名称
+        LogObjectHolder.me().set(ConstantFactory.me().getMenuName(menuId));
+
         this.menuService.delMenu(menuId);
         return SUCCESS_TIP;
     }

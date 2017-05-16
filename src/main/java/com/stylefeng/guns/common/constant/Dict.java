@@ -28,4 +28,10 @@ public interface Dict {
      */
     String DeptDict = "DeptDict";
 
+    /**
+     * 菜单管理业务的字典
+     */
+    String MenuDict = "MenuDict";
+
+
 }

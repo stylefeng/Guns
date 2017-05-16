@@ -143,6 +143,22 @@ public class ConstantFactory {
     }
 
     /**
+     * 获取菜单名称
+     */
+    public String getMenuName(Integer menuId) {
+        if (ToolUtil.isEmpty(menuId)) {
+            return "";
+        } else {
+            Menu menu = menuMapper.selectById(menuId);
+            if (menu == null) {
+                return "";
+            } else {
+                return menu.getName();
+            }
+        }
+    }
+
+    /**
      * 获取性别名称
      */
     public String getSexName(Integer sex) {
