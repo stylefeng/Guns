@@ -1,8 +1,12 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.constant.Dict;
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.NoticeDao;
@@ -10,11 +14,11 @@ import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 import com.stylefeng.guns.persistence.dao.NoticeMapper;
 import com.stylefeng.guns.persistence.model.Notice;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -90,6 +94,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
+    @BussinessLog(value = "新增通知",key = "title",dict = Dict.NoticeMap)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -105,8 +110,14 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
+    @BussinessLog(value = "删除通知",key = "noticeId",dict = Dict.DeleteDict)
     public Object delete(@RequestParam Integer noticeId) {
+
+        //缓存通知名称
+        LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(noticeId));
+
         this.noticeMapper.deleteById(noticeId);
+
         return SUCCESS_TIP;
     }
 
@@ -115,6 +126,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
+    @BussinessLog(value = "修改通知",key = "title",dict = Dict.NoticeMap)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);

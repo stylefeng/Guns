@@ -38,4 +38,9 @@ public interface Dict {
      */
     String DictMap = "DictMap";
 
+    /**
+     * 通知管理业务的字典
+     */
+    String NoticeMap = "NoticeMap";
+
 }

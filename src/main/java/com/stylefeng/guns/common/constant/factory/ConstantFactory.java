@@ -34,6 +34,7 @@ public class ConstantFactory {
     private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
     private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
     private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
+    private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
 
     public static ConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
@@ -170,6 +171,22 @@ public class ConstantFactory {
                 return "";
             } else {
                 return dict.getName();
+            }
+        }
+    }
+
+    /**
+     * 获取通知标题
+     */
+    public String getNoticeTitle(Integer dictId){
+        if (ToolUtil.isEmpty(dictId)) {
+            return "";
+        } else {
+            Notice notice = noticeMapper.selectById(dictId);
+            if (notice == null) {
+                return "";
+            } else {
+                return notice.getTitle();
             }
         }
     }
