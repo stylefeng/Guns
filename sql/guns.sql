@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-16 20:50:10
+Date: 2017-05-16 23:27:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -177,13 +177,13 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=423 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=425 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
-INSERT INTO `operation_log` VALUES ('421', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-05-16 20:48:11', '成功', '无');
-INSERT INTO `operation_log` VALUES ('422', '业务日志', '修改管理员', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'edit', '2017-05-16 20:48:46', '成功', '用户id=1;;;字段名称:null,旧值:94683344-e862-40cd-a2af-83b468a0ed3a.jpg,新值:000be33d-06ae-431d-b8ef-0f39e55743fb.jpg');
+INSERT INTO `operation_log` VALUES ('423', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-05-16 23:26:52', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('424', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-05-16 23:26:56', '成功', '主键id=null');
 
 -- ----------------------------
 -- Table structure for relation
