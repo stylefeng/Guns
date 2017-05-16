@@ -81,9 +81,9 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginVali() {
 
-        String username = super.getPara("username");
-        String password = super.getPara("password");
-        String kaptcha = super.getPara("kaptcha");
+        String username = super.getPara("username").trim();
+        String password = super.getPara("password").trim();
+        String kaptcha = super.getPara("kaptcha").trim();
 
         //验证验证码是否正确
         String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
