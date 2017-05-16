@@ -80,7 +80,7 @@ public class LogController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object delLog() {
-        SqlRunner.db().delete("delete from _operation_log");
+        SqlRunner.db().delete("delete from operation_log");
         return super.SUCCESS_TIP;
     }
 }

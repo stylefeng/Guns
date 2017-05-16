@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
     public ErrorTip notFount(BussinessException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", e.getMessage());
-        log.error("业务异常:",e);
+        log.error("业务异常:", e);
         return new ErrorTip(e.getCode(), e.getMessage());
     }
 
@@ -113,6 +113,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ErrorTip credentials(UndeclaredThrowableException e) {
         getRequest().setAttribute("tip", "权限异常");
+        log.error("权限异常!", e);
         return new ErrorTip(BizExceptionEnum.NO_PERMITION);
     }
 
@@ -127,7 +128,7 @@ public class GlobalExceptionHandler {
     public ErrorTip notFount(RuntimeException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", "服务器未知运行时异常");
-        log.error("运行时异常:",e);
+        log.error("运行时异常:", e);
         return new ErrorTip(BizExceptionEnum.SERVER_ERROR);
     }
 

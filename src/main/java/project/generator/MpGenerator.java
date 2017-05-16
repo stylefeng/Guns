@@ -59,7 +59,7 @@ public class MpGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
+        //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         mpg.setStrategy(strategy);
 

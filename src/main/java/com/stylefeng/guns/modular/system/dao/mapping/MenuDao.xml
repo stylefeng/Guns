@@ -11,7 +11,7 @@
 	<select id="selectMenus" resultType="map">
 		select
 		<include refid="Base_Column_List" />
-		from _menu
+		from menu
 		where status = 1
 		<if test="condition != null and condition != ''">
 			and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
@@ -23,7 +23,7 @@
 
 	<select id="getMenuIdsByRoleId" resultType="int">
 		select menuid from
-		_relation where roleid = #{roleId}
+		relation where roleid = #{roleId}
 	</select>
 
 	<select id="menuTreeList" resultType="com.stylefeng.guns.common.node.ZTreeNode">
@@ -48,8 +48,8 @@
 		END
 		) as open
 		FROM
-		_menu m1
-		LEFT JOIN _menu m2 ON m1.pcode = m2. CODE
+		menu m1
+		LEFT JOIN menu m2 ON m1.pcode = m2. CODE
 		ORDER BY
 		m1.id ASC
 	</select>
@@ -85,15 +85,15 @@
 		END
 		) "checked"
 		FROM
-		_menu m1
+		menu m1
 		LEFT JOIN
-		_menu m2
+		menu m2
 		ON m1.pcode = m2. CODE
 		left join (
 		SELECT
 		ID
 		FROM
-		_menu
+		menu
 		WHERE
 		ID IN
 		<foreach collection="list" index="index" item="i" open="("
@@ -106,13 +106,13 @@
 	</select>
 
 	<delete id="deleteRelationByMenu">
-		delete from _relation where menuid = #{menuId}
+		delete from relation where menuid = #{menuId}
 	</delete>
 
 	<select id="getResUrlsByRoleId" resultType="string">
 		select url from
-		_relation rel
-		inner join _menu m on rel.menuid = m.id
+		relation rel
+		inner join menu m on rel.menuid = m.id
 		where rel.roleid = #{roleId}
 	</select>
 
@@ -133,19 +133,19 @@
 		m1.levels as levels,
 		m1.num as num
 		FROM
-		_menu m1
-		LEFT JOIN _menu m2 ON m1.pcode = m2. CODE
+		menu m1
+		LEFT JOIN menu m2 ON m1.pcode = m2. CODE
 		INNER JOIN (
 		SELECT
 		ID
 		FROM
-		_menu
+		menu
 		WHERE
 		ID IN (
 		SELECT
 		menuid
 		FROM
-		_relation rela
+		relation rela
 		WHERE
 		rela.roleid IN (
 		<foreach collection="list" index="index" item="i" open="(" separator="," close=")">

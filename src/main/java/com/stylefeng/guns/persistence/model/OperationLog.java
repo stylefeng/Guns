@@ -13,9 +13,9 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-15
+ * @since 2017-05-16
  */
-@TableName("_operation_log")
+@TableName("operation_log")
 public class OperationLog extends Model<OperationLog> {
 
     private static final long serialVersionUID = 1L;

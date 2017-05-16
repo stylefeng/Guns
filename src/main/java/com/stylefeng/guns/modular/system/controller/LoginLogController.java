@@ -59,7 +59,7 @@ public class LoginLogController extends BaseController {
     @RequestMapping("/delLoginLog")
     @ResponseBody
     public Object delLog() {
-        SqlRunner.db().delete("delete from _login_log");
+        SqlRunner.db().delete("delete from login_log");
         return super.SUCCESS_TIP;
     }
 }

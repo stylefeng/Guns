@@ -3,7 +3,6 @@ package com.stylefeng.guns.persistence.model;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
 /**
@@ -12,9 +11,8 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-15
+ * @since 2017-05-16
  */
-@TableName("_dict")
 public class Dict extends Model<Dict> {
 
     private static final long serialVersionUID = 1L;

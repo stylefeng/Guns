@@ -1,11 +1,12 @@
 package com.stylefeng.guns.persistence.model;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -13,9 +14,9 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-15
+ * @since 2017-05-16
  */
-@TableName("_login_log")
+@TableName("login_log")
 public class LoginLog extends Model<LoginLog> {
 
     private static final long serialVersionUID = 1L;
