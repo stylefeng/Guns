@@ -42,6 +42,19 @@ public class LogAop {
     @Around("cutService()")
     public Object recordSysLog(ProceedingJoinPoint point) throws Throwable {
 
+        //先执行业务
+        Object result = point.proceed();
+
+        try {
+            handle(point);
+        } catch (Exception e) {
+            log.error("日志记录出错!", e);
+        }
+
+        return result;
+    }
+
+    private void handle(ProceedingJoinPoint point) throws Exception {
         //获取拦截的方法名
         Signature sig = point.getSignature();
         MethodSignature msig = null;
@@ -56,7 +69,7 @@ public class LogAop {
         //如果当前用户未登录，不做日志
         ShiroUser user = ShiroKit.getUser();
         if (null == user) {
-            return point.proceed();
+            return;
         }
 
         //获取拦截方法的参数
@@ -84,15 +97,14 @@ public class LogAop {
         } else {
             Map<String, String> parameters = HttpKit.getRequestParameters();
             String value = parameters.get(key);
-            if(ToolUtil.isNotEmpty(value)){
+            if (ToolUtil.isNotEmpty(value)) {
                 AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
                 msg = dictMap.get(key) + ":" + value;
-            }else{
+            } else {
                 msg = "无";
             }
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));
-        return point.proceed();
     }
 }
