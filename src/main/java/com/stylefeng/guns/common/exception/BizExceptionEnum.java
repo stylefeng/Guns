@@ -43,7 +43,7 @@ public enum BizExceptionEnum {
 	/**
 	 * 错误的请求
 	 */
-	REQUEST_NULL(400, "请求为空"),
+	REQUEST_NULL(400, "请求有错误"),
 	SERVER_ERROR(500, "服务器异常");
 
 	BizExceptionEnum(int code, String message) {
