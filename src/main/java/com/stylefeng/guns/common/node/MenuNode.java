@@ -185,7 +185,7 @@ public class MenuNode implements Comparable {
         for (Iterator<MenuNode> iterator = nodeList.iterator(); iterator.hasNext(); ) {
             MenuNode node = (MenuNode) iterator.next();
             // 根据传入的某个父节点ID,遍历该父节点的所有子节点
-            if (node.getParentId() != 0 && parentId == node.getParentId()) {
+            if (node.getParentId() != 0 && parentId.equals(node.getParentId())) {
                 recursionFn(nodeList, node, parentId);
             }
         }
@@ -200,7 +200,7 @@ public class MenuNode implements Comparable {
     public void recursionFn(List<MenuNode> nodeList, MenuNode node, Integer pId) {
         List<MenuNode> childList = getChildList(nodeList, node);// 得到子节点列表
         if (childList.size() > 0) {// 判断是否有子节点
-            if (node.getParentId() == pId) {
+            if (node.getParentId().equals(pId)) {
                 linkedList.add(node);
             }
             Iterator<MenuNode> it = childList.iterator();
@@ -209,7 +209,7 @@ public class MenuNode implements Comparable {
                 recursionFn(nodeList, n, pId);
             }
         } else {
-            if (node.getParentId() == pId) {
+            if (node.getParentId().equals(pId)) {
                 linkedList.add(node);
             }
         }
@@ -225,7 +225,7 @@ public class MenuNode implements Comparable {
         Iterator<MenuNode> it = list.iterator();
         while (it.hasNext()) {
             MenuNode n = (MenuNode) it.next();
-            if (n.getParentId() == node.getId()) {
+            if (n.getParentId().equals(node.getId())) {
                 nodeList.add(n);
             }
         }
