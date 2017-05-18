@@ -1,4 +1,4 @@
-#Guns
+#Guns V1.0
 不用写xml配置！独特的日志记录方式！包含用户角色，权限等模块的后台管理系统！整合springmvc + mybatis-plus + beetl！
 
 ## 鸣谢
