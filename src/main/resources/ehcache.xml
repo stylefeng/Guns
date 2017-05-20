@@ -5,7 +5,23 @@
          dynamicConfig="true" >
          
     <diskStore path="java.io.tmpdir/ehcache"/>
-    
+
+    <!-- 系统默认缓存 -->
+    <defaultCache
+            maxElementsInMemory="50000"
+            clearOnFlush="false"
+            eternal="false"
+            timeToIdleSeconds="3600"
+            timeToLiveSeconds="3600"
+            overflowToDisk="true"
+            diskSpoolBufferSizeMB="1024"
+            maxElementsOnDisk="100000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LFU"
+            transactionalMode="off">
+    </defaultCache>
+
     <!-- 全局变量：永不过期-->
     <cache name="CONSTANT"
     	   maxElementsInMemory="50000"

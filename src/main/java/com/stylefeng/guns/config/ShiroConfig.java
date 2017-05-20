@@ -38,9 +38,6 @@ public class ShiroConfig {
         //设置自定义Realm
         securityManager.setRealm(this.shiroDbRealm());
 
-        //将缓存管理器，交给安全管理器
-//		securityManager.setCacheManager(this.shiroEhcacheManager());
-
         //记住密码管理
         securityManager.setRememberMeManager(rememberMeManager);
         return securityManager;
@@ -120,19 +117,6 @@ public class ShiroConfig {
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;
     }
-
-    /**
-     * 用户授权信息Cache, 采用EhCache
-     *
-     * @author fengshuonan
-     */
-//	@Bean
-//	public EhCacheManager shiroEhcacheManager(){
-//		EhCacheManager ehCacheManager = new EhCacheManager();
-//		ehCacheManager.setCacheManagerConfigFile("classpath:ehcache.xml");
-//		ehCacheManager.setCacheManager(CacheManager.create());
-//		return ehCacheManager;
-//	}
 
     /**
      * 在方法中 注入 securityManager,进行代理控制
