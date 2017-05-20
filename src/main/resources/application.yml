@@ -1,0 +1,38 @@
+#app
+server:
+    port: 8080
+
+#spring
+spring:
+  devtools:
+    restart:
+      enabled: false
+
+  # mysql datasource
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
+  typeAliasesPackage: com.stylefeng.guns.persistence.model
+  global-config:
+    id-type: 1
+    db-column-underline: false
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+#logging
+logging:
+  level: debug
+
+
+#jdbc
+jdbc:
+  url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+  username: root
+  password: root

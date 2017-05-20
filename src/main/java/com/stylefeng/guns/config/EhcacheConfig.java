@@ -1,4 +1,4 @@
-package project.config.cache;
+package com.stylefeng.guns.config;
 
 import net.sf.ehcache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
