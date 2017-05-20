@@ -281,5 +281,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '000be33d-06ae-431d-b8ef-0f39e55743fb.jpg', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', '27', '1', '2016-01-29 08:49:53', '25');
+INSERT INTO `user` VALUES ('1', 'girl.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', '27', '1', '2016-01-29 08:49:53', '25');
 INSERT INTO `user` VALUES ('44', null, ' test', 'a5421443274a4d1f9eb938f7adc4478d', '4g4bn', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '1', '26', '3', '2017-05-16 20:33:37', null);
