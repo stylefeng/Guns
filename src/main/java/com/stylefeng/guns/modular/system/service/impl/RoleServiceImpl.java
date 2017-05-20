@@ -40,9 +40,11 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delRoleById(Integer roleId) {
         //删除角色
         this.roleMapper.deleteById(roleId);
+
 
         // 删除该角色所有的权限
         this.roleDao.deleteRolesById(roleId);
