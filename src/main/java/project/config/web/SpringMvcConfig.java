@@ -1,9 +1,5 @@
 package project.config.web;
 
-import com.alibaba.fastjson.parser.Feature;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.*;
@@ -11,7 +7,6 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -102,14 +97,7 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     }
 
-    // messageConverter
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(byteMsgConverter());
-        converters.add(stringHttpMessageConverter());
-        converters.add(fastJsonHttpMessageConverter());
-        super.configureMessageConverters(converters);
-    }
+
 
     @Bean
     public ByteArrayHttpMessageConverter byteMsgConverter() {
@@ -126,21 +114,6 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
         return stringHttpMessageConverter;
     }
 
-    @Bean
-    public FastJsonHttpMessageConverter4 fastJsonHttpMessageConverter() {
-        FastJsonHttpMessageConverter4 convert = new FastJsonHttpMessageConverter4();
-        List<MediaType> list = new ArrayList<MediaType>();
-        list.add(MediaType.TEXT_HTML);
-        list.add(MediaType.APPLICATION_JSON_UTF8);
-        convert.setSupportedMediaTypes(list);
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setFeatures(Feature.AllowArbitraryCommas, Feature.AllowUnQuotedFieldNames,
-                Feature.DisableCircularReferenceDetect);
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteMapNullValue,
-                SerializerFeature.WriteNullStringAsEmpty);
-        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        convert.setFastJsonConfig(fastJsonConfig);
-        return convert;
-    }
+
 
 }
