@@ -44,7 +44,7 @@ public class LogController extends BaseController {
     /**
      * 跳转到日志管理的首页
      */
-    @RequestMapping("/")
+    @RequestMapping("")
     public String index() {
         return PREFIX + "log.html";
     }
