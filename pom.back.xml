@@ -237,7 +237,10 @@
         </plugins>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>src/main/baseResources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources/${package.environment}</directory>
             </resource>
             <resource>
                 <directory>src/main/java</directory>
@@ -248,4 +251,21 @@
         </resources>
     </build>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <package.environment>dev</package.environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>produce</id>
+            <properties>
+                <package.environment>produce</package.environment>
+            </properties>
+        </profile>
+    </profiles>
 </project>
