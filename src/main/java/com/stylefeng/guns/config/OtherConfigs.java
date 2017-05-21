@@ -1,5 +1,8 @@
 package com.stylefeng.guns.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;
+import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import com.stylefeng.guns.core.intercept.SessionInterceptor;
@@ -63,5 +66,21 @@ public class OtherConfigs {
     @Bean
     public SessionInterceptor sessionInterceptor() {
         return new SessionInterceptor();
+    }
+
+    /**
+     * druid数据库连接池监控
+     */
+    @Bean
+    public DruidStatInterceptor druidStatInterceptor() {
+        return new DruidStatInterceptor();
+    }
+
+    @Bean
+    public BeanTypeAutoProxyCreator beanTypeAutoProxyCreator() {
+        BeanTypeAutoProxyCreator beanTypeAutoProxyCreator = new BeanTypeAutoProxyCreator();
+        beanTypeAutoProxyCreator.setTargetBeanType(DruidDataSource.class);
+        beanTypeAutoProxyCreator.setInterceptorNames("druidStatInterceptor");
+        return beanTypeAutoProxyCreator;
     }
 }
