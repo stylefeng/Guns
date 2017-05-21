@@ -10,6 +10,8 @@ import com.stylefeng.guns.common.constant.tips.Tip;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.core.db.Db;
 import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.log.LogObjectHolder;
@@ -20,9 +22,6 @@ import com.stylefeng.guns.modular.system.dao.UserMgrDao;
 import com.stylefeng.guns.modular.system.factory.UserFactory;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
-import com.stylefeng.guns.common.persistence.dao.UserMapper;
-import com.stylefeng.guns.common.persistence.model.User;
-import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -193,7 +192,6 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/edit")
     @BussinessLog(value = "修改管理员", key = "account", dict = Dict.UserDict)
-    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
@@ -204,11 +202,11 @@ public class UserMgrController extends BaseController {
             return SUCCESS_TIP;
         } else {
             ShiroUser shiroUser = ShiroKit.getUser();
-            if (shiroUser.getId() == user.getId()) {
+            if (shiroUser.getId().equals(user.getId())) {
                 this.userMapper.updateById(UserFactory.createUser(user));
                 return SUCCESS_TIP;
             } else {
-                throw new AuthenticationException();
+                throw new BussinessException(BizExceptionEnum.NO_PERMITION);
             }
         }
     }
