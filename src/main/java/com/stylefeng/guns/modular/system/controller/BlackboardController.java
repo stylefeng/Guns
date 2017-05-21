@@ -1,8 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.controller.BaseController;
-import com.stylefeng.guns.common.persistence.dao.NoticeMapper;
-import com.stylefeng.guns.common.persistence.dao.UserMapper;
 import com.stylefeng.guns.modular.system.dao.NoticeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +19,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/blackboard")
 public class BlackboardController extends BaseController {
-
-    @Autowired
-    UserMapper userMapper;
-
-    @Autowired
-    NoticeMapper noticeMapper;
 
     @Autowired
     NoticeDao noticeDao;

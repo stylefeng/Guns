@@ -1,11 +1,14 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseTest;
+import com.stylefeng.guns.modular.system.dao.NoticeDao;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * 首页通知展示测试
@@ -15,14 +18,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 public class BlackBoardTest extends BaseTest {
 
+    @Autowired
+    NoticeDao noticeDao;
+
     @Test
     public void blackBoardTest() {
-        try {
-            super.mockMvc.perform(get("/blackboard"))
-                    .andExpect(status().isOk())
-                    .andExpect(model().attributeExists("noticeList"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<Map<String, Object>> notices = noticeDao.list(null);
+        assertTrue(notices.size() > 0);
     }
 }
