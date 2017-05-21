@@ -1,6 +1,5 @@
-package project.config.web.beetl;
+package com.stylefeng.guns.core.beetl;
 
-import com.stylefeng.guns.core.beetl.ShiroExt;
 import com.stylefeng.guns.core.util.ToolUtil;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 

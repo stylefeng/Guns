@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class ConfigListener implements ServletContextListener {
 
-    private static Map<String, String> conf = new HashMap<String, String>();
+    private static Map<String, String> conf = new HashMap<>();
 
     public static Map<String, String> getConf() {
         return conf;

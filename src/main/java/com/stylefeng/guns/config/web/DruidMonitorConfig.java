@@ -1,4 +1,4 @@
-package project.config.web.monitor;
+package com.stylefeng.guns.config.web;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;

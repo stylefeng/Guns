@@ -1,24 +1,13 @@
 package com.stylefeng.guns.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.baomidou.mybatisplus.entity.GlobalConfiguration;
 import com.baomidou.mybatisplus.enums.DBType;
-import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
-import com.stylefeng.guns.core.util.ResKit;
-import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import javax.sql.DataSource;
+import project.config.datasource.DataSourceConfigTemplate;
 
 /**
  * MybatisPlus配置
@@ -28,6 +17,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao","com.stylefeng.guns.persistence.dao"})
+@ConfigurationProperties(prefix = "jdbc")
 public class MybatisPlusConfig {
 
     private String url;
@@ -38,7 +28,7 @@ public class MybatisPlusConfig {
      * mybatis-plus分页插件
      */
     @Bean
-    public PaginationInterceptor paginationInterceptor(DataSource dataSource) {
+    public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
         //paginationInterceptor.setOptimizeType(Optimize.JSQLPARSER.getOptimize());
@@ -46,46 +36,24 @@ public class MybatisPlusConfig {
     }
 
     /**
-     * 事务管理, 声明式事务的开启
+     * druid数据库连接池
      */
-    @Bean
-    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
-        DataSourceTransactionManager manager = new DataSourceTransactionManager();
-        manager.setDataSource(dataSource);
-        return manager;
-    }
-
-    /**
-     * 第三方数据库连接池的配置
-     */
-    //@Bean(initMethod = "init")
-    //public DruidDataSource dataSource() {
-    //    DruidDataSource dataSource = new DruidDataSource();
-    //    dataSource.setUrl(this.url);
-    //    dataSource.setUsername(this.username);
-    //    dataSource.setPassword(this.password);
-    //    DataSourceConfigTemplate.config(dataSource);
-    //    return dataSource;
-    //}
-
-    public String getUrl() {
-        return url;
+    @Bean(initMethod = "init")
+    public DruidDataSource dataSource() {
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setUrl(this.url.trim());
+        dataSource.setUsername(this.username.trim());
+        dataSource.setPassword(this.password);
+        DataSourceConfigTemplate.config(dataSource);
+        return dataSource;
     }
 
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

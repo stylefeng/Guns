@@ -10,7 +10,6 @@ public class GunsApplication {
 
     protected final static Logger logger = LoggerFactory.getLogger(GunsApplication.class);
 
-
     public static void main(String[] args) {
         SpringApplication.run(GunsApplication.class, args);
         logger.info("GunsApplication is sussess!");

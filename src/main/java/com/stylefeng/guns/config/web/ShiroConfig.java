@@ -1,4 +1,4 @@
-package com.stylefeng.guns.config;
+package com.stylefeng.guns.config.web;
 
 import com.stylefeng.guns.core.shiro.ShiroDbRealm;
 import org.apache.shiro.codec.Base64;

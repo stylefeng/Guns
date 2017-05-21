@@ -2,13 +2,13 @@ package com.stylefeng.guns.config;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import com.stylefeng.guns.core.intercept.SessionInterceptor;
 import net.sf.ehcache.CacheManager;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import project.config.web.beetl.BeetlConfiguration;
 
 import java.util.Properties;
 
@@ -58,12 +58,10 @@ public class OtherConfigs {
     }
 
     /**
-     * beetl的配置
+     * session的拦截器，用在非controller层调用session
      */
-    @Bean(initMethod = "init")
-    public BeetlConfiguration beetlConfiguration() {
-        BeetlConfiguration beetlConfiguration = new BeetlConfiguration();
-        beetlConfiguration.setConfigFileResource(new ClassPathResource("beetl.properties"));
-        return beetlConfiguration;
+    @Bean
+    public SessionInterceptor sessionInterceptor() {
+        return new SessionInterceptor();
     }
 }

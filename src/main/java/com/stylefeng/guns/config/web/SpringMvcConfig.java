@@ -1,13 +1,11 @@
-package com.stylefeng.guns.config;
+package com.stylefeng.guns.config.web;
 
+import com.stylefeng.guns.core.beetl.BeetlConfiguration;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import project.config.web.beetl.BeetlConfiguration;
 
 /**
  * spring mvc配置类
