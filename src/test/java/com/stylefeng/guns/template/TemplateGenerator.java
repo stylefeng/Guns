@@ -7,7 +7,7 @@ import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 import java.io.IOException;
 
 /**
- * 客户端
+ * 测试Guns模板引擎
  *
  * @author fengshuonan
  * @date 2017-05-09 20:27

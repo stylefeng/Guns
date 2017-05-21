@@ -19,7 +19,7 @@ public class DictTest extends BaseTest{
 
     @Test
     public void addTest() {
-        dictService.addDict("测试","1:冻结;2:jiedong;3:接触");
+        dictService.addDict("测试123123123","1:冻结;2:jiedong;3:接触");
     }
 
     @Test
