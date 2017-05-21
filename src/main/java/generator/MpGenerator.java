@@ -14,19 +14,15 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * <p>
- * 代码生成器演示
- * </p>
+ * mybatis-plus代码生成器(用于生成entity)<br>
+ * 注意:<br>
+ *     因为没用mybatis-plus的Service和Controller所以生成完之后要删掉TTT目录
+ * @author stylefeng
+ * @Date 2017/5/21 12:38
  */
 public class MpGenerator {
 
-    /**
-     * <p>
-     * MySQL 生成演示
-     * </p>
-     */
     public static void main(String[] args) {
         AutoGenerator mpg = new AutoGenerator();
 
