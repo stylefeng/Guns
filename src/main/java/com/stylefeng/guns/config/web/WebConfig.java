@@ -14,7 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.request.RequestContextListener;
 
 /**
- * spring mvc配置类
+ * web 配置类
  *
  * @author fengshuonan
  * @date 2016年11月12日 下午5:03:32
@@ -68,7 +68,7 @@ public class WebConfig {
      * RequestContextListener注册
      */
     @Bean
-    public ServletListenerRegistrationBean<RequestContextListener> requestContextListenerRegistration(){
+    public ServletListenerRegistrationBean<RequestContextListener> requestContextListenerRegistration() {
         return new ServletListenerRegistrationBean<RequestContextListener>(new RequestContextListener());
     }
 
@@ -76,7 +76,7 @@ public class WebConfig {
      * ConfigListener注册
      */
     @Bean
-    public ServletListenerRegistrationBean<ConfigListener> configListenerRegistration(){
+    public ServletListenerRegistrationBean<ConfigListener> configListenerRegistration() {
         return new ServletListenerRegistrationBean<ConfigListener>(new ConfigListener());
     }
 }
