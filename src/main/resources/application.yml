@@ -18,10 +18,6 @@ mybatis-plus:
     lazyLoadingEnabled: true #延时加载的开关
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
 
-logging:
-  level: debug
-  file: logs/guns.log
-
 ---
 
 spring:
@@ -31,6 +27,10 @@ spring:
       username: root
       password: root
 
+logging:
+  level: debug
+  file: logs/guns.log
+
 ---
 
 spring:
@@ -39,4 +39,8 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: rootroot
       password: rootroot
+
+logging:
+  level: warn
+  file: logs/guns.log
 
