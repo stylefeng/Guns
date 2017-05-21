@@ -17,7 +17,7 @@ import project.config.datasource.DataSourceConfigTemplate;
  */
 @Configuration
 @MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao","com.stylefeng.guns.persistence.dao"})
-@ConfigurationProperties(prefix = "jdbc")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class MybatisPlusConfig {
 
     private String url;
@@ -31,7 +31,6 @@ public class MybatisPlusConfig {
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
-        //paginationInterceptor.setOptimizeType(Optimize.JSQLPARSER.getOptimize());
         return paginationInterceptor;
     }
 

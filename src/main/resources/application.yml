@@ -19,7 +19,7 @@ mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
   typeAliasesPackage: com.stylefeng.guns.persistence.model
   global-config:
-    id-type: 1
+    id-type: 1  #1:数据库ID自增   2:用户输入id   3:全局唯一id(IdWorker)   4:全局唯一ID(uuid)
     db-column-underline: false
     refresh-mapper: true
   configuration:
@@ -29,10 +29,3 @@ mybatis-plus:
 #logging
 logging:
   level: debug
-
-
-#jdbc
-jdbc:
-  url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-  username: root
-  password: root
