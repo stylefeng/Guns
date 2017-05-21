@@ -21,7 +21,7 @@ import java.util.Map;
  * @author stylefeng
  * @Date 2017/5/21 12:38
  */
-public class MpGenerator {
+public class MyBatisPlusGenerator {
 
     public static void main(String[] args) {
         AutoGenerator mpg = new AutoGenerator();

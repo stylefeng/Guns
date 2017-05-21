@@ -31,7 +31,6 @@ public class OtherConfigs {
     public EhCacheCacheManager cacheManager(CacheManager cacheManager) {
         return new EhCacheCacheManager(cacheManager);
     }
-
     @Bean
     public EhCacheManagerFactoryBean ehcache() {
         EhCacheManagerFactoryBean ehCacheManagerFactoryBean = new EhCacheManagerFactoryBean();
@@ -75,7 +74,6 @@ public class OtherConfigs {
     public DruidStatInterceptor druidStatInterceptor() {
         return new DruidStatInterceptor();
     }
-
     @Bean
     public BeanTypeAutoProxyCreator beanTypeAutoProxyCreator() {
         BeanTypeAutoProxyCreator beanTypeAutoProxyCreator = new BeanTypeAutoProxyCreator();
