@@ -66,9 +66,9 @@ public class MpGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("com.stylefeng.guns.persistence.model");
-        pc.setMapper("com.stylefeng.guns.persistence.dao");
-        pc.setXml("com.stylefeng.guns.persistence.dao.mapping");
+        pc.setEntity("com.stylefeng.guns.common.persistence.model");
+        pc.setMapper("com.stylefeng.guns.common.persistence.dao");
+        pc.setXml("com.stylefeng.guns.common.persistence.dao.mapping");
         pc.setService("TTT");       //本项目没用，生成之后删掉
         pc.setServiceImpl("TTT");   //本项目没用，生成之后删掉
         pc.setController("TTT");    //本项目没用，生成之后删掉

@@ -3,7 +3,7 @@ package com.stylefeng.guns.modular.system.warpper;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.persistence.model.Dict;
+import com.stylefeng.guns.common.persistence.model.Dict;
 
 import java.util.List;
 import java.util.Map;

@@ -7,7 +7,7 @@ import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.modular.system.dao.LogDao;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
-import com.stylefeng.guns.persistence.model.OperationLog;
+import com.stylefeng.guns.common.persistence.model.OperationLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

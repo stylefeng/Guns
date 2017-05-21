@@ -1,6 +1,6 @@
-package com.stylefeng.guns.persistence.dao;
+package com.stylefeng.guns.common.persistence.dao;
 
-import com.stylefeng.guns.persistence.model.Dict;
+import com.stylefeng.guns.common.persistence.model.Dict;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-16
+ * @since 2017-05-21
  */
 public interface DictMapper extends BaseMapper<Dict> {
 

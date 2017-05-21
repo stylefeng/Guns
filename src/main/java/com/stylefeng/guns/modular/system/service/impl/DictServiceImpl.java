@@ -6,8 +6,8 @@ import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.modular.system.dao.DictDao;
 import com.stylefeng.guns.modular.system.service.IDictService;
-import com.stylefeng.guns.persistence.dao.DictMapper;
-import com.stylefeng.guns.persistence.model.Dict;
+import com.stylefeng.guns.common.persistence.dao.DictMapper;
+import com.stylefeng.guns.common.persistence.model.Dict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

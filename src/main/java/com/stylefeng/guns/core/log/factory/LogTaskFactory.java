@@ -5,10 +5,10 @@ import com.stylefeng.guns.common.constant.state.LogType;
 import com.stylefeng.guns.core.db.Db;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.persistence.dao.LoginLogMapper;
-import com.stylefeng.guns.persistence.dao.OperationLogMapper;
-import com.stylefeng.guns.persistence.model.LoginLog;
-import com.stylefeng.guns.persistence.model.OperationLog;
+import com.stylefeng.guns.common.persistence.dao.LoginLogMapper;
+import com.stylefeng.guns.common.persistence.dao.OperationLogMapper;
+import com.stylefeng.guns.common.persistence.model.LoginLog;
+import com.stylefeng.guns.common.persistence.model.OperationLog;
 import org.apache.log4j.Logger;
 
 import java.util.TimerTask;

@@ -1,4 +1,4 @@
-package com.stylefeng.guns.persistence.model;
+package com.stylefeng.guns.common.persistence.model;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-16
+ * @since 2017-05-21
  */
 @TableName("operation_log")
 public class OperationLog extends Model<OperationLog> {

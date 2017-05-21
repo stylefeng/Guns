@@ -5,8 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.stylefeng.guns.persistence.model.User;
-import org.springframework.cache.annotation.Cacheable;
+import com.stylefeng.guns.common.persistence.model.User;
 
 /**
  * 管理员的dao

@@ -3,9 +3,9 @@ package com.stylefeng.guns.modular.system.service.impl;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.system.dao.RoleDao;
 import com.stylefeng.guns.modular.system.service.IRoleService;
-import com.stylefeng.guns.persistence.dao.RelationMapper;
-import com.stylefeng.guns.persistence.dao.RoleMapper;
-import com.stylefeng.guns.persistence.model.Relation;
+import com.stylefeng.guns.common.persistence.dao.RelationMapper;
+import com.stylefeng.guns.common.persistence.dao.RoleMapper;
+import com.stylefeng.guns.common.persistence.model.Relation;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

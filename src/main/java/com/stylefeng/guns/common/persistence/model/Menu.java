@@ -1,4 +1,4 @@
-package com.stylefeng.guns.persistence.model;
+package com.stylefeng.guns.common.persistence.model;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-16
+ * @since 2017-05-21
  */
 public class Menu extends Model<Menu> {
 

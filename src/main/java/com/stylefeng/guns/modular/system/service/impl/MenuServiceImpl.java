@@ -2,7 +2,7 @@ package com.stylefeng.guns.modular.system.service.impl;
 
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.service.IMenuService;
-import com.stylefeng.guns.persistence.dao.MenuMapper;
+import com.stylefeng.guns.common.persistence.dao.MenuMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
