@@ -28,7 +28,7 @@ public class BeetlProperties {
         this.properties.setProperty("DELIMITER_STATEMENT_END", "null");
 
         //classpath 根路径
-        this.properties.setProperty("RESOURCE.root", "/WEB-INF/view");
+        this.properties.setProperty("RESOURCE.root", "/");
 
         //是否检测文件变化
         this.properties.setProperty("RESOURCE.autoCheck", "true");

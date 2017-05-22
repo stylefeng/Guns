@@ -45,7 +45,7 @@ import java.util.Map;
 @RequestMapping("/role")
 public class RoleController extends BaseController {
 
-    private static String PREFIX = "/system/role/";
+    private static String PREFIX = "/system/role";
 
     @Resource
     UserMapper userMapper;

@@ -5,6 +5,7 @@ import com.stylefeng.guns.config.properties.BeetlProperties;
 import com.stylefeng.guns.core.beetl.BeetlConfiguration;
 import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.util.xss.XssFilter;
+import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
@@ -28,6 +29,7 @@ public class WebConfig {
     @Bean(initMethod = "init")
     public BeetlConfiguration beetlConfiguration() {
         BeetlConfiguration beetlConfiguration = new BeetlConfiguration();
+        beetlConfiguration.setResourceLoader(new ClasspathResourceLoader(WebConfig.class.getClassLoader(), "/templates"));
         beetlConfiguration.setConfigProperties(BeetlProperties.newInstance());
         return beetlConfiguration;
     }

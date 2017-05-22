@@ -6,7 +6,7 @@
     <groupId>com.stylefeng</groupId>
     <artifactId>guns</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>guns</name>
     <description>guns 的spring boot版本</description>
@@ -154,6 +154,13 @@
             </plugin>
         </plugins>
         <resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <targetPath>/META-INF/resources</targetPath>
+            </resource>
             <resource>
                 <directory>src/main/resources</directory>
             </resource>

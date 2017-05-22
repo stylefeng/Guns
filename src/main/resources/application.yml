@@ -4,6 +4,9 @@ server:
 spring:
   profiles:
     active: dev
+  mvc:
+    view:
+      prefix: /templates
 
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
