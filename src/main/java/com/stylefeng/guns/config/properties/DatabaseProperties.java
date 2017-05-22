@@ -1,7 +1,7 @@
 package com.stylefeng.guns.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * 数据库数据源配置
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author fengshuonan
  * @date 2017-05-21 11:18
  */
-@Configuration
+@Component
 @ConfigurationProperties(prefix = "spring.datasource")
 public class DatabaseProperties {
 
