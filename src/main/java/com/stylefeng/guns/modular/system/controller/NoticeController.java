@@ -76,7 +76,7 @@ public class NoticeController extends BaseController {
     public String hello() {
         List<Map<String, Object>> notices = noticeDao.list(null);
         super.setAttr("noticeList",notices);
-        return "blackboard.html";
+        return "/blackboard.html";
     }
 
     /**

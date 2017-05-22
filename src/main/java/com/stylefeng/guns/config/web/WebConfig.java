@@ -29,7 +29,7 @@ public class WebConfig {
     @Bean(initMethod = "init")
     public BeetlConfiguration beetlConfiguration() {
         BeetlConfiguration beetlConfiguration = new BeetlConfiguration();
-        beetlConfiguration.setResourceLoader(new ClasspathResourceLoader(WebConfig.class.getClassLoader(), "/templates"));
+        beetlConfiguration.setResourceLoader(new ClasspathResourceLoader(WebConfig.class.getClassLoader(), "/WEB-INF/view"));
         beetlConfiguration.setConfigProperties(BeetlProperties.newInstance());
         return beetlConfiguration;
     }

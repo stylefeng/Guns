@@ -156,10 +156,6 @@
         <resources>
             <resource>
                 <directory>src/main/webapp</directory>
-                <includes>
-                    <include>**/**</include>
-                </includes>
-                <targetPath>/META-INF/resources</targetPath>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>

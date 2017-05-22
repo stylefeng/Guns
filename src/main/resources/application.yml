@@ -6,7 +6,7 @@ spring:
     active: dev
   mvc:
     view:
-      prefix: /templates
+      prefix: /WEB-INF/view/
 
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
