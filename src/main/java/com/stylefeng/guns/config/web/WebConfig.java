@@ -7,6 +7,7 @@ import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.util.xss.XssFilter;
 import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -21,7 +22,11 @@ import org.springframework.web.context.request.RequestContextListener;
  * @date 2016年11月12日 下午5:03:32
  */
 @Configuration
+@ConfigurationProperties(prefix = "spring.mvc.view")
 public class WebConfig {
+
+    //beetl模板所放的地方
+    private String prefix;
 
     /**
      * beetl的配置
@@ -29,7 +34,7 @@ public class WebConfig {
     @Bean(initMethod = "init")
     public BeetlConfiguration beetlConfiguration() {
         BeetlConfiguration beetlConfiguration = new BeetlConfiguration();
-        beetlConfiguration.setResourceLoader(new ClasspathResourceLoader(WebConfig.class.getClassLoader(), "/WEB-INF/view"));
+        beetlConfiguration.setResourceLoader(new ClasspathResourceLoader(WebConfig.class.getClassLoader(), prefix));
         beetlConfiguration.setConfigProperties(BeetlProperties.newInstance());
         return beetlConfiguration;
     }
@@ -80,5 +85,9 @@ public class WebConfig {
     @Bean
     public ServletListenerRegistrationBean<ConfigListener> configListenerRegistration() {
         return new ServletListenerRegistrationBean<>(new ConfigListener());
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }
