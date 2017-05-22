@@ -1,6 +1,7 @@
 package com.stylefeng.guns.config.web;
 
 import com.alibaba.druid.support.http.StatViewServlet;
+import com.stylefeng.guns.config.properties.BeetlProperties;
 import com.stylefeng.guns.core.beetl.BeetlConfiguration;
 import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.util.xss.XssFilter;
@@ -10,7 +11,6 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.request.RequestContextListener;
 
 /**
@@ -28,7 +28,7 @@ public class WebConfig {
     @Bean(initMethod = "init")
     public BeetlConfiguration beetlConfiguration() {
         BeetlConfiguration beetlConfiguration = new BeetlConfiguration();
-        beetlConfiguration.setConfigFileResource(new ClassPathResource("beetl.properties"));
+        beetlConfiguration.setConfigProperties(BeetlProperties.newInstance());
         return beetlConfiguration;
     }
 

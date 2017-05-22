@@ -6,7 +6,7 @@
     <groupId>com.stylefeng</groupId>
     <artifactId>guns</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>guns</name>
     <description>guns 的spring boot版本</description>
