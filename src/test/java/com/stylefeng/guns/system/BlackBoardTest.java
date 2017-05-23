@@ -1,6 +1,6 @@
 package com.stylefeng.guns.system;
 
-import com.stylefeng.guns.base.BaseTest;
+import com.stylefeng.guns.base.BaseJunit;
 import com.stylefeng.guns.modular.system.dao.NoticeDao;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertTrue;
  * @author fengshuonan
  * @date 2017-05-21 15:02
  */
-public class BlackBoardTest extends BaseTest {
+public class BlackBoardTest extends BaseJunit {
 
     @Autowired
     NoticeDao noticeDao;

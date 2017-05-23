@@ -1,6 +1,6 @@
 package com.stylefeng.guns.system;
 
-import com.stylefeng.guns.base.BaseTest;
+import com.stylefeng.guns.base.BaseJunit;
 import com.stylefeng.guns.modular.system.dao.DictDao;
 import com.stylefeng.guns.modular.system.service.IDictService;
 import org.junit.Assert;
@@ -16,7 +16,7 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017-04-27 17:05
  */
-public class DictTest extends BaseTest {
+public class DictTest extends BaseJunit {
 
     @Resource
     IDictService dictService;

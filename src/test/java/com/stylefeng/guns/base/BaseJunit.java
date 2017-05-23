@@ -22,8 +22,8 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = GunsApplication.class)
 @WebAppConfiguration
-@Transactional
-public class BaseTest {
+@Transactional //测试之后数据可回滚
+public class BaseJunit {
 
     @Autowired
     WebApplicationContext webApplicationContext;
