@@ -11,13 +11,14 @@ import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.common.persistence.dao.MenuMapper;
+import com.stylefeng.guns.common.persistence.model.Menu;
 import com.stylefeng.guns.core.log.LogObjectHolder;
+import com.stylefeng.guns.core.support.BeanKit;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
-import com.stylefeng.guns.common.persistence.dao.MenuMapper;
-import com.stylefeng.guns.common.persistence.model.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -77,7 +78,9 @@ public class MenuController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuMapper.selectById(menuId);
-        model.addAttribute(menu);
+        Map<String, Object> menuMap = BeanKit.beanToMap(menu);
+        menuMap.put("pcodeName",ConstantFactory.me().getMenuNameByCode(menu.getPcode()));
+        model.addAttribute("menu", menuMap);
         LogObjectHolder.me().set(menu);
         return PREFIX + "menu_edit.html";
     }
@@ -93,6 +96,9 @@ public class MenuController extends BaseController {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        //设置父级菜单编号
+        menuSetPcode(menu);
+
         this.menuMapper.updateById(menu);
         return SUCCESS_TIP;
     }
@@ -118,6 +124,9 @@ public class MenuController extends BaseController {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        //设置父级菜单编号
+        menuSetPcode(menu);
+
         menu.setStatus(MenuStatus.ENABLE.getCode());
         this.menuMapper.insert(menu);
         return SUCCESS_TIP;
@@ -156,12 +165,23 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * 获取菜单列表
+     * 获取菜单列表(首页用)
      */
     @RequestMapping(value = "/menuTreeList")
     @ResponseBody
     public List<ZTreeNode> menuTreeList() {
         List<ZTreeNode> roleTreeList = this.menuDao.menuTreeList();
+        return roleTreeList;
+    }
+
+    /**
+     * 获取菜单列表(选择父级菜单用)
+     */
+    @RequestMapping(value = "/selectMenuTreeList")
+    @ResponseBody
+    public List<ZTreeNode> selectMenuTreeList() {
+        List<ZTreeNode> roleTreeList = this.menuDao.menuTreeList();
+        roleTreeList.add(ZTreeNode.createParent());
         return roleTreeList;
     }
 
@@ -178,6 +198,22 @@ public class MenuController extends BaseController {
         } else {
             List<ZTreeNode> roleTreeListByUserId = this.menuDao.menuTreeListByMenuIds(menuIds);
             return roleTreeListByUserId;
+        }
+    }
+
+    /**
+     * 根据请求的父级菜单编号设置pcode和层级
+     */
+    private void menuSetPcode(@Valid Menu menu) {
+        if(ToolUtil.isEmpty(menu.getPcode()) || menu.getPcode().equals("0")){
+            menu.setPcode("0");
+            menu.setLevels(1);
+        }else{
+            int code = Integer.parseInt(menu.getPcode());
+            Menu pMenu = menuMapper.selectById(code);
+            Integer pLevels = pMenu.getLevels();
+            menu.setPcode(pMenu.getCode());
+            menu.setLevels(pLevels + 1);
         }
     }
 

@@ -64,7 +64,7 @@ var Feng = {
             closeBtn: 0
         });
     },
-    showInputTree: function (inputId, inputTreeContentId) {
+    showInputTree: function (inputId, inputTreeContentId, leftOffset, rightOffset) {
         var onBodyDown = function (event) {
             if (!(event.target.id == "menuBtn" || event.target.id == inputTreeContentId || $(event.target).parents("#" + inputTreeContentId).length > 0)) {
                 $("#" + inputTreeContentId).fadeOut("fast");
@@ -72,13 +72,19 @@ var Feng = {
             }
         };
 
-        var inputDiv = $("#" + inputId);
-        var inputDivOffset = $("#" + inputId).offset();
-
-        $("#" + inputTreeContentId).css({
-            left: inputDivOffset.left + "px",
-            top: inputDivOffset.top + inputDiv.outerHeight() + "px"
-        }).slideDown("fast");
+        if(leftOffset == undefined && rightOffset == undefined){
+            var inputDiv = $("#" + inputId);
+            var inputDivOffset = $("#" + inputId).offset();
+            $("#" + inputTreeContentId).css({
+                left: inputDivOffset.left + "px",
+                top: inputDivOffset.top + inputDiv.outerHeight() + "px"
+            }).slideDown("fast");
+        }else{
+            $("#" + inputTreeContentId).css({
+                left: leftOffset + "px",
+                top: rightOffset + "px"
+            }).slideDown("fast");
+        }
 
         $("body").bind("mousedown", onBodyDown);
     },

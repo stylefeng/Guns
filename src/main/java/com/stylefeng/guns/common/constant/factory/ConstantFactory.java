@@ -160,6 +160,24 @@ public class ConstantFactory {
     }
 
     /**
+     * 获取菜单名称通过编号
+     */
+    public String getMenuNameByCode(String code) {
+        if (ToolUtil.isEmpty(code)) {
+            return "";
+        } else {
+            Menu param = new Menu();
+            param.setCode(code);
+            Menu menu = menuMapper.selectOne(param);
+            if (menu == null) {
+                return "";
+            } else {
+                return menu.getName();
+            }
+        }
+    }
+
+    /**
      * 获取字典名称
      */
     public String getDictName(Integer dictId){
