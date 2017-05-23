@@ -6,6 +6,16 @@
          
     <diskStore path="java.io.tmpdir/ehcache"/>
 
+    <defaultCache
+            maxElementsInMemory="50000"
+            eternal="false"
+            timeToIdleSeconds="3600"
+            timeToLiveSeconds="3600"
+            overflowToDisk="true"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+    />
+
     <!-- 全局变量：永不过期-->
     <cache name="CONSTANT"
     	   maxElementsInMemory="50000"
