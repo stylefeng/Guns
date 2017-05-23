@@ -35,14 +35,16 @@
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="密码" required="">
             </div>
-            <div class="form-group" style="float: left;">
-                <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
-                    <input class="form-control" type="text" name="kaptcha" placeholder="验证码" required="">
+            @if(tool.getKaptchaOnOff() == true){
+                <div class="form-group" style="float: left;">
+                    <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
+                        <input class="form-control" type="text" name="kaptcha" placeholder="验证码" required="">
+                    </div>
+                    <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
+                        <img src="${ctxPath}/kaptcha" id="kaptcha" width="100%" height="100%"/>
+                    </div>
                 </div>
-                <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
-                    <img src="${ctxPath}/kaptcha" id="kaptcha" width="100%" height="100%"/>
-                </div>
-            </div>
+            @}
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
             </p>
         </form>

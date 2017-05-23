@@ -83,12 +83,14 @@ public class LoginController extends BaseController {
 
         String username = super.getPara("username").trim();
         String password = super.getPara("password").trim();
-        String kaptcha = super.getPara("kaptcha").trim();
 
         //验证验证码是否正确
-        String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-        if(ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)){
-            throw new InvalidKaptchaException();
+        if(ToolUtil.getKaptchaOnOff()){
+            String kaptcha = super.getPara("kaptcha").trim();
+            String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+            if(ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)){
+                throw new InvalidKaptchaException();
+            }
         }
 
         Subject currentUser = ShiroKit.getSubject();

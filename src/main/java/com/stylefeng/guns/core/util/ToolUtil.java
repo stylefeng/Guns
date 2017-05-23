@@ -15,6 +15,7 @@
  */
 package com.stylefeng.guns.core.util;
 
+import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.support.StrKit;
 
 import java.io.IOException;
@@ -522,5 +523,15 @@ public class ToolUtil {
      */
     public static String firstLetterToLower(String val){
         return StrKit.firstCharToLowerCase(val);
+    }
+
+    /**
+     * 获取验证码开关
+     *
+     * @author stylefeng
+     * @Date 2017/5/23 22:34
+     */
+    public static Boolean getKaptchaOnOff(){
+        return SpringContextHolder.getBean(GunsProperties.class).getKaptchaOpen();
     }
 }
