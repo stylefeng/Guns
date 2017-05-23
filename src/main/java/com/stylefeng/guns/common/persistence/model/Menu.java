@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-21
+ * @since 2017-05-23
  */
 public class Menu extends Model<Menu> {
 
