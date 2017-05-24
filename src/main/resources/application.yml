@@ -1,7 +1,7 @@
 ###################  guns项目独有的配置  ###################
 guns:
   kaptcha-open: false #是否开启登录时验证码 (true/false)
-  file-upload-path:
+  #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
 
 ###################  项目启动端口  ###################
 server:
