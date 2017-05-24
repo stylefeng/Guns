@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * 其他bean的配置
+ * ehcache配置
  *
  * @author fengshuonan
  * @date 2017-05-20 23:11
