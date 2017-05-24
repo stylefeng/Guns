@@ -18,9 +18,4 @@ public interface Const {
      */
     String ADMIN_NAME = "administrator";
 
-    /**
-     * 默认头像
-     */
-    String DEFAULT_AVATAR = "profile_small.jpg";
-
 }

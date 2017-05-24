@@ -534,4 +534,29 @@ public class ToolUtil {
     public static Boolean getKaptchaOnOff(){
         return SpringContextHolder.getBean(GunsProperties.class).getKaptchaOpen();
     }
+
+    /**
+     * 判断是否是windows操作系统
+     *
+     * @author stylefeng
+     * @Date 2017/5/24 22:34
+     */
+    public static Boolean isWinOs(){
+        String os = System.getProperty("os.name");
+        if(os.toLowerCase().startsWith("win")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 获取临时目录
+     *
+     * @author stylefeng
+     * @Date 2017/5/24 22:35
+     */
+    public static String getTempPath(){
+        return System.getProperty("java.io.tmpdir");
+    }
 }

@@ -11,7 +11,7 @@
                 @if(isEmpty(avatarImg)){
                       src="${ctxPath}/static/img/girl.gif"></div>
                 @}else{
-                      src="${ctxPath}/static/img/${avatarImg}"></div>
+                      src="${ctxPath}/kaptcha/${avatarImg}"></div>
                 @}
         </div>
     </div>

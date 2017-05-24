@@ -12,8 +12,8 @@ import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.UserMapper;
 import com.stylefeng.guns.common.persistence.model.User;
+import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.db.Db;
-import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
@@ -48,6 +48,9 @@ import java.util.UUID;
 public class UserMgrController extends BaseController {
 
     private static String PREFIX = "/system/user/";
+
+    @Resource
+    private GunsProperties gunsProperties;
 
     @Resource
     private UserMgrDao managerDao;
@@ -310,7 +313,7 @@ public class UserMgrController extends BaseController {
     String upload(@RequestPart("file") MultipartFile picture) {
         String pictureName = UUID.randomUUID().toString() + ".jpg";
         try {
-            String fileSavePath = ConfigListener.getConf().get("realPath") + "static\\img\\";
+            String fileSavePath = gunsProperties.getFileUploadPath();
             picture.transferTo(new File(fileSavePath + pictureName));
         } catch (Exception e) {
             throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);

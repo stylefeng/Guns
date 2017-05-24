@@ -1,18 +1,17 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.google.code.kaptcha.Constants;
-import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.common.node.MenuNode;
+import com.stylefeng.guns.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
-import com.stylefeng.guns.common.persistence.dao.UserMapper;
-import com.stylefeng.guns.common.persistence.model.User;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,9 +54,6 @@ public class LoginController extends BaseController {
         Integer id = ShiroKit.getUser().getId();
         User user = userMapper.selectById(id);
         String avatar = user.getAvatar();
-        if(ToolUtil.isEmpty(avatar)){
-            avatar = Const.DEFAULT_AVATAR;
-        }
         model.addAttribute("avatar", avatar);
 
         return "/index.html";
