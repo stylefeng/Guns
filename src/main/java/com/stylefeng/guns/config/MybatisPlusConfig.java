@@ -20,9 +20,6 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
 
     @Autowired
-    DruidProperties databaseProperties;
-
-    @Autowired
     DruidProperties druidProperties;
 
     /**
