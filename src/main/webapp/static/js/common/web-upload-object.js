@@ -83,7 +83,7 @@
 			// 文件上传成功，给item添加成功class, 用样式标记上传成功。
 			bindedObj.on('uploadSuccess', function(file,response) {
 				Feng.success("上传成功");
-				$("#" + me.pictureId).val(response._raw);
+				$("#" + me.pictureId).val(response);
 			});
 
 			// 文件上传失败，显示上传出错。
