@@ -3,8 +3,7 @@ package com.stylefeng.guns.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.stylefeng.guns.config.properties.DataSourceConfigTemplate;
-import com.stylefeng.guns.config.properties.DatabaseProperties;
+import com.stylefeng.guns.config.properties.DruidProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,10 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
 
     @Autowired
-    DatabaseProperties databaseProperties;
+    DruidProperties databaseProperties;
+
+    @Autowired
+    DruidProperties druidProperties;
 
     /**
      * mybatis-plus分页插件
@@ -39,10 +41,7 @@ public class MybatisPlusConfig {
     @Bean(initMethod = "init")
     public DruidDataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUrl(databaseProperties.getUrl().trim());
-        dataSource.setUsername(databaseProperties.getUsername().trim());
-        dataSource.setPassword(databaseProperties.getPassword().trim());
-        DataSourceConfigTemplate.config(dataSource);
+        druidProperties.coinfig(dataSource);
         return dataSource;
     }
 }
