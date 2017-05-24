@@ -1,47 +1,90 @@
 package com.stylefeng.guns.config.properties;
 
+import com.stylefeng.guns.core.util.ToolUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 import java.util.Properties;
 
 /**
- * beetl配置
+ * beetl配置(如果需要配置别的配置可参照这个形式自己添加)
  *
  * @author fengshuonan
- * @date 2017-05-22 18:45
+ * @date 2017-05-24 20:37
  */
+@Configuration
+@ConfigurationProperties(prefix = BeetlProperties.BEETLCONF_PREFIX)
 public class BeetlProperties {
 
-    private static BeetlProperties beetlProperties = new BeetlProperties();
+    public static final String BEETLCONF_PREFIX = "beetl";
 
-    private Properties properties = new Properties();
+    private String delimiterStatementStart;
 
-    private BeetlProperties(){
-        init();
+    private String delimiterStatementEnd;
+
+    private String resourceTagroot;
+
+    private String resourceTagsuffix;
+
+    @Value("${spring.mvc.view.prefix}")
+    private String prefix;
+
+    public Properties getProperties(){
+        Properties properties = new Properties();
+        if(ToolUtil.isNotEmpty(delimiterStatementStart)){
+            if(delimiterStatementStart.startsWith("\\")){
+                delimiterStatementStart = delimiterStatementStart.substring(1);
+            }
+            properties.setProperty("DELIMITER_STATEMENT_START",delimiterStatementStart);
+        }
+        if(ToolUtil.isNotEmpty(delimiterStatementEnd)){
+            properties.setProperty("DELIMITER_STATEMENT_END",delimiterStatementEnd);
+        }else{
+            properties.setProperty("DELIMITER_STATEMENT_END","null");
+        }
+        if(ToolUtil.isNotEmpty(resourceTagroot)){
+            properties.setProperty("RESOURCE.tagRoot",resourceTagroot);
+        }
+        if(ToolUtil.isNotEmpty(resourceTagsuffix)){
+            properties.setProperty("RESOURCE.tagSuffix",resourceTagsuffix);
+        }
+        return properties;
     }
 
-    public void init() {
-        //开始结束占位符
-        this.properties.setProperty("DELIMITER_PLACEHOLDER_START", "${");
-        this.properties.setProperty("DELIMITER_PLACEHOLDER_END", "}");
-
-        //开始结束标签
-        this.properties.setProperty("DELIMITER_STATEMENT_START", "@");
-        this.properties.setProperty("DELIMITER_STATEMENT_END", "null");
-
-        //classpath 根路径
-        this.properties.setProperty("RESOURCE.root", "/");
-
-        //是否检测文件变化
-        this.properties.setProperty("RESOURCE.autoCheck", "true");
-
-        //beetl HTMl标签
-        this.properties.setProperty("HTML_TAG_FLAG", "#");
-
-        //自定义标签文件Root目录和后缀
-        this.properties.setProperty("RESOURCE.tagRoot", "common/tags");
-        this.properties.setProperty("RESOURCE.tagSuffix", "tag");
+    public String getPrefix() {
+        return prefix;
     }
 
-    public static Properties newInstance(){
-        return beetlProperties.properties;
+    public String getDelimiterStatementStart() {
+        return delimiterStatementStart;
+    }
+
+    public void setDelimiterStatementStart(String delimiterStatementStart) {
+        this.delimiterStatementStart = delimiterStatementStart;
+    }
+
+    public String getDelimiterStatementEnd() {
+        return delimiterStatementEnd;
+    }
+
+    public void setDelimiterStatementEnd(String delimiterStatementEnd) {
+        this.delimiterStatementEnd = delimiterStatementEnd;
+    }
+
+    public String getResourceTagroot() {
+        return resourceTagroot;
+    }
+
+    public void setResourceTagroot(String resourceTagroot) {
+        this.resourceTagroot = resourceTagroot;
+    }
+
+    public String getResourceTagsuffix() {
+        return resourceTagsuffix;
+    }
+
+    public void setResourceTagsuffix(String resourceTagsuffix) {
+        this.resourceTagsuffix = resourceTagsuffix;
     }
 }

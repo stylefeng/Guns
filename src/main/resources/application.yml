@@ -2,10 +2,17 @@
 guns:
   kaptcha-open: false #是否开启登录时验证码 (true/false)
 
-
 ###################  项目启动端口  ###################
 server:
   port: 80
+
+###################  beetl配置  ###################
+beetl:
+  delimiter-statement-start: \@   #开始结束标签(yaml不允许@开头)
+  delimiter-statement-end: null
+  resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
+  resource-tagsuffix: tag
+
 
 ###################  spring配置  ###################
 spring:
