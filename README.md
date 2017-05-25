@@ -3,28 +3,64 @@
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
 
-Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户,角色,部门,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架.
+Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架.
 
 ## 鸣谢
 1.[SpringBlade](http://git.oschina.net/smallc/SpringBlade)
 2.[beetl](http://ibeetl.com/)
 3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
 
+## 更新日志
+1. 整合spring boot全面重构项目
+2. 代码生成功能加入到菜单
+3. 新增和修改菜单更加人性化,不用手动输入父级编号,改为下拉框选择方式
+4. maven profile向spring profile的转变,上线不用输入繁琐的maven命令
+5. 修复新增用户无法修改自己信息的bug
+6. shiro集成ehcache
+7. 修复pom.xml中kaptcha报错的bug
+8. 新增两种项目启动方式,一种为jar包方式启动,一种为ide里直接运行main函数启动方式
+9. 修复linux中无法使用头像上传的bug
+10. 增加一个开关可以控制是否需要输入首页登录的验证码
+
 ##功能简介
 1. 用户管理
 2. 角色管理
-3. 菜单管理
-4. 部门管理
-4. 日志管理
-5. 监控管理
-6. 字典管理
-7. 通知管理
-8. 代码生成
+3. 部门管理
+4. 菜单管理
+5. 字典管理
+6. 业务日志
+7. 登录日志
+8. 监控管理
+9. 通知管理
+10. 代码生成
 
 ##使用说明
-1. 导入sql/guns.sql文件到数据库
-2. 以maven方式导入项目，并修改数据库文件（src/main/resources/dev/jdbc.properties）为本机数据库配置
+1. 导入sql/guns.sql文件到mysql数据库
+2. 以maven方式导入项目到ide
+3. 修改application.yml中的数据库相关的配置,改为您本机的数据库配置
 3. 启动项目,管理员账号admin/密码111111
+
+###如何启动项目
+Guns目前支持三种启动方式:
+1. 在IDE里运行GunsApplication类中的main方法启动
+2. 执行如下maven命令
+```
+clean package -Dmaven.test.skip=true
+```
+并从target目录中找到guns-1.0.0-SNAPSHOT.jar,并在jar包的目录下执行如下java命令
+```
+java -jar guns-1.0.0-SNAPSHOT.jar
+```
+3. 修改pom.xml中如下片段
+```
+<packaging>jar</packaging>
+```
+改为
+```
+<packaging>war</packaging>
+```
+并打包放入到tomcat中执行
+
 
 ##所用框架
 ###前端
@@ -36,7 +72,7 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 6. webuploader
 
 ###后端
-1. springmvc
+1. spring-boot 1.5.3.RELEASE
 2. mybatis
 3. mybatis-plus
 4. spring
