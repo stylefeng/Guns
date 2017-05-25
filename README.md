@@ -11,7 +11,7 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
 
 ## 更新日志
-1. 整合spring boot全面重构项目
+1. 整合最新版本SpringBoot 1.5.3.RELEASE
 2. 代码生成功能加入到菜单
 3. 新增和修改菜单更加人性化,不用手动输入父级编号,改为下拉框选择方式
 4. maven profile向spring profile的转变,上线不用输入繁琐的maven命令
@@ -23,7 +23,7 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 10. 增加一个开关可以控制是否需要输入首页登录的验证码
 
 ### 如果不喜欢SpringBoot?
-如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到[Guns V1.0](http://git.oschina.net/naan1993/guns/tree/v1.0/)分支,
+如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)分支,
 Guns V1.0基于spring的java bean方式配置项目,同样简洁易上手.
 
 注:SpringBoot强大的Auto Config和统一的依赖管理极大的简化了spring配置和maven依赖,在不了解其都配置了那些东西的基础上可能会对初学者有一定困扰,所以建议初学者先看Guns V1.0
@@ -70,21 +70,25 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 
 ##所用框架
 ###前端
-1. bootstrap
-2. jquery
-3. bootstrap-table
-4. layer
-5. ztree
-6. webuploader
+1. Bootstrap v3.3.6
+2. jQuery v2.1.4 
+3. bootstrap-table v1.9.0
+4. layer v2.1
+5. zTree core v3.5.28
+6. WebUploader 0.1.5
 
 ###后端
-1. spring-boot 1.5.3.RELEASE
-2. mybatis
-3. mybatis-plus
-4. spring
-5. beetl
-6. hibernate-validator
-7. ehcache
+1. SpringBoot 1.5.3.RELEASE
+2. MyBatis-Plus 2.0.8
+3. MyBatis 3.4.4
+4. Spring 4.3.8.RELEASE
+5. Beetl 2.7.15
+6. hibernate-validator 5.3.5.Final
+7. Ehcache 3.3.1
+8. Kaptcha 2.3.2
+9. Fastjson 1.2.31
+10. Shiro 1.4.0
+11. Druid 1.0.31
 
 ##项目特点
 1. 零springxml配置，完全采用javabean方式配置spring，新思路，配置简洁，不易出错。详情请见com.stylefeng.guns.project.config包中具体类。
