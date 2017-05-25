@@ -13,6 +13,7 @@ public class UserDict extends AbstractDictMap {
     @Override
     public void init() {
         put("userId","账号");
+        put("avatar","头像");
         put("account","账号");
         put("name","名字");
         put("birthday","生日");
