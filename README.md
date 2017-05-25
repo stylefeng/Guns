@@ -1,5 +1,9 @@
-#Guns V1.0
-不用写xml配置！独特的日志记录方式！包含用户角色，权限等模块的后台管理系统！整合springmvc + mybatis-plus + beetl！
+#Guns V2.0
+新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
+
+在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
+
+Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户,角色,部门,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架.
 
 ## 鸣谢
 1.[SpringBlade](http://git.oschina.net/smallc/SpringBlade)
