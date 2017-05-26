@@ -10,6 +10,9 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 2.[beetl](http://ibeetl.com/)
 3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
 
+##技术讨论
+如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081
+
 ## 更新日志
 1. 整合最新版本SpringBoot 1.5.3.RELEASE
 2. 代码生成功能加入到菜单
@@ -126,8 +129,8 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 注:SpringBoot项目默认不支持将静态资源和模板(web页面)放到webapp目录,但是个人感觉resources目录只放项目的配置更加简洁,所以就将web页面继续放到webapp目录了.
 
 ##项目特点
-1. 零springxml配置，完全采用javabean方式配置spring，新思路，配置简洁，不易出错。详情请见com.stylefeng.guns.project.config包中具体类。
-2. 完善的日志记录体系，可记录登录日志，业务操作日志，异常日志到数据库，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，并且日志记录为异步执行，详情请见@BussinessLog注解和LogObjectHolder,LogManager,LogAop类。
+1. 基于SpringBoot,简化了大量项目配置和maven依赖,让您更专注于业务开发,独特的分包方式,代码多而不乱。
+2. 完善的日志记录体系，可记录登录日志，业务操作日志(可记录操作前和操作后的数据)，异常日志到数据库，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，并且日志记录为异步执行，详情请见@BussinessLog注解和LogObjectHolder,LogManager,LogAop类。
 3. 利用beetl模板引擎对前台页面进行封装和拆分，使臃肿的html代码变得简洁，更加易维护。
 4. 对常用js插件进行二次封装，使js代码变得简洁，更加易维护，具体请见webapp/static/js/common文件夹内js代码。
 5. 利用ehcache框架对经常调用的查询进行缓存，提升运行速度，具体请见ConstantFactory类中@Cacheable标记的方法。
@@ -136,100 +139,38 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 8. 简单可用的代码生成体系，通过SimpleTemplateEngine可生成带有主页跳转和增删改查的通用控制器、html页面以及相关的js。
 9. 控制器层统一的异常拦截机制,利用@ControllerAdvice统一对异常拦截,具体见com.stylefeng.guns.core.aop.GlobalExceptionHandler类。
 
-##零spring xml配置示例
-以下配置示例仅列出部分spring配置，详情请见com.stylefeng.guns.project.config包中具体的配置类
-###根配置
+##基于javabean方式的spring配置
+Guns以简洁为核心,抛弃了传统的易错,臃肿xml配置,采用javabean的方式配置spring,简化了项目的配置,如下示例为配置mybatis-plus和数据源:
 ```
 @Configuration
-@ComponentScan(basePackages = {"com.stylefeng"}, excludeFilters = {
-        @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)// 这个是为了不让扫描到springmvc的控制器
-})
-@EnableAspectJAutoProxy
-@Import(value = {DataSourceConfig.class, ShiroConfig.class, DruidMonitorConfig.class, EhcacheConfig.class})
-public class RootSpringConfig {
+@MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao", "com.stylefeng.guns.common.persistence.dao"})
+public class MybatisPlusConfig {
 
-}
-```
-###数据源配置
-```
-@Configuration
-@EnableTransactionManagement
-@PropertySource("classpath:jdbc.properties")
-public class DataSourceConfig implements EnvironmentAware {
-
-    private Environment em;
+    @Autowired
+    DruidProperties druidProperties;
 
     /**
-     * spring和MyBatis整合
+     * mybatis-plus分页插件
      */
     @Bean
-    public MybatisSqlSessionFactoryBean sqlSessionFactory(DataSource dataSource, GlobalConfiguration globalConfig) {
-        MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource(dataSource);
-        sqlSessionFactory.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-        Resource[] classPathResources = ResKit.getClassPathResources("classpath*:com/stylefeng/guns/**/mapping/*.xml");
-        sqlSessionFactory.setMapperLocations(classPathResources);
-
-        //以下为mybatis-plus配置
+    public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setDialectType("mysql");
-        sqlSessionFactory.setPlugins(new Interceptor[]{paginationInterceptor});
-        sqlSessionFactory.setGlobalConfig(globalConfig);
-        return sqlSessionFactory;
+        paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
+        return paginationInterceptor;
+    }
+
+    /**
+     * druid数据库连接池
+     */
+    @Bean(initMethod = "init")
+    public DruidDataSource dataSource() {
+        DruidDataSource dataSource = new DruidDataSource();
+        druidProperties.coinfig(dataSource);
+        return dataSource;
     }
 }
 ```
 
-###零web.xml配置
-```
-public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-    // spring应用上下文
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{RootSpringConfig.class};
-    }
-
-    // springmvc 上下文
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{SpringMvcConfig.class};
-    }
-
-    // 将DispatcherServlet映射到"/"
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
-    }
-}
-```
-
-###springmvc配置
-```
-@Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = {"com.stylefeng.guns.**.controller", "com.stylefeng.guns.common.controller"})
-@EnableAspectJAutoProxy
-@Import({ControllerAopConfig.class})
-public class SpringMvcConfig extends WebMvcConfigurerAdapter {
-
-    // beetl的视图解析器
-    @Bean
-    public BeetlSpringViewResolver beetlViewResolver() {
-        BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
-        beetlSpringViewResolver.setConfig(beetlConfiguration());
-        beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
-        beetlSpringViewResolver.setOrder(0);
-        return beetlSpringViewResolver;
-    }   
-    
-    // 配置静态资源的处理,对静态资源的请求转发到servlet容器中默认的servlet上(对静态资源的请求不做处理)
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-}
-```
 ##业务日志记录原理
 日志记录采用aop(LogAop类)方式对所有包含@BussinessLog注解的方法进行aop切入，会记录下当前用户执行了哪些操作（即@BussinessLog value属性的内容），如果涉及到数据修改，会取当前http请求的所有requestParameters与LogObjectHolder类中缓存的Object对象的所有字段作比较（所以在编辑之前的获取详情接口中需要缓存被修改对象之前的字段信息），日志内容会异步存入数据库中（通过ScheduledThreadPoolExecutor类）。
 
@@ -314,6 +255,3 @@ map+warpper方式即为把controller层的返回结果使用BeanKit工具类把�
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160139_ef118391_551203.jpeg "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160144_be4e3c3c_551203.jpeg "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160154_1e2bf378_551203.jpeg "在这里输入图片标题")
-
-##技术讨论
-如果对项目有任何疑问或者建议,欢迎加入guns技术交流群:254550081
