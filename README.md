@@ -245,13 +245,13 @@ avatarUp.init();
 map+warpper方式即为把controller层的返回结果使用BeanKit工具类把原有bean转化为Map的的形式(或者原有bean直接是map的形式)，再用单独写的一个包装类再包装一次这个map，使里面的参数更加具体，更加有含义，下面举一个例子，例如，在返回给前台一个性别时，数据库查出来1是男2是女，假如直接返回给前台，那么前台显示的时候还需要增加一次判断，并且前后端分离开发时又增加了一次交流和文档的成本，但是采用warpper包装的形式，可以直接把返回结果包装一下，例如动态增加一个字段sexName直接返回给前台性别的中文名称即可。
 
 ##效果图
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160059_b7a5d4d5_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0516/000735_b83c5c46_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160110_5e4f6d40_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160117_94443161_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160123_d0e287a5_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160129_beb6b25c_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160134_2212be4d_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160139_ef118391_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160144_be4e3c3c_551203.jpeg "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0511/160154_1e2bf378_551203.jpeg "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/104015_bdb14c74_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103734_bd3e8f6b_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103741_a9be53a6_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103746_6b4129ed_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103755_7729b916_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103801_b8216865_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103807_20bfb868_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103814_67e078bb_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103822_58fd5d91_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103827_d6218c74_551203.png "在这里输入图片标题")
