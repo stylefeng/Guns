@@ -90,6 +90,41 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 10. Shiro 1.4.0
 11. Druid 1.0.31
 
+##项目包结构说明
+```
+├─main
+│  │  
+│  ├─java
+│  │   │
+│  │   ├─com.stylefeng.guns----------------项目主代码
+│  │   │          │
+│  │   │          ├─common----------------项目公用的部分(业务中经常调用的类,例如常量,异常,实体,注解,分页类,节点类)
+│  │   │          │
+│  │   │          ├─config----------------项目配置代码(例如mybtais-plus配置,ehcache配置等)
+│  │   │          │
+│  │   │          ├─core----------------项目运行的核心依靠(例如aop日志记录,拦截器,监听器,guns模板引擎,shiro权限检查等)
+│  │   │          │
+│  │   │          ├─modular----------------项目业务代码
+│  │   │          │
+│  │   │          ├─GunsApplication类----------------以main方法启动springboot的类
+│  │   │          │
+│  │   │          └─GunsServletInitializer类----------------用servlet容器启动springboot的核心类
+│  │   │
+│  │   └─generator----------------mybatis-plus Entity生成器
+│  │
+│  ├─resources----------------项目资源文件
+│  │     │
+│  │     ├─gunsTemplate----------------guns代码生成模板
+│  │     │ 
+│  │     ├─application.yml----------------springboot项目配置
+│  │     │ 
+│  │     ├─ehcache.xml----------------ehcache缓存配置
+│  │
+│  └─webapp----------------web页面和静态资源存放的目录
+│  
+```
+注:SpringBoot项目默认不支持将静态资源和模板(web页面)放到webapp目录,但是个人感觉resources目录只放项目的配置更加简洁,所以就将web页面继续放到webapp目录了.
+
 ##项目特点
 1. 零springxml配置，完全采用javabean方式配置spring，新思路，配置简洁，不易出错。详情请见com.stylefeng.guns.project.config包中具体类。
 2. 完善的日志记录体系，可记录登录日志，业务操作日志，异常日志到数据库，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，并且日志记录为异步执行，详情请见@BussinessLog注解和LogObjectHolder,LogManager,LogAop类。
