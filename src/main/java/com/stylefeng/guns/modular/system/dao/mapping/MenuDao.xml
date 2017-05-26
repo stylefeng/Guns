@@ -147,11 +147,11 @@
 		FROM
 		relation rela
 		WHERE
-		rela.roleid IN (
+		rela.roleid IN
 		<foreach collection="list" index="index" item="i" open="(" separator="," close=")">
 			#{i}
 		</foreach>
-		))
+		)
 		) m3 ON m1.id = m3.id
 		order by levels,num asc
 	</select>
