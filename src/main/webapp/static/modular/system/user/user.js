@@ -102,7 +102,7 @@ MgrUser.delMgrUser = function () {
             Feng.success("删除成功!");
             MgrUser.table.refresh();
         }, function (data) {
-            Feng.error("删除失败!");
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajax.set("userId", userId);
         ajax.start();
@@ -120,7 +120,7 @@ MgrUser.freezeAccount = function () {
             Feng.success("冻结成功!");
             MgrUser.table.refresh();
         }, function (data) {
-            Feng.error("冻结失败!");
+            Feng.error("冻结失败!" + data.responseJSON.message + "!");
         });
         ajax.set("userId", userId);
         ajax.start();

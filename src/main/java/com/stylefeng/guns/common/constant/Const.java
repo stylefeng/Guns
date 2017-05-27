@@ -18,4 +18,14 @@ public interface Const {
      */
     String ADMIN_NAME = "administrator";
 
+    /**
+     * 管理员id
+     */
+    Integer ADMIN_ID = 1;
+
+    /**
+     * 超级管理员角色id
+     */
+    Integer ADMIN_ROLE_ID = 1;
+
 }

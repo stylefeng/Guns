@@ -81,7 +81,7 @@ Menu.delMenu = function () {
             Feng.success("删除成功!");
             Menu.table.refresh();
         }, function (data) {
-            Feng.error("删除失败!");
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajax.set("menuId", this.seItem.id);
         ajax.start();

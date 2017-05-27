@@ -225,6 +225,10 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        //不能删除超级管理员
+        if(userId.equals(Const.ADMIN_ID)){
+            throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
+        }
         this.managerDao.setStatus(userId, ManagerStatus.DELETED.getCode());
         return SUCCESS_TIP;
     }
@@ -270,6 +274,10 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        //不能冻结超级管理员
+        if(userId.equals(Const.ADMIN_ID)){
+            throw new BussinessException(BizExceptionEnum.CANT_FREEZE_ADMIN);
+        }
         this.managerDao.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
@@ -299,6 +307,10 @@ public class UserMgrController extends BaseController {
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        //不能修改超级管理员
+        if(userId.equals(Const.ADMIN_ID)){
+            throw new BussinessException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         this.managerDao.setRoles(userId, roleIds);
         return SUCCESS_TIP;

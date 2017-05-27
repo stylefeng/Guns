@@ -160,6 +160,11 @@ public class RoleController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
 
+        //不能删除超级管理员角色
+        if(roleId.equals(Const.ADMIN_ROLE_ID)){
+            throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
+        }
+
         //缓存被删除的角色名称
         LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
 

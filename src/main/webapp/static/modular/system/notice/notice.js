@@ -77,7 +77,7 @@ Notice.delete = function () {
             Feng.success("删除成功!");
             Notice.table.refresh();
         }, function (data) {
-            Feng.error("删除失败!");
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajax.set("noticeId", this.seItem.id);
         ajax.start();

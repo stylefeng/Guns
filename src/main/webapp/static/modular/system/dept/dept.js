@@ -77,7 +77,7 @@ Dept.delete = function () {
             Feng.success("删除成功!");
             Dept.table.refresh();
         }, function (data) {
-            Feng.error("删除失败!");
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajax.set("deptId",this.seItem.id);
         ajax.start();

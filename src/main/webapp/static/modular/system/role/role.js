@@ -78,7 +78,7 @@ Role.delRole = function () {
             Feng.success("删除成功!");
             Role.table.refresh();
         }, function (data) {
-            Feng.error("删除失败!");
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajax.set("roleId", this.seItem.id);
         ajax.start();

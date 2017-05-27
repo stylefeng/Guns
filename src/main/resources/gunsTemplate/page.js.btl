@@ -73,7 +73,7 @@ ${context.bizEnBigName}.delete = function () {
             Feng.success("删除成功!");
             ${context.bizEnBigName}.table.refresh();
         }, function (data) {
-            Feng.error("删除失败!");
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajax.set("${context.bizEnName}Id",this.seItem.id);
         ajax.start();
