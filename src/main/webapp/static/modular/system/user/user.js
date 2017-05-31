@@ -15,15 +15,15 @@ MgrUser.initColumn = function () {
     var columns = [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '账号', field: 'account', align: 'center', valign: 'middle'},
-        {title: '姓名', field: 'name', align: 'center', valign: 'middle'},
-        {title: '性别', field: 'sexName', align: 'center', valign: 'middle'},
-        {title: '角色', field: 'roleName', align: 'center', valign: 'middle'},
-        {title: '部门', field: 'deptName', align: 'center', valign: 'middle'},
-        {title: '邮箱', field: 'email', align: 'center', valign: 'middle'},
-        {title: '电话', field: 'phone', align: 'center', valign: 'middle'},
-        {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle'},
-        {title: '状态', field: 'statusName', align: 'center', valign: 'middle'}];
+        {title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true},
+        {title: '姓名', field: 'name', align: 'center', valign: 'middle', sortable: true},
+        {title: '性别', field: 'sexName', align: 'center', valign: 'middle', sortable: true},
+        {title: '角色', field: 'roleName', align: 'center', valign: 'middle', sortable: true},
+        {title: '部门', field: 'deptName', align: 'center', valign: 'middle', sortable: true},
+        {title: '邮箱', field: 'email', align: 'center', valign: 'middle', sortable: true},
+        {title: '电话', field: 'phone', align: 'center', valign: 'middle', sortable: true},
+        {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true},
+        {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}];
     return columns;
 };
 
