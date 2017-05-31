@@ -13,10 +13,24 @@
         <if test="logType != null and logType !=''">
             and logtype like CONCAT('%',#{logType},'%')
         </if>
-        order by createTime DESC
+        <choose>
+            <when test="orderByField != null and orderByField !=''">
+                <choose>
+                    <when test="isAsc == true">
+                        order by ${orderByField} ASC
+                    </when>
+                    <otherwise>
+                        order by ${orderByField} DESC
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                order by createtime DESC
+            </otherwise>
+        </choose>
     </select>
 
-    <select id="getLoginLogs" resultType="map">
+    <select id="getLoginLogs" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
         select * from login_log where 1 = 1
         <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
             and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
@@ -24,6 +38,20 @@
         <if test="logName != null and logName !=''">
             and logname like CONCAT('%',#{logName},'%')
         </if>
-        order by createTime DESC
+        <choose>
+            <when test="orderByField != null and orderByField !=''">
+                <choose>
+                    <when test="isAsc == true">
+                        order by ${orderByField} ASC
+                    </when>
+                    <otherwise>
+                        order by ${orderByField} DESC
+                    </otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                order by createtime DESC
+            </otherwise>
+        </choose>
     </select>
 </mapper>

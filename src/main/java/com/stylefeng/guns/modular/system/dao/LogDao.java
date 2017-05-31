@@ -21,7 +21,7 @@ public interface LogDao {
      * @author stylefeng
      * @Date 2017/4/16 23:48
      */
-    List<Map<String, Object>> getOperationLogs(Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName, @Param("logType") String logType);
+    List<Map<String, Object>> getOperationLogs(@Param("page") Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName, @Param("logType") String logType, @Param("orderByField") String orderByField, @Param("isAsc") boolean isAsc);
 
     /**
      * 获取登录日志
@@ -29,5 +29,5 @@ public interface LogDao {
      * @author stylefeng
      * @Date 2017/4/16 23:48
      */
-    List<Map<String, Object>> getLoginLogs(Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName);
+    List<Map<String, Object>> getLoginLogs(@Param("page") Page<OperationLog> page, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("logName") String logName, @Param("orderByField") String orderByField, @Param("isAsc") boolean isAsc);
 }
