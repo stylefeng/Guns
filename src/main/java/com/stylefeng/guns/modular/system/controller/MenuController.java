@@ -78,8 +78,17 @@ public class MenuController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuMapper.selectById(menuId);
+
+        //获取父级菜单的id
+        Menu temp = new Menu();
+        temp.setCode(menu.getPcode());
+        Menu pMenu = this.menuMapper.selectOne(temp);
+
+        //设置父级菜单的code为父级菜单的id
+        menu.setPcode(String.valueOf(pMenu.getId()));
+
         Map<String, Object> menuMap = BeanKit.beanToMap(menu);
-        menuMap.put("pcodeName",ConstantFactory.me().getMenuNameByCode(menu.getPcode()));
+        menuMap.put("pcodeName",ConstantFactory.me().getMenuNameByCode(temp.getCode()));
         model.addAttribute("menu", menuMap);
         LogObjectHolder.me().set(menu);
         return PREFIX + "menu_edit.html";
