@@ -84,8 +84,13 @@ public class MenuController extends BaseController {
         temp.setCode(menu.getPcode());
         Menu pMenu = this.menuMapper.selectOne(temp);
 
-        //设置父级菜单的code为父级菜单的id
-        menu.setPcode(String.valueOf(pMenu.getId()));
+        //如果父级是顶级菜单
+        if(pMenu == null){
+            menu.setPcode("0");
+        }else{
+            //设置父级菜单的code为父级菜单的id
+            menu.setPcode(String.valueOf(pMenu.getId()));
+        }
 
         Map<String, Object> menuMap = BeanKit.beanToMap(menu);
         menuMap.put("pcodeName",ConstantFactory.me().getMenuNameByCode(temp.getCode()));
