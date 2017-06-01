@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-01 21:42:29
+Date: 2017-06-01 22:47:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,6 +97,7 @@ CREATE TABLE `menu` (
   `url` varchar(255) DEFAULT NULL COMMENT 'url地址',
   `num` int(65) DEFAULT NULL COMMENT '菜单排序号',
   `levels` int(65) DEFAULT NULL COMMENT '菜单层级',
+  `ismenu` int(11) DEFAULT NULL,
   `tips` varchar(255) DEFAULT NULL COMMENT '备注',
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
@@ -106,43 +107,43 @@ CREATE TABLE `menu` (
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '3', '1', null, '1', '1');
-INSERT INTO `menu` VALUES ('106', 'mgr', 'system', '用户管理', '', '/mgr', '1', '2', null, '1', '0');
-INSERT INTO `menu` VALUES ('107', 'mgr_add', 'mgr', '添加用户', null, '/mgr/add', '1', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('108', 'mgr_edit', 'mgr', '修改用户', null, '/mgr/edit', '2', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('109', 'mgr_delete', 'mgr', '删除用户', null, '/mgr/delete', '3', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('110', 'mgr_reset', 'mgr', '重置密码', null, '/mgr/reset', '4', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('111', 'mgr_freeze', 'mgr', '冻结用户', null, '/mgr/freeze', '5', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('112', 'mgr_unfreeze', 'mgr', '解除冻结用户', null, '/mgr/unfreeze', '6', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('113', 'mgr_setRole', 'mgr', '分配角色', null, '/mgr/setRole', '7', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('114', 'role', 'system', '角色管理', null, '/role', '2', '2', null, '1', '0');
-INSERT INTO `menu` VALUES ('115', 'role_add', 'role', '添加角色', null, '/role/add', '1', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('116', 'role_edit', 'role', '修改角色', null, '/role/edit', '2', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('117', 'role_remove', 'role', '删除角色', null, '/role/remove', '3', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('118', 'role_setAuthority', 'role', '配置权限', null, '/role/setAuthority', '4', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('119', 'menu', 'system', '菜单管理', null, '/menu', '4', '2', null, '1', '0');
-INSERT INTO `menu` VALUES ('120', 'menu_add', 'menu', '添加菜单', null, '/menu/add', '1', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('121', 'menu_edit', 'menu', '修改菜单', null, '/menu/edit', '2', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('122', 'menu_remove', 'menu', '删除菜单', null, '/menu/remove', '3', '3', null, '1', '0');
-INSERT INTO `menu` VALUES ('128', 'log', 'system', '业务日志', null, '/log', '6', '2', null, '1', '0');
-INSERT INTO `menu` VALUES ('130', 'druid', 'system', '监控管理', null, '/druid', '7', '2', null, '1', null);
-INSERT INTO `menu` VALUES ('131', 'dept', 'system', '部门管理', null, '/dept', '3', '2', null, '1', null);
-INSERT INTO `menu` VALUES ('132', 'dict', 'system', '字典管理', null, '/dict', '4', '2', null, '1', null);
-INSERT INTO `menu` VALUES ('133', 'loginLog', 'system', '登录日志', null, '/loginLog', '6', '2', null, '1', null);
-INSERT INTO `menu` VALUES ('134', 'log_clean', 'log', '清空日志', null, '/log/delLog', '3', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('135', 'dept_add', 'dept', '添加部门', null, '/dept/add', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('136', 'dept_update', 'dept', '修改部门', null, '/dept/update', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('137', 'dept_delete', 'dept', '删除部门', null, '/dept/delete', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('138', 'dict_add', 'dict', '添加字典', null, '/dict/add', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('139', 'dict_update', 'dict', '修改字典', null, '/dict/update', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('140', 'dict_delete', 'dict', '删除字典', null, '/dict/delete', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('141', 'notice', 'system', '通知管理', null, '/notice', '9', '2', null, '1', null);
-INSERT INTO `menu` VALUES ('142', 'notice_add', 'notice', '添加通知', null, '/notice/add', '1', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('143', 'notice_update', 'notice', '修改通知', null, '/notice/update', '2', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('144', 'notice_delete', 'notice', '删除通知', null, '/notice/delete', '3', '3', null, '1', null);
-INSERT INTO `menu` VALUES ('145', 'hello', '0', '通知', 'fa-rocket', '/notice/hello', '1', '1', null, '1', null);
-INSERT INTO `menu` VALUES ('148', 'code', 'system', '代码生成', 'fa-user', '/code', '10', '2', null, '1', null);
-INSERT INTO `menu` VALUES ('149', 'api_mgr', '0', '接口文档', 'fa-leaf', '/swagger-ui.html', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '3', '1', '1', null, '1', '1');
+INSERT INTO `menu` VALUES ('106', 'mgr', 'system', '用户管理', '', '/mgr', '1', '2', '1', null, '1', '0');
+INSERT INTO `menu` VALUES ('107', 'mgr_add', 'mgr', '添加用户', null, '/mgr/add', '1', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('108', 'mgr_edit', 'mgr', '修改用户', null, '/mgr/edit', '2', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('109', 'mgr_delete', 'mgr', '删除用户', null, '/mgr/delete', '3', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('110', 'mgr_reset', 'mgr', '重置密码', null, '/mgr/reset', '4', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('111', 'mgr_freeze', 'mgr', '冻结用户', null, '/mgr/freeze', '5', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('112', 'mgr_unfreeze', 'mgr', '解除冻结用户', null, '/mgr/unfreeze', '6', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('113', 'mgr_setRole', 'mgr', '分配角色', null, '/mgr/setRole', '7', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('114', 'role', 'system', '角色管理', null, '/role', '2', '2', '1', null, '1', '0');
+INSERT INTO `menu` VALUES ('115', 'role_add', 'role', '添加角色', null, '/role/add', '1', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('116', 'role_edit', 'role', '修改角色', null, '/role/edit', '2', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('117', 'role_remove', 'role', '删除角色', null, '/role/remove', '3', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('118', 'role_setAuthority', 'role', '配置权限', null, '/role/setAuthority', '4', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('119', 'menu', 'system', '菜单管理', null, '/menu', '4', '2', '1', null, '1', '0');
+INSERT INTO `menu` VALUES ('120', 'menu_add', 'menu', '添加菜单', null, '/menu/add', '1', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('121', 'menu_edit', 'menu', '修改菜单', null, '/menu/edit', '2', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('122', 'menu_remove', 'menu', '删除菜单', null, '/menu/remove', '3', '3', '0', null, '1', '0');
+INSERT INTO `menu` VALUES ('128', 'log', 'system', '业务日志', null, '/log', '6', '2', '1', null, '1', '0');
+INSERT INTO `menu` VALUES ('130', 'druid', 'system', '监控管理', null, '/druid', '7', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('131', 'dept', 'system', '部门管理', null, '/dept', '3', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('132', 'dict', 'system', '字典管理', null, '/dict', '4', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('133', 'loginLog', 'system', '登录日志', null, '/loginLog', '6', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('134', 'log_clean', 'log', '清空日志', null, '/log/delLog', '3', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('135', 'dept_add', 'dept', '添加部门', null, '/dept/add', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('136', 'dept_update', 'dept', '修改部门', null, '/dept/update', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('137', 'dept_delete', 'dept', '删除部门', null, '/dept/delete', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('138', 'dict_add', 'dict', '添加字典', null, '/dict/add', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('139', 'dict_update', 'dict', '修改字典', null, '/dict/update', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('140', 'dict_delete', 'dict', '删除字典', null, '/dict/delete', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('141', 'notice', 'system', '通知管理', null, '/notice', '9', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('142', 'notice_add', 'notice', '添加通知', null, '/notice/add', '1', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('143', 'notice_update', 'notice', '修改通知', null, '/notice/update', '2', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('144', 'notice_delete', 'notice', '删除通知', null, '/notice/delete', '3', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('145', 'hello', '0', '通知', 'fa-rocket', '/notice/hello', '1', '1', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('148', 'code', 'system', '代码生成', 'fa-user', '/code', '10', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('149', 'api_mgr', '0', '接口文档', 'fa-leaf', '/swagger-ui.html', '2', '1', '1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notice
