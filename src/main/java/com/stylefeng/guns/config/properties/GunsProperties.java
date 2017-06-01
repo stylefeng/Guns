@@ -20,7 +20,9 @@ public class GunsProperties {
 
     public static final String PREFIX = "guns";
 
-    private Boolean kaptchaOpen;
+    private Boolean kaptchaOpen = false;
+
+    private Boolean swaggerOpen = false;
 
     private String fileUploadPath;
 
@@ -55,5 +57,13 @@ public class GunsProperties {
 
     public void setKaptchaOpen(Boolean kaptchaOpen) {
         this.kaptchaOpen = kaptchaOpen;
+    }
+
+    public Boolean getSwaggerOpen() {
+        return swaggerOpen;
+    }
+
+    public void setSwaggerOpen(Boolean swaggerOpen) {
+        this.swaggerOpen = swaggerOpen;
     }
 }

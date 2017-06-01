@@ -7,6 +7,9 @@ import com.stylefeng.guns.core.template.config.ContextConfig;
 import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
 import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 import com.stylefeng.guns.core.util.ToolUtil;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,16 +37,22 @@ public class CodeController extends BaseController {
     /**
      * 代码生成
      */
+    @ApiOperation("生成代码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "bizChName", value = "业务名称", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "bizEnName", value = "业务英文名称", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "path", value = "项目生成类路径", required = true, dataType = "String")
+    })
     @RequestMapping(value = "/generate")
     @ResponseBody
     public Object add(String bizChName, String bizEnName, String path) {
-        if(ToolUtil.isOneEmpty(bizChName,bizEnName)){
+        if (ToolUtil.isOneEmpty(bizChName, bizEnName)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         ContextConfig contextConfig = new ContextConfig();
         contextConfig.setBizChName(bizChName);
         contextConfig.setBizEnName(bizEnName);
-        if(ToolUtil.isNotEmpty(path)){
+        if (ToolUtil.isNotEmpty(path)) {
             contextConfig.setProjectPath(path);
         }
 

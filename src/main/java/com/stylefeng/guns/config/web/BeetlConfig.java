@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2016年11月12日 下午5:03:32
  */
 @Configuration
-@ConfigurationProperties(prefix = "spring.mvc.view")
 public class BeetlConfig {
 
     @Autowired
