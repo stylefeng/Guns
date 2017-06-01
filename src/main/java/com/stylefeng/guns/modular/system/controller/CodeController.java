@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -43,7 +44,7 @@ public class CodeController extends BaseController {
             @ApiImplicitParam(name = "bizEnName", value = "业务英文名称", required = true, dataType = "String"),
             @ApiImplicitParam(name = "path", value = "项目生成类路径", required = true, dataType = "String")
     })
-    @RequestMapping(value = "/generate")
+    @RequestMapping(value = "/generate",method = RequestMethod.POST)
     @ResponseBody
     public Object add(String bizChName, String bizEnName, String path) {
         if (ToolUtil.isOneEmpty(bizChName, bizEnName)) {
