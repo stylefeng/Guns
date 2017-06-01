@@ -21,6 +21,7 @@ Menu.initColumn = function () {
         {title: '请求地址', field: 'url', align: 'center', valign: 'middle', sortable: true},
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
         {title: '层级', field: 'levels', align: 'center', valign: 'middle', sortable: true},
+        {title: '是否是菜单', field: 'isMenuName', align: 'center', valign: 'middle', sortable: true},
         {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}]
     return columns;
 };

@@ -45,7 +45,7 @@ MenuInfoDlg.close = function () {
  * 收集数据
  */
 MenuInfoDlg.collectData = function () {
-    this.set('id').set('name').set('code').set('pcode').set('url').set('num').set('levels').set('icon');
+    this.set('id').set('name').set('code').set('pcode').set('url').set('num').set('levels').set('icon').set("ismenu");
 }
 
 /**
@@ -109,4 +109,7 @@ $(function () {
     ztree.bindOnClick(MenuInfoDlg.onClickDept);
     ztree.init();
     MenuInfoDlg.ztreeInstance = ztree;
+
+    //初始化是否是菜单
+    $("#ismenu").val($("#ismenuValue").val());
 });

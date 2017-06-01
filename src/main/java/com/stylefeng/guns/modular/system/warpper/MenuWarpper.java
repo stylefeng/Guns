@@ -1,6 +1,7 @@
 package com.stylefeng.guns.modular.system.warpper;
 
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.common.constant.state.IsMenu;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class MenuWarpper extends BaseControllerWarpper {
     @Override
     public void warpTheMap(Map<String, Object> map) {
         map.put("statusName", ConstantFactory.me().getMenuStatusName((Integer) map.get("status")));
+        map.put("isMenuName", IsMenu.valueOf((Integer) map.get("ismenu")));
     }
 
 }
