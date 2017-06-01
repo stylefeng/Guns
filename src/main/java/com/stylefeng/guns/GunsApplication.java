@@ -23,6 +23,9 @@ public class GunsApplication extends WebMvcConfigurerAdapter{
     @Autowired
     GunsProperties gunsProperties;
 
+    /**
+     * 增加swagger的支持
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if(gunsProperties.getSwaggerOpen()){
