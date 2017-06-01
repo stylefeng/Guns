@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-23
+ * @since 2017-06-01
  */
 public class User extends Model<User> {
 

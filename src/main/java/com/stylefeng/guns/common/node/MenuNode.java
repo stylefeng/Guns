@@ -37,6 +37,11 @@ public class MenuNode implements Comparable {
     private Integer levels;
 
     /**
+     * 按钮级别
+     */
+    private Integer ismenu;
+
+    /**
      * 按钮的排序
      */
     private Integer num;
@@ -137,6 +142,14 @@ public class MenuNode implements Comparable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getIsmenu() {
+        return ismenu;
+    }
+
+    public void setIsmenu(Integer ismenu) {
+        this.ismenu = ismenu;
     }
 
     @Override
@@ -289,12 +302,12 @@ public class MenuNode implements Comparable {
 
         //如果关闭了接口文档,则不显示接口文档菜单
         GunsProperties gunsProperties = SpringContextHolder.getBean(GunsProperties.class);
-        if(!gunsProperties.getSwaggerOpen()){
+        if (!gunsProperties.getSwaggerOpen()) {
             List<MenuNode> menuNodesCopy = new ArrayList<>();
             for (MenuNode menuNode : menuNodes) {
-                if(Const.API_MENU_NAME.equals(menuNode.getName())){
+                if (Const.API_MENU_NAME.equals(menuNode.getName())) {
                     continue;
-                }else{
+                } else {
                     menuNodesCopy.add(menuNode);
                 }
             }

@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-05-23
+ * @since 2017-06-01
  */
 public class Menu extends Model<Menu> {
 
@@ -47,6 +47,10 @@ public class Menu extends Model<Menu> {
      * 菜单层级
      */
 	private Integer levels;
+    /**
+     * 是否是菜单(1:是  0:不是(为按钮))
+     */
+	private Integer ismenu;
     /**
      * 备注
      */
@@ -123,6 +127,14 @@ public class Menu extends Model<Menu> {
 
 	public void setLevels(Integer levels) {
 		this.levels = levels;
+	}
+
+	public Integer getIsmenu() {
+		return ismenu;
+	}
+
+	public void setIsmenu(Integer ismenu) {
+		this.ismenu = ismenu;
 	}
 
 	public String getTips() {

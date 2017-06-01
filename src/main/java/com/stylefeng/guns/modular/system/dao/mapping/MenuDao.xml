@@ -5,7 +5,7 @@
 
 	<sql id="Base_Column_List">
 		id, code, pcode, name, icon, url, num, levels,
-		tips, status,isopen
+		tips, status,isopen,ismenu
 	</sql>
 
 	<select id="selectMenus" resultType="map">
@@ -131,6 +131,7 @@
 		m1.NAME as name,
 		m1.url as url,
 		m1.levels as levels,
+		m1.ismenu as ismenu,
 		m1.num as num
 		FROM
 		menu m1
@@ -153,6 +154,7 @@
 		</foreach>
 		)
 		) m3 ON m1.id = m3.id
+		where m1.ismenu = 1
 		order by levels,num asc
 	</select>
 

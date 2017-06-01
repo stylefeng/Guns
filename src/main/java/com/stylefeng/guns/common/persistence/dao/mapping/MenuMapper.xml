@@ -12,6 +12,7 @@
 		<result column="url" property="url" />
 		<result column="num" property="num" />
 		<result column="levels" property="levels" />
+		<result column="ismenu" property="ismenu" />
 		<result column="tips" property="tips" />
 		<result column="status" property="status" />
 		<result column="isopen" property="isopen" />
