@@ -1,5 +1,9 @@
 package com.stylefeng.guns.common.node;
 
+import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.util.SpringContextHolder;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -281,6 +285,20 @@ public class MenuNode implements Comparable {
             if (menuNode.getChildren() != null && menuNode.getChildren().size() > 0) {
                 Collections.sort(menuNode.getChildren());
             }
+        }
+
+        //如果关闭了接口文档,则不显示接口文档菜单
+        GunsProperties gunsProperties = SpringContextHolder.getBean(GunsProperties.class);
+        if(!gunsProperties.getSwaggerOpen()){
+            List<MenuNode> menuNodesCopy = new ArrayList<>();
+            for (MenuNode menuNode : menuNodes) {
+                if(Const.API_MENU_NAME.equals(menuNode.getName())){
+                    continue;
+                }else{
+                    menuNodesCopy.add(menuNode);
+                }
+            }
+            menuNodes = menuNodesCopy;
         }
 
         return menuNodes;

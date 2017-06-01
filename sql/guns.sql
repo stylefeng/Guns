@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-23 19:22:09
+Date: 2017-06-01 21:42:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_log
@@ -101,12 +101,12 @@ CREATE TABLE `menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '2', '1', null, '1', '1');
+INSERT INTO `menu` VALUES ('105', 'system', '0', '系统管理', 'fa-user', '', '3', '1', null, '1', '1');
 INSERT INTO `menu` VALUES ('106', 'mgr', 'system', '用户管理', '', '/mgr', '1', '2', null, '1', '0');
 INSERT INTO `menu` VALUES ('107', 'mgr_add', 'mgr', '添加用户', null, '/mgr/add', '1', '3', null, '1', '0');
 INSERT INTO `menu` VALUES ('108', 'mgr_edit', 'mgr', '修改用户', null, '/mgr/edit', '2', '3', null, '1', '0');
@@ -142,6 +142,7 @@ INSERT INTO `menu` VALUES ('143', 'notice_update', 'notice', '修改通知', nul
 INSERT INTO `menu` VALUES ('144', 'notice_delete', 'notice', '删除通知', null, '/notice/delete', '3', '3', null, '1', null);
 INSERT INTO `menu` VALUES ('145', 'hello', '0', '通知', 'fa-rocket', '/notice/hello', '1', '1', null, '1', null);
 INSERT INTO `menu` VALUES ('148', 'code', 'system', '代码生成', 'fa-user', '/code', '10', '2', null, '1', null);
+INSERT INTO `menu` VALUES ('149', 'api_mgr', '0', '接口文档', 'fa-leaf', '/swagger-ui.html', '2', '1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notice
@@ -160,8 +161,8 @@ CREATE TABLE `notice` (
 -- ----------------------------
 -- Records of notice
 -- ----------------------------
-INSERT INTO `notice` VALUES ('6', '你好', '10', '欢迎使用Guns管理系统!', '2017-01-11 08:53:20', '1');
-INSERT INTO `notice` VALUES ('8', '世界', null, '欢迎使用Guns管护系统!', '2017-05-10 19:28:57', '1');
+INSERT INTO `notice` VALUES ('6', '世界', '10', '欢迎使用Guns管理系统', '2017-01-11 08:53:20', '1');
+INSERT INTO `notice` VALUES ('8', '你好', null, '你好', '2017-05-10 19:28:57', '1');
 
 -- ----------------------------
 -- Table structure for operation_log
@@ -178,15 +179,13 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=427 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=448 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
-INSERT INTO `operation_log` VALUES ('423', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-05-16 23:26:52', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('424', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-05-16 23:26:56', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('425', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-05-23 18:50:55', '成功', '菜单名称=代码生成');
-INSERT INTO `operation_log` VALUES ('426', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-05-23 18:51:02', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知');
+INSERT INTO `operation_log` VALUES ('446', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-06-01 21:42:13', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('447', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-06-01 21:42:15', '成功', '主键id=null');
 
 -- ----------------------------
 -- Table structure for relation
@@ -197,47 +196,48 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3263 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3300 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of relation
 -- ----------------------------
-INSERT INTO `relation` VALUES ('3227', '105', '1');
-INSERT INTO `relation` VALUES ('3228', '106', '1');
-INSERT INTO `relation` VALUES ('3229', '107', '1');
-INSERT INTO `relation` VALUES ('3230', '108', '1');
-INSERT INTO `relation` VALUES ('3231', '109', '1');
-INSERT INTO `relation` VALUES ('3232', '110', '1');
-INSERT INTO `relation` VALUES ('3233', '111', '1');
-INSERT INTO `relation` VALUES ('3234', '112', '1');
-INSERT INTO `relation` VALUES ('3235', '113', '1');
-INSERT INTO `relation` VALUES ('3236', '114', '1');
-INSERT INTO `relation` VALUES ('3237', '115', '1');
-INSERT INTO `relation` VALUES ('3238', '116', '1');
-INSERT INTO `relation` VALUES ('3239', '117', '1');
-INSERT INTO `relation` VALUES ('3240', '118', '1');
-INSERT INTO `relation` VALUES ('3241', '119', '1');
-INSERT INTO `relation` VALUES ('3242', '120', '1');
-INSERT INTO `relation` VALUES ('3243', '121', '1');
-INSERT INTO `relation` VALUES ('3244', '122', '1');
-INSERT INTO `relation` VALUES ('3245', '128', '1');
-INSERT INTO `relation` VALUES ('3246', '134', '1');
-INSERT INTO `relation` VALUES ('3247', '130', '1');
-INSERT INTO `relation` VALUES ('3248', '131', '1');
-INSERT INTO `relation` VALUES ('3249', '135', '1');
-INSERT INTO `relation` VALUES ('3250', '136', '1');
-INSERT INTO `relation` VALUES ('3251', '137', '1');
-INSERT INTO `relation` VALUES ('3252', '132', '1');
-INSERT INTO `relation` VALUES ('3253', '138', '1');
-INSERT INTO `relation` VALUES ('3254', '139', '1');
-INSERT INTO `relation` VALUES ('3255', '140', '1');
-INSERT INTO `relation` VALUES ('3256', '133', '1');
-INSERT INTO `relation` VALUES ('3257', '141', '1');
-INSERT INTO `relation` VALUES ('3258', '142', '1');
-INSERT INTO `relation` VALUES ('3259', '143', '1');
-INSERT INTO `relation` VALUES ('3260', '144', '1');
-INSERT INTO `relation` VALUES ('3261', '148', '1');
-INSERT INTO `relation` VALUES ('3262', '145', '1');
+INSERT INTO `relation` VALUES ('3263', '105', '1');
+INSERT INTO `relation` VALUES ('3264', '106', '1');
+INSERT INTO `relation` VALUES ('3265', '107', '1');
+INSERT INTO `relation` VALUES ('3266', '108', '1');
+INSERT INTO `relation` VALUES ('3267', '109', '1');
+INSERT INTO `relation` VALUES ('3268', '110', '1');
+INSERT INTO `relation` VALUES ('3269', '111', '1');
+INSERT INTO `relation` VALUES ('3270', '112', '1');
+INSERT INTO `relation` VALUES ('3271', '113', '1');
+INSERT INTO `relation` VALUES ('3272', '114', '1');
+INSERT INTO `relation` VALUES ('3273', '115', '1');
+INSERT INTO `relation` VALUES ('3274', '116', '1');
+INSERT INTO `relation` VALUES ('3275', '117', '1');
+INSERT INTO `relation` VALUES ('3276', '118', '1');
+INSERT INTO `relation` VALUES ('3277', '119', '1');
+INSERT INTO `relation` VALUES ('3278', '120', '1');
+INSERT INTO `relation` VALUES ('3279', '121', '1');
+INSERT INTO `relation` VALUES ('3280', '122', '1');
+INSERT INTO `relation` VALUES ('3281', '128', '1');
+INSERT INTO `relation` VALUES ('3282', '134', '1');
+INSERT INTO `relation` VALUES ('3283', '130', '1');
+INSERT INTO `relation` VALUES ('3284', '131', '1');
+INSERT INTO `relation` VALUES ('3285', '135', '1');
+INSERT INTO `relation` VALUES ('3286', '136', '1');
+INSERT INTO `relation` VALUES ('3287', '137', '1');
+INSERT INTO `relation` VALUES ('3288', '132', '1');
+INSERT INTO `relation` VALUES ('3289', '138', '1');
+INSERT INTO `relation` VALUES ('3290', '139', '1');
+INSERT INTO `relation` VALUES ('3291', '140', '1');
+INSERT INTO `relation` VALUES ('3292', '133', '1');
+INSERT INTO `relation` VALUES ('3293', '141', '1');
+INSERT INTO `relation` VALUES ('3294', '142', '1');
+INSERT INTO `relation` VALUES ('3295', '143', '1');
+INSERT INTO `relation` VALUES ('3296', '144', '1');
+INSERT INTO `relation` VALUES ('3297', '148', '1');
+INSERT INTO `relation` VALUES ('3298', '145', '1');
+INSERT INTO `relation` VALUES ('3299', '149', '1');
 
 -- ----------------------------
 -- Table structure for role

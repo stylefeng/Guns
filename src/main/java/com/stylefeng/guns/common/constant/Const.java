@@ -28,4 +28,9 @@ public interface Const {
      */
     Integer ADMIN_ROLE_ID = 1;
 
+    /**
+     * 接口文档的菜单名
+     */
+    String API_MENU_NAME = "接口文档";
+
 }
