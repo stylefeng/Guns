@@ -89,7 +89,7 @@ public class UserMgrController extends BaseController {
     }
 
     /**
-     * 跳转到查看管理员列表的页面
+     * 跳转到编辑管理员页面
      */
     @RequestMapping("/user_edit/{userId}")
     public String userEdit(@PathVariable Integer userId, Model model) {
@@ -107,8 +107,9 @@ public class UserMgrController extends BaseController {
     /**
      * 跳转到查看用户详情页面
      */
-    @RequestMapping("/user_info/{userId}")
-    public String userInfo(@PathVariable Integer userId, Model model) {
+    @RequestMapping("/user_info")
+    public String userInfo(Model model) {
+        Integer userId = ShiroKit.getUser().getId();
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
