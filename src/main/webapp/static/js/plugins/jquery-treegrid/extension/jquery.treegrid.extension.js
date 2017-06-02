@@ -9,6 +9,8 @@
 
 		// 如果是初始化组件
 		options = $.extend({}, $.fn.treegridData.defaults, options || {});
+		// 是否有radio或checkbox
+		var hasSelectItem = false;
 		var target = $(this);
 		// 得到根节点
 		target.getRootNodes = function(data) {
@@ -22,6 +24,8 @@
 						|| item[options.parentCode] == '') {
 					result.push(item);
 				}
+				// 添加一个默认属性，用来判断当前节点有没有被显示
+				item.isShow = false;
 			});
 			return result;
 		};
@@ -34,26 +38,8 @@
 					var nowParentIndex = (parentIndex + (j++) + 1);
 					tr.addClass('treegrid-' + nowParentIndex);
 					tr.addClass('treegrid-parent-' + parentIndex);
-					$.each(options.columns, function(index, column) {
-						// 判断有没有选择列
-						if(index==0&&column.field=='selectItem'){
-							var td = $('<td style="text-align:center"></td>');
-							// 判断是否为radio
-							if(column.radio){
-								var _ipt = $('<input name="select_item" type="radio" value="'+item[options.id]+'"></input>');
-								td.append(_ipt);
-							} 
-							if(column.checkbox){
-								var _ipt = $('<input name="select_item" type="checkbox" value="'+item[options.id]+'"></input>');
-								td.append(_ipt);
-							} 
-							tr.append(td);
-						}else{
-							var td = $('<td></td>');
-							td.text(item[column.field]);
-							tr.append(td);
-						}
-					});
+					target.renderRow(tr,item);
+					item.isShow = true;
 					tbody.append(tr);
 					target.getChildNodes(data, item, nowParentIndex, tbody)
 
@@ -67,6 +53,30 @@
 		if (options.bordered) {
 			target.addClass('table-bordered');
 		}
+		// 绘制行
+		target.renderRow = function(tr,item){
+			$.each(options.columns, function(index, column) {
+				// 判断有没有选择列
+				if(index==0&&column.field=='selectItem'){
+					hasSelectItem = true;
+					var td = $('<td style="text-align:center"></td>');
+					if(column.radio){
+						var _ipt = $('<input name="select_item" type="radio" value="'+item[options.id]+'"></input>');
+						td.append(_ipt);
+					} 
+					if(column.checkbox){
+						var _ipt = $('<input name="select_item" type="checkbox" value="'+item[options.id]+'"></input>');
+						td.append(_ipt);
+					} 
+					tr.append(td);
+				}else{
+					var td = $('<td></td>');
+					td.text(item[column.field]);
+					tr.append(td);
+				}
+			});
+		}
+		// 加载数据
 		target.load = function(parms){
 			$.ajax({
 				type : options.type,
@@ -86,36 +96,25 @@
 					var thead = $('<thead></thead>');
 					thead.append(thr);
 					target.append(thead);
-					// 是否有radio或checkbox
-					var hasSelectItem = false;
 					// 构造表体
 					var tbody = $('<tbody></tbody>');
 					var rootNode = target.getRootNodes(data);
 					$.each(rootNode, function(i, item) {
 						var tr = $('<tr></tr>');
 						tr.addClass('treegrid-' + (j + "_" + i));
-						$.each(options.columns, function(index, column) {
-							// 判断有没有选择列
-							if(index==0&&column.field=='selectItem'){
-								hasSelectItem = true;
-								var td = $('<td style="text-align:center"></td>');
-								if(column.radio){
-									var _ipt = $('<input name="select_item" type="radio" value="'+item[options.id]+'"></input>');
-									td.append(_ipt);
-								} 
-								if(column.checkbox){
-									var _ipt = $('<input name="select_item" type="checkbox" value="'+item[options.id]+'"></input>');
-									td.append(_ipt);
-								} 
-								tr.append(td);
-							}else{
-								var td = $('<td></td>');
-								td.text(item[column.field]);
-								tr.append(td);
-							}
-						});
+						target.renderRow(tr,item);
+						item.isShow = true;
 						tbody.append(tr);
 						target.getChildNodes(data, item, (j + "_" + i), tbody);
+					});
+					// 下边的操作主要是为了查询时让一些没有根节点的节点显示
+					$.each(data, function(i, item) {
+						if(!item.isShow){
+							var tr = $('<tr></tr>');
+							tr.addClass('treegrid-' + (j + "_" + i));
+							target.renderRow(tr,item);
+							tbody.append(tr);
+						}
 					});
 					target.append(tbody);
 					// 初始化treegrid
