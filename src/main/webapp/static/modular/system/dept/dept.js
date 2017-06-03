@@ -15,7 +15,6 @@ Dept.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', align: 'center', valign: 'middle'},
-        {title: '父级部门', field: 'pName', align: 'center', valign: 'middle', sortable: true},
         {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle', sortable: true},
         {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle', sortable: true},
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
@@ -26,7 +25,7 @@ Dept.initColumn = function () {
  * 检查是否选中
  */
 Dept.check = function () {
-    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    var selected = $('#' + this.id).treegridData('getSelections');
     if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
@@ -95,7 +94,12 @@ Dept.search = function () {
 
 $(function () {
     var defaultColunms = Dept.initColumn();
-    var table = new BSTable(Dept.id, "/dept/list", defaultColunms);
-    table.setPaginationType("client");
-    Dept.table = table.init();
+    var table = new BSTreeTable(Dept.id, "/dept/list", defaultColunms);
+    table.setExpandColumn(2);
+    table.setIdField("id");
+    table.setCodeField("id");
+    table.setParentCodeField("pid");
+    table.setExpandAll(true);
+    table.init();
+    Dept.table = table;
 });
