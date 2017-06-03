@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-03 22:07:17
+Date: 2017-06-03 22:30:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,12 +78,14 @@ CREATE TABLE `login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
 INSERT INTO `login_log` VALUES ('115', '登录日志', '1', '2017-06-03 22:04:53', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `login_log` VALUES ('116', '退出日志', '1', '2017-06-03 22:25:15', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `login_log` VALUES ('117', '登录日志', '1', '2017-06-03 22:25:19', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -103,7 +105,7 @@ CREATE TABLE `menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
@@ -147,6 +149,9 @@ INSERT INTO `menu` VALUES ('148', 'code', 'system', '代码生成', 'fa-user', '
 INSERT INTO `menu` VALUES ('149', 'api_mgr', '0', '接口文档', 'fa-leaf', '/swagger-ui.html', '2', '1', '1', null, '1', null);
 INSERT INTO `menu` VALUES ('150', 'to_menu_edit', 'menu', '菜单编辑跳转', '', '/menu/menu_edit', '4', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('151', 'menu_list', 'menu', '菜单列表', '', '/menu/list', '5', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('152', 'to_dept_update', 'dept', '修改部门跳转', '', '/dept/dept_update', '4', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('153', 'dept_list', 'dept', '部门列表', '', '/dept/list', '5', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('154', 'dept_detail', 'dept', '部门详情', '', '/dept/detail', '6', '3', '0', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notice
@@ -183,7 +188,7 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=457 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=462 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
@@ -199,6 +204,11 @@ INSERT INTO `operation_log` VALUES ('453', '业务日志', '添加角色', '1', 
 INSERT INTO `operation_log` VALUES ('454', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:06:48', '成功', '角色名称=临时,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表');
 INSERT INTO `operation_log` VALUES ('455', '业务日志', '分配角色', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2017-06-03 22:06:53', '成功', '账号= test,角色名称集合=临时');
 INSERT INTO `operation_log` VALUES ('456', '业务日志', '重置管理员密码', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'reset', '2017-06-03 22:07:01', '成功', '账号= test');
+INSERT INTO `operation_log` VALUES ('457', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:22:56', '成功', '菜单名称=修改部门跳转');
+INSERT INTO `operation_log` VALUES ('458', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:23:41', '成功', '菜单名称=部门列表');
+INSERT INTO `operation_log` VALUES ('459', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:25:10', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
+INSERT INTO `operation_log` VALUES ('460', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:30:08', '成功', '菜单名称=部门详情');
+INSERT INTO `operation_log` VALUES ('461', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:30:48', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
 
 -- ----------------------------
 -- Table structure for relation
@@ -209,50 +219,11 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3397 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3480 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of relation
 -- ----------------------------
-INSERT INTO `relation` VALUES ('3338', '105', '1');
-INSERT INTO `relation` VALUES ('3339', '106', '1');
-INSERT INTO `relation` VALUES ('3340', '107', '1');
-INSERT INTO `relation` VALUES ('3341', '108', '1');
-INSERT INTO `relation` VALUES ('3342', '109', '1');
-INSERT INTO `relation` VALUES ('3343', '110', '1');
-INSERT INTO `relation` VALUES ('3344', '111', '1');
-INSERT INTO `relation` VALUES ('3345', '112', '1');
-INSERT INTO `relation` VALUES ('3346', '113', '1');
-INSERT INTO `relation` VALUES ('3347', '114', '1');
-INSERT INTO `relation` VALUES ('3348', '115', '1');
-INSERT INTO `relation` VALUES ('3349', '116', '1');
-INSERT INTO `relation` VALUES ('3350', '117', '1');
-INSERT INTO `relation` VALUES ('3351', '118', '1');
-INSERT INTO `relation` VALUES ('3352', '119', '1');
-INSERT INTO `relation` VALUES ('3353', '120', '1');
-INSERT INTO `relation` VALUES ('3354', '121', '1');
-INSERT INTO `relation` VALUES ('3355', '122', '1');
-INSERT INTO `relation` VALUES ('3356', '150', '1');
-INSERT INTO `relation` VALUES ('3357', '151', '1');
-INSERT INTO `relation` VALUES ('3358', '128', '1');
-INSERT INTO `relation` VALUES ('3359', '134', '1');
-INSERT INTO `relation` VALUES ('3360', '130', '1');
-INSERT INTO `relation` VALUES ('3361', '131', '1');
-INSERT INTO `relation` VALUES ('3362', '135', '1');
-INSERT INTO `relation` VALUES ('3363', '136', '1');
-INSERT INTO `relation` VALUES ('3364', '137', '1');
-INSERT INTO `relation` VALUES ('3365', '132', '1');
-INSERT INTO `relation` VALUES ('3366', '138', '1');
-INSERT INTO `relation` VALUES ('3367', '139', '1');
-INSERT INTO `relation` VALUES ('3368', '140', '1');
-INSERT INTO `relation` VALUES ('3369', '133', '1');
-INSERT INTO `relation` VALUES ('3370', '141', '1');
-INSERT INTO `relation` VALUES ('3371', '142', '1');
-INSERT INTO `relation` VALUES ('3372', '143', '1');
-INSERT INTO `relation` VALUES ('3373', '144', '1');
-INSERT INTO `relation` VALUES ('3374', '148', '1');
-INSERT INTO `relation` VALUES ('3375', '145', '1');
-INSERT INTO `relation` VALUES ('3376', '149', '1');
 INSERT INTO `relation` VALUES ('3377', '105', '5');
 INSERT INTO `relation` VALUES ('3378', '106', '5');
 INSERT INTO `relation` VALUES ('3379', '107', '5');
@@ -273,6 +244,48 @@ INSERT INTO `relation` VALUES ('3393', '121', '5');
 INSERT INTO `relation` VALUES ('3394', '122', '5');
 INSERT INTO `relation` VALUES ('3395', '150', '5');
 INSERT INTO `relation` VALUES ('3396', '151', '5');
+INSERT INTO `relation` VALUES ('3438', '105', '1');
+INSERT INTO `relation` VALUES ('3439', '106', '1');
+INSERT INTO `relation` VALUES ('3440', '107', '1');
+INSERT INTO `relation` VALUES ('3441', '108', '1');
+INSERT INTO `relation` VALUES ('3442', '109', '1');
+INSERT INTO `relation` VALUES ('3443', '110', '1');
+INSERT INTO `relation` VALUES ('3444', '111', '1');
+INSERT INTO `relation` VALUES ('3445', '112', '1');
+INSERT INTO `relation` VALUES ('3446', '113', '1');
+INSERT INTO `relation` VALUES ('3447', '114', '1');
+INSERT INTO `relation` VALUES ('3448', '115', '1');
+INSERT INTO `relation` VALUES ('3449', '116', '1');
+INSERT INTO `relation` VALUES ('3450', '117', '1');
+INSERT INTO `relation` VALUES ('3451', '118', '1');
+INSERT INTO `relation` VALUES ('3452', '119', '1');
+INSERT INTO `relation` VALUES ('3453', '120', '1');
+INSERT INTO `relation` VALUES ('3454', '121', '1');
+INSERT INTO `relation` VALUES ('3455', '122', '1');
+INSERT INTO `relation` VALUES ('3456', '150', '1');
+INSERT INTO `relation` VALUES ('3457', '151', '1');
+INSERT INTO `relation` VALUES ('3458', '128', '1');
+INSERT INTO `relation` VALUES ('3459', '134', '1');
+INSERT INTO `relation` VALUES ('3460', '130', '1');
+INSERT INTO `relation` VALUES ('3461', '131', '1');
+INSERT INTO `relation` VALUES ('3462', '135', '1');
+INSERT INTO `relation` VALUES ('3463', '136', '1');
+INSERT INTO `relation` VALUES ('3464', '137', '1');
+INSERT INTO `relation` VALUES ('3465', '152', '1');
+INSERT INTO `relation` VALUES ('3466', '153', '1');
+INSERT INTO `relation` VALUES ('3467', '154', '1');
+INSERT INTO `relation` VALUES ('3468', '132', '1');
+INSERT INTO `relation` VALUES ('3469', '138', '1');
+INSERT INTO `relation` VALUES ('3470', '139', '1');
+INSERT INTO `relation` VALUES ('3471', '140', '1');
+INSERT INTO `relation` VALUES ('3472', '133', '1');
+INSERT INTO `relation` VALUES ('3473', '141', '1');
+INSERT INTO `relation` VALUES ('3474', '142', '1');
+INSERT INTO `relation` VALUES ('3475', '143', '1');
+INSERT INTO `relation` VALUES ('3476', '144', '1');
+INSERT INTO `relation` VALUES ('3477', '148', '1');
+INSERT INTO `relation` VALUES ('3478', '145', '1');
+INSERT INTO `relation` VALUES ('3479', '149', '1');
 
 -- ----------------------------
 -- Table structure for role

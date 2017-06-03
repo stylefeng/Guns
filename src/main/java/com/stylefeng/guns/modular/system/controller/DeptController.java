@@ -2,19 +2,18 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
-import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.Dict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.common.persistence.dao.DeptMapper;
+import com.stylefeng.guns.common.persistence.model.Dept;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DeptDao;
 import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
-import com.stylefeng.guns.common.persistence.dao.DeptMapper;
-import com.stylefeng.guns.common.persistence.model.Dept;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,6 +62,7 @@ public class DeptController extends BaseController {
     /**
      * 跳转到修改部门
      */
+    @Permission
     @RequestMapping("/dept_update/{deptId}")
     public String deptUpdate(@PathVariable Integer deptId, Model model) {
         Dept dept = deptMapper.selectById(deptId);
@@ -88,8 +88,8 @@ public class DeptController extends BaseController {
      */
     @BussinessLog(value = "添加部门", key = "simplename", dict = Dict.DeptDict)
     @RequestMapping(value = "/add")
+    @Permission
     @ResponseBody
-    @Permission(Const.ADMIN_NAME)
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -101,6 +101,7 @@ public class DeptController extends BaseController {
      * 获取所有部门列表
      */
     @RequestMapping(value = "/list")
+    @Permission
     @ResponseBody
     public Object list(String condition) {
         List<Map<String, Object>> list = this.deptDao.list(condition);
@@ -111,6 +112,7 @@ public class DeptController extends BaseController {
      * 部门详情
      */
     @RequestMapping(value = "/detail/{deptId}")
+    @Permission
     @ResponseBody
     public Object detail(@PathVariable("deptId") Integer deptId) {
         return deptMapper.selectById(deptId);
@@ -121,8 +123,8 @@ public class DeptController extends BaseController {
      */
     @BussinessLog(value = "修改部门", key = "simplename", dict = Dict.DeptDict)
     @RequestMapping(value = "/update")
+    @Permission
     @ResponseBody
-    @Permission(Const.ADMIN_NAME)
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -136,8 +138,8 @@ public class DeptController extends BaseController {
      */
     @BussinessLog(value = "删除部门", key = "deptId", dict = Dict.DeleteDict)
     @RequestMapping(value = "/delete")
+    @Permission
     @ResponseBody
-    @Permission(Const.ADMIN_NAME)
     public Object delete(@RequestParam Integer deptId) {
 
         //缓存被删除的部门名称
