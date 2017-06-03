@@ -1,5 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
@@ -46,6 +48,7 @@ public class CodeController extends BaseController {
     })
     @RequestMapping(value = "/generate",method = RequestMethod.POST)
     @ResponseBody
+    @Permission(Const.ADMIN_NAME)
     public Object add(String bizChName, String bizEnName, String path) {
         if (ToolUtil.isOneEmpty(bizChName, bizEnName)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);

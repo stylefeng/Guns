@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-03 22:00:59
+Date: 2017-06-03 22:07:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,11 +78,12 @@ CREATE TABLE `login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
+INSERT INTO `login_log` VALUES ('115', '登录日志', '1', '2017-06-03 22:04:53', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -182,7 +183,7 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=452 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=457 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
@@ -193,6 +194,11 @@ INSERT INTO `operation_log` VALUES ('448', '业务日志', '菜单新增', '1', 
 INSERT INTO `operation_log` VALUES ('449', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 21:59:52', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
 INSERT INTO `operation_log` VALUES ('450', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:00:32', '成功', '菜单名称=菜单列表');
 INSERT INTO `operation_log` VALUES ('451', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:00:39', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
+INSERT INTO `operation_log` VALUES ('452', '异常日志', '', '45', null, null, '2017-06-03 22:04:36', '失败', 'java.lang.NullPointerException\r\n	at com.stylefeng.guns.modular.system.controller.LoginController.index(LoginController.java:56)\r\n	at com.stylefeng.guns.modular.system.controller.LoginControllerTTFastClassBySpringCGLIBTTffd23625.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)\r\n	at org.springframework.aop.framework.CglibAopProxyTCglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:85)\r\n	at com.stylefeng.guns.core.intercept.SessionInterceptor.sessionKit(SessionInterceptor.java:31)\r\n	at sun.reflect.GeneratedMethodAccessor86.invoke(Unknown Source)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\r\n	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\r\n	at org.springframework.aop.framework.CglibAopProxyTDynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)\r\n	at com.stylefeng.guns.modular.system.controller.LoginControllerTTEnhancerBySpringCGLIBTT11d60386.index(<generated>)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)\r\n	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilterT1.call(AbstractShiroFilter.java:365)\r\n	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)\r\n	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)\r\n	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at com.stylefeng.guns.core.util.xss.XssFilter.doFilter(XssFilter.java:22)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)\r\n	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:799)\r\n	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n	at org.apache.coyote.AbstractProtocolTConnectionHandler.process(AbstractProtocol.java:861)\r\n	at org.apache.tomcat.util.net.NioEndpointTSocketProcessor.doRun(NioEndpoint.java:1455)\r\n	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\r\n	at java.util.concurrent.ThreadPoolExecutorTWorker.run(ThreadPoolExecutor.java:617)\r\n	at org.apache.tomcat.util.threads.TaskThreadTWrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:745)\r\n');
+INSERT INTO `operation_log` VALUES ('453', '业务日志', '添加角色', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'add', '2017-06-03 22:06:41', '成功', '角色名称=临时');
+INSERT INTO `operation_log` VALUES ('454', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:06:48', '成功', '角色名称=临时,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表');
+INSERT INTO `operation_log` VALUES ('455', '业务日志', '分配角色', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2017-06-03 22:06:53', '成功', '账号= test,角色名称集合=临时');
+INSERT INTO `operation_log` VALUES ('456', '业务日志', '重置管理员密码', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'reset', '2017-06-03 22:07:01', '成功', '账号= test');
 
 -- ----------------------------
 -- Table structure for relation
@@ -203,7 +209,7 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3377 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3397 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of relation
@@ -247,6 +253,26 @@ INSERT INTO `relation` VALUES ('3373', '144', '1');
 INSERT INTO `relation` VALUES ('3374', '148', '1');
 INSERT INTO `relation` VALUES ('3375', '145', '1');
 INSERT INTO `relation` VALUES ('3376', '149', '1');
+INSERT INTO `relation` VALUES ('3377', '105', '5');
+INSERT INTO `relation` VALUES ('3378', '106', '5');
+INSERT INTO `relation` VALUES ('3379', '107', '5');
+INSERT INTO `relation` VALUES ('3380', '108', '5');
+INSERT INTO `relation` VALUES ('3381', '109', '5');
+INSERT INTO `relation` VALUES ('3382', '110', '5');
+INSERT INTO `relation` VALUES ('3383', '111', '5');
+INSERT INTO `relation` VALUES ('3384', '112', '5');
+INSERT INTO `relation` VALUES ('3385', '113', '5');
+INSERT INTO `relation` VALUES ('3386', '114', '5');
+INSERT INTO `relation` VALUES ('3387', '115', '5');
+INSERT INTO `relation` VALUES ('3388', '116', '5');
+INSERT INTO `relation` VALUES ('3389', '117', '5');
+INSERT INTO `relation` VALUES ('3390', '118', '5');
+INSERT INTO `relation` VALUES ('3391', '119', '5');
+INSERT INTO `relation` VALUES ('3392', '120', '5');
+INSERT INTO `relation` VALUES ('3393', '121', '5');
+INSERT INTO `relation` VALUES ('3394', '122', '5');
+INSERT INTO `relation` VALUES ('3395', '150', '5');
+INSERT INTO `relation` VALUES ('3396', '151', '5');
 
 -- ----------------------------
 -- Table structure for role
@@ -261,12 +287,13 @@ CREATE TABLE `role` (
   `tips` varchar(255) DEFAULT NULL,
   `version` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', '1', '0', '超级管理员', '24', 'administrator', '1');
+INSERT INTO `role` VALUES ('5', '2', '1', '临时', '26', 'temp', null);
 
 -- ----------------------------
 -- Table structure for user
@@ -295,4 +322,4 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'girl.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', '27', '1', '2016-01-29 08:49:53', '25');
-INSERT INTO `user` VALUES ('44', null, ' test', 'a5421443274a4d1f9eb938f7adc4478d', '4g4bn', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '1', '26', '3', '2017-05-16 20:33:37', null);
+INSERT INTO `user` VALUES ('44', null, ' test', '45abb7879f6a8268f1ef600e6038ac73', 'ssts3', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '5', '26', '1', '2017-05-16 20:33:37', null);
