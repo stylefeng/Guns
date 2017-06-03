@@ -15,9 +15,9 @@ Menu.initColumn = function () {
     var columns = [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
         {title: '菜单编号', field: 'code', align: 'center', valign: 'middle', sortable: true},
         {title: '菜单父编号', field: 'pcode', align: 'center', valign: 'middle', sortable: true},
-        {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
         {title: '请求地址', field: 'url', align: 'center', valign: 'middle', sortable: true},
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
         {title: '层级', field: 'levels', align: 'center', valign: 'middle', sortable: true},
@@ -31,7 +31,7 @@ Menu.initColumn = function () {
  * 检查是否选中
  */
 Menu.check = function () {
-    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    var selected = $('#' + this.id).treegridData('getSelections');
     if (selected.length == 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
@@ -103,8 +103,12 @@ Menu.search = function () {
 
 $(function () {
     var defaultColunms = Menu.initColumn();
-    var table = new BSTable(Menu.id, "/menu/list", defaultColunms);
-    table.setPaginationType("client");
+    var table = new BSTreeTable(Menu.id, "/menu/list", defaultColunms);
+    table.setExpandColumn(2);
+    table.setIdField("id");
+    table.setCodeField("code");
+    table.setParentCodeField("pcode");
+    table.setExpandAll(true);
     table.init();
     Menu.table = table;
 });
