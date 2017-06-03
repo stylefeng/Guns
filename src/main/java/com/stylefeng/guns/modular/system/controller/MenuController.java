@@ -72,6 +72,7 @@ public class MenuController extends BaseController {
     /**
      * 跳转到菜单详情列表页面
      */
+    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/menu_edit/{menuId}")
     public String menuEdit(@PathVariable Integer menuId, Model model) {
         if (ToolUtil.isEmpty(menuId)) {
@@ -104,8 +105,8 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
-    @ResponseBody
     @BussinessLog(value = "修改菜单", key = "name", dict = Dict.MenuDict)
+    @ResponseBody
     public Tip edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -120,6 +121,7 @@ public class MenuController extends BaseController {
     /**
      * 获取菜单列表
      */
+    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
