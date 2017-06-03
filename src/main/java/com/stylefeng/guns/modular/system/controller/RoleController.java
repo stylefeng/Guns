@@ -78,6 +78,7 @@ public class RoleController extends BaseController {
     /**
      * 跳转到修改角色
      */
+    @Permission
     @RequestMapping(value = "/role_edit/{roleId}")
     public String roleEdit(@PathVariable Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
@@ -92,8 +93,9 @@ public class RoleController extends BaseController {
     }
 
     /**
-     * 跳转到添加角色
+     * 跳转到角色分配
      */
+    @Permission
     @RequestMapping(value = "/role_assign/{roleId}")
     public String roleAssign(@PathVariable("roleId") Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
@@ -107,6 +109,7 @@ public class RoleController extends BaseController {
     /**
      * 获取角色列表
      */
+    @Permission
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String roleName) {

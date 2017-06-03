@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-03 22:44:21
+Date: 2017-06-03 22:52:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,7 +78,7 @@ CREATE TABLE `login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_log
@@ -90,6 +90,10 @@ INSERT INTO `login_log` VALUES ('118', '退出日志', '1', '2017-06-03 22:35:09
 INSERT INTO `login_log` VALUES ('119', '登录日志', '1', '2017-06-03 22:35:13', '成功', null, '0:0:0:0:0:0:0:1');
 INSERT INTO `login_log` VALUES ('120', '退出日志', '1', '2017-06-03 22:35:51', '成功', null, '0:0:0:0:0:0:0:1');
 INSERT INTO `login_log` VALUES ('121', '登录日志', '1', '2017-06-03 22:35:57', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `login_log` VALUES ('122', '退出日志', '1', '2017-06-03 22:50:15', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `login_log` VALUES ('123', '登录日志', '1', '2017-06-03 22:51:14', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `login_log` VALUES ('124', '退出日志', '1', '2017-06-03 22:52:19', '成功', null, '0:0:0:0:0:0:0:1');
+INSERT INTO `login_log` VALUES ('125', '登录日志', '1', '2017-06-03 22:52:23', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -109,7 +113,7 @@ CREATE TABLE `menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
@@ -163,6 +167,9 @@ INSERT INTO `menu` VALUES ('158', 'log_list', 'log', '日志列表', '', '/log/l
 INSERT INTO `menu` VALUES ('159', 'log_detail', 'log', '日志详情', '', '/log/detail', '3', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('160', 'del_login_log', 'loginLog', '清空登录日志', '', '/loginLog/delLoginLog', '1', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('161', 'login_log_list', 'loginLog', '登录日志列表', '', '/loginLog/list', '2', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('162', 'to_role_edit', 'role', '修改角色跳转', '', '/role/role_edit', '5', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('163', 'to_role_assign', 'role', '角色分配跳转', '', '/role/role_assign', '6', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('164', 'role_list', 'role', '角色列表', '', '/role/list', '7', '3', '0', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notice
@@ -199,7 +206,7 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=476 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
@@ -231,6 +238,9 @@ INSERT INTO `operation_log` VALUES ('469', '业务日志', '配置权限', '1', 
 INSERT INTO `operation_log` VALUES ('470', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:43:25', '成功', '菜单名称=清空登录日志');
 INSERT INTO `operation_log` VALUES ('471', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:44:04', '成功', '菜单名称=登录日志列表');
 INSERT INTO `operation_log` VALUES ('472', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:44:13', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
+INSERT INTO `operation_log` VALUES ('473', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:49:03', '成功', '菜单名称=修改角色跳转');
+INSERT INTO `operation_log` VALUES ('474', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:49:41', '成功', '菜单名称=角色分配跳转');
+INSERT INTO `operation_log` VALUES ('475', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:50:06', '成功', '菜单名称=角色列表');
 
 -- ----------------------------
 -- Table structure for relation
@@ -241,7 +251,7 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3621 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3624 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of relation
@@ -315,6 +325,9 @@ INSERT INTO `relation` VALUES ('3617', '144', '1');
 INSERT INTO `relation` VALUES ('3618', '148', '1');
 INSERT INTO `relation` VALUES ('3619', '145', '1');
 INSERT INTO `relation` VALUES ('3620', '149', '1');
+INSERT INTO `relation` VALUES ('3621', '164', '1');
+INSERT INTO `relation` VALUES ('3622', '163', '1');
+INSERT INTO `relation` VALUES ('3623', '162', '1');
 
 -- ----------------------------
 -- Table structure for role
