@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-03 22:52:45
+Date: 2017-06-03 23:04:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -83,17 +83,6 @@ CREATE TABLE `login_log` (
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
-INSERT INTO `login_log` VALUES ('115', '登录日志', '1', '2017-06-03 22:04:53', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('116', '退出日志', '1', '2017-06-03 22:25:15', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('117', '登录日志', '1', '2017-06-03 22:25:19', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('118', '退出日志', '1', '2017-06-03 22:35:09', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('119', '登录日志', '1', '2017-06-03 22:35:13', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('120', '退出日志', '1', '2017-06-03 22:35:51', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('121', '登录日志', '1', '2017-06-03 22:35:57', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('122', '退出日志', '1', '2017-06-03 22:50:15', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('123', '登录日志', '1', '2017-06-03 22:51:14', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('124', '退出日志', '1', '2017-06-03 22:52:19', '成功', null, '0:0:0:0:0:0:0:1');
-INSERT INTO `login_log` VALUES ('125', '登录日志', '1', '2017-06-03 22:52:23', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -113,7 +102,7 @@ CREATE TABLE `menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
@@ -170,6 +159,9 @@ INSERT INTO `menu` VALUES ('161', 'login_log_list', 'loginLog', '登录日志列
 INSERT INTO `menu` VALUES ('162', 'to_role_edit', 'role', '修改角色跳转', '', '/role/role_edit', '5', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('163', 'to_role_assign', 'role', '角色分配跳转', '', '/role/role_assign', '6', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('164', 'role_list', 'role', '角色列表', '', '/role/list', '7', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('165', 'to_role_assign', 'mgr', '分配角色跳转', '', '/role/role_assign', '8', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('166', 'to_user_edit', 'mgr', '编辑用户跳转', '', '/mgr/user_edit', '9', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('167', 'mgr_list', 'mgr', '用户列表', '', '/mgr/list', '10', '3', '0', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notice
@@ -206,41 +198,13 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=476 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=482 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
-INSERT INTO `operation_log` VALUES ('446', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-06-01 21:42:13', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('447', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-06-01 21:42:15', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('448', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 21:59:37', '成功', '菜单名称=菜单编辑跳转');
-INSERT INTO `operation_log` VALUES ('449', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 21:59:52', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('450', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:00:32', '成功', '菜单名称=菜单列表');
-INSERT INTO `operation_log` VALUES ('451', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:00:39', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('452', '异常日志', '', '45', null, null, '2017-06-03 22:04:36', '失败', 'java.lang.NullPointerException\r\n	at com.stylefeng.guns.modular.system.controller.LoginController.index(LoginController.java:56)\r\n	at com.stylefeng.guns.modular.system.controller.LoginControllerTTFastClassBySpringCGLIBTTffd23625.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)\r\n	at org.springframework.aop.framework.CglibAopProxyTCglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:85)\r\n	at com.stylefeng.guns.core.intercept.SessionInterceptor.sessionKit(SessionInterceptor.java:31)\r\n	at sun.reflect.GeneratedMethodAccessor86.invoke(Unknown Source)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:629)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:618)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\r\n	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)\r\n	at org.springframework.aop.framework.CglibAopProxyTDynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)\r\n	at com.stylefeng.guns.modular.system.controller.LoginControllerTTEnhancerBySpringCGLIBTT11d60386.index(<generated>)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:483)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)\r\n	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilterT1.call(AbstractShiroFilter.java:365)\r\n	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)\r\n	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)\r\n	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at com.stylefeng.guns.core.util.xss.XssFilter.doFilter(XssFilter.java:22)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)\r\n	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:799)\r\n	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n	at org.apache.coyote.AbstractProtocolTConnectionHandler.process(AbstractProtocol.java:861)\r\n	at org.apache.tomcat.util.net.NioEndpointTSocketProcessor.doRun(NioEndpoint.java:1455)\r\n	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\r\n	at java.util.concurrent.ThreadPoolExecutorTWorker.run(ThreadPoolExecutor.java:617)\r\n	at org.apache.tomcat.util.threads.TaskThreadTWrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:745)\r\n');
-INSERT INTO `operation_log` VALUES ('453', '业务日志', '添加角色', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'add', '2017-06-03 22:06:41', '成功', '角色名称=临时');
-INSERT INTO `operation_log` VALUES ('454', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:06:48', '成功', '角色名称=临时,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表');
-INSERT INTO `operation_log` VALUES ('455', '业务日志', '分配角色', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2017-06-03 22:06:53', '成功', '账号= test,角色名称集合=临时');
-INSERT INTO `operation_log` VALUES ('456', '业务日志', '重置管理员密码', '1', 'com.stylefeng.guns.modular.system.controller.UserMgrController', 'reset', '2017-06-03 22:07:01', '成功', '账号= test');
-INSERT INTO `operation_log` VALUES ('457', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:22:56', '成功', '菜单名称=修改部门跳转');
-INSERT INTO `operation_log` VALUES ('458', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:23:41', '成功', '菜单名称=部门列表');
-INSERT INTO `operation_log` VALUES ('459', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:25:10', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('460', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:30:08', '成功', '菜单名称=部门详情');
-INSERT INTO `operation_log` VALUES ('461', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:30:48', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('462', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:33:30', '成功', '菜单名称=修改菜单跳转');
-INSERT INTO `operation_log` VALUES ('463', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:33:54', '成功', '菜单名称=字典列表');
-INSERT INTO `operation_log` VALUES ('464', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:34:38', '成功', '菜单名称=字典详情');
-INSERT INTO `operation_log` VALUES ('465', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:36:31', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('466', '业务日志', '修改字典', '1', 'com.stylefeng.guns.modular.system.controller.DictController', 'update', '2017-06-03 22:36:40', '成功', '字典名称=账号状态,字典内容=1:启用;2:冻结;3:已删除;;;;');
-INSERT INTO `operation_log` VALUES ('467', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:40:47', '成功', '菜单名称=日志列表');
-INSERT INTO `operation_log` VALUES ('468', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:41:13', '成功', '菜单名称=日志详情');
-INSERT INTO `operation_log` VALUES ('469', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:41:29', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('470', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:43:25', '成功', '菜单名称=清空登录日志');
-INSERT INTO `operation_log` VALUES ('471', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:44:04', '成功', '菜单名称=登录日志列表');
-INSERT INTO `operation_log` VALUES ('472', '业务日志', '配置权限', '1', 'com.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2017-06-03 22:44:13', '成功', '角色名称=超级管理员,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,角色管理,添加角色,修改角色,删除角色,配置权限,菜单管理,添加菜单,修改菜单,删除菜单,菜单编辑跳转,菜单列表,业务日志,清空日志,日志列表,日志详情,监控管理,部门管理,添加部门,修改部门,删除部门,修改部门跳转,部门列表,部门详情,字典管理,添加字典,修改字典,删除字典,修改菜单跳转,字典列表,字典详情,登录日志,清空登录日志,登录日志列表,通知管理,添加通知,修改通知,删除通知,代码生成,通知,接口文档');
-INSERT INTO `operation_log` VALUES ('473', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:49:03', '成功', '菜单名称=修改角色跳转');
-INSERT INTO `operation_log` VALUES ('474', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:49:41', '成功', '菜单名称=角色分配跳转');
-INSERT INTO `operation_log` VALUES ('475', '业务日志', '菜单新增', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'add', '2017-06-03 22:50:06', '成功', '菜单名称=角色列表');
+INSERT INTO `operation_log` VALUES ('480', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-06-03 23:04:22', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('481', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-06-03 23:04:25', '成功', '主键id=null');
 
 -- ----------------------------
 -- Table structure for relation
@@ -251,7 +215,7 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL,
   `roleid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3624 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3679 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of relation
@@ -276,58 +240,61 @@ INSERT INTO `relation` VALUES ('3393', '121', '5');
 INSERT INTO `relation` VALUES ('3394', '122', '5');
 INSERT INTO `relation` VALUES ('3395', '150', '5');
 INSERT INTO `relation` VALUES ('3396', '151', '5');
-INSERT INTO `relation` VALUES ('3572', '105', '1');
-INSERT INTO `relation` VALUES ('3573', '106', '1');
-INSERT INTO `relation` VALUES ('3574', '107', '1');
-INSERT INTO `relation` VALUES ('3575', '108', '1');
-INSERT INTO `relation` VALUES ('3576', '109', '1');
-INSERT INTO `relation` VALUES ('3577', '110', '1');
-INSERT INTO `relation` VALUES ('3578', '111', '1');
-INSERT INTO `relation` VALUES ('3579', '112', '1');
-INSERT INTO `relation` VALUES ('3580', '113', '1');
-INSERT INTO `relation` VALUES ('3581', '114', '1');
-INSERT INTO `relation` VALUES ('3582', '115', '1');
-INSERT INTO `relation` VALUES ('3583', '116', '1');
-INSERT INTO `relation` VALUES ('3584', '117', '1');
-INSERT INTO `relation` VALUES ('3585', '118', '1');
-INSERT INTO `relation` VALUES ('3586', '119', '1');
-INSERT INTO `relation` VALUES ('3587', '120', '1');
-INSERT INTO `relation` VALUES ('3588', '121', '1');
-INSERT INTO `relation` VALUES ('3589', '122', '1');
-INSERT INTO `relation` VALUES ('3590', '150', '1');
-INSERT INTO `relation` VALUES ('3591', '151', '1');
-INSERT INTO `relation` VALUES ('3592', '128', '1');
-INSERT INTO `relation` VALUES ('3593', '134', '1');
-INSERT INTO `relation` VALUES ('3594', '158', '1');
-INSERT INTO `relation` VALUES ('3595', '159', '1');
-INSERT INTO `relation` VALUES ('3596', '130', '1');
-INSERT INTO `relation` VALUES ('3597', '131', '1');
-INSERT INTO `relation` VALUES ('3598', '135', '1');
-INSERT INTO `relation` VALUES ('3599', '136', '1');
-INSERT INTO `relation` VALUES ('3600', '137', '1');
-INSERT INTO `relation` VALUES ('3601', '152', '1');
-INSERT INTO `relation` VALUES ('3602', '153', '1');
-INSERT INTO `relation` VALUES ('3603', '154', '1');
-INSERT INTO `relation` VALUES ('3604', '132', '1');
-INSERT INTO `relation` VALUES ('3605', '138', '1');
-INSERT INTO `relation` VALUES ('3606', '139', '1');
-INSERT INTO `relation` VALUES ('3607', '140', '1');
-INSERT INTO `relation` VALUES ('3608', '155', '1');
-INSERT INTO `relation` VALUES ('3609', '156', '1');
-INSERT INTO `relation` VALUES ('3610', '157', '1');
-INSERT INTO `relation` VALUES ('3611', '133', '1');
-INSERT INTO `relation` VALUES ('3612', '160', '1');
-INSERT INTO `relation` VALUES ('3613', '161', '1');
-INSERT INTO `relation` VALUES ('3614', '141', '1');
-INSERT INTO `relation` VALUES ('3615', '142', '1');
-INSERT INTO `relation` VALUES ('3616', '143', '1');
-INSERT INTO `relation` VALUES ('3617', '144', '1');
-INSERT INTO `relation` VALUES ('3618', '148', '1');
-INSERT INTO `relation` VALUES ('3619', '145', '1');
-INSERT INTO `relation` VALUES ('3620', '149', '1');
-INSERT INTO `relation` VALUES ('3621', '164', '1');
-INSERT INTO `relation` VALUES ('3622', '163', '1');
-INSERT INTO `relation` VALUES ('3623', '162', '1');
+INSERT INTO `relation` VALUES ('3624', '105', '1');
+INSERT INTO `relation` VALUES ('3625', '106', '1');
+INSERT INTO `relation` VALUES ('3626', '107', '1');
+INSERT INTO `relation` VALUES ('3627', '108', '1');
+INSERT INTO `relation` VALUES ('3628', '109', '1');
+INSERT INTO `relation` VALUES ('3629', '110', '1');
+INSERT INTO `relation` VALUES ('3630', '111', '1');
+INSERT INTO `relation` VALUES ('3631', '112', '1');
+INSERT INTO `relation` VALUES ('3632', '113', '1');
+INSERT INTO `relation` VALUES ('3633', '165', '1');
+INSERT INTO `relation` VALUES ('3634', '166', '1');
+INSERT INTO `relation` VALUES ('3635', '167', '1');
+INSERT INTO `relation` VALUES ('3636', '114', '1');
+INSERT INTO `relation` VALUES ('3637', '115', '1');
+INSERT INTO `relation` VALUES ('3638', '116', '1');
+INSERT INTO `relation` VALUES ('3639', '117', '1');
+INSERT INTO `relation` VALUES ('3640', '118', '1');
+INSERT INTO `relation` VALUES ('3641', '162', '1');
+INSERT INTO `relation` VALUES ('3642', '163', '1');
+INSERT INTO `relation` VALUES ('3643', '164', '1');
+INSERT INTO `relation` VALUES ('3644', '119', '1');
+INSERT INTO `relation` VALUES ('3645', '120', '1');
+INSERT INTO `relation` VALUES ('3646', '121', '1');
+INSERT INTO `relation` VALUES ('3647', '122', '1');
+INSERT INTO `relation` VALUES ('3648', '150', '1');
+INSERT INTO `relation` VALUES ('3649', '151', '1');
+INSERT INTO `relation` VALUES ('3650', '128', '1');
+INSERT INTO `relation` VALUES ('3651', '134', '1');
+INSERT INTO `relation` VALUES ('3652', '158', '1');
+INSERT INTO `relation` VALUES ('3653', '159', '1');
+INSERT INTO `relation` VALUES ('3654', '130', '1');
+INSERT INTO `relation` VALUES ('3655', '131', '1');
+INSERT INTO `relation` VALUES ('3656', '135', '1');
+INSERT INTO `relation` VALUES ('3657', '136', '1');
+INSERT INTO `relation` VALUES ('3658', '137', '1');
+INSERT INTO `relation` VALUES ('3659', '152', '1');
+INSERT INTO `relation` VALUES ('3660', '153', '1');
+INSERT INTO `relation` VALUES ('3661', '154', '1');
+INSERT INTO `relation` VALUES ('3662', '132', '1');
+INSERT INTO `relation` VALUES ('3663', '138', '1');
+INSERT INTO `relation` VALUES ('3664', '139', '1');
+INSERT INTO `relation` VALUES ('3665', '140', '1');
+INSERT INTO `relation` VALUES ('3666', '155', '1');
+INSERT INTO `relation` VALUES ('3667', '156', '1');
+INSERT INTO `relation` VALUES ('3668', '157', '1');
+INSERT INTO `relation` VALUES ('3669', '133', '1');
+INSERT INTO `relation` VALUES ('3670', '160', '1');
+INSERT INTO `relation` VALUES ('3671', '161', '1');
+INSERT INTO `relation` VALUES ('3672', '141', '1');
+INSERT INTO `relation` VALUES ('3673', '142', '1');
+INSERT INTO `relation` VALUES ('3674', '143', '1');
+INSERT INTO `relation` VALUES ('3675', '144', '1');
+INSERT INTO `relation` VALUES ('3676', '148', '1');
+INSERT INTO `relation` VALUES ('3677', '145', '1');
+INSERT INTO `relation` VALUES ('3678', '149', '1');
 
 -- ----------------------------
 -- Table structure for role

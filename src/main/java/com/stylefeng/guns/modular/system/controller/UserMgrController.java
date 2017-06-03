@@ -77,6 +77,7 @@ public class UserMgrController extends BaseController {
     /**
      * 跳转到角色分配页面
      */
+    @Permission
     @RequestMapping("/role_assign/{userId}")
     public String roleAssign(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
@@ -91,6 +92,7 @@ public class UserMgrController extends BaseController {
     /**
      * 跳转到编辑管理员页面
      */
+    @Permission
     @RequestMapping("/user_edit/{userId}")
     public String userEdit(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
@@ -155,6 +157,7 @@ public class UserMgrController extends BaseController {
      * 查询管理员列表
      */
     @RequestMapping("/list")
+    @Permission
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime) {
         List<Map<String, Object>> users = managerDao.selectUsers(name, beginTime, endTime);
@@ -227,7 +230,7 @@ public class UserMgrController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能删除超级管理员
-        if(userId.equals(Const.ADMIN_ID)){
+        if (userId.equals(Const.ADMIN_ID)) {
             throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         this.managerDao.setStatus(userId, ManagerStatus.DELETED.getCode());
@@ -276,7 +279,7 @@ public class UserMgrController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能冻结超级管理员
-        if(userId.equals(Const.ADMIN_ID)){
+        if (userId.equals(Const.ADMIN_ID)) {
             throw new BussinessException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         this.managerDao.setStatus(userId, ManagerStatus.FREEZED.getCode());
@@ -310,7 +313,7 @@ public class UserMgrController extends BaseController {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员
-        if(userId.equals(Const.ADMIN_ID)){
+        if (userId.equals(Const.ADMIN_ID)) {
             throw new BussinessException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         this.managerDao.setRoles(userId, roleIds);
@@ -321,9 +324,8 @@ public class UserMgrController extends BaseController {
      * 上传图片(上传到项目的webapp/static/img)
      */
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
-    public
     @ResponseBody
-    String upload(@RequestPart("file") MultipartFile picture) {
+    public String upload(@RequestPart("file") MultipartFile picture) {
         String pictureName = UUID.randomUUID().toString() + ".jpg";
         try {
             String fileSavePath = gunsProperties.getFileUploadPath();
