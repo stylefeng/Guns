@@ -2,7 +2,9 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.PageFactory;
 import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.modular.system.dao.LogDao;
@@ -41,9 +43,10 @@ public class LoginLogController extends BaseController {
     }
 
     /**
-     * 查询操作日志列表
+     * 查询登录日志列表
      */
     @RequestMapping("/list")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
@@ -57,6 +60,7 @@ public class LoginLogController extends BaseController {
      */
     @BussinessLog("清空登录日志")
     @RequestMapping("/delLoginLog")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object delLog() {
         SqlRunner.db().delete("delete from login_log");
