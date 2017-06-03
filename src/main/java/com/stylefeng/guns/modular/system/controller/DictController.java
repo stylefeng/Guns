@@ -66,6 +66,7 @@ public class DictController extends BaseController {
     /**
      * 跳转到修改字典
      */
+    @Permission(Const.ADMIN_NAME)
     @RequestMapping("/dict_edit/{dictId}")
     public String deptUpdate(@PathVariable Integer dictId, Model model) {
         Dict dict = dictMapper.selectById(dictId);
@@ -97,6 +98,7 @@ public class DictController extends BaseController {
      * 获取所有字典列表
      */
     @RequestMapping(value = "/list")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object list(String condition) {
         List<Map<String, Object>> list = this.dictDao.list(condition);
@@ -107,6 +109,7 @@ public class DictController extends BaseController {
      * 字典详情
      */
     @RequestMapping(value = "/detail/{dictId}")
+    @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object detail(@PathVariable("dictId") Integer dictId) {
         return dictMapper.selectById(dictId);
