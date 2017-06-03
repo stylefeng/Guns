@@ -16,6 +16,7 @@
         this.code = 'code';// 用于设置父子关系
         this.parentCode = 'pcode';// 用于设置父子关系
         this.expandAll = false;// 是否默认全部展开
+        this.toolbarId = bstableId + "Toolbar";
     };
 
     BSTreeTable.prototype = {
@@ -37,6 +38,7 @@
                     bordered: true,  //是否显示边框
                     expandAll: this.expandAll,  //是否全部展开
                     columns: this.columns,		//列数组
+                    toolbar: "#" + this.toolbarId,//顶部工具条
                 });
             return this;
         },

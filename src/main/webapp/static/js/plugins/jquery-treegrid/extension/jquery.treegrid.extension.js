@@ -12,6 +12,19 @@
 		// 是否有radio或checkbox
 		var hasSelectItem = false;
 		var target = $(this);
+		// 在外层包装一下div，样式用的bootstrap-table的
+		var _main_div = $("<div class='fixed-table-container'></div>");
+		target.before(_main_div);
+		_main_div.append(target);
+		target.addClass("table-hover treegrid-table");
+		// 工具条在外层包装一下div，样式用的bootstrap-table的
+		if(options.toolbar){
+			var _tool_div = $("<div class='fixed-table-toolbar'></div>");
+			var _tool_left_div = $("<div class='bs-bars pull-left'></div>");
+			_tool_left_div.append($(options.toolbar));
+			_tool_div.append(_tool_left_div);
+			_main_div.before(_tool_div);
+		}
 		// 得到根节点
 		target.getRootNodes = function(data) {
 			var result = [];
@@ -93,11 +106,11 @@
 						th.text(item.title);
 						thr.append(th);
 					});
-					var thead = $('<thead></thead>');
+					var thead = $('<thead class="treegrid-thead"></thead>');
 					thead.append(thr);
 					target.append(thead);
 					// 构造表体
-					var tbody = $('<tbody></tbody>');
+					var tbody = $('<tbody class="treegrid-tbody"></tbody>');
 					var rootNode = target.getRootNodes(data);
 					$.each(rootNode, function(i, item) {
 						var tr = $('<tr></tr>');
@@ -197,6 +210,7 @@
 		striped : false, // 是否各行渐变色
 		bordered : false, // 是否显示边框
 		columns : [],
+        toolbar: null,//顶部工具条
 		expanderExpandedClass : 'glyphicon glyphicon-chevron-down',// 展开的按钮的图标
 		expanderCollapsedClass : 'glyphicon glyphicon-chevron-right'// 缩起的按钮的图标
 
