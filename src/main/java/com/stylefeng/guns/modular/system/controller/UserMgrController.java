@@ -159,8 +159,8 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/list")
     @Permission
     @ResponseBody
-    public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime) {
-        List<Map<String, Object>> users = managerDao.selectUsers(name, beginTime, endTime);
+    public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
+        List<Map<String, Object>> users = managerDao.selectUsers(name, beginTime, endTime, deptid);
         return new UserWarpper(users).warp();
     }
 
