@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 数据库
+Source Server         : 本地的
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : guns
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-03 23:04:33
+Date: 2017-06-04 10:24:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -78,11 +78,15 @@ CREATE TABLE `login_log` (
   `message` text,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
+INSERT INTO `login_log` VALUES ('126', '退出日志', '1', '2017-06-04 10:21:55', '成功', null, '127.0.0.1');
+INSERT INTO `login_log` VALUES ('127', '登录日志', '1', '2017-06-04 10:21:59', '成功', null, '127.0.0.1');
+INSERT INTO `login_log` VALUES ('128', '退出日志', '1', '2017-06-04 10:22:59', '成功', null, '127.0.0.1');
+INSERT INTO `login_log` VALUES ('129', '登录日志', '1', '2017-06-04 10:23:01', '成功', null, '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -159,7 +163,7 @@ INSERT INTO `menu` VALUES ('161', 'login_log_list', 'loginLog', '登录日志列
 INSERT INTO `menu` VALUES ('162', 'to_role_edit', 'role', '修改角色跳转', '', '/role/role_edit', '5', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('163', 'to_role_assign', 'role', '角色分配跳转', '', '/role/role_assign', '6', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('164', 'role_list', 'role', '角色列表', '', '/role/list', '7', '3', '0', null, '1', null);
-INSERT INTO `menu` VALUES ('165', 'to_role_assign', 'mgr', '分配角色跳转', '', '/role/role_assign', '8', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('165', 'to_role_assign', 'mgr', '分配角色跳转', '', '/mgr/role_assign', '8', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('166', 'to_user_edit', 'mgr', '编辑用户跳转', '', '/mgr/user_edit', '9', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('167', 'mgr_list', 'mgr', '用户列表', '', '/mgr/list', '10', '3', '0', null, '1', null);
 
@@ -198,13 +202,14 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL,
   `message` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=482 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
 INSERT INTO `operation_log` VALUES ('480', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-06-03 23:04:22', '成功', '主键id=null');
 INSERT INTO `operation_log` VALUES ('481', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-06-03 23:04:25', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('482', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-06-04 10:22:58', '成功', '菜单名称=分配角色跳转;;;字段名称:url地址,旧值:/role/role_assign,新值:/mgr/role_assign');
 
 -- ----------------------------
 -- Table structure for relation
