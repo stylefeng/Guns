@@ -1,4 +1,4 @@
-#Guns V2.0
+#Guns V2.1
 新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
@@ -13,17 +13,13 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 ##技术讨论
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081
 
-## 更新日志
-1. 整合最新版本SpringBoot 1.5.3.RELEASE
-2. 代码生成功能加入到菜单
-3. 新增和修改菜单更加人性化,不用手动输入父级编号,改为下拉框选择方式
-4. maven profile向spring profile的转变,上线不用输入繁琐的maven命令
-5. 修复新增用户无法修改自己信息的bug
-6. shiro集成ehcache
-7. 修复pom.xml中kaptcha报错的bug
-8. 新增两种项目启动方式,一种为jar包方式启动,一种为ide里直接运行main函数启动方式
-9. 修复linux中无法使用头像上传的bug
-10. 增加一个开关可以控制是否需要输入首页登录的验证码
+## V2.1更新日志
+1. 集成swagger接口管理框架
+2. 升级bootstrap-table为v1.11.1，table更加好看，并且表格可以点击表头排序
+3. 菜单列表和部门列表表格升级为tree table形式，菜单与菜单之间，部门与部门之间父子关系更加清晰
+4. 完善权限管理，增加对列表和详情页面的权限把控
+5. 修复了一级菜单直接加按钮会显示在菜单列表中的bug
+6. 修复超级管理员可以被删除的bug
 
 ### 如果不喜欢SpringBoot?
 如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)分支,
@@ -245,10 +241,13 @@ avatarUp.init();
 map+warpper方式即为把controller层的返回结果使用BeanKit工具类把原有bean转化为Map的的形式(或者原有bean直接是map的形式)，再用单独写的一个包装类再包装一次这个map，使里面的参数更加具体，更加有含义，下面举一个例子，例如，在返回给前台一个性别时，数据库查出来1是男2是女，假如直接返回给前台，那么前台显示的时候还需要增加一次判断，并且前后端分离开发时又增加了一次交流和文档的成本，但是采用warpper包装的形式，可以直接把返回结果包装一下，例如动态增加一个字段sexName直接返回给前台性别的中文名称即可。
 
 ##效果图
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194616_36ed7fd6_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194623_a0761bc3_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194630_640dfd35_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/104015_bdb14c74_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0516/000735_b83c5c46_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103734_bd3e8f6b_551203.png "在这里输入图片标题")
-![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103741_a9be53a6_551203.png "在这里输入图片标题")
+![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194539_f9bb482a_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103746_6b4129ed_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103755_7729b916_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103801_b8216865_551203.png "在这里输入图片标题")
