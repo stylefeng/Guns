@@ -1,14 +1,14 @@
 (function($) {
 	"use strict";
 
-	$.fn.treegridData = function(options, param) {
+	$.fn.bootstrapTreeTable = function(options, param) {
 		// 如果是调用方法
 		if (typeof options == 'string') {
-			return $.fn.treegridData.methods[options](this, param);
+			return $.fn.bootstrapTreeTable.methods[options](this, param);
 		}
 
 		// 如果是初始化组件
-		options = $.extend({}, $.fn.treegridData.defaults, options || {});
+		options = $.extend({}, $.fn.bootstrapTreeTable.defaults, options || {});
 		// 是否有radio或checkbox
 		var hasSelectItem = false;
 		var target = $(this);
@@ -16,7 +16,10 @@
 		var _main_div = $("<div class='fixed-table-container'></div>");
 		target.before(_main_div);
 		_main_div.append(target);
-		target.addClass("table-hover treegrid-table");
+		target.addClass("table table-hover treegrid-table table-bordered");
+		if (options.striped) {
+			target.addClass('table-striped');
+		}
 		// 工具条在外层包装一下div，样式用的bootstrap-table的
 		if(options.toolbar){
 			var _tool_div = $("<div class='fixed-table-toolbar'></div>");
@@ -27,14 +30,17 @@
 		}
 		// 得到根节点
 		target.getRootNodes = function(data) {
+			// 指定Root节点值
+			var _root = options.rootCodeValue?options.rootCodeValue:null
 			var result = [];
 			$.each(data, function(index, item) {
 				// 这里兼容几种常见Root节点写法
-				if (!item[options.parentCode]
-						|| item[options.parentCode] == '0'
-						|| item[options.parentCode] == 0
-						|| item[options.parentCode] == null
-						|| item[options.parentCode] == '') {
+				// 默认的几种判断
+				var _defaultRootFlag = item[options.parentCode] == '0'
+					|| item[options.parentCode] == 0
+					|| item[options.parentCode] == null
+					|| item[options.parentCode] == '';
+				if (!item[options.parentCode] || (_root?(item[options.parentCode] == options.rootCodeValue):_defaultRootFlag)){
 					result.push(item);
 				}
 				// 添加一个默认属性，用来判断当前节点有没有被显示
@@ -59,13 +65,6 @@
 				}
 			});
 		};
-		target.addClass('table');
-		if (options.striped) {
-			target.addClass('table-striped');
-		}
-		if (options.bordered) {
-			target.addClass('table-bordered');
-		}
 		// 绘制行
 		target.renderRow = function(tr,item){
 			$.each(options.columns, function(index, column) {
@@ -91,6 +90,15 @@
 		}
 		// 加载数据
 		target.load = function(parms){
+			var _tbody = target.find("tbody");
+			// 添加加载loading
+			var _loading = '<tr><td colspan="'+options.columns.length+'" style="height:50px"><div style="display: block;line-height:50px;text-align: center;">正在努力地加载数据中，请稍候……</div></td></tr>'
+			if(_tbody[0]){
+				_tbody.html(_loading);
+			}else{
+				target.html(_loading);
+			}
+			debugger;
 			$.ajax({
 				type : options.type,
 				url : options.url,
@@ -171,7 +179,7 @@
 	};
 
 	// 组件方法封装........
-	$.fn.treegridData.methods = {
+	$.fn.bootstrapTreeTable.methods = {
 		// 返回选中记录的id（返回的id由配置中的id属性指定）
 		// 为了兼容bootstrap-table的写法，统一返回数组，这里只返回了指定的id
 		getSelections : function(target, data) {
@@ -197,10 +205,11 @@
 	// 组件的其他方法也可以进行类似封装........
 	};
 
-	$.fn.treegridData.defaults = {
+	$.fn.bootstrapTreeTable.defaults = {
 		id : 'id',// 选取记录返回的值
 		code : 'code',// 用于设置父子关系
 		parentCode : 'parentId',// 用于设置父子关系
+		rootCodeValue: null,//设置根节点code值----可指定根节点，默认为null,"",0,"0"
 		data : [], // 构造table的数据集合
 		type : "GET", // 请求数据的ajax类型
 		url : null, // 请求数据的ajax的url
@@ -208,7 +217,6 @@
 		expandColumn : null,// 在哪一列上面显示展开按钮
 		expandAll : true, // 是否全部展开
 		striped : false, // 是否各行渐变色
-		bordered : false, // 是否显示边框
 		columns : [],
         toolbar: null,//顶部工具条
 		expanderExpandedClass : 'glyphicon glyphicon-chevron-down',// 展开的按钮的图标

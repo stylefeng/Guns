@@ -31,7 +31,7 @@ Menu.initColumn = function () {
  * 检查是否选中
  */
 Menu.check = function () {
-    var selected = $('#' + this.id).treegridData('getSelections');
+    var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
     if (selected.length == 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
