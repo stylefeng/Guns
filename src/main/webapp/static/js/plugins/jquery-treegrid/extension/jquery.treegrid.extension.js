@@ -90,15 +90,24 @@
 		}
 		// 加载数据
 		target.load = function(parms){
-			var _tbody = target.find("tbody");
+			// 加载数据前先清空
+			target.html("");
+			// 构造表头
+			var thr = $('<tr></tr>');
+			$.each(options.columns, function(i, item) {
+				var th = $('<th style="padding:10px;"></th>');
+				th.text(item.title);
+				thr.append(th);
+			});
+			var thead = $('<thead class="treegrid-thead"></thead>');
+			thead.append(thr);
+			target.append(thead);
+			// 构造表体
+			var tbody = $('<tbody class="treegrid-tbody"></tbody>');
+			target.append(tbody);
 			// 添加加载loading
-			var _loading = '<tr><td colspan="'+options.columns.length+'" style="height:50px"><div style="display: block;line-height:50px;text-align: center;">正在努力地加载数据中，请稍候……</div></td></tr>'
-			if(_tbody[0]){
-				_tbody.html(_loading);
-			}else{
-				target.html(_loading);
-			}
-			debugger;
+			var _loading = '<tr><td colspan="'+options.columns.length+'"><div style="display: block;text-align: center;">正在努力地加载数据中，请稍候……</div></td></tr>'
+			tbody.html(_loading);
 			$.ajax({
 				type : options.type,
 				url : options.url,
@@ -106,19 +115,12 @@
 				dataType : "JSON",
 				success : function(data, textStatus, jqXHR) {
 					// 加载完数据先清空
-					target.html("");
-					// 构造表头
-					var thr = $('<tr></tr>');
-					$.each(options.columns, function(i, item) {
-						var th = $('<th style="padding:10px;"></th>');
-						th.text(item.title);
-						thr.append(th);
-					});
-					var thead = $('<thead class="treegrid-thead"></thead>');
-					thead.append(thr);
-					target.append(thead);
-					// 构造表体
-					var tbody = $('<tbody class="treegrid-tbody"></tbody>');
+					tbody.html("");
+					if(!data||data.length<=0){
+						var _empty = '<tr><td colspan="'+options.columns.length+'"><div style="display: block;text-align: center;">没有找到匹配的记录</div></td></tr>'
+						tbody.html(_empty);
+						return;
+					}
 					var rootNode = target.getRootNodes(data);
 					$.each(rootNode, function(i, item) {
 						var tr = $('<tr></tr>');
@@ -166,7 +168,12 @@
 							}
 						}
 					});
-				}
+				},
+			    error:function(xhr,textStatus){
+					var _errorMsg = '<tr><td colspan="'+options.columns.length+'"><div style="display: block;text-align: center;">'+xhr.responseText+'</div></td></tr>'
+					tbody.html(_errorMsg);
+					debugger;
+			    },
 			});
 		}
 		if (options.url) {
