@@ -15,7 +15,7 @@
 
 	<select id="list" resultType="map">
 		select * from dict
-		where num = 0
+		where pid = 0
 		<if test="condition != null and condition != ''">
 			AND name like CONCAT('%',#{condition},'%')
 		</if>
