@@ -74,14 +74,19 @@ Role.openChangeRole = function () {
  */
 Role.delRole = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/role/remove", function (data) {
-            Feng.success("删除成功!");
-            Role.table.refresh();
-        }, function (data) {
-            Feng.error("删除失败!" + data.responseJSON.message + "!");
-        });
-        ajax.set("roleId", this.seItem.id);
-        ajax.start();
+
+        var operation = function(){
+            var ajax = new $ax(Feng.ctxPath + "/role/remove", function () {
+                Feng.success("删除成功!");
+                Role.table.refresh();
+            }, function (data) {
+                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("roleId", Role.seItem.id);
+            ajax.start();
+        };
+
+        Feng.confirm("是否删除角色 " + Role.seItem.name + "?",operation);
     }
 };
 
