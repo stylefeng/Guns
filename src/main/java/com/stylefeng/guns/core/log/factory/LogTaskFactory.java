@@ -21,9 +21,9 @@ import java.util.TimerTask;
  */
 public class LogTaskFactory {
 
-    private static Logger logger = Logger.getLogger(LogManager.class);
-    private static LoginLogMapper loginLogMapper = Db.getMapper(LoginLogMapper.class);
-    private static OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
+    private static final Logger logger = Logger.getLogger(LogManager.class);
+    private static final LoginLogMapper loginLogMapper = Db.getMapper(LoginLogMapper.class);
+    private static final OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
 
     public static TimerTask loginLog(Integer userId, String ip) {
         return new TimerTask() {
