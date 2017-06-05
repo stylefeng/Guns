@@ -72,14 +72,19 @@ Dept.openDeptDetail = function () {
  */
 Dept.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/dept/delete", function (data) {
-            Feng.success("删除成功!");
-            Dept.table.refresh();
-        }, function (data) {
-            Feng.error("删除失败!" + data.responseJSON.message + "!");
-        });
-        ajax.set("deptId",this.seItem.id);
-        ajax.start();
+
+        var operation = function(){
+            var ajax = new $ax(Feng.ctxPath + "/dept/delete", function () {
+                Feng.success("删除成功!");
+                Dept.table.refresh();
+            }, function (data) {
+                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("deptId",Dept.seItem.id);
+            ajax.start();
+        };
+
+        Feng.confirm("是否刪除该部门?", operation);
     }
 };
 
