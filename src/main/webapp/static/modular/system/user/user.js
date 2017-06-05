@@ -196,7 +196,7 @@ $(function () {
     var table = new BSTable("managerTable", "/mgr/list", defaultColunms);
     table.setPaginationType("client");
     MgrUser.table = table.init();
-    var ztree = new $ZTree("treeDemo", "/dept/tree");
+    var ztree = new $ZTree("deptTree", "/dept/tree");
     ztree.bindOnClick(MgrUser.onClickDept);
     ztree.init();
 });
