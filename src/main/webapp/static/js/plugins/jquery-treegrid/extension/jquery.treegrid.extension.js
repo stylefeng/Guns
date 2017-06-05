@@ -207,6 +207,8 @@
 		refresh : function(target, parms) {
 			if(parms){
 				target.load(parms);
+			}else{
+                target.load();
 			}
 		},
 	// 组件的其他方法也可以进行类似封装........
