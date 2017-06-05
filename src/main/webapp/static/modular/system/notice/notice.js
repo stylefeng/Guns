@@ -73,14 +73,19 @@ Notice.openNoticeDetail = function () {
  */
 Notice.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/notice/delete", function (data) {
-            Feng.success("删除成功!");
-            Notice.table.refresh();
-        }, function (data) {
-            Feng.error("删除失败!" + data.responseJSON.message + "!");
-        });
-        ajax.set("noticeId", this.seItem.id);
-        ajax.start();
+
+        var operation = function(){
+            var ajax = new $ax(Feng.ctxPath + "/notice/delete", function (data) {
+                Feng.success("删除成功!");
+                Notice.table.refresh();
+            }, function (data) {
+                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("noticeId", Notice.seItem.id);
+            ajax.start();
+        };
+
+        Feng.confirm("是否删除通知 " + Notice.seItem.title + "?", operation);
     }
 };
 

@@ -71,14 +71,19 @@ Dict.openDictDetail = function () {
  */
 Dict.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
-            Feng.success("删除成功!");
-            Dict.table.refresh();
-        }, function (data) {
-            Feng.error("删除失败!" + data.responseJSON.message + "!");
-        });
-        ajax.set("dictId", this.seItem.id);
-        ajax.start();
+
+        var operation = function(){
+            var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
+                Feng.success("删除成功!");
+                Dict.table.refresh();
+            }, function (data) {
+                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("dictId", Dict.seItem.id);
+            ajax.start();
+        };
+
+        Feng.confirm("是否刪除字典 " + Dict.seItem.name + "?", operation);
     }
 };
 
