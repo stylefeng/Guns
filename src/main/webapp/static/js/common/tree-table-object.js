@@ -17,6 +17,7 @@
         this.parentCode = 'pcode';// 用于设置父子关系
         this.expandAll = false;// 是否默认全部展开
         this.toolbarId = bstableId + "Toolbar";
+        this.height = 665;						//默认表格高度665
     };
 
     BSTreeTable.prototype = {
@@ -39,6 +40,7 @@
                     expandAll: this.expandAll,  //是否全部展开
                     columns: this.columns,		//列数组
                     toolbar: "#" + this.toolbarId,//顶部工具条
+                    height: this.height,
                 });
             return this;
         },
@@ -78,6 +80,12 @@
          */
         setExpandAll: function (expandAll) {
         	this.expandAll = expandAll;
+        },
+        /**
+         * 设置表格高度
+         */
+        setHeight: function (height) {
+        	this.height = height;
         },
         /**
          * 设置ajax post请求时候附带的参数
