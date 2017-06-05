@@ -5,7 +5,8 @@ var MgrUser = {
     id: "managerTable",//表格id
     seItem: null,		//选中的条目
     table: null,
-    layerIndex: -1
+    layerIndex: -1,
+    deptid:0
 };
 
 /**
@@ -166,9 +167,18 @@ MgrUser.resetPwd = function () {
     }
 };
 
+MgrUser.resetSearch = function () {
+    $("#name").val("");
+    $("#beginTime").val("");
+    $("#endTime").val("");
+
+    MgrUser.search();
+}
+
 MgrUser.search = function () {
     var queryData = {};
 
+    queryData['deptid'] = MgrUser.deptid;
     queryData['name'] = $("#name").val();
     queryData['beginTime'] = $("#beginTime").val();
     queryData['endTime'] = $("#endTime").val();
@@ -176,9 +186,17 @@ MgrUser.search = function () {
     MgrUser.table.refresh({query: queryData});
 }
 
+MgrUser.onClickDept = function (e, treeId, treeNode) {
+    MgrUser.deptid = treeNode.id;
+    MgrUser.search();
+};
+
 $(function () {
     var defaultColunms = MgrUser.initColumn();
     var table = new BSTable("managerTable", "/mgr/list", defaultColunms);
     table.setPaginationType("client");
     MgrUser.table = table.init();
+    var ztree = new $ZTree("treeDemo", "/dept/tree");
+    ztree.bindOnClick(MgrUser.onClickDept);
+    ztree.init();
 });

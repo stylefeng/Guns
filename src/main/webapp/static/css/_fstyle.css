@@ -52,3 +52,6 @@
 	max-height: 160px !important;
 	-moz-user-select: none !important;
 }
+.dept-tree {
+	padding:10px
+}
