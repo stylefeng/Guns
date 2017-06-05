@@ -21,11 +21,11 @@ import java.util.TimerTask;
  */
 public class LogTaskFactory {
 
-    private static final Logger logger = Logger.getLogger(LogManager.class);
-    private static final LoginLogMapper loginLogMapper = Db.getMapper(LoginLogMapper.class);
-    private static final OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
+    private static Logger logger = Logger.getLogger(LogManager.class);
+    private static LoginLogMapper loginLogMapper = Db.getMapper(LoginLogMapper.class);
+    private static OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
 
-    public static TimerTask loginLog(Integer userId, String ip) {
+    public static TimerTask loginLog(final Integer userId, final String ip) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -39,7 +39,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask loginLog(String username, String msg, String ip) {
+    public static TimerTask loginLog(final String username, final String msg, final String ip) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -54,7 +54,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask exitLog(Integer userId,String ip) {
+    public static TimerTask exitLog(final Integer userId, final String ip) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -68,7 +68,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask bussinessLog(Integer userId, String bussinessName, String clazzName, String methodName, String msg) {
+    public static TimerTask bussinessLog(final Integer userId, final String bussinessName, final String clazzName, final String methodName, final String msg) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -83,7 +83,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask exceptionLog(Integer userId, Exception exception) {
+    public static TimerTask exceptionLog(final Integer userId, final Exception exception) {
         return new TimerTask() {
             @Override
             public void run() {
