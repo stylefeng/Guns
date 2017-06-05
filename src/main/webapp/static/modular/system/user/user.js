@@ -98,15 +98,20 @@ MgrUser.roleAssign = function () {
  */
 MgrUser.delMgrUser = function () {
     if (this.check()) {
-        var userId = this.seItem.id;
-        var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function (data) {
-            Feng.success("删除成功!");
-            MgrUser.table.refresh();
-        }, function (data) {
-            Feng.error("删除失败!" + data.responseJSON.message + "!");
-        });
-        ajax.set("userId", userId);
-        ajax.start();
+
+        var operation = function(){
+            var userId = MgrUser.seItem.id;
+            var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function () {
+                Feng.success("删除成功!");
+                MgrUser.table.refresh();
+            }, function (data) {
+                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("userId", userId);
+            ajax.start();
+        };
+
+        Feng.confirm("是否删除用户" + MgrUser.seItem.account + "?",operation);
     }
 };
 
