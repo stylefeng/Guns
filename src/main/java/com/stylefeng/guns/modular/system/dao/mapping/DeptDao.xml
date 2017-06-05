@@ -11,7 +11,7 @@
 		ELSE
 			'false'
 		END
-		) as open from dept
+		) as isOpen from dept
 	</select>
 
 	<select id="list" resultType="map">
