@@ -71,7 +71,7 @@
 				// 判断有没有选择列
 				if(index==0&&column.field=='selectItem'){
 					hasSelectItem = true;
-					var td = $('<td style="text-align:center"></td>');
+					var td = $('<td style="text-align:center;width:36px"></td>');
 					if(column.radio){
 						var _ipt = $('<input name="select_item" type="radio" value="'+item[options.id]+'"></input>');
 						td.append(_ipt);
@@ -82,7 +82,7 @@
 					} 
 					tr.append(td);
 				}else{
-					var td = $('<td></td>');
+					var td = $('<td style="'+((column.width)?('width:'+column.width):'')+'"></td>');
 					td.text(item[column.field]);
 					tr.append(td);
 				}
@@ -95,7 +95,14 @@
 			// 构造表头
 			var thr = $('<tr></tr>');
 			$.each(options.columns, function(i, item) {
-				var th = $('<th style="padding:10px;"></th>');
+				var th = null;
+				// 判断有没有选择列
+				if(i==0&&item.field=='selectItem'){
+					hasSelectItem = true;
+					th = $('<th style="width:36px"></th>');
+				}else{
+					th = $('<th style="padding:10px;'+((item.width)?('width:'+item.width):'')+'"></th>');
+				}
 				th.text(item.title);
 				thr.append(th);
 			});
@@ -108,6 +115,10 @@
 			// 添加加载loading
 			var _loading = '<tr><td colspan="'+options.columns.length+'"><div style="display: block;text-align: center;">正在努力地加载数据中，请稍候……</div></td></tr>'
 			tbody.html(_loading);
+			// 默认高度
+			if(options.height){
+				tbody.css("height",options.height);
+			}
 			$.ajax({
 				type : options.type,
 				url : options.url,
@@ -149,6 +160,8 @@
 					if (!options.expandAll) {
 						target.treegrid('collapseAll');
 					}
+					//动态设置表头宽度
+					thead.css("width", tbody.children(":first").css("width"));
 					// 行点击选中事件
 					target.find("tbody").find("tr").click(function(){
 						if(hasSelectItem){
@@ -226,6 +239,7 @@
 		striped : false, // 是否各行渐变色
 		columns : [],
         toolbar: null,//顶部工具条
+        height: 0,
 		expanderExpandedClass : 'glyphicon glyphicon-chevron-down',// 展开的按钮的图标
 		expanderCollapsedClass : 'glyphicon glyphicon-chevron-right'// 缩起的按钮的图标
 
