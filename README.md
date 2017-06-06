@@ -117,7 +117,7 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 │  │     │ 
 │  │     ├─application.yml----------------springboot项目配置
 │  │     │ 
-│  │     ├─ehcache.xml----------------ehcache缓存配置
+│  │     └─ehcache.xml----------------ehcache缓存配置
 │  │
 │  └─webapp----------------web页面和静态资源存放的目录
 │  
