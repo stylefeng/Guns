@@ -7,7 +7,6 @@ import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import com.stylefeng.guns.core.intercept.SessionInterceptor;
 import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.util.xss.XssFilter;
 import org.springframework.aop.Advisor;
@@ -120,14 +119,6 @@ public class WebConfig {
     @Bean
     public ServletListenerRegistrationBean<ConfigListener> configListenerRegistration() {
         return new ServletListenerRegistrationBean<>(new ConfigListener());
-    }
-
-    /**
-     * session的拦截器，用在非controller层调用session
-     */
-    @Bean
-    public SessionInterceptor sessionInterceptor() {
-        return new SessionInterceptor();
     }
 
     /**
