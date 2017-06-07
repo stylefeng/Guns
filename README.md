@@ -240,6 +240,11 @@ avatarUp.init();
 ##独创controller层，map+warpper返回方式
 map+warpper方式即为把controller层的返回结果使用BeanKit工具类把原有bean转化为Map的的形式(或者原有bean直接是map的形式)，再用单独写的一个包装类再包装一次这个map，使里面的参数更加具体，更加有含义，下面举一个例子，例如，在返回给前台一个性别时，数据库查出来1是男2是女，假如直接返回给前台，那么前台显示的时候还需要增加一次判断，并且前后端分离开发时又增加了一次交流和文档的成本，但是采用warpper包装的形式，可以直接把返回结果包装一下，例如动态增加一个字段sexName直接返回给前台性别的中文名称即可。
 
+##常见问题答疑
+1. 为何有的业务没有service层: 部分业务比较简单,所以就没写service层,写service是为了让复杂业务更有条理,更清晰.
+2. 为何既有dao,又有mapper: mapper是mybatis-plus自动生成的,里边有许多mybatis-plus增强的方法,dao是自己写的业务,mybatis-plus自动生成代码时会覆盖mapper,所以就把自己写的dao分开了,生成代码的时候不影响
+3. 为何分页是前端实现:部分页面因为数据量比较少,就直接用客户端分页了,日志页面的分页是采用服务端分页的,如果其他业务有特别需要,可以参考日志的写法
+
 ##效果图
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194616_36ed7fd6_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194623_a0761bc3_551203.png "在这里输入图片标题")
@@ -255,3 +260,4 @@ map+warpper方式即为把controller层的返回结果使用BeanKit工具类把�
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103814_67e078bb_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103822_58fd5d91_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103827_d6218c74_551203.png "在这里输入图片标题")
+
