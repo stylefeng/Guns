@@ -7,6 +7,7 @@ guns:
   swagger-open: true #是否开启swagger (true/false)
   kaptcha-open: false #是否开启登录时验证码 (true/false)
   #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
+  session-invalidate-time: 600 #session失效时间 单位：秒
 
 ###################  项目启动端口  ###################
 server:

@@ -28,17 +28,19 @@ public class GunsProperties {
 
     private Boolean haveCreatePath = false;
 
+    private Integer sessionInvalidateTime = 10 * 60;  //session 失效时间（默认为10分钟 单位：秒）
+
     public String getFileUploadPath() {
         //如果没有写文件上传路径,保存到临时目录
-        if(isEmpty(fileUploadPath)){
+        if (isEmpty(fileUploadPath)) {
             return getTempPath();
-        }else{
+        } else {
             //判断有没有结尾符,没有得加上
-            if(!fileUploadPath.endsWith(File.separator)){
+            if (!fileUploadPath.endsWith(File.separator)) {
                 fileUploadPath = fileUploadPath + File.separator;
             }
             //判断目录存不存在,不存在得加上
-            if(haveCreatePath == false){
+            if (haveCreatePath == false) {
                 File file = new File(fileUploadPath);
                 file.mkdirs();
                 haveCreatePath = true;
@@ -65,5 +67,13 @@ public class GunsProperties {
 
     public void setSwaggerOpen(Boolean swaggerOpen) {
         this.swaggerOpen = swaggerOpen;
+    }
+
+    public Integer getSessionInvalidateTime() {
+        return sessionInvalidateTime;
+    }
+
+    public void setSessionInvalidateTime(Integer sessionInvalidateTime) {
+        this.sessionInvalidateTime = sessionInvalidateTime;
     }
 }
