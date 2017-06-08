@@ -101,6 +101,8 @@ public class LoginController extends BaseController {
 
         LogManager.me().executeLog(LogTaskFactory.loginLog(shiroUser.getId(), getIp()));
 
+        ShiroKit.getSession().setAttribute("sessionFlag",true);
+
         return REDIRECT + "/";
     }
 

@@ -6,13 +6,10 @@ import com.stylefeng.guns.common.page.PageInfoBT;
 import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.FileUtil;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 
-@Component
-@Scope(scopeName = WebApplicationContext.SCOPE_REQUEST)
 public class BaseController {
 
     protected static String SUCCESS = "SUCCESS";
@@ -42,6 +37,10 @@ public class BaseController {
 
     protected HttpSession getSession() {
         return HttpKit.getRequest().getSession();
+    }
+
+    protected HttpSession getSession(Boolean flag) {
+        return HttpKit.getRequest().getSession(flag);
     }
 
     protected String getPara(String name) {
