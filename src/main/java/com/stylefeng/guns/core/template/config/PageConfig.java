@@ -1,7 +1,7 @@
 package com.stylefeng.guns.core.template.config;
 
 /**
- * 控制器模板生成的配置
+ * 页面 模板生成的配置
  *
  * @author fengshuonan
  * @date 2017-05-07 22:12

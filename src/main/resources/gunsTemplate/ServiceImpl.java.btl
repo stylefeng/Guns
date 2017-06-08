@@ -1,0 +1,17 @@
+package ${service.packageName}.impl;
+
+<% for(import in service.serviceImplImports!){ %>
+import ${import};
+<% } %>
+
+/**
+ * ${context.bizChName}Dao
+ *
+ * @author fengshuonan
+ * @Date ${tool.currentTime()}
+ */
+@Service
+public class ${context.bizEnBigName}ServiceImpl implements I${context.bizEnBigName}Service {
+
+
+}

@@ -58,4 +58,30 @@ public class SimpleTemplateEngine extends GunsTemplateEngine {
         generateFile("gunsTemplate/Controller.java.btl", controllerPath);
         System.out.println("生成控制器成功!");
     }
+
+    @Override
+    protected void generateDao() {
+        String daoPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getDaoConfig().getDaoPathTemplate(),
+                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+        generateFile("gunsTemplate/Dao.java.btl", daoPath);
+        System.out.println("生成Dao成功!");
+
+        String mappingPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getDaoConfig().getXmlPathTemplate(),
+                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+        generateFile("gunsTemplate/Mapping.xml.btl", mappingPath);
+        System.out.println("生成Dao Mapping xml成功!");
+    }
+
+    @Override
+    protected void generateService() {
+        String servicePath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getServiceConfig().getServicePathTemplate(),
+                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+        generateFile("gunsTemplate/Service.java.btl", servicePath);
+        System.out.println("生成Service成功!");
+
+        String serviceImplPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getServiceConfig().getServiceImplPathTemplate(),
+                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
+        generateFile("gunsTemplate/ServiceImpl.java.btl", serviceImplPath);
+        System.out.println("生成ServiceImpl成功!");
+    }
 }

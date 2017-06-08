@@ -1,8 +1,6 @@
 package com.stylefeng.guns.core.template.engine.base;
 
-import com.stylefeng.guns.core.template.config.ContextConfig;
-import com.stylefeng.guns.core.template.config.ControllerConfig;
-import com.stylefeng.guns.core.template.config.PageConfig;
+import com.stylefeng.guns.core.template.config.*;
 
 /**
  * 模板生成父类
@@ -12,9 +10,29 @@ import com.stylefeng.guns.core.template.config.PageConfig;
  */
 public class AbstractTemplateEngine {
 
-    private ContextConfig contextConfig = new ContextConfig();              //全局配置
-    private ControllerConfig controllerConfig = new ControllerConfig();     //控制器的配置
-    private PageConfig pageConfig = new PageConfig();                       //页面的控制器
+    protected ContextConfig contextConfig;                //全局配置
+    protected ControllerConfig controllerConfig;          //控制器的配置
+    protected PageConfig pageConfig;                      //页面的控制器
+    protected DaoConfig daoConfig;                        //Dao配置
+    protected ServiceConfig serviceConfig;                //Service配置
+
+    public void initConfig() {
+        if (this.contextConfig == null) {
+            contextConfig = new ContextConfig();
+        }
+        if (this.controllerConfig == null) {
+            controllerConfig = new ControllerConfig();
+        }
+        if (this.pageConfig == null) {
+            pageConfig = new PageConfig();
+        }
+        if (this.daoConfig == null) {
+            daoConfig = new DaoConfig();
+        }
+        if (this.serviceConfig == null) {
+            serviceConfig = new ServiceConfig(contextConfig);
+        }
+    }
 
     public PageConfig getPageConfig() {
         return pageConfig;
@@ -38,6 +56,22 @@ public class AbstractTemplateEngine {
 
     public void setControllerConfig(ControllerConfig controllerConfig) {
         this.controllerConfig = controllerConfig;
+    }
+
+    public DaoConfig getDaoConfig() {
+        return daoConfig;
+    }
+
+    public void setDaoConfig(DaoConfig daoConfig) {
+        this.daoConfig = daoConfig;
+    }
+
+    public ServiceConfig getServiceConfig() {
+        return serviceConfig;
+    }
+
+    public void setServiceConfig(ServiceConfig serviceConfig) {
+        this.serviceConfig = serviceConfig;
     }
 }
 

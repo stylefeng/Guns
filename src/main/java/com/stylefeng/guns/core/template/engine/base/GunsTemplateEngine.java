@@ -46,6 +46,8 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     public void configTemplate(Template template){
         template.binding("controller", super.getControllerConfig());
         template.binding("context", super.getContextConfig());
+        template.binding("dao", super.getDaoConfig());
+        template.binding("service", super.getServiceConfig());
     }
 
     public void generateFile(String template,String filePath){
@@ -64,12 +66,35 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     }
 
     public void start() {
-        generateController();
-        generatePageHtml();
-        generatePageAddHtml();
-        generatePageEditHtml();
-        generatePageJs();
-        generatePageInfoJs();
+        //配置之间的相互依赖
+        super.initConfig();
+
+        //生成模板
+        if(super.contextConfig.getControllerSwitch()){
+            generateController();
+        }
+        if(super.contextConfig.getIndexPageSwitch()){
+            generatePageHtml();
+        }
+        if(super.contextConfig.getAddPageSwitch()){
+            generatePageAddHtml();
+        }
+        if(super.contextConfig.getEditPageSwitch()){
+            generatePageEditHtml();
+        }
+        if(super.contextConfig.getJsSwitch()){
+            generatePageJs();
+        }
+        if(super.contextConfig.getInfoJsSwitch()){
+            generatePageInfoJs();
+        }
+        if(super.contextConfig.getDaoSwitch()){
+            generateDao();
+        }
+        if(super.contextConfig.getServiceSwitch()){
+            generateService();
+        }
+
     }
 
     protected abstract void generatePageEditHtml();
@@ -83,5 +108,9 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     protected abstract void generatePageHtml();
 
     protected abstract void generateController();
+
+    protected abstract void generateDao();
+
+    protected abstract void generateService();
 
 }

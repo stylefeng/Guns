@@ -1,0 +1,12 @@
+package ${dao.packageName};
+
+/**
+ * ${context.bizChName}Dao
+ *
+ * @author fengshuonan
+ * @Date ${tool.currentTime()}
+ */
+public interface ${context.bizEnBigName}Dao {
+
+
+}
