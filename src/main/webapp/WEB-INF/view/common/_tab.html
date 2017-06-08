@@ -47,9 +47,22 @@
                         </a>
                         <ul class="nav nav-second-level">
                             @for(subTitle in title.children){
-                            <li>
-                                <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
-                            </li>
+                                @if(tool.isEmpty(subTitle.children)){
+                                    <li>
+                                        <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
+                                    </li>
+                                @}else{
+                                    <li>
+                                        <a href="#">${subTitle.name} <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            @for(thirdTitle in subTitle.children){
+                                            <li>
+                                                <a class="J_menuItem" href="${ctxPath}${thirdTitle.url}">${thirdTitle.name}</a>
+                                            </li>
+                                            @}
+                                        </ul>
+                                    </li>
+                                @}
                             @}
                         </ul>
                     </li>

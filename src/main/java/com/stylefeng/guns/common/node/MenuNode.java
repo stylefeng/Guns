@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.node;
 
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.state.IsMenu;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.util.SpringContextHolder;
 
@@ -257,7 +258,7 @@ public class MenuNode implements Comparable {
     public static List<MenuNode> clearBtn(List<MenuNode> nodes) {
         ArrayList<MenuNode> noBtns = new ArrayList<MenuNode>();
         for (MenuNode node : nodes) {
-            if (node.getLevels() < 3) {
+            if(node.getIsmenu() == IsMenu.YES.getCode()){
                 noBtns.add(node);
             }
         }
@@ -286,8 +287,11 @@ public class MenuNode implements Comparable {
      * @date 2017年2月19日 下午11:18:19
      */
     public static List<MenuNode> buildTitle(List<MenuNode> nodes) {
+
         List<MenuNode> clearBtn = clearBtn(nodes);
+
         new MenuNode().buildNodeTree(clearBtn);
+
         List<MenuNode> menuNodes = clearLevelTwo(clearBtn);
 
         //对菜单排序
