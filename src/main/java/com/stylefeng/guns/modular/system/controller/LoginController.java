@@ -113,7 +113,6 @@ public class LoginController extends BaseController {
     public String logOut() {
         LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroKit.getUser().getId(), getIp()));
         ShiroKit.getSubject().logout();
-        super.getSession().invalidate();
         return REDIRECT + "/login";
     }
 }
