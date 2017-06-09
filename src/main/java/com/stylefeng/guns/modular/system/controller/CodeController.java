@@ -42,20 +42,22 @@ public class CodeController extends BaseController {
      */
     @ApiOperation("生成代码")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "moduleName", value = "模块名称", required = true, dataType = "String"),
             @ApiImplicitParam(name = "bizChName", value = "业务名称", required = true, dataType = "String"),
             @ApiImplicitParam(name = "bizEnName", value = "业务英文名称", required = true, dataType = "String"),
             @ApiImplicitParam(name = "path", value = "项目生成类路径", required = true, dataType = "String")
     })
-    @RequestMapping(value = "/generate",method = RequestMethod.POST)
+    @RequestMapping(value = "/generate", method = RequestMethod.POST)
     @ResponseBody
     @Permission(Const.ADMIN_NAME)
-    public Object add(String bizChName, String bizEnName, String path) {
+    public Object add(String moduleName, String bizChName, String bizEnName, String path) {
         if (ToolUtil.isOneEmpty(bizChName, bizEnName)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         ContextConfig contextConfig = new ContextConfig();
         contextConfig.setBizChName(bizChName);
         contextConfig.setBizEnName(bizEnName);
+        contextConfig.setModuleName(moduleName);
         if (ToolUtil.isNotEmpty(path)) {
             contextConfig.setProjectPath(path);
         }

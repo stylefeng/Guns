@@ -13,5 +13,6 @@ Code.generate = function () {
     baseAjax.set("bizChName");
     baseAjax.set("bizEnName");
     baseAjax.set("path");
+    baseAjax.set("moduleName");
     baseAjax.start();
 };
