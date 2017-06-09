@@ -73,7 +73,7 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 ###前端
 1. Bootstrap v3.3.6
 2. jQuery v2.1.4 
-3. bootstrap-table v1.9.0
+3. bootstrap-table v1.11.1
 4. layer v2.1
 5. zTree core v3.5.28
 6. WebUploader 0.1.5
