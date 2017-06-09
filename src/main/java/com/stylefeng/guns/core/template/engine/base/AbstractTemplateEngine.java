@@ -18,20 +18,32 @@ public class AbstractTemplateEngine {
 
     public void initConfig() {
         if (this.contextConfig == null) {
-            contextConfig = new ContextConfig();
+            this.contextConfig = new ContextConfig();
         }
         if (this.controllerConfig == null) {
-            controllerConfig = new ControllerConfig();
+            this.controllerConfig = new ControllerConfig();
         }
         if (this.pageConfig == null) {
-            pageConfig = new PageConfig();
+            this.pageConfig = new PageConfig();
         }
         if (this.daoConfig == null) {
-            daoConfig = new DaoConfig();
+            this.daoConfig = new DaoConfig();
         }
         if (this.serviceConfig == null) {
-            serviceConfig = new ServiceConfig(contextConfig);
+            this.serviceConfig = new ServiceConfig();
         }
+
+        this.controllerConfig.setContextConfig(this.contextConfig);
+        this.controllerConfig.init();
+
+        this.serviceConfig.setContextConfig(this.contextConfig);
+        this.serviceConfig.init();
+
+        this.daoConfig.setContextConfig(this.contextConfig);
+        this.daoConfig.init();
+
+        this.pageConfig.setContextConfig(this.contextConfig);
+        this.pageConfig.init();
     }
 
     public PageConfig getPageConfig() {

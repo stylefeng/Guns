@@ -18,9 +18,11 @@ public class TemplateGenerator {
         ContextConfig contextConfig = new ContextConfig();
         contextConfig.setBizChName("啊哈");
         contextConfig.setBizEnName("haha");
+        contextConfig.setModuleName("tk");
+        contextConfig.setProjectPath("D:\\tmp\\guns");
 
-        contextConfig.setAddPageSwitch(false);
-        contextConfig.setEditPageSwitch(false);
+        //contextConfig.setAddPageSwitch(false);
+        //contextConfig.setEditPageSwitch(false);
 
         GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
         gunsTemplateEngine.setContextConfig(contextConfig);

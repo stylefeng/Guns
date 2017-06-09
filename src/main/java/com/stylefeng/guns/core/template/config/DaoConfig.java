@@ -8,10 +8,18 @@ package com.stylefeng.guns.core.template.config;
  */
 public class DaoConfig {
 
-    private String daoPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\dao\\{}Dao.java";
-    private String xmlPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\dao\\mapping\\{}Dao.xml";
+    private ContextConfig contextConfig;
 
-    private String packageName = "com.stylefeng.guns.modular.system.dao";
+    private String daoPathTemplate;
+    private String xmlPathTemplate;
+
+    private String packageName;
+
+    public void init() {
+        this.daoPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\dao\\{}Dao.java";
+        this.xmlPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\dao\\mapping\\{}Dao.xml";
+        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".dao";
+    }
 
     public String getPackageName() {
         return packageName;
@@ -35,5 +43,13 @@ public class DaoConfig {
 
     public void setXmlPathTemplate(String xmlPathTemplate) {
         this.xmlPathTemplate = xmlPathTemplate;
+    }
+
+    public ContextConfig getContextConfig() {
+        return contextConfig;
+    }
+
+    public void setContextConfig(ContextConfig contextConfig) {
+        this.contextConfig = contextConfig;
     }
 }

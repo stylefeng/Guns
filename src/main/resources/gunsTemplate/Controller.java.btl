@@ -14,7 +14,7 @@ import ${import};
 @RequestMapping("/${context.bizEnName}")
 public class ${context.bizEnBigName}Controller extends BaseController {
 
-    private String PREFIX = "/system/${context.bizEnName}/";
+    private String PREFIX = "/${context.moduleName}/${context.bizEnName}/";
 
     /**
      * 跳转到${context.bizChName}首页

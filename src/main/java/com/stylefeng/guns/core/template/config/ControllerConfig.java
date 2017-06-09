@@ -11,15 +11,13 @@ import java.util.List;
  */
 public class ControllerConfig {
 
-    private String controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\controller\\{}Controller.java";
+    private ContextConfig contextConfig;
+
+    private String controllerPathTemplate;
     private String packageName;//包名称
     private List<String> imports;//所引入的包
 
-    public ControllerConfig(){
-        init();
-    }
-
-    private void init(){
+    public void init() {
         ArrayList<String> imports = new ArrayList<>();
         imports.add("com.stylefeng.guns.common.controller.BaseController");
         imports.add("org.springframework.stereotype.Controller");
@@ -28,7 +26,8 @@ public class ControllerConfig {
         imports.add("org.springframework.ui.Model");
         imports.add("org.springframework.web.bind.annotation.PathVariable");
         this.imports = imports;
-        this.packageName = "com.stylefeng.guns.modular.system.controller";
+        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".controller";
+        this.controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";
     }
 
     public String getPackageName() {
@@ -53,5 +52,13 @@ public class ControllerConfig {
 
     public void setControllerPathTemplate(String controllerPathTemplate) {
         this.controllerPathTemplate = controllerPathTemplate;
+    }
+
+    public ContextConfig getContextConfig() {
+        return contextConfig;
+    }
+
+    public void setContextConfig(ContextConfig contextConfig) {
+        this.contextConfig = contextConfig;
     }
 }

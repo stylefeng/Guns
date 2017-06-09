@@ -13,23 +13,21 @@ public class ServiceConfig {
 
     private ContextConfig contextConfig;
 
-    private String servicePathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\service\\I{}Service.java";
-    private String serviceImplPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\system\\service\\impl\\{}ServiceImpl.java";
+    private String servicePathTemplate;
+    private String serviceImplPathTemplate;
 
-    private String packageName = "com.stylefeng.guns.modular.system.service";
+    private String packageName;
 
     private List<String> serviceImplImports;
 
-    public ServiceConfig(ContextConfig contextConfig) {
-        this.contextConfig = contextConfig;
-        init();
-    }
-
-    private void init() {
+    public void init() {
         ArrayList<String> imports = new ArrayList<>();
         imports.add("org.springframework.stereotype.Service");
-        imports.add("com.stylefeng.guns.modular.system.service.I" + contextConfig.getBizEnBigName() + "Service");
+        imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service.I" + contextConfig.getBizEnBigName() + "Service");
         this.serviceImplImports = imports;
+        this.servicePathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\I{}Service.java";
+        this.serviceImplPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
+        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service";
     }
 
 
