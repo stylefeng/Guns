@@ -14,7 +14,7 @@ public class ContextConfig {
     private String bizChName;   //业务名称
     private String bizEnName;   //业务英文名称
     private String bizEnBigName;//业务英文名称(大写)
-    private String moduleName;  //模块名称
+    private String moduleName = "system";  //模块名称
 
     private Boolean controllerSwitch = true;    //是否生成控制器代码开关
     private Boolean indexPageSwitch = true;     //主页
