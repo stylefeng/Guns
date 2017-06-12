@@ -11,7 +11,7 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
 
 ##技术讨论
-如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081
+如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(若有疑问,请先看一遍readme文档)
 
 ## V2.1更新日志
 1. 集成swagger接口管理框架
