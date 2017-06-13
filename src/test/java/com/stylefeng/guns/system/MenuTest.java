@@ -43,8 +43,12 @@ public class MenuTest extends BaseJunit {
                     pcodes.push(parentMenu.getCode());
                     parentMenu = getParentMenu(parentMenu.getPcode());
                 }
-                for(int i = 0 ;i<pcodes.size();i++){
+                int pcodeSize = pcodes.size();
+                for (int i = 0; i < pcodeSize; i++) {
                     String code = pcodes.pop();
+                    if (code.equals(menu.getCode())) {
+                        continue;
+                    }
                     sb.append("[" + code + "],");
                 }
 
