@@ -163,7 +163,7 @@ public class MenuController extends BaseController {
         //缓存菜单的名称
         LogObjectHolder.me().set(ConstantFactory.me().getMenuName(menuId));
 
-        this.menuService.delMenu(menuId);
+        this.menuService.delMenuContainSubMenus(menuId);
         return SUCCESS_TIP;
     }
 

@@ -4,7 +4,7 @@
 
 
 	<sql id="Base_Column_List">
-		id, code, pcode, name, icon, url, num, levels,
+		id, code, pcode, name, icon, url, num, levels,pcodes,
 		tips, status,isopen,ismenu
 	</sql>
 
