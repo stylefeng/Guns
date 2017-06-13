@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-01
+ * @since 2017-06-13
  */
 public class Menu extends Model<Menu> {
 
@@ -27,6 +27,7 @@ public class Menu extends Model<Menu> {
      * 菜单父编号
      */
 	private String pcode;
+	private String pcodes;
     /**
      * 菜单名称
      */
@@ -47,9 +48,6 @@ public class Menu extends Model<Menu> {
      * 菜单层级
      */
 	private Integer levels;
-    /**
-     * 是否是菜单(1:是  0:不是(为按钮))
-     */
 	private Integer ismenu;
     /**
      * 备注
@@ -87,6 +85,14 @@ public class Menu extends Model<Menu> {
 
 	public void setPcode(String pcode) {
 		this.pcode = pcode;
+	}
+
+	public String getPcodes() {
+		return pcodes;
+	}
+
+	public void setPcodes(String pcodes) {
+		this.pcodes = pcodes;
 	}
 
 	public String getName() {

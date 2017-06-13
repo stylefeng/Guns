@@ -11,7 +11,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-01
+ * @since 2017-06-13
  */
 public class Dict extends Model<Dict> {
 

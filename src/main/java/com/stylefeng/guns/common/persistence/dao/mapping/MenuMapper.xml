@@ -7,6 +7,7 @@
 		<id column="id" property="id" />
 		<result column="code" property="code" />
 		<result column="pcode" property="pcode" />
+		<result column="pcodes" property="pcodes" />
 		<result column="name" property="name" />
 		<result column="icon" property="icon" />
 		<result column="url" property="url" />
