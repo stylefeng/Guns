@@ -2,6 +2,8 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.common.node.MenuNode;
 import com.stylefeng.guns.common.persistence.dao.UserMapper;
@@ -46,6 +48,11 @@ public class LoginController extends BaseController {
     public String index(Model model) {
         //获取菜单列表
         List<Integer> roleList = ShiroKit.getUser().getRoleList();
+        if(roleList == null || roleList.size() == 0){
+            ShiroKit.getSubject().logout();
+            model.addAttribute("tips", "该用户没有角色，无法登陆");
+            return "/login.html";
+        }
         List<MenuNode> menus = menuDao.getMenusByRoleIds(roleList);
         List<MenuNode> titles = MenuNode.buildTitle(menus);
         model.addAttribute("titles", titles);
