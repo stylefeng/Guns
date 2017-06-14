@@ -1,6 +1,7 @@
 package com.stylefeng.guns.config;
 
 import net.sf.ehcache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.core.io.ClassPathResource;
  * @date 2017-05-20 23:11
  */
 @Configuration
+@EnableCaching
 public class EhCacheConfig {
 
     /**
