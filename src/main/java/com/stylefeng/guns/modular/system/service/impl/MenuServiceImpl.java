@@ -2,13 +2,10 @@ package com.stylefeng.guns.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.common.persistence.dao.MenuMapper;
 import com.stylefeng.guns.common.persistence.model.Menu;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.service.IMenuService;
-import com.stylefeng.guns.common.persistence.dao.MenuMapper;
-import com.sun.xml.internal.bind.v2.ContextFactory;
-import net.sf.ehcache.util.MergedEnumeration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
