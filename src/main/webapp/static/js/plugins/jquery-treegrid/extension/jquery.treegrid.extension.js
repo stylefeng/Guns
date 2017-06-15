@@ -83,7 +83,12 @@
 					tr.append(td);
 				}else{
 					var td = $('<td style="'+((column.width)?('width:'+column.width):'')+'"></td>');
-					td.text(item[column.field]);
+                    // 增加formatter渲染
+                    if (column.formatter) {
+                        td.html(column.formatter.call(this, '', item, index));
+                    } else {
+                        td.text(item[column.field]);
+                    }
 					tr.append(td);
 				}
 			});
