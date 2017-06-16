@@ -2,7 +2,52 @@
  * 用户详情对话框（可用于添加和修改对话框）
  */
 var UserInfoDlg = {
-    userInfoData: {}
+    userInfoData: {},
+    validateFields: {
+        account: {
+            validators: {
+                notEmpty: {
+                    message: '账户不能为空'
+                }
+            }
+        },
+        name: {
+            validators: {
+                notEmpty: {
+                    message: '姓名不能为空'
+                }
+            }
+        },
+        citySel: {
+            validators: {
+                notEmpty: {
+                    message: '部门不能为空'
+                }
+            }
+        },
+        password: {
+            validators: {
+                notEmpty: {
+                    message: '密码不能为空'
+                },
+                identical: {
+                    field: 'rePassword',
+                    message: '两次密码不一致'
+                },
+            }
+        },
+        rePassword: {
+            validators: {
+                notEmpty: {
+                    message: '密码不能为空'
+                },
+                identical: {
+                    field: 'password',
+                    message: '两次密码不一致'
+                },
+            }
+        }
+    }
 };
 
 /**
@@ -115,12 +160,25 @@ UserInfoDlg.validatePwd = function () {
 };
 
 /**
+ * 验证数据是否为空
+ */
+UserInfoDlg.validate = function () {
+    $('#userInfoForm').data("bootstrapValidator").resetForm();
+    $('#userInfoForm').bootstrapValidator('validate');
+    return $("#userInfoForm").data('bootstrapValidator').isValid();
+};
+
+/**
  * 提交添加用户
  */
 UserInfoDlg.addSubmit = function () {
 
     this.clearData();
     this.collectData();
+
+    if (!this.validate()) {
+        return;
+    }
 
     if (!this.validatePwd()) {
         Feng.error("两次密码输入不一致");
@@ -147,10 +205,14 @@ UserInfoDlg.editSubmit = function () {
     this.clearData();
     this.collectData();
 
+    if (!this.validate()) {
+        return;
+    }
+
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
         Feng.success("修改成功!");
-        if(window.parent.MgrUser != undefined){
+        if (window.parent.MgrUser != undefined) {
             window.parent.MgrUser.table.refresh();
             UserInfoDlg.close();
         }
@@ -185,6 +247,8 @@ function onBodyDown(event) {
 }
 
 $(function () {
+    Feng.initValidator("userInfoForm", UserInfoDlg.validateFields);
+
     var ztree = new $ZTree("treeDemo", "/dept/tree");
     ztree.bindOnClick(UserInfoDlg.onClickDept);
     ztree.init();
