@@ -120,9 +120,9 @@ RolInfoDlg.collectData = function () {
  * 验证数据是否为空
  */
 RolInfoDlg.validate = function () {
-    $('#validateForm').data("bootstrapValidator").resetForm();
-    $('#validateForm').bootstrapValidator('validate');
-    return $("#validateForm").data('bootstrapValidator').isValid();
+    $('#roleInfoForm').data("bootstrapValidator").resetForm();
+    $('#roleInfoForm').bootstrapValidator('validate');
+    return $("#roleInfoForm").data('bootstrapValidator').isValid();
 };
 
 /**
@@ -174,7 +174,7 @@ RolInfoDlg.editSubmit = function () {
 };
 
 $(function () {
-    Feng.initValidator("validateForm", RolInfoDlg.validateFields);
+    Feng.initValidator("roleInfoForm", RolInfoDlg.validateFields);
 
     var deptTree = new $ZTree("deptTree", "/dept/tree");
     deptTree.bindOnClick(RolInfoDlg.onClickDept);
