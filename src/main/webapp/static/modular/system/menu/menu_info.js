@@ -3,7 +3,37 @@
  */
 var MenuInfoDlg = {
     menuInfoData: {},
-    ztreeInstance: null
+    ztreeInstance: null,
+    validateFields: {
+        name: {
+            validators: {
+                notEmpty: {
+                    message: '菜单名称不能为空'
+                }
+            }
+        },
+        code: {
+            validators: {
+                notEmpty: {
+                    message: '菜单编号不能为空'
+                }
+            }
+        },
+        pcodeName: {
+            validators: {
+                notEmpty: {
+                    message: '父菜单不能为空'
+                }
+            }
+        },
+        url: {
+            validators: {
+                notEmpty: {
+                    message: '请求地址不能为空'
+                }
+            }
+        }
+    }
 };
 
 /**
@@ -49,12 +79,25 @@ MenuInfoDlg.collectData = function () {
 }
 
 /**
+ * 验证数据是否为空
+ */
+MenuInfoDlg.validate = function () {
+    $('#menuInfoForm').data("bootstrapValidator").resetForm();
+    $('#menuInfoForm').bootstrapValidator('validate');
+    return $("#menuInfoForm").data('bootstrapValidator').isValid();
+}
+
+/**
  * 提交添加用户
  */
 MenuInfoDlg.addSubmit = function () {
 
     this.clearData();
     this.collectData();
+
+    if (!this.validate()) {
+        return;
+    }
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/menu/add", function (data) {
@@ -75,6 +118,10 @@ MenuInfoDlg.editSubmit = function () {
 
     this.clearData();
     this.collectData();
+
+    if (!this.validate()) {
+        return;
+    }
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/menu/edit", function (data) {
@@ -105,11 +152,17 @@ MenuInfoDlg.showMenuSelectTree = function () {
 };
 
 $(function () {
+    Feng.initValidator("menuInfoForm", MenuInfoDlg.validateFields);
+
     var ztree = new $ZTree("pcodeTree", "/menu/selectMenuTreeList");
     ztree.bindOnClick(MenuInfoDlg.onClickDept);
     ztree.init();
     MenuInfoDlg.ztreeInstance = ztree;
 
     //初始化是否是菜单
-    $("#ismenu").val($("#ismenuValue").val());
+    if($("#ismenuValue").val() == undefined){
+        $("#ismenu").val(0);
+    }else{
+        $("#ismenu").val($("#ismenuValue").val());
+    }
 });
