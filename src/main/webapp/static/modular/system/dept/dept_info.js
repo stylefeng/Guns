@@ -3,7 +3,30 @@
  */
 var DeptInfoDlg = {
     deptInfoData : {},
-    zTreeInstance : null
+    zTreeInstance : null,
+    validateFields: {
+        simplename: {
+            validators: {
+                notEmpty: {
+                    message: '部门名称不能为空'
+                }
+            }
+        },
+        fullname: {
+            validators: {
+                notEmpty: {
+                    message: '部门全称不能为空'
+                }
+            }
+        },
+        pName: {
+            validators: {
+                notEmpty: {
+                    message: '上级名称不能为空'
+                }
+            }
+        }
+    }
 };
 
 /**
@@ -86,12 +109,25 @@ DeptInfoDlg.collectData = function() {
 }
 
 /**
+ * 验证数据是否为空
+ */
+DeptInfoDlg.validate = function () {
+    $('#deptInfoForm').data("bootstrapValidator").resetForm();
+    $('#deptInfoForm').bootstrapValidator('validate');
+    return $("#deptInfoForm").data('bootstrapValidator').isValid();
+}
+
+/**
  * 提交添加部门
  */
 DeptInfoDlg.addSubmit = function() {
 
     this.clearData();
     this.collectData();
+
+    if (!this.validate()) {
+        return;
+    }
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/dept/add", function(data){
@@ -113,6 +149,10 @@ DeptInfoDlg.editSubmit = function() {
     this.clearData();
     this.collectData();
 
+    if (!this.validate()) {
+        return;
+    }
+
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/dept/update", function(data){
         Feng.success("修改成功!");
@@ -133,6 +173,8 @@ function onBodyDown(event) {
 }
 
 $(function() {
+    Feng.initValidator("deptInfoForm", DeptInfoDlg.validateFields);
+
     var ztree = new $ZTree("parentDeptMenuTree", "/dept/tree");
     ztree.bindOnClick(DeptInfoDlg.onClickDept);
     ztree.init();
