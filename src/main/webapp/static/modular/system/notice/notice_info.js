@@ -2,7 +2,23 @@
  * 初始化通知详情对话框
  */
 var NoticeInfoDlg = {
-    noticeInfoData : {}
+    noticeInfoData : {},
+    validateFields: {
+        title: {
+            validators: {
+                notEmpty: {
+                    message: '标题不能为空'
+                }
+            }
+        },
+        content: {
+            validators: {
+                notEmpty: {
+                    message: '内容不能为空'
+                }
+            }
+        }
+    }
 };
 
 /**
@@ -48,12 +64,25 @@ NoticeInfoDlg.collectData = function() {
 }
 
 /**
+ * 验证数据是否为空
+ */
+NoticeInfoDlg.validate = function () {
+    $('#noticeInfoForm').data("bootstrapValidator").resetForm();
+    $('#noticeInfoForm').bootstrapValidator('validate');
+    return $("#noticeInfoForm").data('bootstrapValidator').isValid();
+};
+
+/**
  * 提交添加
  */
 NoticeInfoDlg.addSubmit = function() {
 
     this.clearData();
     this.collectData();
+
+    if (!this.validate()) {
+        return;
+    }
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/notice/add", function(data){
@@ -75,6 +104,10 @@ NoticeInfoDlg.editSubmit = function() {
     this.clearData();
     this.collectData();
 
+    if (!this.validate()) {
+        return;
+    }
+
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/notice/update", function(data){
         Feng.success("修改成功!");
@@ -88,5 +121,5 @@ NoticeInfoDlg.editSubmit = function() {
 }
 
 $(function() {
-
+    Feng.initValidator("noticeInfoForm", NoticeInfoDlg.validateFields);
 });

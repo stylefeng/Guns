@@ -1,7 +1,7 @@
 @layout("/common/_container.html"){
 <div class="ibox float-e-margins">
     <div class="ibox-content">
-        <div class="form-horizontal">
+        <div class="form-horizontal" id="noticeInfoForm">
 
             <input type="hidden" id="id" value="">
 
@@ -10,14 +10,14 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label">标题</label>
                         <div class="col-sm-11">
-                            <input class="form-control" id="title" type="text">
+                            <input class="form-control" id="title" name="title" type="text">
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">内容</label>
                         <div class="col-sm-11">
-                            <textarea class="form-control" id="content" type="text" style="height: 150px;"></textarea>
+                            <textarea class="form-control" id="content" name="content" type="text" style="height: 150px;"></textarea>
                         </div>
                     </div>
                 </div>
