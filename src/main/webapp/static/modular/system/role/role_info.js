@@ -132,6 +132,7 @@ RolInfoDlg.addSubmit = function () {
 
     this.clearData();
     this.collectData();
+
     if (!this.validate()) {
         return;
     }
@@ -155,6 +156,10 @@ RolInfoDlg.editSubmit = function () {
 
     this.clearData();
     this.collectData();
+
+    if (!this.validate()) {
+        return;
+    }
 
     //提交信息
     var ajax = new $ax(Feng.ctxPath + "/role/edit", function (data) {
