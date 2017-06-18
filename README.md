@@ -1,4 +1,4 @@
-#Guns V2.1
+#Guns V2.2
 新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
@@ -13,13 +13,17 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 ##技术讨论
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍readme文档)
 
-## V2.1更新日志
-1. 集成swagger接口管理框架
-2. 升级bootstrap-table为v1.11.1，table更加好看，并且表格可以点击表头排序
-3. 菜单列表和部门列表表格升级为tree table形式，菜单与菜单之间，部门与部门之间父子关系更加清晰
-4. 完善权限管理，增加对列表和详情页面的权限把控
-5. 修复了一级菜单直接加按钮会显示在菜单列表中的bug
-6. 修复超级管理员可以被删除的bug
+## V2.2更新日志
+1. 菜单树由最多二级菜单拓展为三级菜单
+2. 用户管理页面新增部门树，方便查询部门人员信息
+3. 完善系统的session机制，增加session失效时间的跳转
+4. 完善Guns代码生成功能,新增Dao和Service，并且所有的生成都是可选的
+5. 删除信息增加提示框
+6. 删除父菜单可以删除所有子菜单
+7. 新增对页面的js验证，所用框架为bootstrap validator
+8. 完善druid监控，新增Web应用监控，URI监控，session监控
+9. 修复新增含有0值的字典，查询会出现多条的bug
+10. 修复没有角色的用户登录报错的bug
 
 ### 如果不喜欢SpringBoot?
 如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)分支,
