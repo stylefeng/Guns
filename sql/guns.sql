@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-13 22:26:27
+Date: 2017-06-20 22:14:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,15 +20,15 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `dept`;
 CREATE TABLE `dept` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `num` int(11) DEFAULT NULL,
-  `pid` int(11) DEFAULT NULL,
-  `simplename` varchar(45) DEFAULT NULL,
-  `fullname` varchar(255) DEFAULT NULL,
-  `tips` varchar(255) DEFAULT NULL,
-  `version` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `num` int(11) DEFAULT NULL COMMENT '排序',
+  `pid` int(11) DEFAULT NULL COMMENT '父部门id',
+  `simplename` varchar(45) DEFAULT NULL COMMENT '简称',
+  `fullname` varchar(255) DEFAULT NULL COMMENT '全称',
+  `tips` varchar(255) DEFAULT NULL COMMENT '提示',
+  `version` int(11) DEFAULT NULL COMMENT '版本（乐观锁保留字段）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='部门表';
 
 -- ----------------------------
 -- Records of dept
@@ -43,13 +43,13 @@ INSERT INTO `dept` VALUES ('27', '4', '24', '战略部', '战略部', '', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `dict`;
 CREATE TABLE `dict` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `num` int(11) DEFAULT NULL,
-  `pid` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `tips` varchar(255) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `num` int(11) DEFAULT NULL COMMENT '排序',
+  `pid` int(11) DEFAULT NULL COMMENT '父级字典',
+  `name` varchar(255) DEFAULT NULL COMMENT '名称',
+  `tips` varchar(255) DEFAULT NULL COMMENT '提示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='字典表';
 
 -- ----------------------------
 -- Records of dict
@@ -70,15 +70,15 @@ INSERT INTO `dict` VALUES ('38', '3', '35', '已删除', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `login_log`;
 CREATE TABLE `login_log` (
-  `id` int(65) NOT NULL AUTO_INCREMENT,
-  `logname` varchar(255) DEFAULT NULL,
-  `userid` int(65) DEFAULT NULL,
-  `createtime` datetime DEFAULT NULL,
-  `succeed` varchar(255) DEFAULT NULL,
-  `message` text,
-  `ip` varchar(255) DEFAULT NULL,
+  `id` int(65) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `logname` varchar(255) DEFAULT NULL COMMENT '日志名称',
+  `userid` int(65) DEFAULT NULL COMMENT '管理员id',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `succeed` varchar(255) DEFAULT NULL COMMENT '是否执行成功',
+  `message` text COMMENT '具体消息',
+  `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
 -- Records of login_log
@@ -93,21 +93,21 @@ INSERT INTO `login_log` VALUES ('129', '登录日志', '1', '2017-06-04 10:23:01
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
-  `id` int(65) NOT NULL AUTO_INCREMENT,
+  `id` int(65) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `code` varchar(255) DEFAULT NULL COMMENT '菜单编号',
   `pcode` varchar(255) DEFAULT NULL COMMENT '菜单父编号',
-  `pcodes` varchar(255) DEFAULT NULL,
+  `pcodes` varchar(255) DEFAULT NULL COMMENT '当前菜单的所有父菜单编号',
   `name` varchar(255) DEFAULT NULL COMMENT '菜单名称',
   `icon` varchar(255) DEFAULT NULL COMMENT '菜单图标',
   `url` varchar(255) DEFAULT NULL COMMENT 'url地址',
   `num` int(65) DEFAULT NULL COMMENT '菜单排序号',
   `levels` int(65) DEFAULT NULL COMMENT '菜单层级',
-  `ismenu` int(11) DEFAULT NULL,
+  `ismenu` int(11) DEFAULT NULL COMMENT '是否是菜单（1：是  0：不是）',
   `tips` varchar(255) DEFAULT NULL COMMENT '备注',
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of menu
@@ -173,14 +173,14 @@ INSERT INTO `menu` VALUES ('167', 'mgr_list', 'mgr', '[0],[system],[mgr],', '用
 -- ----------------------------
 DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '序列',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `type` int(11) DEFAULT NULL COMMENT '类型',
   `content` text COMMENT '内容',
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `creater` int(11) DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='通知表';
 
 -- ----------------------------
 -- Records of notice
@@ -193,17 +193,17 @@ INSERT INTO `notice` VALUES ('8', '你好', null, '你好', '2017-05-10 19:28:57
 -- ----------------------------
 DROP TABLE IF EXISTS `operation_log`;
 CREATE TABLE `operation_log` (
-  `id` int(65) NOT NULL AUTO_INCREMENT,
-  `logtype` varchar(255) DEFAULT NULL,
-  `logname` varchar(255) DEFAULT NULL,
-  `userid` int(65) DEFAULT NULL,
-  `classname` varchar(255) DEFAULT NULL,
-  `method` text,
-  `createtime` datetime DEFAULT NULL,
-  `succeed` varchar(255) DEFAULT NULL,
-  `message` text,
+  `id` int(65) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `logtype` varchar(255) DEFAULT NULL COMMENT '日志类型',
+  `logname` varchar(255) DEFAULT NULL COMMENT '日志名称',
+  `userid` int(65) DEFAULT NULL COMMENT '用户id',
+  `classname` varchar(255) DEFAULT NULL COMMENT '类名称',
+  `method` text COMMENT '方法名称',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
+  `message` text COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of operation_log
@@ -217,11 +217,11 @@ INSERT INTO `operation_log` VALUES ('482', '业务日志', '修改菜单', '1', 
 -- ----------------------------
 DROP TABLE IF EXISTS `relation`;
 CREATE TABLE `relation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menuid` int(11) DEFAULT NULL,
-  `roleid` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `menuid` int(11) DEFAULT NULL COMMENT '菜单id',
+  `roleid` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3679 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3679 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
 -- Records of relation
@@ -307,15 +307,15 @@ INSERT INTO `relation` VALUES ('3678', '149', '1');
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `num` int(11) DEFAULT NULL,
-  `pid` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `deptid` int(11) DEFAULT NULL,
-  `tips` varchar(255) DEFAULT NULL,
-  `version` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `num` int(11) DEFAULT NULL COMMENT '序号',
+  `pid` int(11) DEFAULT NULL COMMENT '父角色id',
+  `name` varchar(255) DEFAULT NULL COMMENT '角色名称',
+  `deptid` int(11) DEFAULT NULL COMMENT '部门名称',
+  `tips` varchar(255) DEFAULT NULL COMMENT '提示',
+  `version` int(11) DEFAULT NULL COMMENT '保留字段(暂时没用）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of role
@@ -328,23 +328,23 @@ INSERT INTO `role` VALUES ('5', '2', '1', '临时', '26', 'temp', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `avatar` varchar(255) DEFAULT NULL,
-  `account` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `salt` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `birthday` datetime DEFAULT NULL,
-  `sex` int(11) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `phone` varchar(45) DEFAULT NULL,
-  `roleid` varchar(255) DEFAULT NULL,
-  `deptid` int(11) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL,
-  `createtime` datetime DEFAULT NULL,
-  `version` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
+  `account` varchar(45) DEFAULT NULL COMMENT '账号',
+  `password` varchar(45) DEFAULT NULL COMMENT '密码',
+  `salt` varchar(45) DEFAULT NULL COMMENT 'md5密码盐',
+  `name` varchar(45) DEFAULT NULL COMMENT '名字',
+  `birthday` datetime DEFAULT NULL COMMENT '生日',
+  `sex` int(11) DEFAULT NULL COMMENT '性别（1：男 2：女）',
+  `email` varchar(45) DEFAULT NULL COMMENT '电子邮件',
+  `phone` varchar(45) DEFAULT NULL COMMENT '电话',
+  `roleid` varchar(255) DEFAULT NULL COMMENT '角色id',
+  `deptid` int(11) DEFAULT NULL COMMENT '部门id',
+  `status` int(11) DEFAULT NULL COMMENT '状态(1：启用  2：冻结  3：删除）',
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `version` int(11) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of user
