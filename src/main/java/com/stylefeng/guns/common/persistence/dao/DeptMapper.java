@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
-  *  Mapper 接口
+  * 部门表 Mapper 接口
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public interface DeptMapper extends BaseMapper<Dept> {
 

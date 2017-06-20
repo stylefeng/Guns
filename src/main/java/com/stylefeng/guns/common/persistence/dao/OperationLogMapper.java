@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
-  *  Mapper 接口
+  * 操作日志 Mapper 接口
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public interface OperationLogMapper extends BaseMapper<OperationLog> {
 

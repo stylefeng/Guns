@@ -7,19 +7,28 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 角色和菜单关联表
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public class Relation extends Model<Relation> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键
+     */
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
+    /**
+     * 菜单id
+     */
 	private Integer menuid;
+    /**
+     * 角色id
+     */
 	private Integer roleid;
 
 

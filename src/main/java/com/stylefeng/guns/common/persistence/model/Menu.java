@@ -7,16 +7,19 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 菜单表
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public class Menu extends Model<Menu> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键id
+     */
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
     /**
@@ -27,6 +30,9 @@ public class Menu extends Model<Menu> {
      * 菜单父编号
      */
 	private String pcode;
+    /**
+     * 当前菜单的所有父菜单编号
+     */
 	private String pcodes;
     /**
      * 菜单名称
@@ -48,6 +54,9 @@ public class Menu extends Model<Menu> {
      * 菜单层级
      */
 	private Integer levels;
+    /**
+     * 是否是菜单（1：是  0：不是）
+     */
 	private Integer ismenu;
     /**
      * 备注

@@ -9,18 +9,18 @@ import java.util.Date;
 
 /**
  * <p>
- * 
+ * 通知表
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public class Notice extends Model<Notice> {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 序列
+     * 主键
      */
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;

@@ -7,23 +7,44 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 部门表
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public class Dept extends Model<Dept> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键id
+     */
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
+    /**
+     * 排序
+     */
 	private Integer num;
+    /**
+     * 父部门id
+     */
 	private Integer pid;
+    /**
+     * 简称
+     */
 	private String simplename;
+    /**
+     * 全称
+     */
 	private String fullname;
+    /**
+     * 提示
+     */
 	private String tips;
+    /**
+     * 版本（乐观锁保留字段）
+     */
 	private Integer version;
 
 

@@ -7,21 +7,36 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 字典表
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-13
+ * @since 2017-06-20
  */
 public class Dict extends Model<Dict> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键id
+     */
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
+    /**
+     * 排序
+     */
 	private Integer num;
+    /**
+     * 父级字典
+     */
 	private Integer pid;
+    /**
+     * 名称
+     */
 	private String name;
+    /**
+     * 提示
+     */
 	private String tips;
 
 
