@@ -1,9 +1,9 @@
 package com.stylefeng.guns.common.constant.factory;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
-import com.stylefeng.guns.common.constant.state.Sex;
 import com.stylefeng.guns.common.persistence.dao.*;
 import com.stylefeng.guns.common.persistence.model.*;
 import com.stylefeng.guns.core.log.LogObjectHolder;
@@ -214,11 +214,34 @@ public class ConstantFactory implements IConstantFactory {
     }
 
     /**
+     * 根据字典名称和字典中的值获取对应的名称
+     */
+    @Override
+    public String getDictsByName(String name, Integer val) {
+        Dict temp = new Dict();
+        temp.setName(name);
+        Dict dict = dictMapper.selectOne(temp);
+        if (dict == null) {
+            return null;
+        } else {
+            Wrapper<Dict> wrapper = new EntityWrapper<>();
+            wrapper = wrapper.eq("pid", dict.getId());
+            List<Dict> dicts = dictMapper.selectList(wrapper);
+            for (Dict item : dicts) {
+                if (item.getNum() != null && item.getNum().equals(val)) {
+                    return item.getName();
+                }
+            }
+            return "";
+        }
+    }
+
+    /**
      * 获取性别名称
      */
     @Override
     public String getSexName(Integer sex) {
-        return Sex.valueOf(sex);
+        return getDictsByName("性别", sex);
     }
 
     /**

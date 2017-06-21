@@ -81,6 +81,11 @@ public interface IConstantFactory {
     String getNoticeTitle(Integer dictId);
 
     /**
+     * 根据字典名称和字典中的值获取对应的名称
+     */
+    String getDictsByName(String name, Integer val);
+
+    /**
      * 获取性别名称
      */
     String getSexName(Integer sex);
