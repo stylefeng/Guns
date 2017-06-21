@@ -222,7 +222,7 @@ public class ConstantFactory implements IConstantFactory {
         temp.setName(name);
         Dict dict = dictMapper.selectOne(temp);
         if (dict == null) {
-            return null;
+            return "";
         } else {
             Wrapper<Dict> wrapper = new EntityWrapper<>();
             wrapper = wrapper.eq("pid", dict.getId());
