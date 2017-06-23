@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * MybatisPlus配置
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017/5/20 21:58
  */
 @Configuration
+@EnableTransactionManagement(order=2)//由于引入多数据源，所以让spring事务的aop要在多数据源切换aop的后面
 @MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao", "com.stylefeng.guns.common.persistence.dao"})
 public class MybatisPlusConfig {
 
