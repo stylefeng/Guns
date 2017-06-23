@@ -1,7 +1,7 @@
 package com.stylefeng.guns.common.constant.state;
 
 /**
- * 管理员的装状态
+ * 管理员的状态
  *
  * @author fengshuonan
  * @Date 2017年1月10日 下午9:54:13

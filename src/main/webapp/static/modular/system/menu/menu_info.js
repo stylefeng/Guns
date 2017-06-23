@@ -40,7 +40,7 @@ var MenuInfoDlg = {
  * 清除数据
  */
 MenuInfoDlg.clearData = function () {
-    this.roleInfoData = {};
+    this.menuInfoData = {};
 }
 
 /**
@@ -50,7 +50,7 @@ MenuInfoDlg.clearData = function () {
  * @param val 数据的具体值
  */
 MenuInfoDlg.set = function (key, val) {
-    this.roleInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
+    this.menuInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
     return this;
 }
 
@@ -107,7 +107,7 @@ MenuInfoDlg.addSubmit = function () {
     }, function (data) {
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.roleInfoData);
+    ajax.set(this.menuInfoData);
     ajax.start();
 }
 
@@ -131,7 +131,7 @@ MenuInfoDlg.editSubmit = function () {
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.roleInfoData);
+    ajax.set(this.menuInfoData);
     ajax.start();
 }
 
