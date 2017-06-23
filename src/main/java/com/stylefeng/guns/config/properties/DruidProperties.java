@@ -50,7 +50,7 @@ public class DruidProperties {
 
     private String filters = "stat";
 
-    public void coinfig(DruidDataSource dataSource) {
+    public void config(DruidDataSource dataSource) {
 
         dataSource.setUrl(url);
         dataSource.setUsername(username);
