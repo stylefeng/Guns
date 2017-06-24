@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-20 22:14:03
+Date: 2017-06-24 23:18:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -322,6 +322,21 @@ CREATE TABLE `role` (
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', '1', '0', '超级管理员', '24', 'administrator', '1');
 INSERT INTO `role` VALUES ('5', '2', '1', '临时', '26', 'temp', null);
+
+-- ----------------------------
+-- Table structure for test
+-- ----------------------------
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of test
+-- ----------------------------
+INSERT INTO `test` VALUES ('1', '123');
 
 -- ----------------------------
 -- Table structure for user
