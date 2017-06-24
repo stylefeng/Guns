@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 /**
@@ -33,20 +34,9 @@ public class MybatisPlusConfig {
     MutiDataSourceProperties mutiDataSourceProperties;
 
     /**
-     * mybatis-plus分页插件
-     */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
-        return paginationInterceptor;
-    }
-
-    /**
      * druid数据库连接池
      */
-    @Bean(initMethod = "init")
-    public DruidDataSource dataSource() {
+    private DruidDataSource dataSourceGuns() {
         DruidDataSource dataSource = new DruidDataSource();
         druidProperties.config(dataSource);
         return dataSource;
@@ -55,25 +45,46 @@ public class MybatisPlusConfig {
     /**
      * 多数据源配置
      */
-    @Bean(initMethod = "init")
-    public DruidDataSource bizDataSource() {
+    private DruidDataSource bizDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         druidProperties.config(dataSource);
         mutiDataSourceProperties.config(dataSource);
         return dataSource;
     }
 
+
     /**
      * 动态数据源
      */
     @Bean
-    public DynamicDataSource dataSource(DruidDataSource dataSource, DruidDataSource bizDataSource) {
+    public DynamicDataSource dataSource() {
+
+        DruidDataSource dataSourceGuns = dataSourceGuns();
+        DruidDataSource bizDataSource = bizDataSource();
+
+        try {
+            dataSourceGuns.init();
+            bizDataSource.init();
+        }catch (SQLException sql){
+            sql.printStackTrace();
+        }
+
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         HashMap<Object, Object> hashMap = new HashMap();
-        hashMap.put(DSEnum.DATA_SOURCE_GUNS, dataSource);
+        hashMap.put(DSEnum.DATA_SOURCE_GUNS, dataSourceGuns);
         hashMap.put(DSEnum.DATA_SOURCE_BIZ, bizDataSource);
         dynamicDataSource.setTargetDataSources(hashMap);
-        dynamicDataSource.setDefaultTargetDataSource(dataSource);
+        dynamicDataSource.setDefaultTargetDataSource(dataSourceGuns);
         return dynamicDataSource;
+    }
+
+    /**
+     * mybatis-plus分页插件
+     */
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
+        return paginationInterceptor;
     }
 }

@@ -8,6 +8,7 @@ import com.stylefeng.guns.common.persistence.model.Test;
 import com.stylefeng.guns.modular.biz.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -24,10 +25,28 @@ public class TestServiceImpl implements ITestService {
     TestMapper testMapper;
 
     @Override
-    @Transactional
-    @DataSource(name = DSEnum.DATA_SOURCE_GUNS)
-    public void test() {
+    @DataSource(name = DSEnum.DATA_SOURCE_BIZ)
+    public void testBiz() {
         Test test = testMapper.selectById(1);
-        System.out.println(JSON.toJSONString(test));
+        test.setId(22);
+        test.insert();
     }
+
+
+    @Override
+    @DataSource(name = DSEnum.DATA_SOURCE_GUNS)
+    public void testGuns() {
+        Test test = testMapper.selectById(1);
+        test.setId(33);
+        test.insert();
+    }
+
+    @Override
+    @Transactional
+    public void testAll() {
+        testBiz();
+        testGuns();
+        //int i = 1 / 0;
+    }
+
 }

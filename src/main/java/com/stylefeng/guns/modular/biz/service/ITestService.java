@@ -14,5 +14,23 @@ public interface ITestService {
      * @author stylefeng
      * @Date 2017/6/23 23:02
      */
-    void test();
+    void testBiz();
+
+    /**
+     * 测试多数据源的业务
+     *
+     * @author stylefeng
+     * @Date 2017/6/23 23:02
+     */
+    void testGuns();
+
+
+    /**
+     * 测试多数据源的业务
+     *
+     * @author stylefeng
+     * @Date 2017/6/23 23:02
+     */
+    void testAll();
+
 }
