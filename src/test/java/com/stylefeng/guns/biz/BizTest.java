@@ -20,8 +20,8 @@ public class BizTest extends BaseJunit {
     public void test() {
         //testService.testGuns();
 
-        //testService.testBiz();
+        testService.testBiz();
 
-        testService.testAll();
+        //testService.testAll();
     }
 }

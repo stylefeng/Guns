@@ -9,6 +9,7 @@ import com.stylefeng.guns.config.properties.MutiDataSourceProperties;
 import com.stylefeng.guns.core.mutidatesource.DynamicDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -33,17 +34,9 @@ public class MybatisPlusConfig {
     @Autowired
     MutiDataSourceProperties mutiDataSourceProperties;
 
-    /**
-     * druid数据库连接池
-     */
-    private DruidDataSource dataSourceGuns() {
-        DruidDataSource dataSource = new DruidDataSource();
-        druidProperties.config(dataSource);
-        return dataSource;
-    }
 
     /**
-     * 多数据源配置
+     * 另一个数据源
      */
     private DruidDataSource bizDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
@@ -52,12 +45,30 @@ public class MybatisPlusConfig {
         return dataSource;
     }
 
+    /**
+     * guns的数据源
+     */
+    private DruidDataSource dataSourceGuns(){
+        DruidDataSource dataSource = new DruidDataSource();
+        druidProperties.config(dataSource);
+        return dataSource;
+    }
 
     /**
-     * 动态数据源
+     * 单数据源连接池配置
      */
     @Bean
-    public DynamicDataSource dataSource() {
+    @ConditionalOnProperty(prefix = "guns", name = "muti-datasource-open", havingValue = "false")
+    public DruidDataSource singleDatasource() {
+        return dataSourceGuns();
+    }
+
+    /**
+     * 多数据源连接池配置
+     */
+    @Bean
+    @ConditionalOnProperty(prefix = "guns", name = "muti-datasource-open", havingValue = "true")
+    public DynamicDataSource mutiDataSource() {
 
         DruidDataSource dataSourceGuns = dataSourceGuns();
         DruidDataSource bizDataSource = bizDataSource();
