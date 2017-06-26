@@ -66,9 +66,10 @@ OptLog.delLog = function () {
 }
 
 /**
- * 查询日志列表
+ * 查询表单提交参数对象
+ * @returns {{}}
  */
-OptLog.search = function () {
+OptLog.formParams = function() {
     var queryData = {};
 
     queryData['logName'] = $("#logName").val();
@@ -76,12 +77,21 @@ OptLog.search = function () {
     queryData['endTime'] = $("#endTime").val();
     queryData['logType'] = $("#logType").val();
 
-    OptLog.table.refresh({query: queryData});
+    return queryData;
+}
+
+/**
+ * 查询日志列表
+ */
+OptLog.search = function () {
+
+    OptLog.table.refresh({query: OptLog.formParams()});
 };
 
 $(function () {
     var defaultColunms = OptLog.initColumn();
     var table = new BSTable(OptLog.id, "/log/list", defaultColunms);
     table.setPaginationType("server");
+    table.setQueryParams(OptLog.formParams());
     OptLog.table = table.init();
 });
