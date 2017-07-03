@@ -35,6 +35,11 @@ spring:
   http:
     converters:
       preferred-json-mapper: fastjson
+  devtools:
+    restart:
+      enabled: true #是否开启开发者工具（true/false）
+      additional-paths: src/main/java
+      exclude: static/**,WEB-INF/view/**
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
