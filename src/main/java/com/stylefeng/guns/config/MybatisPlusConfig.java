@@ -1,7 +1,6 @@
 package com.stylefeng.guns.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.stylefeng.guns.common.constant.DSEnum;
 import com.stylefeng.guns.config.properties.DruidProperties;
@@ -94,8 +93,6 @@ public class MybatisPlusConfig {
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
-        return paginationInterceptor;
+        return new PaginationInterceptor();
     }
 }
