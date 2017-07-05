@@ -14,9 +14,10 @@
 		this.uploadBtnId = pictureId + "BtnId";
 		this.uploadPreId = pictureId + "PreId";
 		this.uploadUrl = Feng.ctxPath + '/mgr/upload';
-		this.fileSizeLimit = 10 * 1024 * 1024;
+		this.fileSizeLimit = 100 * 1024 * 1024;
 		this.picWidth = 800;
 		this.picHeight = 800;
+        this.uploadBarId = null;
 	};
 
 	$WebUpload.prototype = {
@@ -42,7 +43,7 @@
 				accept : {
 					title : 'Images',
 					extensions : 'gif,jpg,jpeg,bmp,png',
-					mimeTypes : 'image/*'
+                    mimeTypes : 'image/gif,image/jpg,image/jpeg,image/bmp,image/png'
 				},
 				swf : Feng.ctxPath
 						+ '/static/css/plugins/webuploader/Uploader.swf',
@@ -78,6 +79,7 @@
 
 			// 文件上传过程中创建进度条实时显示。
 			bindedObj.on('uploadProgress', function(file, percentage) {
+                $("#"+me.uploadBarId).css("width",percentage * 100 + "%");
 			});
 
 			// 文件上传成功，给item添加成功class, 用样式标记上传成功。
@@ -109,7 +111,14 @@
 			// 完成上传完了，成功或者失败
 			bindedObj.on('uploadComplete', function(file) {
 			});
-		}
+		},
+
+        /**
+         * 设置图片上传的进度条的id
+         */
+        setUploadBarId: function (id) {
+            this.uploadBarId = id;
+        }
 	};
 
 	window.$WebUpload = $WebUpload;
