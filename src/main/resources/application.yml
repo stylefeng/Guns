@@ -22,6 +22,7 @@ beetl:
   delimiter-statement-end: null
   resource-tagroot: common/tags   #自定义标签文件Root目录和后缀
   resource-tagsuffix: tag
+  resource-auto-check: true #是否检测文件变化,开发用true合适，但线上要改为false
 
 
 ###################  spring配置  ###################
