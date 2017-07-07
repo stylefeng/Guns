@@ -23,7 +23,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <shiro.version>1.4.0</shiro.version>
-        <mybatisplus-spring-boot-starter.version>1.0.3</mybatisplus-spring-boot-starter.version>
+        <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+        <mybatis-plus.version>2.1-gamma</mybatis-plus.version>
         <fastjson.version>1.2.31</fastjson.version>
         <commons.io.version>2.5</commons.io.version>
         <velocity.version>1.7</velocity.version>
@@ -108,6 +109,11 @@
         </dependency>
 
         <!--其他依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
