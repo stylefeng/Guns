@@ -122,6 +122,11 @@ function clearTabMenuItem(){
     });
 }
 
+function highLightMenuItem(hrefVal){
+    clearTabMenuItem();
+    $("a[href='" + hrefVal + "']").addClass("tab-menu-selected");
+}
+
 function NavToggle() {
     $('.navbar-minimalize').trigger('click');
 }
