@@ -46,6 +46,7 @@ public enum BizExceptionEnum {
 	/**
 	 * 错误的请求
 	 */
+	DICT_MUST_BE_NUMBER(400,"字典的值必须为数字"),
 	REQUEST_NULL(400, "请求有错误"),
 	SESSION_TIMEOUT(400, "会话超时"),
 	SERVER_ERROR(500, "服务器异常");
