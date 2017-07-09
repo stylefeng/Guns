@@ -7890,3 +7890,8 @@ body.skin-3 {
         font-size: 12px
     }
 }
+
+.tab-menu-selected {
+    background-color: #293846 !important;
+    color: white !important;
+}

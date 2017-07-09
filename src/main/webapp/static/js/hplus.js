@@ -7,7 +7,6 @@ $(document).ready(function () {
 
     // MetsiMenu
     $('#side-menu').metisMenu();
-
     // 打开右侧边栏
     $('.right-sidebar-toggle').click(function () {
         $('#right-sidebar').toggleClass('sidebar-open');
@@ -95,6 +94,12 @@ $(document).ready(function () {
         }
     });
 
+    //点击菜单的时候高亮显示菜单
+    $("a[name='tabMenuItem']").click(function(){
+        clearTabMenuItem();
+        $(this).addClass("tab-menu-selected");
+    });
+
     $('.nav-close').click(NavToggle);
 
     //ios浏览器兼容性处理
@@ -110,6 +115,12 @@ $(window).bind("load resize", function () {
         $('.navbar-static-side').fadeIn();
     }
 });
+
+function clearTabMenuItem(){
+    $("a[name='tabMenuItem']").each(function(){
+        $(this).removeClass("tab-menu-selected");
+    });
+}
 
 function NavToggle() {
     $('.navbar-minimalize').trigger('click');
