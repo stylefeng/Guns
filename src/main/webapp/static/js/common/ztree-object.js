@@ -2,12 +2,13 @@
  * ztree插件的封装
  */
 (function() {
-	
+
 	var $ZTree = function(id, url) {
 		this.id = id;
 		this.url = url;
 		this.onClick = null;
 		this.settings = null;
+		this.ondblclick=null;
 	};
 
 	$ZTree.prototype = {
@@ -22,19 +23,20 @@
 				},
 				data : {simpleData : {enable : true}},
 				callback : {
-					onClick : this.onClick
+					onClick : this.onClick,
+					onDblClick:this.ondblclick
 				}
 			};
 			return settings;
 		},
-		
+
 		/**
 		 * 手动设置ztree的设置
 		 */
 		setSettings : function(val) {
 			this.settings = val;
 		},
-		
+
 		/**
 		 * 初始化ztree
 		 */
@@ -48,14 +50,21 @@
 			var zNodes = this.loadNodes();
 			$.fn.zTree.init($("#" + this.id), zNodeSeting, zNodes);
 		},
-		
+
 		/**
 		 * 绑定onclick事件
 		 */
 		bindOnClick : function(func) {
 			this.onClick = func;
 		},
-		
+		/**
+		 * 绑定双击事件
+		 */
+		bindOnDblClick : function(func) {
+			this.ondblclick=func;
+		},
+
+
 		/**
 		 * 加载节点
 		 */
@@ -69,7 +78,7 @@
 			ajax.start();
 			return zNodes;
 		},
-		
+
 		/**
 		 * 获取选中的值
 		 */

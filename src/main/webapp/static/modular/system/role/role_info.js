@@ -77,6 +77,11 @@ RolInfoDlg.onClickDept = function (e, treeId, treeNode) {
     $("#deptName").attr("value", RolInfoDlg.deptZtree.getSelectedVal());
     $("#deptid").attr("value", treeNode.id);
 };
+RolInfoDlg.onDblClickDept = function (e, treeId, treeNode) {
+    $("#deptName").attr("value", RolInfoDlg.deptZtree.getSelectedVal());
+    $("#deptid").attr("value", treeNode.id);
+    $("#deptContent").fadeOut("fast");
+};
 
 /**
  * 点击父级菜单input框时
@@ -178,6 +183,7 @@ $(function () {
 
     var deptTree = new $ZTree("deptTree", "/dept/tree");
     deptTree.bindOnClick(RolInfoDlg.onClickDept);
+    deptTree.bindOnDblClick(RolInfoDlg.onDblClickDept)
     deptTree.init();
     RolInfoDlg.deptZtree = deptTree;
 
