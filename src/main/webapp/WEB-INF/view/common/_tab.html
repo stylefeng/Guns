@@ -33,7 +33,7 @@
             @for(title in titles){
                 @if(tool.isEmpty(title.children)){
                     <li>
-                        <a class="J_menuItem" href="${ctxPath}${title.url}">
+                        <a class="J_menuItem" href="${ctxPath}${title.url}" name="tabMenuItem">
                             <i class="fa ${title.icon}"></i>
                             <span class="nav-label">${title.name}</span>
                         </a>
@@ -49,7 +49,7 @@
                             @for(subTitle in title.children){
                                 @if(tool.isEmpty(subTitle.children)){
                                     <li>
-                                        <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
+                                        <a class="J_menuItem" href="${ctxPath}${subTitle.url}" name="tabMenuItem">${subTitle.name}</a>
                                     </li>
                                 @}else{
                                     <li>
@@ -57,7 +57,7 @@
                                         <ul class="nav nav-third-level">
                                             @for(thirdTitle in subTitle.children){
                                             <li>
-                                                <a class="J_menuItem" href="${ctxPath}${thirdTitle.url}">${thirdTitle.name}</a>
+                                                <a class="J_menuItem" href="${ctxPath}${thirdTitle.url}" name="tabMenuItem">${thirdTitle.name}</a>
                                             </li>
                                             @}
                                         </ul>

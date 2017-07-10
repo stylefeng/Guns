@@ -27,6 +27,8 @@ public class BeetlProperties {
 
     private String resourceTagsuffix;
 
+    private String resourceAutoCheck;
+
     @Value("${spring.mvc.view.prefix}")
     private String prefix;
 
@@ -48,6 +50,9 @@ public class BeetlProperties {
         }
         if(ToolUtil.isNotEmpty(resourceTagsuffix)){
             properties.setProperty("RESOURCE.tagSuffix",resourceTagsuffix);
+        }
+        if(ToolUtil.isNotEmpty(resourceAutoCheck)){
+            properties.setProperty("RESOURCE.autoCheck",resourceAutoCheck);
         }
         return properties;
     }
@@ -86,5 +91,13 @@ public class BeetlProperties {
 
     public void setResourceTagsuffix(String resourceTagsuffix) {
         this.resourceTagsuffix = resourceTagsuffix;
+    }
+
+    public String getResourceAutoCheck() {
+        return resourceAutoCheck;
+    }
+
+    public void setResourceAutoCheck(String resourceAutoCheck) {
+        this.resourceAutoCheck = resourceAutoCheck;
     }
 }

@@ -52,7 +52,11 @@ public class DictServiceImpl implements IDictService {
             Dict itemDict = new Dict();
             itemDict.setPid(dict.getId());
             itemDict.setName(name);
-            itemDict.setNum(Integer.valueOf(num));
+            try {
+                itemDict.setNum(Integer.valueOf(num));
+            }catch (NumberFormatException e){
+                throw new BussinessException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
+            }
             this.dictMapper.insert(itemDict);
         }
     }

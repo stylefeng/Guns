@@ -169,6 +169,7 @@ $(function () {
             if ($(this).parents('.J_menuTab').next('.J_menuTab').size()) {
 
                 var activeId = $(this).parents('.J_menuTab').next('.J_menuTab:eq(0)').data('id');
+                highLightMenuItem(activeId);  //高亮对应的tab菜单
                 $(this).parents('.J_menuTab').next('.J_menuTab:eq(0)').addClass('active');
 
                 $('.J_mainContent .J_iframe').each(function () {
@@ -218,6 +219,7 @@ $(function () {
                         return false;
                     }
                 });
+                highLightMenuItem(activeId);//高亮对应的tab菜单
             }
         }
         // 当前元素不处于活动状态
@@ -260,6 +262,7 @@ $(function () {
     function activeTab() {
         if (!$(this).hasClass('active')) {
             var currentId = $(this).data('id');
+            highLightMenuItem(currentId);  //高亮对应的tab菜单
             // 显示tab对应的内容区
             $('.J_mainContent .J_iframe').each(function () {
                 if ($(this).data('id') == currentId) {
