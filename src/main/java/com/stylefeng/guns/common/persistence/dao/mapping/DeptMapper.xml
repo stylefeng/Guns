@@ -7,6 +7,7 @@
 		<id column="id" property="id" />
 		<result column="num" property="num" />
 		<result column="pid" property="pid" />
+		<result column="pids" property="pids" />
 		<result column="simplename" property="simplename" />
 		<result column="fullname" property="fullname" />
 		<result column="tips" property="tips" />

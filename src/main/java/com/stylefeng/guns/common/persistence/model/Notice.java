@@ -13,7 +13,7 @@ import java.util.Date;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-20
+ * @since 2017-07-11
  */
 public class Notice extends Model<Notice> {
 
@@ -99,4 +99,15 @@ public class Notice extends Model<Notice> {
 		return this.id;
 	}
 
+	@Override
+	public String toString() {
+		return "Notice{" +
+			"id=" + id +
+			", title=" + title +
+			", type=" + type +
+			", content=" + content +
+			", createtime=" + createtime +
+			", creater=" + creater +
+			"}";
+	}
 }

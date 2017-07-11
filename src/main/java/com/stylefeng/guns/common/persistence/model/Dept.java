@@ -1,8 +1,9 @@
 package com.stylefeng.guns.common.persistence.model;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-20
+ * @since 2017-07-11
  */
 public class Dept extends Model<Dept> {
 
@@ -30,6 +31,10 @@ public class Dept extends Model<Dept> {
      * 父部门id
      */
 	private Integer pid;
+    /**
+     * 父级ids
+     */
+	private String pids;
     /**
      * 简称
      */
@@ -72,6 +77,14 @@ public class Dept extends Model<Dept> {
 		this.pid = pid;
 	}
 
+	public String getPids() {
+		return pids;
+	}
+
+	public void setPids(String pids) {
+		this.pids = pids;
+	}
+
 	public String getSimplename() {
 		return simplename;
 	}
@@ -109,4 +122,17 @@ public class Dept extends Model<Dept> {
 		return this.id;
 	}
 
+	@Override
+	public String toString() {
+		return "Dept{" +
+			"id=" + id +
+			", num=" + num +
+			", pid=" + pid +
+			", pids=" + pids +
+			", simplename=" + simplename +
+			", fullname=" + fullname +
+			", tips=" + tips +
+			", version=" + version +
+			"}";
+	}
 }

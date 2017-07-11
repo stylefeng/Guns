@@ -13,6 +13,7 @@ import com.stylefeng.guns.common.persistence.model.Dept;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DeptDao;
+import com.stylefeng.guns.modular.system.service.IDeptService;
 import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +43,9 @@ public class DeptController extends BaseController {
 
     @Resource
     DeptMapper deptMapper;
+
+    @Resource
+    IDeptService deptService;
 
     /**
      * 跳转到部门管理首页
@@ -94,6 +98,8 @@ public class DeptController extends BaseController {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        //完善pids,根据pid拿到pid的pids
+        deptSetPids(dept);
         return this.deptMapper.insert(dept);
     }
 
@@ -129,6 +135,7 @@ public class DeptController extends BaseController {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        deptSetPids(dept);
         deptMapper.updateById(dept);
         return super.SUCCESS_TIP;
     }
@@ -145,8 +152,21 @@ public class DeptController extends BaseController {
         //缓存被删除的部门名称
         LogObjectHolder.me().set(ConstantFactory.me().getDeptName(deptId));
 
-        deptMapper.deleteById(deptId);
+        deptService.deleteDept(deptId);
 
         return SUCCESS_TIP;
+    }
+
+    private void deptSetPids(Dept dept) {
+        if (ToolUtil.isEmpty(dept.getPid()) || dept.getPid().equals("0")) {
+            dept.setPid(0);
+            dept.setPids("[0],");
+        } else {
+            int pid = dept.getPid();
+            Dept temp = deptMapper.selectById(pid);
+            String pids = temp.getPids();
+            dept.setPid(pid);
+            dept.setPids(pids + "[" + pid + "],");
+        }
     }
 }

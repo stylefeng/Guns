@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-06-24 23:18:42
+Date: 2017-07-11 22:39:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,6 +23,7 @@ CREATE TABLE `dept` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `num` int(11) DEFAULT NULL COMMENT '排序',
   `pid` int(11) DEFAULT NULL COMMENT '父部门id',
+  `pids` varchar(255) DEFAULT NULL COMMENT '父级ids',
   `simplename` varchar(45) DEFAULT NULL COMMENT '简称',
   `fullname` varchar(255) DEFAULT NULL COMMENT '全称',
   `tips` varchar(255) DEFAULT NULL COMMENT '提示',
@@ -33,10 +34,10 @@ CREATE TABLE `dept` (
 -- ----------------------------
 -- Records of dept
 -- ----------------------------
-INSERT INTO `dept` VALUES ('24', '1', '0', '总公司', '总公司', '', null);
-INSERT INTO `dept` VALUES ('25', '2', '24', '开发部', '开发部', '', null);
-INSERT INTO `dept` VALUES ('26', '3', '24', '运营部', '运营部', '', null);
-INSERT INTO `dept` VALUES ('27', '4', '24', '战略部', '战略部', '', null);
+INSERT INTO `dept` VALUES ('24', '1', '0', '[0],', '总公司', '总公司', '', null);
+INSERT INTO `dept` VALUES ('25', '2', '24', '[0],[24],', '开发部', '开发部', '', null);
+INSERT INTO `dept` VALUES ('26', '3', '24', '[0],[24],', '运营部', '运营部', '', null);
+INSERT INTO `dept` VALUES ('27', '4', '24', '[0],[24],', '战略部', '战略部', '', null);
 
 -- ----------------------------
 -- Table structure for dict

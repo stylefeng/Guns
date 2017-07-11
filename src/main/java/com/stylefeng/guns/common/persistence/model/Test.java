@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 /**
@@ -9,7 +10,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-23
+ * @since 2017-07-11
  */
 public class Test extends Model<Test> {
 
@@ -40,4 +41,11 @@ public class Test extends Model<Test> {
 		return this.id;
 	}
 
+	@Override
+	public String toString() {
+		return "Test{" +
+			"id=" + id +
+			", value=" + value +
+			"}";
+	}
 }

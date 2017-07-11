@@ -14,7 +14,7 @@ import java.util.Date;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-20
+ * @since 2017-07-11
  */
 @TableName("login_log")
 public class LoginLog extends Model<LoginLog> {
@@ -113,4 +113,16 @@ public class LoginLog extends Model<LoginLog> {
 		return this.id;
 	}
 
+	@Override
+	public String toString() {
+		return "LoginLog{" +
+			"id=" + id +
+			", logname=" + logname +
+			", userid=" + userid +
+			", createtime=" + createtime +
+			", succeed=" + succeed +
+			", message=" + message +
+			", ip=" + ip +
+			"}";
+	}
 }

@@ -1,8 +1,9 @@
 package com.stylefeng.guns.common.persistence.model;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-20
+ * @since 2017-07-11
  */
 public class Relation extends Model<Relation> {
 
@@ -61,4 +62,12 @@ public class Relation extends Model<Relation> {
 		return this.id;
 	}
 
+	@Override
+	public String toString() {
+		return "Relation{" +
+			"id=" + id +
+			", menuid=" + menuid +
+			", roleid=" + roleid +
+			"}";
+	}
 }

@@ -8,7 +8,7 @@
 		deptid, status,
 		createtime, version
 	</sql>
-	
+
 	<sql id="Base_Column_List_With_Pwd">
 		id, account, name, birthday,password, sex, email, avatar,
 		phone, roleid,salt,
@@ -27,7 +27,7 @@
 			or name like CONCAT('%',#{name},'%'))
 		</if>
 		<if test="deptid != null and deptid != 0">
-			and deptid = #{deptid}
+			and deptid = #{deptid} or deptid in ( select id from dept where pids like CONCAT('%[', #{deptid}, ']%') )
 		</if>
 		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
 			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
@@ -43,12 +43,12 @@
 		update user set password = #{pwd} where id =
 		#{userId}
 	</update>
-	
+
 	<update id="setRoles">
 		update user set roleid = #{roleIds} where id =
 		#{userId}
 	</update>
-	
+
 	<select id="getByAccount" resultType="user">
 		select
 		<include refid="Base_Column_List_With_Pwd" />

@@ -1,7 +1,7 @@
 package com.stylefeng.guns.common.persistence.dao;
 
-import com.stylefeng.guns.common.persistence.model.LoginLog;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.stylefeng.guns.common.persistence.model.LoginLog;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author stylefeng
- * @since 2017-06-20
+ * @since 2017-07-11
  */
 public interface LoginLogMapper extends BaseMapper<LoginLog> {
 
