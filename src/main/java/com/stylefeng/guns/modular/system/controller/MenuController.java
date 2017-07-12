@@ -140,6 +140,13 @@ public class MenuController extends BaseController {
         if (result.hasErrors()) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        //判断是否存在该编号
+        String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
+        if (ToolUtil.isNotEmpty(existedMenuName)) {
+            throw new BussinessException(BizExceptionEnum.EXISTED_THE_MENU);
+        }
+
         //设置父级菜单编号
         menuSetPcode(menu);
 
@@ -223,12 +230,19 @@ public class MenuController extends BaseController {
     private void menuSetPcode(@Valid Menu menu) {
         if (ToolUtil.isEmpty(menu.getPcode()) || menu.getPcode().equals("0")) {
             menu.setPcode("0");
+            menu.setPcodes("[0],");
             menu.setLevels(1);
         } else {
             int code = Integer.parseInt(menu.getPcode());
             Menu pMenu = menuMapper.selectById(code);
             Integer pLevels = pMenu.getLevels();
             menu.setPcode(pMenu.getCode());
+
+            //如果编号和父编号一致会导致无限递归
+            if (menu.getCode().equals(menu.getPcode())) {
+                throw new BussinessException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+            }
+
             menu.setLevels(pLevels + 1);
             menu.setPcodes(pMenu.getPcodes() + "[" + pMenu.getCode() + "],");
         }

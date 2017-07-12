@@ -32,6 +32,13 @@ var MenuInfoDlg = {
                     message: '请求地址不能为空'
                 }
             }
+        },
+        num: {
+            validators: {
+                notEmpty: {
+                    message: '序号不能为空'
+                }
+            }
         }
     }
 };
