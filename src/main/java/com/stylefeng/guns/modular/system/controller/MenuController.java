@@ -223,6 +223,7 @@ public class MenuController extends BaseController {
     private void menuSetPcode(@Valid Menu menu) {
         if (ToolUtil.isEmpty(menu.getPcode()) || menu.getPcode().equals("0")) {
             menu.setPcode("0");
+            menu.setPcodes("[0],");
             menu.setLevels(1);
         } else {
             int code = Integer.parseInt(menu.getPcode());
