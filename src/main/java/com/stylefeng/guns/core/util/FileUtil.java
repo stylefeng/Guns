@@ -2,7 +2,8 @@ package com.stylefeng.guns.core.util;
 
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,7 +13,7 @@ import java.nio.channels.FileChannel;
 
 public class FileUtil {
 	
-	private static Logger log = Logger.getLogger(FileUtil.class);
+	private static Logger log = LoggerFactory.getLogger(FileUtil.class);
 	
 	/**
 	 * NIO way
