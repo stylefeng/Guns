@@ -1,10 +1,16 @@
 package com.stylefeng.guns.core.util.qr;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -15,17 +21,6 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
-
-import org.apache.log4j.Logger;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
 /**
  * 内嵌图片的二维码生成器
  *
@@ -33,7 +28,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
  */
 public class ImgQrTool {
 
-    private static Logger log = Logger.getLogger(ImgQrTool.class);
+    private static Logger log = LoggerFactory.getLogger(ImgQrTool.class);
 
     // 镶嵌的图片宽度的一般
     private static final int IMAGE_WIDTH = 80;
