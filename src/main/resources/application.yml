@@ -85,8 +85,10 @@ biz:
     password: root
 
 logging:
-  level: debug
-  file: logs/guns.log
+  level.root: info
+  level.com.stylefeng: debug
+  path: logs/
+  file: guns.log
 
 ---
 
@@ -102,6 +104,7 @@ spring:
       filters: log4j,wall,mergeStat
 
 logging:
-  level: warn
-  file: logs/guns.log
+  level.root: warn
+  path: logs/
+  file: guns.log
 
