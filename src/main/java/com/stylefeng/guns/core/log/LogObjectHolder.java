@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.Serializable;
+
 /**
  * 被修改的bean临时存放的地方
  *
@@ -13,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
  */
 @Component
 @Scope(scopeName = WebApplicationContext.SCOPE_SESSION)
-public class LogObjectHolder {
+public class LogObjectHolder implements Serializable{
 
     private Object object = null;
 
