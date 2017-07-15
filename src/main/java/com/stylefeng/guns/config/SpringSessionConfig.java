@@ -8,7 +8,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @author fengshuonan
  * @date 2017-07-13 21:05
  */
-@EnableRedisHttpSession
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800)  //session过期时间
 public class SpringSessionConfig {
 
 

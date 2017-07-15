@@ -51,25 +51,6 @@ public class ShiroConfig {
         return new ServletContainerSessionManager();
     }
 
-    ///**
-    // * session管理器
-    // */
-    //@Bean
-    //public DefaultWebSessionManager defaultWebSessionManager(CacheManager cacheShiroManager, GunsProperties gunsProperties) {
-    //    DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-    //    sessionManager.setCacheManager(cacheShiroManager);
-    //    sessionManager.setSessionValidationInterval(gunsProperties.getSessionValidationInterval() * 1000);
-    //    sessionManager.setGlobalSessionTimeout(gunsProperties.getSessionInvalidateTime() * 1000);
-    //    sessionManager.setDeleteInvalidSessions(true);
-    //    sessionManager.setSessionValidationSchedulerEnabled(true);
-    //    Cookie cookie = new SimpleCookie(ShiroHttpSession.DEFAULT_SESSION_ID_NAME);
-    //    cookie.setName("shiroCookie");
-    //    cookie.setHttpOnly(true);
-    //    sessionManager.setSessionIdCookie(cookie);
-    //    return sessionManager;
-    //}
-
-
     /**
      * 缓存管理器 使用Ehcache实现
      */

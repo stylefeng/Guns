@@ -8,8 +8,6 @@ guns:
   kaptcha-open: false #是否开启登录时验证码 (true/false)
   session-open: false #是否开启session验证 (true/false)
   #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
-  session-invalidate-time: 1800 #session失效时间 单位：秒
-  session-validation-interval: 900 #多久检测一次失效的session 单位：秒
   muti-datasource-open: false #是否开启多数据源(true/false)
 
 ###################  项目启动端口  ###################
