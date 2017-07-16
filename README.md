@@ -1,4 +1,4 @@
-# Guns V2.3
+# Guns V2.4
 新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
@@ -10,18 +10,24 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 2.[beetl](http://ibeetl.com/)
 3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
 
+## 感谢以下对Guns做出贡献的人
+1.[Swifly](http://git.oschina.net/cyf783)
+2.[liujiliang](liujiliang@chinasofti.com)
+3.[poseidon-ocean](poseidon@163.com)
+4.[扎西多顿](http://git.oschina.net/zhaping)
+5.[ilaotan](http://git.oschina.net/xiaosheng12345)
+
 ## 技术讨论
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍readme文档)
 
-## V2.3更新日志
-1. 增加多数据源支持
-2. 增加富文本编辑器支持
-3. 数据库字段增加注释
-4. 数据字典不单单是查询功能，可以动态绑定到业务中当做枚举值使用
-5. 上传图片增加进度条显示
-6. 增加上线发布流程文档（上线发布流程.md）
-7. 解决页面点击查询，左侧菜单高亮会消失bug
-8. 解决个人信息无法提交的bug
+## V2.4更新日志
+1. 集成spring session,解决多机部署环境session共享问题
+2. 增加logback日志配置，日志记录统一用slf4j记录
+3. 修复linux下代码生成不兼容的问题
+4. 修复用户管理点击父级部门查询不到相关用户的问题
+5. 修复home图标点击不生效的问题
+6. 增加添加菜单时，对编号和父级编号可能一致的判断
+7. 修复添加一级菜单不生效的问题
 
 ### 如果不喜欢SpringBoot?
 如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)分支,
