@@ -116,6 +116,7 @@
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
+            <scope>provided</scope><!-- 需要分布式session的话需要改为compile -->
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>

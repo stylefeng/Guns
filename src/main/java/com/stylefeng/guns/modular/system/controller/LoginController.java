@@ -2,8 +2,6 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.stylefeng.guns.common.controller.BaseController;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.common.node.MenuNode;
 import com.stylefeng.guns.common.persistence.dao.UserMapper;

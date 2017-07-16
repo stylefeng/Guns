@@ -8,7 +8,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-@ConditionalOnProperty(prefix = "guns", name = "session-open", havingValue = "true")
 public class SessionTimeoutInterceptor extends BaseController {
 
     @Pointcut("execution(* com.stylefeng.guns.*..controller.*.*(..))")
