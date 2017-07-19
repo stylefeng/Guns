@@ -2,16 +2,10 @@
 <configuration>
 
     <!-- 此xml在spring-boot-1.5.3.RELEASE.jar里 -->
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
     <!-- 开启后可以通过jmx动态控制日志级别(springboot Admin的功能) -->
     <!--<jmxConfigurator/>-->
-
-    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-        <Target>System.out</Target>
-        <encoder>
-            <pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n</pattern>
-        </encoder>
-    </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${LOG_PATH}${LOG_FILE}</File>
@@ -32,7 +26,7 @@
     <!--<logger name="org.apache.kafka.clients.producer.ProducerConfig" level="warn"/>-->
 
     <root level="INFO">
-        <!--<appender-ref ref="Console"/>-->
+        <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
