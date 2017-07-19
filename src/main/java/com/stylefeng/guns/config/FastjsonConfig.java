@@ -22,8 +22,7 @@ public class FastjsonConfig {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.PrettyFormat,
-                SerializerFeature.WriteMapNullValue,
-                SerializerFeature.BrowserCompatible
+                SerializerFeature.WriteMapNullValue
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         ValueFilter valueFilter = new ValueFilter() {
