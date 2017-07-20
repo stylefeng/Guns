@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -145,7 +145,7 @@ public class ShiroConfig {
          * user  验证通过或RememberMe登录的都可以
          *
          */
-        Map<String, String> hashMap = new HashMap<>();
+        Map<String, String> hashMap = new LinkedHashMap<>();
         hashMap.put("/static/**", "anon");
         hashMap.put("/login", "anon");
         hashMap.put("/global/sessionError", "anon");

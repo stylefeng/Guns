@@ -75,7 +75,7 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 并打包放入到tomcat中执行
 
 ### 注意
-建议本项目用jdk1.8,经测试jdk1.7登录页面会导致css丢失
+最新版项目最低支持jdk1.7
 
 ## 所用框架
 ### 前端
