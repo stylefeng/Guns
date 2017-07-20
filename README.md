@@ -30,7 +30,7 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 7. 修复添加一级菜单不生效的问题
 
 ### 如果不喜欢SpringBoot?
-如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)分支,
+如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到***[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)***分支,
 Guns V1.0基于spring的java bean方式配置项目,同样简洁易上手.
 
 注:SpringBoot强大的Auto Config和统一的依赖管理极大的简化了spring配置和maven依赖,在不了解其都配置了哪些东西的基础上可能会对初学者有一定困扰,所以建议初学者先看Guns V1.0
@@ -51,7 +51,7 @@ Guns V1.0基于spring的java bean方式配置项目,同样简洁易上手.
 1. 导入sql/guns.sql文件到mysql数据库
 2. 以maven方式导入项目到ide
 3. 修改application.yml中的数据库相关的配置,改为您本机的数据库配置
-4. 启动项目,管理员账号admin/密码111111
+4. 启动项目,管理员***账号admin/密码111111***
 
 ### 如何启动项目
 Guns目前支持三种启动方式:
@@ -75,7 +75,7 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 并打包放入到tomcat中执行
 
 ### 注意
-建议本项目用jdk1.8,经测试jdk1.7登录页面会导致css丢失
+最新版项目最低支持jdk1.7
 
 ## 所用框架
 ### 前端
