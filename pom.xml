@@ -34,6 +34,7 @@
         <druid.version>1.0.28</druid.version>
         <beetl.version>2.7.15</beetl.version>
         <swagger.version>2.2.2</swagger.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
     </properties>
 
     <dependencies>
@@ -173,6 +174,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
 
     </dependencies>
