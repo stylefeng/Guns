@@ -27,7 +27,7 @@
 			or name like CONCAT('%',#{name},'%'))
 		</if>
 		<if test="deptid != null and deptid != 0">
-			and deptid = #{deptid} or deptid in ( select id from dept where pids like CONCAT('%[', #{deptid}, ']%') )
+			and (deptid = #{deptid} or deptid in ( select id from dept where pids like CONCAT('%[', #{deptid}, ']%') ))
 		</if>
 		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
 			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
