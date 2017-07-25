@@ -14,6 +14,7 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -285,5 +286,41 @@ public class ConstantFactory implements IConstantFactory {
     public String getCacheObject(String para) {
         return LogObjectHolder.me().get().toString();
     }
+
+    /**
+     * 获取子部门id
+     */
+    @Override
+    public List<Integer> getSubDeptId(Integer deptid) {
+        Wrapper<Dept> wrapper = new EntityWrapper<>();
+        wrapper = wrapper.like("pids", "%[" + deptid + "]%");
+        List<Dept> depts = this.deptMapper.selectList(wrapper);
+
+        ArrayList<Integer> deptids = new ArrayList<>();
+
+        if(depts != null || depts.size() > 0){
+            for (Dept dept : depts) {
+                deptids.add(dept.getId());
+            }
+        }
+
+        return deptids;
+    }
+
+    /**
+     * 获取所有父部门id
+     */
+    @Override
+    public List<Integer> getParentDeptIds(Integer deptid) {
+        Dept dept = deptMapper.selectById(deptid);
+        String pids = dept.getPids();
+        String[] split = pids.split(",");
+        ArrayList<Integer> parentDeptIds = new ArrayList<>();
+        for (String s : split) {
+            parentDeptIds.add(Integer.valueOf(StrKit.removeSuffix(StrKit.removePrefix(s, "["), "]")));
+        }
+        return parentDeptIds;
+    }
+
 
 }

@@ -15,6 +15,8 @@
  */
 package com.stylefeng.guns.core.shiro;
 
+import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -22,6 +24,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -265,6 +268,30 @@ public class ShiroKit {
             return principal.toString();
         }
         return "";
+    }
+
+    /**
+     * 获取当前用户的部门数据范围的集合
+     */
+    public static List<Integer> getDeptDataScope() {
+        Integer deptId = getUser().getDeptId();
+        List<Integer> subDeptIds = ConstantFactory.me().getSubDeptId(deptId);
+        subDeptIds.add(deptId);
+        return subDeptIds;
+    }
+
+    /**
+     * 判断当前用户是否是超级管理员
+     */
+    public static boolean isAdmin() {
+        List<Integer> roleList = ShiroKit.getUser().getRoleList();
+        for (Integer integer : roleList) {
+            String singleRoleTip = ConstantFactory.me().getSingleRoleTip(integer);
+            if (singleRoleTip.equals(Const.ADMIN_NAME)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

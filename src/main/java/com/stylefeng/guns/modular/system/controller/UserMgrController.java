@@ -13,6 +13,7 @@ import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.UserMapper;
 import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.core.db.Db;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
@@ -98,6 +99,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        assertAuth(userId);
         User user = this.userMapper.selectById(userId);
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
@@ -160,7 +162,8 @@ public class UserMgrController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
-        List<Map<String, Object>> users = managerDao.selectUsers(name, beginTime, endTime, deptid);
+        DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
+        List<Map<String, Object>> users = managerDao.selectUsers(dataScope, name, beginTime, endTime, deptid);
         return new UserWarpper(users).warp();
     }
 
@@ -208,6 +211,7 @@ public class UserMgrController extends BaseController {
             this.userMapper.updateById(UserFactory.createUser(user));
             return SUCCESS_TIP;
         } else {
+            assertAuth(user.getId());
             ShiroUser shiroUser = ShiroKit.getUser();
             if (shiroUser.getId().equals(user.getId())) {
                 this.userMapper.updateById(UserFactory.createUser(user));
@@ -223,7 +227,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/delete")
     @BussinessLog(value = "删除管理员", key = "userId", dict = Dict.UserDict)
-    @Permission(Const.ADMIN_NAME)
+    @Permission
     @ResponseBody
     public Tip delete(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -233,6 +237,7 @@ public class UserMgrController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
+        assertAuth(userId);
         this.managerDao.setStatus(userId, ManagerStatus.DELETED.getCode());
         return SUCCESS_TIP;
     }
@@ -246,6 +251,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        assertAuth(userId);
         return this.userMapper.selectById(userId);
     }
 
@@ -260,6 +266,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        assertAuth(userId);
         User user = this.userMapper.selectById(userId);
         user.setSalt(ShiroKit.getRandomSalt(5));
         user.setPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
@@ -282,6 +289,7 @@ public class UserMgrController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new BussinessException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
+        assertAuth(userId);
         this.managerDao.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
@@ -297,6 +305,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
+        assertAuth(userId);
         this.managerDao.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }
@@ -316,6 +325,7 @@ public class UserMgrController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new BussinessException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
+        assertAuth(userId);
         this.managerDao.setRoles(userId, roleIds);
         return SUCCESS_TIP;
     }
@@ -334,5 +344,20 @@ public class UserMgrController extends BaseController {
             throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
+    }
+
+    /**
+     * 判断当前登录的用户是否有操作这个用户的权限
+     */
+    private void assertAuth(Integer userId) {
+        List<Integer> deptDataScope = ShiroKit.getDeptDataScope();
+        User user = this.userMapper.selectById(userId);
+        Integer deptid = user.getDeptid();
+        if (deptDataScope.contains(deptid)) {
+            return;
+        } else {
+            throw new BussinessException(BizExceptionEnum.NO_PERMITION);
+        }
+
     }
 }

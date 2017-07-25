@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import com.stylefeng.guns.common.constant.DSEnum;
 import com.stylefeng.guns.config.properties.DruidProperties;
 import com.stylefeng.guns.config.properties.MutiDataSourceProperties;
+import com.stylefeng.guns.core.datascope.DataScopeInterceptor;
 import com.stylefeng.guns.core.mutidatesource.DynamicDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +95,13 @@ public class MybatisPlusConfig {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
+    }
+
+    /**
+     * 数据范围mybatis插件
+     */
+    @Bean
+    public DataScopeInterceptor dataScopeInterceptor() {
+        return new DataScopeInterceptor();
     }
 }

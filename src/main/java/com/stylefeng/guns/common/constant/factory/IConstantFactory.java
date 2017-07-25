@@ -110,4 +110,14 @@ public interface IConstantFactory {
      */
     String getCacheObject(String para);
 
+    /**
+     * 获取子部门id
+     */
+    List<Integer> getSubDeptId(Integer deptid);
+
+    /**
+     * 获取所有父部门id
+     */
+    List<Integer> getParentDeptIds(Integer deptid);
+
 }
