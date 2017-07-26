@@ -1,4 +1,4 @@
-# Guns V2.4
+# Guns V2.5
 新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
@@ -20,14 +20,13 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 ## 技术讨论
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍readme文档)
 
-## V2.4更新日志
-1. 集成spring session,解决多机部署环境session共享问题
-2. 增加logback日志配置，日志记录统一用slf4j记录
-3. 修复linux下代码生成不兼容的问题
-4. 修复用户管理点击父级部门查询不到相关用户的问题
-5. 修复home图标点击不生效的问题
-6. 增加添加菜单时，对编号和父级编号可能一致的判断
-7. 修复添加一级菜单不生效的问题
+## V2.5更新日志
+1. 新增数据范围功能(例如两个角色都有用户管理权限,但是下级部门不能看到上级部门的数据)
+2. 代码生成的bug修复,现在兼容windows和linux
+3. shiro的过滤器链改为LinkedHashMap
+4. 修复添加顶级部门添加不了的bug
+5. 解决日期格式化工具类线程安全的问题
+6. 修复日志记录会出现多个重复文件的bug
 
 ### 如果不喜欢SpringBoot?
 如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到***[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)***分支,
