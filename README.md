@@ -17,7 +17,7 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 4.[扎西多顿](http://git.oschina.net/zhaping)
 5.[ilaotan](http://git.oschina.net/xiaosheng12345)
 
-## 技术讨论,项目的[wiki地址](http://git.oschina.net/naan1993/guns/wikis/home)
+## 技术讨论,[wiki地址](http://git.oschina.net/naan1993/guns/wikis/home)
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍wiki文档,再看一遍readme)
 
 ## V2.5更新日志
