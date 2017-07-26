@@ -1,4 +1,4 @@
-# Guns V2.4
+# Guns V2.5
 新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
@@ -17,17 +17,16 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 4.[扎西多顿](http://git.oschina.net/zhaping)
 5.[ilaotan](http://git.oschina.net/xiaosheng12345)
 
-## 技术讨论
-如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍readme文档)
+## 技术讨论,[wiki地址](http://git.oschina.net/naan1993/guns/wikis/home)
+如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍wiki文档,再看一遍readme)
 
-## V2.4更新日志
-1. 集成spring session,解决多机部署环境session共享问题
-2. 增加logback日志配置，日志记录统一用slf4j记录
-3. 修复linux下代码生成不兼容的问题
-4. 修复用户管理点击父级部门查询不到相关用户的问题
-5. 修复home图标点击不生效的问题
-6. 增加添加菜单时，对编号和父级编号可能一致的判断
-7. 修复添加一级菜单不生效的问题
+## V2.5更新日志
+1. 新增数据范围功能(例如两个角色都有用户管理权限,但是下级部门不能看到上级部门的数据)
+2. 代码生成的bug修复,现在兼容windows和linux
+3. shiro的过滤器链改为LinkedHashMap
+4. 修复添加顶级部门添加不了的bug
+5. 解决日期格式化工具类线程安全的问题
+6. 修复日志记录会出现多个重复文件的bug
 
 ### 如果不喜欢SpringBoot?
 如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到***[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)***分支,
@@ -250,6 +249,9 @@ avatarUp.init();
 
 ## 独创controller层，map+warpper返回方式
 map+warpper方式即为把controller层的返回结果使用BeanKit工具类把原有bean转化为Map的的形式(或者原有bean直接是map的形式)，再用单独写的一个包装类再包装一次这个map，使里面的参数更加具体，更加有含义，下面举一个例子，例如，在返回给前台一个性别时，数据库查出来1是男2是女，假如直接返回给前台，那么前台显示的时候还需要增加一次判断，并且前后端分离开发时又增加了一次交流和文档的成本，但是采用warpper包装的形式，可以直接把返回结果包装一下，例如动态增加一个字段sexName直接返回给前台性别的中文名称即可。
+
+## 独创mybatis数据范围拦截器,实现对数据权限的过滤
+Guns的数据范围控制是指,对拥有相同角色的用户,根据部门的不同进行相应的数据筛选,如果部门不相同,那么有可能展示出的具体数据是不一致的.所以说Guns对数据范围控制是以部门id为单位来标识的,如何增加数据范围拦截呢?只需在相关的mapper接口的参数中增加一个DataScope对象即可,DataScope中有两个字段,scopeName用来标识sql语句中部门id的字段名称,例如deptiid或者id,另一个字段deptIds就是具体需要过滤的部门id的集合.拦截器原理如下:拦截mapper中包含DataScope对象的方法,获取其原始sql,并做一个包装限制部门id在deptIds范围内的数据进行展示.
 
 ## swagger api管理使用说明
 swagger会管理所有包含@ApiOperation注解的控制器方法，同时，可利用@ApiImplicitParams注解标记接口中的参数，具体用法请参考CodeController类中的用法。
