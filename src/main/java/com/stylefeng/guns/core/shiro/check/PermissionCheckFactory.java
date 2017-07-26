@@ -59,7 +59,7 @@ public class PermissionCheckFactory implements ICheck {
         if (null == user) {
             return false;
         }
-        String requestURI = request.getRequestURI().replace(ConfigListener.getConf().get("contextPath"), "");
+        String requestURI = request.getRequestURI().replaceFirst(ConfigListener.getConf().get("contextPath"), "");
         String[] str = requestURI.split("/");
         if (str.length > 3) {
             requestURI = "/" + str[1] + "/" + str[2];
