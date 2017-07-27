@@ -162,9 +162,14 @@ public class UserMgrController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
-        DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
-        List<Map<String, Object>> users = managerDao.selectUsers(dataScope, name, beginTime, endTime, deptid);
-        return new UserWarpper(users).warp();
+        if(ShiroKit.isAdmin()){
+            List<Map<String, Object>> users = managerDao.selectUsers(null, name, beginTime, endTime, deptid);
+            return new UserWarpper(users).warp();
+        }else{
+            DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
+            List<Map<String, Object>> users = managerDao.selectUsers(dataScope, name, beginTime, endTime, deptid);
+            return new UserWarpper(users).warp();
+        }
     }
 
     /**
@@ -350,6 +355,9 @@ public class UserMgrController extends BaseController {
      * 判断当前登录的用户是否有操作这个用户的权限
      */
     private void assertAuth(Integer userId) {
+        if(ShiroKit.isAdmin()){
+            return;
+        }
         List<Integer> deptDataScope = ShiroKit.getDeptDataScope();
         User user = this.userMapper.selectById(userId);
         Integer deptid = user.getDeptid();
