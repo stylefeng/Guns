@@ -19,7 +19,7 @@ ${context.bizEnBigName}InfoDlg.clearData = function() {
  * @param val 数据的具体值
  */
 ${context.bizEnBigName}InfoDlg.set = function(key, val) {
-    this.${context.bizEnName}InfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
+    this.${context.bizEnName}InfoData[key] = (typeof val == "undefined") ? $("#" + key).val() : val;
     return this;
 }
 
