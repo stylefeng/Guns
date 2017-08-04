@@ -46,7 +46,7 @@ public class LoginController extends BaseController {
     public String index(Model model) {
         //获取菜单列表
         List<Integer> roleList = ShiroKit.getUser().getRoleList();
-        if(roleList == null || roleList.size() == 0){
+        if (roleList == null || roleList.size() == 0) {
             ShiroKit.getSubject().logout();
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return "/login.html";
@@ -84,19 +84,25 @@ public class LoginController extends BaseController {
 
         String username = super.getPara("username").trim();
         String password = super.getPara("password").trim();
+        String remember = super.getPara("remember");
 
         //验证验证码是否正确
-        if(ToolUtil.getKaptchaOnOff()){
+        if (ToolUtil.getKaptchaOnOff()) {
             String kaptcha = super.getPara("kaptcha").trim();
             String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-            if(ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)){
+            if (ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)) {
                 throw new InvalidKaptchaException();
             }
         }
 
         Subject currentUser = ShiroKit.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
-        token.setRememberMe(true);
+
+        if ("on".equals(remember)) {
+            token.setRememberMe(true);
+        } else {
+            token.setRememberMe(false);
+        }
 
         currentUser.login(token);
 
@@ -106,7 +112,7 @@ public class LoginController extends BaseController {
 
         LogManager.me().executeLog(LogTaskFactory.loginLog(shiroUser.getId(), getIp()));
 
-        ShiroKit.getSession().setAttribute("sessionFlag",true);
+        ShiroKit.getSession().setAttribute("sessionFlag", true);
 
         return REDIRECT + "/";
     }
