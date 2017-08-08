@@ -25,6 +25,7 @@
          */
         init: function () {
             var tableId = this.bstableId;
+            var me = this;
             this.btInstance =
                 $('#' + tableId).bootstrapTable({
                     contentType: "application/x-www-form-urlencoded",
@@ -44,7 +45,7 @@
                     pageList: [14, 50, 100],  	//可供选择的每页的行数（*）
                     queryParamsType: 'limit', 	//默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
                     queryParams: function (param) {
-                        return $.extend(this.queryParams, param);
+                        return $.extend(me.queryParams, param);
                     }, // 向后台传递的自定义参数
                     sidePagination: this.paginationType,   //分页方式：client客户端分页，server服务端分页（*）
                     search: false,      		//是否显示表格搜索，此搜索是客户端搜索，不会进服务端
