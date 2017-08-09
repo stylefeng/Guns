@@ -6,6 +6,10 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 /**
  * fastjson配置类
@@ -33,8 +37,13 @@ public class FastjsonConfig {
                 return o1;
             }
         };
+        fastJsonConfig.setCharset(Charset.forName("utf-8"));
         fastJsonConfig.setSerializeFilters(valueFilter);
         converter.setFastJsonConfig(fastJsonConfig);
+
+        ArrayList<MediaType> mediaTypes = new ArrayList<>();
+        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        converter.setSupportedMediaTypes(mediaTypes);
         return converter;
     }
 
