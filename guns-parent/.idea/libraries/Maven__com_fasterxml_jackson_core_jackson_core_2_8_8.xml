@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.8">
+    <CLASSES>
+      <root url="jar://D:/repository/com/fasterxml/jackson/core/jackson-core/2.8.8/jackson-core-2.8.8.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/repository/com/fasterxml/jackson/core/jackson-core/2.8.8/jackson-core-2.8.8-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/repository/com/fasterxml/jackson/core/jackson-core/2.8.8/jackson-core-2.8.8-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

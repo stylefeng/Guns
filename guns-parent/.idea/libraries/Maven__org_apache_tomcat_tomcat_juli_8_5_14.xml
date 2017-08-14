@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.tomcat:tomcat-juli:8.5.14">
+    <CLASSES>
+      <root url="jar://D:/repository/org/apache/tomcat/tomcat-juli/8.5.14/tomcat-juli-8.5.14.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/repository/org/apache/tomcat/tomcat-juli/8.5.14/tomcat-juli-8.5.14-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/repository/org/apache/tomcat/tomcat-juli/8.5.14/tomcat-juli-8.5.14-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

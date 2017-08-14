@@ -1,0 +1,1739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8ff330a9-ab93-49b7-8f08-380d40272228" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../doc/上线发布流程.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../doc/多机环境部署注意事项.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../sql/biz.sql" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../sql/guns.sql" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/GunsApplication.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/GunsServletInitializer.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/annotion/DataSource.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/annotion/Permission.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/annotion/log/BussinessLog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/Const.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/Cst.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/DSEnum.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/Dict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/cache/Cache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/cache/CacheKey.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/DeleteDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/DeptDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/DictMap.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/LogDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/MenuDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/NoticeMap.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/RoleDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/UserDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/base/AbstractDictMap.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/base/SystemDict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/factory/DictFieldWarpperFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/dictmap/factory/DictMapFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/factory/ConstantFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/factory/IConstantFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/factory/MutiStrFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/factory/PageFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/BizLogType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/IsMenu.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/LogSucceed.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/LogType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/ManagerStatus.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/MenuOpenStatus.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/MenuStatus.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/state/Order.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/tips/ErrorTip.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/tips/SuccessTip.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/constant/tips/Tip.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/controller/BaseController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/controller/GlobalController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/controller/GunsErrorView.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/exception/BizExceptionEnum.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/exception/BussinessException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/exception/InvalidKaptchaException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/exception/ToolBoxException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/node/MenuNode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/node/ZTreeNode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/page/PageBT.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/page/PageInfoBT.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/DeptMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/DictMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/LoginLogMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/MenuMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/NoticeMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/OperationLogMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/RelationMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/RoleMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/TestMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/UserMapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/DeptMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/DictMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/LoginLogMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/MenuMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/NoticeMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/OperationLogMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/RelationMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/RoleMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/TestMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/dao/mapping/UserMapper.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Dept.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Dict.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/LoginLog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Menu.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Notice.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/OperationLog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Relation.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Role.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/Test.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/persistence/model/User.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/common/warpper/BaseControllerWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/EhCacheConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/FastjsonConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/MybatisPlusConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/SpringSessionConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/SwaggerConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/properties/BeetlProperties.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/properties/DruidProperties.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/properties/GunsProperties.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/properties/MutiDataSourceProperties.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/web/BeetlConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/web/ShiroConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/config/web/WebConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/aop/GlobalExceptionHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/aop/LogAop.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/aop/MultiSourceExAop.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/aop/PermissionAop.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/beetl/BeetlConfiguration.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/beetl/ShiroExt.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/cache/BaseCacheFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/cache/CacheKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/cache/EhcacheFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/cache/ICache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/cache/ILoader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/datascope/DataScope.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/datascope/DataScopeInterceptor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/db/Db.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/intercept/SessionInterceptor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/intercept/SessionTimeoutInterceptor.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/listener/ConfigListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/log/LogManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/log/LogObjectHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/log/factory/LogFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/log/factory/LogTaskFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/mutidatesource/DataSourceContextHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/mutidatesource/DynamicDataSource.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/ShiroDbRealm.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/ShiroKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/ShiroUser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/check/ICheck.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/check/PermissionCheckFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/check/PermissionCheckManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/factory/IShiro.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/shiro/factory/ShiroFactroy.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/BasicType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/BeanKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/ClassKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/CollectionKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/DateTime.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/DateTimeKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/HexKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/HttpKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/ObjectKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/PageKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/StrKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/WafKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/support/WafRequestWrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/config/ContextConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/config/ControllerConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/config/DaoConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/config/PageConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/config/ServiceConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/engine/SimpleTemplateEngine.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/engine/base/AbstractTemplateEngine.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/template/engine/base/GunsTemplateEngine.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/Contrast.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/Convert.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/DateUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/FileUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/HttpSessionHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/MD5Util.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/NumUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/PingYinUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/ResKit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/SpringContextHolder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/SqlUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/ToolUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/qr/ImgQrTool.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/qr/MatrixToImageConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/qr/MatrixToImageWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/qr/QrImage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/xss/XssFilter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/core/util/xss/XssHttpServletRequestWrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/biz/service/ITestService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/biz/service/impl/TestServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/BlackboardController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/CodeController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/DeptController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/DictController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/KaptchaController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/LogController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/LoginController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/LoginLogController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/MenuController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/NoticeController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/RoleController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/controller/UserMgrController.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/DeptDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/DictDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/LogDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/MenuDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/NoticeDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/RoleDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/UserMgrDao.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/DeptDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/DictDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/LogDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/MenuDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/NoticeDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/RoleDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/dao/mapping/UserMgrDao.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/factory/UserFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/IDeptService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/IDictService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/IMenuService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/IRoleService.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/impl/DeptServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/impl/DictServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/impl/MenuServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/service/impl/RoleServiceImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/transfer/ManagerUser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/transfer/ReqAddManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/transfer/ReqEditManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/transfer/UserDto.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/DeptWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/DictWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/LogWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/MenuWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/NoticeWrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/RoleWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/com/stylefeng/guns/modular/system/warpper/UserWarpper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/java/generator/MyBatisPlusGenerator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/META-INF/spring-devtools.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/application.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/ehcache.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/Controller.java.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/Dao.java.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/Mapping.xml.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/Service.java.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/ServiceImpl.java.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/page.html.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/page.js.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/page_add.html.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/page_edit.html.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/gunsTemplate/page_info.js.btl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/resources/logback-spring.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/404.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/blackboard.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/_container.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/_right.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/_tab.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/_theme.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/NameCon.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/SelectCon.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/TimeCon.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/avatar.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/button.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/input.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/select.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/common/tags/table.tag" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/login.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/code/code.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/dept/dept.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/dept/dept_add.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/dept/dept_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/dict/dict.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/dict/dict_add.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/dict/dict_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/log/log.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/log/login_log.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/menu/menu.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/menu/menu_add.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/menu/menu_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/notice/notice.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/notice/notice_add.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/notice/notice_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/role/role.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/role/role_add.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/role/role_assign.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/role/role_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/user/user.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/user/user_add.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/user/user_chpwd.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/user/user_edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/user/user_roleassign.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/WEB-INF/view/system/user/user_view.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/_fstyle.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/animate.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/bootstrap-rtl.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/login.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/patterns/header-profile-skin-1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/patterns/header-profile-skin-3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/patterns/header-profile.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/patterns/shattered.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/css/blueimp-gallery-indicator.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/css/blueimp-gallery-video.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/css/blueimp-gallery.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/css/blueimp-gallery.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/css/demo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/error.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/error.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/play-pause.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/play-pause.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/video-play.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/blueimp/img/video-play.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/bootstrap-table/bootstrap-table.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/chosen/chosen-sprite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/chosen/chosen-sprite@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/chosen/chosen.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/clockpicker/clockpicker.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/codemirror/ambiance.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/codemirror/codemirror.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/colorpicker/css/bootstrap-colorpicker.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/colorpicker/img/bootstrap-colorpicker/alpha-horizontal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/colorpicker/img/bootstrap-colorpicker/alpha.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/colorpicker/img/bootstrap-colorpicker/hue-horizontal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/colorpicker/img/bootstrap-colorpicker/hue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/colorpicker/img/bootstrap-colorpicker/saturation.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/cropper/cropper.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/dataTables/dataTables.bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/datapicker/datepicker3.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/dropzone/basic.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/dropzone/dropzone.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/duallistbox/bootstrap-duallistbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/footable/fonts/footable.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/footable/fonts/footable.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/footable/fonts/footable.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/footable/fonts/footable.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/footable/footable.core.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/fullcalendar/fullcalendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/fullcalendar/fullcalendar.print.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/iCheck/custom.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/iCheck/green.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/iCheck/green@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/images/sort_asc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/images/sort_desc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/images/sprite-skin-flat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/images/spritemap.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/images/spritemap@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ionRangeSlider/ion.rangeSlider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jQueryUI/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jQueryUI/images/ui-bg_flat_75_ffffff_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jQueryUI/images/ui-icons_222222_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jQueryUI/images/ui-icons_454545_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jQueryUI/images/ui-icons_888888_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jasny/jasny-bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jqgrid/ui.jqgrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jquery-treegrid/css/jquery.treegrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jquery-treegrid/img/collapse.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jquery-treegrid/img/expand.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jquery-treegrid/img/file.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jquery-treegrid/img/folder.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jsTree/32px.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jsTree/style.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/jsTree/throbber.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/markdown/bootstrap-markdown.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/morris/morris-0.4.3.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/multiselect/bootstrap-multiselect.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/nouslider/jquery.nouislider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/plyr/plyr.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/plyr/sprite.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/simditor/simditor.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/steps/jquery.steps.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/summernote/summernote-bs3.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/summernote/summernote.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/sweetalert/sweetalert.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/switchery/switchery.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/toastr/toastr.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/treeview/bootstrap-treeview.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/validate/bootstrapValidator.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/webuploader/webuploader.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/demo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/1_close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/1_open.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/5.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/6.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/7.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/8.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/diy/9.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/line_conn.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/zTreeStandard.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/img/zTreeStandard.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/plugins/ztree/zTreeStyle.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/css/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/fontawesome-webfont.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/a9.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/boy.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/browser.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/browser.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/girl.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/iconfont-logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/index.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/index_4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/loading-upload.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/locked.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/login-background.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/p1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/p2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/p3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/p_big1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/p_big2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/p_big3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/pay.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/profile.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/profile_big.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/profile_small.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/progress.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/qr_code.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/sprite-skin-flat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/success.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/user.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/webuploader.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/img/wenku_logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/common/Feng.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/common/ajax-object.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/common/bootstrap-table-object.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/common/tree-table-object.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/common/web-upload-object.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/common/ztree-object.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/contabs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/content.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/hplus.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/jquery-ui-1.10.4.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/jquery-ui.custom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/jquery.min.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/beautifyhtml/beautifyhtml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/blueimp/jquery.blueimp-gallery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/bootstrap-table/bootstrap-table.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/chartJs/Chart.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/chosen/chosen.jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/clockpicker/clockpicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/codemirror.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/apl/apl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/apl/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/asterisk/asterisk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/asterisk/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/clike/clike.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/clike/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/clike/scala.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/clojure/clojure.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/clojure/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/cobol/cobol.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/cobol/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/coffeescript/coffeescript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/coffeescript/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/commonlisp/commonlisp.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/commonlisp/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/css.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/less.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/less_test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/scss.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/scss_test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/css/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/cypher/cypher.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/cypher/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/d/d.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/d/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dart/dart.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dart/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/diff/diff.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/diff/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/django/django.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/django/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dockerfile/dockerfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dockerfile/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dtd/dtd.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dtd/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dylan/dylan.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/dylan/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ebnf/ebnf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ebnf/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ecl/ecl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ecl/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/eiffel/eiffel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/eiffel/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/erlang/erlang.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/erlang/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/fortran/fortran.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/fortran/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gas/gas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gas/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gfm/gfm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gfm/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gfm/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gherkin/gherkin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/gherkin/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/go/go.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/go/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/groovy/groovy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/groovy/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haml/haml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haml/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haml/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haskell/haskell.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haskell/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haxe/haxe.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/haxe/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/htmlembedded/htmlembedded.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/htmlembedded/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/htmlmixed/htmlmixed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/htmlmixed/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/http/http.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/http/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/idl/idl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/idl/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/jade/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/jade/jade.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/javascript/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/javascript/javascript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/javascript/json-ld.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/javascript/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/javascript/typescript.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/jinja2/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/jinja2/jinja2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/julia/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/julia/julia.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/kotlin/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/kotlin/kotlin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/livescript/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/livescript/livescript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/lua/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/lua/lua.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/markdown/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/markdown/markdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/markdown/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/meta.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/mirc/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/mirc/mirc.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/mllike/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/mllike/mllike.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/modelica/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/modelica/modelica.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/nginx/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/nginx/nginx.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ntriples/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ntriples/ntriples.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/octave/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/octave/octave.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/pascal/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/pascal/pascal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/pegjs/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/pegjs/pegjs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/perl/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/perl/perl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/php/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/php/php.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/php/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/pig/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/pig/pig.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/properties/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/properties/properties.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/puppet/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/puppet/puppet.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/python/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/python/python.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/q/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/q/q.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/r/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/r/r.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rpm/changes/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rpm/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rpm/rpm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rst/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rst/rst.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ruby/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ruby/ruby.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/ruby/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rust/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/rust/rust.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sass/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sass/sass.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/scheme/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/scheme/scheme.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/shell/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/shell/shell.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/shell/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sieve/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sieve/sieve.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/slim/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/slim/slim.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/slim/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/smalltalk/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/smalltalk/smalltalk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/smarty/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/smarty/smarty.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/smartymixed/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/smartymixed/smartymixed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/solr/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/solr/solr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/soy/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/soy/soy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sparql/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sparql/sparql.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/spreadsheet/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/spreadsheet/spreadsheet.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sql/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/sql/sql.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/stex/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/stex/stex.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/stex/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tcl/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tcl/tcl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/textile/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/textile/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/textile/textile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tiddlywiki/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tiddlywiki/tiddlywiki.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tiddlywiki/tiddlywiki.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tiki/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tiki/tiki.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tiki/tiki.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/toml/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/toml/toml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tornado/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/tornado/tornado.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/turtle/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/turtle/turtle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/vb/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/vb/vb.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/vbscript/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/vbscript/vbscript.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/velocity/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/velocity/velocity.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/verilog/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/verilog/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/verilog/verilog.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/xml/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/xml/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/xml/xml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/xquery/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/xquery/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/xquery/xquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/yaml/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/yaml/yaml.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/z80/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/codemirror/mode/z80/z80.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/colorpicker/bootstrap-colorpicker.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/cropper/cropper.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/dataTables/dataTables.bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/dataTables/jquery.dataTables.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/datapicker/bootstrap-datepicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/diff_match_patch/diff_match_patch.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/dropzone/dropzone.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/duallistbox/jquery.bootstrap-duallistbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/easypiechart/jquery.easypiechart.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/echarts/echarts-all.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/fancybox_loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/fancybox_loading@2x.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/fancybox_overlay.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/fancybox_sprite.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/fancybox_sprite@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/jquery.fancybox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fancybox/jquery.fancybox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/curvedLines.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/jquery.flot.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/jquery.flot.pie.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/jquery.flot.resize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/jquery.flot.spline.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/jquery.flot.symbol.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/flot/jquery.flot.tooltip.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/footable/footable.all.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fullcalendar/fullcalendar.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/fullcalendar/moment.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/gritter/images/gritter-light.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/gritter/images/gritter.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/gritter/images/ie-spacer.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/gritter/jquery.gritter.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/gritter/jquery.gritter.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/iCheck/icheck.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/ionRangeSlider/ion.rangeSlider.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/ionRangeSlider/jasny/jasny-bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jasny/jasny-bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jeditable/jquery.jeditable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jqgrid/i18n/grid.locale-cn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jqgrid/jquery.jqGrid.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jquery-treegrid/extension/jquery.treegrid.extension.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jquery-treegrid/js/jquery.treegrid.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jquery-ui/jquery-ui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jsKnob/jquery.knob.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jsTree/jstree.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jsTree/jstree.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/extend/layer.ext.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/laydate/laydate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/laydate/need/laydate.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/laydate/skins/default/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/laydate/skins/default/laydate.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layer.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/data/chatlog.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/data/friend.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/data/group.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/data/groups.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/layim.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/layim.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/layim/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/icon-ext.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/icon_ext.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/loading-0.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/loading-1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/loading-2.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/textbg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/xubox_ico0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/xubox_loading0.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/xubox_loading1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/xubox_loading2.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/xubox_loading3.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/default/xubox_title0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/layer.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/layer.ext.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/moon/default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/layer/skin/moon/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/markdown/bootstrap-markdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/markdown/bootstrap-markdown.zh.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/markdown/markdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/markdown/to-markdown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/metisMenu/jquery.metisMenu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/morris/morris.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/morris/raphael-2.1.0.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/multiselect/bootstrap-multiselect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/nestable/jquery.nestable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/nouslider/jquery.nouislider.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/pace/pace.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/peity/jquery.peity.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/plyr/plyr.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/preetyTextDiff/jquery.pretty-text-diff.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/prettyfile/bootstrap-prettyfile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/rickshaw/rickshaw.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/rickshaw/vendor/d3.v3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/hotkeys.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/hotkeys.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/module.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/module.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/simditor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/simditor.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/uploader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/simditor/uploader.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/slimscroll/jquery.slimscroll.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/sparkline/jquery.sparkline.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/staps/jquery.steps.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/suggest/bootstrap-suggest.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/suggest/data.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/summernote/summernote-zh-CN.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/summernote/summernote.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/sweetalert/sweetalert.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/switchery/switchery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/toastr/toastr.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/treeview/bootstrap-treeview.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/validate/additional-methods.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/validate/bootstrapValidator.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/validate/zh_CN.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/wangEditor/wangEditor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/Uploader.swf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.custom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.custom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.fis.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.flashonly.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.flashonly.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.html5only.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.html5only.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.noimage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.noimage.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.nolog.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.nolog.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.withoutimage.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/webuploader/webuploader.withoutimage.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/plugins/ztree/jquery.ztree.all.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/js/welcome.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/code/code.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/dept/dept.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/dept/dept_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/dict/dict.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/dict/dict_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/log/log.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/log/login_log.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/menu/menu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/menu/menu_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/notice/notice.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/notice/notice_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/role/role.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/role/role_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/user/user.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/main/webapp/static/modular/system/user/user_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/base/BaseJunit.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/biz/BizTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/shiro/Base64Test.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/system/BlackBoardTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/system/DeptTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/system/DictTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/system/MenuTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../src/test/java/com/stylefeng/guns/template/TemplateGenerator.java" afterPath="" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path="$PROJECT_DIR$/../guns-admin/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>mysql-</find>
+      <find>session</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/../guns-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\repository" />
+        <option name="mavenHome" value="D:/devTools/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="D:\devTools\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="guns-parent" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="guns" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="guns" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Plugins" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="spring-boot" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="guns" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Plugins" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$PluginsNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="guns" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Lifecycle" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$LifecycleNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="2576" />
+    <option name="height" value="1416" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-parent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns-admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="guns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="settings.editor.selected.configurable" value="settings.gitosc" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.GunsApplication">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="passParentEnv" value="true" />
+      <setting name="launchBrowser" value="true" />
+      <setting name="launchBrowserUrl" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="guns-parent" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="false" name="GunsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.stylefeng.guns.GunsApplication" />
+      <module name="guns" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Spring Boot.GunsApplication" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ff330a9-ab93-49b7-8f08-380d40272228" name="Default" comment="" />
+      <created>1502717854610</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1502717854610</updated>
+      <workItem from="1502717855777" duration="1656000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1656000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32961783" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287891" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329591" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Learn" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40032154" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://D:/repository/com/baomidou/mybatis-plus/2.1-gamma/mybatis-plus-2.1-gamma-sources.jar!/com/baomidou/mybatisplus/toolkit/GlobalConfigUtils.java</url>
+          <line>195</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://D:/repository/com/baomidou/mybatisplus-spring-boot-starter/1.0.4/mybatisplus-spring-boot-starter-1.0.4.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-663">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/repository/com/baomidou/mybatis-plus/2.1-gamma/mybatis-plus-2.1-gamma.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="61" column="54" lean-forward="false" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/repository/org/springframework/boot/spring-boot-dependencies/1.5.3.RELEASE/spring-boot-dependencies-1.5.3.RELEASE.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="2228" column="31" lean-forward="false" selection-start-line="2228" selection-start-column="31" selection-end-line="2228" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/jre/lib/rt.jar!/sun/nio/ch/WindowsSelectorImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="450" column="100" lean-forward="false" selection-start-line="450" selection-start-column="100" selection-end-line="450" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="128" column="53" lean-forward="false" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../guns-admin/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/repository/org/springframework/boot/spring-boot-devtools/1.5.3.RELEASE/spring-boot-devtools-1.5.3.RELEASE.jar!/org/springframework/boot/devtools/filewatch/FileSystemWatcher.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/repository/org/springframework/spring-core/4.3.8.RELEASE/spring-core-4.3.8.RELEASE.jar!/org/springframework/util/Assert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../guns-admin/src/main/java/com/stylefeng/guns/GunsApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/repository/org/springframework/spring-beans/4.3.8.RELEASE/spring-beans-4.3.8.RELEASE-sources.jar!/org/springframework/beans/factory/support/SimpleInstantiationStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/repository/com/baomidou/mybatis-plus/2.1-gamma/mybatis-plus-2.1-gamma-sources.jar!/com/baomidou/mybatisplus/toolkit/GlobalConfigUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="195" column="85" lean-forward="false" selection-start-line="195" selection-start-column="81" selection-end-line="195" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../guns-admin/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-969">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>guns-parent</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.1.11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.28971028" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

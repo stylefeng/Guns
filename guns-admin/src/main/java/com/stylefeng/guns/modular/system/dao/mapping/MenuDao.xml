@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.MenuDao">
+
+
+	<sql id="Base_Column_List">
+		id, code, pcode, name, icon, url, num, levels,pcodes,
+		tips, status,isopen,ismenu
+	</sql>
+
+	<select id="selectMenus" resultType="map">
+		select
+		<include refid="Base_Column_List" />
+		from menu
+		where status = 1
+		<if test="condition != null and condition != ''">
+			and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
+		</if>
+		<if test="level != null and level != ''">
+			and levels = #{level}
+		</if>
+	</select>
+
+	<select id="getMenuIdsByRoleId" resultType="int">
+		select menuid from
+		relation where roleid = #{roleId}
+	</select>
+
+	<select id="menuTreeList" resultType="com.stylefeng.guns.common.node.ZTreeNode">
+		SELECT
+		m1.id AS id,
+		(
+		CASE
+		WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+		0
+		ELSE
+		m2.id
+		END
+		) AS pId,
+		m1. NAME
+		AS NAME,
+		(
+		CASE
+		WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as isOpen
+		FROM
+		menu m1
+		LEFT JOIN menu m2 ON m1.pcode = m2. CODE
+		ORDER BY
+		m1.id ASC
+	</select>
+
+	<select id="menuTreeListByMenuIds" resultType="com.stylefeng.guns.common.node.ZTreeNode">
+		SELECT
+		m1.id AS id,
+		(
+		CASE
+		WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+		0
+		ELSE
+		m2.id
+		END
+		) AS pId,
+		m1. NAME AS NAME,
+		(
+		CASE
+		WHEN (m2.id = 0 OR m2.id IS
+		NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as isOpen,
+		(
+		CASE
+		WHEN (m3.ID = 0 OR m3.ID
+		IS NULL) THEN
+		'false'
+		ELSE
+		'true'
+		END
+		) "checked"
+		FROM
+		menu m1
+		LEFT JOIN
+		menu m2
+		ON m1.pcode = m2. CODE
+		left join (
+		SELECT
+		ID
+		FROM
+		menu
+		WHERE
+		ID IN
+		<foreach collection="list" index="index" item="i" open="("
+			separator="," close=")">
+			#{i}
+		</foreach>
+		) m3 on m1.id = m3.id
+		ORDER BY
+		m1.id ASC
+	</select>
+
+	<delete id="deleteRelationByMenu">
+		delete from relation where menuid = #{menuId}
+	</delete>
+
+	<select id="getResUrlsByRoleId" resultType="string">
+		select url from
+		relation rel
+		inner join menu m on rel.menuid = m.id
+		where rel.roleid = #{roleId}
+	</select>
+
+	<select id="getMenusByRoleIds" resultType="com.stylefeng.guns.common.node.MenuNode">
+		SELECT
+		m1.id AS id,
+		m1.icon AS icon,
+		(
+			CASE
+			WHEN (m2.id = 0 OR m2.id IS NULL) THEN
+			0
+			ELSE
+			m2.id
+			END
+		) AS parentId,
+		m1.NAME as name,
+		m1.url as url,
+		m1.levels as levels,
+		m1.ismenu as ismenu,
+		m1.num as num
+		FROM
+		menu m1
+		LEFT JOIN menu m2 ON m1.pcode = m2. CODE
+		INNER JOIN (
+		SELECT
+		ID
+		FROM
+		menu
+		WHERE
+		ID IN (
+		SELECT
+		menuid
+		FROM
+		relation rela
+		WHERE
+		rela.roleid IN
+		<foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+			#{i}
+		</foreach>
+		)
+		) m3 ON m1.id = m3.id
+		where m1.ismenu = 1
+		order by levels,num asc
+	</select>
+
+
+</mapper>

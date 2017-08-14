@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.common.persistence.dao.UserMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.stylefeng.guns.common.persistence.model.User">
+		<id column="id" property="id" />
+		<result column="avatar" property="avatar" />
+		<result column="account" property="account" />
+		<result column="password" property="password" />
+		<result column="salt" property="salt" />
+		<result column="name" property="name" />
+		<result column="birthday" property="birthday" />
+		<result column="sex" property="sex" />
+		<result column="email" property="email" />
+		<result column="phone" property="phone" />
+		<result column="roleid" property="roleid" />
+		<result column="deptid" property="deptid" />
+		<result column="status" property="status" />
+		<result column="createtime" property="createtime" />
+		<result column="version" property="version" />
+	</resultMap>
+
+</mapper>
