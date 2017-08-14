@@ -12,6 +12,7 @@
 
     <modules>
         <module>../guns-admin</module>
+        <module>../guns-core</module>
     </modules>
 
     <properties>
@@ -133,6 +134,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>guns-parent</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
