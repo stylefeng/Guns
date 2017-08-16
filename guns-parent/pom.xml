@@ -32,6 +32,7 @@
         <beetl.version>2.7.15</beetl.version>
         <swagger.version>2.2.2</swagger.version>
         <commons-lang3.version>3.6</commons-lang3.version>
+        <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
     </properties>
 
@@ -129,6 +130,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache-core</artifactId>
+                <version>${ehcache.core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
