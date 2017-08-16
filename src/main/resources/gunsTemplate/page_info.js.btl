@@ -56,7 +56,7 @@ ${context.bizEnBigName}InfoDlg.addSubmit = function() {
     this.collectData();
 
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/${context.bizEnName}/add", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/${context.moduleName}/${context.bizEnName}/add", function(data){
         Feng.success("添加成功!");
         window.parent.${context.bizEnBigName}.table.refresh();
         ${context.bizEnBigName}InfoDlg.close();
@@ -76,7 +76,7 @@ ${context.bizEnBigName}InfoDlg.editSubmit = function() {
     this.collectData();
 
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/${context.bizEnName}/update", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/${context.moduleName}/${context.bizEnName}/update", function(data){
         Feng.success("修改成功!");
         window.parent.${context.bizEnBigName}.table.refresh();
         ${context.bizEnBigName}InfoDlg.close();

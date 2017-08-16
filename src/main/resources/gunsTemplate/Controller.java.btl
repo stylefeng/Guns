@@ -11,10 +11,13 @@ import ${import};
  * @Date ${tool.currentTime()}
  */
 @Controller
-@RequestMapping("/${context.bizEnName}")
+@RequestMapping("/${context.moduleName}/${context.bizEnName}")
 public class ${context.bizEnBigName}Controller extends BaseController {
-
+    
     private String PREFIX = "/${context.moduleName}/${context.bizEnName}/";
+    
+    @Autowired 
+	private I${context.bizEnBigName}Service ${context.bizEnName}Service; 
 
     /**
      * 跳转到${context.bizChName}首页
@@ -37,6 +40,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping("/${context.bizEnName}_update/{${context.bizEnName}Id}")
     public String ${context.bizEnName}Update(@PathVariable Integer ${context.bizEnName}Id, Model model) {
+    	model.addAttribute("${context.bizEnName}", ${context.bizEnName}Service.selectById(${context.bizEnName}Id));
         return PREFIX + "${context.bizEnName}_edit.html";
     }
 
@@ -45,8 +49,10 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition) {
-        return null;
+    public Object list(${context.bizEnBigName} ${context.bizEnName}) {
+    	Page<${context.bizEnBigName}> page =new PageFactory<${context.bizEnBigName}>().defaultPage();
+    	Wrapper<${context.bizEnBigName}> ${context.bizEnName}Wrapper=new EntityWrapper<>(${context.bizEnName});
+        return super.packForBT(${context.bizEnName}Service.selectPage(page, ${context.bizEnName}Wrapper));
     }
 
     /**
@@ -54,8 +60,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add() {
-        return super.SUCCESS_TIP;
+    public Object add(${context.bizEnBigName} ${context.bizEnName}) {
+        return ${context.bizEnName}Service.insert(${context.bizEnName});
     }
 
     /**
@@ -63,8 +69,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete() {
-        return SUCCESS_TIP;
+    public Object delete(Integer id) {
+        return ${context.bizEnName}Service.deleteById(id);
     }
 
 
@@ -73,8 +79,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update() {
-        return super.SUCCESS_TIP;
+    public Object update(${context.bizEnBigName} ${context.bizEnName}) {
+        return ${context.bizEnName}Service.updateById(${context.bizEnName});
     }
 
     /**
@@ -82,7 +88,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/detail")
     @ResponseBody
-    public Object detail() {
-        return null;
+    public Object detail(Integer id) {
+        return ${context.bizEnName}Service.selectById(id);
     }
 }

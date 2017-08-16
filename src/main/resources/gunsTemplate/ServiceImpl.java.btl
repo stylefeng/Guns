@@ -11,7 +11,6 @@ import ${import};
  * @Date ${tool.currentTime()}
  */
 @Service
-public class ${context.bizEnBigName}ServiceImpl implements I${context.bizEnBigName}Service {
-
+public class ${context.bizEnBigName}ServiceImpl extends ServiceImpl<${context.bizEnBigName}Dao,${context.bizEnBigName}> implements I${context.bizEnBigName}Service {
 
 }

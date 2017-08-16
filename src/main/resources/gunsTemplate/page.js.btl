@@ -42,7 +42,7 @@ ${context.bizEnBigName}.openAdd${context.bizEnBigName} = function () {
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/${context.bizEnName}/${context.bizEnName}_add'
+        content: Feng.ctxPath + '/${context.moduleName}/${context.bizEnName}/${context.bizEnName}_add'
     });
     this.layerIndex = index;
 };
@@ -58,7 +58,7 @@ ${context.bizEnBigName}.open${context.bizEnBigName}Detail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/${context.bizEnName}/${context.bizEnName}_update/' + ${context.bizEnBigName}.seItem.id
+            content: Feng.ctxPath + '/${context.moduleName}/${context.bizEnName}/${context.bizEnName}_update/' + ${context.bizEnBigName}.seItem.id
         });
         this.layerIndex = index;
     }
@@ -69,13 +69,13 @@ ${context.bizEnBigName}.open${context.bizEnBigName}Detail = function () {
  */
 ${context.bizEnBigName}.delete = function () {
     if (this.check()) {
-        var ajax = new $ax(Feng.ctxPath + "/${context.bizEnName}/delete", function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/${context.moduleName}/${context.bizEnName}/delete", function (data) {
             Feng.success("删除成功!");
             ${context.bizEnBigName}.table.refresh();
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("${context.bizEnName}Id",this.seItem.id);
+        ajax.set("id",this.seItem.id);
         ajax.start();
     }
 };
@@ -91,7 +91,7 @@ ${context.bizEnBigName}.search = function () {
 
 $(function () {
     var defaultColunms = ${context.bizEnBigName}.initColumn();
-    var table = new BSTable(${context.bizEnBigName}.id, "/${context.bizEnName}/list", defaultColunms);
-    table.setPaginationType("client");
+    var table = new BSTable(${context.bizEnBigName}.id, "/${context.moduleName}/${context.bizEnName}/list", defaultColunms);
+    table.setPaginationType("server");
     ${context.bizEnBigName}.table = table.init();
 });
