@@ -74,7 +74,7 @@ java -jar guns-1.0.0-SNAPSHOT.jar
 并打包放入到tomcat中执行
 
 ### 注意
-最新版项目最低支持jdk1.7
+最新版项目最低支持jdk1.8
 
 ## 所用框架
 ### 前端
