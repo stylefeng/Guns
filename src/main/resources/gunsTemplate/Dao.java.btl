@@ -6,7 +6,7 @@ package ${dao.packageName};
  * @author fengshuonan
  * @Date ${tool.currentTime()}
  */
-public interface ${context.bizEnBigName}Dao {
+public interface ${context.bizEnBigName}Dao extends BaseMapper<${context.bizEnBigName}>{
 
 
 }

@@ -28,6 +28,8 @@ beetl:
 
 ###################  spring配置  ###################
 spring:
+  session:
+    store-type: redis
   redis:
     host: localhost
     port: 6379

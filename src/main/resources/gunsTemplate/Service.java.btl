@@ -1,11 +1,13 @@
 package ${service.packageName};
-
+<% for(import in controller.imports!){ %>
+import ${import};
+<% } %>
 /**
  * ${context.bizChName}Service
  *
  * @author fengshuonan
  * @Date ${tool.currentTime()}
  */
-public interface I${context.bizEnBigName}Service {
+public interface I${context.bizEnBigName}Service extends IService<${context.bizEnBigName}>{
 
 }
