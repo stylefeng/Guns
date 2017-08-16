@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.stylefeng.guns.core.util.qr;
+package com.stylefeng.guns.core.qr;
 
 import java.awt.image.BufferedImage;
 

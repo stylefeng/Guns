@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.guns.core.util.support.exception;
+package com.stylefeng.guns.core.support.exception;
 
-import com.stylefeng.guns.core.util.support.StrKit;
+import com.stylefeng.guns.core.support.StrKit;
 
 /**
  * 工具类初始化异常

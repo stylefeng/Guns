@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.util.xss;
+package com.stylefeng.guns.core.xss;
 
 
 import javax.servlet.*;

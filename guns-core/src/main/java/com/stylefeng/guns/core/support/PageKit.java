@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.util.support;
+package com.stylefeng.guns.core.support;
 
 /**
  * 分页工具类

@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.util.qr;
+package com.stylefeng.guns.core.qr;
 
 /**
  * 二维码图片对象

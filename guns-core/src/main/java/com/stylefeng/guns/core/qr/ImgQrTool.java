@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.util.qr;
+package com.stylefeng.guns.core.qr;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

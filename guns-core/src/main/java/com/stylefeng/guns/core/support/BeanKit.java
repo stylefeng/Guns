@@ -1,7 +1,7 @@
-package com.stylefeng.guns.core.util.support;
+package com.stylefeng.guns.core.support;
 
+import com.stylefeng.guns.core.support.exception.ToolBoxException;
 import com.stylefeng.guns.core.util.Convert;
-import com.stylefeng.guns.core.util.support.exception.ToolBoxException;
 
 import java.beans.*;
 import java.lang.reflect.Method;
@@ -34,14 +34,14 @@ public class BeanKit {
 		}
 		return false;
 	}
-	
+
 	public static PropertyEditor findEditor(Class<?> type){
 		return PropertyEditorManager.findEditor(type);
 	}
 
 	/**
 	 * 获得Bean字段描述数组
-	 * 
+	 *
 	 * @param clazz Bean类
 	 * @return 字段描述数组
 	 * @throws IntrospectionException
@@ -49,7 +49,7 @@ public class BeanKit {
 	public static PropertyDescriptor[] getPropertyDescriptors(Class<?> clazz) throws IntrospectionException {
 		return Introspector.getBeanInfo(clazz).getPropertyDescriptors();
 	}
-	
+
 	/**
 	 * 获得字段名和字段描述Map
 	 * @param clazz Bean类
@@ -67,7 +67,7 @@ public class BeanKit {
 
 	/**
 	 * 获得Bean类属性描述
-	 * 
+	 *
 	 * @param clazz Bean类
 	 * @param fieldName 字段名
 	 * @return PropertyDescriptor
@@ -82,10 +82,10 @@ public class BeanKit {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Map转换为Bean对象
-	 * 
+	 *
 	 * @param map Map
 	 * @param beanClass Bean Class
 	 * @return Bean
@@ -97,7 +97,7 @@ public class BeanKit {
 	/**
 	 * Map转换为Bean对象<br>
 	 * 忽略大小写
-	 * 
+	 *
 	 * @param map Map
 	 * @param beanClass Bean Class
 	 * @return Bean
@@ -108,7 +108,7 @@ public class BeanKit {
 
 	/**
 	 * 使用Map填充Bean对象
-	 * 
+	 *
 	 * @param map Map
 	 * @param bean Bean
 	 * @return Bean
@@ -121,10 +121,10 @@ public class BeanKit {
 			}
 		});
 	}
-	
+
 	/**
 	 * 使用Map填充Bean对象，可配置将下划线转换为驼峰
-	 * 
+	 *
 	 * @param map Map
 	 * @param bean Bean
 	 * @param isToCamelCase 是否将下划线模式转换为驼峰模式
@@ -144,13 +144,13 @@ public class BeanKit {
 			}
 			return fillBeanWithMap(map2, bean);
 		}
-		
+
 		return fillBeanWithMap(map, bean);
 	}
 
 	/**
 	 * 使用Map填充Bean对象，忽略大小写
-	 * 
+	 *
 	 * @param map Map
 	 * @param bean Bean
 	 * @return Bean
@@ -177,7 +177,7 @@ public class BeanKit {
 
 	/**
 	 * ServletRequest 参数转Bean
-	 * 
+	 *
 	 * @param request ServletRequest
 	 * @param beanClass Bean Class
 	 * @return Bean
@@ -188,7 +188,7 @@ public class BeanKit {
 
 	/**
 	 * ServletRequest 参数转Bean
-	 * 
+	 *
 	 * @param request ServletRequest
 	 * @param bean Bean
 	 * @return Bean
@@ -214,7 +214,7 @@ public class BeanKit {
 
 	/**
 	 * ServletRequest 参数转Bean
-	 * 
+	 *
 	 * @param <T>
 	 * @param beanClass Bean Class
 	 * @param valueProvider 值提供者
@@ -226,7 +226,7 @@ public class BeanKit {
 
 	/**
 	 * 填充Bean
-	 * 
+	 *
 	 * @param <T>
 	 * @param bean Bean
 	 * @param valueProvider 值提供者
@@ -259,10 +259,10 @@ public class BeanKit {
 		}
 		return bean;
 	}
-	
+
 	/**
 	 * 对象转Map
-	 * 
+	 *
 	 * @param bean bean对象
 	 * @return Map
 	 */
@@ -272,7 +272,7 @@ public class BeanKit {
 
 	/**
 	 * 对象转Map
-	 * 
+	 *
 	 * @param bean bean对象
 	 * @param isToUnderlineCase 是否转换为下划线模式
 	 * @return Map
@@ -311,7 +311,7 @@ public class BeanKit {
 	public static void copyProperties(Object source, Object target) {
 		copyProperties(source, target, CopyOptions.create());
 	}
-	
+
 	/**
 	 * 复制Bean对象属性<br>
 	 * 限制类用于限制拷贝的属性，例如一个类我只想复制其父类的一些属性，就可以将editable设置为父类
@@ -322,7 +322,7 @@ public class BeanKit {
 	public static void copyProperties(Object source, Object target, String... ignoreProperties) {
 		copyProperties(source, target, CopyOptions.create().setIgnoreProperties(ignoreProperties));
 	}
-	
+
 	/**
 	 * 复制Bean对象属性<br>
 	 * 限制类用于限制拷贝的属性，例如一个类我只想复制其父类的一些属性，就可以将editable设置为父类
@@ -334,7 +334,7 @@ public class BeanKit {
 		if(null == copyOptions){
 			copyOptions = new CopyOptions();
 		}
-		
+
 		Class<?> actualEditable = target.getClass();
 		if (copyOptions.editable != null) {
 			//检查限制类是否为target的父类或接口
@@ -351,7 +351,7 @@ public class BeanKit {
 		} catch (IntrospectionException e) {
 			throw new ToolBoxException(e);
 		}
-		
+
 		HashSet<String> ignoreSet = copyOptions.ignoreProperties != null ? CollectionKit.newHashSet(copyOptions.ignoreProperties) : null;
 		for (PropertyDescriptor targetPd : targetPds) {
 			Method writeMethod = targetPd.getWriteMethod();

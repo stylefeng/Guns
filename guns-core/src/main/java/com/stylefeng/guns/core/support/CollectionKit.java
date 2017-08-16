@@ -1,7 +1,7 @@
-package com.stylefeng.guns.core.util.support;
+package com.stylefeng.guns.core.support;
 
 
-import com.stylefeng.guns.core.util.support.exception.ToolBoxException;
+import com.stylefeng.guns.core.support.exception.ToolBoxException;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -88,7 +88,7 @@ public class CollectionKit {
 		final int[] startEnd = PageKit.transToStartEnd(pageNo, numPerPage);
 		return result.subList(startEnd[0], startEnd[1]);
 	}
-	
+
 	/**
 	 * 将多个集合排序并显示不同的段落（分页）
 	 * @param pageNo 页码
@@ -103,19 +103,19 @@ public class CollectionKit {
 //		for (Collection<T> coll : colls) {
 //			queue.addAll(coll);
 //		}
-//		
+//
 //		//第一页且数目少于第一页显示的数目
 //		if(pageNo <=1 && queue.size() <= numPerPage) {
 //			return queue.toList();
 //		}
-//		
+//
 //		final int[] startEnd = PageKit.transToStartEnd(pageNo, numPerPage);
 //		return queue.toList().subList(startEnd[0], startEnd[1]);
 //	}
 
 	/**
 	 * 将Set排序（根据Entry的值）
-	 * 
+	 *
 	 * @param set 被排序的Set
 	 * @return 排序后的Set
 	 */
@@ -139,7 +139,7 @@ public class CollectionKit {
 
 	/**
 	 * 切取部分数据
-	 * 
+	 *
 	 * @param <T> 集合元素类型
 	 * @param surplusAlaDatas 原数据
 	 * @param partSize 每部分数据的长度
@@ -164,10 +164,10 @@ public class CollectionKit {
 		}
 		return currentAlaDatas;
 	}
-	
+
 	/**
 	 * 切取部分数据
-	 * 
+	 *
 	 * @param <T> 集合元素类型
 	 * @param surplusAlaDatas 原数据
 	 * @param partSize 每部分数据的长度
@@ -195,13 +195,13 @@ public class CollectionKit {
 
 	/**
 	 * 新建一个HashMap
-	 * 
+	 *
 	 * @return HashMap对象
 	 */
 	public static <T, K> HashMap<T, K> newHashMap() {
 		return new HashMap<T, K>();
 	}
-	
+
 	/**
 	 * 新建一个HashMap
 	 * @param size 初始大小，由于默认负载因子0.75，传入的size会实际初始大小为size / 0.75
@@ -213,16 +213,16 @@ public class CollectionKit {
 
 	/**
 	 * 新建一个HashSet
-	 * 
+	 *
 	 * @return HashSet对象
 	 */
 	public static <T> HashSet<T> newHashSet() {
 		return new HashSet<T>();
 	}
-	
+
 	/**
 	 * 新建一个HashSet
-	 * 
+	 *
 	 * @return HashSet对象
 	 */
 	@SafeVarargs
@@ -236,27 +236,27 @@ public class CollectionKit {
 
 	/**
 	 * 新建一个ArrayList
-	 * 
+	 *
 	 * @return ArrayList对象
 	 */
 	public static <T> ArrayList<T> newArrayList() {
 		return new ArrayList<T>();
 	}
-	
+
 	/**
 	 * 新建一个ArrayList
-	 * 
+	 *
 	 * @return ArrayList对象
 	 */
 	@SafeVarargs
 	public static <T> ArrayList<T> newArrayList(T... values) {
 		return new ArrayList<T>(Arrays.asList(values));
 	}
-	
+
 	/**
 	 * 将新元素添加到已有数组中<br/>
 	 * 添加新元素会生成一个新的数组，不影响原数组
-	 * 
+	 *
 	 * @param buffer 已有数组
 	 * @param newElement 新元素
 	 * @return 新数组
@@ -269,7 +269,7 @@ public class CollectionKit {
 
 	/**
 	 * 生成一个新的重新设置大小的数组
-	 * 
+	 *
 	 * @param buffer 原数组
 	 * @param newSize 新的数组大小
 	 * @param componentType 数组元素类型
@@ -280,7 +280,7 @@ public class CollectionKit {
 		System.arraycopy(buffer, 0, newArray, 0, buffer.length >= newSize ? newSize : buffer.length);
 		return newArray;
 	}
-	
+
 	/**
 	 * 新建一个空数组
 	 * @param componentType 元素类型
@@ -295,7 +295,7 @@ public class CollectionKit {
 	/**
 	 * 生成一个新的重新设置大小的数组<br/>
 	 * 新数组的类型为原数组的类型
-	 * 
+	 *
 	 * @param buffer 原数组
 	 * @param newSize 新的数组大小
 	 * @return 调整后的新数组
@@ -307,7 +307,7 @@ public class CollectionKit {
 	/**
 	 * 将多个数组合并在一起<br>
 	 * 忽略null的数组
-	 * 
+	 *
 	 * @param arrays 数组集合
 	 * @return 合并后的数组
 	 */
@@ -316,7 +316,7 @@ public class CollectionKit {
 		if (arrays.length == 1) {
 			return arrays[0];
 		}
-		
+
 		int length = 0;
 		for (T[] array : arrays) {
 			if(array == null) {
@@ -348,7 +348,7 @@ public class CollectionKit {
 		}
 		return array.clone();
 	}
-	
+
 	/**
 	 * 生成一个数字列表<br>
 	 * 自动判定正序反序
@@ -358,7 +358,7 @@ public class CollectionKit {
 	public static int[] range(int excludedEnd) {
 		return range(0, excludedEnd, 1);
 	}
-	
+
 	/**
 	 * 生成一个数字列表<br>
 	 * 自动判定正序反序
@@ -369,7 +369,7 @@ public class CollectionKit {
 	public static int[] range(int includedStart, int excludedEnd) {
 		return range(includedStart, excludedEnd, 1);
 	}
-	
+
 	/**
 	 * 生成一个数字列表<br>
 	 * 自动判定正序反序
@@ -384,11 +384,11 @@ public class CollectionKit {
 			includedStart = excludedEnd;
 			excludedEnd = tmp;
 		}
-		
+
 		if(step <=0) {
 			step = 1;
 		}
-		
+
 		int deviation = excludedEnd - includedStart;
 		int length = deviation / step;
 		if(deviation % step != 0) {
@@ -401,7 +401,7 @@ public class CollectionKit {
 		}
 		return range;
 	}
-	
+
 	/**
 	 * 截取数组的部分
 	 * @param list 被截取的数组
@@ -413,20 +413,20 @@ public class CollectionKit {
 		if(list == null || list.isEmpty()) {
 			return null;
 		}
-		
+
 		if(start < 0) {
 			start = 0;
 		}
 		if(end < 0) {
 			end = 0;
 		}
-		
+
 		if(start > end) {
 			int tmp = start;
 			start = end;
 			end = tmp;
 		}
-		
+
 		final int size = list.size();
 		if(end > size) {
 			if(start >= size) {
@@ -434,10 +434,10 @@ public class CollectionKit {
 			}
 			end = size;
 		}
-		
+
 		return list.subList(start, end);
 	}
-	
+
 	/**
 	 * 截取集合的部分
 	 * @param list 被截取的数组
@@ -449,10 +449,10 @@ public class CollectionKit {
 		if(list == null || list.isEmpty()) {
 			return null;
 		}
-		
+
 		return sub(new ArrayList<T>(list), start, end);
 	}
-	
+
 	/**
 	 * 数组是否为空
 	 * @param array 数组
@@ -461,7 +461,7 @@ public class CollectionKit {
 	public static <T> boolean isEmpty(T[] array) {
 		return array == null || array.length == 0;
 	}
-	
+
 	/**
 	 * 数组是否为非空
 	 * @param array 数组
@@ -470,7 +470,7 @@ public class CollectionKit {
 	public static <T> boolean isNotEmpty(T[] array) {
 		return false == isEmpty(array);
 	}
-	
+
 	/**
 	 * 集合是否为空
 	 * @param collection 集合
@@ -479,7 +479,7 @@ public class CollectionKit {
 	public static boolean isEmpty(Collection<?> collection) {
 		return collection == null || collection.isEmpty();
 	}
-	
+
 	/**
 	 * 集合是否为非空
 	 * @param collection 集合
@@ -488,7 +488,7 @@ public class CollectionKit {
 	public static boolean isNotEmpty(Collection<?> collection) {
 		return false == isEmpty(collection);
 	}
-	
+
 	/**
 	 * Map是否为空
 	 * @param map 集合
@@ -497,7 +497,7 @@ public class CollectionKit {
 	public static boolean isEmpty(Map<?, ?> map) {
 		return map == null || map.isEmpty();
 	}
-	
+
 	/**
 	 * Map是否为非空
 	 * @param map 集合
@@ -506,7 +506,7 @@ public class CollectionKit {
 	public static <T> boolean isNotEmpty(Map<?, ?> map) {
 		return false == isEmpty(map);
 	}
-	
+
 	/**
 	 * 映射键值（参考Python的zip()函数）<br>
 	 * 例如：<br>
@@ -522,16 +522,16 @@ public class CollectionKit {
 		if(isEmpty(keys) || isEmpty(values)) {
 			return null;
 		}
-		
+
 		final int size = Math.min(keys.length, values.length);
 		final Map<T, K> map = new HashMap<T, K>((int)(size / 0.75));
 		for(int i = 0; i < size; i++) {
 			map.put(keys[i], values[i]);
 		}
-		
+
 		return map;
 	}
-	
+
 	/**
 	 * 映射键值（参考Python的zip()函数）<br>
 	 * 例如：<br>
