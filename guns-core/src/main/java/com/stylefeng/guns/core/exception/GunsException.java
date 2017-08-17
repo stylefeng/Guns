@@ -1,26 +1,33 @@
 package com.stylefeng.guns.core.exception;
 
 /**
- * @Description 业务异常的封装
  * @author fengshuonan
+ * @Description 业务异常的封装
  * @date 2016年11月12日 下午5:05:10
  */
-@SuppressWarnings("serial")
-public class GunsException extends RuntimeException{
+public class GunsException extends RuntimeException {
 
 	//友好提示的code码
-	private int friendlyCode;
-	
+	protected int friendlyCode;
+
 	//友好提示
-	private String friendlyMsg;
-	
+	protected String friendlyMsg;
+
 	//业务异常跳转的页面
-	private String urlPath;
-	
-	public GunsException(GunsExceptionEnum bizExceptionEnum){
-		this.friendlyCode = bizExceptionEnum.getCode();
-		this.friendlyMsg = bizExceptionEnum.getMessage();
-		this.urlPath = bizExceptionEnum.getUrlPath();
+	protected String urlPath;
+
+	protected GunsException(int friendlyCode, String friendlyMsg, String urlPath) {
+		this.setValues(friendlyCode, friendlyMsg, urlPath);
+	}
+
+	public GunsException(GunsExceptionEnum bizExceptionEnum) {
+		this.setValues(bizExceptionEnum.getCode(), bizExceptionEnum.getMessage(), bizExceptionEnum.getUrlPath());
+	}
+
+	private void setValues(int friendlyCode, String friendlyMsg, String urlPath) {
+		this.friendlyCode = friendlyCode;
+		this.friendlyMsg = friendlyMsg;
+		this.urlPath = urlPath;
 	}
 
 	public int getCode() {
@@ -46,5 +53,4 @@ public class GunsException extends RuntimeException{
 	public void setUrlPath(String urlPath) {
 		this.urlPath = urlPath;
 	}
-	
 }
