@@ -1,9 +1,9 @@
 package com.stylefeng.guns.modular.biz.service.impl;
 
-import com.stylefeng.guns.common.annotion.DataSource;
 import com.stylefeng.guns.common.constant.DSEnum;
 import com.stylefeng.guns.common.persistence.dao.TestMapper;
 import com.stylefeng.guns.common.persistence.model.Test;
+import com.stylefeng.guns.core.mutidatasource.annotion.DataSource;
 import com.stylefeng.guns.modular.biz.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
