@@ -7,7 +7,6 @@ package com.stylefeng.guns.core.exception;
  */
 public enum GunsExceptionEnum {
 
-
 	/**
 	 * 文件上传
 	 */
@@ -24,7 +23,7 @@ public enum GunsExceptionEnum {
 		this.friendlyCode = code;
 		this.friendlyMsg = message;
 	}
-	
+
 	GunsExceptionEnum(int code, String message, String urlPath) {
 		this.friendlyCode = code;
 		this.friendlyMsg = message;
@@ -34,7 +33,7 @@ public enum GunsExceptionEnum {
 	private int friendlyCode;
 
 	private String friendlyMsg;
-	
+
 	private String urlPath;
 
 	public int getCode() {
