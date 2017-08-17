@@ -26,7 +26,7 @@
 		relation where roleid = #{roleId}
 	</select>
 
-	<select id="menuTreeList" resultType="com.stylefeng.guns.common.node.ZTreeNode">
+	<select id="menuTreeList" resultType="com.stylefeng.guns.core.node.ZTreeNode">
 		SELECT
 		m1.id AS id,
 		(
@@ -54,7 +54,7 @@
 		m1.id ASC
 	</select>
 
-	<select id="menuTreeListByMenuIds" resultType="com.stylefeng.guns.common.node.ZTreeNode">
+	<select id="menuTreeListByMenuIds" resultType="com.stylefeng.guns.core.node.ZTreeNode">
 		SELECT
 		m1.id AS id,
 		(
@@ -116,7 +116,7 @@
 		where rel.roleid = #{roleId}
 	</select>
 
-	<select id="getMenusByRoleIds" resultType="com.stylefeng.guns.common.node.MenuNode">
+	<select id="getMenusByRoleIds" resultType="com.stylefeng.guns.core.node.MenuNode">
 		SELECT
 		m1.id AS id,
 		m1.icon AS icon,

@@ -19,13 +19,13 @@
 		delete from relation where roleid = #{roleId}
 	</delete>
 
-	<select id="roleTreeList" resultType="com.stylefeng.guns.common.node.ZTreeNode">
+	<select id="roleTreeList" resultType="com.stylefeng.guns.core.node.ZTreeNode">
 		select id "id",pId
 		"pId",name as "name",(case when (pId=0 or pId is null) then 'true'
 		else 'false' end) "open" from role
 	</select>
 
-	<select id="roleTreeListByRoleId" resultType="com.stylefeng.guns.common.node.ZTreeNode">
+	<select id="roleTreeListByRoleId" resultType="com.stylefeng.guns.core.node.ZTreeNode">
 		SELECT
 		r.id "id",
 		pId "pId",
