@@ -1,4 +1,4 @@
-package com.stylefeng.guns.common.page;
+package com.stylefeng.guns.core.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
 

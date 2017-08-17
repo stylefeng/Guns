@@ -1,4 +1,4 @@
-package com.stylefeng.guns.common.node;
+package com.stylefeng.guns.core.node;
 
 /**
  * 

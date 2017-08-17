@@ -1,6 +1,6 @@
 package com.stylefeng.guns.core.intercept;
 
-import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.support.HttpKit;
 import org.apache.shiro.session.InvalidSessionException;

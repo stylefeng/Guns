@@ -1,12 +1,11 @@
 package com.stylefeng.guns.core.intercept;
 
-import com.stylefeng.guns.common.controller.BaseController;
+import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.util.HttpSessionHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-
-import com.stylefeng.guns.core.util.HttpSessionHolder;
 import org.springframework.stereotype.Component;
 
 /**

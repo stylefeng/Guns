@@ -1,6 +1,4 @@
-package com.stylefeng.guns.common.constant.tips;
-
-import com.stylefeng.guns.core.base.tips.Tip;
+package com.stylefeng.guns.core.base.tips;
 
 /**
  * 返回给前台的成功提示

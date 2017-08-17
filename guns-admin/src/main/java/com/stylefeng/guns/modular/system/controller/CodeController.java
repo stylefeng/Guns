@@ -2,9 +2,9 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.template.config.ContextConfig;
 import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
 import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;

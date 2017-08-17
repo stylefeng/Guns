@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.system.dao;
 
-import com.stylefeng.guns.common.node.MenuNode;
-import com.stylefeng.guns.common.node.ZTreeNode;
+import com.stylefeng.guns.core.node.MenuNode;
+import com.stylefeng.guns.core.node.ZTreeNode;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

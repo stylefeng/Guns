@@ -1,15 +1,16 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.google.code.kaptcha.Constants;
-import com.stylefeng.guns.common.controller.BaseController;
 import com.stylefeng.guns.common.exception.InvalidKaptchaException;
-import com.stylefeng.guns.common.node.MenuNode;
 import com.stylefeng.guns.common.persistence.dao.UserMapper;
 import com.stylefeng.guns.common.persistence.model.User;
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
+import com.stylefeng.guns.core.node.MenuNode;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.core.util.ApiMenuFilter;
 import com.stylefeng.guns.core.util.KaptchaUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
@@ -54,6 +55,8 @@ public class LoginController extends BaseController {
         }
         List<MenuNode> menus = menuDao.getMenusByRoleIds(roleList);
         List<MenuNode> titles = MenuNode.buildTitle(menus);
+        titles = ApiMenuFilter.build(titles);
+
         model.addAttribute("titles", titles);
 
         //获取用户头像

@@ -1,4 +1,4 @@
-package com.stylefeng.guns.common.page;
+package com.stylefeng.guns.core.page;
 
 /**
  * 分页参数类（for BootStrap Table）
