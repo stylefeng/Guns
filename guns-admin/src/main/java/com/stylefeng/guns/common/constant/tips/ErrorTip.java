@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.constant.tips;
 
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.core.base.tips.Tip;
 
 /**
  * 返回给前台的错误提示

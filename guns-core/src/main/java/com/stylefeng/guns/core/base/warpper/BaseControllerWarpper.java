@@ -1,4 +1,4 @@
-package com.stylefeng.guns.common.warpper;
+package com.stylefeng.guns.core.base.warpper;
 
 import java.util.List;
 import java.util.Map;

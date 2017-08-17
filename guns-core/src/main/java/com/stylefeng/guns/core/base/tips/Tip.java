@@ -1,4 +1,4 @@
-package com.stylefeng.guns.common.constant.tips;
+package com.stylefeng.guns.core.base.tips;
 
 /**
  * 返回给前台的提示（最终转化为json形式）

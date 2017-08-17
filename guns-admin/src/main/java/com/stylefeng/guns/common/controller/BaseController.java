@@ -3,7 +3,7 @@ package com.stylefeng.guns.common.controller;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.common.constant.tips.SuccessTip;
 import com.stylefeng.guns.common.page.PageInfoBT;
-import com.stylefeng.guns.common.warpper.BaseControllerWarpper;
+import com.stylefeng.guns.core.base.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.FileUtil;
 import org.springframework.http.HttpHeaders;
