@@ -35,7 +35,7 @@
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="密码" required="">
             </div>
-            @if(tool.getKaptchaOnOff() == true){
+            @if(kaptcha.getKaptchaOnOff() == true){
             <div class="form-group" style="float: left;">
                 <div class="col-sm-8" style="padding-left: 0px; padding-right: 0px;">
                     <input class="form-control" type="text" name="kaptcha" placeholder="验证码" required="">

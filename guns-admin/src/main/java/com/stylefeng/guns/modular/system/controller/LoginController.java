@@ -10,6 +10,7 @@ import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
+import com.stylefeng.guns.core.util.KaptchaUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -87,7 +88,7 @@ public class LoginController extends BaseController {
         String remember = super.getPara("remember");
 
         //验证验证码是否正确
-        if (ToolUtil.getKaptchaOnOff()) {
+        if (KaptchaUtil.getKaptchaOnOff()) {
             String kaptcha = super.getPara("kaptcha").trim();
             String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
             if (ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)) {

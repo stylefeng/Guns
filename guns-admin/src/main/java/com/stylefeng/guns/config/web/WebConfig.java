@@ -8,7 +8,7 @@ import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import com.stylefeng.guns.core.listener.ConfigListener;
-import com.stylefeng.guns.core.util.xss.XssFilter;
+import com.stylefeng.guns.core.xss.XssFilter;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.JdkRegexpMethodPointcut;
