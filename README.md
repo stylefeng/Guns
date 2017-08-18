@@ -50,7 +50,7 @@ Guns V1.0基于spring的java bean方式配置项目,同样简洁易上手.
 1. 导入sql/guns.sql文件到mysql数据库
 2. 以maven方式导入项目到ide
 3. 修改application.yml中的数据库相关的配置,改为您本机的数据库配置
-4. 启动项目,管理员***账号admin/密码111111***
+4. 启动项目,管理员 **账号admin/密码111111** 
 
 ### 如何启动项目
 Guns目前支持三种启动方式:
