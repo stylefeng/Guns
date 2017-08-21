@@ -16,13 +16,13 @@
     </modules>
 
     <properties>
-        <guns.version>1.0.0-SNAPSHOT</guns.version>
-        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <guns.version>1.0.0-SNAPSHOT</guns.version>
         <shiro.version>1.4.0</shiro.version>
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
-        <mybatis-plus.version>2.1-gamma</mybatis-plus.version>
+        <mybatis-plus.version>2.1.0</mybatis-plus.version>
         <fastjson.version>1.2.31</fastjson.version>
         <commons.io.version>2.5</commons.io.version>
         <velocity.version>1.7</velocity.version>
@@ -35,6 +35,7 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
+        <jwt.version>0.7.0</jwt.version>
     </properties>
 
     <dependencyManagement>
@@ -143,6 +144,11 @@
                 <groupId>net.sf.ehcache</groupId>
                 <artifactId>ehcache-core</artifactId>
                 <version>${ehcache.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
