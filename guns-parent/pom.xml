@@ -20,8 +20,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <guns.version>1.0.0-SNAPSHOT</guns.version>
-        <shiro.version>1.4.0</shiro.version>
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+        <shiro.version>1.4.0</shiro.version>
         <mybatis-plus.version>2.1.0</mybatis-plus.version>
         <fastjson.version>1.2.31</fastjson.version>
         <commons.io.version>2.5</commons.io.version>

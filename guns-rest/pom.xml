@@ -32,6 +32,10 @@
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.stylefeng</groupId>
+			<artifactId>guns-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
