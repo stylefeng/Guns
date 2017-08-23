@@ -12,6 +12,8 @@
 .project
 logs/
 
+*.log
+
 # idea
 .idea/
 *.iml
