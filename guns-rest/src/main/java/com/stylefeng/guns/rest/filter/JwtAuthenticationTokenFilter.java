@@ -24,28 +24,23 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private JwtProperties jwtProperties;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
             chain.doFilter(request, response);
             return;
         }
-
         final String requestHeader = request.getHeader(jwtProperties.getHeader());
-
-        String username = null;
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
-            try {
-                username = jwtTokenUtil.getUsernameFromToken(authToken);
-            } catch (IllegalArgumentException e) {
-                logger.error("an error occured during getting username from token", e);
-                return;
+            boolean flag = jwtTokenUtil.validateToken(authToken);
+            if (!flag) {
+                logger.error("token验证错误");
+                throw new RuntimeException("token验证错误");
             }
         } else {
-            logger.warn("couldn't find bearer string, will ignore the header");
-            return;
+            logger.warn("错误的header");
+            throw new RuntimeException("错误的header");
         }
         chain.doFilter(request, response);
     }

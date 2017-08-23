@@ -2,6 +2,7 @@ package com.stylefeng.guns.rest.auth;
 
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,16 @@ public class JwtTokenUtil implements Serializable {
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
+    }
+
+    public Boolean validateToken(String token) {
+        try {
+            //判断是否能解析出token
+            Jwts.parser().setSigningKey(jwtProperties.getSecret()).parseClaimsJws(token).getBody();
+            return true;
+        } catch (JwtException e) {
+            return false;
+        }
     }
 
     private Claims getAllClaimsFromToken(String token) {
