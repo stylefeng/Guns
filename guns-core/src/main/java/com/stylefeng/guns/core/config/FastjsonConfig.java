@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author fengshuonan
  * @date 2017-05-23 22:56
  */
-@Configuration
+@Configuration("defaultFastjsonConfig")
 @ConditionalOnClass(com.alibaba.fastjson.JSON.class)
 @ConditionalOnMissingBean(FastJsonHttpMessageConverter4.class)
 @ConditionalOnWebApplication
