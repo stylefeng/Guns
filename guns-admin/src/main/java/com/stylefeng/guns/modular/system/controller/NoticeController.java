@@ -1,6 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.common.annotion.log.BussinessLog;
+import com.stylefeng.guns.common.annotion.BussinessLog;
 import com.stylefeng.guns.common.constant.Dict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
