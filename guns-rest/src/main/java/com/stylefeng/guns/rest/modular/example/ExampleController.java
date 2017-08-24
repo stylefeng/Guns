@@ -1,4 +1,4 @@
-package com.stylefeng.guns.rest.controller;
+package com.stylefeng.guns.rest.modular.example;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/hello")
-public class NormalController {
+public class ExampleController {
 
     @RequestMapping("")
     public ResponseEntity hello() {

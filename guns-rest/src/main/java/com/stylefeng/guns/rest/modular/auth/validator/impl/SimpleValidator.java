@@ -1,6 +1,6 @@
-package com.stylefeng.guns.rest.service.impl;
+package com.stylefeng.guns.rest.modular.auth.validator.impl;
 
-import com.stylefeng.guns.rest.service.IReqValidator;
+import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

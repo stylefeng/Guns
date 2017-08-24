@@ -1,8 +1,7 @@
-package com.stylefeng.guns.rest.persistence.model;
-
-import java.io.Serializable;
+package com.stylefeng.guns.rest.common.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+
 import java.io.Serializable;
 
 /**

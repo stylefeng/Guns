@@ -1,6 +1,6 @@
 package com.stylefeng.guns.rest.config;
 
-import com.stylefeng.guns.rest.filter.JwtAuthenticationTokenFilter;
+import com.stylefeng.guns.rest.modular.auth.filter.AuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class WebConfig {
 
     @Bean
-    public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter() {
-        return new JwtAuthenticationTokenFilter();
+    public AuthFilter jwtAuthenticationTokenFilter() {
+        return new AuthFilter();
     }
 }

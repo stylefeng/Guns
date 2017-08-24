@@ -1,4 +1,4 @@
-package com.stylefeng.guns.rest.service;
+package com.stylefeng.guns.rest.modular.auth.validator;
 
 import java.util.Map;
 

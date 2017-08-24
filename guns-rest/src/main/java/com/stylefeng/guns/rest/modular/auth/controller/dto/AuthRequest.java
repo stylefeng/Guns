@@ -1,22 +1,25 @@
-package com.stylefeng.guns.rest.transfer;
+package com.stylefeng.guns.rest.modular.auth.controller.dto;
 
 import java.io.Serializable;
 
 /**
- * Created by stephan on 20.03.16.
+ * 认证的请求dto
+ *
+ * @author fengshuonan
+ * @Date 2017/8/24 14:00
  */
-public class JwtAuthenticationRequest implements Serializable {
+public class AuthRequest implements Serializable {
 
     private static final long serialVersionUID = -8445943548965154778L;
 
     private String username;
     private String password;
 
-    public JwtAuthenticationRequest() {
+    public AuthRequest() {
         super();
     }
 
-    public JwtAuthenticationRequest(String username, String password) {
+    public AuthRequest(String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
     }

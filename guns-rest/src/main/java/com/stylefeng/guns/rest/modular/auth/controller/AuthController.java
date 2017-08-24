@@ -1,9 +1,10 @@
-package com.stylefeng.guns.rest.controller;
+package com.stylefeng.guns.rest.modular.auth.controller;
 
-import com.stylefeng.guns.rest.auth.JwtTokenUtil;
-import com.stylefeng.guns.rest.config.properties.JwtProperties;
-import com.stylefeng.guns.rest.service.IReqValidator;
-import com.stylefeng.guns.rest.transfer.JwtAuthenticationResponse;
+import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.rest.common.exception.BussinessException;
+import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
+import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
+import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
@@ -15,11 +16,14 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * 请求验证的
+ *
+ * @author fengshuonan
+ * @Date 2017/8/24 14:22
+ */
 @RestController
-public class AuthenticationRestController {
-
-    @Autowired
-    private JwtProperties jwtProperties;
+public class AuthController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -34,9 +38,10 @@ public class AuthenticationRestController {
 
         if (validate) {
             final String token = jwtTokenUtil.generateToken((String) params.get("userName"), device);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+            final String randomKey = jwtTokenUtil.getRandomKey();
+            return ResponseEntity.ok(new AuthResponse(token, randomKey));
         } else {
-            return ResponseEntity.status(400).body("UserName or password is not right!");
+            throw new BussinessException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }
     }
 }

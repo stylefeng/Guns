@@ -1,9 +1,9 @@
-package com.stylefeng.guns.rest.service.impl;
+package com.stylefeng.guns.rest.modular.auth.validator.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.stylefeng.guns.rest.persistence.dao.UserMapper;
-import com.stylefeng.guns.rest.persistence.model.User;
-import com.stylefeng.guns.rest.service.IReqValidator;
+import com.stylefeng.guns.rest.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.rest.common.persistence.model.User;
+import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
-package com.stylefeng.guns.rest.auth;
+package com.stylefeng.guns.rest.modular.auth.util;
 
+import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -143,5 +144,9 @@ public class JwtTokenUtil implements Serializable {
         return (
                 username.equals(userName)
                         && !isTokenExpired(token));
+    }
+
+    public String getRandomKey(){
+        return ToolUtil.getRandomString(6);
     }
 }
