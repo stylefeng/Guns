@@ -17,6 +17,7 @@ package com.stylefeng.guns.core.shiro;
 
 import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.util.ToolUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -25,7 +26,6 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * shiro工具类
@@ -64,14 +64,7 @@ public class ShiroKit {
      * @return
      */
     public static String getRandomSalt(int length) {
-        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
-        Random random = new Random();
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < length; i++) {
-            int number = random.nextInt(base.length());
-            sb.append(base.charAt(number));
-        }
-        return sb.toString();
+        return ToolUtil.getRandomString(length);
     }
 
     /**

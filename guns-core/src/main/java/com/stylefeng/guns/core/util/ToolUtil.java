@@ -28,6 +28,23 @@ import java.util.Map.Entry;
  * 高频方法集合类
  */
 public class ToolUtil {
+
+    /**
+     * 获取随机位数的字符串
+     *
+     * @author fengshuonan
+     * @Date 2017/8/24 14:09
+     */
+    public static String getRandomString(int length) {
+        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(base.length());
+            sb.append(base.charAt(number));
+        }
+        return sb.toString();
+    }
     
     /**
      * 判断一个对象是否是时间类型
@@ -62,40 +79,6 @@ public class ToolUtil {
             }
         }
         return sw.getBuffer().toString().replaceAll("\\$","T");
-    }
-
-    /**
-     * @Description 主键id
-     * @author fengshuonan
-     */
-    public static String getUid() {
-        return getRandomNum();
-    }
-
-    /**
-     * @Description 随机数字
-     * @author fengshuonan
-     */
-    public static String getRandomNum() {
-        return Calendar.getInstance().getTimeInMillis() + generateCellPhoneValNum();
-    }
-
-    /**
-     * @Description 获取电话号码
-     * @author fengshuonan
-     */
-    public static String generateCellPhoneValNum() {
-        String[] beforeShuffle = new String[]{"1", "2", "3", "4", "5", "6",
-                "7", "8", "9", "0"};
-        List<String> list = Arrays.asList(beforeShuffle);
-        Collections.shuffle(list);
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            buffer.append(list.get(i));
-        }
-        String afterShuffle = buffer.toString();
-        String result = afterShuffle.substring(3, 9);
-        return result;
     }
 
     /**
