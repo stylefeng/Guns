@@ -1,9 +1,12 @@
-package com.stylefeng.guns.rest.config;
+package com.stylefeng.guns.core.config;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -18,6 +21,9 @@ import java.util.ArrayList;
  * @date 2017-05-23 22:56
  */
 @Configuration
+@ConditionalOnClass(com.alibaba.fastjson.JSON.class)
+@ConditionalOnMissingBean(FastJsonHttpMessageConverter4.class)
+@ConditionalOnWebApplication
 public class FastjsonConfig {
 
     @Bean
@@ -26,7 +32,8 @@ public class FastjsonConfig {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.PrettyFormat,
-                SerializerFeature.WriteMapNullValue
+                SerializerFeature.WriteMapNullValue,
+                SerializerFeature.WriteClassName
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         ValueFilter valueFilter = new ValueFilter() {
