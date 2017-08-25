@@ -8,6 +8,11 @@ package com.stylefeng.guns.core.exception;
 public enum GunsExceptionEnum {
 
 	/**
+	 * 其他
+	 */
+	WRITE_ERROR(500,"渲染界面错误"),
+
+	/**
 	 * 文件上传
 	 */
 	FILE_READING_ERROR(400,"FILE_READING_ERROR!"),
