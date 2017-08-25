@@ -73,8 +73,8 @@ public class JwtTokenUtil {
     /**
      * 获取md5 key从token中
      */
-    public String getMd5KeyFromToken(String token){
-        return getPrivateClaimFromToken(token,jwtProperties.getMd5Key());
+    public String getMd5KeyFromToken(String token) {
+        return getPrivateClaimFromToken(token, jwtProperties.getMd5Key());
     }
 
     /**
@@ -111,13 +111,13 @@ public class JwtTokenUtil {
     public String generateToken(String userName, String randomKey) {
         Map<String, Object> claims = new HashMap<>();
         claims.put(jwtProperties.getMd5Key(), randomKey);
-        return doGenerateToken(claims, userName, randomKey);
+        return doGenerateToken(claims, userName);
     }
 
     /**
      * 生成token
      */
-    private String doGenerateToken(Map<String, Object> claims, String subject, String randomKey) {
+    private String doGenerateToken(Map<String, Object> claims, String subject) {
         final Date createdDate = new Date();
         final Date expirationDate = new Date(createdDate.getTime() + jwtProperties.getExpiration() * 1000);
 

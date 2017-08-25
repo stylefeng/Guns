@@ -16,8 +16,7 @@ import com.stylefeng.guns.rest.modular.auth.converter.BaseTransferEntity;
 public class JsonTest {
 
     public static void main(String[] args) {
-        String auth = "eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJmcnpubW0iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTUwNDI1MzU4NSwiaWF0IjoxNTAzNjQ4Nzg1fQ.smQQlKnRgfHnfSkID6FoYpXBAMPw-NfFq4zaqc2E0Ve7V2nb0U5iIJvVMKY75lYbi1gYtDiTibqt0B39noNCHg";
-        String randomKey = "nv0lwt";
+        String randomKey = "1xm7hw";
 
         BaseTransferEntity baseTransferEntity = new BaseTransferEntity();
         SimpleObject simpleObject = new SimpleObject();
