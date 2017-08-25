@@ -22,7 +22,7 @@ public class JWTTest {
         String compactJws = Jwts.builder()
                 .setSubject("Joe")
                 .setClaims(new DefaultClaims().setId(IdGenerator.getId()))
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(SignatureAlgorithm.RS512, key)
                 .compact();
 
         System.out.println(compactJws);

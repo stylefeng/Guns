@@ -1,9 +1,11 @@
 package com.stylefeng.guns.rest.modular.auth.filter;
 
+import com.stylefeng.guns.core.base.tips.ErrorTip;
+import com.stylefeng.guns.core.util.RenderUtil;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.rest.common.exception.BussinessException;
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
+import io.jsonwebtoken.JwtException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +43,23 @@ public class AuthFilter extends OncePerRequestFilter {
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
-            boolean flag = jwtTokenUtil.validateToken(authToken);
-            if (!flag) {
-                logger.error("token验证错误");
-                throw new BussinessException(BizExceptionEnum.AUTH_ERROR);
+
+            //验证token是否过期
+            try {
+                boolean flag = jwtTokenUtil.isTokenExpired(authToken);
+                if (flag) {
+                    RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
+                    return;
+                }
+            } catch (JwtException e) {
+                //有异常就是token解析失败
+                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.AUTH_ERROR.getCode(), BizExceptionEnum.AUTH_ERROR.getMessage()));
+                return;
             }
         } else {
-            logger.warn("错误的header");
-            throw new BussinessException(BizExceptionEnum.AUTH_ERROR);
+            //header没有带Bearer字段
+            RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.AUTH_ERROR.getCode(), BizExceptionEnum.AUTH_ERROR.getMessage()));
+            return;
         }
         chain.doFilter(request, response);
     }

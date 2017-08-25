@@ -7,7 +7,6 @@ import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mobile.device.Device;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,13 +31,13 @@ public class AuthController {
     private IReqValidator reqValidator;
 
     @RequestMapping(value = "${jwt.auth-path}")
-    public ResponseEntity<?> createAuthenticationToken(@RequestParam Map<String, Object> params, Device device, HttpServletRequest request) {
+    public ResponseEntity<?> createAuthenticationToken(@RequestParam Map<String, Object> params, HttpServletRequest request) {
 
         boolean validate = reqValidator.validate(params);
 
         if (validate) {
-            final String token = jwtTokenUtil.generateToken((String) params.get("userName"), device);
             final String randomKey = jwtTokenUtil.getRandomKey();
+            final String token = jwtTokenUtil.generateToken((String) params.get("userName"), randomKey);
             return ResponseEntity.ok(new AuthResponse(token, randomKey));
         } else {
             throw new BussinessException(BizExceptionEnum.AUTH_REQUEST_ERROR);

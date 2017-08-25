@@ -8,8 +8,9 @@ package com.stylefeng.guns.rest.common.exception;
  */
 public enum BizExceptionEnum {
 
-    AUTH_REQUEST_ERROR(701, "auth请求验证失败"),
-    AUTH_ERROR(702, "签名错误,请求失败"),
+    AUTH_REQUEST_ERROR(700, "auth请求验证失败"),
+    TOKEN_EXPIRED(700, "token 过期"),
+    AUTH_ERROR(700, "签名错误,请求失败"),
     SERVER_ERROR(802, "服务器错误");
 
     BizExceptionEnum(int code, String message) {
