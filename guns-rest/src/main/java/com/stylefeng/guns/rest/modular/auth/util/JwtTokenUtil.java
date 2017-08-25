@@ -71,6 +71,13 @@ public class JwtTokenUtil {
     }
 
     /**
+     * 获取md5 key从token中
+     */
+    public String getMd5KeyFromToken(String token){
+        return getPrivateClaimFromToken(token,jwtProperties.getMd5Key());
+    }
+
+    /**
      * 获取jwt的payload部分
      */
     public Claims getClaimFromToken(String token) {
@@ -103,7 +110,7 @@ public class JwtTokenUtil {
      */
     public String generateToken(String userName, String randomKey) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("randomKey", randomKey);
+        claims.put(jwtProperties.getMd5Key(), randomKey);
         return doGenerateToken(claims, userName, randomKey);
     }
 

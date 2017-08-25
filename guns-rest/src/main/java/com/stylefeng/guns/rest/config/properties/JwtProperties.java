@@ -23,6 +23,8 @@ public class JwtProperties {
 
     private String authPath = "auth";
 
+    private String md5Key = "randomKey";
+
     public static String getJwtPrefix() {
         return JWT_PREFIX;
     }
@@ -57,5 +59,13 @@ public class JwtProperties {
 
     public void setAuthPath(String authPath) {
         this.authPath = authPath;
+    }
+
+    public String getMd5Key() {
+        return md5Key;
+    }
+
+    public void setMd5Key(String md5Key) {
+        this.md5Key = md5Key;
     }
 }

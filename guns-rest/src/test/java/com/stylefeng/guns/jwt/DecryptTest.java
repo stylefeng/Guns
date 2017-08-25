@@ -14,7 +14,7 @@ public class DecryptTest {
 
         String key = "mySecret";
 
-        String compactJws = "eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJjdXVuYXgiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTUwNDIzNjk1MywiaWF0IjoxNTAzNjMyMTUzfQ.8Feb8wU67zVOGuxWEllH8I_q5VKVsIHAdeJKTRLkmrhvfPzd0Xzx5C_DRvctTpzXjEw5v3czNTJyzai1Q1LpJg";
+        String compactJws = "eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJudjBsd3QiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTUwNDI0NzA1NSwiaWF0IjoxNTAzNjQyMjU1fQ.wHzVxTvi0bmfq8YmI65tVqYfeXp5EJPzm5C_DtQOl5Fyc1HKuDJyaW-BPpjgMtjsk-mdeEBZSadoDK3LjHsy8A";
 
         System.out.println("body = " + Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getBody());
         System.out.println("header = " + Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getHeader());

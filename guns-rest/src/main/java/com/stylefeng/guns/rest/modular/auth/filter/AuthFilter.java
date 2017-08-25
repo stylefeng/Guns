@@ -53,12 +53,12 @@ public class AuthFilter extends OncePerRequestFilter {
                 }
             } catch (JwtException e) {
                 //有异常就是token解析失败
-                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.AUTH_ERROR.getCode(), BizExceptionEnum.AUTH_ERROR.getMessage()));
+                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
                 return;
             }
         } else {
             //header没有带Bearer字段
-            RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.AUTH_ERROR.getCode(), BizExceptionEnum.AUTH_ERROR.getMessage()));
+            RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
             return;
         }
         chain.doFilter(request, response);
