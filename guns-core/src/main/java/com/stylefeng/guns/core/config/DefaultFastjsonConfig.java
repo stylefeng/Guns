@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * fastjson配置类
@@ -24,11 +25,20 @@ import java.util.ArrayList;
 @ConditionalOnClass(com.alibaba.fastjson.JSON.class)
 @ConditionalOnMissingBean(FastJsonHttpMessageConverter4.class)
 @ConditionalOnWebApplication
-public class FastjsonConfig {
+public class DefaultFastjsonConfig {
 
     @Bean
     public FastJsonHttpMessageConverter4 fastJsonHttpMessageConverter() {
         FastJsonHttpMessageConverter4 converter = new FastJsonHttpMessageConverter4();
+        converter.setFastJsonConfig(fastjsonConfig());
+        converter.setSupportedMediaTypes(getSupportedMediaType());
+        return converter;
+    }
+
+    /**
+     * fastjson的配置
+     */
+    public FastJsonConfig fastjsonConfig() {
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.PrettyFormat,
@@ -45,12 +55,16 @@ public class FastjsonConfig {
         };
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
         fastJsonConfig.setSerializeFilters(valueFilter);
-        converter.setFastJsonConfig(fastJsonConfig);
+        return fastJsonConfig;
+    }
 
+    /**
+     * 支持的mediaType类型
+     */
+    private List<MediaType> getSupportedMediaType() {
         ArrayList<MediaType> mediaTypes = new ArrayList<>();
         mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
-        converter.setSupportedMediaTypes(mediaTypes);
-        return converter;
+        return mediaTypes;
     }
 
 }
