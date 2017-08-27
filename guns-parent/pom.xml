@@ -13,6 +13,7 @@
     <modules>
         <module>../guns-admin</module>
         <module>../guns-core</module>
+        <module>../guns-rest</module>
     </modules>
 
     <properties>
