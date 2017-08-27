@@ -1,5 +1,13 @@
-# Guns V2.5
-新版Guns基于SpringBoot全面升级,完美整合springmvc + shiro + mybatis-plus + beetl!
+# Guns V3.0
+
+## V3.0更新说明
+1. 单模块拆分成如下多模块,guns-parent(maven父项目),guns-core(guns基础模块),guns-admin(guns后台管理系统),guns-rest(rest服务模块)
+2. 新增REST API服务,用于提供REST接口
+3. GUNS-REST服务基于JWT TOKEN鉴权机制,给予访问者访问资源的权限(详情看readme下侧介绍)
+4. GUNS-REST服务对传输过程中的数据进行MD5签名校验,防止过程中的信息被篡改,签名过程中利用随机字符串进行签名混淆(详情看readme下侧介绍)
+
+## 管理系统介绍
+Guns基于SpringBoot,致力于做更简洁的后台管理系统,完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架. 
 
 在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
 
@@ -19,14 +27,6 @@ Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模
 
 ## 技术讨论,[wiki地址](http://git.oschina.net/naan1993/guns/wikis/home)
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍wiki文档,再看一遍readme)
-
-## V2.5更新日志
-1. 新增数据范围功能(例如两个角色都有用户管理权限,但是下级部门不能看到上级部门的数据)
-2. 代码生成的bug修复,现在兼容windows和linux
-3. shiro的过滤器链改为LinkedHashMap
-4. 修复添加顶级部门添加不了的bug
-5. 解决日期格式化工具类线程安全的问题
-6. 修复日志记录会出现多个重复文件的bug
 
 ### 如果不喜欢SpringBoot?
 如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到***[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)***分支,
@@ -51,7 +51,6 @@ Guns V1.0基于spring的java bean方式配置项目,同样简洁易上手.
 2. 以maven方式导入项目到ide
 3. 修改application.yml中的数据库相关的配置,改为您本机的数据库配置
 4. 启动项目,管理员 **账号admin/密码111111** 
-
 ### 如何启动项目
 Guns目前支持三种启动方式:
 1. 在IDE里运行GunsApplication类中的main方法启动
@@ -265,6 +264,12 @@ swagger会管理所有包含@ApiOperation注解的控制器方法，同时，可
  })
  @RequestMapping(value = "/generate", method = RequestMethod.POST)
 ```
+
+## jwt token鉴权机制
+jwt token鉴权机制是指若需要请求服务器接口,必须通过AuthController获取一个请求令牌(jwt token),持有jwt token的用户才可以访问服务器的其他资源,如果没有此令牌,则访问接口会直接忽略,请求获取jwt token时,需要携带credenceName和credenceCode(可以是账号密码,可以是手机号验证码等等),校验credenceName和credenceCode成功后,会颁发给客户端一个jwt token还有一个随机字符串,用于传输过程中对数据进行签名用,签名机制请见下面介绍.基于token的鉴权机制类似于http协议也是无状态的,它不需要在服务端去保留用户的认证信息或者会话信息.这就意味着基于token认证机制的应用不需要去考虑用户在哪一台服务器登录了,这就为应用的扩展提供了便利.
+
+## 签名机制
+签名机制是指客户端向服务端传输数据中,对传输数据进行md5加密,并且加密过程中利用Auth接口返回的随机字符串进行混淆加密,并把md5值同时附带给服务端,服务端通获取数据之后对数据再进行一次md5加密,若加密结果和客户端传来的数据一致,则认定客户端请求的数据是没有被篡改的,若不一致,则认为被加密的数据是被篡改的
 
 ## 常见问题答疑
 1. 为何有的业务没有service层: 部分业务比较简单,所以就没写service层,写service是为了让复杂业务更有条理,更清晰.
