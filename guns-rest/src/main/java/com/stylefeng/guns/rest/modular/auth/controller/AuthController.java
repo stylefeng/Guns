@@ -2,18 +2,16 @@ package com.stylefeng.guns.rest.modular.auth.controller;
 
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.rest.common.exception.BussinessException;
+import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * 请求验证的
@@ -31,13 +29,13 @@ public class AuthController {
     private IReqValidator reqValidator;
 
     @RequestMapping(value = "${jwt.auth-path}")
-    public ResponseEntity<?> createAuthenticationToken(@RequestParam Map<String, Object> params, HttpServletRequest request) {
+    public ResponseEntity<?> createAuthenticationToken(AuthRequest authRequest) {
 
-        boolean validate = reqValidator.validate(params);
+        boolean validate = reqValidator.validate(authRequest);
 
         if (validate) {
             final String randomKey = jwtTokenUtil.getRandomKey();
-            final String token = jwtTokenUtil.generateToken((String) params.get("userName"), randomKey);
+            final String token = jwtTokenUtil.generateToken(authRequest.getUserName(), randomKey);
             return ResponseEntity.ok(new AuthResponse(token, randomKey));
         } else {
             throw new BussinessException(BizExceptionEnum.AUTH_REQUEST_ERROR);

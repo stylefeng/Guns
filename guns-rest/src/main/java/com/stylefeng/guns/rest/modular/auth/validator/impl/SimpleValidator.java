@@ -1,9 +1,8 @@
 package com.stylefeng.guns.rest.modular.auth.validator.impl;
 
 import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
+import com.stylefeng.guns.rest.modular.auth.validator.dto.Credence;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 /**
  * 直接验证账号密码是不是admin
@@ -19,14 +18,14 @@ public class SimpleValidator implements IReqValidator {
     private static String PASSWORD = "admin";
 
     @Override
-    public boolean validate(Map<String, Object> params) {
+    public boolean validate(Credence credence) {
 
-        String userName = (String) params.get("userName");
-        String password = (String) params.get("password");
+        String userName = credence.getCredenceName();
+        String password = credence.getCredenceCode();
 
-        if(USER_NAME.equals(userName) && PASSWORD.equals(password)){
+        if (USER_NAME.equals(userName) && PASSWORD.equals(password)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
