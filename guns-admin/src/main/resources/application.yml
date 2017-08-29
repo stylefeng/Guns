@@ -46,7 +46,7 @@ spring:
       max-file-size: 100MB #最大文件大小
   devtools:
     restart:
-      enabled: true #是否开启开发者工具（true/false）
+      enabled: false #是否开启开发者工具（true/false）
       additional-paths: src/main/java
       exclude: static/**,WEB-INF/view/**
 
