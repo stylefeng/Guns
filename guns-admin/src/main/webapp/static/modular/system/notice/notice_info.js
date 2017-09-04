@@ -54,7 +54,7 @@ NoticeInfoDlg.close = function () {
  * 收集数据
  */
 NoticeInfoDlg.collectData = function () {
-    this.noticeInfoData['content'] = NoticeInfoDlg.editor.txt.text();
+    this.noticeInfoData['content'] = NoticeInfoDlg.editor.txt.html();
     this.set('id').set('title');
 }
 

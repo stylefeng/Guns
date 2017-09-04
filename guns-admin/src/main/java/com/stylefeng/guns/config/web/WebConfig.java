@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
 
+import java.util.Arrays;
 import java.util.Properties;
 
 /**
@@ -100,7 +101,9 @@ public class WebConfig {
      */
     @Bean
     public FilterRegistrationBean xssFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean(new XssFilter());
+        XssFilter xssFilter = new XssFilter();
+        xssFilter.setUrlExclusion(Arrays.asList("/notice/update","/notice/add"));
+        FilterRegistrationBean registration = new FilterRegistrationBean(xssFilter);
         registration.addUrlPatterns("/*");
         return registration;
     }
