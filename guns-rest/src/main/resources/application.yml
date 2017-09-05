@@ -5,6 +5,9 @@ jwt:
   auth-path: auth         #认证请求的路径
   md5-key: randomKey      #md5加密混淆key
 
+server:
+  port: 80 #项目端口
+
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/rest/**/mapping/*.xml
   typeAliasesPackage: com.stylefeng.guns.rest.common.persistence.model
