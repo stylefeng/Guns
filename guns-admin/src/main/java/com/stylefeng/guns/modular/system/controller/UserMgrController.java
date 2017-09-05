@@ -78,6 +78,7 @@ public class UserMgrController extends BaseController {
     /**
      * 跳转到角色分配页面
      */
+    //@RequiresPermissions("/mgr/role_assign")  //利用shiro自带的权限检查
     @Permission
     @RequestMapping("/role_assign/{userId}")
     public String roleAssign(@PathVariable Integer userId, Model model) {
@@ -162,10 +163,10 @@ public class UserMgrController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
-        if(ShiroKit.isAdmin()){
+        if (ShiroKit.isAdmin()) {
             List<Map<String, Object>> users = managerDao.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
-        }else{
+        } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
             List<Map<String, Object>> users = managerDao.selectUsers(dataScope, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
@@ -355,7 +356,7 @@ public class UserMgrController extends BaseController {
      * 判断当前登录的用户是否有操作这个用户的权限
      */
     private void assertAuth(Integer userId) {
-        if(ShiroKit.isAdmin()){
+        if (ShiroKit.isAdmin()) {
             return;
         }
         List<Integer> deptDataScope = ShiroKit.getDeptDataScope();
