@@ -94,7 +94,7 @@ public class LoginController extends BaseController {
         if (KaptchaUtil.getKaptchaOnOff()) {
             String kaptcha = super.getPara("kaptcha").trim();
             String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-            if (ToolUtil.isEmpty(kaptcha) || !kaptcha.equals(code)) {
+            if (ToolUtil.isEmpty(kaptcha) || !kaptcha.equalsIgnoreCase(code)) {
                 throw new InvalidKaptchaException();
             }
         }
