@@ -81,6 +81,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
 
         <!--   需要分布式session的话需要放开注释
         <dependency>
@@ -95,10 +99,6 @@
         <dependency>
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
         </dependency>
         <dependency>
             <groupId>com.google.zxing</groupId>

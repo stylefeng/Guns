@@ -142,6 +142,10 @@ public class ShiroConfig {
          * authc 需要认证
          * user  验证通过或RememberMe登录的都可以
          *
+         * 当应用开启了rememberMe时,用户下次访问时可以是一个user,但不会是authc,因为authc是需要重新认证的
+         *
+         * 顺序从上到下,优先级依次降低
+         *
          */
         Map<String, String> hashMap = new LinkedHashMap<>();
         hashMap.put("/static/**", "anon");
