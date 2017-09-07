@@ -1,136 +1,15 @@
 # Guns V3.0
 
-## V3.0更新说明
-1. 单模块拆分成如下多模块,guns-parent(maven父项目),guns-core(guns基础模块),guns-admin(guns后台管理系统),guns-rest(rest服务模块)
-2. 新增REST API服务,用于提供REST接口
-3. GUNS-REST服务基于JWT TOKEN鉴权机制,给予访问者访问资源的权限(详情看readme下侧介绍)
-4. GUNS-REST服务对传输过程中的数据进行MD5签名校验,防止过程中的信息被篡改,签名过程中利用随机字符串进行签名混淆(详情看readme下侧介绍)
+## 介绍
+Guns基于Spring Boot,致力于做更简洁的后台管理系统,完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架!
 
-## 管理系统介绍
-Guns基于SpringBoot,致力于做更简洁的后台管理系统,完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架. 
+Guns v3.0新增REST API服务,提供对接服务端接口的支持,并利用JWT TOKEN鉴权机制给予客户端的访问权限,传输数据进行md5签名保证传输过程数据的安全性!
 
-在不用写xml配置(V1.0)的基础上进一步简化项目配置,让您更专注于业务开发!抛弃传统spring xml的配置方式,利用springboot + javabean方式配置spring,极大简化了pom.xml配置和spring配置.
+## 技术讨论 & [wiki地址](http://git.oschina.net/naan1993/guns/wikis/pages)
+如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081 (加之前请先看一遍wiki文档)
 
-Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架.
-
-## 鸣谢
-1.[SpringBlade](http://git.oschina.net/smallc/SpringBlade)
-2.[beetl](http://ibeetl.com/)
-3.[mybatis-plus](http://git.oschina.net/baomidou/mybatis-plus)
-
-## 感谢以下对Guns做出贡献的人
-1.[Swifly](http://git.oschina.net/cyf783)
-2.[liujiliang](liujiliang@chinasofti.com)
-3.[poseidon-ocean](poseidon@163.com)
-4.[扎西多顿](http://git.oschina.net/zhaping)
-5.[ilaotan](http://git.oschina.net/xiaosheng12345)
-
-## 技术讨论,[wiki地址](http://git.oschina.net/naan1993/guns/wikis/home)
-如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(加之前请先看一遍wiki文档,再看一遍readme)
-
-### 如果不喜欢SpringBoot?
-如果您不喜欢用SpringBoot,或者您是一个spring初学者,您可以切换到 **[Guns V1.0(点击这里)](http://git.oschina.net/naan1993/guns/tree/v1.0/)** 分支,
-Guns V1.0基于spring的java bean方式配置项目,同样简洁易上手.
-
-注:SpringBoot强大的Auto Config和统一的依赖管理极大的简化了spring配置和maven依赖,在不了解其都配置了哪些东西的基础上可能会对初学者有一定困扰,所以建议初学者先看Guns V1.0
-
-## 功能简介
-1. 用户管理
-2. 角色管理
-3. 部门管理
-4. 菜单管理
-5. 字典管理
-6. 业务日志
-7. 登录日志
-8. 监控管理
-9. 通知管理
-10. 代码生成
-
-## 使用说明
-1. 导入sql/guns.sql文件到mysql数据库
-2. 以maven方式导入项目到ide
-3. 修改application.yml中的数据库相关的配置,改为您本机的数据库配置
-4. 启动项目,管理员 **账号admin/密码111111** 
-### 如何启动项目
-Guns目前支持三种启动方式:
-1. 在IDE里运行GunsApplication类中的main方法启动
-2. 执行如下maven命令
-```
-clean package -Dmaven.test.skip=true
-```
-并从target目录中找到guns-1.0.0-SNAPSHOT.jar,并在jar包的目录下执行如下java命令
-```
-java -jar guns-1.0.0-SNAPSHOT.jar
-```
-3. 修改pom.xml中如下片段
-```
-<packaging>jar</packaging>
-```
-改为
-```
-<packaging>war</packaging>
-```
-并打包放入到tomcat中执行
-
-### 注意
-最新版项目最低支持jdk1.8
-
-## 所用框架
-### 前端
-1. Bootstrap v3.3.6
-2. jQuery v2.1.4 
-3. bootstrap-table v1.11.1
-4. layer v2.1
-5. zTree core v3.5.28
-6. WebUploader 0.1.5
-
-### 后端
-1. SpringBoot 1.5.3.RELEASE
-2. MyBatis-Plus 2.0.8
-3. MyBatis 3.4.4
-4. Spring 4.3.8.RELEASE
-5. Beetl 2.7.15
-6. hibernate-validator 5.3.5.Final
-7. Ehcache 3.3.1
-8. Kaptcha 2.3.2
-9. Fastjson 1.2.31
-10. Shiro 1.4.0
-11. Druid 1.0.31
-
-## 项目包结构说明
-```
-├─main
-│  │  
-│  ├─java
-│  │   │
-│  │   ├─com.stylefeng.guns----------------项目主代码
-│  │   │          │
-│  │   │          ├─common----------------项目公用的部分(业务中经常调用的类,例如常量,异常,实体,注解,分页类,节点类)
-│  │   │          │
-│  │   │          ├─config----------------项目配置代码(例如mybtais-plus配置,ehcache配置等)
-│  │   │          │
-│  │   │          ├─core----------------项目运行的核心依靠(例如aop日志记录,拦截器,监听器,guns模板引擎,shiro权限检查等)
-│  │   │          │
-│  │   │          ├─modular----------------项目业务代码
-│  │   │          │
-│  │   │          ├─GunsApplication类----------------以main方法启动springboot的类
-│  │   │          │
-│  │   │          └─GunsServletInitializer类----------------用servlet容器启动springboot的核心类
-│  │   │
-│  │   └─generator----------------mybatis-plus Entity生成器
-│  │
-│  ├─resources----------------项目资源文件
-│  │     │
-│  │     ├─gunsTemplate----------------guns代码生成模板
-│  │     │ 
-│  │     ├─application.yml----------------springboot项目配置
-│  │     │ 
-│  │     └─ehcache.xml----------------ehcache缓存配置
-│  │
-│  └─webapp----------------web页面和静态资源存放的目录
-│  
-```
-注:SpringBoot项目默认不支持将静态资源和模板(web页面)放到webapp目录,但是个人感觉resources目录只放项目的配置更加简洁,所以就将web页面继续放到webapp目录了.
+## 管理系统功能
+1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成
 
 ## 项目特点
 1. 基于SpringBoot,简化了大量项目配置和maven依赖,让您更专注于业务开发,独特的分包方式,代码多而不乱。
@@ -163,20 +42,10 @@ public class MybatisPlusConfig {
         paginationInterceptor.setDialectType(DBType.MYSQL.getDb());
         return paginationInterceptor;
     }
-
-    /**
-     * druid数据库连接池
-     */
-    @Bean(initMethod = "init")
-    public DruidDataSource dataSource() {
-        DruidDataSource dataSource = new DruidDataSource();
-        druidProperties.coinfig(dataSource);
-        return dataSource;
-    }
 }
 ```
 
-## 业务日志记录原理
+## 业务日志记录
 日志记录采用aop(LogAop类)方式对所有包含@BussinessLog注解的方法进行aop切入，会记录下当前用户执行了哪些操作（即@BussinessLog value属性的内容），如果涉及到数据修改，会取当前http请求的所有requestParameters与LogObjectHolder类中缓存的Object对象的所有字段作比较（所以在编辑之前的获取详情接口中需要缓存被修改对象之前的字段信息），日志内容会异步存入数据库中（通过ScheduledThreadPoolExecutor类）。
 
 ## beetl对前台页面的拆分与包装
@@ -270,11 +139,6 @@ jwt token鉴权机制是指若需要请求服务器接口,必须通过AuthContro
 
 ## 签名机制
 签名机制是指客户端向服务端传输数据中,对传输数据进行md5加密,并且加密过程中利用Auth接口返回的随机字符串进行混淆加密,并把md5值同时附带给服务端,服务端通获取数据之后对数据再进行一次md5加密,若加密结果和客户端传来的数据一致,则认定客户端请求的数据是没有被篡改的,若不一致,则认为被加密的数据是被篡改的
-
-## 常见问题答疑
-1. 为何有的业务没有service层: 部分业务比较简单,所以就没写service层,写service是为了让复杂业务更有条理,更清晰.
-2. 为何既有dao,又有mapper: mapper是mybatis-plus自动生成的,里边有许多mybatis-plus增强的方法,dao是自己写的业务,mybatis-plus自动生成代码时会覆盖mapper,所以就把自己写的dao分开了,生成代码的时候不影响
-3. 为何分页是前端实现:部分页面因为数据量比较少,就直接用客户端分页了,日志页面的分页是采用服务端分页的,如果其他业务有特别需要,可以参考日志的写法
 
 ## 效果图
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0604/194616_36ed7fd6_551203.png "在这里输入图片标题")
