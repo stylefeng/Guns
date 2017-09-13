@@ -19,7 +19,7 @@ public class ControllerConfig {
 
     public void init() {
         ArrayList<String> imports = new ArrayList<>();
-        imports.add("com.stylefeng.guns.common.controller.BaseController");
+        imports.add("com.stylefeng.guns.core.base.controller.BaseController");
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
