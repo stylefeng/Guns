@@ -16,7 +16,7 @@ public class DataScope {
     private String scopeName = "deptid";
 
     /**
-     * 限制范围的
+     * 具体的数据范围
      */
     private List<Integer> deptIds;
 
