@@ -21,7 +21,7 @@ public class JsonTest {
         BaseTransferEntity baseTransferEntity = new BaseTransferEntity();
         SimpleObject simpleObject = new SimpleObject();
         simpleObject.setUser("fsn");
-        baseTransferEntity.setObject(simpleObject);
+        baseTransferEntity.setObject("123123");
 
         String json = JSON.toJSONString(simpleObject);
 

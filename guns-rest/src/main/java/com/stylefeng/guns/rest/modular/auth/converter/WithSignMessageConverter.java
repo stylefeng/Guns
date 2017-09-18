@@ -7,6 +7,7 @@ import com.stylefeng.guns.core.util.MD5Util;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.rest.common.exception.BussinessException;
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
+import com.stylefeng.guns.rest.modular.auth.security.DataSecurityAction;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpInputMessage;
@@ -30,6 +31,9 @@ public class WithSignMessageConverter extends FastJsonHttpMessageConverter4 {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    DataSecurityAction dataSecurityAction;
+
     @Override
     public Object read(Type type, Class<?> contextClass, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
 
@@ -43,8 +47,9 @@ public class WithSignMessageConverter extends FastJsonHttpMessageConverter4 {
         String token = HttpKit.getRequest().getHeader(jwtProperties.getHeader()).substring(7);
         String md5KeyFromToken = jwtTokenUtil.getMd5KeyFromToken(token);
 
-        String json = JSON.toJSONString(baseTransferEntity.getObject());
-        String encrypt = MD5Util.encrypt(json + md5KeyFromToken);
+        String object = baseTransferEntity.getObject();
+        String json = dataSecurityAction.unlock(object);
+        String encrypt = MD5Util.encrypt(object + md5KeyFromToken);
 
         if (encrypt.equals(baseTransferEntity.getSign())) {
             System.out.println("签名校验成功!");

@@ -8,20 +8,20 @@ package com.stylefeng.guns.rest.modular.auth.converter;
  */
 public class BaseTransferEntity {
 
-    private Object object;
+    private String object; //base64编码的json字符串
 
-    private String sign;
+    private String sign;   //签名
 
-    public Object getObject() {
+    public String getObject() {
         return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
     }
 
     public String getSign() {
         return sign;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
     }
 
     public void setSign(String sign) {
