@@ -55,7 +55,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 查找对象是否包括DataScope类
+     * 查找参数是否包括DataScope对象
      */
     public DataScope findDataScopeObject(Object parameterObj) {
         if (parameterObj instanceof DataScope) {
