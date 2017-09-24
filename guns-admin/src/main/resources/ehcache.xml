@@ -52,6 +52,6 @@
 		diskExpiryThreadIntervalSeconds	//磁盘失效线程运行时间间隔，默认是120秒。
 		memoryStoreEvictionPolicy="LRU" //当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
         clearOnFlush	//内存数量最大时是否清除
-        maxEntriesLocalHeap="0"
-        maxEntriesLocalDisk="1000"
+        maxEntriesLocalHeap="0"  //堆内存中最大缓存对象数,0没有限制
+        maxEntriesLocalDisk="1000" //硬盘最大缓存个数。
     -->
