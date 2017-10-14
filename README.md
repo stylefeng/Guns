@@ -6,6 +6,8 @@ Guns基于Spring Boot,致力于做更简洁的后台管理系统,完美整合spr
 Guns v3.0新增REST API服务,提供对接服务端接口的支持,并利用JWT TOKEN鉴权机制给予客户端的访问权限,传输数据进行md5签名保证传输过程数据的安全性!
 
 ## 技术讨论 & [wiki地址](http://git.oschina.net/naan1993/guns/wikis/pages)
+系统启动后登录的账号密码是admin/111111,老有人问就写到这里吧,其实在wiki里都有
+
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081 (加之前请先看一遍wiki文档)
 
 ## 管理系统功能
