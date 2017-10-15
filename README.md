@@ -5,6 +5,9 @@ Guns基于Spring Boot,致力于做更简洁的后台管理系统,完美整合spr
 
 Guns v3.0新增REST API服务,提供对接服务端接口的支持,并利用JWT TOKEN鉴权机制给予客户端的访问权限,传输数据进行md5签名保证传输过程数据的安全性!
 
+## 最新Guns视频教程
+Guns框架有作者在业余时间录制的视频教程,详情点击[教程介绍](https://gitee.com/naan1993/guns/wikis/pages?title=guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%20&parent=)
+
 ## 技术讨论 & [wiki地址](http://git.oschina.net/naan1993/guns/wikis/pages)
 如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081(内有Guns视频教程,群公告中有介绍)
 
@@ -158,6 +161,3 @@ jwt token鉴权机制是指若需要请求服务器接口,必须通过AuthContro
 
 ## 曾获荣誉
 ![输入图片说明](https://gitee.com/uploads/images/2017/1015/151932_f1593f87_551203.jpeg "initpintu_副本_副本.jpg")
-
-## Guns视频教程
-Guns框架有作者在业余时间录制的视频教程,详情点击[教程介绍](https://gitee.com/naan1993/guns/wikis/pages?title=guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%20&parent=)
