@@ -159,5 +159,5 @@ jwt token鉴权机制是指若需要请求服务器接口,必须通过AuthContro
 ## 曾获荣誉
 ![输入图片说明](https://gitee.com/uploads/images/2017/1015/151932_f1593f87_551203.jpeg "initpintu_副本_副本.jpg")
 
-## Guns系列视频教程
+## Guns视频教程
 Guns框架有作者在业余时间录制的视频教程,详情点击[教程介绍](https://gitee.com/naan1993/guns/wikis/pages?title=guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%20&parent=)
