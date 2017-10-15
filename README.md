@@ -158,3 +158,7 @@ jwt token鉴权机制是指若需要请求服务器接口,必须通过AuthContro
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103822_58fd5d91_551203.png "在这里输入图片标题")
 ![输入图片说明](https://git.oschina.net/uploads/images/2017/0526/103827_d6218c74_551203.png "在这里输入图片标题")
 
+## 曾获荣誉
+![输入图片说明](https://gitee.com/uploads/images/2017/1015/150216_d5762a02_551203.jpeg "IMG_20171015_144944_副本.jpg")
+![输入图片说明](https://gitee.com/uploads/images/2017/1015/150224_c75d2b4b_551203.jpeg "IMG_20171015_144856_副本.jpg")
+
