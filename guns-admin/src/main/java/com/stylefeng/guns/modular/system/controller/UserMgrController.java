@@ -3,7 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.annotion.BussinessLog;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.constant.Dict;
+import com.stylefeng.guns.common.constant.dictmap.UserDict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
@@ -177,7 +177,7 @@ public class UserMgrController extends BaseController {
      * 添加管理员
      */
     @RequestMapping("/add")
-    @BussinessLog(value = "添加管理员", key = "account", dict = Dict.UserDict)
+    @BussinessLog(value = "添加管理员", key = "account", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip add(@Valid UserDto user, BindingResult result) {
@@ -207,7 +207,7 @@ public class UserMgrController extends BaseController {
      * @throws NoPermissionException
      */
     @RequestMapping("/edit")
-    @BussinessLog(value = "修改管理员", key = "account", dict = Dict.UserDict)
+    @BussinessLog(value = "修改管理员", key = "account", dict = UserDict.class)
     @ResponseBody
     public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
@@ -232,7 +232,7 @@ public class UserMgrController extends BaseController {
      * 删除管理员（逻辑删除）
      */
     @RequestMapping("/delete")
-    @BussinessLog(value = "删除管理员", key = "userId", dict = Dict.UserDict)
+    @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
     @Permission
     @ResponseBody
     public Tip delete(@RequestParam Integer userId) {
@@ -265,7 +265,7 @@ public class UserMgrController extends BaseController {
      * 重置管理员的密码
      */
     @RequestMapping("/reset")
-    @BussinessLog(value = "重置管理员密码", key = "userId", dict = Dict.UserDict)
+    @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip reset(@RequestParam Integer userId) {
@@ -284,7 +284,7 @@ public class UserMgrController extends BaseController {
      * 冻结用户
      */
     @RequestMapping("/freeze")
-    @BussinessLog(value = "冻结用户", key = "userId", dict = Dict.UserDict)
+    @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip freeze(@RequestParam Integer userId) {
@@ -304,7 +304,7 @@ public class UserMgrController extends BaseController {
      * 解除冻结用户
      */
     @RequestMapping("/unfreeze")
-    @BussinessLog(value = "解除冻结用户", key = "userId", dict = Dict.UserDict)
+    @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip unfreeze(@RequestParam Integer userId) {
@@ -320,7 +320,7 @@ public class UserMgrController extends BaseController {
      * 分配角色
      */
     @RequestMapping("/setRole")
-    @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = Dict.UserDict)
+    @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {

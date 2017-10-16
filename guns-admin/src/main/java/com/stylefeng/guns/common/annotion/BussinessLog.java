@@ -1,5 +1,8 @@
 package com.stylefeng.guns.common.annotion;
 
+import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
+import com.stylefeng.guns.common.constant.dictmap.base.SystemDict;
+
 import java.lang.annotation.*;
 
 /**
@@ -26,5 +29,5 @@ public @interface BussinessLog {
     /**
      * 字典(用于查找key的中文名称和字段的中文名称)
      */
-    String dict() default "SystemDict";
+    Class<? extends AbstractDictMap> dict() default SystemDict.class;
 }
