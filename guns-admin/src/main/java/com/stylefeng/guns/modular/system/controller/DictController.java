@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.common.annotion.BussinessLog;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.common.constant.dictmap.DictMap;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
@@ -82,7 +83,7 @@ public class DictController extends BaseController {
      *
      * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
-    @BussinessLog(value = "添加字典记录", key = "dictName,dictValues", dict = com.stylefeng.guns.common.constant.Dict.DictMap)
+    @BussinessLog(value = "添加字典记录", key = "dictName,dictValues", dict = DictMap.class)
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -118,7 +119,7 @@ public class DictController extends BaseController {
     /**
      * 修改字典
      */
-    @BussinessLog(value = "修改字典", key = "dictName,dictValues", dict = com.stylefeng.guns.common.constant.Dict.DictMap)
+    @BussinessLog(value = "修改字典", key = "dictName,dictValues", dict = DictMap.class)
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
@@ -133,7 +134,7 @@ public class DictController extends BaseController {
     /**
      * 删除字典记录
      */
-    @BussinessLog(value = "删除字典记录", key = "dictId", dict = com.stylefeng.guns.common.constant.Dict.DeleteDict)
+    @BussinessLog(value = "删除字典记录", key = "dictId", dict = DictMap.class)
     @RequestMapping(value = "/delete")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody

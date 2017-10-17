@@ -2,7 +2,6 @@ package com.stylefeng.guns.core.aop;
 
 import com.stylefeng.guns.common.annotion.BussinessLog;
 import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
-import com.stylefeng.guns.common.constant.dictmap.factory.DictMapFactory;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
@@ -81,7 +80,7 @@ public class LogAop {
         BussinessLog annotation = currentMethod.getAnnotation(BussinessLog.class);
         String bussinessName = annotation.value();
         String key = annotation.key();
-        String dictClass = annotation.dict();
+        Class dictClass = annotation.dict();
 
         StringBuilder sb = new StringBuilder();
         for (Object param : params) {
@@ -97,7 +96,7 @@ public class LogAop {
             msg = Contrast.contrastObj(dictClass, key, obj1, obj2);
         } else {
             Map<String, String> parameters = HttpKit.getRequestParameters();
-            AbstractDictMap dictMap = DictMapFactory.createDictMap(dictClass);
+            AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
             msg = Contrast.parseMutiKey(dictMap,key,parameters);
         }
 

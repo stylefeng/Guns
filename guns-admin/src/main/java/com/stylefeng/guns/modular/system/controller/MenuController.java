@@ -3,7 +3,7 @@ package com.stylefeng.guns.modular.system.controller;
 import com.stylefeng.guns.common.annotion.BussinessLog;
 import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.constant.Dict;
+import com.stylefeng.guns.common.constant.dictmap.MenuDict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
@@ -105,7 +105,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
-    @BussinessLog(value = "修改菜单", key = "name", dict = Dict.MenuDict)
+    @BussinessLog(value = "修改菜单", key = "name", dict = MenuDict.class)
     @ResponseBody
     public Tip edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -134,7 +134,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
-    @BussinessLog(value = "菜单新增", key = "name", dict = Dict.MenuDict)
+    @BussinessLog(value = "菜单新增", key = "name", dict = MenuDict.class)
     @ResponseBody
     public Tip add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
@@ -160,7 +160,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除菜单", key = "menuId", dict = Dict.DeleteDict)
+    @BussinessLog(value = "删除菜单", key = "menuId", dict = MenuDict.class)
     @ResponseBody
     public Tip remove(@RequestParam Integer menuId) {
         if (ToolUtil.isEmpty(menuId)) {

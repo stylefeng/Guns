@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.constant.Dict;
+import com.stylefeng.guns.common.constant.dictmap.NoticeMap;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.common.exception.BussinessException;
@@ -95,7 +95,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    @BussinessLog(value = "新增通知",key = "title",dict = Dict.NoticeMap)
+    @BussinessLog(value = "新增通知",key = "title",dict = NoticeMap.class)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
@@ -111,7 +111,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    @BussinessLog(value = "删除通知",key = "noticeId",dict = Dict.DeleteDict)
+    @BussinessLog(value = "删除通知",key = "noticeId",dict = NoticeMap.class)
     public Object delete(@RequestParam Integer noticeId) {
 
         //缓存通知名称
@@ -127,7 +127,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    @BussinessLog(value = "修改通知",key = "title",dict = Dict.NoticeMap)
+    @BussinessLog(value = "修改通知",key = "title",dict = NoticeMap.class)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
