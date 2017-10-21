@@ -2,6 +2,8 @@ package com.stylefeng.guns.common.constant.factory;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.stylefeng.guns.common.constant.cache.Cache;
+import com.stylefeng.guns.common.constant.cache.CacheKey;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.persistence.dao.*;
@@ -11,6 +13,7 @@ import com.stylefeng.guns.core.support.StrKit;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
@@ -74,6 +77,7 @@ public class ConstantFactory implements IConstantFactory {
      * 通过角色ids获取角色名称
      */
     @Override
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.ROLES_NAME + "'+#roleIds")
     public String getRoleName(String roleIds) {
         Integer[] roles = Convert.toIntArray(roleIds);
         StringBuilder sb = new StringBuilder();
@@ -90,6 +94,7 @@ public class ConstantFactory implements IConstantFactory {
      * 通过角色id获取角色名称
      */
     @Override
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_NAME + "'+#roleId")
     public String getSingleRoleName(Integer roleId) {
         if (0 == roleId) {
             return "--";
@@ -105,6 +110,7 @@ public class ConstantFactory implements IConstantFactory {
      * 通过角色id获取角色英文名称
      */
     @Override
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_TIP + "'+#roleId")
     public String getSingleRoleTip(Integer roleId) {
         if (0 == roleId) {
             return "--";
@@ -120,6 +126,7 @@ public class ConstantFactory implements IConstantFactory {
      * 获取部门名称
      */
     @Override
+    @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
     public String getDeptName(Integer deptId) {
         Dept dept = deptMapper.selectById(deptId);
         if (ToolUtil.isNotEmpty(dept) && ToolUtil.isNotEmpty(dept.getFullname())) {
