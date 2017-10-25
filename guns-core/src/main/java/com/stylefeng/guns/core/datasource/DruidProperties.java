@@ -1,4 +1,4 @@
-package com.stylefeng.guns.config.properties;
+package com.stylefeng.guns.core.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
