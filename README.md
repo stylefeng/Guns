@@ -162,4 +162,3 @@ jwt token鉴权机制是指若需要请求服务器接口,必须通过AuthContro
 
 ## 曾获荣誉
 ![输入图片说明](https://gitee.com/uploads/images/2017/1015/151932_f1593f87_551203.jpeg "initpintu_副本_副本.jpg")
-![输入图片说明](https://gitee.com/uploads/images/2017/1027/172357_6046c926_551203.png "在这里输入图片标题")
