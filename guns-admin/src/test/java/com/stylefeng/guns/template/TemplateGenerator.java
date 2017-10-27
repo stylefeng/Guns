@@ -16,10 +16,11 @@ public class TemplateGenerator {
 
     public static void main(String[] args) throws IOException {
         ContextConfig contextConfig = new ContextConfig();
-        contextConfig.setBizChName("啊哈");
-        contextConfig.setBizEnName("haha");
-        contextConfig.setModuleName("tk");
-        contextConfig.setProjectPath("D:\\tmp\\guns");
+        contextConfig.setBizChName("记账管理");
+        contextConfig.setBizEnName("bill");
+        contextConfig.setModuleName("system");
+        contextConfig.setProjectPath("/Users/stylefeng/work/ideaSpace/guns/guns-admin");
+        contextConfig.setEntityName("Bill");
 
         //contextConfig.setAddPageSwitch(false);
         //contextConfig.setEditPageSwitch(false);

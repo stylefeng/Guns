@@ -18,13 +18,23 @@ public class ServiceConfig {
 
     private String packageName;
 
+    private List<String> serviceInterfaceImports;
     private List<String> serviceImplImports;
 
     public void init() {
         ArrayList<String> imports = new ArrayList<>();
         imports.add("org.springframework.stereotype.Service");
+        imports.add("com.baomidou.mybatisplus.service.impl.ServiceImpl");
+        imports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
+        imports.add(contextConfig.getModelMapperPackageName() + "." + contextConfig.getEntityName()+"Mapper");
         imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service.I" + contextConfig.getBizEnBigName() + "Service");
         this.serviceImplImports = imports;
+
+        ArrayList<String> interfaceImports = new ArrayList<>();
+        interfaceImports.add("com.baomidou.mybatisplus.service.IService");
+        interfaceImports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
+        this.serviceInterfaceImports = interfaceImports;
+
         this.servicePathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\I{}Service.java";
         this.serviceImplPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
         this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service";
@@ -69,5 +79,13 @@ public class ServiceConfig {
 
     public void setContextConfig(ContextConfig contextConfig) {
         this.contextConfig = contextConfig;
+    }
+
+    public List<String> getServiceInterfaceImports() {
+        return serviceInterfaceImports;
+    }
+
+    public void setServiceInterfaceImports(List<String> serviceInterfaceImports) {
+        this.serviceInterfaceImports = serviceInterfaceImports;
     }
 }

@@ -33,6 +33,8 @@ public class AbstractTemplateEngine {
             this.serviceConfig = new ServiceConfig();
         }
 
+        this.contextConfig.init();
+
         this.controllerConfig.setContextConfig(this.contextConfig);
         this.controllerConfig.init();
 

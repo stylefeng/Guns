@@ -21,13 +21,13 @@ import java.util.Properties;
  */
 public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
 
-    protected GroupTemplate groupTemplate;
+    private GroupTemplate groupTemplate;
 
     public GunsTemplateEngine() {
         initBeetlEngine();
     }
 
-    public void initBeetlEngine() {
+    protected void initBeetlEngine() {
         Properties properties = new Properties();
         properties.put("RESOURCE.root", "");
         properties.put("DELIMITER_STATEMENT_START", "<%");
@@ -44,14 +44,14 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         groupTemplate.registerFunctionPackage("tool", new ToolUtil());
     }
 
-    public void configTemplate(Template template){
+    protected void configTemplate(Template template){
         template.binding("controller", super.getControllerConfig());
         template.binding("context", super.getContextConfig());
         template.binding("dao", super.getDaoConfig());
         template.binding("service", super.getServiceConfig());
     }
 
-    public void generateFile(String template,String filePath){
+    protected void generateFile(String template,String filePath){
         Template pageTemplate = groupTemplate.getTemplate(template);
         configTemplate(pageTemplate);
         if(PlatformUtil.isWindows()){

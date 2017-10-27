@@ -28,7 +28,7 @@ public class MyBatisPlusGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D:\\ideaSpace\\guns\\src\\main\\java");//这里写你自己的java目录
+        gc.setOutputDir("/Users/stylefeng/work/ideaSpace/guns/guns-admin/src/main/java");//这里写你自己的java目录
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存

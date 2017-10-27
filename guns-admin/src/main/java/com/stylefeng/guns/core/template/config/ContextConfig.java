@@ -10,11 +10,16 @@ import com.stylefeng.guns.core.util.ToolUtil;
  */
 public class ContextConfig {
 
+    private String templatePrefixPath = "gunsTemplate/advanced";
     private String projectPath = "D:\\ideaSpace\\guns";//模板输出的项目目录
     private String bizChName;   //业务名称
     private String bizEnName;   //业务英文名称
     private String bizEnBigName;//业务英文名称(大写)
     private String moduleName = "system";  //模块名称
+
+    private String modelPackageName = "com.stylefeng.guns.common.persistence.model";        //model的包名
+    private String modelMapperPackageName = "com.stylefeng.guns.common.persistence.dao";  //model的dao
+    private String entityName;              //实体的名称
 
     private Boolean controllerSwitch = true;    //是否生成控制器代码开关
     private Boolean indexPageSwitch = true;     //主页
@@ -24,6 +29,12 @@ public class ContextConfig {
     private Boolean infoJsSwitch = true;        //详情页面js
     private Boolean daoSwitch = true;           //dao
     private Boolean serviceSwitch = true;       //service
+
+    public void init() {
+        if (entityName == null) {
+            entityName = bizEnBigName;
+        }
+    }
 
     public String getBizEnBigName() {
         return bizEnBigName;
@@ -128,5 +139,37 @@ public class ContextConfig {
 
     public void setServiceSwitch(Boolean serviceSwitch) {
         this.serviceSwitch = serviceSwitch;
+    }
+
+    public String getTemplatePrefixPath() {
+        return templatePrefixPath;
+    }
+
+    public void setTemplatePrefixPath(String templatePrefixPath) {
+        this.templatePrefixPath = templatePrefixPath;
+    }
+
+    public String getModelPackageName() {
+        return modelPackageName;
+    }
+
+    public void setModelPackageName(String modelPackageName) {
+        this.modelPackageName = modelPackageName;
+    }
+
+    public String getEntityName() {
+        return entityName;
+    }
+
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
+    }
+
+    public String getModelMapperPackageName() {
+        return modelMapperPackageName;
+    }
+
+    public void setModelMapperPackageName(String modelMapperPackageName) {
+        this.modelMapperPackageName = modelMapperPackageName;
     }
 }
