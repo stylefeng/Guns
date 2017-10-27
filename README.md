@@ -1,4 +1,3 @@
-![输入图片说明](https://gitee.com/uploads/images/2017/1027/172408_a4a349f0_551203.png "BE4428799055418DCAAE13BA8C72435A.png")
 # Guns V3.0
 
 ## 介绍
