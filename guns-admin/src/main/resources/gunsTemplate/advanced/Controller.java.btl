@@ -16,6 +16,9 @@ public class ${context.bizEnBigName}Controller extends BaseController {
 
     private String PREFIX = "/${context.moduleName}/${context.bizEnName}/";
 
+    @Autowired
+    private I${context.bizEnBigName}Service ${context.bizEnName}Service;
+
     /**
      * 跳转到${context.bizChName}首页
      */
@@ -37,6 +40,9 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping("/${context.bizEnName}_update/{${context.bizEnName}Id}")
     public String ${context.bizEnName}Update(@PathVariable Integer ${context.bizEnName}Id, Model model) {
+        ${context.entityName} ${context.bizEnName} = ${context.bizEnName}Service.selectById(${context.bizEnName}Id);
+        model.addAttribute("item",${context.bizEnName});
+        LogObjectHolder.me().set(${context.bizEnName});
         return PREFIX + "${context.bizEnName}_edit.html";
     }
 
@@ -46,7 +52,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return null;
+        return ${context.bizEnName}Service.selectList(null);
     }
 
     /**
@@ -54,7 +60,8 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/add")
     @ResponseBody
-    public Object add() {
+    public Object add(${context.entityName} ${context.bizEnName}) {
+        ${context.bizEnName}Service.insert(${context.bizEnName});
         return super.SUCCESS_TIP;
     }
 
@@ -63,26 +70,27 @@ public class ${context.bizEnBigName}Controller extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete() {
+    public Object delete(@RequestParam Integer ${context.bizEnName}Id) {
+        ${context.bizEnName}Service.deleteById(${context.bizEnName}Id);
         return SUCCESS_TIP;
     }
-
 
     /**
      * 修改${context.bizChName}
      */
     @RequestMapping(value = "/update")
     @ResponseBody
-    public Object update() {
+    public Object update(${context.entityName} ${context.bizEnName}) {
+        ${context.bizEnName}Service.updateById(${context.bizEnName});
         return super.SUCCESS_TIP;
     }
 
     /**
      * ${context.bizChName}详情
      */
-    @RequestMapping(value = "/detail")
+    @RequestMapping(value = "/detail/{${context.bizEnName}Id}")
     @ResponseBody
-    public Object detail() {
-        return null;
+    public Object detail(@PathVariable("${context.bizEnName}Id") Integer ${context.bizEnName}Id) {
+        return ${context.bizEnName}Service.selectById(${context.bizEnName}Id);
     }
 }
