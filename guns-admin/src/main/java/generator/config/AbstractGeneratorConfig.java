@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.stylefeng.guns.core.template.config.ContextConfig;
 import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
 import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
+import com.stylefeng.guns.core.util.FileUtil;
+
+import java.io.File;
 
 /**
  * 代码生成的抽象配置
@@ -51,28 +54,53 @@ public abstract class AbstractGeneratorConfig {
         packageConfig();
         contextConfig();
 
-        //controller没用掉,生成之后会自动删掉
-        packageConfig.setController("TTT");
         packageConfig.setService("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service");
         packageConfig.setServiceImpl("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service.impl");
+
+        //controller没用掉,生成之后会自动删掉
+        packageConfig.setController("TTT");
+
+        if(!contextConfig.getEntitySwitch()){
+            packageConfig.setEntity("TTT");
+        }
+
+        if(!contextConfig.getDaoSwitch()){
+            packageConfig.setMapper("TTT");
+            packageConfig.setXml("TTT");
+        }
+
+        if(!contextConfig.getServiceSwitch()){
+            packageConfig.setService("TTT");
+            packageConfig.setServiceImpl("TTT");
+        }
+
+    }
+
+    /**
+     * 删除不必要的代码
+     */
+    public void destory(){
+        String outputDir = globalConfig.getOutputDir() + "/TTT";
+        FileUtil.deleteDir(new File(outputDir));
     }
 
     public AbstractGeneratorConfig() {
         init();
     }
 
-    public AutoGenerator getGenerator() {
+    public void doMpGeneration() {
         AutoGenerator autoGenerator = new AutoGenerator();
         autoGenerator.setGlobalConfig(globalConfig);
         autoGenerator.setDataSource(dataSourceConfig);
         autoGenerator.setStrategy(strategyConfig);
         autoGenerator.setPackageInfo(packageConfig);
-        return autoGenerator;
+        autoGenerator.execute();
+        destory();
     }
 
-    public GunsTemplateEngine getGunsTemplateEngine() {
+    public void doGunsGeneration() {
         GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
         gunsTemplateEngine.setContextConfig(contextConfig);
-        return gunsTemplateEngine;
+        gunsTemplateEngine.start();
     }
 }

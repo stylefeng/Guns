@@ -18,6 +18,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         globalConfig.setEnableCache(false);
         globalConfig.setBaseResultMap(true);
         globalConfig.setBaseColumnList(true);
+        globalConfig.setOpen(false);
         globalConfig.setAuthor("stylefeng");
     }
 
@@ -33,7 +34,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
     @Override
     protected void strategyConfig() {
         //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
-        strategyConfig.setInclude(new String[]{"bill"});
+        //strategyConfig.setInclude(new String[]{"bill"});
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
     }
 
@@ -57,13 +58,13 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
          * 生成器开关
          */
         contextConfig.setEntitySwitch(true);
-        contextConfig.setControllerSwitch(true);
+        contextConfig.setControllerSwitch(false);
         contextConfig.setDaoSwitch(true);
-        contextConfig.setServiceSwitch(true);
-        contextConfig.setIndexPageSwitch(true);
-        contextConfig.setAddPageSwitch(true);
-        contextConfig.setEditPageSwitch(true);
-        contextConfig.setJsSwitch(true);
-        contextConfig.setInfoJsSwitch(true);
+        contextConfig.setServiceSwitch(false);
+        contextConfig.setIndexPageSwitch(false);
+        contextConfig.setAddPageSwitch(false);
+        contextConfig.setEditPageSwitch(false);
+        contextConfig.setJsSwitch(false);
+        contextConfig.setInfoJsSwitch(false);
     }
 }
