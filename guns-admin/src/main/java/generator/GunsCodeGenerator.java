@@ -1,6 +1,7 @@
 package generator;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 import generator.config.GunsGeneratorConfig;
 
 /**
@@ -12,8 +13,15 @@ import generator.config.GunsGeneratorConfig;
 public class GunsCodeGenerator {
 
     public static void main(String[] args) {
-        AutoGenerator generator = new GunsGeneratorConfig().getGenerator();
+
+        //mp的生成器
+        GunsGeneratorConfig gunsGeneratorConfig = new GunsGeneratorConfig();
+        AutoGenerator generator = gunsGeneratorConfig.getGenerator();
         generator.execute();
+
+        //guns的生成器
+        GunsTemplateEngine gunsTemplateEngine = gunsGeneratorConfig.getGunsTemplateEngine();
+        gunsTemplateEngine.start();
     }
 
 }

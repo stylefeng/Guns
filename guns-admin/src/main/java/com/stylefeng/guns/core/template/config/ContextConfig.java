@@ -29,6 +29,7 @@ public class ContextConfig {
     private Boolean infoJsSwitch = true;        //详情页面js
     private Boolean daoSwitch = true;           //dao
     private Boolean serviceSwitch = true;       //service
+    private Boolean entitySwitch = true;        //生成实体的开关
 
     public void init() {
         if (entityName == null) {
@@ -171,5 +172,13 @@ public class ContextConfig {
 
     public void setModelMapperPackageName(String modelMapperPackageName) {
         this.modelMapperPackageName = modelMapperPackageName;
+    }
+
+    public Boolean getEntitySwitch() {
+        return entitySwitch;
+    }
+
+    public void setEntitySwitch(Boolean entitySwitch) {
+        this.entitySwitch = entitySwitch;
     }
 }

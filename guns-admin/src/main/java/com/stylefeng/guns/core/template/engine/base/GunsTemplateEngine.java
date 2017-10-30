@@ -94,13 +94,6 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         if(super.contextConfig.getInfoJsSwitch()){
             generatePageInfoJs();
         }
-        if(super.contextConfig.getDaoSwitch()){
-            generateDao();
-        }
-        if(super.contextConfig.getServiceSwitch()){
-            generateService();
-        }
-
     }
 
     protected abstract void generatePageEditHtml();
@@ -114,9 +107,5 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     protected abstract void generatePageHtml();
 
     protected abstract void generateController();
-
-    protected abstract void generateDao();
-
-    protected abstract void generateService();
 
 }

@@ -58,30 +58,4 @@ public class SimpleTemplateEngine extends GunsTemplateEngine {
         generateFile(super.getContextConfig().getTemplatePrefixPath() + "/Controller.java.btl", controllerPath);
         System.out.println("生成控制器成功!");
     }
-
-    @Override
-    protected void generateDao() {
-        String daoPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getDaoConfig().getDaoPathTemplate(),
-                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
-        generateFile(super.getContextConfig().getTemplatePrefixPath() + "/Dao.java.btl", daoPath);
-        System.out.println("生成Dao成功!");
-
-        String mappingPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getDaoConfig().getXmlPathTemplate(),
-                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
-        generateFile(super.getContextConfig().getTemplatePrefixPath() + "/Mapping.xml.btl", mappingPath);
-        System.out.println("生成Dao Mapping xml成功!");
-    }
-
-    @Override
-    protected void generateService() {
-        String servicePath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getServiceConfig().getServicePathTemplate(),
-                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
-        generateFile(super.getContextConfig().getTemplatePrefixPath() + "/Service.java.btl", servicePath);
-        System.out.println("生成Service成功!");
-
-        String serviceImplPath = ToolUtil.format(super.getContextConfig().getProjectPath() + super.getServiceConfig().getServiceImplPathTemplate(),
-                ToolUtil.firstLetterToUpper(super.getContextConfig().getBizEnName()));
-        generateFile(super.getContextConfig().getTemplatePrefixPath() + "/ServiceImpl.java.btl", serviceImplPath);
-        System.out.println("生成ServiceImpl成功!");
-    }
 }
