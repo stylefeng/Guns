@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="menuInfoForm">
+
+            <input type="hidden" id="id" value="${menu.id}">
+            <input type="hidden" id="ismenuValue" value="${menu.ismenu}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="name" name="名称" value="${menu.name}" underline="true" />
+                    <#input id="code" name="菜单编号" value="${menu.code}" underline="true" />
+                    <#input id="pcodeName" name="父级编号" value="${menu.pcodeName}" underline="true"
+                            hidden="pcode" readonly="readonly" hiddenValue="${menu.pcode}"
+                            clickFun="MenuInfoDlg.showMenuSelectTree(); return false;"
+                            style="background-color: #ffffff !important;"
+                            selectFlag="true" selectId="pcodeTreeDiv" selectTreeId="pcodeTree" selectStyle="width:244px !important;"/>
+                    <#select id="ismenu" name="是否是菜单">
+                        <option value="1">是</option>
+                        <option value="0">不是</option>
+                    </#select>
+
+                </div>
+                <div class="col-sm-6">
+                    <#input id="url" name="请求地址" value="${menu.url}" underline="true" />
+                    <#input id="num" name="排序" value="${menu.num}" underline="true" />
+                    <#input id="icon" name="图标" underline="false" value="${menu.icon}"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="MenuInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="MenuInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/menu/menu_info.js"></script>
+@}
