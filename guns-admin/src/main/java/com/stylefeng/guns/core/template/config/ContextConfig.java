@@ -30,6 +30,7 @@ public class ContextConfig {
     private Boolean daoSwitch = true;           //dao
     private Boolean serviceSwitch = true;       //service
     private Boolean entitySwitch = true;        //生成实体的开关
+    private Boolean sqlSwitch = true;           //生成sql的开关
 
     public void init() {
         if (entityName == null) {
@@ -180,5 +181,13 @@ public class ContextConfig {
 
     public void setEntitySwitch(Boolean entitySwitch) {
         this.entitySwitch = entitySwitch;
+    }
+
+    public Boolean getSqlSwitch() {
+        return sqlSwitch;
+    }
+
+    public void setSqlSwitch(Boolean sqlSwitch) {
+        this.sqlSwitch = sqlSwitch;
     }
 }

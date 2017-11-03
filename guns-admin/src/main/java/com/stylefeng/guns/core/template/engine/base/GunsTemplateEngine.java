@@ -44,24 +44,25 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         groupTemplate.registerFunctionPackage("tool", new ToolUtil());
     }
 
-    protected void configTemplate(Template template){
+    protected void configTemplate(Template template) {
         template.binding("controller", super.getControllerConfig());
         template.binding("context", super.getContextConfig());
         template.binding("dao", super.getDaoConfig());
         template.binding("service", super.getServiceConfig());
+        template.binding("sqls", super.sqlConfig);
     }
 
-    protected void generateFile(String template,String filePath){
+    protected void generateFile(String template, String filePath) {
         Template pageTemplate = groupTemplate.getTemplate(template);
         configTemplate(pageTemplate);
-        if(PlatformUtil.isWindows()){
-            filePath = filePath.replaceAll("/+|\\\\+","\\\\");
-        }else{
-            filePath = filePath.replaceAll("/+|\\\\+","/");
+        if (PlatformUtil.isWindows()) {
+            filePath = filePath.replaceAll("/+|\\\\+", "\\\\");
+        } else {
+            filePath = filePath.replaceAll("/+|\\\\+", "/");
         }
         File file = new File(filePath);
         File parentFile = file.getParentFile();
-        if(!parentFile.exists()){
+        if (!parentFile.exists()) {
             parentFile.mkdirs();
         }
         try {
@@ -76,23 +77,26 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         super.initConfig();
 
         //生成模板
-        if(super.contextConfig.getControllerSwitch()){
+        if (super.contextConfig.getControllerSwitch()) {
             generateController();
         }
-        if(super.contextConfig.getIndexPageSwitch()){
+        if (super.contextConfig.getIndexPageSwitch()) {
             generatePageHtml();
         }
-        if(super.contextConfig.getAddPageSwitch()){
+        if (super.contextConfig.getAddPageSwitch()) {
             generatePageAddHtml();
         }
-        if(super.contextConfig.getEditPageSwitch()){
+        if (super.contextConfig.getEditPageSwitch()) {
             generatePageEditHtml();
         }
-        if(super.contextConfig.getJsSwitch()){
+        if (super.contextConfig.getJsSwitch()) {
             generatePageJs();
         }
-        if(super.contextConfig.getInfoJsSwitch()){
+        if (super.contextConfig.getInfoJsSwitch()) {
             generatePageInfoJs();
+        }
+        if (super.contextConfig.getSqlSwitch()) {
+            generateSqls();
         }
     }
 
@@ -107,5 +111,7 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     protected abstract void generatePageHtml();
 
     protected abstract void generateController();
+
+    protected abstract void generateSqls();
 
 }

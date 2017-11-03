@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.stylefeng.guns.core.template.config.ContextConfig;
+import com.stylefeng.guns.core.template.config.SqlConfig;
 import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
 import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 import com.stylefeng.guns.core.util.FileUtil;
@@ -37,6 +38,8 @@ public abstract class AbstractGeneratorConfig {
      */
     ContextConfig contextConfig = new ContextConfig();
 
+    SqlConfig sqlConfig = new SqlConfig();
+
     protected abstract void globalConfig();
 
     protected abstract void dataSourceConfig();
@@ -60,16 +63,16 @@ public abstract class AbstractGeneratorConfig {
         //controller没用掉,生成之后会自动删掉
         packageConfig.setController("TTT");
 
-        if(!contextConfig.getEntitySwitch()){
+        if (!contextConfig.getEntitySwitch()) {
             packageConfig.setEntity("TTT");
         }
 
-        if(!contextConfig.getDaoSwitch()){
+        if (!contextConfig.getDaoSwitch()) {
             packageConfig.setMapper("TTT");
             packageConfig.setXml("TTT");
         }
 
-        if(!contextConfig.getServiceSwitch()){
+        if (!contextConfig.getServiceSwitch()) {
             packageConfig.setService("TTT");
             packageConfig.setServiceImpl("TTT");
         }
@@ -79,7 +82,7 @@ public abstract class AbstractGeneratorConfig {
     /**
      * 删除不必要的代码
      */
-    public void destory(){
+    public void destory() {
         String outputDir = globalConfig.getOutputDir() + "/TTT";
         FileUtil.deleteDir(new File(outputDir));
     }
@@ -101,6 +104,8 @@ public abstract class AbstractGeneratorConfig {
     public void doGunsGeneration() {
         GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
         gunsTemplateEngine.setContextConfig(contextConfig);
+        sqlConfig.setConnection(dataSourceConfig.getConn());
+        gunsTemplateEngine.setSqlConfig(sqlConfig);
         gunsTemplateEngine.start();
     }
 }

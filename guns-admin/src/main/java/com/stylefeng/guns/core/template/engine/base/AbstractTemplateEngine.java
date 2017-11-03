@@ -15,6 +15,7 @@ public class AbstractTemplateEngine {
     protected PageConfig pageConfig;                      //页面的控制器
     protected DaoConfig daoConfig;                        //Dao配置
     protected ServiceConfig serviceConfig;                //Service配置
+    protected SqlConfig sqlConfig;                        //sql配置
 
     public void initConfig() {
         if (this.contextConfig == null) {
@@ -32,7 +33,9 @@ public class AbstractTemplateEngine {
         if (this.serviceConfig == null) {
             this.serviceConfig = new ServiceConfig();
         }
-
+        if (this.sqlConfig == null) {
+            this.sqlConfig = new SqlConfig();
+        }
         this.contextConfig.init();
 
         this.controllerConfig.setContextConfig(this.contextConfig);
@@ -46,6 +49,9 @@ public class AbstractTemplateEngine {
 
         this.pageConfig.setContextConfig(this.contextConfig);
         this.pageConfig.init();
+
+        this.sqlConfig.setContextConfig(this.contextConfig);
+        this.sqlConfig.init();
     }
 
     public PageConfig getPageConfig() {
@@ -86,6 +92,14 @@ public class AbstractTemplateEngine {
 
     public void setServiceConfig(ServiceConfig serviceConfig) {
         this.serviceConfig = serviceConfig;
+    }
+
+    public SqlConfig getSqlConfig() {
+        return sqlConfig;
+    }
+
+    public void setSqlConfig(SqlConfig sqlConfig) {
+        this.sqlConfig = sqlConfig;
     }
 }
 
