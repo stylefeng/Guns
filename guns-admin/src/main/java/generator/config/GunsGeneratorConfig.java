@@ -13,7 +13,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
 
     @Override
     protected void globalConfig() {
-        globalConfig.setOutputDir("/Users/stylefeng/work/ideaSpace/guns/guns-admin/src/main/java");
+        globalConfig.setOutputDir("D:\\ideaSpace\\guns\\guns-admin\\src\\main\\java");
         globalConfig.setFileOverride(true);
         globalConfig.setEnableCache(false);
         globalConfig.setBaseResultMap(true);
@@ -34,7 +34,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
     @Override
     protected void strategyConfig() {
         //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
-        //strategyConfig.setInclude(new String[]{"bill"});
+        strategyConfig.setInclude(new String[]{"my_order"});
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
     }
 
@@ -49,17 +49,18 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
     @Override
     protected void contextConfig() {
         contextConfig.setBizChName("记账管理");
-        contextConfig.setBizEnName("bill");
+        contextConfig.setBizEnName("order");
         contextConfig.setModuleName("system");
-        contextConfig.setProjectPath("/Users/stylefeng/work/ideaSpace/guns/guns-admin");
-        contextConfig.setEntityName("Bill");
+        contextConfig.setProjectPath("D:\\ideaSpace\\guns\\guns-admin");
+        contextConfig.setEntityName("MyOrder");
+        sqlConfig.setParentMenuName("系统管理");
 
         /**
          * mybatis-plus 生成器开关
          */
-        contextConfig.setEntitySwitch(false);
-        contextConfig.setDaoSwitch(false);
-        contextConfig.setServiceSwitch(false);
+        contextConfig.setEntitySwitch(true);
+        contextConfig.setDaoSwitch(true);
+        contextConfig.setServiceSwitch(true);
 
         /**
          * guns 生成器开关
@@ -70,5 +71,6 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setEditPageSwitch(true);
         contextConfig.setJsSwitch(true);
         contextConfig.setInfoJsSwitch(true);
+        contextConfig.setSqlSwitch(true);
     }
 }
