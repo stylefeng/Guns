@@ -29,7 +29,7 @@ public class ControllerConfig {
         imports.add("com.stylefeng.guns.core.log.LogObjectHolder");
         imports.add("org.springframework.web.bind.annotation.RequestParam");
         imports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
-        imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service" + ".I" + contextConfig.getBizEnBigName() + "Service");
+        imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service" + ".I" + contextConfig.getEntityName() + "Service");
         this.imports = imports;
         this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".controller";
         this.controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";

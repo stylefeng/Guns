@@ -17,7 +17,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     private String PREFIX = "/${context.moduleName}/${context.bizEnName}/";
 
     @Autowired
-    private I${context.bizEnBigName}Service ${context.bizEnName}Service;
+    private I${context.entityName}Service ${context.bizEnName}Service;
 
     /**
      * 跳转到${context.bizChName}首页
