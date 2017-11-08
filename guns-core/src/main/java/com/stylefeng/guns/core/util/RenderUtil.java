@@ -21,6 +21,7 @@ public class RenderUtil {
      */
     public static void renderJson(HttpServletResponse response, Object jsonObject) {
         try {
+            response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
             writer.write(JSON.toJSONString(jsonObject));
