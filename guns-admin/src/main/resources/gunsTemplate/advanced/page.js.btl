@@ -14,7 +14,12 @@ var ${context.bizEnBigName} = {
 ${context.bizEnBigName}.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'}
+        <% for(item in table.fields!){ %>
+        <% if(itemLP.last != true){ %>
+            {title: '${item.comment}', field: '${item.propertyName}', visible: true, align: 'center', valign: 'middle'},
+        <% }else{ %>
+            {title: '${item.comment}', field: '${item.propertyName}', visible: true, align: 'center', valign: 'middle'}
+        <% }} %>
     ];
 };
 

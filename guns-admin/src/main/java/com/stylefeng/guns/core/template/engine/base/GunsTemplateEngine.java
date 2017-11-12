@@ -45,11 +45,12 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
     }
 
     protected void configTemplate(Template template) {
-        template.binding("controller", super.getControllerConfig());
-        template.binding("context", super.getContextConfig());
-        template.binding("dao", super.getDaoConfig());
-        template.binding("service", super.getServiceConfig());
+        template.binding("controller", super.controllerConfig);
+        template.binding("context", super.contextConfig);
+        template.binding("dao", super.daoConfig);
+        template.binding("service", super.serviceConfig);
         template.binding("sqls", super.sqlConfig);
+        template.binding("table",super.tableInfo);
     }
 
     protected void generateFile(String template, String filePath) {

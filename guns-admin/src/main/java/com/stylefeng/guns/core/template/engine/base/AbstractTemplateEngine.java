@@ -1,5 +1,6 @@
 package com.stylefeng.guns.core.template.engine.base;
 
+import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.stylefeng.guns.core.template.config.*;
 
 /**
@@ -16,6 +17,7 @@ public class AbstractTemplateEngine {
     protected DaoConfig daoConfig;                        //Dao配置
     protected ServiceConfig serviceConfig;                //Service配置
     protected SqlConfig sqlConfig;                        //sql配置
+    protected TableInfo tableInfo;                        //表的信息
 
     public void initConfig() {
         if (this.contextConfig == null) {
@@ -100,6 +102,14 @@ public class AbstractTemplateEngine {
 
     public void setSqlConfig(SqlConfig sqlConfig) {
         this.sqlConfig = sqlConfig;
+    }
+
+    public TableInfo getTableInfo() {
+        return tableInfo;
+    }
+
+    public void setTableInfo(TableInfo tableInfo) {
+        this.tableInfo = tableInfo;
     }
 }
 
