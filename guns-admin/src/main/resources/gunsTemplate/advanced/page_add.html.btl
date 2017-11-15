@@ -7,11 +7,25 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-
+                    <% var leftSize = tool.toInt((table.fields.~size + 1) / 2); %>
+                    <% var rightSize = tool.toInt(table.fields.~size - leftSize); %>
+                    <% for(var i=0;i<leftSize;i++){ %>
+                        <% if(i != (leftSize-1) ){ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}" underline="true"/>
+                        <% }else{ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}"/>
+                        <% } %>
+                    <% } %>
                 </div>
 
                 <div class="col-sm-6">
-
+                    <% for(var i=leftSize;i<table.fields.~size;i++){ %>
+                        <% if(i != (rightSize-1) ){ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}" underline="true"/>
+                        <% }else{ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}"/>
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
 

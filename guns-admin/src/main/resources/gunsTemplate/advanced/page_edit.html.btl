@@ -3,15 +3,29 @@
     <div class="ibox-content">
         <div class="form-horizontal">
 
-            <input type="hidden" id="id" value="\${${context.bizEnName}.id}">
+            <input type="hidden" id="id" value="\${item.id}">
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-
+                    <% var leftSize = tool.toInt((table.fields.~size + 1) / 2); %>
+                    <% var rightSize = tool.toInt(table.fields.~size - leftSize); %>
+                    <% for(var i=0;i<leftSize;i++){ %>
+                        <% if(i != (leftSize-1) ){ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}" value="\${item.${table.fields[i].propertyName}}" underline="true"/>
+                        <% }else{ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}" value="\${item.${table.fields[i].propertyName}}" />
+                        <% } %>
+                    <% } %>
                 </div>
 
                 <div class="col-sm-6">
-
+                    <% for(var i=leftSize;i<table.fields.~size;i++){ %>
+                        <% if(i != (table.fields.~size-1) ){ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}" value="\${item.${table.fields[i].propertyName}}" underline="true"/>
+                        <% }else{ %>
+                            <#input id="${table.fields[i].propertyName}" name="${table.fields[i].comment}" value="\${item.${table.fields[i].propertyName}}" />
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
 
