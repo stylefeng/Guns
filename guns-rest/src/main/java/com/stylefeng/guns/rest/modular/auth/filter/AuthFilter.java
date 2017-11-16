@@ -44,7 +44,7 @@ public class AuthFilter extends OncePerRequestFilter {
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             authToken = requestHeader.substring(7);
 
-            //验证token是否过期
+            //验证token是否过期,包含了验证jwt是否正确
             try {
                 boolean flag = jwtTokenUtil.isTokenExpired(authToken);
                 if (flag) {
