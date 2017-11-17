@@ -544,7 +544,7 @@ public class ToolUtil {
             BigDecimal bigDecimal = new BigDecimal((Double) val);
             return bigDecimal.intValue();
         } else {
-            return (Integer) val;
+            return Integer.valueOf(val.toString());
         }
 
     }
