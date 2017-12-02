@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Date 2017/5/21 12:06
  */
 @SpringBootApplication
-public class GunsApplication extends WebMvcConfigurerAdapter{
+public class GunsApplication extends WebMvcConfigurerAdapter {
 
     protected final static Logger logger = LoggerFactory.getLogger(GunsApplication.class);
 
@@ -28,7 +28,7 @@ public class GunsApplication extends WebMvcConfigurerAdapter{
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if(gunsProperties.getSwaggerOpen()){
+        if (gunsProperties.getSwaggerOpen()) {
             registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
             registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         }
