@@ -28,7 +28,7 @@ public class FlowableTest {
     @Before
     public void init() {
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl("jdbc:mysql://127.0.0.1:3306/flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull")
+                .setJdbcUrl("jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull")
                 .setJdbcUsername("root")
                 .setJdbcPassword("root")
                 .setJdbcDriver("com.mysql.jdbc.Driver")
@@ -44,7 +44,7 @@ public class FlowableTest {
     public void deploy() {
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deployment = repositoryService.createDeployment()
-                .addClasspathResource("holiday-request.bpmn20.xml")
+                .addClasspathResource("ExpenseProcess.bpmn20.xml")
                 .deploy();
 
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
@@ -58,7 +58,9 @@ public class FlowableTest {
      */
     @Test
     public void start() {
-        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey("holidayRequest");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("taskUser", "fsn");
+        ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey("Expense", map);
         System.out.println("pid = " + processInstance.getId());
         System.out.println("activityId = " + processInstance.getActivityId());
         System.out.println("getProcessDefinitionId = " + processInstance.getProcessDefinitionId());
@@ -89,8 +91,7 @@ public class FlowableTest {
      */
     @Test
     public void delProcess() {
-        processEngine.getRepositoryService().deleteDeployment("22501", true);
-        processEngine.getRepositoryService().deleteDeployment("25001", true);
+        processEngine.getRepositoryService().deleteDeployment("1", true);
         System.out.println("删除成功");
     }
 
