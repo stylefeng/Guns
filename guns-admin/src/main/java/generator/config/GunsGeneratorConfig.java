@@ -13,7 +13,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
 
     @Override
     protected void globalConfig() {
-        globalConfig.setOutputDir("/Users/stylefeng/work/ideaSpace/guns/guns-admin/src/main/java");//写自己项目的绝对路径,注意具体到java目录
+        globalConfig.setOutputDir("D:\\ideaSpace\\guns\\guns-admin\\src\\main\\java");//写自己项目的绝对路径,注意具体到java目录
         globalConfig.setFileOverride(true);
         globalConfig.setEnableCache(false);
         globalConfig.setBaseResultMap(true);
@@ -34,7 +34,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
     @Override
     protected void strategyConfig() {
         //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
-        strategyConfig.setInclude(new String[]{"user"});//这里限制需要生成的表,不写则是生成所有表
+        strategyConfig.setInclude(new String[]{"expense"});//这里限制需要生成的表,不写则是生成所有表
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
     }
 
@@ -48,12 +48,12 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
 
     @Override
     protected void contextConfig() {
-        contextConfig.setBizChName("用户管理");
-        contextConfig.setBizEnName("user");
-        contextConfig.setModuleName("system");
-        contextConfig.setProjectPath("/Users/stylefeng/work/ideaSpace/guns/guns-admin");//写自己项目的绝对路径
-        contextConfig.setEntityName("User");
-        sqlConfig.setParentMenuName("系统管理");//这里写已有菜单的名称,当做父节点
+        contextConfig.setBizChName("报销管理");
+        contextConfig.setBizEnName("expense");
+        contextConfig.setModuleName("flowable");
+        contextConfig.setProjectPath("D:\\ideaSpace\\guns\\guns-admin");//写自己项目的绝对路径
+        contextConfig.setEntityName("Expense");
+        sqlConfig.setParentMenuName(null);//这里写已有菜单的名称,当做父节点
 
         /**
          * mybatis-plus 生成器开关
