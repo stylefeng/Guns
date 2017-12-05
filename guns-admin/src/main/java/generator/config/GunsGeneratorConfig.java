@@ -59,18 +59,18 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
          * mybatis-plus 生成器开关
          */
         contextConfig.setEntitySwitch(true);
-        contextConfig.setDaoSwitch(true);
-        contextConfig.setServiceSwitch(true);
+        contextConfig.setDaoSwitch(false);
+        contextConfig.setServiceSwitch(false);
 
         /**
          * guns 生成器开关
          */
-        contextConfig.setControllerSwitch(true);
-        contextConfig.setIndexPageSwitch(true);
-        contextConfig.setAddPageSwitch(true);
-        contextConfig.setEditPageSwitch(true);
-        contextConfig.setJsSwitch(true);
-        contextConfig.setInfoJsSwitch(true);
-        contextConfig.setSqlSwitch(true);
+        contextConfig.setControllerSwitch(false);
+        contextConfig.setIndexPageSwitch(false);
+        contextConfig.setAddPageSwitch(false);
+        contextConfig.setEditPageSwitch(false);
+        contextConfig.setJsSwitch(false);
+        contextConfig.setInfoJsSwitch(false);
+        contextConfig.setSqlSwitch(false);
     }
 }

@@ -15,7 +15,7 @@ guns:
 
 ###################  项目启动端口  ###################
 server:
-  port: 8080
+  port: 80
 
 ###################  beetl配置  ###################
 beetl:
@@ -61,7 +61,7 @@ mybatis-plus:
     db-column-underline: false
     refresh-mapper: true
   configuration:
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: false
     cache-enabled: true #配置的缓存的全局开关
     lazyLoadingEnabled: true #延时加载的开关
     multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性

@@ -1,5 +1,6 @@
 package com.stylefeng.guns.flowable;
 
+import com.alibaba.fastjson.JSON;
 import org.flowable.engine.*;
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
@@ -54,6 +55,21 @@ public class FlowableTest {
     }
 
     /**
+     * 查看发布
+     */
+    @Test
+    public void findDeploy() {
+        RepositoryService repositoryService = processEngine.getRepositoryService();
+        List<Deployment> list = repositoryService.createDeploymentQuery().list();
+        for (Deployment deployment : list) {
+            System.out.println(deployment.getCategory());
+            System.out.println(deployment.getName());
+            System.out.println("deploy = " + deployment.getId());
+            System.out.println("key = " + deployment.getKey());
+        }
+    }
+
+    /**
      * 启动流程
      */
     @Test
@@ -71,10 +87,18 @@ public class FlowableTest {
      */
     @Test
     public void queryProcess() {
+        List<ProcessInstance> list1 = processEngine.getRuntimeService().createProcessInstanceQuery().list();
+        for (ProcessInstance processDefinition : list1) {
+            System.out.println("id = " + processDefinition.getId());
+            System.out.println("getDeploymentId = " + processDefinition.getDeploymentId());
+            System.out.println("getTenantId = " + processDefinition.getTenantId());
+            System.out.println("name = " + processDefinition.getName());
+        }
+
+        System.err.println("---------------------------------");
         List<ProcessDefinition> list = processEngine.getRepositoryService()
                 .createProcessDefinitionQuery()
                 .list();
-
         for (ProcessDefinition processDefinition : list) {
             System.out.println("id = " + processDefinition.getId());
             System.out.println("getDeploymentId = " + processDefinition.getDeploymentId());
@@ -91,7 +115,8 @@ public class FlowableTest {
      */
     @Test
     public void delProcess() {
-        processEngine.getRepositoryService().deleteDeployment("1", true);
+        processEngine.getRuntimeService().deleteProcessInstance("67501","abcd");
+        //processEngine.getRepositoryService().deleteDeployment("25001", true);
         System.out.println("删除成功");
     }
 
@@ -100,15 +125,27 @@ public class FlowableTest {
      */
     @Test
     public void queryMyTask() {
-        String name = "fsn";
+        String name = "张三";
 
         TaskQuery taskQuery = processEngine.getTaskService().createTaskQuery().taskAssignee(name);
         List<Task> list = taskQuery.list();
         for (Task task : list) {
             System.out.println("name = " + task.getName());
+            System.out.println(JSON.toJSON(task.getTaskLocalVariables()));
         }
 
         System.out.println("查询完毕!");
+    }
+
+    /**
+     * 完成任务
+     */
+    @Test
+    public void complete() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("money", 600);
+        TaskService taskService = processEngine.getTaskService();
+        taskService.complete("47513", map);
     }
 
     public static void main(String[] args) {

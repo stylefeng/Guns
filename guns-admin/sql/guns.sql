@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-07-11 22:39:28
+Date: 2017-12-05 22:56:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `dept` (
   `tips` varchar(255) DEFAULT NULL COMMENT '提示',
   `version` int(11) DEFAULT NULL COMMENT '版本（乐观锁保留字段）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='部门表';
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='部门表';
 
 -- ----------------------------
 -- Records of dept
@@ -67,6 +67,28 @@ INSERT INTO `dict` VALUES ('37', '2', '35', '冻结', null);
 INSERT INTO `dict` VALUES ('38', '3', '35', '已删除', null);
 
 -- ----------------------------
+-- Table structure for expense
+-- ----------------------------
+DROP TABLE IF EXISTS `expense`;
+CREATE TABLE `expense` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `money` decimal(20,2) DEFAULT NULL COMMENT '报销金额',
+  `desc` varchar(255) DEFAULT '' COMMENT '描述',
+  `createtime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `state` int(11) DEFAULT NULL COMMENT '状态: 1.待提交  2:待审核   3.审核通过 4:驳回',
+  `userid` int(11) DEFAULT NULL COMMENT '用户id',
+  `processId` varchar(255) DEFAULT NULL COMMENT '流程定义id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='报销表';
+
+-- ----------------------------
+-- Records of expense
+-- ----------------------------
+INSERT INTO `expense` VALUES ('20', '100.00', '餐饮', '2017-12-05 22:52:48', '3', '1', '92501');
+INSERT INTO `expense` VALUES ('21', '700.00', '住宿费', '2017-12-05 22:53:22', '3', '1', '92517');
+INSERT INTO `expense` VALUES ('22', '100.00', '测试', '2017-12-05 22:53:56', '3', '1', '92533');
+
+-- ----------------------------
 -- Table structure for login_log
 -- ----------------------------
 DROP TABLE IF EXISTS `login_log`;
@@ -79,15 +101,12 @@ CREATE TABLE `login_log` (
   `message` text COMMENT '具体消息',
   `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8 COMMENT='登录记录';
+) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
-INSERT INTO `login_log` VALUES ('126', '退出日志', '1', '2017-06-04 10:21:55', '成功', null, '127.0.0.1');
-INSERT INTO `login_log` VALUES ('127', '登录日志', '1', '2017-06-04 10:21:59', '成功', null, '127.0.0.1');
-INSERT INTO `login_log` VALUES ('128', '退出日志', '1', '2017-06-04 10:22:59', '成功', null, '127.0.0.1');
-INSERT INTO `login_log` VALUES ('129', '登录日志', '1', '2017-06-04 10:23:01', '成功', null, '127.0.0.1');
+INSERT INTO `login_log` VALUES ('213', '退出日志', '1', '2017-12-05 22:56:32', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -108,7 +127,7 @@ CREATE TABLE `menu` (
   `status` int(65) DEFAULT NULL COMMENT '菜单状态 :  1:启用   0:不启用',
   `isopen` int(11) DEFAULT NULL COMMENT '是否打开:    1:打开   0:不打开',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of menu
@@ -168,6 +187,9 @@ INSERT INTO `menu` VALUES ('164', 'role_list', 'role', '[0],[system],[role],', '
 INSERT INTO `menu` VALUES ('165', 'to_assign_role', 'mgr', '[0],[system],[mgr],', '分配角色跳转', '', '/mgr/role_assign', '8', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('166', 'to_user_edit', 'mgr', '[0],[system],[mgr],', '编辑用户跳转', '', '/mgr/user_edit', '9', '3', '0', null, '1', null);
 INSERT INTO `menu` VALUES ('167', 'mgr_list', 'mgr', '[0],[system],[mgr],', '用户列表', '', '/mgr/list', '10', '3', '0', null, '1', null);
+INSERT INTO `menu` VALUES ('168', 'expense', '0', '[0],', '报销管理', 'fa-clone', '#', '4', '1', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('169', 'expense_fill', 'expense', '[0],[expense],', '报销申请', '', '/expense', '1', '2', '1', null, '1', null);
+INSERT INTO `menu` VALUES ('170', 'expense_progress', 'expense', '[0],[expense],', '报销审批', '', '/process', '2', '2', '1', null, '1', null);
 
 -- ----------------------------
 -- Table structure for notice
@@ -181,7 +203,7 @@ CREATE TABLE `notice` (
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `creater` int(11) DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='通知表';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='通知表';
 
 -- ----------------------------
 -- Records of notice
@@ -204,14 +226,13 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
   `message` text COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=540 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
-INSERT INTO `operation_log` VALUES ('480', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-06-03 23:04:22', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('481', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-06-03 23:04:25', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('482', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-06-04 10:22:58', '成功', '菜单名称=分配角色跳转;;;字段名称:url地址,旧值:/role/role_assign,新值:/mgr/role_assign');
+INSERT INTO `operation_log` VALUES ('538', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-12-05 22:56:25', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('539', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-12-05 22:56:28', '成功', '主键id=null');
 
 -- ----------------------------
 -- Table structure for relation
@@ -222,7 +243,7 @@ CREATE TABLE `relation` (
   `menuid` int(11) DEFAULT NULL COMMENT '菜单id',
   `roleid` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3679 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=3737 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
 -- Records of relation
@@ -247,61 +268,64 @@ INSERT INTO `relation` VALUES ('3393', '121', '5');
 INSERT INTO `relation` VALUES ('3394', '122', '5');
 INSERT INTO `relation` VALUES ('3395', '150', '5');
 INSERT INTO `relation` VALUES ('3396', '151', '5');
-INSERT INTO `relation` VALUES ('3624', '105', '1');
-INSERT INTO `relation` VALUES ('3625', '106', '1');
-INSERT INTO `relation` VALUES ('3626', '107', '1');
-INSERT INTO `relation` VALUES ('3627', '108', '1');
-INSERT INTO `relation` VALUES ('3628', '109', '1');
-INSERT INTO `relation` VALUES ('3629', '110', '1');
-INSERT INTO `relation` VALUES ('3630', '111', '1');
-INSERT INTO `relation` VALUES ('3631', '112', '1');
-INSERT INTO `relation` VALUES ('3632', '113', '1');
-INSERT INTO `relation` VALUES ('3633', '165', '1');
-INSERT INTO `relation` VALUES ('3634', '166', '1');
-INSERT INTO `relation` VALUES ('3635', '167', '1');
-INSERT INTO `relation` VALUES ('3636', '114', '1');
-INSERT INTO `relation` VALUES ('3637', '115', '1');
-INSERT INTO `relation` VALUES ('3638', '116', '1');
-INSERT INTO `relation` VALUES ('3639', '117', '1');
-INSERT INTO `relation` VALUES ('3640', '118', '1');
-INSERT INTO `relation` VALUES ('3641', '162', '1');
-INSERT INTO `relation` VALUES ('3642', '163', '1');
-INSERT INTO `relation` VALUES ('3643', '164', '1');
-INSERT INTO `relation` VALUES ('3644', '119', '1');
-INSERT INTO `relation` VALUES ('3645', '120', '1');
-INSERT INTO `relation` VALUES ('3646', '121', '1');
-INSERT INTO `relation` VALUES ('3647', '122', '1');
-INSERT INTO `relation` VALUES ('3648', '150', '1');
-INSERT INTO `relation` VALUES ('3649', '151', '1');
-INSERT INTO `relation` VALUES ('3650', '128', '1');
-INSERT INTO `relation` VALUES ('3651', '134', '1');
-INSERT INTO `relation` VALUES ('3652', '158', '1');
-INSERT INTO `relation` VALUES ('3653', '159', '1');
-INSERT INTO `relation` VALUES ('3654', '130', '1');
-INSERT INTO `relation` VALUES ('3655', '131', '1');
-INSERT INTO `relation` VALUES ('3656', '135', '1');
-INSERT INTO `relation` VALUES ('3657', '136', '1');
-INSERT INTO `relation` VALUES ('3658', '137', '1');
-INSERT INTO `relation` VALUES ('3659', '152', '1');
-INSERT INTO `relation` VALUES ('3660', '153', '1');
-INSERT INTO `relation` VALUES ('3661', '154', '1');
-INSERT INTO `relation` VALUES ('3662', '132', '1');
-INSERT INTO `relation` VALUES ('3663', '138', '1');
-INSERT INTO `relation` VALUES ('3664', '139', '1');
-INSERT INTO `relation` VALUES ('3665', '140', '1');
-INSERT INTO `relation` VALUES ('3666', '155', '1');
-INSERT INTO `relation` VALUES ('3667', '156', '1');
-INSERT INTO `relation` VALUES ('3668', '157', '1');
-INSERT INTO `relation` VALUES ('3669', '133', '1');
-INSERT INTO `relation` VALUES ('3670', '160', '1');
-INSERT INTO `relation` VALUES ('3671', '161', '1');
-INSERT INTO `relation` VALUES ('3672', '141', '1');
-INSERT INTO `relation` VALUES ('3673', '142', '1');
-INSERT INTO `relation` VALUES ('3674', '143', '1');
-INSERT INTO `relation` VALUES ('3675', '144', '1');
-INSERT INTO `relation` VALUES ('3676', '148', '1');
-INSERT INTO `relation` VALUES ('3677', '145', '1');
-INSERT INTO `relation` VALUES ('3678', '149', '1');
+INSERT INTO `relation` VALUES ('3679', '105', '1');
+INSERT INTO `relation` VALUES ('3680', '106', '1');
+INSERT INTO `relation` VALUES ('3681', '107', '1');
+INSERT INTO `relation` VALUES ('3682', '108', '1');
+INSERT INTO `relation` VALUES ('3683', '109', '1');
+INSERT INTO `relation` VALUES ('3684', '110', '1');
+INSERT INTO `relation` VALUES ('3685', '111', '1');
+INSERT INTO `relation` VALUES ('3686', '112', '1');
+INSERT INTO `relation` VALUES ('3687', '113', '1');
+INSERT INTO `relation` VALUES ('3688', '165', '1');
+INSERT INTO `relation` VALUES ('3689', '166', '1');
+INSERT INTO `relation` VALUES ('3690', '167', '1');
+INSERT INTO `relation` VALUES ('3691', '114', '1');
+INSERT INTO `relation` VALUES ('3692', '115', '1');
+INSERT INTO `relation` VALUES ('3693', '116', '1');
+INSERT INTO `relation` VALUES ('3694', '117', '1');
+INSERT INTO `relation` VALUES ('3695', '118', '1');
+INSERT INTO `relation` VALUES ('3696', '162', '1');
+INSERT INTO `relation` VALUES ('3697', '163', '1');
+INSERT INTO `relation` VALUES ('3698', '164', '1');
+INSERT INTO `relation` VALUES ('3699', '119', '1');
+INSERT INTO `relation` VALUES ('3700', '120', '1');
+INSERT INTO `relation` VALUES ('3701', '121', '1');
+INSERT INTO `relation` VALUES ('3702', '122', '1');
+INSERT INTO `relation` VALUES ('3703', '150', '1');
+INSERT INTO `relation` VALUES ('3704', '151', '1');
+INSERT INTO `relation` VALUES ('3705', '128', '1');
+INSERT INTO `relation` VALUES ('3706', '134', '1');
+INSERT INTO `relation` VALUES ('3707', '158', '1');
+INSERT INTO `relation` VALUES ('3708', '159', '1');
+INSERT INTO `relation` VALUES ('3709', '130', '1');
+INSERT INTO `relation` VALUES ('3710', '131', '1');
+INSERT INTO `relation` VALUES ('3711', '135', '1');
+INSERT INTO `relation` VALUES ('3712', '136', '1');
+INSERT INTO `relation` VALUES ('3713', '137', '1');
+INSERT INTO `relation` VALUES ('3714', '152', '1');
+INSERT INTO `relation` VALUES ('3715', '153', '1');
+INSERT INTO `relation` VALUES ('3716', '154', '1');
+INSERT INTO `relation` VALUES ('3717', '132', '1');
+INSERT INTO `relation` VALUES ('3718', '138', '1');
+INSERT INTO `relation` VALUES ('3719', '139', '1');
+INSERT INTO `relation` VALUES ('3720', '140', '1');
+INSERT INTO `relation` VALUES ('3721', '155', '1');
+INSERT INTO `relation` VALUES ('3722', '156', '1');
+INSERT INTO `relation` VALUES ('3723', '157', '1');
+INSERT INTO `relation` VALUES ('3724', '133', '1');
+INSERT INTO `relation` VALUES ('3725', '160', '1');
+INSERT INTO `relation` VALUES ('3726', '161', '1');
+INSERT INTO `relation` VALUES ('3727', '141', '1');
+INSERT INTO `relation` VALUES ('3728', '142', '1');
+INSERT INTO `relation` VALUES ('3729', '143', '1');
+INSERT INTO `relation` VALUES ('3730', '144', '1');
+INSERT INTO `relation` VALUES ('3731', '148', '1');
+INSERT INTO `relation` VALUES ('3732', '145', '1');
+INSERT INTO `relation` VALUES ('3733', '149', '1');
+INSERT INTO `relation` VALUES ('3734', '168', '1');
+INSERT INTO `relation` VALUES ('3735', '169', '1');
+INSERT INTO `relation` VALUES ('3736', '170', '1');
 
 -- ----------------------------
 -- Table structure for role
@@ -360,10 +384,12 @@ CREATE TABLE `user` (
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `version` int(11) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'girl.gif', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', '张三', '2017-05-05 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', '27', '1', '2016-01-29 08:49:53', '25');
-INSERT INTO `user` VALUES ('44', null, 'test', '45abb7879f6a8268f1ef600e6038ac73', 'ssts3', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '5', '26', '1', '2017-05-16 20:33:37', null);
+INSERT INTO `user` VALUES ('44', null, 'test', '45abb7879f6a8268f1ef600e6038ac73', 'ssts3', 'test', '2017-05-01 00:00:00', '1', 'abc@123.com', '', '5', '26', '3', '2017-05-16 20:33:37', null);
+INSERT INTO `user` VALUES ('45', null, 'boss', '71887a5ad666a18f709e1d4e693d5a35', '1f7bf', '老板', '2017-12-04 00:00:00', '1', '', '', '1', '24', '1', '2017-12-04 22:24:02', null);
+INSERT INTO `user` VALUES ('46', null, 'manager', 'b53cac62e7175637d4beb3b16b2f7915', 'j3cs9', '经理', '2017-12-04 00:00:00', '1', '', '', '1', '24', '1', '2017-12-04 22:24:24', null);

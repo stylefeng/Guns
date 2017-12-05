@@ -21,7 +21,7 @@
     </userTask>
     <userTask id="bossTask" name="老板审批">
       <extensionElements>
-        <flowable:taskListener event="create" class="com.stylefeng.guns.modular.flowable.handler.ManagerTaskHandler"></flowable:taskListener>
+        <flowable:taskListener event="create" class="com.stylefeng.guns.modular.flowable.handler.BossTaskHandler"></flowable:taskListener>
       </extensionElements>
     </userTask>
     <endEvent id="end" name="结束"></endEvent>
@@ -34,7 +34,7 @@
     <sequenceFlow id="flow1" sourceRef="start" targetRef="fillTask"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="fillTask" targetRef="judgeTask"></sequenceFlow>
     <sequenceFlow id="judgeMore" name="大于500元" sourceRef="judgeTask" targetRef="bossTask">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money}>500]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money > 500}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="bossPassFlow" name="通过" sourceRef="bossTask" targetRef="end">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='通过'}]]></conditionExpression>
@@ -43,7 +43,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${outcome=='通过'}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="judgeLess" name="小于500元" sourceRef="judgeTask" targetRef="directorTak">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money}<=500]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${money <= 500}]]></conditionExpression>
     </sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_Expense">

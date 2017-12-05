@@ -6,11 +6,11 @@ import org.flowable.task.service.delegate.DelegateTask;
 /**
  * 员工经理任务分配
  */
-public class ManagerTaskHandler implements TaskListener {
+public class BossTaskHandler implements TaskListener {
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        delegateTask.setAssignee("经理");
+        delegateTask.setAssignee("老板");
     }
 
 }
