@@ -28,7 +28,6 @@ public class FlowableConfig extends AbstractProcessEngineAutoConfiguration {
     @Autowired
     GunsFlowableProperties gunsFlowableProperties;
 
-
     /**
      * flowable单独的数据源
      */
