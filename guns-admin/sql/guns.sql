@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-12-05 22:56:40
+Date: 2017-12-07 23:37:04
 */
 
 DROP DATABASE IF EXISTS guns_flowable;
@@ -92,9 +92,6 @@ CREATE TABLE `expense` (
 -- ----------------------------
 -- Records of expense
 -- ----------------------------
-INSERT INTO `expense` VALUES ('20', '100.00', '餐饮', '2017-12-05 22:52:48', '3', '1', '92501');
-INSERT INTO `expense` VALUES ('21', '700.00', '住宿费', '2017-12-05 22:53:22', '3', '1', '92517');
-INSERT INTO `expense` VALUES ('22', '100.00', '测试', '2017-12-05 22:53:56', '3', '1', '92533');
 
 -- ----------------------------
 -- Table structure for login_log
@@ -109,12 +106,11 @@ CREATE TABLE `login_log` (
   `message` text COMMENT '具体消息',
   `ip` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8 COMMENT='登录记录';
+) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8 COMMENT='登录记录';
 
 -- ----------------------------
 -- Records of login_log
 -- ----------------------------
-INSERT INTO `login_log` VALUES ('213', '退出日志', '1', '2017-12-05 22:56:32', '成功', null, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for menu
@@ -234,13 +230,12 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
   `message` text COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=540 DEFAULT CHARSET=utf8 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=542 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
-INSERT INTO `operation_log` VALUES ('538', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-12-05 22:56:25', '成功', '主键id=null');
-INSERT INTO `operation_log` VALUES ('539', '业务日志', '清空登录日志', '1', 'com.stylefeng.guns.modular.system.controller.LoginLogController', 'delLog', '2017-12-05 22:56:28', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('541', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-12-07 23:36:45', '成功', '主键id=null');
 
 -- ----------------------------
 -- Table structure for relation
