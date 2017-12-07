@@ -13,6 +13,14 @@ File Encoding         : 65001
 Date: 2017-12-05 22:56:40
 */
 
+DROP DATABASE IF EXISTS guns_flowable;
+CREATE DATABASE guns_flowable;
+
+DROP DATABASE IF EXISTS guns;
+CREATE DATABASE guns;
+
+USE guns;
+
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
