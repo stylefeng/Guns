@@ -1,4 +1,4 @@
-package generator.config;
+package com.stylefeng.guns.generator.action.config;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
@@ -6,11 +6,11 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.stylefeng.guns.core.template.config.ContextConfig;
-import com.stylefeng.guns.core.template.config.SqlConfig;
-import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
-import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
 import com.stylefeng.guns.core.util.FileUtil;
+import com.stylefeng.guns.generator.engine.SimpleTemplateEngine;
+import com.stylefeng.guns.generator.engine.base.GunsTemplateEngine;
+import com.stylefeng.guns.generator.engine.config.ContextConfig;
+import com.stylefeng.guns.generator.engine.config.SqlConfig;
 
 import java.io.File;
 import java.util.List;
@@ -44,25 +44,13 @@ public abstract class AbstractGeneratorConfig {
 
     SqlConfig sqlConfig = new SqlConfig();
 
-    protected abstract void globalConfig();
-
-    protected abstract void dataSourceConfig();
-
-    protected abstract void strategyConfig();
-
-    protected abstract void packageConfig();
-
-    protected abstract void contextConfig();
+    protected abstract void config();
 
     public void init() {
-        globalConfig();
-        dataSourceConfig();
-        strategyConfig();
-        packageConfig();
-        contextConfig();
+        config();
 
-        packageConfig.setService("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service");
-        packageConfig.setServiceImpl("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service.impl");
+        packageConfig.setService(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service");
+        packageConfig.setServiceImpl(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service.impl");
 
         //controller没用掉,生成之后会自动删掉
         packageConfig.setController("TTT");
@@ -92,10 +80,10 @@ public abstract class AbstractGeneratorConfig {
     }
 
     public AbstractGeneratorConfig() {
-        init();
     }
 
     public void doMpGeneration() {
+        init();
         AutoGenerator autoGenerator = new AutoGenerator();
         autoGenerator.setGlobalConfig(globalConfig);
         autoGenerator.setDataSource(dataSourceConfig);
@@ -106,17 +94,17 @@ public abstract class AbstractGeneratorConfig {
 
         //获取table信息,用于guns代码生成
         List<TableInfo> tableInfoList = autoGenerator.getConfig().getTableInfoList();
-        if(tableInfoList != null && tableInfoList.size() > 0){
+        if (tableInfoList != null && tableInfoList.size() > 0) {
             this.tableInfo = tableInfoList.get(0);
         }
     }
 
-    public void doGunsGeneration() {
-        GunsTemplateEngine gunsTemplateEngine = new SimpleTemplateEngine();
-        gunsTemplateEngine.setContextConfig(contextConfig);
+    public void doAdiGeneration() {
+        GunsTemplateEngine GunsTemplateEngine = new SimpleTemplateEngine();
+        GunsTemplateEngine.setContextConfig(contextConfig);
         sqlConfig.setConnection(dataSourceConfig.getConn());
-        gunsTemplateEngine.setSqlConfig(sqlConfig);
-        gunsTemplateEngine.setTableInfo(tableInfo);
-        gunsTemplateEngine.start();
+        GunsTemplateEngine.setSqlConfig(sqlConfig);
+        GunsTemplateEngine.setTableInfo(tableInfo);
+        GunsTemplateEngine.start();
     }
 }

@@ -1,6 +1,7 @@
-package generator;
+package com.stylefeng.guns.generator.action;
 
-import generator.config.GunsGeneratorConfig;
+
+import com.stylefeng.guns.generator.action.config.GunsGeneratorConfig;
 
 /**
  * 代码生成器,可以生成实体,dao,service,controller,html,js
@@ -20,10 +21,10 @@ public class GunsCodeGenerator {
         gunsGeneratorConfig.doMpGeneration();
 
         /**
-         * guns的生成器:
-         *      guns的代码生成器可以生成controller,html页面,页面对应的js
+         * adi的生成器:
+         *      adi的代码生成器可以生成controller,html页面,页面对应的js
          */
-        gunsGeneratorConfig.doGunsGeneration();
+        gunsGeneratorConfig.doAdiGeneration();
     }
 
 }

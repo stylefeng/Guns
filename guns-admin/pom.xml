@@ -9,7 +9,6 @@
         <relativePath>../guns-parent/pom.xml</relativePath>
     </parent>
 
-    <groupId>com.stylefeng</groupId>
     <artifactId>guns-admin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
@@ -39,6 +38,10 @@
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.stylefeng.guns</groupId>
+            <artifactId>guns-generator</artifactId>
         </dependency>
 
         <!--spring boot依赖-->

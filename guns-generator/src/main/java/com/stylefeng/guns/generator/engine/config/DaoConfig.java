@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.template.config;
+package com.stylefeng.guns.generator.engine.config;
 
 /**
  * Dao模板生成的配置
@@ -16,9 +16,9 @@ public class DaoConfig {
     private String packageName;
 
     public void init() {
-        this.daoPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\dao\\{}Dao.java";
-        this.xmlPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\dao\\mapping\\{}Dao.xml";
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".dao";
+        this.daoPathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\dao\\{}Dao.java";
+        this.xmlPathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\dao\\mapping\\{}Dao.xml";
+        this.packageName = contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".dao";
     }
 
     public String getPackageName() {

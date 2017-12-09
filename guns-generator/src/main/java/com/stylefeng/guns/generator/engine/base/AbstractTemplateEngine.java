@@ -1,7 +1,7 @@
-package com.stylefeng.guns.core.template.engine.base;
+package com.stylefeng.guns.generator.engine.base;
 
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.stylefeng.guns.core.template.config.*;
+import com.stylefeng.guns.generator.engine.config.*;
 
 /**
  * 模板生成父类

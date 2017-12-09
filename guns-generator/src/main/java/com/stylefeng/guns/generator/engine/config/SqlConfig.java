@@ -1,9 +1,6 @@
-package com.stylefeng.guns.core.template.config;
+package com.stylefeng.guns.generator.engine.config;
 
-import com.stylefeng.guns.common.constant.state.IsMenu;
-import com.stylefeng.guns.common.constant.state.MenuOpenStatus;
-import com.stylefeng.guns.common.constant.state.MenuStatus;
-import com.stylefeng.guns.common.persistence.model.Menu;
+import com.baomidou.mybatisplus.toolkit.IdWorker;
 import com.stylefeng.guns.core.util.ToolUtil;
 
 import java.sql.Connection;
@@ -29,11 +26,15 @@ public class SqlConfig {
 
     private String parentMenuName;
 
-    private List<Menu> menus = new ArrayList<>(6);
+    private List<Permission> menus = new ArrayList<>(6);
 
     public void init() {
 
         this.sqlPathTemplate = "\\src\\main\\java\\{}.sql";
+
+        if(parentMenuName == null){
+            return ;
+        }
 
         //根据父菜单查询数据库中的pcode和pcodes
         String[] pcodeAndPcodes = getPcodeAndPcodes();
@@ -43,80 +44,80 @@ public class SqlConfig {
         }
 
         //业务菜单
-        Menu menu = new Menu();
+        Permission menu = new Permission();
+        menu.setId(IdWorker.getId());
         menu.setCode(contextConfig.getBizEnName());
-        menu.setPcode(pcodeAndPcodes[0]);
-        menu.setPcodes(pcodeAndPcodes[1] + "[" + pcodeAndPcodes[0] + "],");
+        menu.setPid(Long.valueOf(pcodeAndPcodes[0]));
+        menu.setPids(pcodeAndPcodes[1] + "[" + pcodeAndPcodes[0] + "],");
         menu.setName(contextConfig.getBizChName());
         menu.setIcon("");
         menu.setUrl("/" + contextConfig.getBizEnName());
-        menu.setNum(99);
-        menu.setLevels(2);
-        menu.setIsmenu(IsMenu.YES.getCode());
-        menu.setTips(null);
-        menu.setStatus(MenuStatus.ENABLE.getCode());
-        menu.setIsopen(MenuOpenStatus.CLOSE.getCode());
+        menu.setSort(99);
+        menu.setLevel(2);
+        menu.setMenuFlag("Y");
+        menu.setStatus("Y");
+        menu.setOpenFlag("N");
         menus.add(menu);
 
         //列表
-        Menu list = createSubMenu(menu);
+        Permission list = createSubMenu(menu);
         list.setCode(contextConfig.getBizEnName() + "_list");
         list.setName(contextConfig.getBizChName() + "列表");
         list.setUrl("/" + contextConfig.getBizEnName() + "/list");
         menus.add(list);
 
         //添加
-        Menu add = createSubMenu(menu);
+        Permission add = createSubMenu(menu);
         add.setCode(contextConfig.getBizEnName() + "_add");
         add.setName(contextConfig.getBizChName() + "添加");
         add.setUrl("/" + contextConfig.getBizEnName() + "/add");
         menus.add(add);
 
         //更新
-        Menu update = createSubMenu(menu);
+        Permission update = createSubMenu(menu);
         update.setCode(contextConfig.getBizEnName() + "_update");
         update.setName(contextConfig.getBizChName() + "更新");
         update.setUrl("/" + contextConfig.getBizEnName() + "/update");
         menus.add(update);
 
         //删除
-        Menu delete = createSubMenu(menu);
+        Permission delete = createSubMenu(menu);
         delete.setCode(contextConfig.getBizEnName() + "_delete");
         delete.setName(contextConfig.getBizChName() + "删除");
         delete.setUrl("/" + contextConfig.getBizEnName() + "/delete");
         menus.add(delete);
 
         //详情
-        Menu detail = createSubMenu(menu);
+        Permission detail = createSubMenu(menu);
         detail.setCode(contextConfig.getBizEnName() + "_detail");
         detail.setName(contextConfig.getBizChName() + "详情");
         detail.setUrl("/" + contextConfig.getBizEnName() + "/detail");
         menus.add(detail);
     }
 
-    private Menu createSubMenu(Menu parentMenu) {
-        Menu menu = new Menu();
-        menu.setPcode(parentMenu.getCode());
-        menu.setPcodes(parentMenu.getPcodes() + "[" + parentMenu.getCode() + "],");
-        menu.setIcon("");
-        menu.setNum(99);
-        menu.setLevels(3);
-        menu.setIsmenu(IsMenu.NO.getCode());
-        menu.setTips(null);
-        menu.setStatus(MenuStatus.ENABLE.getCode());
-        menu.setIsopen(MenuOpenStatus.CLOSE.getCode());
-        return menu;
+    private Permission createSubMenu(Permission parentMenu) {
+        Permission permission = new Permission();
+        permission.setId(IdWorker.getId());
+        permission.setPid(parentMenu.getId());
+        permission.setPids(parentMenu.getPids() + "[" + parentMenu.getId() + "],");
+        permission.setIcon("");
+        permission.setSort(99);
+        permission.setLevel(3);
+        permission.setMenuFlag("N");
+        permission.setStatus("Y");
+        permission.setOpenFlag("N");
+        return permission;
     }
 
     public String[] getPcodeAndPcodes() {
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("select * from menu where name like ?");
+            preparedStatement = connection.prepareStatement("select * from adi_uc_permission where name like ?");
             preparedStatement.setString(1, "%" + parentMenuName + "%");
             ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
-                String pcode = results.getString("code");
-                String pcodes = results.getString("pcodes");
+                String pcode = String.valueOf(results.getLong("id"));
+                String pcodes = results.getString("pids");
                 if (ToolUtil.isNotEmpty(pcode) && ToolUtil.isNotEmpty(pcodes)) {
                     String[] strings = {pcode, pcodes};
                     return strings;
@@ -174,11 +175,11 @@ public class SqlConfig {
         this.sqlPathTemplate = sqlPathTemplate;
     }
 
-    public List<Menu> getMenus() {
+    public List<Permission> getMenus() {
         return menus;
     }
 
-    public void setMenus(List<Menu> menus) {
+    public void setMenus(List<Permission> menus) {
         this.menus = menus;
     }
 }

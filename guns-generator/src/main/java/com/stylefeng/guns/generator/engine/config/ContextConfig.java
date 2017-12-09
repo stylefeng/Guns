@@ -1,4 +1,5 @@
-package com.stylefeng.guns.core.template.config;
+package com.stylefeng.guns.generator.engine.config;
+
 
 import com.stylefeng.guns.core.util.ToolUtil;
 
@@ -10,15 +11,17 @@ import com.stylefeng.guns.core.util.ToolUtil;
  */
 public class ContextConfig {
 
-    private String templatePrefixPath = "gunsTemplate/advanced";
-    private String projectPath = "D:\\ideaSpace\\guns";//模板输出的项目目录
+    private String templatePrefixPath = "template/advanced";
+    private String projectPath = "D:\\ideaSpace\\adi";//模板输出的项目目录
     private String bizChName;   //业务名称
     private String bizEnName;   //业务英文名称
     private String bizEnBigName;//业务英文名称(大写)
     private String moduleName = "system";  //模块名称
 
-    private String modelPackageName = "com.stylefeng.guns.common.persistence.model";        //model的包名
-    private String modelMapperPackageName = "com.stylefeng.guns.common.persistence.dao";  //model的dao
+    private String proPackage = "com.stylefeng.guns.admin";
+    private String coreBasePackage = "com.stylefeng.guns.core";
+    private String modelPackageName = "com.stylefeng.guns.admin.modular.system.persistence.model";        //model的包名
+    private String modelMapperPackageName = "com.stylefeng.guns.admin.modular.system.persistence.dao";  //model的dao
     private String entityName;              //实体的名称
 
     private Boolean controllerSwitch = true;    //是否生成控制器代码开关
@@ -36,6 +39,8 @@ public class ContextConfig {
         if (entityName == null) {
             entityName = bizEnBigName;
         }
+        modelPackageName = proPackage + "." + "modular.system.persistence.model";
+        modelMapperPackageName = proPackage + "." + "modular.system.persistence.dao";
     }
 
     public String getBizEnBigName() {
@@ -189,5 +194,21 @@ public class ContextConfig {
 
     public void setSqlSwitch(Boolean sqlSwitch) {
         this.sqlSwitch = sqlSwitch;
+    }
+
+    public String getProPackage() {
+        return proPackage;
+    }
+
+    public void setProPackage(String proPackage) {
+        this.proPackage = proPackage;
+    }
+
+    public String getCoreBasePackage() {
+        return coreBasePackage;
+    }
+
+    public void setCoreBasePackage(String coreBasePackage) {
+        this.coreBasePackage = coreBasePackage;
     }
 }

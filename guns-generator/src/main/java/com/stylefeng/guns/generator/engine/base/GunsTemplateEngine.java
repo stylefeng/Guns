@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.template.engine.base;
+package com.stylefeng.guns.generator.engine.base;
 
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.sun.javafx.PlatformUtil;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * guns项目模板生成 引擎
+ * ADI项目模板生成 引擎
  *
  * @author fengshuonan
  * @date 2017-05-07 22:15

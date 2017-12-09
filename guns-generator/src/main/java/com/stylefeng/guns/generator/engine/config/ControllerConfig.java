@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.template.config;
+package com.stylefeng.guns.generator.engine.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +19,20 @@ public class ControllerConfig {
 
     public void init() {
         ArrayList<String> imports = new ArrayList<>();
-        imports.add("com.stylefeng.guns.core.base.controller.BaseController");
+        imports.add(contextConfig.getCoreBasePackage() + ".base.controller.BaseController");
         imports.add("org.springframework.stereotype.Controller");
         imports.add("org.springframework.web.bind.annotation.RequestMapping");
         imports.add("org.springframework.web.bind.annotation.ResponseBody");
         imports.add("org.springframework.ui.Model");
         imports.add("org.springframework.web.bind.annotation.PathVariable");
         imports.add("org.springframework.beans.factory.annotation.Autowired");
-        imports.add("com.stylefeng.guns.core.log.LogObjectHolder");
+        imports.add(contextConfig.getProPackage() + ".core.log.LogObjectHolder");
         imports.add("org.springframework.web.bind.annotation.RequestParam");
         imports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
-        imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service" + ".I" + contextConfig.getEntityName() + "Service");
+        imports.add(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service" + ".I" + contextConfig.getEntityName() + "Service");
         this.imports = imports;
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".controller";
-        this.controllerPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";
+        this.packageName = contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".controller";
+        this.controllerPathTemplate = "\\src\\main\\java\\"+contextConfig.getProPackage().replaceAll("\\.","\\\\")+"\\modular\\" + contextConfig.getModuleName() + "\\controller\\{}Controller.java";
     }
 
     public String getPackageName() {
@@ -66,4 +66,5 @@ public class ControllerConfig {
     public void setContextConfig(ContextConfig contextConfig) {
         this.contextConfig = contextConfig;
     }
+
 }

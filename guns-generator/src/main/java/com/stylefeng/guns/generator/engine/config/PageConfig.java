@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.template.config;
+package com.stylefeng.guns.generator.engine.config;
 
 /**
  * 页面 模板生成的配置

@@ -137,5 +137,13 @@ var Feng = {
             live: 'enabled',
             message: '该字段不能为空'
         });
+    },
+    underLineToCamel: function (str) {
+        var strArr = str.split('_');
+        for (var i = 1; i < strArr.length; i++) {
+            strArr[i] = strArr[i].charAt(0).toUpperCase() + strArr[i].substring(1);
+        }
+        var result = strArr.join('');
+        return result.charAt(0).toUpperCase() + result.substring(1);
     }
 };

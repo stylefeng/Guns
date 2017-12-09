@@ -47,6 +47,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.stylefeng.guns</groupId>
+                <artifactId>guns-generator</artifactId>
+                <version>${guns.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.flowable</groupId>
                 <artifactId>flowable-spring-boot-starter-basic</artifactId>
                 <version>${flowable.version}</version>

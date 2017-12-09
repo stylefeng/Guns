@@ -78,6 +78,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
+    db-name: guns
     filters: log4j,wall,mergeStat
 
 #多数据源(flowabe的和业务的)

@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -547,5 +548,24 @@ public class ToolUtil {
             return Integer.valueOf(val.toString());
         }
 
+    }
+
+    /**
+     * 获取项目路径
+     */
+    public static String getWebRootPath(String filePath) {
+        try {
+            String path = ToolUtil.class.getClassLoader().getResource("").toURI().getPath();
+            path = path.replace("/WEB-INF/classes/", "");
+            path = path.replace("/target/classes/", "");
+            path = path.replace("file:/", "");
+            if (ToolUtil.isEmpty(filePath)) {
+                return path;
+            } else {
+                return path + "/" + filePath;
+            }
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

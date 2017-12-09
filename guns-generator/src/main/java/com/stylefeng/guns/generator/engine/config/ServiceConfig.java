@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.template.config;
+package com.stylefeng.guns.generator.engine.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ public class ServiceConfig {
         imports.add("org.springframework.stereotype.Service");
         imports.add("com.baomidou.mybatisplus.service.impl.ServiceImpl");
         imports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
-        imports.add(contextConfig.getModelMapperPackageName() + "." + contextConfig.getEntityName()+"Mapper");
-        imports.add("com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service.I" + contextConfig.getBizEnBigName() + "Service");
+        imports.add(contextConfig.getModelMapperPackageName() + "." + contextConfig.getEntityName() + "Mapper");
+        imports.add(contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service.I" + contextConfig.getBizEnBigName() + "Service");
         this.serviceImplImports = imports;
 
         ArrayList<String> interfaceImports = new ArrayList<>();
@@ -35,9 +35,9 @@ public class ServiceConfig {
         interfaceImports.add(contextConfig.getModelPackageName() + "." + contextConfig.getEntityName());
         this.serviceInterfaceImports = interfaceImports;
 
-        this.servicePathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\I{}Service.java";
-        this.serviceImplPathTemplate = "\\src\\main\\java\\com\\stylefeng\\guns\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
-        this.packageName = "com.stylefeng.guns.modular." + contextConfig.getModuleName() + ".service";
+        this.servicePathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\service\\I{}Service.java";
+        this.serviceImplPathTemplate = "\\src\\main\\java\\" + contextConfig.getProPackage().replaceAll("\\.", "\\\\") + "\\modular\\" + contextConfig.getModuleName() + "\\service\\impl\\{}ServiceImpl.java";
+        this.packageName = contextConfig.getProPackage() + ".modular." + contextConfig.getModuleName() + ".service";
     }
 
 

@@ -1,7 +1,8 @@
-package com.stylefeng.guns.core.template.engine;
+package com.stylefeng.guns.generator.engine;
 
-import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
+
 import com.stylefeng.guns.core.util.ToolUtil;
+import com.stylefeng.guns.generator.engine.base.GunsTemplateEngine;
 
 /**
  * 通用的模板生成引擎
