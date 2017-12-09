@@ -111,6 +111,9 @@ public class SqlConfig {
     }
 
     public String[] getPcodeAndPcodes() {
+        if (parentMenuName.equals("顶级")) {
+            return new String[]{"0", ""};
+        }
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = connection.prepareStatement("select * from menu where name like ?");
