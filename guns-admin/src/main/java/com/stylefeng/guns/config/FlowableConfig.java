@@ -3,6 +3,7 @@ package com.stylefeng.guns.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.stylefeng.guns.config.properties.GunsFlowableProperties;
 import com.stylefeng.guns.core.datasource.DruidProperties;
+import com.stylefeng.guns.core.flowable.GunsDefaultProcessDiagramGenerator;
 import org.flowable.spring.SpringAsyncExecutor;
 import org.flowable.spring.SpringProcessEngineConfiguration;
 import org.flowable.spring.boot.AbstractProcessEngineAutoConfiguration;
@@ -43,6 +44,10 @@ public class FlowableConfig extends AbstractProcessEngineAutoConfiguration {
             PlatformTransactionManager transactionManager,
             SpringAsyncExecutor springAsyncExecutor) throws IOException {
 
-        return this.baseSpringProcessEngineConfiguration(flowableDataSource(), transactionManager, springAsyncExecutor);
+        SpringProcessEngineConfiguration configuration = this.baseSpringProcessEngineConfiguration(flowableDataSource(), transactionManager, springAsyncExecutor);
+        configuration.setActivityFontName("宋体");
+        configuration.setLabelFontName("宋体");
+        configuration.setProcessDiagramGenerator(new GunsDefaultProcessDiagramGenerator());
+        return configuration;
     }
 }

@@ -3,20 +3,17 @@ package com.stylefeng.guns.modular.flowable.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.common.persistence.model.Expense;
 import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.modular.flowable.service.IExpenseService;
 import com.stylefeng.guns.modular.flowable.warpper.ExpenseWarpper;
-import org.flowable.engine.RuntimeService;
-import org.flowable.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -35,12 +32,6 @@ public class ExpenseController extends BaseController {
     @Autowired
     private IExpenseService expenseService;
 
-    @Autowired
-    private RuntimeService runtimeService;
-
-    @Autowired
-    private TaskService taskService;
-
     /**
      * 跳转到报销管理首页
      */
@@ -58,14 +49,15 @@ public class ExpenseController extends BaseController {
     }
 
     /**
-     * 跳转到修改报销管理
+     * 查看当前流程图
      */
     @RequestMapping("/expense_update/{expenseId}")
-    public String expenseUpdate(@PathVariable Integer expenseId, Model model) {
-        Expense expense = expenseService.selectById(expenseId);
-        model.addAttribute("item", expense);
-        LogObjectHolder.me().set(expense);
-        return PREFIX + "expense_edit.html";
+    public void expenseView(@PathVariable Integer expenseId) {
+        try {
+            expenseService.printProcessImage(expenseId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

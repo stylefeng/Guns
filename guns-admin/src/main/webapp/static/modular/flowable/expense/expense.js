@@ -29,13 +29,13 @@ Expense.initColumn = function () {
 };
 
 /**
- * 查看审核记录
+ * 流程详情
  */
 Expense.findRecord = function (id) {
     var index = layer.open({
         type: 2,
-        title: '报销管理详情',
-        area: ['600px', '350px'], //宽高
+        title: '流程详情',
+        area: ['1000px', '500px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/expense/expense_update/' + id

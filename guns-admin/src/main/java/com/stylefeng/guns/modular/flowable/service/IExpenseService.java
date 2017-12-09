@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.service.IService;
 import com.stylefeng.guns.common.persistence.model.Expense;
 import com.stylefeng.guns.modular.flowable.model.TaskVo;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -40,5 +41,10 @@ public interface IExpenseService extends IService<Expense> {
      * 获取审批列表
      */
     List<TaskVo> getProcessList();
+
+    /**
+     * 绘画当前流程图
+     */
+    void printProcessImage(Integer expenseId) throws IOException;
 
 }
