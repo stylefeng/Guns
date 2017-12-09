@@ -1,6 +1,7 @@
 package com.stylefeng.guns.common.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
 
@@ -10,8 +11,9 @@ import java.io.Serializable;
  * </p>
  *
  * @author stylefeng
- * @since 2017-07-11
+ * @since 2017-12-09
  */
+@TableName("test")
 public class Test extends Model<Test> {
 
     private static final long serialVersionUID = 1L;

@@ -8,4 +8,9 @@
 		<result column="value" property="value" />
 	</resultMap>
 
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, value
+    </sql>
+
 </mapper>

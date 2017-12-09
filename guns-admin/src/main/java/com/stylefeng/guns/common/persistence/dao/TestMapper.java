@@ -9,7 +9,7 @@ import com.stylefeng.guns.common.persistence.model.Test;
  * </p>
  *
  * @author stylefeng
- * @since 2017-07-11
+ * @since 2017-12-09
  */
 public interface TestMapper extends BaseMapper<Test> {
 

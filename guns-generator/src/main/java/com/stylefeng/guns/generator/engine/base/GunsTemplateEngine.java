@@ -50,7 +50,7 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         template.binding("dao", super.daoConfig);
         template.binding("service", super.serviceConfig);
         template.binding("sqls", super.sqlConfig);
-        template.binding("table",super.tableInfo);
+        template.binding("table", super.tableInfo);
     }
 
     protected void generateFile(String template, String filePath) {
@@ -66,10 +66,18 @@ public abstract class GunsTemplateEngine extends AbstractTemplateEngine {
         if (!parentFile.exists()) {
             parentFile.mkdirs();
         }
+        FileOutputStream fileOutputStream = null;
         try {
-            pageTemplate.renderTo(new FileOutputStream(file));
+            fileOutputStream = new FileOutputStream(file);
+            pageTemplate.renderTo(fileOutputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -55,9 +55,9 @@ public class WebGeneratorConfig extends AbstractGeneratorConfig {
         strategyConfig.setInclude(new String[]{genQo.getTableName()});
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
         packageConfig.setParent(null);
-        packageConfig.setEntity(genQo.getProjectPackage() + ".modular.system.persistence.model");
-        packageConfig.setMapper(genQo.getProjectPackage() + ".modular.system.persistence.dao");
-        packageConfig.setXml(genQo.getProjectPackage() + ".modular.system.persistence.dao.mapping");
+        packageConfig.setEntity(genQo.getProjectPackage() + ".common.persistence.model");
+        packageConfig.setMapper(genQo.getProjectPackage() + ".common.persistence.dao");
+        packageConfig.setXml(genQo.getProjectPackage() + ".common.persistence.dao.mapping");
 
         /**
          * 业务代码配置
@@ -67,7 +67,7 @@ public class WebGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setProjectPath(genQo.getProjectPath());//写自己项目的绝对路径
         if(ToolUtil.isEmpty(genQo.getIgnoreTabelPrefix())){
             String entityName = StrKit.toCamelCase(genQo.getTableName());
-            contextConfig.setEntityName(entityName);
+            contextConfig.setEntityName(StrKit.firstCharToUpperCase(entityName));
             contextConfig.setBizEnName(StrKit.firstCharToLowerCase(entityName));
         }else{
             String entiyName = StrKit.toCamelCase(StrKit.removePrefix(genQo.getTableName(), genQo.getIgnoreTabelPrefix()));

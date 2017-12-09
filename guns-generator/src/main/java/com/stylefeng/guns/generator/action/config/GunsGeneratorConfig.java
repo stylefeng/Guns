@@ -36,9 +36,9 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
 
     protected void packageConfig() {
         packageConfig.setParent(null);
-        packageConfig.setEntity("com.stylefeng.guns.admin.modular.system.persistence.model");
-        packageConfig.setMapper("com.stylefeng.guns.admin.modular.system.persistence.dao");
-        packageConfig.setXml("com.stylefeng.guns.admin.modular.system.persistence.dao.mapping");
+        packageConfig.setEntity("com.stylefeng.guns.admin.common.persistence.model");
+        packageConfig.setMapper("com.stylefeng.guns.admin.common.persistence.dao");
+        packageConfig.setXml("com.stylefeng.guns.admin.common.persistence.dao.mapping");
     }
 
     protected void contextConfig() {
