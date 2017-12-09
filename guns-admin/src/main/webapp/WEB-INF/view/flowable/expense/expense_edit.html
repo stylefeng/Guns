@@ -7,13 +7,12 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    <#input id="money" name="报销金额" value="${item.money}"/>
-                    <#input id="desc" name="描述" value="${item.desc}" />
+                    <#input id="money" name="报销金额" value="${item.money}" disabled="disabled"/>
+                    <#input id="desc" name="描述" value="${item.desc}" disabled="disabled"/>
                 </div>
             </div>
             <div class="row btn-group-m-t">
                 <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ExpenseInfoDlg.editSubmit()"/>
                     <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ExpenseInfoDlg.close()"/>
                 </div>
             </div>
