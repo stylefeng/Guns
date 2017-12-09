@@ -21,8 +21,12 @@ Expense.initColumn = function () {
         {title: '创建时间', field: 'createtime', visible: true, align: 'center', valign: 'middle'},
         {
             title: '操作', visible: true, align: 'center', valign: 'middle', formatter: function (value, row, index) {
-            return '<button type="button" class="btn btn-primary button-margin" onclick="Expense.findRecord(' + row.id + ')" id=""><i class="fa fa-edit"></i>&nbsp;查看</button>' +
-                '<button type="button" class="btn btn-danger button-margin" onclick="Expense.deleteRecord(' + row.id + ')" id=""><i class="fa fa-arrows-alt"></i>&nbsp;删除</button>';
+            if (row.state == 3) {
+                return '<button type="button" class="btn btn-danger button-margin" onclick="Expense.deleteRecord(' + row.id + ')" id=""><i class="fa fa-arrows-alt"></i>&nbsp;删除</button>';
+            } else {
+                return '<button type="button" class="btn btn-primary button-margin" onclick="Expense.findRecord(' + row.id + ')" id=""><i class="fa fa-edit"></i>&nbsp;查看</button>' +
+                    '<button type="button" class="btn btn-danger button-margin" onclick="Expense.deleteRecord(' + row.id + ')" id=""><i class="fa fa-arrows-alt"></i>&nbsp;删除</button>';
+            }
         }
         }
     ];

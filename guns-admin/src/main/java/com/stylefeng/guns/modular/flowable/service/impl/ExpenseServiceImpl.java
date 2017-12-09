@@ -145,6 +145,12 @@ public class ExpenseServiceImpl extends ServiceImpl<ExpenseMapper, Expense> impl
         Expense expense = this.selectById(expenseId);
         String processId = expense.getProcessId();
         ProcessInstance pi = runtimeService.createProcessInstanceQuery().processInstanceId(processId).singleResult();
+
+        //流程走完的不显示图
+        if (pi == null) {
+            return;
+        }
+
         Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
 
         //使用流程实例ID，查询正在执行的执行对象表，返回流程实例对象
