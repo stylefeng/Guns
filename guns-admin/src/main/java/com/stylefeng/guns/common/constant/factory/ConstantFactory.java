@@ -155,7 +155,7 @@ public class ConstantFactory implements IConstantFactory {
      * 获取菜单名称
      */
     @Override
-    public String getMenuName(Integer menuId) {
+    public String getMenuName(Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             return "";
         } else {

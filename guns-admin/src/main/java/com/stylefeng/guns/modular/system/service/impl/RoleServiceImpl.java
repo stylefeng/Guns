@@ -1,11 +1,11 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
-import com.stylefeng.guns.core.util.Convert;
-import com.stylefeng.guns.modular.system.dao.RoleDao;
-import com.stylefeng.guns.modular.system.service.IRoleService;
 import com.stylefeng.guns.common.persistence.dao.RelationMapper;
 import com.stylefeng.guns.common.persistence.dao.RoleMapper;
 import com.stylefeng.guns.common.persistence.model.Relation;
+import com.stylefeng.guns.core.util.Convert;
+import com.stylefeng.guns.modular.system.dao.RoleDao;
+import com.stylefeng.guns.modular.system.service.IRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,7 @@ public class RoleServiceImpl implements IRoleService {
         this.roleDao.deleteRolesById(roleId);
 
         // 添加新的权限
-        for (Integer id : Convert.toIntArray(ids)) {
+        for (Long id : Convert.toLongArray(true, Convert.toStrArray(",", ids))) {
             Relation relation = new Relation();
             relation.setRoleid(roleId);
             relation.setMenuid(id);

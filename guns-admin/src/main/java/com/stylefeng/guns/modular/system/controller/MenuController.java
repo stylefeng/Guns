@@ -74,7 +74,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/menu_edit/{menuId}")
-    public String menuEdit(@PathVariable Integer menuId, Model model) {
+    public String menuEdit(@PathVariable Long menuId, Model model) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -162,7 +162,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/remove")
     @BussinessLog(value = "删除菜单", key = "menuId", dict = MenuDict.class)
     @ResponseBody
-    public Tip remove(@RequestParam Integer menuId) {
+    public Tip remove(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -179,7 +179,7 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/view/{menuId}")
     @ResponseBody
-    public Tip view(@PathVariable Integer menuId) {
+    public Tip view(@PathVariable Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -214,7 +214,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menuTreeListByRoleId/{roleId}")
     @ResponseBody
     public List<ZTreeNode> menuTreeListByRoleId(@PathVariable Integer roleId) {
-        List<Integer> menuIds = this.menuDao.getMenuIdsByRoleId(roleId);
+        List<Long> menuIds = this.menuDao.getMenuIdsByRoleId(roleId);
         if (ToolUtil.isEmpty(menuIds)) {
             List<ZTreeNode> roleTreeList = this.menuDao.menuTreeList();
             return roleTreeList;

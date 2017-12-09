@@ -27,7 +27,7 @@ public class MenuServiceImpl implements IMenuService {
     MenuDao menuDao;
 
     @Override
-    public void delMenu(Integer menuId) {
+    public void delMenu(Long menuId) {
 
         //删除菜单
         this.menuMapper.deleteById(menuId);
@@ -37,7 +37,7 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public void delMenuContainSubMenus(Integer menuId) {
+    public void delMenuContainSubMenus(Long menuId) {
 
         Menu menu = menuMapper.selectById(menuId);
 

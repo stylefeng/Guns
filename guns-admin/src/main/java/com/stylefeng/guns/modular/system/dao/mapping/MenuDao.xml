@@ -21,7 +21,7 @@
 		</if>
 	</select>
 
-	<select id="getMenuIdsByRoleId" resultType="int">
+	<select id="getMenuIdsByRoleId" resultType="long">
 		select menuid from
 		relation where roleid = #{roleId}
 	</select>

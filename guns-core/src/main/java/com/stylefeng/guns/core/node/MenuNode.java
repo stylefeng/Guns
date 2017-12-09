@@ -17,12 +17,12 @@ public class MenuNode implements Comparable {
     /**
      * 节点id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 父节点
      */
-    private Integer parentId;
+    private Long parentId;
 
     /**
      * 节点名称
@@ -68,7 +68,7 @@ public class MenuNode implements Comparable {
         super();
     }
 
-    public MenuNode(Integer id, Integer parentId) {
+    public MenuNode(Long id, Long parentId) {
         super();
         this.id = id;
         this.parentId = parentId;
@@ -91,22 +91,22 @@ public class MenuNode implements Comparable {
     }
 
     public static MenuNode createRoot() {
-        return new MenuNode(0, -1);
+        return new MenuNode(0L, -1L);
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
@@ -194,7 +194,7 @@ public class MenuNode implements Comparable {
      *
      * @author fengshuonan
      */
-    public List<MenuNode> findChildNodes(List<MenuNode> nodeList, Integer parentId) {
+    public List<MenuNode> findChildNodes(List<MenuNode> nodeList, Long parentId) {
         if (nodeList == null && parentId == null)
             return null;
         for (Iterator<MenuNode> iterator = nodeList.iterator(); iterator.hasNext(); ) {
@@ -212,7 +212,7 @@ public class MenuNode implements Comparable {
      *
      * @author fengshuonan
      */
-    public void recursionFn(List<MenuNode> nodeList, MenuNode node, Integer pId) {
+    public void recursionFn(List<MenuNode> nodeList, MenuNode node, Long pId) {
         List<MenuNode> childList = getChildList(nodeList, node);// 得到子节点列表
         if (childList.size() > 0) {// 判断是否有子节点
             if (node.getParentId().equals(pId)) {

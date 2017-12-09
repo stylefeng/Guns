@@ -56,7 +56,7 @@ public interface IConstantFactory {
     /**
      * 获取菜单名称
      */
-    String getMenuName(Integer menuId);
+    String getMenuName(Long menuId);
 
     /**
      * 获取菜单名称通过编号

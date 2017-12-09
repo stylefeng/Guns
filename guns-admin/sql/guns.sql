@@ -117,7 +117,7 @@ CREATE TABLE `login_log` (
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
-  `id` int(65) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `code` varchar(255) DEFAULT NULL COMMENT '菜单编号',
   `pcode` varchar(255) DEFAULT NULL COMMENT '菜单父编号',
   `pcodes` varchar(255) DEFAULT NULL COMMENT '当前菜单的所有父菜单编号',
@@ -230,12 +230,13 @@ CREATE TABLE `operation_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否成功',
   `message` text COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=542 DEFAULT CHARSET=utf8 COMMENT='操作日志';
+) ENGINE=InnoDB AUTO_INCREMENT=543 DEFAULT CHARSET=utf8 COMMENT='操作日志';
 
 -- ----------------------------
 -- Records of operation_log
 -- ----------------------------
 INSERT INTO `operation_log` VALUES ('541', '业务日志', '清空业务日志', '1', 'com.stylefeng.guns.modular.system.controller.LogController', 'delLog', '2017-12-07 23:36:45', '成功', '主键id=null');
+INSERT INTO `operation_log` VALUES ('542', '业务日志', '修改菜单', '1', 'com.stylefeng.guns.modular.system.controller.MenuController', 'edit', '2017-12-09 18:40:09', '成功', '菜单名称=通知;;;');
 
 -- ----------------------------
 -- Table structure for relation
@@ -243,7 +244,7 @@ INSERT INTO `operation_log` VALUES ('541', '业务日志', '清空业务日志',
 DROP TABLE IF EXISTS `relation`;
 CREATE TABLE `relation` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `menuid` int(11) DEFAULT NULL COMMENT '菜单id',
+  `menuid` bigint(11) DEFAULT NULL COMMENT '菜单id',
   `roleid` int(11) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3737 DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
