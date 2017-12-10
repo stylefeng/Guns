@@ -47,12 +47,12 @@
 		END
 		) "checked"
 		FROM
-		role r
+		sys_role r
 		LEFT JOIN (
 		SELECT
 		ID
 		FROM
-		role
+		sys_role
 		WHERE
 		ID IN 
 		

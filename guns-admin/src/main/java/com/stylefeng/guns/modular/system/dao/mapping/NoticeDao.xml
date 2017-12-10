@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.modular.system.dao.NoticeDao">
 
     <select id="list" resultType="map">
-        select * from sys_notice2
+        select * from sys_notice
         <if test="condition != null and condition != ''">
             where title like CONCAT('%',#{condition},'%') or content like CONCAT('%',#{condition},'%')
         </if>
