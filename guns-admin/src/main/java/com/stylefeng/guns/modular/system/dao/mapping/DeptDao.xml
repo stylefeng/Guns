@@ -11,11 +11,11 @@
 		ELSE
 			'false'
 		END
-		) as isOpen from dept
+		) as isOpen from sys_dept
 	</select>
 
 	<select id="list" resultType="map">
-		select * from dept
+		select * from sys_dept
 		<if test="condition != null and condition != ''">
 			where simplename like CONCAT('%',#{condition},'%') or fullname like CONCAT('%',#{condition},'%')
 		</if>
