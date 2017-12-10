@@ -12,6 +12,7 @@
         <module>../guns-admin</module>
         <module>../guns-core</module>
         <module>../guns-rest</module>
+        <module>../guns-generator</module>
     </modules>
 
     <parent>
@@ -47,7 +48,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.stylefeng.guns</groupId>
+                <groupId>com.stylefeng</groupId>
                 <artifactId>guns-generator</artifactId>
                 <version>${guns.version}</version>
             </dependency>

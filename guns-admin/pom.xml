@@ -40,7 +40,7 @@
             <artifactId>guns-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.stylefeng.guns</groupId>
+            <groupId>com.stylefeng</groupId>
             <artifactId>guns-generator</artifactId>
         </dependency>
 
