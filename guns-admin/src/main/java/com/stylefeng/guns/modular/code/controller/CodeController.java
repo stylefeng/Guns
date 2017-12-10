@@ -6,10 +6,12 @@ import com.stylefeng.guns.generator.action.config.WebGeneratorConfig;
 import com.stylefeng.guns.generator.action.model.GenQo;
 import com.stylefeng.guns.modular.code.factory.DefaultTemplateFactory;
 import com.stylefeng.guns.modular.code.service.TableService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -45,9 +47,10 @@ public class CodeController extends BaseController {
     /**
      * 生成代码
      */
-    @RequestMapping("/generate")
+    @ApiOperation("生成代码")
+    @RequestMapping(value = "/generate", method = RequestMethod.POST)
     @ResponseBody
-    public Object generate(GenQo genQo){
+    public Object generate(GenQo genQo) {
         genQo.setUrl(druidProperties.getUrl());
         genQo.setUserName(druidProperties.getUsername());
         genQo.setPassword(druidProperties.getPassword());
