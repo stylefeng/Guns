@@ -116,7 +116,7 @@ public class SqlConfig {
         }
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("select * from menu where name like ?");
+            preparedStatement = connection.prepareStatement("select * from sys_menu where name like ?");
             preparedStatement.setString(1, "%" + parentMenuName + "%");
             ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
