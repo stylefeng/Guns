@@ -16,7 +16,7 @@
 	</select>
 
 	<delete id="deleteRolesById">
-		delete from relation where roleid = #{roleId}
+		delete from sys_relation where roleid = #{roleId}
 	</delete>
 
 	<select id="roleTreeList" resultType="com.stylefeng.guns.core.node.ZTreeNode">

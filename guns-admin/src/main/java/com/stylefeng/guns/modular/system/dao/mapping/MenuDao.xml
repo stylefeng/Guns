@@ -106,7 +106,7 @@
 	</select>
 
 	<delete id="deleteRelationByMenu">
-		delete from relation where menuid = #{menuId}
+		delete from sys_relation where menuid = #{menuId}
 	</delete>
 
 	<select id="getResUrlsByRoleId" resultType="string">
