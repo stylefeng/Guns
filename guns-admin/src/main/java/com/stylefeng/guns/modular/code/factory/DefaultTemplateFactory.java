@@ -46,7 +46,7 @@ public class DefaultTemplateFactory {
         genQo.setAuthor("stylefeng");
         genQo.setProjectPackage(GunsApplication.class.getPackage().getName());
         genQo.setCorePackage(CoreFlag.class.getPackage().getName());
-        genQo.setIgnoreTabelPrefix("");
+        genQo.setIgnoreTabelPrefix("sys_");
         genQo.setModuleName("system");
         genQo.setParentMenuName("系统管理");
         return genQo;
