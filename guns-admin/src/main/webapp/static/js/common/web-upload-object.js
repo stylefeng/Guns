@@ -46,7 +46,7 @@
                     mimeTypes : 'image/gif,image/jpg,image/jpeg,image/bmp,image/png'
 				},
 				swf : Feng.ctxPath
-						+ '/static/css/plugins/webuploader/Uploader.swf',
+						+ '/static/js/plugins/webuploader/Uploader.swf',
 				disableGlobalDnd : true,
 				duplicate : true,
 				server : this.uploadUrl,
