@@ -123,6 +123,7 @@ $(function () {
                     $('.J_mainContent .J_iframe').each(function () {
                         if ($(this).data('id') == dataUrl) {
                             $(this).show().siblings('.J_iframe').hide();
+                            $(this).attr('src', $(this).attr('src'));
                             return false;
                         }
                     });

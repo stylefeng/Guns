@@ -9,9 +9,9 @@ package com.stylefeng.guns.core.node;
  */
 public class ZTreeNode {
 
-	private Integer id;	//节点id
+	private Long id;	//节点id
 	
-	private Integer pId;//父节点id
+	private Long pId;//父节点id
 	
 	private String name;//节点名称
 	
@@ -19,19 +19,19 @@ public class ZTreeNode {
 	
 	private Boolean checked;//是否被选中
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getpId() {
+	public Long getpId() {
 		return pId;
 	}
 
-	public void setpId(Integer pId) {
+	public void setpId(Long pId) {
 		this.pId = pId;
 	}
 
@@ -70,10 +70,10 @@ public class ZTreeNode {
 	public static ZTreeNode createParent(){
 		ZTreeNode zTreeNode = new ZTreeNode();
 		zTreeNode.setChecked(true);
-		zTreeNode.setId(0);
+		zTreeNode.setId(0L);
 		zTreeNode.setName("顶级");
 		zTreeNode.setOpen(true);
-		zTreeNode.setpId(0);
+		zTreeNode.setpId(0L);
 		return zTreeNode;
 	}
 }

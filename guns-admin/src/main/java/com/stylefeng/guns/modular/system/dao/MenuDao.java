@@ -29,7 +29,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Integer> getMenuIdsByRoleId(@Param("roleId") Integer roleId);
+    List<Long> getMenuIdsByRoleId(@Param("roleId") Integer roleId);
 
     /**
      * 获取菜单列表树
@@ -45,7 +45,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午1:33:51
      */
-    List<ZTreeNode> menuTreeListByMenuIds(List<Integer> menuIds);
+    List<ZTreeNode> menuTreeListByMenuIds(List<Long> menuIds);
 
     /**
      * 删除menu关联的relation
@@ -54,7 +54,7 @@ public interface MenuDao {
      * @return
      * @date 2017年2月19日 下午4:10:59
      */
-    int deleteRelationByMenu(Integer menuId);
+    int deleteRelationByMenu(Long menuId);
 
     /**
      * 获取资源url通过角色id

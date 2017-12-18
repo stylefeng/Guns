@@ -9,20 +9,20 @@
 	<select id="selectRoles" resultType="map">
 		select
 		<include refid="Base_Column_List" />
-		from role
+		from sys_role
 		<if test="condition != null">
 			where name like CONCAT('%',#{condition},'%')
 		</if>
 	</select>
 
 	<delete id="deleteRolesById">
-		delete from relation where roleid = #{roleId}
+		delete from sys_relation where roleid = #{roleId}
 	</delete>
 
 	<select id="roleTreeList" resultType="com.stylefeng.guns.core.node.ZTreeNode">
 		select id "id",pId
 		"pId",name as "name",(case when (pId=0 or pId is null) then 'true'
-		else 'false' end) "open" from role
+		else 'false' end) "open" from sys_role
 	</select>
 
 	<select id="roleTreeListByRoleId" resultType="com.stylefeng.guns.core.node.ZTreeNode">
@@ -47,12 +47,12 @@
 		END
 		) "checked"
 		FROM
-		role r
+		sys_role r
 		LEFT JOIN (
 		SELECT
 		ID
 		FROM
-		role
+		sys_role
 		WHERE
 		ID IN 
 		

@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.modular.system.dao.LogDao">
 
     <select id="getOperationLogs" resultType="map">
-        select * from operation_log where 1 = 1
+        select * from sys_operation_log where 1 = 1
         <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
             and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
         </if>
@@ -31,7 +31,7 @@
     </select>
 
     <select id="getLoginLogs" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
-        select * from login_log where 1 = 1
+        select * from sys_login_log where 1 = 1
         <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
             and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
         </if>

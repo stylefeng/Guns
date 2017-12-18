@@ -12,6 +12,7 @@
         <module>../guns-admin</module>
         <module>../guns-core</module>
         <module>../guns-rest</module>
+        <module>../guns-generator</module>
     </modules>
 
     <parent>
@@ -28,7 +29,7 @@
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
         <shiro.version>1.4.0</shiro.version>
         <mybatis-plus.version>2.1.0</mybatis-plus.version>
-        <fastjson.version>1.2.31</fastjson.version>
+        <fastjson.version>1.2.41</fastjson.version>
         <commons.io.version>2.5</commons.io.version>
         <velocity.version>1.7</velocity.version>
         <kaptcha.version>2.3.2</kaptcha.version>
@@ -41,10 +42,21 @@
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
         <jwt.version>0.7.0</jwt.version>
+        <flowable.version>6.2.0</flowable.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.stylefeng</groupId>
+                <artifactId>guns-generator</artifactId>
+                <version>${guns.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter-basic</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
             <!--guns-->
             <dependency>
                 <groupId>com.stylefeng</groupId>

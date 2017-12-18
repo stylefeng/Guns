@@ -19,7 +19,7 @@
 	<select id="selectUsers" resultType="map">
 		select
 		<include refid="Base_Column_List" />
-		from user
+		from sys_user
 		where status != 3
 		<if test="name != null and name != ''">
 			and (phone like CONCAT('%',#{name},'%')
@@ -27,7 +27,7 @@
 			or name like CONCAT('%',#{name},'%'))
 		</if>
 		<if test="deptid != null and deptid != 0">
-			and (deptid = #{deptid} or deptid in ( select id from dept where pids like CONCAT('%[', #{deptid}, ']%') ))
+			and (deptid = #{deptid} or deptid in ( select id from sys_dept where pids like CONCAT('%[', #{deptid}, ']%') ))
 		</if>
 		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
 			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
@@ -35,24 +35,24 @@
 	</select>
 
 	<update id="setStatus">
-		update user set status = #{status} where id =
+		update sys_user set status = #{status} where id =
 		#{userId}
 	</update>
 
 	<update id="changePwd">
-		update user set password = #{pwd} where id =
+		update sys_user set password = #{pwd} where id =
 		#{userId}
 	</update>
 
 	<update id="setRoles">
-		update user set roleid = #{roleIds} where id =
+		update sys_user set roleid = #{roleIds} where id =
 		#{userId}
 	</update>
 
 	<select id="getByAccount" resultType="user">
 		select
 		<include refid="Base_Column_List_With_Pwd" />
-		from user where account = #{account} and status != 3
+		from sys_user where account = #{account} and status != 3
 	</select>
 
 </mapper>

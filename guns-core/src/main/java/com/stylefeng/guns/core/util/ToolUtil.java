@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -45,17 +47,17 @@ public class ToolUtil {
         }
         return sb.toString();
     }
-    
+
     /**
      * 判断一个对象是否是时间类型
-     * 
+     *
      * @author stylefeng
      * @Date 2017/4/18 12:55
      */
-    public static String dateType(Object o){
-        if(o instanceof Date){
+    public static String dateType(Object o) {
+        if (o instanceof Date) {
             return DateUtil.getDay((Date) o);
-        }else{
+        } else {
             return o.toString();
         }
     }
@@ -69,16 +71,16 @@ public class ToolUtil {
      */
     public static String getExceptionMsg(Exception e) {
         StringWriter sw = new StringWriter();
-        try{
+        try {
             e.printStackTrace(new PrintWriter(sw));
-        }finally {
+        } finally {
             try {
                 sw.close();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
-        return sw.getBuffer().toString().replaceAll("\\$","T");
+        return sw.getBuffer().toString().replaceAll("\\$", "T");
     }
 
     /**
@@ -483,7 +485,7 @@ public class ToolUtil {
      * @author stylefeng
      * @Date 2017/5/7 21:56
      */
-    public static String currentTime(){
+    public static String currentTime() {
         return DateUtil.getTime();
     }
 
@@ -493,7 +495,7 @@ public class ToolUtil {
      * @author stylefeng
      * @Date 2017/5/7 22:01
      */
-    public static String firstLetterToUpper(String val){
+    public static String firstLetterToUpper(String val) {
         return StrKit.firstCharToUpperCase(val);
     }
 
@@ -503,7 +505,7 @@ public class ToolUtil {
      * @author stylefeng
      * @Date 2017/5/7 22:02
      */
-    public static String firstLetterToLower(String val){
+    public static String firstLetterToLower(String val) {
         return StrKit.firstCharToLowerCase(val);
     }
 
@@ -513,11 +515,11 @@ public class ToolUtil {
      * @author stylefeng
      * @Date 2017/5/24 22:34
      */
-    public static Boolean isWinOs(){
+    public static Boolean isWinOs() {
         String os = System.getProperty("os.name");
-        if(os.toLowerCase().startsWith("win")){
+        if (os.toLowerCase().startsWith("win")) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -528,7 +530,42 @@ public class ToolUtil {
      * @author stylefeng
      * @Date 2017/5/24 22:35
      */
-    public static String getTempPath(){
+    public static String getTempPath() {
         return System.getProperty("java.io.tmpdir");
+    }
+
+    /**
+     * 把一个数转化为int
+     *
+     * @author fengshuonan
+     * @Date 2017/11/15 下午11:10
+     */
+    public static Integer toInt(Object val) {
+        if (val instanceof Double) {
+            BigDecimal bigDecimal = new BigDecimal((Double) val);
+            return bigDecimal.intValue();
+        } else {
+            return Integer.valueOf(val.toString());
+        }
+
+    }
+
+    /**
+     * 获取项目路径
+     */
+    public static String getWebRootPath(String filePath) {
+        try {
+            String path = ToolUtil.class.getClassLoader().getResource("").toURI().getPath();
+            path = path.replace("/WEB-INF/classes/", "");
+            path = path.replace("/target/classes/", "");
+            path = path.replace("file:/", "");
+            if (ToolUtil.isEmpty(filePath)) {
+                return path;
+            } else {
+                return path + "/" + filePath;
+            }
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

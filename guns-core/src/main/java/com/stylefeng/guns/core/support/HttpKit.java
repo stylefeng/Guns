@@ -27,6 +27,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,14 +81,17 @@ public class HttpKit {
         String result = "";
         BufferedReader in = null;
         try {
-            String para = "";
-            for (String key : param.keySet()) {
-                para += (key + "=" + param.get(key) + "&");
+            StringBuffer query = new StringBuffer();
+
+            for (Map.Entry<String, String> kv : param.entrySet()) {
+                query.append(URLEncoder.encode(kv.getKey(), "UTF-8") + "=");
+                query.append(URLEncoder.encode(kv.getValue(), "UTF-8") + "&");
             }
-            if (para.lastIndexOf("&") > 0) {
-                para = para.substring(0, para.length() - 1);
+            if (query.lastIndexOf("&") > 0) {
+                query.deleteCharAt(query.length() - 1);
             }
-            String urlNameString = url + "?" + para;
+
+            String urlNameString = url + "?" + query.toString();
             URL realUrl = new URL(urlNameString);
             // 打开和URL之间的连接
             URLConnection connection = realUrl.openConnection();

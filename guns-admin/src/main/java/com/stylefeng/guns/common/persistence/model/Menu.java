@@ -2,6 +2,7 @@ package com.stylefeng.guns.common.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
  * @author stylefeng
  * @since 2017-07-11
  */
+@TableName("sys_menu")
 public class Menu extends Model<Menu> {
 
     private static final long serialVersionUID = 1L;
@@ -23,7 +25,7 @@ public class Menu extends Model<Menu> {
      * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
     /**
      * 菜单编号
      */
@@ -76,11 +78,11 @@ public class Menu extends Model<Menu> {
     private Integer isopen;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

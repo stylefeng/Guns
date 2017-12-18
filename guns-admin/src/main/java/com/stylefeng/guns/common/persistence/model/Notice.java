@@ -2,6 +2,7 @@ package com.stylefeng.guns.common.persistence.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @author stylefeng
  * @since 2017-07-11
  */
+@TableName("sys_notice")
 public class Notice extends Model<Notice> {
 
     private static final long serialVersionUID = 1L;

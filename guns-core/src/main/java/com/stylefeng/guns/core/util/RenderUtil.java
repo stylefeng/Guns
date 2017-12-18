@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * 渲染工具类
  *
- * @author fengshuonan
+ * @author stylefeng
  * @date 2017-08-25 14:13
  */
 public class RenderUtil {
@@ -21,6 +21,7 @@ public class RenderUtil {
      */
     public static void renderJson(HttpServletResponse response, Object jsonObject) {
         try {
+            response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
             writer.write(JSON.toJSONString(jsonObject));
