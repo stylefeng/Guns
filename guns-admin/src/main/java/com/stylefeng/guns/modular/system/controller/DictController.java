@@ -7,10 +7,10 @@ import com.stylefeng.guns.common.constant.Const;
 import com.stylefeng.guns.common.constant.dictmap.DictMap;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.DictMapper;
 import com.stylefeng.guns.common.persistence.model.Dict;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.DictDao;
@@ -89,7 +89,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object add(String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictName, dictValues)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         this.dictService.addDict(dictName, dictValues);
         return SUCCESS_TIP;
@@ -125,7 +125,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object update(Integer dictId, String dictName, String dictValues) {
         if (ToolUtil.isOneEmpty(dictId, dictName, dictValues)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         dictService.editDict(dictId, dictName, dictValues);
         return super.SUCCESS_TIP;

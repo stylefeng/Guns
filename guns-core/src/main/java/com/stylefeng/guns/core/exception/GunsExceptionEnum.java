@@ -1,11 +1,12 @@
 package com.stylefeng.guns.core.exception;
 
 /**
- * @Description 所有业务异常的枚举
+ * Guns异常枚举
+ *
  * @author fengshuonan
- * @date 2016年11月12日 下午5:04:51
+ * @Date 2017/12/28 下午10:33
  */
-public enum GunsExceptionEnum {
+public enum GunsExceptionEnum implements ServiceExceptionEnum{
 
 	/**
 	 * 其他
@@ -25,44 +26,29 @@ public enum GunsExceptionEnum {
 	SERVER_ERROR(500, "服务器异常");
 
 	GunsExceptionEnum(int code, String message) {
-		this.friendlyCode = code;
-		this.friendlyMsg = message;
+		this.code = code;
+		this.message = message;
 	}
 
-	GunsExceptionEnum(int code, String message, String urlPath) {
-		this.friendlyCode = code;
-		this.friendlyMsg = message;
-		this.urlPath = urlPath;
+	private Integer code;
+
+	private String message;
+
+	@Override
+	public Integer getCode() {
+		return code;
 	}
 
-	private int friendlyCode;
-
-	private String friendlyMsg;
-
-	private String urlPath;
-
-	public int getCode() {
-		return friendlyCode;
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
-	public void setCode(int code) {
-		this.friendlyCode = code;
-	}
-
+	@Override
 	public String getMessage() {
-		return friendlyMsg;
+		return message;
 	}
 
 	public void setMessage(String message) {
-		this.friendlyMsg = message;
+		this.message = message;
 	}
-
-	public String getUrlPath() {
-		return urlPath;
-	}
-
-	public void setUrlPath(String urlPath) {
-		this.urlPath = urlPath;
-	}
-
 }

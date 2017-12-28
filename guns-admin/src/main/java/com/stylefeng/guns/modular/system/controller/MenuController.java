@@ -7,11 +7,11 @@ import com.stylefeng.guns.common.constant.dictmap.MenuDict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.MenuMapper;
 import com.stylefeng.guns.common.persistence.model.Menu;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.support.BeanKit;
@@ -76,7 +76,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menu_edit/{menuId}")
     public String menuEdit(@PathVariable Long menuId, Model model) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuMapper.selectById(menuId);
 
@@ -109,7 +109,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         //设置父级菜单编号
         menuSetPcode(menu);
@@ -138,13 +138,13 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //判断是否存在该编号
         String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
         if (ToolUtil.isNotEmpty(existedMenuName)) {
-            throw new BussinessException(BizExceptionEnum.EXISTED_THE_MENU);
+            throw new GunsException(BizExceptionEnum.EXISTED_THE_MENU);
         }
 
         //设置父级菜单编号
@@ -164,7 +164,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip remove(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //缓存菜单的名称
@@ -181,7 +181,7 @@ public class MenuController extends BaseController {
     @ResponseBody
     public Tip view(@PathVariable Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         this.menuMapper.selectById(menuId);
         return SUCCESS_TIP;
@@ -240,7 +240,7 @@ public class MenuController extends BaseController {
 
             //如果编号和父编号一致会导致无限递归
             if (menu.getCode().equals(menu.getPcode())) {
-                throw new BussinessException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+                throw new GunsException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
             }
 
             menu.setLevels(pLevels + 1);

@@ -3,7 +3,7 @@ package com.stylefeng.guns.common.constant.dictmap.factory;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.factory.IConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
+import com.stylefeng.guns.core.exception.GunsException;
 
 import java.lang.reflect.Method;
 
@@ -27,7 +27,7 @@ public class DictFieldWarpperFactory {
                 Object result = method.invoke(me, Integer.parseInt(field.toString()));
                 return result;
             } catch (Exception e1) {
-                throw new BussinessException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+                throw new GunsException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
             }
         }
     }

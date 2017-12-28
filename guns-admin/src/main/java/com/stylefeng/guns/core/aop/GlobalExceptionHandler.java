@@ -1,9 +1,9 @@
 package com.stylefeng.guns.core.aop;
 
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.core.base.tips.ErrorTip;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
@@ -44,10 +44,10 @@ public class GlobalExceptionHandler {
      *
      * @author fengshuonan
      */
-    @ExceptionHandler(BussinessException.class)
+    @ExceptionHandler(GunsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(BussinessException e) {
+    public ErrorTip notFount(GunsException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", e.getMessage());
         log.error("业务异常:", e);

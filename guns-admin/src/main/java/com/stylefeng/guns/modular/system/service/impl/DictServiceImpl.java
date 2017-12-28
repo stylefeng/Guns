@@ -3,11 +3,11 @@ package com.stylefeng.guns.modular.system.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
-import com.stylefeng.guns.modular.system.dao.DictDao;
-import com.stylefeng.guns.modular.system.service.IDictService;
 import com.stylefeng.guns.common.persistence.dao.DictMapper;
 import com.stylefeng.guns.common.persistence.model.Dict;
+import com.stylefeng.guns.core.exception.GunsException;
+import com.stylefeng.guns.modular.system.dao.DictDao;
+import com.stylefeng.guns.modular.system.service.IDictService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +32,7 @@ public class DictServiceImpl implements IDictService {
         //判断有没有该字典
         List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("name", dictName).and().eq("pid", 0));
         if(dicts != null && dicts.size() > 0){
-            throw new BussinessException(BizExceptionEnum.DICT_EXISTED);
+            throw new GunsException(BizExceptionEnum.DICT_EXISTED);
         }
 
         //解析dictValues
@@ -55,7 +55,7 @@ public class DictServiceImpl implements IDictService {
             try {
                 itemDict.setNum(Integer.valueOf(num));
             }catch (NumberFormatException e){
-                throw new BussinessException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
+                throw new GunsException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
             }
             this.dictMapper.insert(itemDict);
         }

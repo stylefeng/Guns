@@ -4,10 +4,10 @@ import com.stylefeng.guns.common.annotion.BussinessLog;
 import com.stylefeng.guns.common.constant.dictmap.NoticeMap;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.NoticeMapper;
 import com.stylefeng.guns.common.persistence.model.Notice;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
@@ -98,7 +98,7 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "新增通知",key = "title",dict = NoticeMap.class)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         notice.setCreater(ShiroKit.getUser().getId());
         notice.setCreatetime(new Date());
@@ -130,7 +130,7 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "修改通知",key = "title",dict = NoticeMap.class)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         Notice old = this.noticeMapper.selectById(notice.getId());
         old.setTitle(notice.getTitle());

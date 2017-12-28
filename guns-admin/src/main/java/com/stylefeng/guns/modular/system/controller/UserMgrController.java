@@ -7,7 +7,6 @@ import com.stylefeng.guns.common.constant.dictmap.UserDict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.UserMapper;
 import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.config.properties.GunsProperties;
@@ -15,6 +14,7 @@ import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.core.db.Db;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
@@ -83,7 +83,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/role_assign/{userId}")
     public String roleAssign(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = (User) Db.create(UserMapper.class).selectOneByCon("id", userId);
         model.addAttribute("userId", userId);
@@ -98,7 +98,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/user_edit/{userId}")
     public String userEdit(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         User user = this.userMapper.selectById(userId);
@@ -116,7 +116,7 @@ public class UserMgrController extends BaseController {
     public String userInfo(Model model) {
         Integer userId = ShiroKit.getUser().getId();
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = this.userMapper.selectById(userId);
         model.addAttribute(user);
@@ -141,7 +141,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
         if (!newPwd.equals(rePwd)) {
-            throw new BussinessException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
+            throw new GunsException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
         Integer userId = ShiroKit.getUser().getId();
         User user = userMapper.selectById(userId);
@@ -152,7 +152,7 @@ public class UserMgrController extends BaseController {
             user.updateById();
             return SUCCESS_TIP;
         } else {
-            throw new BussinessException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
+            throw new GunsException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
         }
     }
 
@@ -182,13 +182,13 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip add(@Valid UserDto user, BindingResult result) {
         if (result.hasErrors()) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
 
         // 判断账号是否重复
         User theUser = managerDao.getByAccount(user.getAccount());
         if (theUser != null) {
-            throw new BussinessException(BizExceptionEnum.USER_ALREADY_REG);
+            throw new GunsException(BizExceptionEnum.USER_ALREADY_REG);
         }
 
         // 完善账号信息
@@ -211,7 +211,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
             this.userMapper.updateById(UserFactory.createUser(user));
@@ -223,7 +223,7 @@ public class UserMgrController extends BaseController {
                 this.userMapper.updateById(UserFactory.createUser(user));
                 return SUCCESS_TIP;
             } else {
-                throw new BussinessException(BizExceptionEnum.NO_PERMITION);
+                throw new GunsException(BizExceptionEnum.NO_PERMITION);
             }
         }
     }
@@ -237,11 +237,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip delete(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能删除超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
+            throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         assertAuth(userId);
         this.managerDao.setStatus(userId, ManagerStatus.DELETED.getCode());
@@ -255,7 +255,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public User view(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         return this.userMapper.selectById(userId);
@@ -270,7 +270,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip reset(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         User user = this.userMapper.selectById(userId);
@@ -289,11 +289,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip freeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能冻结超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new BussinessException(BizExceptionEnum.CANT_FREEZE_ADMIN);
+            throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         assertAuth(userId);
         this.managerDao.setStatus(userId, ManagerStatus.FREEZED.getCode());
@@ -309,7 +309,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip unfreeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         this.managerDao.setStatus(userId, ManagerStatus.OK.getCode());
@@ -325,11 +325,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new BussinessException(BizExceptionEnum.CANT_CHANGE_ADMIN);
+            throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         assertAuth(userId);
         this.managerDao.setRoles(userId, roleIds);
@@ -347,7 +347,7 @@ public class UserMgrController extends BaseController {
             String fileSavePath = gunsProperties.getFileUploadPath();
             picture.transferTo(new File(fileSavePath + pictureName));
         } catch (Exception e) {
-            throw new BussinessException(BizExceptionEnum.UPLOAD_ERROR);
+            throw new GunsException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
     }
@@ -365,7 +365,7 @@ public class UserMgrController extends BaseController {
         if (deptDataScope.contains(deptid)) {
             return;
         } else {
-            throw new BussinessException(BizExceptionEnum.NO_PERMITION);
+            throw new GunsException(BizExceptionEnum.NO_PERMITION);
         }
 
     }

@@ -5,10 +5,10 @@ import com.stylefeng.guns.common.annotion.Permission;
 import com.stylefeng.guns.common.constant.dictmap.DeptDict;
 import com.stylefeng.guns.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
 import com.stylefeng.guns.common.persistence.dao.DeptMapper;
 import com.stylefeng.guns.common.persistence.model.Dept;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.util.ToolUtil;
@@ -96,7 +96,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         //完善pids,根据pid拿到pid的pids
         deptSetPids(dept);
@@ -133,7 +133,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         deptSetPids(dept);
         deptMapper.updateById(dept);
