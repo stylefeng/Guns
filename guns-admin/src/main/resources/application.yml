@@ -81,7 +81,7 @@ spring:
     db-name: guns
     filters: log4j,wall,mergeStat
 
-#多数据源(flowabe的和业务的)
+#flowable数据源和多数据源配置
 guns:
   flowable:
     datasource:
