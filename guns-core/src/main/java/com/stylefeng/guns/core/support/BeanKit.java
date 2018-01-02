@@ -279,7 +279,7 @@ public class BeanKit {
     public static <T> List<Map<String, Object>> listToMapList(List<T> bean) {
         ArrayList<Map<String, Object>> maps = new ArrayList<>();
         for (T t : bean) {
-            maps.add(beanToMap(bean, false));
+            maps.add(beanToMap(t, false));
         }
         return maps;
     }
