@@ -43,6 +43,8 @@
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
         <jwt.version>0.7.0</jwt.version>
         <flowable.version>6.2.0</flowable.version>
+        <hutool.version>3.3.0</hutool.version>
+        <mp-sdk.version>2.9.0</mp-sdk.version>
     </properties>
 
     <dependencyManagement>
@@ -166,6 +168,31 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoleilu</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaoleilu</groupId>
+                <artifactId>hutool-http</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${mp-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${mp-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${mp-sdk.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
