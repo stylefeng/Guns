@@ -28,12 +28,6 @@ beetl:
 
 ###################  spring配置  ###################
 spring:
-  undertown:
-    io-threads: 2
-    worker-threads: 20
-    buffer-size: 1024
-    buffers-per-region: 1024
-    direct-buffers: true
   redis:
     host: localhost
     port: 6379

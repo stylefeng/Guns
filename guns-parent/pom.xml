@@ -44,7 +44,6 @@
         <jwt.version>0.7.0</jwt.version>
         <flowable.version>6.2.0</flowable.version>
         <hutool.version>4.0.0</hutool.version>
-        <mp-sdk.version>2.9.0</mp-sdk.version>
     </properties>
 
     <dependencyManagement>
@@ -178,21 +177,6 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-http</artifactId>
                 <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-miniapp</artifactId>
-                <version>${mp-sdk.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-pay</artifactId>
-                <version>${mp-sdk.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-mp</artifactId>
-                <version>${mp-sdk.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

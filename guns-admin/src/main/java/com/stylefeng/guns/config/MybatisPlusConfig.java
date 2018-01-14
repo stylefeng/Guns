@@ -3,7 +3,7 @@ package com.stylefeng.guns.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.stylefeng.guns.common.constant.DSEnum;
+import com.stylefeng.guns.common.constant.DatasourceEnum;
 import com.stylefeng.guns.core.datascope.DataScopeInterceptor;
 import com.stylefeng.guns.core.datasource.DruidProperties;
 import com.stylefeng.guns.core.mutidatasource.DynamicDataSource;
@@ -83,8 +83,8 @@ public class MybatisPlusConfig {
 
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         HashMap<Object, Object> hashMap = new HashMap();
-        hashMap.put(DSEnum.DATA_SOURCE_GUNS, dataSourceGuns);
-        hashMap.put(DSEnum.DATA_SOURCE_BIZ, bizDataSource);
+        hashMap.put(DatasourceEnum.DATA_SOURCE_GUNS, dataSourceGuns);
+        hashMap.put(DatasourceEnum.DATA_SOURCE_BIZ, bizDataSource);
         dynamicDataSource.setTargetDataSources(hashMap);
         dynamicDataSource.setDefaultTargetDataSource(dataSourceGuns);
         return dynamicDataSource;
@@ -106,7 +106,7 @@ public class MybatisPlusConfig {
         return new DataScopeInterceptor();
     }
 
-    /*
+    /**
      * 乐观锁mybatis插件
      */
     @Bean

@@ -7,7 +7,7 @@ package com.stylefeng.guns.common.constant;
  * @author fengshuonan
  * @date 2017年3月5日 上午10:15:02
  */
-public interface DSEnum {
+public interface DatasourceEnum {
 
 	String DATA_SOURCE_GUNS = "dataSourceGuns";			//guns数据源
 	

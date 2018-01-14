@@ -27,12 +27,6 @@ mybatis-plus:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
 
 spring:
-  undertown:
-    io-threads: 2
-    worker-threads: 20
-    buffer-size: 1024
-    buffers-per-region: 1024
-    direct-buffers: true
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/rest?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
