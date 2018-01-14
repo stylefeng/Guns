@@ -62,10 +62,14 @@ spring:
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
   typeAliasesPackage: com.stylefeng.guns.common.persistence.model
+  typeEnumsPackage: com.stylefeng.guns.common.constant.enums
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false
     refresh-mapper: true
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
   configuration:
     map-underscore-to-camel-case: false
     cache-enabled: true #配置的缓存的全局开关

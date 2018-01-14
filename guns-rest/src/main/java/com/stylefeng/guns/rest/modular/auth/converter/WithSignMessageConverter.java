@@ -1,7 +1,7 @@
 package com.stylefeng.guns.rest.modular.auth.converter;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.MD5Util;
@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
  * @author fengshuonan
  * @date 2017-08-25 15:42
  */
-public class WithSignMessageConverter extends FastJsonHttpMessageConverter4 {
+public class WithSignMessageConverter extends FastJsonHttpMessageConverter {
 
     @Autowired
     JwtProperties jwtProperties;

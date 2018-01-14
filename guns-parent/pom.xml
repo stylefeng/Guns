@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.9.RELEASE</version>
     </parent>
 
     <properties>
@@ -26,10 +26,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <guns.version>1.0.0-SNAPSHOT</guns.version>
-        <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
+        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
         <shiro.version>1.4.0</shiro.version>
-        <mybatis-plus.version>2.1.0</mybatis-plus.version>
-        <fastjson.version>1.2.41</fastjson.version>
+        <mybatis-plus.version>2.1.8</mybatis-plus.version>
+        <fastjson.version>1.2.44</fastjson.version>
         <commons.io.version>2.5</commons.io.version>
         <velocity.version>1.7</velocity.version>
         <kaptcha.version>2.3.2</kaptcha.version>
@@ -43,7 +43,7 @@
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
         <jwt.version>0.7.0</jwt.version>
         <flowable.version>6.2.0</flowable.version>
-        <hutool.version>3.3.0</hutool.version>
+        <hutool.version>4.0.0</hutool.version>
         <mp-sdk.version>2.9.0</mp-sdk.version>
     </properties>
 
@@ -69,7 +69,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.3.RELEASE</version>
+                <version>1.5.9.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -170,12 +170,12 @@
                 <version>${jwt.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.xiaoleilu</groupId>
+                <groupId>cn.hutool</groupId>
                 <artifactId>hutool-core</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.xiaoleilu</groupId>
+                <groupId>cn.hutool</groupId>
                 <artifactId>hutool-http</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
@@ -212,7 +212,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>1.5.3.RELEASE</version>
+                    <version>1.5.9.RELEASE</version>
                 </plugin>
             </plugins>
         </pluginManagement>
