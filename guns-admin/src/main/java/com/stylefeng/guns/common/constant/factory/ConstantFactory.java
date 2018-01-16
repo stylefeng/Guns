@@ -305,7 +305,7 @@ public class ConstantFactory implements IConstantFactory {
 
         ArrayList<Integer> deptids = new ArrayList<>();
 
-        if(depts != null || depts.size() > 0){
+        if(depts != null && depts.size() > 0){
             for (Dept dept : depts) {
                 deptids.add(dept.getId());
             }
