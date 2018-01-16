@@ -14,22 +14,24 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "guns.muti-datasource")
 public class MutiDataSourceProperties {
 
-    //默认的数据源名称
     private String defaultDataSourceName = "dataSourceGuns";
 
-    //默认多数据源的链接
     private String url = "jdbc:mysql://127.0.0.1:3306/biz?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";
 
-    //默认多数据源的数据库账号
     private String username = "root";
 
-    //默认多数据源的数据库密码
     private String password = "root";
+
+    private String driverClassName = "com.mysql.jdbc.Driver";
+
+    private String validationQuery = "SELECT 'x'";
 
     public void config(DruidDataSource dataSource) {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setValidationQuery(validationQuery);
     }
 
     public String getUrl() {
@@ -62,5 +64,21 @@ public class MutiDataSourceProperties {
 
     public void setDefaultDataSourceName(String defaultDataSourceName) {
         this.defaultDataSourceName = defaultDataSourceName;
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
+
+    public String getValidationQuery() {
+        return validationQuery;
+    }
+
+    public void setValidationQuery(String validationQuery) {
+        this.validationQuery = validationQuery;
     }
 }
