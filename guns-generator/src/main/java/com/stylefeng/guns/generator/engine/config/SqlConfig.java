@@ -100,7 +100,7 @@ public class SqlConfig {
         Menu menu = new Menu();
         menu.setId(IdWorker.getId());
         menu.setPcode(parentMenu.getCode());
-        menu.setPcodes(parentMenu.getPcodes() + "[" + parentMenu.getId() + "],");
+        menu.setPcodes(parentMenu.getPcodes() + "[" + parentMenu.getCode() + "],");
         menu.setIcon("");
         menu.setNum(99);
         menu.setLevels(3);
@@ -120,7 +120,7 @@ public class SqlConfig {
             preparedStatement.setString(1, "%" + parentMenuName + "%");
             ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
-                String pcode = String.valueOf(results.getLong("id"));
+                String pcode = results.getString("code");
                 String pcodes = results.getString("pcodes");
                 if (ToolUtil.isNotEmpty(pcode) && ToolUtil.isNotEmpty(pcodes)) {
                     String[] strings = {pcode, pcodes};
