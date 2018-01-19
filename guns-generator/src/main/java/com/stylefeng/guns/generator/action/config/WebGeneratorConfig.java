@@ -84,7 +84,7 @@ public class WebGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setServiceSwitch(genQo.getServiceSwitch());
 
         /**
-         * adi 生成器开关
+         * guns 生成器开关
          */
         contextConfig.setControllerSwitch(genQo.getControllerSwitch());
         contextConfig.setIndexPageSwitch(genQo.getIndexPageSwitch());

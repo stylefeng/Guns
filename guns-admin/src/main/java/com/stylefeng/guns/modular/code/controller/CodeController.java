@@ -56,7 +56,7 @@ public class CodeController extends BaseController {
         genQo.setPassword(druidProperties.getPassword());
         WebGeneratorConfig webGeneratorConfig = new WebGeneratorConfig(genQo);
         webGeneratorConfig.doMpGeneration();
-        webGeneratorConfig.doAdiGeneration();
+        webGeneratorConfig.doGunsGeneration();
         return SUCCESS_TIP;
     }
 }

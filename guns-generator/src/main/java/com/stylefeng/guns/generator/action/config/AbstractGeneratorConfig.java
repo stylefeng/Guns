@@ -99,7 +99,7 @@ public abstract class AbstractGeneratorConfig {
         }
     }
 
-    public void doAdiGeneration() {
+    public void doGunsGeneration() {
         GunsTemplateEngine GunsTemplateEngine = new SimpleTemplateEngine();
         GunsTemplateEngine.setContextConfig(contextConfig);
         sqlConfig.setConnection(dataSourceConfig.getConn());

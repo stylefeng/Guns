@@ -12,7 +12,7 @@ import com.stylefeng.guns.core.util.ToolUtil;
 public class ContextConfig {
 
     private String templatePrefixPath = "gunsTemplate/advanced";
-    private String projectPath = "D:\\ideaSpace\\adi";//模板输出的项目目录
+    private String projectPath = "D:\\ideaSpace\\guns";//模板输出的项目目录
     private String bizChName;   //业务名称
     private String bizEnName;   //业务英文名称
     private String bizEnBigName;//业务英文名称(大写)

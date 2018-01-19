@@ -59,7 +59,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setServiceSwitch(true);
 
         /**
-         * adi 生成器开关
+         * guns 生成器开关
          */
         contextConfig.setControllerSwitch(true);
         contextConfig.setIndexPageSwitch(true);
