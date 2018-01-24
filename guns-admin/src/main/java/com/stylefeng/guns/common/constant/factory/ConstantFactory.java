@@ -1,13 +1,26 @@
 package com.stylefeng.guns.common.constant.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.common.constant.cache.Cache;
 import com.stylefeng.guns.common.constant.cache.CacheKey;
 import com.stylefeng.guns.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.common.constant.state.MenuStatus;
-import com.stylefeng.guns.common.persistence.dao.*;
-import com.stylefeng.guns.common.persistence.model.*;
+import com.stylefeng.guns.common.persistence.dao.DeptMapper;
+import com.stylefeng.guns.common.persistence.dao.DictMapper;
+import com.stylefeng.guns.common.persistence.dao.MenuMapper;
+import com.stylefeng.guns.common.persistence.dao.NoticeMapper;
+import com.stylefeng.guns.common.persistence.dao.RoleMapper;
+import com.stylefeng.guns.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.common.persistence.model.Dept;
+import com.stylefeng.guns.common.persistence.model.Dict;
+import com.stylefeng.guns.common.persistence.model.Menu;
+import com.stylefeng.guns.common.persistence.model.Notice;
+import com.stylefeng.guns.common.persistence.model.Role;
+import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.support.StrKit;
 import com.stylefeng.guns.core.util.Convert;
@@ -16,9 +29,6 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 常量的生产工厂
@@ -116,7 +126,7 @@ public class ConstantFactory implements IConstantFactory {
             return "--";
         }
         Role roleObj = roleMapper.selectById(roleId);
-        if (ToolUtil.isNotEmpty(roleObj) && ToolUtil.isNotEmpty(roleObj.getName())) {
+        if (ToolUtil.isNotEmpty(roleObj) && ToolUtil.isNotEmpty(roleObj.getTips())) {
             return roleObj.getTips();
         }
         return "";
