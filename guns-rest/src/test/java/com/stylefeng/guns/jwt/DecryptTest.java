@@ -16,10 +16,8 @@ public class DecryptTest {
 
     public static void main(String[] args) {
 
-        String key = "mySecret";
-
-        String compactJws = "eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiJxczV4ZjciLCJzdWIiOiJhZG1pbiIsImV4cCI6MTUwNjM0Mzk4NywiaWF0IjoxNTA1NzM5MTg3fQ.N5_npknF-w_pq_3bi-cRp0HkjQqOVlK_dTh5QPIDYcWYCujp4uQ5-QrHDB86azHhsNKVgwpvh1_0ZkxmmEFsEQ";
-        String salt = "qs5xf7";
+        String compactJws = "eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiIwaXF3aGkiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTUxNzU3Nzk5NSwiaWF0IjoxNTE2OTczMTk1fQ.ORb4HklqtANFrdfTtGoeOHP6WNQJfWfD1bdx4_xALIpCTIOpnZkLGcQXbyBPUaX84P0vYu4DNBGONwtfjMSMFw";
+        String salt = "0iqwhi";
 
         SimpleObject simpleObject = new SimpleObject();
         simpleObject.setUser("stylefeng");
