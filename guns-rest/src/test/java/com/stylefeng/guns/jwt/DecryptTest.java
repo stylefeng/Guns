@@ -16,7 +16,6 @@ public class DecryptTest {
 
     public static void main(String[] args) {
 
-        String compactJws = "eyJhbGciOiJIUzUxMiJ9.eyJyYW5kb21LZXkiOiIwaXF3aGkiLCJzdWIiOiJhZG1pbiIsImV4cCI6MTUxNzU3Nzk5NSwiaWF0IjoxNTE2OTczMTk1fQ.ORb4HklqtANFrdfTtGoeOHP6WNQJfWfD1bdx4_xALIpCTIOpnZkLGcQXbyBPUaX84P0vYu4DNBGONwtfjMSMFw";
         String salt = "0iqwhi";
 
         SimpleObject simpleObject = new SimpleObject();
@@ -34,9 +33,5 @@ public class DecryptTest {
         baseTransferEntity.setSign(md5);
 
         System.out.println(JSON.toJSONString(baseTransferEntity));
-
-        //System.out.println("body = " + Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getBody());
-        //System.out.println("header = " + Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getHeader());
-        //System.out.println("signature = " + Jwts.parser().setSigningKey(key).parseClaimsJws(compactJws).getSignature());
     }
 }
