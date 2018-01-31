@@ -123,6 +123,5 @@ $(function () {
     var editor = new E('#editor');
     editor.create();
     editor.txt.html($("#contentVal").val());
-    editor.txt
     NoticeInfoDlg.editor = editor;
 });
