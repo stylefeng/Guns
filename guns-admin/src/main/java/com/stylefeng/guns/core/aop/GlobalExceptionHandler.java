@@ -14,6 +14,7 @@ import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.UnknownSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -35,6 +36,7 @@ import static com.stylefeng.guns.core.support.HttpKit.getRequest;
  * @date 2016年11月12日 下午3:19:56
  */
 @ControllerAdvice
+@Order(-1)
 public class GlobalExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
