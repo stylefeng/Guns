@@ -39,6 +39,7 @@ DictInfoDlg.addItem = function () {
  */
 DictInfoDlg.deleteItem = function (event) {
     var obj = Feng.eventParseObject(event);
+    obj = obj.is('button') ? obj : obj.parent();
     obj.parent().parent().remove();
 };
 

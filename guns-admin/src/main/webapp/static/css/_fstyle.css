@@ -56,6 +56,10 @@
 	padding:10px
 }
 
+.w-e-text-container{
+	height: 150px !important;
+}
+
 .editorHeight{
 	height: 170px;
 }
