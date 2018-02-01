@@ -10,8 +10,6 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.session.InvalidSessionException;
-import org.apache.shiro.session.UnknownSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -22,8 +20,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.UndeclaredThrowableException;
 
 import static com.stylefeng.guns.core.support.HttpKit.getIp;
@@ -138,41 +134,4 @@ public class GlobalExceptionHandler {
         log.error("运行时异常:", e);
         return new ErrorTip(BizExceptionEnum.SERVER_ERROR.getCode(),BizExceptionEnum.SERVER_ERROR.getMessage());
     }
-
-    /**
-     * session失效的异常拦截
-     *
-     * @author stylefeng
-     * @Date 2017/6/7 21:02
-     */
-    @ExceptionHandler(InvalidSessionException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String sessionTimeout(InvalidSessionException e, Model model, HttpServletRequest request, HttpServletResponse response) {
-        model.addAttribute("tips", "session超时");
-        assertAjax(request, response);
-        return "/login.html";
-    }
-
-    /**
-     * session异常
-     *
-     * @author stylefeng
-     * @Date 2017/6/7 21:02
-     */
-    @ExceptionHandler(UnknownSessionException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String sessionTimeout(UnknownSessionException e, Model model, HttpServletRequest request, HttpServletResponse response) {
-        model.addAttribute("tips", "session超时");
-        assertAjax(request, response);
-        return "/login.html";
-    }
-
-    private void assertAjax(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getHeader("x-requested-with") != null
-                && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
-            //如果是ajax请求响应头会有，x-requested-with
-            response.setHeader("sessionstatus", "timeout");//在响应头设置session状态
-        }
-    }
-
 }
