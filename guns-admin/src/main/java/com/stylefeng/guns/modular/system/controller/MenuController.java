@@ -233,7 +233,7 @@ public class MenuController extends BaseController {
             menu.setPcodes("[0],");
             menu.setLevels(1);
         } else {
-            int code = Integer.parseInt(menu.getPcode());
+            long code = Long.parseLong(menu.getPcode());
             Menu pMenu = menuMapper.selectById(code);
             Integer pLevels = pMenu.getLevels();
             menu.setPcode(pMenu.getCode());
