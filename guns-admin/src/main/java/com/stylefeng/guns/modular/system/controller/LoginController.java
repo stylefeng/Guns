@@ -11,9 +11,9 @@ import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ApiMenuFilter;
 import com.stylefeng.guns.core.util.KaptchaUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.MenuMapper;
-import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.model.User;
+import com.stylefeng.guns.modular.system.service.IMenuService;
+import com.stylefeng.guns.modular.system.service.IUserService;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +36,10 @@ import static com.stylefeng.guns.core.support.HttpKit.getIp;
 public class LoginController extends BaseController {
 
     @Autowired
-    MenuMapper menuMapper;
+    IMenuService menuService;
 
     @Autowired
-    UserMapper userMapper;
+    IUserService userService;
 
     /**
      * 跳转到主页
@@ -53,7 +53,7 @@ public class LoginController extends BaseController {
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return "/login.html";
         }
-        List<MenuNode> menus = menuMapper.getMenusByRoleIds(roleList);
+        List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
         List<MenuNode> titles = MenuNode.buildTitle(menus);
         titles = ApiMenuFilter.build(titles);
 
@@ -61,7 +61,7 @@ public class LoginController extends BaseController {
 
         //获取用户头像
         Integer id = ShiroKit.getUser().getId();
-        User user = userMapper.selectById(id);
+        User user = userService.selectById(id);
         String avatar = user.getAvatar();
         model.addAttribute("avatar", avatar);
 

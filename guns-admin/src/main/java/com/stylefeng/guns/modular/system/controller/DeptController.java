@@ -1,17 +1,16 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.modular.system.dao.DeptMapper;
-import com.stylefeng.guns.modular.system.model.Dept;
-import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.util.ToolUtil;
+import com.stylefeng.guns.modular.system.model.Dept;
 import com.stylefeng.guns.modular.system.service.IDeptService;
 import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import org.springframework.stereotype.Controller;
@@ -38,9 +37,6 @@ public class DeptController extends BaseController {
     private String PREFIX = "/system/dept/";
 
     @Resource
-    DeptMapper deptMapper;
-
-    @Resource
     IDeptService deptService;
 
     /**
@@ -65,7 +61,7 @@ public class DeptController extends BaseController {
     @Permission
     @RequestMapping("/dept_update/{deptId}")
     public String deptUpdate(@PathVariable Integer deptId, Model model) {
-        Dept dept = deptMapper.selectById(deptId);
+        Dept dept = deptService.selectById(deptId);
         model.addAttribute(dept);
         model.addAttribute("pName", ConstantFactory.me().getDeptName(dept.getPid()));
         LogObjectHolder.me().set(dept);
@@ -78,7 +74,7 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/tree")
     @ResponseBody
     public List<ZTreeNode> tree() {
-        List<ZTreeNode> tree = this.deptMapper.tree();
+        List<ZTreeNode> tree = this.deptService.tree();
         tree.add(ZTreeNode.createParent());
         return tree;
     }
@@ -96,7 +92,7 @@ public class DeptController extends BaseController {
         }
         //完善pids,根据pid拿到pid的pids
         deptSetPids(dept);
-        return this.deptMapper.insert(dept);
+        return this.deptService.insert(dept);
     }
 
     /**
@@ -106,7 +102,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.deptMapper.list(condition);
+        List<Map<String, Object>> list = this.deptService.list(condition);
         return super.warpObject(new DeptWarpper(list));
     }
 
@@ -117,7 +113,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object detail(@PathVariable("deptId") Integer deptId) {
-        return deptMapper.selectById(deptId);
+        return deptService.selectById(deptId);
     }
 
     /**
@@ -132,7 +128,7 @@ public class DeptController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         deptSetPids(dept);
-        deptMapper.updateById(dept);
+        deptService.updateById(dept);
         return SUCCESS_TIP;
     }
 
@@ -159,7 +155,7 @@ public class DeptController extends BaseController {
             dept.setPids("[0],");
         } else {
             int pid = dept.getPid();
-            Dept temp = deptMapper.selectById(pid);
+            Dept temp = deptService.selectById(pid);
             String pids = temp.getPids();
             dept.setPid(pid);
             dept.setPids(pids + "[" + pid + "],");

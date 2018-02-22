@@ -2,6 +2,7 @@ package com.stylefeng.guns.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.modular.system.dao.DictMapper;
@@ -18,7 +19,7 @@ import static com.stylefeng.guns.core.common.constant.factory.MutiStrFactory.*;
 
 @Service
 @Transactional
-public class DictServiceImpl implements IDictService {
+public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
 
     @Resource
     DictMapper dictMapper;
@@ -75,5 +76,15 @@ public class DictServiceImpl implements IDictService {
 
         //删除这个词典
         dictMapper.deleteById(dictId);
+    }
+
+    @Override
+    public List<Dict> selectByCode(String code) {
+        return this.baseMapper.selectByCode(code);
+    }
+
+    @Override
+    public List<Map<String, Object>> list(String conditiion) {
+        return this.baseMapper.list(conditiion);
     }
 }

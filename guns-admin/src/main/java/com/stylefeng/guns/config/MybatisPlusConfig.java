@@ -26,7 +26,7 @@ import java.util.HashMap;
  */
 @Configuration
 @EnableTransactionManagement(order = 2)//由于引入多数据源，所以让spring事务的aop要在多数据源切换aop的后面
-@MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao", "com.stylefeng.guns.core.common.persistence.dao"})
+@MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao"})
 public class MybatisPlusConfig {
 
     @Autowired

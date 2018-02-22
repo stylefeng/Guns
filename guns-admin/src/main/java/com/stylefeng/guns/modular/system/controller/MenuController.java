@@ -1,5 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
@@ -14,7 +15,6 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.support.BeanKit;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.MenuMapper;
 import com.stylefeng.guns.modular.system.model.Menu;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
@@ -44,9 +44,6 @@ public class MenuController extends BaseController {
     private static String PREFIX = "/system/menu/";
 
     @Resource
-    MenuMapper menuMapper;
-
-    @Resource
     IMenuService menuService;
 
     /**
@@ -74,12 +71,12 @@ public class MenuController extends BaseController {
         if (ToolUtil.isEmpty(menuId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        Menu menu = this.menuMapper.selectById(menuId);
+        Menu menu = this.menuService.selectById(menuId);
 
         //获取父级菜单的id
         Menu temp = new Menu();
         temp.setCode(menu.getPcode());
-        Menu pMenu = this.menuMapper.selectOne(temp);
+        Menu pMenu = this.menuService.selectOne(new EntityWrapper<>(temp));
 
         //如果父级是顶级菜单
         if (pMenu == null) {
@@ -110,7 +107,7 @@ public class MenuController extends BaseController {
         //设置父级菜单编号
         menuSetPcode(menu);
 
-        this.menuMapper.updateById(menu);
+        this.menuService.updateById(menu);
         return SUCCESS_TIP;
     }
 
@@ -121,7 +118,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
-        List<Map<String, Object>> menus = this.menuMapper.selectMenus(menuName, level);
+        List<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level);
         return super.warpObject(new MenuWarpper(menus));
     }
 
@@ -147,7 +144,7 @@ public class MenuController extends BaseController {
         menuSetPcode(menu);
 
         menu.setStatus(MenuStatus.ENABLE.getCode());
-        this.menuMapper.insert(menu);
+        this.menuService.insert(menu);
         return SUCCESS_TIP;
     }
 
@@ -179,7 +176,7 @@ public class MenuController extends BaseController {
         if (ToolUtil.isEmpty(menuId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.menuMapper.selectById(menuId);
+        this.menuService.selectById(menuId);
         return SUCCESS_TIP;
     }
 
@@ -189,7 +186,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menuTreeList")
     @ResponseBody
     public List<ZTreeNode> menuTreeList() {
-        List<ZTreeNode> roleTreeList = this.menuMapper.menuTreeList();
+        List<ZTreeNode> roleTreeList = this.menuService.menuTreeList();
         return roleTreeList;
     }
 
@@ -199,7 +196,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/selectMenuTreeList")
     @ResponseBody
     public List<ZTreeNode> selectMenuTreeList() {
-        List<ZTreeNode> roleTreeList = this.menuMapper.menuTreeList();
+        List<ZTreeNode> roleTreeList = this.menuService.menuTreeList();
         roleTreeList.add(ZTreeNode.createParent());
         return roleTreeList;
     }
@@ -210,12 +207,12 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menuTreeListByRoleId/{roleId}")
     @ResponseBody
     public List<ZTreeNode> menuTreeListByRoleId(@PathVariable Integer roleId) {
-        List<Long> menuIds = this.menuMapper.getMenuIdsByRoleId(roleId);
+        List<Long> menuIds = this.menuService.getMenuIdsByRoleId(roleId);
         if (ToolUtil.isEmpty(menuIds)) {
-            List<ZTreeNode> roleTreeList = this.menuMapper.menuTreeList();
+            List<ZTreeNode> roleTreeList = this.menuService.menuTreeList();
             return roleTreeList;
         } else {
-            List<ZTreeNode> roleTreeListByUserId = this.menuMapper.menuTreeListByMenuIds(menuIds);
+            List<ZTreeNode> roleTreeListByUserId = this.menuService.menuTreeListByMenuIds(menuIds);
             return roleTreeListByUserId;
         }
     }
@@ -230,7 +227,7 @@ public class MenuController extends BaseController {
             menu.setLevels(1);
         } else {
             long code = Long.parseLong(menu.getPcode());
-            Menu pMenu = menuMapper.selectById(code);
+            Menu pMenu = menuService.selectById(code);
             Integer pLevels = pMenu.getLevels();
             menu.setPcode(pMenu.getCode());
 

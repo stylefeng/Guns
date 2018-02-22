@@ -1,18 +1,17 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.dictmap.DictMap;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.modular.system.dao.DictMapper;
-import com.stylefeng.guns.modular.system.model.Dict;
-import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
+import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.modular.system.service.IDictService;
 import com.stylefeng.guns.modular.system.warpper.DictWarpper;
 import org.springframework.stereotype.Controller;
@@ -39,9 +38,6 @@ public class DictController extends BaseController {
     private String PREFIX = "/system/dict/";
 
     @Resource
-    DictMapper dictMapper;
-
-    @Resource
     IDictService dictService;
 
     /**
@@ -66,9 +62,9 @@ public class DictController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/dict_edit/{dictId}")
     public String deptUpdate(@PathVariable Integer dictId, Model model) {
-        Dict dict = dictMapper.selectById(dictId);
+        Dict dict = dictService.selectById(dictId);
         model.addAttribute("dict", dict);
-        List<Dict> subDicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("pid", dictId));
+        List<Dict> subDicts = dictService.selectList(new EntityWrapper<Dict>().eq("pid", dictId));
         model.addAttribute("subDicts", subDicts);
         LogObjectHolder.me().set(dict);
         return PREFIX + "dict_edit.html";
@@ -98,7 +94,7 @@ public class DictController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.dictMapper.list(condition);
+        List<Map<String, Object>> list = this.dictService.list(condition);
         return super.warpObject(new DictWarpper(list));
     }
 
@@ -109,7 +105,7 @@ public class DictController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object detail(@PathVariable("dictId") Integer dictId) {
-        return dictMapper.selectById(dictId);
+        return dictService.selectById(dictId);
     }
 
     /**

@@ -15,11 +15,10 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.RoleMapper;
-import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.model.Role;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IRoleService;
+import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.warpper.RoleWarpper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,10 +46,7 @@ public class RoleController extends BaseController {
     private static String PREFIX = "/system/role";
 
     @Resource
-    UserMapper userMapper;
-
-    @Resource
-    RoleMapper roleMapper;
+    IUserService userService;
 
     @Resource
     IRoleService roleService;
@@ -80,7 +76,7 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        Role role = this.roleMapper.selectById(roleId);
+        Role role = this.roleService.selectById(roleId);
         model.addAttribute(role);
         model.addAttribute("pName", ConstantFactory.me().getSingleRoleName(role.getPid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(role.getDeptid()));
@@ -109,7 +105,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String roleName) {
-        List<Map<String, Object>> roles = this.roleMapper.selectRoles(super.getPara("roleName"));
+        List<Map<String, Object>> roles = this.roleService.selectRoles(super.getPara("roleName"));
         return super.warpObject(new RoleWarpper(roles));
     }
 
@@ -125,7 +121,7 @@ public class RoleController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         role.setId(null);
-        this.roleMapper.insert(role);
+        this.roleService.insert(role);
         return SUCCESS_TIP;
     }
 
@@ -140,7 +136,7 @@ public class RoleController extends BaseController {
         if (result.hasErrors()) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.roleMapper.updateById(role);
+        this.roleService.updateById(role);
 
         //删除缓存
         CacheKit.removeAll(Cache.CONSTANT);
@@ -160,7 +156,7 @@ public class RoleController extends BaseController {
         }
 
         //不能删除超级管理员角色
-        if(roleId.equals(Const.ADMIN_ROLE_ID)){
+        if (roleId.equals(Const.ADMIN_ROLE_ID)) {
             throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
 
@@ -183,7 +179,7 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.roleMapper.selectById(roleId);
+        this.roleService.selectById(roleId);
         return SUCCESS_TIP;
     }
 
@@ -208,7 +204,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/roleTreeList")
     @ResponseBody
     public List<ZTreeNode> roleTreeList() {
-        List<ZTreeNode> roleTreeList = this.roleMapper.roleTreeList();
+        List<ZTreeNode> roleTreeList = this.roleService.roleTreeList();
         roleTreeList.add(ZTreeNode.createParent());
         return roleTreeList;
     }
@@ -219,14 +215,14 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/roleTreeListByUserId/{userId}")
     @ResponseBody
     public List<ZTreeNode> roleTreeListByUserId(@PathVariable Integer userId) {
-        User theUser = this.userMapper.selectById(userId);
+        User theUser = this.userService.selectById(userId);
         String roleid = theUser.getRoleid();
         if (ToolUtil.isEmpty(roleid)) {
-            List<ZTreeNode> roleTreeList = this.roleMapper.roleTreeList();
+            List<ZTreeNode> roleTreeList = this.roleService.roleTreeList();
             return roleTreeList;
         } else {
             String[] strArray = Convert.toStrArray(",", roleid);
-            List<ZTreeNode> roleTreeListByUserId = this.roleMapper.roleTreeListByRoleId(strArray);
+            List<ZTreeNode> roleTreeListByUserId = this.roleService.roleTreeListByRoleId(strArray);
             return roleTreeListByUserId;
         }
     }

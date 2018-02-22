@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.modular.system.dao.NoticeMapper;
+import com.stylefeng.guns.modular.system.service.INoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +21,14 @@ import java.util.Map;
 public class BlackboardController extends BaseController {
 
     @Autowired
-    NoticeMapper noticeMapper;
+    INoticeService noticeService;
 
     /**
      * 跳转到黑板
      */
     @RequestMapping("")
     public String blackboard(Model model) {
-        List<Map<String, Object>> notices = noticeMapper.list(null);
+        List<Map<String, Object>> notices = noticeService.list(null);
         model.addAttribute("noticeList", notices);
         return "/blackboard.html";
     }

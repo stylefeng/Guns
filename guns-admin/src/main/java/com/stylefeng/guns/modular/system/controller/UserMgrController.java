@@ -20,6 +20,7 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.factory.UserFactory;
 import com.stylefeng.guns.modular.system.model.User;
+import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ public class UserMgrController extends BaseController {
     private GunsProperties gunsProperties;
 
     @Resource
-    private UserMapper userMapper;
+    private IUserService userService;
 
     /**
      * 跳转到查看管理员列表的页面
@@ -97,7 +98,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
@@ -114,7 +115,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
@@ -140,7 +141,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
         Integer userId = ShiroKit.getUser().getId();
-        User user = userMapper.selectById(userId);
+        User user = userService.selectById(userId);
         String oldMd5 = ShiroKit.md5(oldPwd, user.getSalt());
         if (user.getPassword().equals(oldMd5)) {
             String newMd5 = ShiroKit.md5(newPwd, user.getSalt());
@@ -160,11 +161,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
         if (ShiroKit.isAdmin()) {
-            List<Map<String, Object>> users = userMapper.selectUsers(null, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
-            List<Map<String, Object>> users = userMapper.selectUsers(dataScope, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
         }
     }
@@ -182,7 +183,7 @@ public class UserMgrController extends BaseController {
         }
 
         // 判断账号是否重复
-        User theUser = userMapper.getByAccount(user.getAccount());
+        User theUser = userService.getByAccount(user.getAccount());
         if (theUser != null) {
             throw new GunsException(BizExceptionEnum.USER_ALREADY_REG);
         }
@@ -193,7 +194,7 @@ public class UserMgrController extends BaseController {
         user.setStatus(ManagerStatus.OK.getCode());
         user.setCreatetime(new Date());
 
-        this.userMapper.insert(UserFactory.createUser(user));
+        this.userService.insert(UserFactory.createUser(user));
         return SUCCESS_TIP;
     }
 
@@ -210,13 +211,13 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
-            this.userMapper.updateById(UserFactory.createUser(user));
+            this.userService.updateById(UserFactory.createUser(user));
             return SUCCESS_TIP;
         } else {
             assertAuth(user.getId());
             ShiroUser shiroUser = ShiroKit.getUser();
             if (shiroUser.getId().equals(user.getId())) {
-                this.userMapper.updateById(UserFactory.createUser(user));
+                this.userService.updateById(UserFactory.createUser(user));
                 return SUCCESS_TIP;
             } else {
                 throw new GunsException(BizExceptionEnum.NO_PERMITION);
@@ -240,7 +241,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         assertAuth(userId);
-        this.userMapper.setStatus(userId, ManagerStatus.DELETED.getCode());
+        this.userService.setStatus(userId, ManagerStatus.DELETED.getCode());
         return SUCCESS_TIP;
     }
 
@@ -254,7 +255,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        return this.userMapper.selectById(userId);
+        return this.userService.selectById(userId);
     }
 
     /**
@@ -269,10 +270,10 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         user.setSalt(ShiroKit.getRandomSalt(5));
         user.setPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
-        this.userMapper.updateById(user);
+        this.userService.updateById(user);
         return SUCCESS_TIP;
     }
 
@@ -292,7 +293,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         assertAuth(userId);
-        this.userMapper.setStatus(userId, ManagerStatus.FREEZED.getCode());
+        this.userService.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
 
@@ -308,7 +309,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        this.userMapper.setStatus(userId, ManagerStatus.OK.getCode());
+        this.userService.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }
 
@@ -328,7 +329,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         assertAuth(userId);
-        this.userMapper.setRoles(userId, roleIds);
+        this.userService.setRoles(userId, roleIds);
         return SUCCESS_TIP;
     }
 
@@ -356,7 +357,7 @@ public class UserMgrController extends BaseController {
             return;
         }
         List<Integer> deptDataScope = ShiroKit.getDeptDataScope();
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         Integer deptid = user.getDeptid();
         if (deptDataScope.contains(deptid)) {
             return;
