@@ -1,6 +1,6 @@
 package com.stylefeng.guns.modular.system.dao;
 
-import com.stylefeng.guns.common.persistence.model.User;
+import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.core.datascope.DataScope;
 import org.apache.ibatis.annotations.Param;
 

@@ -15,7 +15,7 @@
  */
 package com.stylefeng.guns.core.aop;
 
-import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.shiro.check.PermissionCheckManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,7 +36,7 @@ import java.lang.reflect.Method;
 @Order(200)
 public class PermissionAop {
 
-    @Pointcut(value = "@annotation(com.stylefeng.guns.common.annotion.Permission)")
+    @Pointcut(value = "@annotation(com.stylefeng.guns.core.common.annotion.Permission)")
     private void cutPermission() {
 
     }

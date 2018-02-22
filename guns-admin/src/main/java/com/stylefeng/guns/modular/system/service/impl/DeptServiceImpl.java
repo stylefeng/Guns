@@ -2,8 +2,8 @@ package com.stylefeng.guns.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.stylefeng.guns.common.persistence.dao.DeptMapper;
-import com.stylefeng.guns.common.persistence.model.Dept;
+import com.stylefeng.guns.core.common.persistence.dao.DeptMapper;
+import com.stylefeng.guns.modular.system.model.Dept;
 import com.stylefeng.guns.modular.system.service.IDeptService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

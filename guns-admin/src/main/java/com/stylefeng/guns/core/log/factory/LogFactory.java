@@ -1,9 +1,9 @@
 package com.stylefeng.guns.core.log.factory;
 
-import com.stylefeng.guns.common.constant.state.LogSucceed;
-import com.stylefeng.guns.common.constant.state.LogType;
-import com.stylefeng.guns.common.persistence.model.LoginLog;
-import com.stylefeng.guns.common.persistence.model.OperationLog;
+import com.stylefeng.guns.core.common.constant.state.LogSucceed;
+import com.stylefeng.guns.core.common.constant.state.LogType;
+import com.stylefeng.guns.modular.system.model.LoginLog;
+import com.stylefeng.guns.modular.system.model.OperationLog;
 
 import java.util.Date;
 

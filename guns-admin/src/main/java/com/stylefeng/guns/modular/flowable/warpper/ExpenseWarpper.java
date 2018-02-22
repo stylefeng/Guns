@@ -1,6 +1,6 @@
 package com.stylefeng.guns.modular.flowable.warpper;
 
-import com.stylefeng.guns.common.constant.state.ExpenseState;
+import com.stylefeng.guns.core.common.constant.state.ExpenseState;
 import com.stylefeng.guns.core.base.warpper.BaseControllerWarpper;
 
 import java.util.Map;

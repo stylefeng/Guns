@@ -1,8 +1,8 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
-import com.stylefeng.guns.common.persistence.dao.RelationMapper;
-import com.stylefeng.guns.common.persistence.dao.RoleMapper;
-import com.stylefeng.guns.common.persistence.model.Relation;
+import com.stylefeng.guns.core.common.persistence.dao.RelationMapper;
+import com.stylefeng.guns.core.common.persistence.dao.RoleMapper;
+import com.stylefeng.guns.modular.system.model.Relation;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.system.dao.RoleDao;
 import com.stylefeng.guns.modular.system.service.IRoleService;

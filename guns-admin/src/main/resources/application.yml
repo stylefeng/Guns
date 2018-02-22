@@ -54,7 +54,7 @@ spring:
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
   mapper-locations: classpath*:com/stylefeng/guns/**/mapping/*.xml
-  typeAliasesPackage: com.stylefeng.guns.common.persistence.model
+  typeAliasesPackage: com.stylefeng.guns.modular.system.model
   global-config:
     id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
     db-column-underline: false

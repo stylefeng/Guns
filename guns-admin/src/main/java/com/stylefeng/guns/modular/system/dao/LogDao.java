@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.system.dao;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.common.persistence.model.OperationLog;
+import com.stylefeng.guns.modular.system.model.OperationLog;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

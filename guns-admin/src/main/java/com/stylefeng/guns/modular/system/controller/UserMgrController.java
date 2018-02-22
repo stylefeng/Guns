@@ -1,14 +1,14 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.annotion.Permission;
-import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.constant.dictmap.UserDict;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.constant.state.ManagerStatus;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.persistence.dao.UserMapper;
-import com.stylefeng.guns.common.persistence.model.User;
+import com.stylefeng.guns.core.common.annotion.BussinessLog;
+import com.stylefeng.guns.core.common.annotion.Permission;
+import com.stylefeng.guns.core.common.constant.Const;
+import com.stylefeng.guns.core.common.constant.dictmap.UserDict;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
+import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.core.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;

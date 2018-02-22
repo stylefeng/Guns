@@ -2,9 +2,9 @@ package com.stylefeng.guns.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.persistence.dao.DictMapper;
-import com.stylefeng.guns.common.persistence.model.Dict;
+import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.core.common.persistence.dao.DictMapper;
+import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.modular.system.dao.DictDao;
 import com.stylefeng.guns.modular.system.service.IDictService;
@@ -15,7 +15,9 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-import static com.stylefeng.guns.common.constant.factory.MutiStrFactory.*;
+import static com.stylefeng.guns.core.common.constant.factory.MutiStrFactory.MUTI_STR_KEY;
+import static com.stylefeng.guns.core.common.constant.factory.MutiStrFactory.MUTI_STR_VALUE;
+import static com.stylefeng.guns.core.common.constant.factory.MutiStrFactory.parseKeyValue;
 
 @Service
 @Transactional

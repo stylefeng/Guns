@@ -1,14 +1,14 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.annotion.Permission;
-import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.constant.dictmap.DictMap;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.persistence.dao.DictMapper;
-import com.stylefeng.guns.common.persistence.model.Dict;
+import com.stylefeng.guns.core.common.annotion.BussinessLog;
+import com.stylefeng.guns.core.common.annotion.Permission;
+import com.stylefeng.guns.core.common.constant.Const;
+import com.stylefeng.guns.core.common.constant.dictmap.DictMap;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.core.common.persistence.dao.DictMapper;
+import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;

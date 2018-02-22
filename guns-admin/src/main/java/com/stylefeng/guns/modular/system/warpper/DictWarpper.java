@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.system.warpper;
 
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.persistence.model.Dict;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.core.base.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.util.ToolUtil;
 
