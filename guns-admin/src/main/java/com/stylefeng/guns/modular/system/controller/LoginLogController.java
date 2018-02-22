@@ -64,6 +64,6 @@ public class LoginLogController extends BaseController {
     @ResponseBody
     public Object delLog() {
         SqlRunner.db().delete("delete from sys_login_log");
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 }

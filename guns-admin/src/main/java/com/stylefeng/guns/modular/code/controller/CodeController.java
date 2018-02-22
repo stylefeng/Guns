@@ -32,7 +32,6 @@ public class CodeController extends BaseController {
     @Autowired
     private DruidProperties druidProperties;
 
-
     /**
      * 跳转到代码生成主页
      */

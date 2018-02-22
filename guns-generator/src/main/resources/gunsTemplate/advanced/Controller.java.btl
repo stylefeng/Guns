@@ -62,7 +62,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @ResponseBody
     public Object add(${context.entityName} ${context.bizEnName}) {
         ${context.bizEnName}Service.insert(${context.bizEnName});
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**
@@ -82,7 +82,7 @@ public class ${context.bizEnBigName}Controller extends BaseController {
     @ResponseBody
     public Object update(${context.entityName} ${context.bizEnName}) {
         ${context.bizEnName}Service.updateById(${context.bizEnName});
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**

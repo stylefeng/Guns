@@ -79,7 +79,7 @@ public class ExpenseController extends BaseController {
     @ResponseBody
     public Object add(Expense expense) {
         expenseService.add(expense);
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**
@@ -99,7 +99,7 @@ public class ExpenseController extends BaseController {
     @ResponseBody
     public Object update(Expense expense) {
         expenseService.updateById(expense);
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**

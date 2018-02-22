@@ -103,7 +103,7 @@ public class NoticeController extends BaseController {
         notice.setCreater(ShiroKit.getUser().getId());
         notice.setCreatetime(new Date());
         notice.insert();
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**
@@ -136,7 +136,7 @@ public class NoticeController extends BaseController {
         old.setTitle(notice.getTitle());
         old.setContent(notice.getContent());
         old.updateById();
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
 }
