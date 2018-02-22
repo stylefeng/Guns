@@ -13,7 +13,6 @@ import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.DictDao;
 import com.stylefeng.guns.modular.system.service.IDictService;
 import com.stylefeng.guns.modular.system.warpper.DictWarpper;
 import org.springframework.stereotype.Controller;
@@ -38,9 +37,6 @@ import java.util.Map;
 public class DictController extends BaseController {
 
     private String PREFIX = "/system/dict/";
-
-    @Resource
-    DictDao dictDao;
 
     @Resource
     DictMapper dictMapper;
@@ -102,7 +98,7 @@ public class DictController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.dictDao.list(condition);
+        List<Map<String, Object>> list = this.dictMapper.list(condition);
         return super.warpObject(new DictWarpper(list));
     }
 
