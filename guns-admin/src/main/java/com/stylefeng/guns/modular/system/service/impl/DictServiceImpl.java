@@ -22,7 +22,7 @@ import static com.stylefeng.guns.core.common.constant.factory.MutiStrFactory.*;
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
 
     @Resource
-    DictMapper dictMapper;
+    private DictMapper dictMapper;
 
     @Override
     public void addDict(String dictName, String dictValues) {

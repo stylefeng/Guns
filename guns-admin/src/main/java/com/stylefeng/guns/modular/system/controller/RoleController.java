@@ -20,6 +20,7 @@ import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IRoleService;
 import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.warpper.RoleWarpper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -45,11 +45,11 @@ public class RoleController extends BaseController {
 
     private static String PREFIX = "/system/role";
 
-    @Resource
-    IUserService userService;
+    @Autowired
+    private IUserService userService;
 
-    @Resource
-    IRoleService roleService;
+    @Autowired
+    private IRoleService roleService;
 
     /**
      * 跳转到角色列表页面

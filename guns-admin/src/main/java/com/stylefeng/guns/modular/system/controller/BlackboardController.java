@@ -21,7 +21,7 @@ import java.util.Map;
 public class BlackboardController extends BaseController {
 
     @Autowired
-    INoticeService noticeService;
+    private INoticeService noticeService;
 
     /**
      * 跳转到黑板

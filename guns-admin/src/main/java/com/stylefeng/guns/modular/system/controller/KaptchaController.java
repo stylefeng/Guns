@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +27,11 @@ import java.io.IOException;
 @RequestMapping("/kaptcha")
 public class KaptchaController {
 
-    @Resource
+    @Autowired
     private GunsProperties gunsProperties;
 
     @Autowired
-    Producer producer;
+    private Producer producer;
 
     /**
      * 生成验证码

@@ -19,12 +19,12 @@ import java.util.Map;
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
 
     @Resource
-    DeptMapper deptMapper;
+    private DeptMapper deptMapper;
 
     @Override
     public void deleteDept(Integer deptId) {
         Dept dept = deptMapper.selectById(deptId);
-        
+
         Wrapper<Dept> wrapper = new EntityWrapper<>();
         wrapper = wrapper.like("pids", "%[" + dept.getId() + "]%");
         List<Dept> subDepts = deptMapper.selectList(wrapper);

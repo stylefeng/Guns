@@ -23,13 +23,13 @@ import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.io.File;
@@ -50,10 +50,10 @@ public class UserMgrController extends BaseController {
 
     private static String PREFIX = "/system/user/";
 
-    @Resource
+    @Autowired
     private GunsProperties gunsProperties;
 
-    @Resource
+    @Autowired
     private IUserService userService;
 
     /**

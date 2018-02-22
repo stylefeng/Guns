@@ -24,7 +24,7 @@ import java.util.Map;
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 
     @Resource
-    MenuMapper menuMapper;
+    private MenuMapper menuMapper;
 
     @Override
     public void delMenu(Long menuId) {

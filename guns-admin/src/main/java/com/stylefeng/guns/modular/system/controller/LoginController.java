@@ -36,10 +36,10 @@ import static com.stylefeng.guns.core.support.HttpKit.getIp;
 public class LoginController extends BaseController {
 
     @Autowired
-    IMenuService menuService;
+    private IMenuService menuService;
 
     @Autowired
-    IUserService userService;
+    private IUserService userService;
 
     /**
      * 跳转到主页

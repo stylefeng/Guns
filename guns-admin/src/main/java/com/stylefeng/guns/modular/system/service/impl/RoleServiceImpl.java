@@ -19,10 +19,10 @@ import java.util.Map;
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
     @Resource
-    RoleMapper roleMapper;
+    private RoleMapper roleMapper;
 
     @Resource
-    RelationMapper relationMapper;
+    private RelationMapper relationMapper;
 
     @Override
     @Transactional(readOnly = false)

@@ -12,6 +12,7 @@ import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.Notice;
 import com.stylefeng.guns.modular.system.service.INoticeService;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class NoticeController extends BaseController {
 
     private String PREFIX = "/system/notice/";
 
-    @Resource
+    @Autowired
     private INoticeService noticeService;
 
     /**
