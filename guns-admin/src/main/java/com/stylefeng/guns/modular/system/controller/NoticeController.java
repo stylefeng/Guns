@@ -1,17 +1,16 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.modular.system.dao.NoticeMapper;
-import com.stylefeng.guns.modular.system.model.Notice;
-import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.NoticeDao;
+import com.stylefeng.guns.modular.system.dao.NoticeMapper;
+import com.stylefeng.guns.modular.system.model.Notice;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,9 +38,6 @@ public class NoticeController extends BaseController {
 
     @Resource
     private NoticeMapper noticeMapper;
-
-    @Resource
-    private NoticeDao noticeDao;
 
     /**
      * 跳转到通知列表首页
@@ -75,7 +71,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/hello")
     public String hello() {
-        List<Map<String, Object>> notices = noticeDao.list(null);
+        List<Map<String, Object>> notices = noticeMapper.list(null);
         super.setAttr("noticeList",notices);
         return "/blackboard.html";
     }
@@ -86,7 +82,7 @@ public class NoticeController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.noticeDao.list(condition);
+        List<Map<String, Object>> list = this.noticeMapper.list(condition);
         return super.warpObject(new NoticeWrapper(list));
     }
 

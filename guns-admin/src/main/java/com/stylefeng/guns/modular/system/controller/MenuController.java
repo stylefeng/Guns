@@ -1,5 +1,7 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
@@ -7,16 +9,13 @@ import com.stylefeng.guns.core.common.constant.dictmap.MenuDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.MenuStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.modular.system.dao.MenuMapper;
-import com.stylefeng.guns.modular.system.model.Menu;
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.support.BeanKit;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.MenuDao;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.model.Menu;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
 import org.springframework.stereotype.Controller;
@@ -46,9 +45,6 @@ public class MenuController extends BaseController {
 
     @Resource
     MenuMapper menuMapper;
-
-    @Resource
-    MenuDao menuDao;
 
     @Resource
     IMenuService menuService;
@@ -125,7 +121,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
-        List<Map<String, Object>> menus = this.menuDao.selectMenus(menuName, level);
+        List<Map<String, Object>> menus = this.menuMapper.selectMenus(menuName, level);
         return super.warpObject(new MenuWarpper(menus));
     }
 
@@ -193,7 +189,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menuTreeList")
     @ResponseBody
     public List<ZTreeNode> menuTreeList() {
-        List<ZTreeNode> roleTreeList = this.menuDao.menuTreeList();
+        List<ZTreeNode> roleTreeList = this.menuMapper.menuTreeList();
         return roleTreeList;
     }
 
@@ -203,7 +199,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/selectMenuTreeList")
     @ResponseBody
     public List<ZTreeNode> selectMenuTreeList() {
-        List<ZTreeNode> roleTreeList = this.menuDao.menuTreeList();
+        List<ZTreeNode> roleTreeList = this.menuMapper.menuTreeList();
         roleTreeList.add(ZTreeNode.createParent());
         return roleTreeList;
     }
@@ -214,12 +210,12 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menuTreeListByRoleId/{roleId}")
     @ResponseBody
     public List<ZTreeNode> menuTreeListByRoleId(@PathVariable Integer roleId) {
-        List<Long> menuIds = this.menuDao.getMenuIdsByRoleId(roleId);
+        List<Long> menuIds = this.menuMapper.getMenuIdsByRoleId(roleId);
         if (ToolUtil.isEmpty(menuIds)) {
-            List<ZTreeNode> roleTreeList = this.menuDao.menuTreeList();
+            List<ZTreeNode> roleTreeList = this.menuMapper.menuTreeList();
             return roleTreeList;
         } else {
-            List<ZTreeNode> roleTreeListByUserId = this.menuDao.menuTreeListByMenuIds(menuIds);
+            List<ZTreeNode> roleTreeListByUserId = this.menuMapper.menuTreeListByMenuIds(menuIds);
             return roleTreeListByUserId;
         }
     }

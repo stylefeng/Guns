@@ -1,10 +1,8 @@
 package com.stylefeng.guns.modular.system.controller;
 
 import com.google.code.kaptcha.Constants;
-import com.stylefeng.guns.core.common.exception.InvalidKaptchaException;
-import com.stylefeng.guns.modular.system.dao.UserMapper;
-import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.node.MenuNode;
@@ -13,7 +11,9 @@ import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ApiMenuFilter;
 import com.stylefeng.guns.core.util.KaptchaUtil;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.MenuDao;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
+import com.stylefeng.guns.modular.system.model.User;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ import static com.stylefeng.guns.core.support.HttpKit.getIp;
 public class LoginController extends BaseController {
 
     @Autowired
-    MenuDao menuDao;
+    MenuMapper menuMapper;
 
     @Autowired
     UserMapper userMapper;
@@ -53,7 +53,7 @@ public class LoginController extends BaseController {
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return "/login.html";
         }
-        List<MenuNode> menus = menuDao.getMenusByRoleIds(roleList);
+        List<MenuNode> menus = menuMapper.getMenusByRoleIds(roleList);
         List<MenuNode> titles = MenuNode.buildTitle(menus);
         titles = ApiMenuFilter.build(titles);
 

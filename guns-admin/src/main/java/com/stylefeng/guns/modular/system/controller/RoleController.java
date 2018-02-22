@@ -1,5 +1,8 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.base.tips.Tip;
+import com.stylefeng.guns.core.cache.CacheKit;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
@@ -7,19 +10,15 @@ import com.stylefeng.guns.core.common.constant.cache.Cache;
 import com.stylefeng.guns.core.common.constant.dictmap.RoleDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.modular.system.dao.RoleMapper;
-import com.stylefeng.guns.modular.system.dao.UserMapper;
-import com.stylefeng.guns.modular.system.model.Role;
-import com.stylefeng.guns.modular.system.model.User;
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.Tip;
-import com.stylefeng.guns.core.cache.CacheKit;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.RoleDao;
+import com.stylefeng.guns.modular.system.dao.RoleMapper;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
+import com.stylefeng.guns.modular.system.model.Role;
+import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IRoleService;
 import com.stylefeng.guns.modular.system.warpper.RoleWarpper;
 import org.springframework.stereotype.Controller;
@@ -52,9 +51,6 @@ public class RoleController extends BaseController {
 
     @Resource
     RoleMapper roleMapper;
-
-    @Resource
-    RoleDao roleDao;
 
     @Resource
     IRoleService roleService;
@@ -113,7 +109,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String roleName) {
-        List<Map<String, Object>> roles = this.roleDao.selectRoles(super.getPara("roleName"));
+        List<Map<String, Object>> roles = this.roleMapper.selectRoles(super.getPara("roleName"));
         return super.warpObject(new RoleWarpper(roles));
     }
 
@@ -212,7 +208,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/roleTreeList")
     @ResponseBody
     public List<ZTreeNode> roleTreeList() {
-        List<ZTreeNode> roleTreeList = this.roleDao.roleTreeList();
+        List<ZTreeNode> roleTreeList = this.roleMapper.roleTreeList();
         roleTreeList.add(ZTreeNode.createParent());
         return roleTreeList;
     }
@@ -226,11 +222,11 @@ public class RoleController extends BaseController {
         User theUser = this.userMapper.selectById(userId);
         String roleid = theUser.getRoleid();
         if (ToolUtil.isEmpty(roleid)) {
-            List<ZTreeNode> roleTreeList = this.roleDao.roleTreeList();
+            List<ZTreeNode> roleTreeList = this.roleMapper.roleTreeList();
             return roleTreeList;
         } else {
             String[] strArray = Convert.toStrArray(",", roleid);
-            List<ZTreeNode> roleTreeListByUserId = this.roleDao.roleTreeListByRoleId(strArray);
+            List<ZTreeNode> roleTreeListByUserId = this.roleMapper.roleTreeListByRoleId(strArray);
             return roleTreeListByUserId;
         }
     }

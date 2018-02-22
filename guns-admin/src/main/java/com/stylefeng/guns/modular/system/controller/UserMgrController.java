@@ -1,5 +1,8 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
@@ -7,11 +10,6 @@ import com.stylefeng.guns.core.common.constant.dictmap.UserDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.modular.system.dao.UserMapper;
-import com.stylefeng.guns.modular.system.model.User;
-import com.stylefeng.guns.config.properties.GunsProperties;
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.core.db.Db;
 import com.stylefeng.guns.core.exception.GunsException;
@@ -19,8 +17,9 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.factory.UserFactory;
+import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
 import org.springframework.stereotype.Controller;
@@ -52,9 +51,6 @@ public class UserMgrController extends BaseController {
 
     @Resource
     private GunsProperties gunsProperties;
-
-    @Resource
-    private UserMgrDao managerDao;
 
     @Resource
     private UserMapper userMapper;
@@ -164,11 +160,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
         if (ShiroKit.isAdmin()) {
-            List<Map<String, Object>> users = managerDao.selectUsers(null, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userMapper.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
-            List<Map<String, Object>> users = managerDao.selectUsers(dataScope, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userMapper.selectUsers(dataScope, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
         }
     }
@@ -186,7 +182,7 @@ public class UserMgrController extends BaseController {
         }
 
         // 判断账号是否重复
-        User theUser = managerDao.getByAccount(user.getAccount());
+        User theUser = userMapper.getByAccount(user.getAccount());
         if (theUser != null) {
             throw new GunsException(BizExceptionEnum.USER_ALREADY_REG);
         }
@@ -244,7 +240,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         assertAuth(userId);
-        this.managerDao.setStatus(userId, ManagerStatus.DELETED.getCode());
+        this.userMapper.setStatus(userId, ManagerStatus.DELETED.getCode());
         return SUCCESS_TIP;
     }
 
@@ -296,7 +292,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         assertAuth(userId);
-        this.managerDao.setStatus(userId, ManagerStatus.FREEZED.getCode());
+        this.userMapper.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
 
@@ -312,7 +308,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        this.managerDao.setStatus(userId, ManagerStatus.OK.getCode());
+        this.userMapper.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }
 
@@ -332,7 +328,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         assertAuth(userId);
-        this.managerDao.setRoles(userId, roleIds);
+        this.userMapper.setRoles(userId, roleIds);
         return SUCCESS_TIP;
     }
 

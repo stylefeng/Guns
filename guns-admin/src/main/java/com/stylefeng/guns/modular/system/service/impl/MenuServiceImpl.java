@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.modular.system.dao.MenuMapper;
 import com.stylefeng.guns.modular.system.model.Menu;
-import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +22,6 @@ public class MenuServiceImpl implements IMenuService {
     @Resource
     MenuMapper menuMapper;
 
-    @Resource
-    MenuDao menuDao;
-
     @Override
     public void delMenu(Long menuId) {
 
@@ -33,7 +29,7 @@ public class MenuServiceImpl implements IMenuService {
         this.menuMapper.deleteById(menuId);
 
         //删除关联的relation
-        this.menuDao.deleteRelationByMenu(menuId);
+        this.menuMapper.deleteRelationByMenu(menuId);
     }
 
     @Override

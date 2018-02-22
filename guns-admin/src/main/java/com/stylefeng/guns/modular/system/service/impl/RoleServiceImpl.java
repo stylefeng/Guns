@@ -1,10 +1,9 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
+import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.system.dao.RelationMapper;
 import com.stylefeng.guns.modular.system.dao.RoleMapper;
 import com.stylefeng.guns.modular.system.model.Relation;
-import com.stylefeng.guns.core.util.Convert;
-import com.stylefeng.guns.modular.system.dao.RoleDao;
 import com.stylefeng.guns.modular.system.service.IRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +17,6 @@ public class RoleServiceImpl implements IRoleService {
     RoleMapper roleMapper;
 
     @Resource
-    RoleDao roleDao;
-
-    @Resource
     RelationMapper relationMapper;
 
     @Override
@@ -28,7 +24,7 @@ public class RoleServiceImpl implements IRoleService {
     public void setAuthority(Integer roleId, String ids) {
 
         // 删除该角色所有的权限
-        this.roleDao.deleteRolesById(roleId);
+        this.roleMapper.deleteRolesById(roleId);
 
         // 添加新的权限
         for (Long id : Convert.toLongArray(true, Convert.toStrArray(",", ids))) {
@@ -46,7 +42,7 @@ public class RoleServiceImpl implements IRoleService {
         this.roleMapper.deleteById(roleId);
 
         // 删除该角色所有的权限
-        this.roleDao.deleteRolesById(roleId);
+        this.roleMapper.deleteRolesById(roleId);
     }
 
 }

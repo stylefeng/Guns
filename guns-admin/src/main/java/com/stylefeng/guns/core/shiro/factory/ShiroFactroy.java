@@ -2,12 +2,12 @@ package com.stylefeng.guns.core.shiro.factory;
 
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
-import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
-import com.stylefeng.guns.modular.system.dao.MenuDao;
-import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
+import com.stylefeng.guns.modular.system.model.User;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -27,10 +27,10 @@ import java.util.List;
 public class ShiroFactroy implements IShiro {
 
     @Autowired
-    private UserMgrDao userMgrDao;
+    private UserMapper userMapper;
 
     @Autowired
-    private MenuDao menuDao;
+    private MenuMapper menuMapper;
 
     public static IShiro me() {
         return SpringContextHolder.getBean(IShiro.class);
@@ -39,7 +39,7 @@ public class ShiroFactroy implements IShiro {
     @Override
     public User user(String account) {
 
-        User user = userMgrDao.getByAccount(account);
+        User user = userMapper.getByAccount(account);
 
         // 账号不存在
         if (null == user) {
@@ -77,7 +77,7 @@ public class ShiroFactroy implements IShiro {
 
     @Override
     public List<String> findPermissionsByRoleId(Integer roleId) {
-        return menuDao.getResUrlsByRoleId(roleId);
+        return menuMapper.getResUrlsByRoleId(roleId);
     }
 
     @Override
