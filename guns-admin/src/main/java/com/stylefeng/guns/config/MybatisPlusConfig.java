@@ -35,7 +35,6 @@ public class MybatisPlusConfig {
     @Autowired
     MutiDataSourceProperties mutiDataSourceProperties;
 
-
     /**
      * 另一个数据源
      */

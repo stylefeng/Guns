@@ -78,7 +78,6 @@ public class ShiroConfig {
         return sessionManager;
     }
 
-
     /**
      * 缓存管理器 使用Ehcache实现
      */

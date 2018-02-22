@@ -66,7 +66,6 @@ public class WebConfig {
         return new DruidStatInterceptor();
     }
 
-
     @Bean
     public JdkRegexpMethodPointcut druidStatPointcut(){
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
