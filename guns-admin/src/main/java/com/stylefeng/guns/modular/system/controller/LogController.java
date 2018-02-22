@@ -7,7 +7,7 @@ import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.common.constant.state.BizLogType;
-import com.stylefeng.guns.core.common.persistence.dao.OperationLogMapper;
+import com.stylefeng.guns.modular.system.dao.OperationLogMapper;
 import com.stylefeng.guns.modular.system.model.OperationLog;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.support.BeanKit;

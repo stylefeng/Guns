@@ -1,7 +1,7 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.core.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.dao.UserMgrDao;
 import org.junit.Test;
 

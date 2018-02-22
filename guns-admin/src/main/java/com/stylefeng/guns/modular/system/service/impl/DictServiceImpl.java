@@ -3,7 +3,7 @@ package com.stylefeng.guns.modular.system.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.common.persistence.dao.DictMapper;
+import com.stylefeng.guns.modular.system.dao.DictMapper;
 import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.modular.system.dao.DictDao;

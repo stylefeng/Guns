@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.guns.core.common.constant.state.ExpenseState;
-import com.stylefeng.guns.core.common.persistence.dao.ExpenseMapper;
+import com.stylefeng.guns.modular.system.dao.ExpenseMapper;
 import com.stylefeng.guns.modular.system.model.Expense;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.support.HttpKit;

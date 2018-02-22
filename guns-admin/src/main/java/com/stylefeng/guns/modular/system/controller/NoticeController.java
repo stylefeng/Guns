@@ -4,7 +4,7 @@ import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.common.persistence.dao.NoticeMapper;
+import com.stylefeng.guns.modular.system.dao.NoticeMapper;
 import com.stylefeng.guns.modular.system.model.Notice;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;

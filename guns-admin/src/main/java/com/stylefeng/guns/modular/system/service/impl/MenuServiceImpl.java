@@ -2,7 +2,7 @@ package com.stylefeng.guns.modular.system.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.stylefeng.guns.core.common.persistence.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
 import com.stylefeng.guns.modular.system.model.Menu;
 import com.stylefeng.guns.modular.system.dao.MenuDao;
 import com.stylefeng.guns.modular.system.service.IMenuService;

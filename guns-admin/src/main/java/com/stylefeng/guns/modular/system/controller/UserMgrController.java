@@ -7,7 +7,7 @@ import com.stylefeng.guns.core.common.constant.dictmap.UserDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.common.persistence.dao.UserMapper;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.base.controller.BaseController;

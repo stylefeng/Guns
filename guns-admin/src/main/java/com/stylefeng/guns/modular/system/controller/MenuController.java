@@ -7,7 +7,7 @@ import com.stylefeng.guns.core.common.constant.dictmap.MenuDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.MenuStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.common.persistence.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
 import com.stylefeng.guns.modular.system.model.Menu;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;

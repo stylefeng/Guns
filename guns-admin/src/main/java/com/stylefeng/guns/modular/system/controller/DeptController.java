@@ -5,14 +5,13 @@ import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.common.persistence.dao.DeptMapper;
+import com.stylefeng.guns.modular.system.dao.DeptMapper;
 import com.stylefeng.guns.modular.system.model.Dept;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.DeptDao;
 import com.stylefeng.guns.modular.system.service.IDeptService;
 import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import org.springframework.stereotype.Controller;
@@ -37,9 +36,6 @@ import java.util.Map;
 public class DeptController extends BaseController {
 
     private String PREFIX = "/system/dept/";
-
-    @Resource
-    DeptDao deptDao;
 
     @Resource
     DeptMapper deptMapper;
@@ -82,7 +78,7 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/tree")
     @ResponseBody
     public List<ZTreeNode> tree() {
-        List<ZTreeNode> tree = this.deptDao.tree();
+        List<ZTreeNode> tree = this.deptMapper.tree();
         tree.add(ZTreeNode.createParent());
         return tree;
     }
@@ -110,7 +106,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.deptDao.list(condition);
+        List<Map<String, Object>> list = this.deptMapper.list(condition);
         return super.warpObject(new DeptWarpper(list));
     }
 
