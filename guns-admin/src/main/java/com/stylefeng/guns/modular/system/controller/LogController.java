@@ -2,16 +2,15 @@ package com.stylefeng.guns.modular.system.controller;
 
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.common.constant.state.BizLogType;
+import com.stylefeng.guns.core.support.BeanKit;
 import com.stylefeng.guns.modular.system.dao.OperationLogMapper;
 import com.stylefeng.guns.modular.system.model.OperationLog;
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.support.BeanKit;
-import com.stylefeng.guns.modular.system.dao.LogDao;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,9 +37,6 @@ public class LogController extends BaseController {
     @Resource
     private OperationLogMapper operationLogMapper;
 
-    @Resource
-    private LogDao logDao;
-
     /**
      * 跳转到日志管理的首页
      */
@@ -57,7 +53,7 @@ public class LogController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName, @RequestParam(required = false) Integer logType) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
-        List<Map<String, Object>> result = logDao.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType), page.getOrderByField(), page.isAsc());
+        List<Map<String, Object>> result = operationLogMapper.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType), page.getOrderByField(), page.isAsc());
         page.setRecords((List<OperationLog>) new LogWarpper(result).warp());
         return super.packForBT(page);
     }
