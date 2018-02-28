@@ -67,7 +67,6 @@ public class ImgQrTool {
      * @param width         宽度
      * @param height        高度
      * @param srcImagePath  被镶嵌的图片的地址
-     * @param destImagePath 生成二维码图片的地址
      * @author fengshuonan
      * @since 2.3.0
      */
