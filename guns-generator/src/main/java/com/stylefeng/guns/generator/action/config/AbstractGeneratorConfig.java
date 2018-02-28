@@ -26,7 +26,6 @@ public abstract class AbstractGeneratorConfig {
     /**
      * mybatis-plus代码生成器配置
      */
-
     GlobalConfig globalConfig = new GlobalConfig();
 
     DataSourceConfig dataSourceConfig = new DataSourceConfig();
