@@ -1,8 +1,9 @@
 package com.stylefeng.guns.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.stylefeng.guns.common.constant.DSEnum;
+import com.stylefeng.guns.core.common.constant.DatasourceEnum;
 import com.stylefeng.guns.core.datascope.DataScopeInterceptor;
 import com.stylefeng.guns.core.datasource.DruidProperties;
 import com.stylefeng.guns.core.mutidatasource.DynamicDataSource;
@@ -25,7 +26,7 @@ import java.util.HashMap;
  */
 @Configuration
 @EnableTransactionManagement(order = 2)//由于引入多数据源，所以让spring事务的aop要在多数据源切换aop的后面
-@MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao", "com.stylefeng.guns.common.persistence.dao"})
+@MapperScan(basePackages = {"com.stylefeng.guns.modular.*.dao"})
 public class MybatisPlusConfig {
 
     @Autowired
@@ -33,7 +34,6 @@ public class MybatisPlusConfig {
 
     @Autowired
     MutiDataSourceProperties mutiDataSourceProperties;
-
 
     /**
      * 另一个数据源
@@ -48,7 +48,7 @@ public class MybatisPlusConfig {
     /**
      * guns的数据源
      */
-    private DruidDataSource dataSourceGuns(){
+    private DruidDataSource dataSourceGuns() {
         DruidDataSource dataSource = new DruidDataSource();
         druidProperties.config(dataSource);
         return dataSource;
@@ -76,14 +76,14 @@ public class MybatisPlusConfig {
         try {
             dataSourceGuns.init();
             bizDataSource.init();
-        }catch (SQLException sql){
+        } catch (SQLException sql) {
             sql.printStackTrace();
         }
 
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         HashMap<Object, Object> hashMap = new HashMap();
-        hashMap.put(DSEnum.DATA_SOURCE_GUNS, dataSourceGuns);
-        hashMap.put(DSEnum.DATA_SOURCE_BIZ, bizDataSource);
+        hashMap.put(DatasourceEnum.DATA_SOURCE_GUNS, dataSourceGuns);
+        hashMap.put(DatasourceEnum.DATA_SOURCE_BIZ, bizDataSource);
         dynamicDataSource.setTargetDataSources(hashMap);
         dynamicDataSource.setDefaultTargetDataSource(dataSourceGuns);
         return dynamicDataSource;
@@ -104,4 +104,13 @@ public class MybatisPlusConfig {
     public DataScopeInterceptor dataScopeInterceptor() {
         return new DataScopeInterceptor();
     }
+
+    /**
+     * 乐观锁mybatis插件
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
+    }
+
 }

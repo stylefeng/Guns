@@ -1,7 +1,7 @@
 package com.stylefeng.guns.rest.modular.auth.controller;
 
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.rest.common.exception.BussinessException;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
@@ -38,7 +38,7 @@ public class AuthController {
             final String token = jwtTokenUtil.generateToken(authRequest.getUserName(), randomKey);
             return ResponseEntity.ok(new AuthResponse(token, randomKey));
         } else {
-            throw new BussinessException(BizExceptionEnum.AUTH_REQUEST_ERROR);
+            throw new GunsException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }
     }
 }

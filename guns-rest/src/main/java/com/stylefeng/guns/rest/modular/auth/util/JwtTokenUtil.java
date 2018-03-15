@@ -2,10 +2,7 @@ package com.stylefeng.guns.rest.modular.auth.util;
 
 import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -101,8 +98,12 @@ public class JwtTokenUtil {
      * </pre>
      */
     public Boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(new Date());
+        try {
+            final Date expiration = getExpirationDateFromToken(token);
+            return expiration.before(new Date());
+        } catch (ExpiredJwtException expiredJwtException) {
+            return true;
+        }
     }
 
     /**

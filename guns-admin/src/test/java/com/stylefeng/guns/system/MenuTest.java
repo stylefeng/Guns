@@ -3,8 +3,8 @@ package com.stylefeng.guns.system;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.common.persistence.dao.MenuMapper;
-import com.stylefeng.guns.common.persistence.model.Menu;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.model.Menu;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

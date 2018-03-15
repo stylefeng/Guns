@@ -21,10 +21,10 @@ public class GunsCodeGenerator {
         gunsGeneratorConfig.doMpGeneration();
 
         /**
-         * adi的生成器:
-         *      adi的代码生成器可以生成controller,html页面,页面对应的js
+         * guns的生成器:
+         *      guns的代码生成器可以生成controller,html页面,页面对应的js
          */
-        gunsGeneratorConfig.doAdiGeneration();
+        gunsGeneratorConfig.doGunsGeneration();
     }
 
 }

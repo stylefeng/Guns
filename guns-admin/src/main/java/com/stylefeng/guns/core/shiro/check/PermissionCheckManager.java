@@ -18,7 +18,7 @@ package com.stylefeng.guns.core.shiro.check;
 import com.stylefeng.guns.core.util.SpringContextHolder;
 
 /**
- * 权限检查工厂
+ * 权限检查管理器(入口)
  */
 public class PermissionCheckManager {
     private final static PermissionCheckManager me = new PermissionCheckManager();

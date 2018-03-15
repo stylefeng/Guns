@@ -15,22 +15,18 @@
  */
 package com.stylefeng.guns.core.shiro.check;
 
-
 /**
- *  检查用接口
+ * 检查用接口
  */
 public interface ICheck {
 
     /**
-     * 检查指定角色
-     * @param permissions
-     * @return boolean
+     * 检查当前登录用户是否拥有指定的角色访问当
      */
     boolean check(Object[] permissions);
 
     /**
-     * 检查全体角色
-     * @return boolean
+     * 检查当前登录用户是否拥有当前请求的servlet的权限
      */
     boolean checkAll();
 }

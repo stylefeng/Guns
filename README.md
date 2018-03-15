@@ -1,17 +1,20 @@
 # Guns V3.1
 
 ## 介绍
-Guns基于SpringBoot,致力于做更简洁的后台管理系统,完美整合springmvc + shiro + mybatis-plus + beetl + flowable!Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架! 
+Guns基于SpringBoot,致力于做更简洁的后台管理系统,完美整合springmvc + shiro + mybatis-plus + beetl + flowable!Guns项目代码简洁,注释丰富,上手容易,同时Guns包含许多基础模块(用户管理,角色管理,部门管理,字典管理等10个模块),可以直接作为一个后台管理系统的脚手架! 2018目标 `更简洁`,`更规范`!
 
 Guns v3.0新增rest api服务,提供对接服务端接口的支持,并利用jwt token鉴权机制给予客户端的访问权限,传输数据进行md5签名保证传输过程数据的安全性!
 
 Guns v3.1新增集成工作流引擎flowable6.2.0!
 
+## 最新Guns技术文档
+Guns框架有作者在业余时间整理的技术文档,详情点击[查看详情](https://gitee.com/naan1993/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
+
 ## 最新Guns视频教程
-Guns框架有作者在业余时间录制的视频教程,详情点击[教程介绍](https://gitee.com/naan1993/guns/wikis/pages?title=guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B%20&parent=)
+Guns框架有作者在业余时间录制的视频教程,详情点击[教程介绍](https://gitee.com/naan1993/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
 ## 技术讨论 & [wiki地址](https://gitee.com/naan1993/guns/wikis/Home)
-如果对项目有任何疑问或者建议,欢迎加入Guns技术交流群:254550081 (加之前先看下wiki)
+如果对项目有任何疑问或者建议,欢迎加入Guns技术交流1群:254550081，Guns技术交流2群：684163663 (加之前先看下文档guns-admin/doc/Guns技术文档 v1.0.pdf)
 
 ## 管理系统功能
 1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成

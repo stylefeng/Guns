@@ -55,9 +55,9 @@ public class WebGeneratorConfig extends AbstractGeneratorConfig {
         strategyConfig.setInclude(new String[]{genQo.getTableName()});
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
         packageConfig.setParent(null);
-        packageConfig.setEntity(genQo.getProjectPackage() + ".common.persistence.model");
-        packageConfig.setMapper(genQo.getProjectPackage() + ".common.persistence.dao");
-        packageConfig.setXml(genQo.getProjectPackage() + ".common.persistence.dao.mapping");
+        packageConfig.setEntity(genQo.getProjectPackage() + ".modular.system.model");
+        packageConfig.setMapper(genQo.getProjectPackage() + ".modular.system.dao");
+        packageConfig.setXml(genQo.getProjectPackage() + ".modular.system.dao.mapping");
 
         /**
          * 业务代码配置
@@ -84,7 +84,7 @@ public class WebGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setServiceSwitch(genQo.getServiceSwitch());
 
         /**
-         * adi 生成器开关
+         * guns 生成器开关
          */
         contextConfig.setControllerSwitch(genQo.getControllerSwitch());
         contextConfig.setIndexPageSwitch(genQo.getIndexPageSwitch());

@@ -21,6 +21,12 @@ import javax.servlet.ServletContextListener;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * ServletContext监听器
+ *
+ * @author stylefeng
+ * @Date 2018/2/22 21:07
+ */
 public class ConfigListener implements ServletContextListener {
 
     private static Map<String, String> conf = new HashMap<>();
@@ -37,8 +43,11 @@ public class ConfigListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent evt) {
         ServletContext sc = evt.getServletContext();
-        // 项目路径
+
+        //项目发布,当前运行环境的绝对路径
         conf.put("realPath", sc.getRealPath("/").replaceFirst("/", ""));
+
+        //servletContextPath,默认""
         conf.put("contextPath", sc.getContextPath());
     }
 

@@ -1,0 +1,96 @@
+package ${controller.packageName};
+
+<% for(import in controller.imports!){ %>
+import ${import};
+<% } %>
+
+/**
+ * ${context.bizChName}控制器
+ *
+ * @author fengshuonan
+ * @Date ${tool.currentTime()}
+ */
+@Controller
+@RequestMapping("/${context.bizEnName}")
+public class ${context.bizEnBigName}Controller extends BaseController {
+
+    private String PREFIX = "/${context.moduleName}/${context.bizEnName}/";
+
+    @Autowired
+    private I${context.entityName}Service ${context.bizEnName}Service;
+
+    /**
+     * 跳转到${context.bizChName}首页
+     */
+    @RequestMapping("")
+    public String index() {
+        return PREFIX + "${context.bizEnName}.html";
+    }
+
+    /**
+     * 跳转到添加${context.bizChName}
+     */
+    @RequestMapping("/${context.bizEnName}_add")
+    public String ${context.bizEnName}Add() {
+        return PREFIX + "${context.bizEnName}_add.html";
+    }
+
+    /**
+     * 跳转到修改${context.bizChName}
+     */
+    @RequestMapping("/${context.bizEnName}_update/{${context.bizEnName}Id}")
+    public String ${context.bizEnName}Update(@PathVariable Integer ${context.bizEnName}Id, Model model) {
+        ${context.entityName} ${context.bizEnName} = ${context.bizEnName}Service.selectById(${context.bizEnName}Id);
+        model.addAttribute("item",${context.bizEnName});
+        LogObjectHolder.me().set(${context.bizEnName});
+        return PREFIX + "${context.bizEnName}_edit.html";
+    }
+
+    /**
+     * 获取${context.bizChName}列表
+     */
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public Object list(String condition) {
+        return ${context.bizEnName}Service.selectList(null);
+    }
+
+    /**
+     * 新增${context.bizChName}
+     */
+    @RequestMapping(value = "/add")
+    @ResponseBody
+    public Object add(${context.entityName} ${context.bizEnName}) {
+        ${context.bizEnName}Service.insert(${context.bizEnName});
+        return SUCCESS_TIP;
+    }
+
+    /**
+     * 删除${context.bizChName}
+     */
+    @RequestMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(@RequestParam Integer ${context.bizEnName}Id) {
+        ${context.bizEnName}Service.deleteById(${context.bizEnName}Id);
+        return SUCCESS_TIP;
+    }
+
+    /**
+     * 修改${context.bizChName}
+     */
+    @RequestMapping(value = "/update")
+    @ResponseBody
+    public Object update(${context.entityName} ${context.bizEnName}) {
+        ${context.bizEnName}Service.updateById(${context.bizEnName});
+        return SUCCESS_TIP;
+    }
+
+    /**
+     * ${context.bizChName}详情
+     */
+    @RequestMapping(value = "/detail/{${context.bizEnName}Id}")
+    @ResponseBody
+    public Object detail(@PathVariable("${context.bizEnName}Id") Integer ${context.bizEnName}Id) {
+        return ${context.bizEnName}Service.selectById(${context.bizEnName}Id);
+    }
+}

@@ -1,20 +1,19 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.annotion.Permission;
-import com.stylefeng.guns.common.constant.dictmap.DeptDict;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
-import com.stylefeng.guns.common.persistence.dao.DeptMapper;
-import com.stylefeng.guns.common.persistence.model.Dept;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.common.annotion.BussinessLog;
+import com.stylefeng.guns.core.common.annotion.Permission;
+import com.stylefeng.guns.core.common.constant.dictmap.DeptDict;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.DeptDao;
+import com.stylefeng.guns.modular.system.model.Dept;
 import com.stylefeng.guns.modular.system.service.IDeptService;
 import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -38,14 +36,8 @@ public class DeptController extends BaseController {
 
     private String PREFIX = "/system/dept/";
 
-    @Resource
-    DeptDao deptDao;
-
-    @Resource
-    DeptMapper deptMapper;
-
-    @Resource
-    IDeptService deptService;
+    @Autowired
+    private IDeptService deptService;
 
     /**
      * 跳转到部门管理首页
@@ -69,7 +61,7 @@ public class DeptController extends BaseController {
     @Permission
     @RequestMapping("/dept_update/{deptId}")
     public String deptUpdate(@PathVariable Integer deptId, Model model) {
-        Dept dept = deptMapper.selectById(deptId);
+        Dept dept = deptService.selectById(deptId);
         model.addAttribute(dept);
         model.addAttribute("pName", ConstantFactory.me().getDeptName(dept.getPid()));
         LogObjectHolder.me().set(dept);
@@ -82,7 +74,7 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/tree")
     @ResponseBody
     public List<ZTreeNode> tree() {
-        List<ZTreeNode> tree = this.deptDao.tree();
+        List<ZTreeNode> tree = this.deptService.tree();
         tree.add(ZTreeNode.createParent());
         return tree;
     }
@@ -96,11 +88,11 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         //完善pids,根据pid拿到pid的pids
         deptSetPids(dept);
-        return this.deptMapper.insert(dept);
+        return this.deptService.insert(dept);
     }
 
     /**
@@ -110,7 +102,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.deptDao.list(condition);
+        List<Map<String, Object>> list = this.deptService.list(condition);
         return super.warpObject(new DeptWarpper(list));
     }
 
@@ -121,7 +113,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object detail(@PathVariable("deptId") Integer deptId) {
-        return deptMapper.selectById(deptId);
+        return deptService.selectById(deptId);
     }
 
     /**
@@ -133,11 +125,11 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         deptSetPids(dept);
-        deptMapper.updateById(dept);
-        return super.SUCCESS_TIP;
+        deptService.updateById(dept);
+        return SUCCESS_TIP;
     }
 
     /**
@@ -163,7 +155,7 @@ public class DeptController extends BaseController {
             dept.setPids("[0],");
         } else {
             int pid = dept.getPid();
-            Dept temp = deptMapper.selectById(pid);
+            Dept temp = deptService.selectById(pid);
             String pids = temp.getPids();
             dept.setPid(pid);
             dept.setPids(pids + "[" + pid + "],");

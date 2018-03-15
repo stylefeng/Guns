@@ -1,7 +1,7 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.modular.system.dao.DictDao;
+import com.stylefeng.guns.modular.system.dao.DictMapper;
 import com.stylefeng.guns.modular.system.service.IDictService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class DictTest extends BaseJunit {
     IDictService dictService;
 
     @Resource
-    DictDao dictDao;
+    DictMapper dictMapper;
 
     @Test
     public void addTest() {
@@ -43,7 +43,7 @@ public class DictTest extends BaseJunit {
 
     @Test
     public void listTest() {
-        List<Map<String, Object>> list = this.dictDao.list("性别");
+        List<Map<String, Object>> list = this.dictMapper.list("性别");
         Assert.assertTrue(list.size() > 0);
     }
 }

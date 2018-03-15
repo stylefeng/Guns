@@ -54,7 +54,12 @@ public class SqlConfig {
         menu.setIcon("");
         menu.setUrl("/" + contextConfig.getBizEnName());
         menu.setNum(99);
-        menu.setLevels(2);
+
+        if (parentMenuName.equals("顶级")) {
+            menu.setLevels(1);
+        } else {
+            menu.setLevels(2);
+        }
         menu.setIsmenu(IsMenu.YES.getCode());
         menu.setStatus(1);
         menu.setIsopen(0);
@@ -100,10 +105,10 @@ public class SqlConfig {
         Menu menu = new Menu();
         menu.setId(IdWorker.getId());
         menu.setPcode(parentMenu.getCode());
-        menu.setPcodes(parentMenu.getPcodes() + "[" + parentMenu.getId() + "],");
+        menu.setPcodes(parentMenu.getPcodes() + "[" + parentMenu.getCode() + "],");
         menu.setIcon("");
         menu.setNum(99);
-        menu.setLevels(3);
+        menu.setLevels(parentMenu.getLevels() + 1);
         menu.setIsmenu(IsMenu.NO.getCode());
         menu.setStatus(1);
         menu.setIsopen(0);
@@ -120,7 +125,7 @@ public class SqlConfig {
             preparedStatement.setString(1, "%" + parentMenuName + "%");
             ResultSet results = preparedStatement.executeQuery();
             while (results.next()) {
-                String pcode = String.valueOf(results.getLong("id"));
+                String pcode = results.getString("code");
                 String pcodes = results.getString("pcodes");
                 if (ToolUtil.isNotEmpty(pcode) && ToolUtil.isNotEmpty(pcodes)) {
                     String[] strings = {pcode, pcodes};

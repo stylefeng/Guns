@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * flow的配置
+ * flowable工作流的的配置
  *
  * @author fengshuonan
  * @date 2017-12-02 23:18
@@ -16,13 +16,19 @@ public class GunsFlowableProperties {
 
     public static final String GUNS_FLOWABLE_DATASOURCE = "guns.flowable.datasource";
 
-    //默认多数据源的链接
+    /**
+     * 默认多数据源的链接
+     */
     private String url = "jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";
 
-    //默认多数据源的数据库账号
+    /**
+     * 默认多数据源的数据库账号
+     */
     private String username = "root";
 
-    //默认多数据源的数据库密码
+    /**
+     * 默认多数据源的数据库密码
+     */
     private String password = "root";
 
     public void config(DruidDataSource dataSource) {

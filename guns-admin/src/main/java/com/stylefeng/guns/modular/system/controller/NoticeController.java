@@ -1,18 +1,18 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.constant.dictmap.NoticeMap;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.exception.BussinessException;
-import com.stylefeng.guns.common.persistence.dao.NoticeMapper;
-import com.stylefeng.guns.common.persistence.model.Notice;
 import com.stylefeng.guns.core.base.controller.BaseController;
+import com.stylefeng.guns.core.common.annotion.BussinessLog;
+import com.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.NoticeDao;
+import com.stylefeng.guns.modular.system.model.Notice;
+import com.stylefeng.guns.modular.system.service.INoticeService;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +36,8 @@ public class NoticeController extends BaseController {
 
     private String PREFIX = "/system/notice/";
 
-    @Resource
-    private NoticeMapper noticeMapper;
-
-    @Resource
-    private NoticeDao noticeDao;
+    @Autowired
+    private INoticeService noticeService;
 
     /**
      * 跳转到通知列表首页
@@ -64,7 +60,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/notice_update/{noticeId}")
     public String noticeUpdate(@PathVariable Integer noticeId, Model model) {
-        Notice notice = this.noticeMapper.selectById(noticeId);
+        Notice notice = this.noticeService.selectById(noticeId);
         model.addAttribute("notice",notice);
         LogObjectHolder.me().set(notice);
         return PREFIX + "notice_edit.html";
@@ -75,7 +71,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/hello")
     public String hello() {
-        List<Map<String, Object>> notices = noticeDao.list(null);
+        List<Map<String, Object>> notices = noticeService.list(null);
         super.setAttr("noticeList",notices);
         return "/blackboard.html";
     }
@@ -86,7 +82,7 @@ public class NoticeController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.noticeDao.list(condition);
+        List<Map<String, Object>> list = this.noticeService.list(condition);
         return super.warpObject(new NoticeWrapper(list));
     }
 
@@ -98,12 +94,12 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "新增通知",key = "title",dict = NoticeMap.class)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         notice.setCreater(ShiroKit.getUser().getId());
         notice.setCreatetime(new Date());
         notice.insert();
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**
@@ -117,7 +113,7 @@ public class NoticeController extends BaseController {
         //缓存通知名称
         LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(noticeId));
 
-        this.noticeMapper.deleteById(noticeId);
+        this.noticeService.deleteById(noticeId);
 
         return SUCCESS_TIP;
     }
@@ -130,13 +126,13 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "修改通知",key = "title",dict = NoticeMap.class)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
-            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        Notice old = this.noticeMapper.selectById(notice.getId());
+        Notice old = this.noticeService.selectById(notice.getId());
         old.setTitle(notice.getTitle());
         old.setContent(notice.getContent());
         old.updateById();
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
 }

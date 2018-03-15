@@ -1,6 +1,6 @@
 package com.stylefeng.guns.core.util;
 
-import com.stylefeng.guns.common.constant.Const;
+import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.node.MenuNode;
 
@@ -14,7 +14,6 @@ import java.util.List;
  * @date 2017-08-17 16:55
  */
 public class ApiMenuFilter extends MenuNode {
-
 
     public static List<MenuNode> build(List<MenuNode> nodes) {
 

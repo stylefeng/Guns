@@ -15,13 +15,14 @@
  */
 package com.stylefeng.guns.core.aop;
 
-import com.stylefeng.guns.common.annotion.Permission;
+import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.shiro.check.PermissionCheckManager;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.naming.NoPermissionException;
@@ -32,9 +33,10 @@ import java.lang.reflect.Method;
  */
 @Aspect
 @Component
+@Order(200)
 public class PermissionAop {
 
-    @Pointcut(value = "@annotation(com.stylefeng.guns.common.annotion.Permission)")
+    @Pointcut(value = "@annotation(com.stylefeng.guns.core.common.annotion.Permission)")
     private void cutPermission() {
 
     }

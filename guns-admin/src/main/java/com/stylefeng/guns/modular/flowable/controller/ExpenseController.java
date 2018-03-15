@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.flowable.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.stylefeng.guns.common.persistence.model.Expense;
+import com.stylefeng.guns.modular.system.model.Expense;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.modular.flowable.service.IExpenseService;
@@ -79,7 +79,7 @@ public class ExpenseController extends BaseController {
     @ResponseBody
     public Object add(Expense expense) {
         expenseService.add(expense);
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**
@@ -99,7 +99,7 @@ public class ExpenseController extends BaseController {
     @ResponseBody
     public Object update(Expense expense) {
         expenseService.updateById(expense);
-        return super.SUCCESS_TIP;
+        return SUCCESS_TIP;
     }
 
     /**

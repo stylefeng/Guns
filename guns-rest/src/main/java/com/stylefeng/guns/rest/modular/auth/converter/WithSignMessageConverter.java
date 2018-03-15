@@ -1,11 +1,11 @@
 package com.stylefeng.guns.rest.modular.auth.converter;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.MD5Util;
 import com.stylefeng.guns.rest.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.rest.common.exception.BussinessException;
 import com.stylefeng.guns.rest.config.properties.JwtProperties;
 import com.stylefeng.guns.rest.modular.auth.security.DataSecurityAction;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
  * @author fengshuonan
  * @date 2017-08-25 15:42
  */
-public class WithSignMessageConverter extends FastJsonHttpMessageConverter4 {
+public class WithSignMessageConverter extends FastJsonHttpMessageConverter {
 
     @Autowired
     JwtProperties jwtProperties;
@@ -55,7 +55,7 @@ public class WithSignMessageConverter extends FastJsonHttpMessageConverter4 {
             System.out.println("签名校验成功!");
         } else {
             System.out.println("签名校验失败,数据被改动过!");
-            throw new BussinessException(BizExceptionEnum.SIGN_ERROR);
+            throw new GunsException(BizExceptionEnum.SIGN_ERROR);
         }
 
         //校验签名后再转化成应该的对象

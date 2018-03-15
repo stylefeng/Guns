@@ -7,17 +7,21 @@ import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.xss.XssFilter;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.JdkRegexpMethodPointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -29,7 +33,21 @@ import java.util.Properties;
  * @date 2016年11月12日 下午5:03:32
  */
 @Configuration
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Autowired
+    private GunsProperties gunsProperties;
+
+    /**
+     * 增加swagger的支持
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        if (gunsProperties.getSwaggerOpen()) {
+            registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+            registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        }
+    }
 
     /**
      * druidServlet注册
@@ -43,18 +61,17 @@ public class WebConfig {
 
     /**
      * druid监控 配置URI拦截策略
-     * @return
      */
     @Bean
-    public FilterRegistrationBean druidStatFilter(){
+    public FilterRegistrationBean druidStatFilter() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
         //添加过滤规则.
         filterRegistrationBean.addUrlPatterns("/*");
         //添加不需要忽略的格式信息.
         filterRegistrationBean.addInitParameter(
-                "exclusions","/static/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid,/druid/*");
+                "exclusions", "/static/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid,/druid/*");
         //用于session监控页面的用户名显示 需要登录后主动将username注入到session里
-        filterRegistrationBean.addInitParameter("principalSessionName","username");
+        filterRegistrationBean.addInitParameter("principalSessionName", "username");
         return filterRegistrationBean;
     }
 
@@ -66,9 +83,8 @@ public class WebConfig {
         return new DruidStatInterceptor();
     }
 
-
     @Bean
-    public JdkRegexpMethodPointcut druidStatPointcut(){
+    public JdkRegexpMethodPointcut druidStatPointcut() {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
         String patterns = "com.stylefeng.guns.modular.*.service.*";
         //可以set多个
@@ -89,6 +105,7 @@ public class WebConfig {
 
     /**
      * druid 为druidStatPointcut添加拦截
+     *
      * @return
      */
     @Bean
@@ -102,7 +119,7 @@ public class WebConfig {
     @Bean
     public FilterRegistrationBean xssFilterRegistration() {
         XssFilter xssFilter = new XssFilter();
-        xssFilter.setUrlExclusion(Arrays.asList("/notice/update","/notice/add"));
+        xssFilter.setUrlExclusion(Arrays.asList("/notice/update", "/notice/add"));
         FilterRegistrationBean registration = new FilterRegistrationBean(xssFilter);
         registration.addUrlPatterns("/*");
         return registration;

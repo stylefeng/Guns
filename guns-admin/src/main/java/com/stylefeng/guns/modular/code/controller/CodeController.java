@@ -32,7 +32,6 @@ public class CodeController extends BaseController {
     @Autowired
     private DruidProperties druidProperties;
 
-
     /**
      * 跳转到代码生成主页
      */
@@ -56,7 +55,7 @@ public class CodeController extends BaseController {
         genQo.setPassword(druidProperties.getPassword());
         WebGeneratorConfig webGeneratorConfig = new WebGeneratorConfig(genQo);
         webGeneratorConfig.doMpGeneration();
-        webGeneratorConfig.doAdiGeneration();
+        webGeneratorConfig.doGunsGeneration();
         return SUCCESS_TIP;
     }
 }
