@@ -15,10 +15,10 @@ Menu.initColumn = function () {
     var columns = [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true, width: '17%'},
-        {title: '菜单编号', field: 'code', align: 'center', valign: 'middle', sortable: true, width: '12%'},
+        {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
+        {title: '菜单编号', field: 'code', align: 'center', valign: 'middle', sortable: true},
         {title: '菜单父编号', field: 'pcode', align: 'center', valign: 'middle', sortable: true},
-        {title: '请求地址', field: 'url', align: 'center', valign: 'middle', sortable: true, width: '15%'},
+        {title: '请求地址', field: 'url', align: 'center', valign: 'middle', sortable: true},
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
         {title: '层级', field: 'levels', align: 'center', valign: 'middle', sortable: true},
         {title: '是否是菜单', field: 'isMenuName', align: 'center', valign: 'middle', sortable: true},
