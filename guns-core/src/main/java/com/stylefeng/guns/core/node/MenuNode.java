@@ -1,11 +1,9 @@
 package com.stylefeng.guns.core.node;
 
 import com.stylefeng.guns.core.constant.IsMenu;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author fengshuonan
@@ -165,142 +163,77 @@ public class MenuNode implements Comparable {
                 '}';
     }
 
+    /**
+     * 重写排序比较接口，首先根据等级排序，然后更具排序字段排序
+     *
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Object o) {
         MenuNode menuNode = (MenuNode) o;
         Integer num = menuNode.getNum();
+        Integer levels = menuNode.getLevels();
         if (num == null) {
             num = 0;
         }
-        return this.num.compareTo(num);
-    }
-
-    /**
-     * 构建整个菜单树
-     *
-     * @author fengshuonan
-     */
-    public void buildNodeTree(List<MenuNode> nodeList) {
-        for (MenuNode treeNode : nodeList) {
-            List<MenuNode> linkedList = treeNode.findChildNodes(nodeList, treeNode.getId());
-            if (linkedList.size() > 0) {
-                treeNode.setChildren(linkedList);
-            }
+        if (levels == null) {
+            levels = 0;
         }
-    }
-
-    /**
-     * 查询子节点的集合
-     *
-     * @author fengshuonan
-     */
-    public List<MenuNode> findChildNodes(List<MenuNode> nodeList, Long parentId) {
-        if (nodeList == null && parentId == null)
-            return null;
-        for (Iterator<MenuNode> iterator = nodeList.iterator(); iterator.hasNext(); ) {
-            MenuNode node = (MenuNode) iterator.next();
-            // 根据传入的某个父节点ID,遍历该父节点的所有子节点
-            if (node.getParentId() != 0 && parentId.equals(node.getParentId())) {
-                recursionFn(nodeList, node, parentId);
-            }
-        }
-        return linkedList;
-    }
-
-    /**
-     * 遍历一个节点的子节点
-     *
-     * @author fengshuonan
-     */
-    public void recursionFn(List<MenuNode> nodeList, MenuNode node, Long pId) {
-        List<MenuNode> childList = getChildList(nodeList, node);// 得到子节点列表
-        if (childList.size() > 0) {// 判断是否有子节点
-            if (node.getParentId().equals(pId)) {
-                linkedList.add(node);
-            }
-            Iterator<MenuNode> it = childList.iterator();
-            while (it.hasNext()) {
-                MenuNode n = (MenuNode) it.next();
-                recursionFn(nodeList, n, pId);
-            }
+        if (this.levels.compareTo(levels) == 0) {
+            return this.num.compareTo(num);
         } else {
-            if (node.getParentId().equals(pId)) {
-                linkedList.add(node);
-            }
+            return this.levels.compareTo(levels);
         }
+
     }
 
     /**
-     * 得到子节点列表
-     *
-     * @author fengshuonan
-     */
-    private List<MenuNode> getChildList(List<MenuNode> list, MenuNode node) {
-        List<MenuNode> nodeList = new ArrayList<MenuNode>();
-        Iterator<MenuNode> it = list.iterator();
-        while (it.hasNext()) {
-            MenuNode n = (MenuNode) it.next();
-            if (n.getParentId().equals(node.getId())) {
-                nodeList.add(n);
-            }
-        }
-        return nodeList;
-    }
-
-    /**
-     * 清除掉按钮级别的资源
-     *
-     * @date 2017年2月19日 下午11:04:11
-     */
-    public static List<MenuNode> clearBtn(List<MenuNode> nodes) {
-        ArrayList<MenuNode> noBtns = new ArrayList<MenuNode>();
-        for (MenuNode node : nodes) {
-            if(node.getIsmenu() == IsMenu.YES.getCode()){
-                noBtns.add(node);
-            }
-        }
-        return noBtns;
-    }
-
-    /**
-     * 清除所有二级菜单
-     *
-     * @date 2017年2月19日 下午11:18:19
-     */
-    public static List<MenuNode> clearLevelTwo(List<MenuNode> nodes) {
-        ArrayList<MenuNode> results = new ArrayList<MenuNode>();
-        for (MenuNode node : nodes) {
-            Integer levels = node.getLevels();
-            if (levels.equals(1)) {
-                results.add(node);
-            }
-        }
-        return results;
-    }
-
-    /**
-     * 构建菜单列表
-     *
-     * @date 2017年2月19日 下午11:18:19
+     * 构建页面菜单列表
      */
     public static List<MenuNode> buildTitle(List<MenuNode> nodes) {
+        if (nodes.size() <= 0) {
+            return nodes;
+        }
+        //剔除非菜单
+        nodes.removeIf(node -> node.getIsmenu() != IsMenu.YES.getCode());
+        //对菜单排序，返回列表按菜单等级，序号的排序方式排列
+        Collections.sort(nodes);
+        return mergeList(nodes, nodes.get(nodes.size() - 1).getLevels(), null);
+    }
 
-        List<MenuNode> clearBtn = clearBtn(nodes);
-
-        new MenuNode().buildNodeTree(clearBtn);
-
-        List<MenuNode> menuNodes = clearLevelTwo(clearBtn);
-
-        //对菜单排序
-        Collections.sort(menuNodes);
-
-        //对菜单的子菜单进行排序
-        for (MenuNode menuNode : menuNodes) {
-            if (menuNode.getChildren() != null && menuNode.getChildren().size() > 0) {
-                Collections.sort(menuNode.getChildren());
+    /**
+     * 递归合并数组为子数组，最后返回第一层
+     *
+     * @param menuList
+     * @param listMap
+     * @return
+     */
+    private static List<MenuNode> mergeList(List<MenuNode> menuList, int rank, Map<Long, List<MenuNode>> listMap) {
+        //保存当次调用总共合并了多少元素
+        int n;
+        //保存当次调用总共合并出来的list
+        Map<Long, List<MenuNode>> currentMap = new HashMap<>();
+        //由于按等级从小到大排序，需要从后往前排序
+        //判断该节点是否属于当前循环的等级,不等于则跳出循环
+        for (n = menuList.size() - 1; n >=0&&menuList.get(n).getLevels() == rank; n--) {
+            //判断之前的调用是否有返回以该节点的id为key的map，有则设置为children列表。
+            if (listMap != null && listMap.get(menuList.get(n).getId()) != null) {
+                menuList.get(n).setChildren(listMap.get(menuList.get(n).getId()));
+            }
+            if (menuList.get(n).getParentId()!=null&&menuList.get(n).getParentId()!=0) {
+                //判断当前节点所属的pid是否已经创建了以该pid为key的键值对，没有则创建新的链表
+                currentMap.computeIfAbsent(menuList.get(n).getParentId(), k -> new LinkedList<>());
+                //将该节点插入到对应的list的头部
+                currentMap.get(menuList.get(n).getParentId()).add(0, menuList.get(n));
             }
         }
-
-        return menuNodes;
+        if (n <0) {
+            return menuList;
+        } else {
+            return mergeList(menuList.subList(0, n+1), menuList.get(n).getLevels(), currentMap);
+        }
     }
+
+
 }
