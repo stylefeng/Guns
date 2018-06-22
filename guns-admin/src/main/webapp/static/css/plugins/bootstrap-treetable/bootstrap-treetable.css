@@ -1,0 +1,10 @@
+.treetable-indent {width:16px; height: 16px; display: inline-block; position: relative;}
+.treetable-expander {width:16px; height: 16px; display: inline-block; position: relative; cursor: pointer;}
+.treetable-selected{background: #f5f5f5 !important;}
+.treetable-table{border:0 !important;margin-bottom:0}
+.treetable-table tbody {display:block;height:auto;overflow-y:auto;}
+.treetable-table thead, .treetable-table tbody tr {display:table;width:100%;table-layout:fixed;}
+.treetable-thead th{line-height:40px;border: 0 !important;background:#fff !important;border-radius: 4px;border-left:1px solid #e7eaec !important;border-bottom:2px solid #e7eaec !important;text-align: center;}
+.treetable-thead tr :first-child{border-left:0 !important}
+.treetable-tbody td{border: 0 !important;border-left:1px solid #e7eaec !important;border-bottom:1px solid #e7eaec !important;}
+.treetable-tbody tr :first-child{border-left:0 !important}
