@@ -79,11 +79,11 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object add(String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictName, dictValues)) {
+    public Object add(String dictCode,String dictTips,String dictName, String dictValues) {
+        if (ToolUtil.isOneEmpty(dictCode,dictName, dictValues)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.dictService.addDict(dictName, dictValues);
+        this.dictService.addDict(dictCode,dictName,dictTips,dictValues);
         return SUCCESS_TIP;
     }
 
@@ -115,11 +115,11 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object update(Integer dictId, String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictId, dictName, dictValues)) {
+    public Object update(Integer dictId,String dictCode,String dictName, String dictTips,String dictValues) {
+        if (ToolUtil.isOneEmpty(dictId, dictCode, dictName, dictValues)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        dictService.editDict(dictId, dictName, dictValues);
+        dictService.editDict(dictId, dictCode,dictName, dictTips,dictValues);
         return SUCCESS_TIP;
     }
 

@@ -32,14 +32,19 @@ public class MutiStrFactory {
     public static final String MUTI_STR_ID = "ID";
 
     /**
-     * 拼接字符串的key
+     * 拼接字符串的CODE
      */
-    public static final String MUTI_STR_KEY = "KEY";
+    public static final String MUTI_STR_CODE = "CODE";
 
     /**
-     * 拼接字符串的value
+     * 拼接字符串的NAME
      */
-    public static final String MUTI_STR_VALUE = "VALUE";
+    public static final String MUTI_STR_NAME = "NAME";
+
+    /**
+     * 拼接字符串的NUM
+     */
+    public static final String MUTI_STR_NUM = "NUM";
 
     /**
      * 解析一个组合字符串(例如:  "1:启用;2:禁用;3:冻结"  这样的字符串)
@@ -56,17 +61,18 @@ public class MutiStrFactory {
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();
-                itemMap.put(MUTI_STR_KEY,attrs[0]);
-                itemMap.put(MUTI_STR_VALUE,attrs[1]);
+                itemMap.put(MUTI_STR_CODE,attrs[0]);
+                itemMap.put(MUTI_STR_NAME,attrs[1]);
+                itemMap.put(MUTI_STR_NUM,attrs[2]);
                 results.add(itemMap);
             }
             return results;
         }
     }
-    
+
     /**
      * 解析id:key:value这样类型的字符串
-     * 
+     *
      * @author fengshuonan
      * @Date 2017/4/28 11:06
      */
@@ -79,9 +85,9 @@ public class MutiStrFactory {
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();
-                itemMap.put(MUTI_STR_ID,attrs[0]);
-                itemMap.put(MUTI_STR_KEY,attrs[1]);
-                itemMap.put(MUTI_STR_VALUE,attrs[2]);
+                itemMap.put(MUTI_STR_CODE,attrs[0]);
+                itemMap.put(MUTI_STR_NAME,attrs[1]);
+                itemMap.put(MUTI_STR_NUM,attrs[2]);
                 results.add(itemMap);
             }
             return results;

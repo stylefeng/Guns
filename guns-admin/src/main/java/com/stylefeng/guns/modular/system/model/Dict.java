@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
+
 import java.io.Serializable;
 
 /**
@@ -18,28 +19,33 @@ import java.io.Serializable;
 @TableName("sys_dict")
 public class Dict extends Model<Dict> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键id
-     */
+	/**
+	 * 主键id
+	 */
 	@TableId(value="id", type= IdType.AUTO)
 	private Integer id;
-    /**
-     * 排序
-     */
+	/**
+	 * 排序
+	 */
 	private Integer num;
-    /**
-     * 父级字典
-     */
+	/**
+	 * 父级字典
+	 */
 	private Integer pid;
-    /**
-     * 名称
-     */
+	/**
+	 * 名称
+	 */
 	private String name;
-    /**
-     * 提示
-     */
+
+	/**
+	 * 编码
+	 */
+	private String code;
+	/**
+	 * 提示
+	 */
 	private String tips;
 
 
@@ -88,14 +94,23 @@ public class Dict extends Model<Dict> {
 		return this.id;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	@Override
 	public String toString() {
 		return "Dict{" +
-			"id=" + id +
-			", num=" + num +
-			", pid=" + pid +
-			", name=" + name +
-			", tips=" + tips +
-			"}";
+				"id=" + id +
+				", num=" + num +
+				", pid=" + pid +
+				", name='" + name + '\'' +
+				", code='" + code + '\'' +
+				", tips='" + tips + '\'' +
+				'}';
 	}
 }

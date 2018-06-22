@@ -25,9 +25,9 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     private DictMapper dictMapper;
 
     @Override
-    public void addDict(String dictName, String dictValues) {
+    public void addDict(String dictCode,String dictName,String dictTips, String dictValues) {
         //判断有没有该字典
-        List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("name", dictName).and().eq("pid", 0));
+        List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("code", dictCode).and().eq("pid", 0));
         if (dicts != null && dicts.size() > 0) {
             throw new GunsException(BizExceptionEnum.DICT_EXISTED);
         }
@@ -38,17 +38,22 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
         //添加字典
         Dict dict = new Dict();
         dict.setName(dictName);
+        dict.setCode(dictCode);
+        dict.setTips(dictTips);
         dict.setNum(0);
         dict.setPid(0);
         this.dictMapper.insert(dict);
 
         //添加字典条目
         for (Map<String, String> item : items) {
-            String num = item.get(MUTI_STR_KEY);
-            String name = item.get(MUTI_STR_VALUE);
+            String code = item.get(MUTI_STR_CODE);
+            String name = item.get(MUTI_STR_NAME);
+            String num = item.get(MUTI_STR_NUM);
             Dict itemDict = new Dict();
             itemDict.setPid(dict.getId());
+            itemDict.setCode(code);
             itemDict.setName(name);
+
             try {
                 itemDict.setNum(Integer.valueOf(num));
             } catch (NumberFormatException e) {
@@ -59,12 +64,12 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     }
 
     @Override
-    public void editDict(Integer dictId, String dictName, String dicts) {
+    public void editDict(Integer dictId,String dictCode, String dictName,String dictTips, String dicts) {
         //删除之前的字典
         this.delteDict(dictId);
 
         //重新添加新的字典
-        this.addDict(dictName, dicts);
+        this.addDict(dictCode,dictName,dictTips, dicts);
     }
 
     @Override
@@ -82,6 +87,12 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     public List<Dict> selectByCode(String code) {
         return this.baseMapper.selectByCode(code);
     }
+
+    @Override
+    public List<Dict> selectByParentCode(String code) {
+        return this.baseMapper.selectByParentCode(code);
+    }
+
 
     @Override
     public List<Map<String, Object>> list(String conditiion) {

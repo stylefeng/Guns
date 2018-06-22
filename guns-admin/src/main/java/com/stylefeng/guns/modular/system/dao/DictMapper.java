@@ -26,4 +26,9 @@ public interface DictMapper extends BaseMapper<Dict> {
      * 查询字典列表
      */
     List<Map<String, Object>> list(@Param("condition") String conditiion);
+
+    /**
+     * 根据父类编码获取词典列表
+     */
+    List<Dict> selectByParentCode(@Param("code") String code);
 }

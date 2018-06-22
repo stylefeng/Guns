@@ -8,11 +8,12 @@
         <result column="num" property="num"/>
         <result column="pid" property="pid"/>
         <result column="name" property="name"/>
+        <result column="code" property="code"/>
         <result column="tips" property="tips"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-		id, num, pid, name, tips
+		id, num, pid, name,code,tips
 	</sql>
 
     <select id="selectByCode" resultType="dict">
@@ -20,6 +21,13 @@
         <include refid="Base_Column_List"/>
         from sys_dict
         where code = #{code}
+    </select>
+
+    <select id="selectByParentCode" resultType="dict">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where pid in(select id  from sys_dict where code = #{code}) order by num asc
     </select>
 
     <select id="list" resultType="map">

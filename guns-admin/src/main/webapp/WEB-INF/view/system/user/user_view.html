@@ -20,10 +20,7 @@
 
                                         <#input id="account" name="账户" underline="true" value="${user.account}" disabled="disabled" />
 
-                                        <#select id="sex" name="性别" underline="true" value="${user.sex}">
-                                            <option value="1">男</option>
-                                            <option value="2">女</option>
-                                        </#select>
+                                        <#dictSelector  id="sex" name ="sex" readonly="true" code="sys_sex" label="性别"  underline="true"  value="${user.sex}"  />
 
                                         <#input id="roleid" name="角色" underline="true" value="${roleName}" disabled="disabled"/>
 

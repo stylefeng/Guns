@@ -48,31 +48,34 @@ INSERT INTO `sys_dept` VALUES ('26', '3', '24', '[0],[24],', '运营部', '运�
 INSERT INTO `sys_dept` VALUES ('27', '4', '24', '[0],[24],', '战略部', '战略部', '', null);
 
 -- ----------------------------
+-- ----------------------------
 -- Table structure for sys_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
-CREATE TABLE `sys_dict` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
-  `num` int(11) DEFAULT NULL COMMENT '排序',
-  `pid` int(11) DEFAULT NULL COMMENT '父级字典',
-  `name` varchar(255) DEFAULT NULL COMMENT '名称',
-  `tips` varchar(255) DEFAULT NULL COMMENT '提示',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='字典表';
+CREATE TABLE `sys_dict`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `num` int(11) NULL DEFAULT NULL COMMENT '排序',
+  `pid` int(11) NULL DEFAULT NULL COMMENT '父级字典',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
+  `tips` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '提示',
+  `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '值',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '字典表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dict
 -- ----------------------------
-INSERT INTO `sys_dict` VALUES ('16', '0', '0', '状态', null);
-INSERT INTO `sys_dict` VALUES ('17', '1', '16', '启用', null);
-INSERT INTO `sys_dict` VALUES ('18', '2', '16', '禁用', null);
-INSERT INTO `sys_dict` VALUES ('29', '0', '0', '性别', null);
-INSERT INTO `sys_dict` VALUES ('30', '1', '29', '男', null);
-INSERT INTO `sys_dict` VALUES ('31', '2', '29', '女', null);
-INSERT INTO `sys_dict` VALUES ('35', '0', '0', '账号状态', null);
-INSERT INTO `sys_dict` VALUES ('36', '1', '35', '启用', null);
-INSERT INTO `sys_dict` VALUES ('37', '2', '35', '冻结', null);
-INSERT INTO `sys_dict` VALUES ('38', '3', '35', '已删除', null);
+INSERT INTO `sys_dict` VALUES (50, 0, 0, '性别', NULL, 'sys_sex');
+INSERT INTO `sys_dict` VALUES (51, 1, 50, '男', NULL, '1');
+INSERT INTO `sys_dict` VALUES (52, 2, 50, '女', NULL, '2');
+INSERT INTO `sys_dict` VALUES (53, 0, 0, '状态', NULL, 'sys_state');
+INSERT INTO `sys_dict` VALUES (54, 1, 53, '启用', NULL, '1');
+INSERT INTO `sys_dict` VALUES (55, 2, 53, '禁用', NULL, '2');
+INSERT INTO `sys_dict` VALUES (56, 0, 0, '账号状态', NULL, 'account_state');
+INSERT INTO `sys_dict` VALUES (57, 1, 56, '启用', NULL, '1');
+INSERT INTO `sys_dict` VALUES (58, 2, 56, '冻结', NULL, '2');
+INSERT INTO `sys_dict` VALUES (59, 3, 56, '已删除', NULL, '3');
+
 
 -- ----------------------------
 -- Table structure for sys_expense

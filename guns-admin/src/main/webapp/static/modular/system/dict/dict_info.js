@@ -4,6 +4,8 @@
 var DictInfoDlg = {
     count: $("#itemSize").val(),
     dictName: '',			//字典的名称
+    dictCode: '',//字典类型编码
+    dictTips: '',//字典备注
     mutiString: '',		//拼接字符串内容(拼接字典条目)
     itemTemplate: $("#itemTemplate").html()
 };
@@ -63,11 +65,14 @@ DictInfoDlg.collectData = function () {
     this.clearNullDom();
     var mutiString = "";
     $("[name='dictItem']").each(function(){
-        var num = $(this).find("[name='itemNum']").val();
+        var code = $(this).find("[name='itemCode']").val();
         var name = $(this).find("[name='itemName']").val();
-        mutiString = mutiString + (num + ":" + name + ";");
+        var num = $(this).find("[name='itemNum']").val();
+        mutiString = mutiString + (code + ":" + name + ":"+ num+";");
     });
     this.dictName = $("#dictName").val();
+    this.dictCode = $("#dictCode").val();
+    this.dictTips = $("#dictTips").val();
     this.mutiString = mutiString;
 };
 
@@ -86,6 +91,8 @@ DictInfoDlg.addSubmit = function () {
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
     ajax.set('dictName',this.dictName);
+    ajax.set('dictCode',this.dictCode);
+    ajax.set('dictTips',this.dictTips);
     ajax.set('dictValues',this.mutiString);
     ajax.start();
 };
@@ -104,6 +111,8 @@ DictInfoDlg.editSubmit = function () {
     });
     ajax.set('dictId',$("#dictId").val());
     ajax.set('dictName',this.dictName);
+    ajax.set('dictCode',this.dictCode);
+    ajax.set('dictTips',this.dictTips);
     ajax.set('dictValues',this.mutiString);
     ajax.start();
 };
