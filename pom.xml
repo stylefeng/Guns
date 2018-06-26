@@ -9,10 +9,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>../guns-admin</module>
-        <module>../guns-core</module>
-        <module>../guns-rest</module>
-        <module>../guns-generator</module>
+        <module>guns-admin</module>
+        <module>guns-core</module>
+        <module>guns-rest</module>
+        <module>guns-generator</module>
     </modules>
 
     <parent>
