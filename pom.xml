@@ -18,7 +18,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
     </parent>
 
     <properties>
@@ -42,8 +42,7 @@
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <mysql-connector-java.version>5.1.38</mysql-connector-java.version>
         <jwt.version>0.7.0</jwt.version>
-        <flowable.version>6.2.0</flowable.version>
-        <hutool.version>4.0.0</hutool.version>
+        <hutool.version>4.1.1</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -54,12 +53,6 @@
                 <version>${guns.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.flowable</groupId>
-                <artifactId>flowable-spring-boot-starter-basic</artifactId>
-                <version>${flowable.version}</version>
-            </dependency>
-            <!--guns-->
-            <dependency>
                 <groupId>com.stylefeng</groupId>
                 <artifactId>guns-core</artifactId>
                 <version>${guns.version}</version>
@@ -68,7 +61,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.9.RELEASE</version>
+                <version>2.0.3.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -196,11 +189,63 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>1.5.9.RELEASE</version>
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <spring.active>local</spring.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.active>dev</spring.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <spring.active>test</spring.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>produce</id>
+            <properties>
+                <spring.active>produce</spring.active>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

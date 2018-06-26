@@ -19,22 +19,6 @@
 
     <dependencies>
 
-        <!--flowable-->
-        <dependency>
-            <groupId>org.flowable</groupId>
-            <artifactId>flowable-spring-boot-starter-basic</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>mybatis</artifactId>
-                    <groupId>org.mybatis</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>activation</artifactId>
-                    <groupId>javax.activation</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
@@ -145,14 +129,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -166,6 +142,7 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/java</directory>

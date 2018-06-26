@@ -1,16 +1,14 @@
-##########################################################
-##################  所有profile共有的配置  #################
-##########################################################
-
 ###################  guns配置  ###################
 guns:
-  swagger-open: true #是否开启swagger (true/false)
+  swagger-open: true  #是否开启swagger (true/false)
   kaptcha-open: false #是否开启登录时验证码 (true/false)
-  #file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
+#  file-upload-path: d:/tmp  #文件上传目录(不配置的话为java.io.tmpdir目录)
   muti-datasource-open: false #是否开启多数据源(true/false)
   spring-session-open: false #是否开启spring session,如果是多机环境需要开启(true/false)
   session-invalidate-time: 1800 #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
   session-validation-interval: 900 #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+  log:
+    path: guns-logs
 
 ###################  项目启动端口  ###################
 server:
@@ -27,12 +25,8 @@ beetl:
 
 ###################  spring配置  ###################
 spring:
-  redis:
-    host: localhost
-    port: 6379
-    password:
   profiles:
-    active: dev
+    active: @spring.active@
   mvc:
     static-path-pattern: /static/**
     view:
@@ -40,16 +34,17 @@ spring:
   http:
     converters:
       preferred-json-mapper: fastjson
-    multipart:
-      max-request-size: 100MB #最大请求大小
-      max-file-size: 100MB #最大文件大小
   devtools:
     restart:
-      enabled: false #是否开启开发者工具（true/false）
+      enabled: false
       additional-paths: src/main/java
       exclude: static/**,WEB-INF/view/**
   aop:
-    proxy-target-class: true #false为启用jdk默认动态代理,true为cglib动态代理
+    proxy-target-class: true
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
@@ -71,52 +66,30 @@ mybatis-plus:
 
 ---
 
-##########################################################
-###################  开发环境的profile  ###################
-##########################################################
 spring:
-  profiles: dev
+  profiles: local
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
     db-name: guns
-    filters: log4j,wall,mergeStat
+    filters: wall,mergeStat
 
-#flowable数据源和多数据源配置
+#多数据源配置
 guns:
-  flowable:
-    datasource:
-      url: jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
-      username: root
-      password: root
   muti-datasource:
-    default-dataSource-name: dataSourceGuns #默认的数据源名称
-    url: jdbc:mysql://127.0.0.1:3306/guns_flowable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/guns2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: root
-
-logging:
-  level.root: info
-  level.com.stylefeng: debug
-  path: logs/
-  file: guns.log
+    defaultDataSourceName: dataSourceGuns #默认的数据源名称
 
 ---
 
-##########################################################
-###################  正式环境的profile  ###################
-##########################################################
 spring:
   profiles: produce
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
       username: root
       password: root
-      filters: log4j,wall,mergeStat
-
-logging:
-  level.root: warn
-  path: logs/
-  file: guns.log
+      filters: wall,mergeStat
 
