@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.SQLException;
@@ -33,12 +34,6 @@ import java.util.HashMap;
 public class MultiDataSourceConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "guns.datasource")
-    public DruidProperties druidProperties() {
-        return new DruidProperties();
-    }
-
-    @Bean
     @ConfigurationProperties(prefix = "guns.muti-datasource")
     public MutiDataSourceProperties mutiDataSourceProperties() {
         return new MutiDataSourceProperties();
@@ -52,7 +47,7 @@ public class MultiDataSourceConfig {
     /**
      * guns的数据源
      */
-    private DruidDataSource dataSourceGuns(DruidProperties druidProperties) {
+    private DruidDataSource dataSource(DruidProperties druidProperties) {
         DruidDataSource dataSource = new DruidDataSource();
         druidProperties.config(dataSource);
         return dataSource;
@@ -74,7 +69,7 @@ public class MultiDataSourceConfig {
     @Bean
     public DynamicDataSource mutiDataSource(DruidProperties druidProperties, MutiDataSourceProperties mutiDataSourceProperties) {
 
-        DruidDataSource dataSourceGuns = dataSourceGuns(druidProperties);
+        DruidDataSource dataSourceGuns = dataSource(druidProperties);
         DruidDataSource bizDataSource = bizDataSource(druidProperties, mutiDataSourceProperties);
 
         try {
@@ -115,5 +110,16 @@ public class MultiDataSourceConfig {
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
+    }
+
+    /**
+     * 事务配置
+     *
+     * @author stylefeng
+     * @Date 2018/6/27 23:11
+     */
+    @Bean
+    public DataSourceTransactionManager dataSourceTransactionManager(DynamicDataSource mutiDataSource) {
+        return new DataSourceTransactionManager(mutiDataSource);
     }
 }
