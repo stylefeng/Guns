@@ -25,6 +25,10 @@
             <groupId>com.ibeetl</groupId>
             <artifactId>beetl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generate</artifactId>
+        </dependency>
     </dependencies>
 
 
