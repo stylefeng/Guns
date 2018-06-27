@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.code.controller;
 
 import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.datasource.DruidProperties;
+import com.stylefeng.guns.core.config.properties.DruidProperties;
 import com.stylefeng.guns.generator.action.config.WebGeneratorConfig;
 import com.stylefeng.guns.generator.action.model.GenQo;
 import com.stylefeng.guns.modular.code.factory.DefaultTemplateFactory;

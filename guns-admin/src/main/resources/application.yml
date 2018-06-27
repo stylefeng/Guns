@@ -5,12 +5,9 @@ guns:
   swagger-open: true              #是否开启swagger (true/false)
   kaptcha-open: false             #是否开启登录时验证码 (true/false)
 #  file-upload-path: d:/tmp       #文件上传目录(不配置的话为java.io.tmpdir目录)
-  muti-datasource-open: false     #是否开启多数据源(true/false)
   spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
   session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
   session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
-  log:
-    path: guns-logs
 
 spring:
   profiles:
@@ -32,6 +29,9 @@ spring:
 mybatis-plus:
   typeAliasesPackage: com.stylefeng.guns.modular.system.model
 
+log:
+  path: /opt/guns/logs
+
 ---
 
 spring:
@@ -46,10 +46,33 @@ spring:
 #多数据源配置
 guns:
   muti-datasource:
+    open: false
     url: jdbc:mysql://127.0.0.1:3306/guns2?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC
     username: root
     password: root
-    defaultDataSourceName: dataSourceGuns #默认的数据源名称
+    dataSourceNames:
+      - dataSourceGuns
+      - dataSourceBiz
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    filters: wall,mergeStat
+
+---
+
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    filters: wall,mergeStat
 
 ---
 

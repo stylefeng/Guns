@@ -2,7 +2,7 @@
 <configuration>
 
     <!--定义日志存放的位置-->
-    <springProperty scope="context" name="gunsLogPath" source="guns.log.path"
+    <springProperty scope="context" name="gunsLogPath" source="log.path"
                     defaultValue="guns-logs"/>
 
     <!-- ****************************************************************************************** -->
@@ -36,7 +36,7 @@
         <!-- 日志记录器，日期滚动记录 -->
         <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <!-- 正在记录的日志文件的路径及文件名 -->
-            <file>${gunsLogPath}/logs/log_error.log</file>
+            <file>${gunsLogPath}/log_error.log</file>
             <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。
@@ -66,7 +66,7 @@
         <!-- 日志记录器，日期滚动记录 -->
         <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
             <!-- 正在记录的日志文件的路径及文件名 -->
-            <file>${gunsLogPath}/logs/log_total.log</file>
+            <file>${gunsLogPath}/log_total.log</file>
             <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
                 <!-- 归档的日志文件的路径，例如今天是2013-12-21日志，当前写的日志文件路径为file节点指定，可以将此文件与file指定文件路径设置为不同路径，从而将当前日志文件或归档日志文件置不同的目录。

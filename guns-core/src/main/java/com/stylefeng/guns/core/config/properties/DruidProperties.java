@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.datasource;
+package com.stylefeng.guns.core.config.properties;
 
 import com.alibaba.druid.pool.DruidDataSource;
 

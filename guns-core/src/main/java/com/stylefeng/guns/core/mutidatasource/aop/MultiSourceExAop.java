@@ -2,7 +2,7 @@ package com.stylefeng.guns.core.mutidatasource.aop;
 
 import com.stylefeng.guns.core.mutidatasource.DataSourceContextHolder;
 import com.stylefeng.guns.core.mutidatasource.annotion.DataSource;
-import com.stylefeng.guns.core.mutidatasource.config.MutiDataSourceProperties;
+import com.stylefeng.guns.core.config.properties.MutiDataSourceProperties;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -53,7 +53,7 @@ public class MultiSourceExAop implements Ordered {
             DataSourceContextHolder.setDataSourceType(datasource.name());
             log.debug("设置数据源为：" + datasource.name());
         } else {
-            DataSourceContextHolder.setDataSourceType(mutiDataSourceProperties.getDefaultDataSourceName());
+            DataSourceContextHolder.setDataSourceType(mutiDataSourceProperties.getDataSourceNames()[0]);
             log.debug("设置数据源为：dataSourceCurrent");
         }
 

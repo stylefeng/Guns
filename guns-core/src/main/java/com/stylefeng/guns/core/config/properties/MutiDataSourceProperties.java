@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.mutidatasource.config;
+package com.stylefeng.guns.core.config.properties;
 
 import com.alibaba.druid.pool.DruidDataSource;
 
@@ -10,17 +10,17 @@ import com.alibaba.druid.pool.DruidDataSource;
  */
 public class MutiDataSourceProperties {
 
-    private String defaultDataSourceName = "dataSourceGuns";
-
     private String url = "jdbc:mysql://127.0.0.1:3306/biz?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";
 
     private String username = "root";
 
     private String password = "root";
 
-    private String driverClassName = "com.mysql.jdbc.Driver";
+    private String driverClassName = "com.mysql.cj.jdbc.Driver";
 
     private String validationQuery = "SELECT 'x'";
+
+    private String[] dataSourceNames = {"dataSourceGuns", "dataSourceBiz"};
 
     public void config(DruidDataSource dataSource) {
         dataSource.setUrl(url);
@@ -54,14 +54,6 @@ public class MutiDataSourceProperties {
         this.password = password;
     }
 
-    public String getDefaultDataSourceName() {
-        return defaultDataSourceName;
-    }
-
-    public void setDefaultDataSourceName(String defaultDataSourceName) {
-        this.defaultDataSourceName = defaultDataSourceName;
-    }
-
     public String getDriverClassName() {
         return driverClassName;
     }
@@ -76,5 +68,13 @@ public class MutiDataSourceProperties {
 
     public void setValidationQuery(String validationQuery) {
         this.validationQuery = validationQuery;
+    }
+
+    public String[] getDataSourceNames() {
+        return dataSourceNames;
+    }
+
+    public void setDataSourceNames(String[] dataSourceNames) {
+        this.dataSourceNames = dataSourceNames;
     }
 }
