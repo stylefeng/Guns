@@ -13,9 +13,6 @@ File Encoding         : 65001
 Date: 2018-06-26 23:10:40
 */
 
-DROP DATABASE IF EXISTS guns_flowable;
-CREATE DATABASE IF NOT EXISTS guns_flowable DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-
 DROP DATABASE IF EXISTS guns;
 CREATE DATABASE IF NOT EXISTS guns DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
