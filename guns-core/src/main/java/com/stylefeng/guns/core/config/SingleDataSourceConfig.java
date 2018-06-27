@@ -7,6 +7,7 @@ import com.stylefeng.guns.core.config.properties.DruidProperties;
 import com.stylefeng.guns.core.datascope.DataScopeInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SingleDataSourceConfig {
 
     @Bean
-    //@ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DruidProperties druidProperties() {
         return new DruidProperties();
     }

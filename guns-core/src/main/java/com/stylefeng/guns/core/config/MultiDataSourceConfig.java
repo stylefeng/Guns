@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class MultiDataSourceConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "guns.datasource")
     public DruidProperties druidProperties() {
         return new DruidProperties();
     }
