@@ -1,8 +1,6 @@
 package com.stylefeng.guns.core.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 import java.sql.SQLException;
 
@@ -12,8 +10,6 @@ import java.sql.SQLException;
  * @author stylefeng
  * @date 2017-05-21 11:18
  */
-@Component
-@ConfigurationProperties(prefix = "spring.datasource")
 public class DruidProperties {
 
     private String url = "jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";

@@ -12,9 +12,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.Ordered;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -25,8 +23,6 @@ import java.lang.reflect.Method;
  * @date 2017年3月5日 上午10:22:16
  */
 @Aspect
-@Component
-@ConditionalOnProperty(prefix = "guns", name = "muti-datasource-open", havingValue = "true")
 public class MultiSourceExAop implements Ordered {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());

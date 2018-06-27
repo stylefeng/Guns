@@ -1,8 +1,6 @@
 package com.stylefeng.guns.core.mutidatasource.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * 默认多数据源配置
@@ -10,8 +8,6 @@ import org.springframework.stereotype.Component;
  * @author fengshuonan
  * @date 2017-08-16 10:02
  */
-@Component
-@ConfigurationProperties(prefix = "guns.muti-datasource")
 public class MutiDataSourceProperties {
 
     private String defaultDataSourceName = "dataSourceGuns";

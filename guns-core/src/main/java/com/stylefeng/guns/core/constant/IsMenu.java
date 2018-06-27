@@ -9,7 +9,7 @@ package com.stylefeng.guns.core.constant;
 public enum IsMenu {
 
     YES(1, "是"),
-    NO(0, "不是");//不是菜单的是按钮
+    NO(0, "不是"); //不是菜单的是按钮
 
     int code;
     String message;
