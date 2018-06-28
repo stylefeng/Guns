@@ -210,14 +210,17 @@ public class UserMgrController extends BaseController {
         if (result.hasErrors()) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        User oldUser = userService.selectById(user.getId());
+
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
-            this.userService.updateById(UserFactory.createUser(user));
+            this.userService.updateById(UserFactory.editUser(user, oldUser));
             return SUCCESS_TIP;
         } else {
             assertAuth(user.getId());
             ShiroUser shiroUser = ShiroKit.getUser();
             if (shiroUser.getId().equals(user.getId())) {
-                this.userService.updateById(UserFactory.createUser(user));
+                this.userService.updateById(UserFactory.editUser(user, oldUser));
                 return SUCCESS_TIP;
             } else {
                 throw new GunsException(BizExceptionEnum.NO_PERMITION);

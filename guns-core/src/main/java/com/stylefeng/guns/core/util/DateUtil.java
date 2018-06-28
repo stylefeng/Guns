@@ -28,11 +28,8 @@ import java.util.Date;
 
 public class DateUtil {
 
-
     /**
      * 获取YYYY格式
-     *
-     * @return
      */
     public static String getYear() {
         return formatDate(new Date(), "yyyy");
@@ -40,8 +37,6 @@ public class DateUtil {
 
     /**
      * 获取YYYY格式
-     *
-     * @return
      */
     public static String getYear(Date date) {
         return formatDate(date, "yyyy");
@@ -49,8 +44,6 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD格式
-     *
-     * @return
      */
     public static String getDay() {
         return formatDate(new Date(), "yyyy-MM-dd");
@@ -58,8 +51,6 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD格式
-     *
-     * @return
      */
     public static String getDay(Date date) {
         return formatDate(date, "yyyy-MM-dd");
@@ -67,8 +58,6 @@ public class DateUtil {
 
     /**
      * 获取YYYYMMDD格式
-     *
-     * @return
      */
     public static String getDays() {
         return formatDate(new Date(), "yyyyMMdd");
@@ -76,8 +65,6 @@ public class DateUtil {
 
     /**
      * 获取YYYYMMDD格式
-     *
-     * @return
      */
     public static String getDays(Date date) {
         return formatDate(date, "yyyyMMdd");
@@ -85,8 +72,6 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD HH:mm:ss格式
-     *
-     * @return
      */
     public static String getTime() {
         return formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
@@ -94,8 +79,6 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD HH:mm:ss.SSS格式
-     *
-     * @return
      */
     public static String getMsTime() {
         return formatDate(new Date(), "yyyy-MM-dd HH:mm:ss.SSS");
@@ -103,8 +86,6 @@ public class DateUtil {
 
     /**
      * 获取YYYYMMDDHHmmss格式
-     *
-     * @return
      */
     public static String getAllTime() {
         return formatDate(new Date(), "yyyyMMddHHmmss");
@@ -112,8 +93,6 @@ public class DateUtil {
 
     /**
      * 获取YYYY-MM-DD HH:mm:ss格式
-     *
-     * @return
      */
     public static String getTime(Date date) {
         return formatDate(date, "yyyy-MM-dd HH:mm:ss");
@@ -130,12 +109,8 @@ public class DateUtil {
     }
 
     /**
-     * @Title: compareDate
-     * @Description:(日期比较，如果s>=e 返回true 否则返回false)
-     * @param s
-     * @param e
-     * @return boolean
-     * @throws
+     * 日期比较，如果s>=e 返回true 否则返回false)
+     *
      * @author luguosui
      */
     public static boolean compareDate(String s, String e) {
@@ -147,8 +122,6 @@ public class DateUtil {
 
     /**
      * 格式化日期
-     *
-     * @return
      */
     public static Date parseDate(String date) {
         return parse(date, "yyyy-MM-dd");
@@ -156,8 +129,13 @@ public class DateUtil {
 
     /**
      * 格式化日期
-     *
-     * @return
+     */
+    public static Date parseTimeMinutes(String date) {
+        return parse(date, "yyyy-MM-dd HH:mm");
+    }
+
+    /**
+     * 格式化日期
      */
     public static Date parseTime(String date) {
         return parse(date, "yyyy-MM-dd HH:mm:ss");
@@ -165,8 +143,6 @@ public class DateUtil {
 
     /**
      * 格式化日期
-     *
-     * @return
      */
     public static Date parse(String date, String pattern) {
         try {
@@ -177,14 +153,8 @@ public class DateUtil {
         }
     }
 
-
-
-
-
     /**
      * 格式化日期
-     *
-     * @return
      */
     public static String format(Date date, String pattern) {
         return DateFormatUtils.format(date, pattern);
@@ -192,9 +162,6 @@ public class DateUtil {
 
     /**
      * 把日期转换为Timestamp
-     *
-     * @param date
-     * @return
      */
     public static Timestamp format(Date date) {
         return new Timestamp(date.getTime());
@@ -202,8 +169,6 @@ public class DateUtil {
 
     /**
      * 校验日期是否合法
-     *
-     * @return
      */
     public static boolean isValidDate(String s) {
         return parse(s, "yyyy-MM-dd HH:mm:ss") != null;
@@ -211,8 +176,6 @@ public class DateUtil {
 
     /**
      * 校验日期是否合法
-     *
-     * @return
      */
     public static boolean isValidDate(String s, String pattern) {
         return parse(s, pattern) != null;
@@ -232,11 +195,6 @@ public class DateUtil {
 
     /**
      * <li>功能描述：时间相减得到天数
-     *
-     * @param beginDateStr
-     * @param endDateStr
-     * @return long
-     * @author Administrator
      */
     public static long getDaySub(String beginDateStr, String endDateStr) {
         long day = 0;
@@ -259,9 +217,6 @@ public class DateUtil {
 
     /**
      * 得到n天之后的日期
-     *
-     * @param days
-     * @return
      */
     public static String getAfterDayDate(String days) {
         int daysInt = Integer.parseInt(days);
@@ -278,9 +233,6 @@ public class DateUtil {
 
     /**
      * 得到n天之后是周几
-     *
-     * @param days
-     * @return
      */
     public static String getAfterDayWeek(String days) {
         int daysInt = Integer.parseInt(days);
@@ -293,11 +245,6 @@ public class DateUtil {
         String dateStr = sdf.format(date);
 
         return dateStr;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getTime(new Date()));
-        System.out.println(getAfterDayWeek("3"));
     }
 
 }

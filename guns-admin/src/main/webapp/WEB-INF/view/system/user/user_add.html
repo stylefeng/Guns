@@ -22,8 +22,7 @@
 					<div id="driverInfoContent">
 						<#input id="name" name="姓名" underline="true"/>
 
-						<#input id="birthday" name="出生日期" underline="true" type="date"
-						clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})"/>
+						<#input id="birthday" name="出生日期" underline="true" type="text"/>
 
 						<#input id="rePassword" name="确认密码" type="password" underline="true"/>
 
@@ -53,4 +52,9 @@
 	</div>
 </div>
 <script src="${ctxPath}/static/modular/system/user/user_info.js"></script>
+<script>
+    laydate.render({
+        elem: '#birthday'
+    });
+</script>
 @}
