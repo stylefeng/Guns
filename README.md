@@ -9,6 +9,7 @@ Guns v3.0新增rest api服务,提供对接服务端接口的支持,并利用jwt 
 
 > * spring boot升级到2.0版本！
 > * 简化前端所有的html，js，css等资源文件，由11.8MB缩减为4.8MB！
+> * 新增手动增加标签页的方法，Feng.newCrontab(href,menuName);
 > * laydate时间插件和layer弹出层插件更新为官网最新，可以看着layui官网的文档直接开发啦！
 > * 去掉animate动画效果，加快页面响应速度！
 > * 修复登陆后重启应用造成404的bug！
