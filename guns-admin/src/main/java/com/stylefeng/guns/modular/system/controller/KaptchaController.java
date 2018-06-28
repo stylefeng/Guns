@@ -98,11 +98,11 @@ public class KaptchaController {
      */
     @RequestMapping("/{pictureId}")
     public void renderPicture(@PathVariable("pictureId") String pictureId, HttpServletResponse response) {
-        String path = gunsProperties.getFileUploadPath() + pictureId + ".jpg";
+        String path = gunsProperties.getFileUploadPath() + pictureId;
         try {
             byte[] bytes = FileUtil.toByteArray(path);
             response.getOutputStream().write(bytes);
-        }catch (Exception e){
+        } catch (Exception e) {
             //如果找不到图片就返回一个默认图片
             try {
                 response.sendRedirect("/static/img/girl.gif");

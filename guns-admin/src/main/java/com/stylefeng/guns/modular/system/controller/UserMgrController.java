@@ -337,12 +337,13 @@ public class UserMgrController extends BaseController {
     }
 
     /**
-     * 上传图片(上传到项目的webapp/static/img)
+     * 上传图片
      */
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
     @ResponseBody
     public String upload(@RequestPart("file") MultipartFile picture) {
-        String pictureName = UUID.randomUUID().toString() + ".jpg";
+
+        String pictureName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(picture.getOriginalFilename());
         try {
             String fileSavePath = gunsProperties.getFileUploadPath();
             picture.transferTo(new File(fileSavePath + pictureName));
