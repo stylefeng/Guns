@@ -83,7 +83,7 @@ public class MybatisPlusConfig {
 <!-- 全局js -->
 <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="wrapper wrapper-content">
 		${layoutContent}
 	</div>
 	<script src="${ctxPath}/static/js/content.js?v=1.0.0"></script>
