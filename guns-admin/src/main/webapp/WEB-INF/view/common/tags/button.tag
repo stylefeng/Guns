@@ -10,7 +10,7 @@
 
 @var spaceCss = "";
 @var btnType = "";
-@if(isEmpty(space)){
+@if(isEmpty(space) || space == "false"){
 @   spaceCss = "";
 @}else{
 @   spaceCss = "button-margin";
