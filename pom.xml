@@ -39,7 +39,7 @@
         <swagger.version>2.9.2</swagger.version>
         <commons-lang3.version>3.7</commons-lang3.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
-        <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <jwt.version>0.9.0</jwt.version>
         <hutool.version>4.1.1</hutool.version>
     </properties>
