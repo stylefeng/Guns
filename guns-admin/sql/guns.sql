@@ -80,7 +80,7 @@ CREATE TABLE `sys_expense` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `money` decimal(20,2) DEFAULT NULL COMMENT '报销金额',
   `desc` varchar(255) DEFAULT '' COMMENT '描述',
-  `createtime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `state` int(11) DEFAULT NULL COMMENT '状态: 1.待提交  2:待审核   3.审核通过 4:驳回',
   `userid` int(11) DEFAULT NULL COMMENT '用户id',
   `processId` varchar(255) DEFAULT NULL COMMENT '流程定义id',
