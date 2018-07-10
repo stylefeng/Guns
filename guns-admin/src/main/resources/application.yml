@@ -30,7 +30,7 @@ mybatis-plus:
   typeAliasesPackage: com.stylefeng.guns.modular.system.model
 
 log:
-  path: /opt/guns/logs
+  path: guns-logs
 
 ---
 
@@ -57,8 +57,8 @@ spring:
 #多数据源情况的配置
 guns:
   muti-datasource:
-    open: false
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
+    open: true
+    url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC
     username: root
     password: root
     dataSourceNames:

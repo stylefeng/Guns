@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.config;
+package com.stylefeng.guns.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
