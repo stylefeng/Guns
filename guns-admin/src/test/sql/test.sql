@@ -14,6 +14,11 @@
  Date: 10/07/2018 14:09:19
 */
 
+DROP DATABASE IF EXISTS guns_test;
+CREATE DATABASE IF NOT EXISTS guns_test DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+use guns_test;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
