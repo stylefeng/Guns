@@ -8,6 +8,7 @@ import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.intercept.RestApiInteceptor;
 import com.stylefeng.guns.core.listener.ConfigListener;
 import com.stylefeng.guns.core.xss.XssFilter;
 import org.springframework.aop.Advisor;
@@ -20,6 +21,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -47,6 +49,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
             registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
             registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         }
+    }
+
+    /**
+     * 增加对rest api鉴权的spring mvc拦截器
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new RestApiInteceptor()).addPathPatterns("/api/**");
     }
 
     /**
