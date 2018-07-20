@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2018/7/20 23:39
  */
 @RestController
-@RequestMapping("/gunsapi")
+@RequestMapping("/gunsApi")
 public class ApiController extends BaseController {
 
     /**
