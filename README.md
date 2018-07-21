@@ -7,7 +7,7 @@ Guns v3.0新增rest api服务,提供对接服务端接口的支持,并利用jwt 
 
 ### Guns v4.1更新内容
 
-> * guns-admin提供rest api服务，并以jwt方式鉴权，所有以`/gunsApi`开头的接口走这种鉴权方式，其他接口仍然走shiro鉴权
+> * guns-admin提供rest api服务，并以jwt方式鉴权，所有以`/gunsApi`开头的接口走这种鉴权方式，其他接口仍为shiro鉴权
 
 ### Guns v4.0更新内容
 
