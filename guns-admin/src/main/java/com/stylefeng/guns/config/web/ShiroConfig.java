@@ -156,9 +156,12 @@ public class ShiroConfig {
          *
          * 顺序从上到下,优先级依次降低
          *
+         * api开头的接口，走rest api鉴权，不走shiro鉴权
+         *
          */
         Map<String, String> hashMap = new LinkedHashMap<>();
         hashMap.put("/static/**", "anon");
+        hashMap.put("/gunsApi/**", "anon");
         hashMap.put("/login", "anon");
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
