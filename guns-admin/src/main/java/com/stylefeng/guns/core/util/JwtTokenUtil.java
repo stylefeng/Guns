@@ -97,9 +97,9 @@ public class JwtTokenUtil {
     /**
      * 生成token(通过用户名和签名时候用的随机数)
      */
-    public static String generateToken(String userName, String randomKey) {
+    public static String generateToken(String userId) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userName);
+        return doGenerateToken(claims, userId);
     }
 
     /**
