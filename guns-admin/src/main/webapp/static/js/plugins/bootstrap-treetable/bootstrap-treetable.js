@@ -18,16 +18,19 @@ function extracted($, item, target, globalCollapsedFlag, options) {
     $.each(subItems, function (pIndex, pItem) {
 
         //如果是展开,判断当前箭头是开启还是关闭
+        var expander = $(item).find("td[name='name']").find(".treetable-expander");
         if (!globalCollapsedFlag) {
-            var hasExpander = $(item).find("td[name='name']").find(".treetable-expander")
-                .hasClass(options.expanderExpandedClass);
+            var hasExpander = expander.hasClass(options.expanderExpandedClass);
             if (hasExpander) {
                 $(pItem).css("display", "table");
             } else {
                 $(pItem).css("display", "none");
             }
         } else {
+            //如果是折叠，就把当前开着的都折叠掉
             $(pItem).css("display", "none");
+            expander.removeClass(options.expanderExpandedClass);
+            expander.addClass(options.expanderCollapsedClass);
         }
     });
 }
