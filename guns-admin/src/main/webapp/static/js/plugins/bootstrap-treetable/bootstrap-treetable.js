@@ -63,7 +63,7 @@
 					target.handleNode(item, (lv + 1), tbody)
 				});
 			}
-		}; 
+		};
 		// 绘制行
 		target.renderRow = function(item,isP,lv){
 			// 标记已显示
@@ -88,11 +88,11 @@
 					if(column.radio){
 						var _ipt = $('<input name="select_item" type="radio" value="'+item[options.id]+'"></input>');
 						td.append(_ipt);
-					} 
+					}
 					if(column.checkbox){
 						var _ipt = $('<input name="select_item" type="checkbox" value="'+item[options.id]+'"></input>');
 						td.append(_ipt);
-					} 
+					}
 					tr.append(td);
 				}else{
 					var td = $('<td title="'+item[column.field]+'" name="'+column.field+'" style="'+((column.width)?('width:'+column.width):'')+'"></td>');
@@ -210,12 +210,33 @@
 						}else{
 							_code = tr.find("td[name='"+options.code+"']").text();
 						}
-						var _ls = target.find("tbody").find(".tg-"+_code);//下一级
+						var _ls = target.find("tbody").find(".tg-"+_code);//下一级，改为下所有级别
 						if(_ls&&_ls.length>0){
 							var _flag = $(this).hasClass(options.expanderExpandedClass);
 							$.each(_ls, function(index, item) {
+
+								//查找当前这个节点的所有节点(包含子节点)，如果是折叠都显示为不显示，如果是展开，则根据当前节点的状态
+                                var pcode = $(item).find("td[name='code']").text();
+                                var pcodes = target.find("tbody").find(".tg-"+pcode);//下一级，改为下所有级别
+                                $.each(pcodes, function(pIndex, pItem) {
+
+                                    //如果是展开,判断当前箭头是开启还是关闭
+                                    if(!_flag){
+                                        debugger;
+                                        var hasExpander = $(item).find("td[name='name']").find(".treetable-expander")
+                                            .hasClass(options.expanderExpandedClass);
+                                        if (hasExpander) {
+                                            $(pItem).css("display","table");
+                                        }else{
+                                            $(pItem).css("display","none");
+                                        }
+                                    }else{
+                                        $(pItem).css("display","none");
+                                    }
+                                });
+
 								$(item).css("display",_flag?"none":"table");
-							});
+                            });
 							if(_flag){
 								$(this).removeClass(options.expanderExpandedClass)
 								$(this).addClass(options.expanderCollapsedClass)
@@ -238,7 +259,7 @@
 		} else {
 			// 也可以通过defaults里面的data属性通过传递一个数据集合进来对组件进行初始化....有兴趣可以自己实现，思路和上述类似
 		}
-		
+
 		return target;
 	};
 
@@ -249,28 +270,28 @@
 		getSelections : function(target, data) {
 			// 所有被选中的记录input
 			var _ipt = target.find("tbody").find("tr").find("input[name='select_item']:checked");
-			var chk_value =[]; 
+			var chk_value =[];
 			// 如果是radio
 			if(_ipt.attr("type")=="radio"){
 				var _data = {id:_ipt.val()};
 				var _tds = _ipt.parent().parent().find("td");
-				_tds.each(function(_i,_item){ 
+				_tds.each(function(_i,_item){
 					if(_i!=0){
 						_data[$(_item).attr("name")]=$(_item).text();
 					}
-				}); 
-				chk_value.push(_data); 
+				});
+				chk_value.push(_data);
 			}else{
-				_ipt.each(function(_i,_item){ 
+				_ipt.each(function(_i,_item){
 					var _data = {id:$(_item).val()};
 					var _tds = $(_item).parent().parent().find("td");
-					_tds.each(function(_ii,_iitem){ 
+					_tds.each(function(_ii,_iitem){
 						if(_ii!=0){
 							_data[$(_iitem).attr("name")]=$(_iitem).text();
 						}
-					}); 
-					chk_value.push(_data); 
-				}); 
+					});
+					chk_value.push(_data);
+				});
 			}
 			return chk_value;
 		},
