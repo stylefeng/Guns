@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +27,11 @@ import java.io.IOException;
 @RequestMapping("/kaptcha")
 public class KaptchaController {
 
-    @Resource
+    @Autowired
     private GunsProperties gunsProperties;
 
     @Autowired
-    Producer producer;
+    private Producer producer;
 
     /**
      * 生成验证码
@@ -99,11 +98,11 @@ public class KaptchaController {
      */
     @RequestMapping("/{pictureId}")
     public void renderPicture(@PathVariable("pictureId") String pictureId, HttpServletResponse response) {
-        String path = gunsProperties.getFileUploadPath() + pictureId + ".jpg";
+        String path = gunsProperties.getFileUploadPath() + pictureId;
         try {
             byte[] bytes = FileUtil.toByteArray(path);
             response.getOutputStream().write(bytes);
-        }catch (Exception e){
+        } catch (Exception e) {
             //如果找不到图片就返回一个默认图片
             try {
                 response.sendRedirect("/static/img/girl.gif");

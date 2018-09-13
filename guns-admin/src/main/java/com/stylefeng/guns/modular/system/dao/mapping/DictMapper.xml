@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.DictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Dict">
+        <id column="id" property="id"/>
+        <result column="num" property="num"/>
+        <result column="pid" property="pid"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="tips" property="tips"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		id, num, pid, name,code,tips
+	</sql>
+
+    <select id="selectByCode" resultType="dict">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where code = #{code}
+    </select>
+
+    <select id="selectByParentCode" resultType="dict">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where pid in(select id  from sys_dict where code = #{code}) order by num asc
+    </select>
+
+    <select id="list" resultType="map">
+        select * from sys_dict
+        where pid = 0
+        <if test="condition != null and condition != ''">
+            AND name like CONCAT('%',#{condition},'%')
+        </if>
+        order by id ASC
+    </select>
+
+</mapper>

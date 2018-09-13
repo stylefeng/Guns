@@ -1,17 +1,15 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.annotion.Permission;
-import com.stylefeng.guns.common.constant.Const;
-import com.stylefeng.guns.common.constant.dictmap.UserDict;
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.constant.state.ManagerStatus;
-import com.stylefeng.guns.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.common.persistence.dao.UserMapper;
-import com.stylefeng.guns.common.persistence.model.User;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.base.tips.Tip;
+import com.stylefeng.guns.core.common.annotion.BussinessLog;
+import com.stylefeng.guns.core.common.annotion.Permission;
+import com.stylefeng.guns.core.common.constant.Const;
+import com.stylefeng.guns.core.common.constant.dictmap.UserDict;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
+import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.core.db.Db;
 import com.stylefeng.guns.core.exception.GunsException;
@@ -19,17 +17,19 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.UserMgrDao;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.factory.UserFactory;
+import com.stylefeng.guns.modular.system.model.User;
+import com.stylefeng.guns.modular.system.service.IUserService;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import com.stylefeng.guns.modular.system.warpper.UserWarpper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.io.File;
@@ -50,14 +50,11 @@ public class UserMgrController extends BaseController {
 
     private static String PREFIX = "/system/user/";
 
-    @Resource
+    @Autowired
     private GunsProperties gunsProperties;
 
-    @Resource
-    private UserMgrDao managerDao;
-
-    @Resource
-    private UserMapper userMapper;
+    @Autowired
+    private IUserService userService;
 
     /**
      * 跳转到查看管理员列表的页面
@@ -101,7 +98,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
@@ -118,7 +115,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         model.addAttribute(user);
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
@@ -144,7 +141,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
         Integer userId = ShiroKit.getUser().getId();
-        User user = userMapper.selectById(userId);
+        User user = userService.selectById(userId);
         String oldMd5 = ShiroKit.md5(oldPwd, user.getSalt());
         if (user.getPassword().equals(oldMd5)) {
             String newMd5 = ShiroKit.md5(newPwd, user.getSalt());
@@ -164,11 +161,11 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
         if (ShiroKit.isAdmin()) {
-            List<Map<String, Object>> users = managerDao.selectUsers(null, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
-            List<Map<String, Object>> users = managerDao.selectUsers(dataScope, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptid);
             return new UserWarpper(users).warp();
         }
     }
@@ -186,7 +183,7 @@ public class UserMgrController extends BaseController {
         }
 
         // 判断账号是否重复
-        User theUser = managerDao.getByAccount(user.getAccount());
+        User theUser = userService.getByAccount(user.getAccount());
         if (theUser != null) {
             throw new GunsException(BizExceptionEnum.USER_ALREADY_REG);
         }
@@ -197,7 +194,7 @@ public class UserMgrController extends BaseController {
         user.setStatus(ManagerStatus.OK.getCode());
         user.setCreatetime(new Date());
 
-        this.userMapper.insert(UserFactory.createUser(user));
+        this.userService.insert(UserFactory.createUser(user));
         return SUCCESS_TIP;
     }
 
@@ -213,14 +210,17 @@ public class UserMgrController extends BaseController {
         if (result.hasErrors()) {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        User oldUser = userService.selectById(user.getId());
+
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
-            this.userMapper.updateById(UserFactory.createUser(user));
+            this.userService.updateById(UserFactory.editUser(user, oldUser));
             return SUCCESS_TIP;
         } else {
             assertAuth(user.getId());
             ShiroUser shiroUser = ShiroKit.getUser();
             if (shiroUser.getId().equals(user.getId())) {
-                this.userMapper.updateById(UserFactory.createUser(user));
+                this.userService.updateById(UserFactory.editUser(user, oldUser));
                 return SUCCESS_TIP;
             } else {
                 throw new GunsException(BizExceptionEnum.NO_PERMITION);
@@ -244,7 +244,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         assertAuth(userId);
-        this.managerDao.setStatus(userId, ManagerStatus.DELETED.getCode());
+        this.userService.setStatus(userId, ManagerStatus.DELETED.getCode());
         return SUCCESS_TIP;
     }
 
@@ -258,7 +258,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        return this.userMapper.selectById(userId);
+        return this.userService.selectById(userId);
     }
 
     /**
@@ -273,10 +273,10 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         user.setSalt(ShiroKit.getRandomSalt(5));
         user.setPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
-        this.userMapper.updateById(user);
+        this.userService.updateById(user);
         return SUCCESS_TIP;
     }
 
@@ -296,7 +296,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         assertAuth(userId);
-        this.managerDao.setStatus(userId, ManagerStatus.FREEZED.getCode());
+        this.userService.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
 
@@ -312,7 +312,7 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
-        this.managerDao.setStatus(userId, ManagerStatus.OK.getCode());
+        this.userService.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }
 
@@ -332,17 +332,18 @@ public class UserMgrController extends BaseController {
             throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         assertAuth(userId);
-        this.managerDao.setRoles(userId, roleIds);
+        this.userService.setRoles(userId, roleIds);
         return SUCCESS_TIP;
     }
 
     /**
-     * 上传图片(上传到项目的webapp/static/img)
+     * 上传图片
      */
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
     @ResponseBody
     public String upload(@RequestPart("file") MultipartFile picture) {
-        String pictureName = UUID.randomUUID().toString() + ".jpg";
+
+        String pictureName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(picture.getOriginalFilename());
         try {
             String fileSavePath = gunsProperties.getFileUploadPath();
             picture.transferTo(new File(fileSavePath + pictureName));
@@ -360,7 +361,7 @@ public class UserMgrController extends BaseController {
             return;
         }
         List<Integer> deptDataScope = ShiroKit.getDeptDataScope();
-        User user = this.userMapper.selectById(userId);
+        User user = this.userService.selectById(userId);
         Integer deptid = user.getDeptid();
         if (deptDataScope.contains(deptid)) {
             return;

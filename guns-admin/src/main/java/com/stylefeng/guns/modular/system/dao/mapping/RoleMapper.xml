@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.modular.system.dao.RoleMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Role">
+		<id column="id" property="id" />
+		<result column="num" property="num" />
+		<result column="pid" property="pid" />
+		<result column="name" property="name" />
+		<result column="deptid" property="deptid" />
+		<result column="tips" property="tips" />
+		<result column="version" property="version" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, num, pid, name, deptid, tips, version
+	</sql>
+
+	<select id="selectRoles" resultType="map">
+		select
+		<include refid="Base_Column_List" />
+		from sys_role
+		<if test="condition != null">
+			where name like CONCAT('%',#{condition},'%')
+		</if>
+	</select>
+
+	<delete id="deleteRolesById">
+		delete from sys_relation where roleid = #{roleId}
+	</delete>
+
+	<select id="roleTreeList" resultType="com.stylefeng.guns.core.node.ZTreeNode">
+		select id "id",pId
+		"pId",name as "name",(case when (pId=0 or pId is null) then 'true'
+		else 'false' end) "open" from sys_role
+	</select>
+
+	<select id="roleTreeListByRoleId" resultType="com.stylefeng.guns.core.node.ZTreeNode">
+		SELECT
+		r.id "id",
+		pId "pId",
+		NAME AS "name",
+		(
+		CASE
+		WHEN (pId = 0 OR pId IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) "open",
+		(
+		CASE
+		WHEN (r1.ID = 0 OR r1.ID IS NULL) THEN
+		'false'
+		ELSE
+		'true'
+		END
+		) "checked"
+		FROM
+		sys_role r
+		LEFT JOIN (
+		SELECT
+		ID
+		FROM
+		sys_role
+		WHERE
+		ID IN
+
+		<foreach collection="array" index="index" item="i" open="(" separator="," close=")">
+			#{i}
+		</foreach>
+
+		) r1 ON r.ID = r1.ID
+		ORDER BY
+		pId,
+		num ASC
+	</select>
+</mapper>

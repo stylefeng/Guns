@@ -1,6 +1,5 @@
 package com.stylefeng.guns.core.base.controller;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017-05-21 11:34
  */
-@Component("error")
 public class GunsErrorView implements View {
 
     @Override

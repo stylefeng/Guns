@@ -8,12 +8,23 @@
             <div class="row">
                 <div class="col-sm-12" id="itemsArea">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">字典名称</label>
+                        <label class="col-sm-2 control-label">类型编码</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="dictCode" type="text">
+                        </div>
+                        <label class="col-sm-2 control-label">类型名称</label>
                         <div class="col-sm-2">
                             <input class="form-control" id="dictName" type="text">
                         </div>
+
                         <div class="col-sm-2">
                             <#button btnCss="info" name="增加" icon="fa-plus" clickFun="DictInfoDlg.addItem()"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="dictTips" type="text">
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
@@ -31,19 +42,23 @@
 
     <script type="text/template" id="itemTemplate">
         <div class="form-group" name="dictItem" id="dictItem">
-            <label class="col-sm-2 control-label">值</label>
+            <label class="col-sm-1 control-label">值</label>
             <div class="col-sm-2">
-                <input class="form-control" type="text" name="itemNum">
+                <input class="form-control" type="text" name="itemCode">
             </div>
-            <label class="col-sm-2 control-label" style="width: 8%;">名称</label>
+            <label class="col-sm-1 control-label" >名称</label>
             <div class="col-sm-2">
                 <input class="form-control" type="text" name="itemName">
             </div>
-            <div class="col-sm-4">
+            <label class="col-sm-1 control-label" >序号</label>
+            <div class="col-sm-2">
+                <input class="form-control" type="text" name="itemNum">
+            </div>
+            <div class="col-sm-2">
                 <#button btnCss="danger" name="删除" id="cancel" icon="fa-remove" clickFun="DictInfoDlg.deleteItem(event)"/>
             </div>
         </div>
     </script>
 
     <script src="${ctxPath}/static/modular/system/dict/dict_info.js"></script>
-@}
+    @}

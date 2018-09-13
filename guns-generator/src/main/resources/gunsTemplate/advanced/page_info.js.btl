@@ -49,7 +49,7 @@ ${context.bizEnBigName}InfoDlg.collectData = function() {
     <% if(itemLP.last != true){ %>
     .set('${item.propertyName}')
     <% }else{ %>
-    ;
+    .set('${item.propertyName}');
     <% }} %>
 }
 

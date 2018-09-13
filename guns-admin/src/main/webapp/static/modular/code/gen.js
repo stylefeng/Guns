@@ -87,7 +87,7 @@ $(function () {
     $("#pcodeTree").css('width',$("#parentMenuName").css('width'));
 });
 
-Code.set = function (key, val) {
+Code.set = function (key, value) {
     Code.submitData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
     return this;
 };

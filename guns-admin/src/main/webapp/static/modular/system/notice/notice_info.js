@@ -28,7 +28,7 @@ NoticeInfoDlg.clearData = function () {
  * @param key 数据的名称
  * @param val 数据的具体值
  */
-NoticeInfoDlg.set = function (key, val) {
+NoticeInfoDlg.set = function (key, value) {
     this.noticeInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
     return this;
 }

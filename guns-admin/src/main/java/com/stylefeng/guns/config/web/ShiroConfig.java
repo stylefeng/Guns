@@ -1,6 +1,7 @@
 package com.stylefeng.guns.config.web;
 
 import com.stylefeng.guns.config.properties.GunsProperties;
+import com.stylefeng.guns.core.intercept.GunsUserFilter;
 import com.stylefeng.guns.core.shiro.ShiroDbRealm;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -22,6 +23,8 @@ import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -74,7 +77,6 @@ public class ShiroConfig {
         sessionManager.setSessionIdCookie(cookie);
         return sessionManager;
     }
-
 
     /**
      * 缓存管理器 使用Ehcache实现
@@ -135,6 +137,14 @@ public class ShiroConfig {
          * 没有权限跳转的url
          */
         shiroFilter.setUnauthorizedUrl("/global/error");
+
+        /**
+         * 覆盖默认的user拦截器(默认拦截器解决不了ajax请求 session超时的问题,若有更好的办法请及时反馈作者)
+         */
+        HashMap<String, Filter> myFilters = new HashMap<>();
+        myFilters.put("user", new GunsUserFilter());
+        shiroFilter.setFilters(myFilters);
+
         /**
          * 配置shiro拦截器链
          *
@@ -146,9 +156,12 @@ public class ShiroConfig {
          *
          * 顺序从上到下,优先级依次降低
          *
+         * api开头的接口，走rest api鉴权，不走shiro鉴权
+         *
          */
         Map<String, String> hashMap = new LinkedHashMap<>();
         hashMap.put("/static/**", "anon");
+        hashMap.put("/gunsApi/**", "anon");
         hashMap.put("/login", "anon");
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");

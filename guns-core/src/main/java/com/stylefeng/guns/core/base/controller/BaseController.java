@@ -84,6 +84,18 @@ public class BaseController {
     }
 
     /**
+     * 删除所有cookie
+     */
+    protected void deleteAllCookie() {
+        Cookie[] cookies = this.getHttpServletRequest().getCookies();
+        for (Cookie cookie : cookies) {
+            Cookie temp = new Cookie(cookie.getName(), "");
+            temp.setMaxAge(0);
+            this.getHttpServletResponse().addCookie(temp);
+        }
+    }
+
+    /**
      * 返回前台文件流
      *
      * @author fengshuonan

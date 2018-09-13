@@ -1,7 +1,7 @@
 package com.stylefeng.guns.core.aop;
 
-import com.stylefeng.guns.common.annotion.BussinessLog;
-import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
+import com.stylefeng.guns.core.common.annotion.BussinessLog;
+import com.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
@@ -34,7 +34,7 @@ public class LogAop {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut(value = "@annotation(com.stylefeng.guns.common.annotion.BussinessLog)")
+    @Pointcut(value = "@annotation(com.stylefeng.guns.core.common.annotion.BussinessLog)")
     public void cutService() {
     }
 

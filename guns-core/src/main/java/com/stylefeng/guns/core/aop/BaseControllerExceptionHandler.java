@@ -22,8 +22,6 @@ public class BaseControllerExceptionHandler {
 
     /**
      * 拦截业务异常
-     *
-     * @author fengshuonan
      */
     @ExceptionHandler(GunsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -35,8 +33,6 @@ public class BaseControllerExceptionHandler {
 
     /**
      * 拦截未知的运行时异常
-     *
-     * @author fengshuonan
      */
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

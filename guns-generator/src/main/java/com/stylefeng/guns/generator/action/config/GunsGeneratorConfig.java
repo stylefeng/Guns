@@ -12,13 +12,13 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 public class GunsGeneratorConfig extends AbstractGeneratorConfig {
 
     protected void globalConfig() {
-        globalConfig.setOutputDir("D:\\ideaSpace\\guns\\guns-admin\\src\\main\\java");//写自己项目的绝对路径,注意具体到java目录
+        globalConfig.setOutputDir("D:\\ttt");//写自己项目的绝对路径,注意具体到java目录
         globalConfig.setFileOverride(true);
         globalConfig.setEnableCache(false);
         globalConfig.setBaseResultMap(true);
         globalConfig.setBaseColumnList(true);
         globalConfig.setOpen(false);
-        globalConfig.setAuthor("fengshuonan");
+        globalConfig.setAuthor("stylefeng");
     }
 
     protected void dataSourceConfig() {
@@ -26,11 +26,11 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         dataSourceConfig.setDriverName("com.mysql.jdbc.Driver");
         dataSourceConfig.setUsername("root");
         dataSourceConfig.setPassword("root");
-        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/adi_user_center?characterEncoding=utf8");
+        dataSourceConfig.setUrl("jdbc:mysql://127.0.0.1:3306/guns?characterEncoding=utf8");
     }
 
     protected void strategyConfig() {
-        //strategyConfig.setTablePrefix(new String[]{"xx_"});// 此处可以修改为您的表前缀
+        strategyConfig.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
     }
 
@@ -59,7 +59,7 @@ public class GunsGeneratorConfig extends AbstractGeneratorConfig {
         contextConfig.setServiceSwitch(true);
 
         /**
-         * adi 生成器开关
+         * guns 生成器开关
          */
         contextConfig.setControllerSwitch(true);
         contextConfig.setIndexPageSwitch(true);

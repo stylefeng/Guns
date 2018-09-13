@@ -63,8 +63,33 @@ UserInfoDlg.clearData = function () {
  * @param key 数据的名称
  * @param val 数据的具体值
  */
-UserInfoDlg.set = function (key, val) {
-    this.userInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
+UserInfoDlg.set = function (key, value) {
+    if(typeof value == "undefined"){
+        if(typeof $("#" + key).val() =="undefined"){
+            var str="";
+            var ids="";
+            $("input[name='"+key+"']:checkbox").each(function(){
+                if(true == $(this).is(':checked')){
+                    str+=$(this).val()+",";
+                }
+            });
+            if(str){
+                if(str.substr(str.length-1)== ','){
+                    ids = str.substr(0,str.length-1);
+                }
+            }else{
+                $("input[name='"+key+"']:radio").each(function(){
+                    if(true == $(this).is(':checked')){
+                        ids=$(this).val()
+                    }
+                });
+            }
+            this.userInfoData[key] = ids;
+        }else{
+            this.userInfoData[key]= $("#" + key).val();
+        }
+    }
+
     return this;
 };
 
@@ -249,18 +274,17 @@ function onBodyDown(event) {
 $(function () {
     Feng.initValidator("userInfoForm", UserInfoDlg.validateFields);
 
+    //初始化性别选项
+    $("#sex").val($("#sexValue").val());
+
     var ztree = new $ZTree("treeDemo", "/dept/tree");
     ztree.bindOnClick(UserInfoDlg.onClickDept);
     ztree.init();
     instance = ztree;
 
-    //初始化性别选项
-    $("#sex").val($("#sexValue").val());
-
     // 初始化头像上传
     var avatarUp = new $WebUpload("avatar");
     avatarUp.setUploadBarId("progressBar");
     avatarUp.init();
-
 
 });

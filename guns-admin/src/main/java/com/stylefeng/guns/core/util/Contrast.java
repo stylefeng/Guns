@@ -1,7 +1,7 @@
 package com.stylefeng.guns.core.util;
 
-import com.stylefeng.guns.common.constant.dictmap.base.AbstractDictMap;
-import com.stylefeng.guns.common.constant.dictmap.factory.DictFieldWarpperFactory;
+import com.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
+import com.stylefeng.guns.core.common.constant.dictmap.factory.DictFieldWarpperFactory;
 import com.stylefeng.guns.core.support.StrKit;
 
 import java.beans.PropertyDescriptor;

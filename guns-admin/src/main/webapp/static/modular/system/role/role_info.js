@@ -43,7 +43,7 @@ RolInfoDlg.clearData = function () {
  * @param key 数据的名称
  * @param val 数据的具体值
  */
-RolInfoDlg.set = function (key, val) {
+RolInfoDlg.set = function (key, value) {
     this.roleInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
     return this;
 };

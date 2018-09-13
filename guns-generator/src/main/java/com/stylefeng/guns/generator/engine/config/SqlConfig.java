@@ -54,7 +54,12 @@ public class SqlConfig {
         menu.setIcon("");
         menu.setUrl("/" + contextConfig.getBizEnName());
         menu.setNum(99);
-        menu.setLevels(2);
+
+        if (parentMenuName.equals("顶级")) {
+            menu.setLevels(1);
+        } else {
+            menu.setLevels(2);
+        }
         menu.setIsmenu(IsMenu.YES.getCode());
         menu.setStatus(1);
         menu.setIsopen(0);
@@ -103,7 +108,7 @@ public class SqlConfig {
         menu.setPcodes(parentMenu.getPcodes() + "[" + parentMenu.getCode() + "],");
         menu.setIcon("");
         menu.setNum(99);
-        menu.setLevels(3);
+        menu.setLevels(parentMenu.getLevels() + 1);
         menu.setIsmenu(IsMenu.NO.getCode());
         menu.setStatus(1);
         menu.setIsopen(0);

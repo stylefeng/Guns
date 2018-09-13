@@ -1,13 +1,13 @@
 package com.stylefeng.guns.core.shiro.factory;
 
-import com.stylefeng.guns.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.common.constant.state.ManagerStatus;
+import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.core.util.SpringContextHolder;
-import com.stylefeng.guns.modular.system.dao.MenuDao;
-import com.stylefeng.guns.modular.system.dao.UserMgrDao;
-import com.stylefeng.guns.common.persistence.model.User;
+import com.stylefeng.guns.modular.system.dao.MenuMapper;
+import com.stylefeng.guns.modular.system.dao.UserMapper;
+import com.stylefeng.guns.modular.system.model.User;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -27,10 +27,10 @@ import java.util.List;
 public class ShiroFactroy implements IShiro {
 
     @Autowired
-    private UserMgrDao userMgrDao;
+    private UserMapper userMapper;
 
     @Autowired
-    private MenuDao menuDao;
+    private MenuMapper menuMapper;
 
     public static IShiro me() {
         return SpringContextHolder.getBean(IShiro.class);
@@ -39,7 +39,7 @@ public class ShiroFactroy implements IShiro {
     @Override
     public User user(String account) {
 
-        User user = userMgrDao.getByAccount(account);
+        User user = userMapper.getByAccount(account);
 
         // 账号不存在
         if (null == user) {
@@ -56,13 +56,13 @@ public class ShiroFactroy implements IShiro {
     public ShiroUser shiroUser(User user) {
         ShiroUser shiroUser = new ShiroUser();
 
-        shiroUser.setId(user.getId());            // 账号id
-        shiroUser.setAccount(user.getAccount());// 账号
-        shiroUser.setDeptId(user.getDeptid());    // 部门id
-        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));// 部门名称
-        shiroUser.setName(user.getName());        // 用户名称
+        shiroUser.setId(user.getId());
+        shiroUser.setAccount(user.getAccount());
+        shiroUser.setDeptId(user.getDeptid());
+        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
+        shiroUser.setName(user.getName());
 
-        Integer[] roleArray = Convert.toIntArray(user.getRoleid());// 角色集合
+        Integer[] roleArray = Convert.toIntArray(user.getRoleid());
         List<Integer> roleList = new ArrayList<Integer>();
         List<String> roleNameList = new ArrayList<String>();
         for (int roleId : roleArray) {
@@ -77,8 +77,7 @@ public class ShiroFactroy implements IShiro {
 
     @Override
     public List<String> findPermissionsByRoleId(Integer roleId) {
-        List<String> resUrls = menuDao.getResUrlsByRoleId(roleId);
-        return resUrls;
+        return menuMapper.getResUrlsByRoleId(roleId);
     }
 
     @Override
@@ -89,6 +88,7 @@ public class ShiroFactroy implements IShiro {
     @Override
     public SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName) {
         String credentials = user.getPassword();
+
         // 密码加盐处理
         String source = user.getSalt();
         ByteSource credentialsSalt = new Md5Hash(source);

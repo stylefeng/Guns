@@ -3,8 +3,6 @@
     <div class="ibox-content">
         <div class="form-horizontal">
 
-            <input type="hidden" id="id" value="">
-
             <div class="row">
                 <div class="col-sm-6 b-r">
                     <% var leftSize = tool.toInt((table.fields.~size + 1) / 2); %>

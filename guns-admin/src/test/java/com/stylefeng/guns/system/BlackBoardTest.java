@@ -1,7 +1,7 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.modular.system.dao.NoticeDao;
+import com.stylefeng.guns.modular.system.dao.NoticeMapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,11 +19,11 @@ import static org.junit.Assert.assertTrue;
 public class BlackBoardTest extends BaseJunit {
 
     @Autowired
-    NoticeDao noticeDao;
+    NoticeMapper noticeMapper;
 
     @Test
     public void blackBoardTest() {
-        List<Map<String, Object>> notices = noticeDao.list(null);
+        List<Map<String, Object>> notices = noticeMapper.list(null);
         assertTrue(notices.size() > 0);
     }
 }

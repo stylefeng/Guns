@@ -2,7 +2,7 @@ package com.stylefeng.guns.core.mutidatasource.aop;
 
 import com.stylefeng.guns.core.mutidatasource.DataSourceContextHolder;
 import com.stylefeng.guns.core.mutidatasource.annotion.DataSource;
-import com.stylefeng.guns.core.mutidatasource.config.MutiDataSourceProperties;
+import com.stylefeng.guns.core.config.properties.MutiDataSourceProperties;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -12,9 +12,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.Ordered;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
@@ -25,8 +23,6 @@ import java.lang.reflect.Method;
  * @date 2017年3月5日 上午10:22:16
  */
 @Aspect
-@Component
-@ConditionalOnProperty(prefix = "guns", name = "muti-datasource-open", havingValue = "true")
 public class MultiSourceExAop implements Ordered {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -57,7 +53,7 @@ public class MultiSourceExAop implements Ordered {
             DataSourceContextHolder.setDataSourceType(datasource.name());
             log.debug("设置数据源为：" + datasource.name());
         } else {
-            DataSourceContextHolder.setDataSourceType(mutiDataSourceProperties.getDefaultDataSourceName());
+            DataSourceContextHolder.setDataSourceType(mutiDataSourceProperties.getDataSourceNames()[0]);
             log.debug("设置数据源为：dataSourceCurrent");
         }
 
