@@ -5,7 +5,7 @@ Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整�
 
 ### Guns v5.0更新内容
 
-> * 剔除了shiro，集成自研单点登陆框架，详情见`sso`分支（shiro版本还是在master分支），点击进入sso分支[https://gitee.com/naan1993/guns/tree/sso/](https://gitee.com/naan1993/guns/tree/sso/)
+> * 剔除了shiro，集成自研单点登陆框架，详情见`sso`分支（shiro版本还是在master分支），点击进入sso分支[https://gitee.com/stylefeng/guns/tree/sso/](https://gitee.com/stylefeng/guns/tree/sso/)
 
 ### Guns v4.0更新内容
 
@@ -30,12 +30,12 @@ Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整�
 > * Guns v3.1新增集成工作流引擎flowable6.2.0!
 
 ## 最新Guns技术文档
-Guns框架有作者在业余时间整理的技术文档，详情点击[查看详情](https://gitee.com/naan1993/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
+Guns框架有作者在业余时间整理的技术文档，详情点击[查看详情](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
 
 ## 最新Guns视频教程
-Guns框架有作者在业余时间录制的视频教程，详情点击[教程介绍](https://gitee.com/naan1993/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
+Guns框架有作者在业余时间录制的视频教程，详情点击[教程介绍](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
-## 技术讨论 & [wiki地址](https://gitee.com/naan1993/guns/wikis/Home)
+## 技术讨论 & [wiki地址](https://gitee.com/stylefeng/guns/wikis/Home)
 如果对项目有任何疑问或者建议，欢迎加入Guns技术交流1群:254550081，Guns技术交流2群：684163663，Guns技术交流3群：207434260(加之前先看下文档guns-admin/doc/Guns技术文档 v1.0.pdf)
 
 ## 管理系统功能
