@@ -67,11 +67,11 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
         //You'll need to remove the spaces from the html entities below
 
-        value = value.replaceAll("<", "& lt;").replaceAll(">", "& gt;");
+        value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
-        value = value.replaceAll("\\(", "& #40;").replaceAll("\\)", "& #41;");
+        value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
 
-        value = value.replaceAll("'", "& #39;");
+        value = value.replaceAll("'", "&#39;");
 
         value = value.replaceAll("eval\\((.*)\\)", "");
 
