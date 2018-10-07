@@ -2,7 +2,6 @@ package com.stylefeng.guns.core.util;
 
 import com.stylefeng.guns.core.common.constant.JwtConstants;
 import io.jsonwebtoken.*;
-import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -24,7 +23,6 @@ import java.util.Map;
  * @author fengshuonan
  * @Date 2017/8/25 10:59
  */
-@Component
 public class JwtTokenUtil {
 
     /**
