@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.config.web;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.guns.core.controller.GunsErrorView;
 import cn.stylefeng.guns.core.intercept.RestApiInteceptor;
 import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.roses.core.xss.XssFilter;
@@ -38,7 +39,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -50,7 +51,7 @@ import java.util.Properties;
  * @date 2016年11月12日 下午5:03:32
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     private GunsProperties gunsProperties;
@@ -72,6 +73,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new RestApiInteceptor()).addPathPatterns("/gunsApi/**");
+    }
+
+    /**
+     * 默认错误页面，返回json
+     */
+    @Bean("error")
+    public GunsErrorView error() {
+        return new GunsErrorView();
     }
 
     /**

@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns;
 
+import cn.stylefeng.roses.core.config.WebAutoConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +27,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author stylefeng
  * @Date 2017/5/21 12:06
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = WebAutoConfiguration.class)
 public class GunsApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(GunsApplication.class);
