@@ -1,3 +1,18 @@
+/**
+ * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.stylefeng.guns.core.tag;
 
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -94,7 +109,7 @@ public class DictSelectorTag extends Tag {
                 html.append("value=\""+obj.getCode()+"\" >"+obj.getName()+"</label>\r\n");
             });
 
-        //多选按钮
+            //多选按钮
         }else if("checkbox".equals(type)){
             list.forEach(obj->{
                 html.append("<label class=\"checkbox-inline i-checks\">\r\n<input type=\"checkbox\" ");
@@ -116,7 +131,7 @@ public class DictSelectorTag extends Tag {
                 html.append("value=\""+obj.getCode()+"\" >"+obj.getName()+"</label>\r\n");
             });
 
-        //默认select
+            //默认select
         }else{
             //开启多选
             if("true".equals(multiple)){

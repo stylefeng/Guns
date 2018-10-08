@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-2017, Chill Zhuang 庄骞 (smallchill@163.com).
+ * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,10 @@ import javax.naming.NoPermissionException;
 import java.lang.reflect.Method;
 
 /**
- * AOP 权限自定义检查
+ * 权限检查的aop
+ *
+ * @author fengshuonan
+ * @date 2017-07-13 21:05
  */
 @Aspect
 @Component
@@ -64,7 +67,6 @@ public class PermissionAop {
                 throw new NoPermissionException();
             }
         }
-
     }
 
 }
