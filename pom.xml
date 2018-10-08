@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.stylefeng.guns</groupId>
+    <groupId>cn.stylefeng.guns</groupId>
     <artifactId>guns-admin</artifactId>
     <version>1.0.0</version>
 

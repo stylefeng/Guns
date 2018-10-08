@@ -16,6 +16,8 @@
 package cn.stylefeng.guns.config.web;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.guns.core.intercept.RestApiInteceptor;
+import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.roses.core.xss.XssFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -24,8 +26,6 @@ import com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
-import cn.stylefeng.guns.core.intercept.RestApiInteceptor;
-import cn.stylefeng.guns.core.listener.ConfigListener;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.JdkRegexpMethodPointcut;
@@ -111,7 +111,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public JdkRegexpMethodPointcut druidStatPointcut() {
         JdkRegexpMethodPointcut druidStatPointcut = new JdkRegexpMethodPointcut();
-        String patterns = "com.stylefeng.guns.modular.*.service.*";
+        String patterns = "cn.stylefeng.guns.modular.*.service.*";
         //可以set多个
         druidStatPointcut.setPatterns(patterns);
         return druidStatPointcut;
