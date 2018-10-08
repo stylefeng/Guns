@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.NoticeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Notice">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="createtime" property="createtime"/>
+        <result column="creater" property="creater"/>
+    </resultMap>
+
+    <select id="list" resultType="map">
+        select * from sys_notice
+        <if test="condition != null and condition != ''">
+            where title like CONCAT('%',#{condition},'%') or content like CONCAT('%',#{condition},'%')
+        </if>
+        order by createtime DESC
+    </select>
+
+</mapper>

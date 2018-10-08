@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.OperationLogMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.OperationLog">
+		<id column="id" property="id" />
+		<result column="logtype" property="logtype" />
+		<result column="logname" property="logname" />
+		<result column="userid" property="userid" />
+		<result column="classname" property="classname" />
+		<result column="method" property="method" />
+		<result column="createtime" property="createtime" />
+		<result column="succeed" property="succeed" />
+		<result column="message" property="message" />
+	</resultMap>
+
+	<select id="getOperationLogs" resultType="map">
+		select * from sys_operation_log where 1 = 1
+		<if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
+			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+		</if>
+		<if test="logName != null and logName !=''">
+			and logname like CONCAT('%',#{logName},'%')
+		</if>
+		<if test="logType != null and logType !=''">
+			and logtype like CONCAT('%',#{logType},'%')
+		</if>
+		<choose>
+			<when test="orderByField != null and orderByField !=''">
+				<choose>
+					<when test="isAsc == true">
+						order by ${orderByField} ASC
+					</when>
+					<otherwise>
+						order by ${orderByField} DESC
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				order by createtime DESC
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>
