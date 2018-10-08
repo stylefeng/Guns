@@ -47,7 +47,7 @@ public class PermissionAop {
         Method method = ms.getMethod();
         Permission permission = method.getAnnotation(Permission.class);
         Object[] permissions = permission.value();
-        if (permissions == null || permissions.length == 0) {
+        if (permissions.length == 0) {
             //检查全体角色
             boolean result = PermissionCheckManager.checkAll();
             if (result) {

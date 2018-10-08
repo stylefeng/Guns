@@ -1,79 +1,78 @@
 package com.stylefeng.guns.core.node;
 
 /**
- * 
  * jquery ztree 插件的节点
- * 
+ *
  * @author fengshuonan
  * @date 2017年2月17日 下午8:25:14
  */
 public class ZTreeNode {
 
-	private Long id;	//节点id
-	
-	private Long pId;//父节点id
-	
-	private String name;//节点名称
-	
-	private Boolean open;//是否打开节点
-	
-	private Boolean checked;//是否被选中
+    private Long id;         //节点id
 
-	public Long getId() {
-		return id;
-	}
+    private Long pId;        //父节点id
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String name;     //节点名称
 
-	public Long getpId() {
-		return pId;
-	}
+    private Boolean open;    //是否打开节点
 
-	public void setpId(Long pId) {
-		this.pId = pId;
-	}
+    private Boolean checked; //是否被选中
 
-	public String getName() {
-		return name;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Boolean getOpen() {
-		return open;
-	}
+    public Long getpId() {
+        return pId;
+    }
 
-	public void setOpen(Boolean open) {
-		this.open = open;
-	}
+    public void setpId(Long pId) {
+        this.pId = pId;
+    }
 
-	public Boolean getIsOpen() {
-		return open;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setIsOpen(Boolean open) {
-		this.open = open;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Boolean getChecked() {
-		return checked;
-	}
+    public Boolean getOpen() {
+        return open;
+    }
 
-	public void setChecked(Boolean checked) {
-		this.checked = checked;
-	}
-	
-	public static ZTreeNode createParent(){
-		ZTreeNode zTreeNode = new ZTreeNode();
-		zTreeNode.setChecked(true);
-		zTreeNode.setId(0L);
-		zTreeNode.setName("顶级");
-		zTreeNode.setOpen(true);
-		zTreeNode.setpId(0L);
-		return zTreeNode;
-	}
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
+
+    public Boolean getIsOpen() {
+        return open;
+    }
+
+    public void setIsOpen(Boolean open) {
+        this.open = open;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
+    public static ZTreeNode createParent() {
+        ZTreeNode zTreeNode = new ZTreeNode();
+        zTreeNode.setChecked(true);
+        zTreeNode.setId(0L);
+        zTreeNode.setName("顶级");
+        zTreeNode.setOpen(true);
+        zTreeNode.setpId(0L);
+        return zTreeNode;
+    }
 }

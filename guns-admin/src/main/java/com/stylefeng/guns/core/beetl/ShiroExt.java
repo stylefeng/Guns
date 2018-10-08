@@ -15,11 +15,9 @@
  */
 package com.stylefeng.guns.core.beetl;
 
+import com.stylefeng.guns.core.shiro.ShiroUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.beetl.core.GroupTemplate;
-
-import com.stylefeng.guns.core.shiro.ShiroUser;
 
 public class ShiroExt {
     private static final String NAMES_DELIMETER = ",";
@@ -29,7 +27,7 @@ public class ShiroExt {
      *
      * @return Subject
      */
-    protected static Subject getSubject() {
+    public static Subject getSubject() {
         return SecurityUtils.getSubject();
     }
 
@@ -178,9 +176,4 @@ public class ShiroExt {
         return "";
     }
 
-    public static void main(String[] args) {
-        GroupTemplate gt = new GroupTemplate();
-        gt.registerFunctionPackage("shiro", new ShiroExt());
-
-    }
 }
