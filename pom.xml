@@ -22,6 +22,7 @@
         <beetl.version>2.8.5</beetl.version>
         <swagger.version>2.9.2</swagger.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
+        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <jwt.version>0.9.0</jwt.version>
     </properties>
 
@@ -44,6 +45,12 @@
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>kernel-core</artifactId>
             <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
 
         <!--spring boot依赖-->
