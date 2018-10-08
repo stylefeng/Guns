@@ -16,21 +16,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
         <shiro.version>1.4.0</shiro.version>
-        <mybatis-plus.version>2.3</mybatis-plus.version>
-        <fastjson.version>1.2.47</fastjson.version>
-        <velocity.version>1.7</velocity.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <ehcache.version>3.3.1</ehcache.version>
-        <druid.version>1.1.10</druid.version>
         <beetl.version>2.8.5</beetl.version>
         <swagger.version>2.9.2</swagger.version>
-        <commons-lang3.version>3.7</commons-lang3.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
-        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <jwt.version>0.9.0</jwt.version>
-        <hutool.version>4.1.1</hutool.version>
     </properties>
 
     <dependencyManagement>
@@ -46,6 +38,8 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <!--核心组件-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>kernel-core</artifactId>
@@ -80,7 +74,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!--shiro依赖-->
+        <!--shiro依赖和缓存-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
@@ -114,26 +108,21 @@
             <version>${ehcache.version}</version>
         </dependency>
 
-        <!--需要分布式session的话需要放开注释-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.session</groupId>-->
-        <!--<artifactId>spring-session-data-redis</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
-        <!--</dependency>-->
-
+        <!--验证码-->
         <dependency>
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha.version}</version>
         </dependency>
+
+        <!--beetl模板引擎-->
         <dependency>
             <groupId>com.ibeetl</groupId>
             <artifactId>beetl</artifactId>
             <version>${beetl.version}</version>
         </dependency>
+
+        <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -145,12 +134,22 @@
             <version>${swagger.version}</version>
         </dependency>
 
+        <!--jwt token-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
 
+        <!--需要分布式session的话需要放开注释-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.session</groupId>-->
+        <!--<artifactId>spring-session-data-redis</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-data-redis</artifactId>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
