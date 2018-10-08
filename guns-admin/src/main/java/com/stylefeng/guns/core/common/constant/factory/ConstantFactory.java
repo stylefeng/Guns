@@ -1,18 +1,18 @@
 package com.stylefeng.guns.core.common.constant.factory;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.StrUtil;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.stylefeng.guns.core.common.constant.cache.Cache;
 import com.stylefeng.guns.core.common.constant.cache.CacheKey;
 import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.common.constant.state.MenuStatus;
+import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.modular.system.dao.*;
 import com.stylefeng.guns.modular.system.model.*;
-import com.stylefeng.guns.core.log.LogObjectHolder;
-import com.stylefeng.guns.core.support.StrKit;
-import com.stylefeng.guns.core.util.Convert;
-import com.stylefeng.guns.core.util.SpringContextHolder;
-import com.stylefeng.guns.core.util.ToolUtil;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -87,7 +87,7 @@ public class ConstantFactory implements IConstantFactory {
                 sb.append(roleObj.getName()).append(",");
             }
         }
-        return StrKit.removeSuffix(sb.toString(), ",");
+        return StrUtil.removeSuffix(sb.toString(), ",");
     }
 
     /**
@@ -148,7 +148,7 @@ public class ConstantFactory implements IConstantFactory {
                 sb.append(menuObj.getName()).append(",");
             }
         }
-        return StrKit.removeSuffix(sb.toString(), ",");
+        return StrUtil.removeSuffix(sb.toString(), ",");
     }
 
     /**
@@ -324,7 +324,7 @@ public class ConstantFactory implements IConstantFactory {
         String[] split = pids.split(",");
         ArrayList<Integer> parentDeptIds = new ArrayList<>();
         for (String s : split) {
-            parentDeptIds.add(Integer.valueOf(StrKit.removeSuffix(StrKit.removePrefix(s, "["), "]")));
+            parentDeptIds.add(Integer.valueOf(StrUtil.removeSuffix(StrUtil.removePrefix(s, "["), "]")));
         }
         return parentDeptIds;
     }

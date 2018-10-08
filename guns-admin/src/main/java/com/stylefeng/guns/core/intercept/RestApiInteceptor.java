@@ -1,10 +1,10 @@
 package com.stylefeng.guns.core.intercept;
 
-import com.stylefeng.guns.core.base.tips.ErrorTip;
+import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
+import cn.stylefeng.roses.core.util.RenderUtil;
 import com.stylefeng.guns.core.common.constant.JwtConstants;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.core.util.JwtTokenUtil;
-import com.stylefeng.guns.core.util.RenderUtil;
 import io.jsonwebtoken.JwtException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -43,17 +43,17 @@ public class RestApiInteceptor extends HandlerInterceptorAdapter {
             try {
                 boolean flag = JwtTokenUtil.isTokenExpired(authToken);
                 if (flag) {
-                    RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
+                    RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
                     return false;
                 }
             } catch (JwtException e) {
                 //有异常就是token解析失败
-                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
+                RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
                 return false;
             }
         } else {
             //header没有带Bearer字段
-            RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
+            RenderUtil.renderJson(response, new ErrorResponseData(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
             return false;
         }
         return true;

@@ -1,6 +1,6 @@
 package com.stylefeng.guns.modular.system.factory;
 
-import com.stylefeng.guns.core.util.ToolUtil;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.transfer.UserDto;
 import org.springframework.beans.BeanUtils;

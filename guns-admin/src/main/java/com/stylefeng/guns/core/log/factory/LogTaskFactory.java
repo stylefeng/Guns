@@ -1,14 +1,14 @@
 package com.stylefeng.guns.core.log.factory;
 
+import cn.stylefeng.roses.core.util.SpringContextHolder;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.guns.core.common.constant.state.LogSucceed;
 import com.stylefeng.guns.core.common.constant.state.LogType;
+import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.modular.system.dao.LoginLogMapper;
 import com.stylefeng.guns.modular.system.dao.OperationLogMapper;
 import com.stylefeng.guns.modular.system.model.LoginLog;
 import com.stylefeng.guns.modular.system.model.OperationLog;
-import com.stylefeng.guns.core.db.Db;
-import com.stylefeng.guns.core.log.LogManager;
-import com.stylefeng.guns.core.util.ToolUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +23,8 @@ import java.util.TimerTask;
 public class LogTaskFactory {
 
     private static Logger logger = LoggerFactory.getLogger(LogManager.class);
-    private static LoginLogMapper loginLogMapper = Db.getMapper(LoginLogMapper.class);
-    private static OperationLogMapper operationLogMapper = Db.getMapper(OperationLogMapper.class);
+    private static LoginLogMapper loginLogMapper = SpringContextHolder.getBean(LoginLogMapper.class);
+    private static OperationLogMapper operationLogMapper = SpringContextHolder.getBean(OperationLogMapper.class);
 
     public static TimerTask loginLog(final Integer userId, final String ip) {
         return new TimerTask() {
@@ -59,7 +59,7 @@ public class LogTaskFactory {
         return new TimerTask() {
             @Override
             public void run() {
-                LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId, null,ip);
+                LoginLog loginLog = LogFactory.createLoginLog(LogType.EXIT, userId, null, ip);
                 try {
                     loginLogMapper.insert(loginLog);
                 } catch (Exception e) {

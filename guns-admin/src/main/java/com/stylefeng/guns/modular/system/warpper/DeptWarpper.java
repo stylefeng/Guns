@@ -1,9 +1,12 @@
 package com.stylefeng.guns.modular.system.warpper;
 
+import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.page.PageResult;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.core.base.warpper.BaseControllerWarpper;
-import com.stylefeng.guns.core.util.ToolUtil;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,15 +15,26 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月25日 18:10:31
  */
-public class DeptWarpper extends BaseControllerWarpper {
+public class DeptWarpper extends BaseControllerWrapper {
 
-    public DeptWarpper(Object list) {
-        super(list);
+    public DeptWarpper(Map<String, Object> single) {
+        super(single);
+    }
+
+    public DeptWarpper(List<Map<String, Object>> multi) {
+        super(multi);
+    }
+
+    public DeptWarpper(Page<Map<String, Object>> page) {
+        super(page);
+    }
+
+    public DeptWarpper(PageResult<Map<String, Object>> pageResult) {
+        super(pageResult);
     }
 
     @Override
-    public void warpTheMap(Map<String, Object> map) {
-
+    protected void wrapTheMap(Map<String, Object> map) {
         Integer pid = (Integer) map.get("pid");
 
         if (ToolUtil.isEmpty(pid) || pid.equals(0)) {
@@ -29,5 +43,4 @@ public class DeptWarpper extends BaseControllerWarpper {
             map.put("pName", ConstantFactory.me().getDeptName(pid));
         }
     }
-
 }

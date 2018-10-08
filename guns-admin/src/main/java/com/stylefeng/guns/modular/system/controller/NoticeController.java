@@ -1,14 +1,14 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
-import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.Notice;
 import com.stylefeng.guns.modular.system.service.INoticeService;
 import com.stylefeng.guns.modular.system.warpper.NoticeWrapper;
@@ -94,7 +94,7 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "新增通知",key = "title",dict = NoticeMap.class)
     public Object add(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         notice.setCreater(ShiroKit.getUser().getId());
         notice.setCreatetime(new Date());
@@ -126,7 +126,7 @@ public class NoticeController extends BaseController {
     @BussinessLog(value = "修改通知",key = "title",dict = NoticeMap.class)
     public Object update(Notice notice) {
         if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         Notice old = this.noticeService.selectById(notice.getId());
         old.setTitle(notice.getTitle());

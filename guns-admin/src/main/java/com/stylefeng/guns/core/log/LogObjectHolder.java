@@ -1,6 +1,6 @@
 package com.stylefeng.guns.core.log;
 
-import com.stylefeng.guns.core.util.SpringContextHolder;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
@@ -28,7 +28,6 @@ public class LogObjectHolder implements Serializable{
     }
 
     public static LogObjectHolder me(){
-        LogObjectHolder bean = SpringContextHolder.getBean(LogObjectHolder.class);
-        return bean;
+        return SpringContextHolder.getBean(LogObjectHolder.class);
     }
 }

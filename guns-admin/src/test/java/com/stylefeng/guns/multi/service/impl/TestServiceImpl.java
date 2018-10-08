@@ -1,7 +1,7 @@
 package com.stylefeng.guns.multi.service.impl;
 
+import cn.stylefeng.roses.core.mutidatasource.annotion.DataSource;
 import com.stylefeng.guns.core.common.constant.DatasourceEnum;
-import com.stylefeng.guns.core.mutidatasource.annotion.DataSource;
 import com.stylefeng.guns.multi.entity.Test;
 import com.stylefeng.guns.multi.mapper.TestMapper;
 import com.stylefeng.guns.multi.service.TestService;

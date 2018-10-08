@@ -1,10 +1,10 @@
 package com.stylefeng.guns.core.shiro.factory;
 
+import cn.hutool.core.convert.Convert;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.shiro.ShiroUser;
-import com.stylefeng.guns.core.util.Convert;
-import com.stylefeng.guns.core.util.SpringContextHolder;
 import com.stylefeng.guns.modular.system.dao.MenuMapper;
 import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.model.User;

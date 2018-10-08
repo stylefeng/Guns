@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.system.dao;
 
+import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.stylefeng.guns.core.datascope.DataScope;
 import com.stylefeng.guns.modular.system.model.User;
 import org.apache.ibatis.annotations.Param;
 

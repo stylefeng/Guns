@@ -1,8 +1,11 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
@@ -10,11 +13,8 @@ import com.stylefeng.guns.core.common.constant.dictmap.MenuDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.MenuStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
-import com.stylefeng.guns.core.support.BeanKit;
-import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.Menu;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.warpper.MenuWarpper;
@@ -69,7 +69,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menu_edit/{menuId}")
     public String menuEdit(@PathVariable Long menuId, Model model) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         Menu menu = this.menuService.selectById(menuId);
 
@@ -86,7 +86,7 @@ public class MenuController extends BaseController {
             menu.setPcode(String.valueOf(pMenu.getId()));
         }
 
-        Map<String, Object> menuMap = BeanKit.beanToMap(menu);
+        Map<String, Object> menuMap = BeanUtil.beanToMap(menu);
         menuMap.put("pcodeName", ConstantFactory.me().getMenuNameByCode(temp.getCode()));
         model.addAttribute("menu", menuMap);
         LogObjectHolder.me().set(menu);
@@ -100,9 +100,9 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/edit")
     @BussinessLog(value = "修改菜单", key = "name", dict = MenuDict.class)
     @ResponseBody
-    public Tip edit(@Valid Menu menu, BindingResult result) {
+    public ResponseData edit(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         //设置父级菜单编号
         menuSetPcode(menu);
@@ -129,15 +129,15 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/add")
     @BussinessLog(value = "菜单新增", key = "name", dict = MenuDict.class)
     @ResponseBody
-    public Tip add(@Valid Menu menu, BindingResult result) {
+    public ResponseData add(@Valid Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //判断是否存在该编号
         String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
         if (ToolUtil.isNotEmpty(existedMenuName)) {
-            throw new GunsException(BizExceptionEnum.EXISTED_THE_MENU);
+            throw new ServiceException(BizExceptionEnum.EXISTED_THE_MENU);
         }
 
         //设置父级菜单编号
@@ -155,9 +155,9 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/remove")
     @BussinessLog(value = "删除菜单", key = "menuId", dict = MenuDict.class)
     @ResponseBody
-    public Tip remove(@RequestParam Long menuId) {
+    public ResponseData remove(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //缓存菜单的名称
@@ -172,9 +172,9 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/view/{menuId}")
     @ResponseBody
-    public Tip view(@PathVariable Long menuId) {
+    public ResponseData view(@PathVariable Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         this.menuService.selectById(menuId);
         return SUCCESS_TIP;
@@ -186,8 +186,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/menuTreeList")
     @ResponseBody
     public List<ZTreeNode> menuTreeList() {
-        List<ZTreeNode> roleTreeList = this.menuService.menuTreeList();
-        return roleTreeList;
+        return this.menuService.menuTreeList();
     }
 
     /**
@@ -209,11 +208,9 @@ public class MenuController extends BaseController {
     public List<ZTreeNode> menuTreeListByRoleId(@PathVariable Integer roleId) {
         List<Long> menuIds = this.menuService.getMenuIdsByRoleId(roleId);
         if (ToolUtil.isEmpty(menuIds)) {
-            List<ZTreeNode> roleTreeList = this.menuService.menuTreeList();
-            return roleTreeList;
+            return this.menuService.menuTreeList();
         } else {
-            List<ZTreeNode> roleTreeListByUserId = this.menuService.menuTreeListByMenuIds(menuIds);
-            return roleTreeListByUserId;
+            return this.menuService.menuTreeListByMenuIds(menuIds);
         }
     }
 
@@ -233,7 +230,7 @@ public class MenuController extends BaseController {
 
             //如果编号和父编号一致会导致无限递归
             if (menu.getCode().equals(menu.getPcode())) {
-                throw new GunsException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+                throw new ServiceException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
             }
 
             menu.setLevels(pLevels + 1);

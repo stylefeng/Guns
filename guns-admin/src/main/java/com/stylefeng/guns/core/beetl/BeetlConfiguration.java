@@ -1,8 +1,8 @@
 package com.stylefeng.guns.core.beetl;
 
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.guns.core.tag.DictSelectorTag;
 import com.stylefeng.guns.core.util.KaptchaUtil;
-import com.stylefeng.guns.core.util.ToolUtil;
 import org.beetl.core.Context;
 import org.beetl.core.Function;
 import org.beetl.core.Tag;

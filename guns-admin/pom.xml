@@ -18,8 +18,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.stylefeng</groupId>
-            <artifactId>guns-core</artifactId>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>kernel-core</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <!--spring boot依赖-->

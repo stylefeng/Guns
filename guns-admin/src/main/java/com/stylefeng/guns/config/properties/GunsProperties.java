@@ -1,12 +1,12 @@
 package com.stylefeng.guns.config.properties;
 
+import cn.stylefeng.roses.core.util.ToolUtil;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 
-import static com.stylefeng.guns.core.util.ToolUtil.getTempPath;
-import static com.stylefeng.guns.core.util.ToolUtil.isEmpty;
+import static cn.stylefeng.roses.core.util.ToolUtil.getTempPath;
 
 /**
  * guns项目配置
@@ -42,7 +42,7 @@ public class GunsProperties {
 
     public String getFileUploadPath() {
         //如果没有写文件上传路径,保存到临时目录
-        if (isEmpty(fileUploadPath)) {
+        if (ToolUtil.isEmpty(fileUploadPath)) {
             return getTempPath();
         } else {
             //判断有没有结尾符,没有得加上

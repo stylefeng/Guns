@@ -1,7 +1,8 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.google.code.kaptcha.Constants;
-import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.exception.InvalidKaptchaException;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
@@ -10,7 +11,6 @@ import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.ApiMenuFilter;
 import com.stylefeng.guns.core.util.KaptchaUtil;
-import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IMenuService;
 import com.stylefeng.guns.modular.system.service.IUserService;
@@ -24,7 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-import static com.stylefeng.guns.core.support.HttpKit.getIp;
+import static cn.stylefeng.roses.core.util.HttpContext.getIp;
+
 
 /**
  * 登录控制器

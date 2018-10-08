@@ -1,5 +1,6 @@
 package com.stylefeng.guns.core.util;
 
+import cn.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.guns.config.properties.GunsProperties;
 
 /**

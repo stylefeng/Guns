@@ -1,5 +1,6 @@
 package com.stylefeng.guns.core.aop;
 
+import cn.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 import com.stylefeng.guns.core.log.LogManager;
@@ -7,7 +8,6 @@ import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
-import com.stylefeng.guns.core.support.HttpKit;
 import com.stylefeng.guns.core.util.Contrast;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -90,12 +90,12 @@ public class LogAop {
 
         //如果涉及到修改,比对变化
         String msg;
-        if (bussinessName.indexOf("修改") != -1 || bussinessName.indexOf("编辑") != -1) {
+        if (bussinessName.contains("修改") || bussinessName.contains("编辑")) {
             Object obj1 = LogObjectHolder.me().get();
-            Map<String, String> obj2 = HttpKit.getRequestParameters();
+            Map<String, String> obj2 = HttpContext.getRequestParameters();
             msg = Contrast.contrastObj(dictClass, key, obj1, obj2);
         } else {
-            Map<String, String> parameters = HttpKit.getRequestParameters();
+            Map<String, String> parameters = HttpContext.getRequestParameters();
             AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
             msg = Contrast.parseMutiKey(dictMap,key,parameters);
         }

@@ -1,9 +1,9 @@
 package com.stylefeng.guns.core.common.constant.dictmap.factory;
 
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.factory.IConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
 
 import java.lang.reflect.Method;
 
@@ -25,7 +25,7 @@ public class DictFieldWarpperFactory {
                 Method method = IConstantFactory.class.getMethod(methodName, Integer.class);
                 return method.invoke(constantFactory, Integer.parseInt(parameter.toString()));
             } catch (Exception e1) {
-                throw new GunsException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
+                throw new ServiceException(BizExceptionEnum.ERROR_WRAPPER_FIELD);
             }
         }
     }

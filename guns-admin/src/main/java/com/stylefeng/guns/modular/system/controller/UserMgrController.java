@@ -1,8 +1,12 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.datascope.DataScope;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.config.properties.GunsProperties;
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.Tip;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
@@ -10,14 +14,9 @@ import com.stylefeng.guns.core.common.constant.dictmap.UserDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.datascope.DataScope;
-import com.stylefeng.guns.core.db.Db;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
-import com.stylefeng.guns.core.util.ToolUtil;
-import com.stylefeng.guns.modular.system.dao.UserMapper;
 import com.stylefeng.guns.modular.system.factory.UserFactory;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IUserService;
@@ -80,9 +79,9 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/role_assign/{userId}")
     public String roleAssign(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        User user = (User) Db.create(UserMapper.class).selectOneByCon("id", userId);
+        User user = this.userService.selectOne(new EntityWrapper<User>().eq("id", userId));
         model.addAttribute("userId", userId);
         model.addAttribute("userAccount", user.getAccount());
         return PREFIX + "user_roleassign.html";
@@ -95,7 +94,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/user_edit/{userId}")
     public String userEdit(@PathVariable Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         User user = this.userService.selectById(userId);
@@ -113,7 +112,7 @@ public class UserMgrController extends BaseController {
     public String userInfo(Model model) {
         Integer userId = ShiroKit.getUser().getId();
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = this.userService.selectById(userId);
         model.addAttribute(user);
@@ -138,7 +137,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
         if (!newPwd.equals(rePwd)) {
-            throw new GunsException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
+            throw new ServiceException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
         }
         Integer userId = ShiroKit.getUser().getId();
         User user = userService.selectById(userId);
@@ -149,7 +148,7 @@ public class UserMgrController extends BaseController {
             user.updateById();
             return SUCCESS_TIP;
         } else {
-            throw new GunsException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
+            throw new ServiceException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
         }
     }
 
@@ -162,11 +161,11 @@ public class UserMgrController extends BaseController {
     public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
         if (ShiroKit.isAdmin()) {
             List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptid);
-            return new UserWarpper(users).warp();
+            return new UserWarpper(users).wrap();
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
             List<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptid);
-            return new UserWarpper(users).warp();
+            return new UserWarpper(users).wrap();
         }
     }
 
@@ -177,15 +176,15 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "添加管理员", key = "account", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip add(@Valid UserDto user, BindingResult result) {
+    public ResponseData add(@Valid UserDto user, BindingResult result) {
         if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
         // 判断账号是否重复
         User theUser = userService.getByAccount(user.getAccount());
         if (theUser != null) {
-            throw new GunsException(BizExceptionEnum.USER_ALREADY_REG);
+            throw new ServiceException(BizExceptionEnum.USER_ALREADY_REG);
         }
 
         // 完善账号信息
@@ -206,9 +205,9 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/edit")
     @BussinessLog(value = "修改管理员", key = "account", dict = UserDict.class)
     @ResponseBody
-    public Tip edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
+    public ResponseData edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
         if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
         User oldUser = userService.selectById(user.getId());
@@ -223,7 +222,7 @@ public class UserMgrController extends BaseController {
                 this.userService.updateById(UserFactory.editUser(user, oldUser));
                 return SUCCESS_TIP;
             } else {
-                throw new GunsException(BizExceptionEnum.NO_PERMITION);
+                throw new ServiceException(BizExceptionEnum.NO_PERMITION);
             }
         }
     }
@@ -235,13 +234,13 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
     @Permission
     @ResponseBody
-    public Tip delete(@RequestParam Integer userId) {
+    public ResponseData delete(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能删除超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
+            throw new ServiceException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
         assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.DELETED.getCode());
@@ -255,7 +254,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public User view(@PathVariable Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         return this.userService.selectById(userId);
@@ -268,9 +267,9 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip reset(@RequestParam Integer userId) {
+    public ResponseData reset(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         User user = this.userService.selectById(userId);
@@ -287,13 +286,13 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip freeze(@RequestParam Integer userId) {
+    public ResponseData freeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能冻结超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new GunsException(BizExceptionEnum.CANT_FREEZE_ADMIN);
+            throw new ServiceException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
         assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.FREEZED.getCode());
@@ -307,9 +306,9 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip unfreeze(@RequestParam Integer userId) {
+    public ResponseData unfreeze(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.OK.getCode());
@@ -323,13 +322,13 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
+    public ResponseData setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         //不能修改超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
-            throw new GunsException(BizExceptionEnum.CANT_CHANGE_ADMIN);
+            throw new ServiceException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
         assertAuth(userId);
         this.userService.setRoles(userId, roleIds);
@@ -348,7 +347,7 @@ public class UserMgrController extends BaseController {
             String fileSavePath = gunsProperties.getFileUploadPath();
             picture.transferTo(new File(fileSavePath + pictureName));
         } catch (Exception e) {
-            throw new GunsException(BizExceptionEnum.UPLOAD_ERROR);
+            throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
     }
@@ -366,7 +365,7 @@ public class UserMgrController extends BaseController {
         if (deptDataScope.contains(deptid)) {
             return;
         } else {
-            throw new GunsException(BizExceptionEnum.NO_PERMITION);
+            throw new ServiceException(BizExceptionEnum.NO_PERMITION);
         }
 
     }

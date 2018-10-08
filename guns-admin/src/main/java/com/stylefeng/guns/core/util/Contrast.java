@@ -1,8 +1,9 @@
 package com.stylefeng.guns.core.util;
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import com.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 import com.stylefeng.guns.core.common.constant.dictmap.factory.DictFieldWarpperFactory;
-import com.stylefeng.guns.core.support.StrKit;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
@@ -45,7 +46,7 @@ public class Contrast {
                     continue;
                 }
                 if (o1 instanceof Date) {
-                    o1 = DateUtil.getDay((Date) o1);
+                    o1 = DateUtil.formatDate((Date) o1);
                 }
                 if (!o1.toString().equals(o2.toString())) {
                     if (i != 1) {
@@ -81,12 +82,12 @@ public class Contrast {
                 PropertyDescriptor pd = new PropertyDescriptor(field.getName(), clazz);
                 Method getMethod = pd.getReadMethod();
                 Object o1 = getMethod.invoke(pojo1);
-                Object o2 = pojo2.get(StrKit.firstCharToLowerCase(getMethod.getName().substring(3)));
+                Object o2 = pojo2.get(StrUtil.lowerFirst(getMethod.getName().substring(3)));
                 if (o1 == null || o2 == null) {
                     continue;
                 }
                 if (o1 instanceof Date) {
-                    o1 = DateUtil.getDay((Date) o1);
+                    o1 = DateUtil.formatDate((Date) o1);
                 } else if (o1 instanceof Integer) {
                     o2 = Integer.parseInt(o2.toString());
                 }
@@ -137,18 +138,18 @@ public class Contrast {
                 }
                 Method getMethod = null;
                 try {
-                    getMethod = clazz.getDeclaredMethod(prefix + StrKit.firstCharToUpperCase(field.getName()));
+                    getMethod = clazz.getDeclaredMethod(prefix + StrUtil.upperFirst(field.getName()));
                 } catch (java.lang.NoSuchMethodException e) {
                     System.err.println("this className:" + clazz.getName() + " is not methodName: " + e.getMessage());
                     continue;
                 }
                 Object o1 = getMethod.invoke(pojo1);
-                Object o2 = pojo2.get(StrKit.firstCharToLowerCase(getMethod.getName().substring(prefixLength)));
+                Object o2 = pojo2.get(StrUtil.lowerFirst(getMethod.getName().substring(prefixLength)));
                 if (o1 == null || o2 == null) {
                     continue;
                 }
                 if (o1 instanceof Date) {
-                    o1 = DateUtil.getDay((Date) o1);
+                    o1 = DateUtil.formatDate((Date) o1);
                 } else if (o1 instanceof Integer) {
                     o2 = Integer.parseInt(o2.toString());
                 }
@@ -182,7 +183,7 @@ public class Contrast {
      */
     public static String parseMutiKey(AbstractDictMap dictMap, String key, Map<String, String> requests) {
         StringBuilder sb = new StringBuilder();
-        if (key.indexOf(",") != -1) {
+        if (key.contains(",")) {
             String[] keys = key.split(",");
             for (String item : keys) {
                 String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(item);
@@ -194,7 +195,7 @@ public class Contrast {
                     sb.append(dictMap.get(item) + "=" + value + ",");
                 }
             }
-            return StrKit.removeSuffix(sb.toString(), ",");
+            return StrUtil.removeSuffix(sb.toString(), ",");
         } else {
             String fieldWarpperMethodName = dictMap.getFieldWarpperMethodName(key);
             String value = requests.get(key);

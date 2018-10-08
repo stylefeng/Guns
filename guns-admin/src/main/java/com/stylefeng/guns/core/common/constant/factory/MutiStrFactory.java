@@ -1,7 +1,8 @@
 package com.stylefeng.guns.core.common.constant.factory;
 
-import com.stylefeng.guns.core.support.StrKit;
-import com.stylefeng.guns.core.util.ToolUtil;
+
+import cn.hutool.core.util.StrUtil;
+import cn.stylefeng.roses.core.util.ToolUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,42 +53,18 @@ public class MutiStrFactory {
      * @author fengshuonan
      * @Date 2017/4/27 16:44
      */
-    public static List<Map<String,String>> parseKeyValue(String mutiString){
-        if(ToolUtil.isEmpty(mutiString)){
+    public static List<Map<String, String>> parseKeyValue(String mutiString) {
+        if (ToolUtil.isEmpty(mutiString)) {
             return new ArrayList<>();
-        }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
-            String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
+        } else {
+            ArrayList<Map<String, String>> results = new ArrayList<>();
+            String[] items = StrUtil.split(StrUtil.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
             for (String item : items) {
                 String[] attrs = item.split(ATTR_SPLIT);
                 HashMap<String, String> itemMap = new HashMap<>();
-                itemMap.put(MUTI_STR_CODE,attrs[0]);
-                itemMap.put(MUTI_STR_NAME,attrs[1]);
-                itemMap.put(MUTI_STR_NUM,attrs[2]);
-                results.add(itemMap);
-            }
-            return results;
-        }
-    }
-
-    /**
-     * 解析id:key:value这样类型的字符串
-     *
-     * @author fengshuonan
-     * @Date 2017/4/28 11:06
-     */
-    public static List<Map<String,String>> parseIdKeyValue(String mutiString){
-        if(ToolUtil.isEmpty(mutiString)){
-            return new ArrayList<>();
-        }else{
-            ArrayList<Map<String,String>> results = new ArrayList<>();
-            String[] items = StrKit.split(StrKit.removeSuffix(mutiString, ITEM_SPLIT), ITEM_SPLIT);
-            for (String item : items) {
-                String[] attrs = item.split(ATTR_SPLIT);
-                HashMap<String, String> itemMap = new HashMap<>();
-                itemMap.put(MUTI_STR_CODE,attrs[0]);
-                itemMap.put(MUTI_STR_NAME,attrs[1]);
-                itemMap.put(MUTI_STR_NUM,attrs[2]);
+                itemMap.put(MUTI_STR_CODE, attrs[0]);
+                itemMap.put(MUTI_STR_NAME, attrs[1]);
+                itemMap.put(MUTI_STR_NUM, attrs[2]);
                 results.add(itemMap);
             }
             return results;

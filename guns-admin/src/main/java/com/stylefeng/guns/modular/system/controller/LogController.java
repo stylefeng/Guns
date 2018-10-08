@@ -1,14 +1,15 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
 import com.stylefeng.guns.core.common.constant.state.BizLogType;
-import com.stylefeng.guns.core.support.BeanKit;
+import com.stylefeng.guns.core.page.PageInfoBT;
 import com.stylefeng.guns.modular.system.model.OperationLog;
 import com.stylefeng.guns.modular.system.service.IOperationLogService;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
@@ -54,8 +55,8 @@ public class LogController extends BaseController {
     public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName, @RequestParam(required = false) Integer logType) {
         Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
         List<Map<String, Object>> result = operationLogService.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType), page.getOrderByField(), page.isAsc());
-        page.setRecords((List<OperationLog>) new LogWarpper(result).warp());
-        return super.packForBT(page);
+        page.setRecords(new LogWarpper(result).wrap());
+        return new PageInfoBT<>(page);
     }
 
     /**
@@ -66,7 +67,7 @@ public class LogController extends BaseController {
     @ResponseBody
     public Object detail(@PathVariable Integer id) {
         OperationLog operationLog = operationLogService.selectById(id);
-        Map<String, Object> stringObjectMap = BeanKit.beanToMap(operationLog);
+        Map<String, Object> stringObjectMap = BeanUtil.beanToMap(operationLog);
         return super.warpObject(new LogWarpper(stringObjectMap));
     }
 

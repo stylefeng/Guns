@@ -1,15 +1,15 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
-import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.Dept;
 import com.stylefeng.guns.modular.system.service.IDeptService;
 import com.stylefeng.guns.modular.system.warpper.DeptWarpper;
@@ -88,7 +88,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         //完善pids,根据pid拿到pid的pids
         deptSetPids(dept);
@@ -125,7 +125,7 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         deptSetPids(dept);
         deptService.updateById(dept);

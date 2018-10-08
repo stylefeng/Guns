@@ -1,4 +1,4 @@
-package com.stylefeng.guns.core.base.controller;
+package com.stylefeng.guns.core.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

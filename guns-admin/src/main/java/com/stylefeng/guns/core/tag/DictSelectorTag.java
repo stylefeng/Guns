@@ -1,14 +1,15 @@
 package com.stylefeng.guns.core.tag;
 
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
-import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.modular.system.service.IDictService;
 import org.beetl.core.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class DictSelectorTag extends Tag {
         //String tagName = (String) this.args[0];
         Map attrs = (Map) args[1];
         if(ToolUtil.isEmpty(attrs.get("code"))){
-            throw new GunsException(BizExceptionEnum.ERROR_CODE_EMPTY);
+            throw new ServiceException(BizExceptionEnum.ERROR_CODE_EMPTY);
         }
 
         //字典类型编码

@@ -1,7 +1,7 @@
 package com.stylefeng.guns.modular.api;
 
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.ErrorTip;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.stylefeng.guns.core.shiro.ShiroKit;
 import com.stylefeng.guns.core.shiro.ShiroUser;
 import com.stylefeng.guns.core.util.JwtTokenUtil;
@@ -64,7 +64,7 @@ public class ApiController extends BaseController {
             result.put("token", JwtTokenUtil.generateToken(String.valueOf(user.getId())));
             return result;
         } else {
-            return new ErrorTip(500, "账号密码错误！");
+            return new ErrorResponseData(500, "账号密码错误！");
         }
     }
 

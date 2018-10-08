@@ -1,7 +1,9 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.base.tips.Tip;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.guns.core.cache.CacheKit;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
@@ -10,11 +12,8 @@ import com.stylefeng.guns.core.common.constant.cache.Cache;
 import com.stylefeng.guns.core.common.constant.dictmap.RoleDict;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.core.node.ZTreeNode;
-import com.stylefeng.guns.core.util.Convert;
-import com.stylefeng.guns.core.util.ToolUtil;
 import com.stylefeng.guns.modular.system.model.Role;
 import com.stylefeng.guns.modular.system.model.User;
 import com.stylefeng.guns.modular.system.service.IRoleService;
@@ -74,7 +73,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/role_edit/{roleId}")
     public String roleEdit(@PathVariable Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         Role role = this.roleService.selectById(roleId);
         model.addAttribute(role);
@@ -91,7 +90,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/role_assign/{roleId}")
     public String roleAssign(@PathVariable("roleId") Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         model.addAttribute("roleId", roleId);
         model.addAttribute("roleName", ConstantFactory.me().getSingleRoleName(roleId));
@@ -116,9 +115,9 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "添加角色", key = "name", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip add(@Valid Role role, BindingResult result) {
+    public ResponseData add(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         role.setId(null);
         this.roleService.insert(role);
@@ -132,9 +131,9 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "修改角色", key = "name", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip edit(@Valid Role role, BindingResult result) {
+    public ResponseData edit(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleService.updateById(role);
 
@@ -150,14 +149,14 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "删除角色", key = "roleId", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip remove(@RequestParam Integer roleId) {
+    public ResponseData remove(@RequestParam Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
         //不能删除超级管理员角色
         if (roleId.equals(Const.ADMIN_ROLE_ID)) {
-            throw new GunsException(BizExceptionEnum.CANT_DELETE_ADMIN);
+            throw new ServiceException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
 
         //缓存被删除的角色名称
@@ -175,9 +174,9 @@ public class RoleController extends BaseController {
      */
     @RequestMapping(value = "/view/{roleId}")
     @ResponseBody
-    public Tip view(@PathVariable Integer roleId) {
+    public ResponseData view(@PathVariable Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleService.selectById(roleId);
         return SUCCESS_TIP;
@@ -190,9 +189,9 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "配置权限", key = "roleId,ids", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
+    public ResponseData setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {
-            throw new GunsException(BizExceptionEnum.REQUEST_NULL);
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         this.roleService.setAuthority(roleId, ids);
         return SUCCESS_TIP;
@@ -218,12 +217,10 @@ public class RoleController extends BaseController {
         User theUser = this.userService.selectById(userId);
         String roleid = theUser.getRoleid();
         if (ToolUtil.isEmpty(roleid)) {
-            List<ZTreeNode> roleTreeList = this.roleService.roleTreeList();
-            return roleTreeList;
+            return this.roleService.roleTreeList();
         } else {
-            String[] strArray = Convert.toStrArray(",", roleid);
-            List<ZTreeNode> roleTreeListByUserId = this.roleService.roleTreeListByRoleId(strArray);
-            return roleTreeListByUserId;
+            String[] strArray = roleid.split(",");
+            return this.roleService.roleTreeListByRoleId(strArray);
         }
     }
 

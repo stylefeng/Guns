@@ -1,5 +1,6 @@
 package com.stylefeng.guns.config.web;
 
+import cn.stylefeng.roses.core.xss.XssFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -10,7 +11,6 @@ import com.google.code.kaptcha.util.Config;
 import com.stylefeng.guns.config.properties.GunsProperties;
 import com.stylefeng.guns.core.intercept.RestApiInteceptor;
 import com.stylefeng.guns.core.listener.ConfigListener;
-import com.stylefeng.guns.core.xss.XssFilter;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.JdkRegexpMethodPointcut;

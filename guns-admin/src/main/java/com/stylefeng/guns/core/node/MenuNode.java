@@ -1,7 +1,6 @@
 package com.stylefeng.guns.core.node;
 
-import com.stylefeng.guns.core.constant.IsMenu;
-import org.apache.commons.lang3.StringUtils;
+import cn.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
 
 import java.util.*;
 
@@ -196,7 +195,7 @@ public class MenuNode implements Comparable {
             return nodes;
         }
         //剔除非菜单
-        nodes.removeIf(node -> node.getIsmenu() != IsMenu.YES.getCode());
+        nodes.removeIf(node -> !node.getIsmenu().equals(YesOrNotEnum.Y.getCode()));
         //对菜单排序，返回列表按菜单等级，序号的排序方式排列
         Collections.sort(nodes);
         return mergeList(nodes, nodes.get(nodes.size() - 1).getLevels(), null);

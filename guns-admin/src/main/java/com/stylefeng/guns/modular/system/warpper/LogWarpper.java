@@ -1,10 +1,13 @@
 package com.stylefeng.guns.modular.system.warpper;
 
+import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.page.PageResult;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.core.base.warpper.BaseControllerWarpper;
 import com.stylefeng.guns.core.util.Contrast;
-import com.stylefeng.guns.core.util.ToolUtil;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,14 +16,26 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月5日22:56:24
  */
-public class LogWarpper extends BaseControllerWarpper {
+public class LogWarpper extends BaseControllerWrapper {
 
-    public LogWarpper(Object list) {
-        super(list);
+    public LogWarpper(Map<String, Object> single) {
+        super(single);
+    }
+
+    public LogWarpper(List<Map<String, Object>> multi) {
+        super(multi);
+    }
+
+    public LogWarpper(Page<Map<String, Object>> page) {
+        super(page);
+    }
+
+    public LogWarpper(PageResult<Map<String, Object>> pageResult) {
+        super(pageResult);
     }
 
     @Override
-    public void warpTheMap(Map<String, Object> map) {
+    protected void wrapTheMap(Map<String, Object> map) {
         String message = (String) map.get("message");
 
         Integer userid = (Integer) map.get("userid");
@@ -35,10 +50,9 @@ public class LogWarpper extends BaseControllerWarpper {
         //如果信息中包含分割符号;;;   则分割字符串返给前台
         if (ToolUtil.isNotEmpty(message) && message.indexOf(Contrast.separator) != -1) {
             String[] msgs = message.split(Contrast.separator);
-            map.put("regularMessage",msgs);
-        }else{
-            map.put("regularMessage",message);
+            map.put("regularMessage", msgs);
+        } else {
+            map.put("regularMessage", message);
         }
     }
-
 }

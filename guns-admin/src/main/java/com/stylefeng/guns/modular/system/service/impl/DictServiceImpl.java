@@ -1,10 +1,10 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.modular.system.dao.DictMapper;
 import com.stylefeng.guns.modular.system.model.Dict;
 import com.stylefeng.guns.modular.system.service.IDictService;
@@ -29,7 +29,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
         //判断有没有该字典
         List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("code", dictCode).and().eq("pid", 0));
         if (dicts != null && dicts.size() > 0) {
-            throw new GunsException(BizExceptionEnum.DICT_EXISTED);
+            throw new ServiceException(BizExceptionEnum.DICT_EXISTED);
         }
 
         //解析dictValues
@@ -57,7 +57,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
             try {
                 itemDict.setNum(Integer.valueOf(num));
             } catch (NumberFormatException e) {
-                throw new GunsException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
+                throw new ServiceException(BizExceptionEnum.DICT_MUST_BE_NUMBER);
             }
             this.dictMapper.insert(itemDict);
         }

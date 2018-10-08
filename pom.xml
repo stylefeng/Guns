@@ -10,7 +10,6 @@
 
     <modules>
         <module>guns-admin</module>
-        <module>guns-core</module>
     </modules>
 
     <parent>
@@ -45,28 +44,19 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.stylefeng</groupId>
-                <artifactId>guns-generator</artifactId>
-                <version>${guns.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.stylefeng</groupId>
-                <artifactId>guns-core</artifactId>
-                <version>${guns.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>2.0.1.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatisplus-spring-boot-starter</artifactId>
                 <version>${mybatisplus-spring-boot-starter.version}</version>
             </dependency>
+
             <!--shiro依赖-->
             <dependency>
                 <groupId>org.apache.shiro</groupId>
@@ -157,11 +147,6 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

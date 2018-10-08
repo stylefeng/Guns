@@ -1,8 +1,8 @@
 package com.stylefeng.guns.modular.system.service.impl;
 
+import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.guns.core.node.ZTreeNode;
-import com.stylefeng.guns.core.util.Convert;
 import com.stylefeng.guns.modular.system.dao.RelationMapper;
 import com.stylefeng.guns.modular.system.dao.RoleMapper;
 import com.stylefeng.guns.modular.system.model.Relation;
@@ -32,7 +32,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         this.roleMapper.deleteRolesById(roleId);
 
         // 添加新的权限
-        for (Long id : Convert.toLongArray(true, Convert.toStrArray(",", ids))) {
+        for (Long id : Convert.toLongArray(ids.split(","))) {
             Relation relation = new Relation();
             relation.setRoleid(roleId);
             relation.setMenuid(id);

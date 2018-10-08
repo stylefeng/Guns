@@ -1,6 +1,6 @@
 package com.stylefeng.guns.modular.system.controller;
 
-import com.stylefeng.guns.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.stylefeng.guns.modular.system.service.INoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

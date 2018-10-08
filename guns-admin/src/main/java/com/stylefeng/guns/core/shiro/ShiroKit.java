@@ -15,9 +15,9 @@
  */
 package com.stylefeng.guns.core.shiro;
 
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import com.stylefeng.guns.core.util.ToolUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;

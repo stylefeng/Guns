@@ -1,9 +1,9 @@
 package com.stylefeng.guns.core.aop;
 
+import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.core.common.exception.InvalidKaptchaException;
-import com.stylefeng.guns.core.base.tips.ErrorTip;
-import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.log.LogManager;
 import com.stylefeng.guns.core.log.factory.LogTaskFactory;
 import com.stylefeng.guns.core.shiro.ShiroKit;
@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.lang.reflect.UndeclaredThrowableException;
 
-import static com.stylefeng.guns.core.support.HttpKit.getIp;
-import static com.stylefeng.guns.core.support.HttpKit.getRequest;
+import static cn.stylefeng.roses.core.util.HttpContext.getIp;
+import static cn.stylefeng.roses.core.util.HttpContext.getRequest;
 
 /**
  * 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
@@ -40,14 +40,14 @@ public class GlobalExceptionHandler {
     /**
      * 拦截业务异常
      */
-    @ExceptionHandler(GunsException.class)
+    @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(GunsException e) {
+    public ErrorResponseData bussiness(ServiceException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", e.getMessage());
         log.error("业务异常:", e);
-        return new ErrorTip(e.getCode(), e.getMessage());
+        return new ErrorResponseData(e.getCode(), e.getMessage());
     }
 
     /**
@@ -102,10 +102,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UndeclaredThrowableException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
-    public ErrorTip credentials(UndeclaredThrowableException e) {
+    public ErrorResponseData credentials(UndeclaredThrowableException e) {
         getRequest().setAttribute("tip", "权限异常");
         log.error("权限异常!", e);
-        return new ErrorTip(BizExceptionEnum.NO_PERMITION.getCode(), BizExceptionEnum.NO_PERMITION.getMessage());
+        return new ErrorResponseData(BizExceptionEnum.NO_PERMITION.getCode(), BizExceptionEnum.NO_PERMITION.getMessage());
     }
 
     /**
@@ -114,10 +114,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(RuntimeException e) {
+    public ErrorResponseData notFount(RuntimeException e) {
         LogManager.me().executeLog(LogTaskFactory.exceptionLog(ShiroKit.getUser().getId(), e));
         getRequest().setAttribute("tip", "服务器未知运行时异常");
         log.error("运行时异常:", e);
-        return new ErrorTip(BizExceptionEnum.SERVER_ERROR.getCode(), BizExceptionEnum.SERVER_ERROR.getMessage());
+        return new ErrorResponseData(BizExceptionEnum.SERVER_ERROR.getCode(), BizExceptionEnum.SERVER_ERROR.getMessage());
     }
 }

@@ -1,7 +1,7 @@
 package com.stylefeng.guns.core.intercept;
 
-import com.stylefeng.guns.core.base.controller.BaseController;
-import com.stylefeng.guns.core.util.HttpSessionHolder;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.util.HttpSessionContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,11 +24,11 @@ public class SessionHolderInterceptor extends BaseController {
 
     @Around("cutService()")
     public Object sessionKit(ProceedingJoinPoint point) throws Throwable {
-        HttpSessionHolder.put(super.getHttpServletRequest().getSession());
+        HttpSessionContext.put(super.getHttpServletRequest().getSession());
         try {
             return point.proceed();
         } finally {
-            HttpSessionHolder.remove();
+            HttpSessionContext.remove();
         }
     }
 }

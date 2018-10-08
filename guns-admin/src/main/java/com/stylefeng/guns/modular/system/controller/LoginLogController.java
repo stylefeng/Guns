@@ -1,12 +1,13 @@
 package com.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.common.annotion.BussinessLog;
 import com.stylefeng.guns.core.common.annotion.Permission;
 import com.stylefeng.guns.core.common.constant.Const;
 import com.stylefeng.guns.core.common.constant.factory.PageFactory;
+import com.stylefeng.guns.core.page.PageInfoBT;
 import com.stylefeng.guns.modular.system.model.LoginLog;
 import com.stylefeng.guns.modular.system.service.ILoginLogService;
 import com.stylefeng.guns.modular.system.warpper.LogWarpper;
@@ -51,8 +52,8 @@ public class LoginLogController extends BaseController {
     public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName) {
         Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
         List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName, page.getOrderByField(), page.isAsc());
-        page.setRecords((List<LoginLog>) new LogWarpper(result).warp());
-        return super.packForBT(page);
+        page.setRecords(new LogWarpper(result).wrap());
+        return new PageInfoBT<>(page);
     }
 
     /**

@@ -1,9 +1,9 @@
 package com.stylefeng.guns.core.common.constant.factory;
 
+import cn.stylefeng.roses.core.util.HttpContext;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.guns.core.common.constant.state.Order;
-import com.stylefeng.guns.core.support.HttpKit;
-import com.stylefeng.guns.core.util.ToolUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class PageFactory<T> {
 
     public Page<T> defaultPage() {
-        HttpServletRequest request = HttpKit.getRequest();
+        HttpServletRequest request = HttpContext.getRequest();
         int limit = Integer.valueOf(request.getParameter("limit"));     //每页多少条数据
         int offset = Integer.valueOf(request.getParameter("offset"));   //每页的偏移量(本页当前有多少条)
         String sort = request.getParameter("sort");         //排序字段名称
