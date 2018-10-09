@@ -15,25 +15,25 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.cache.CacheKit;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
-import cn.stylefeng.guns.core.common.constant.cache.Cache;
-import cn.stylefeng.guns.core.log.LogObjectHolder;
-import cn.stylefeng.guns.core.node.ZTreeNode;
-import cn.stylefeng.roses.core.base.controller.BaseController;
-import cn.stylefeng.roses.core.reqres.response.ResponseData;
-import cn.stylefeng.roses.core.util.ToolUtil;
-import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.guns.core.common.constant.Const;
+import cn.stylefeng.guns.core.common.constant.cache.Cache;
 import cn.stylefeng.guns.core.common.constant.dictmap.RoleDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.core.log.LogObjectHolder;
+import cn.stylefeng.guns.core.util.CacheUtil;
 import cn.stylefeng.guns.modular.system.model.Role;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.guns.modular.system.service.IRoleService;
 import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.guns.modular.system.warpper.RoleWarpper;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -153,7 +153,7 @@ public class RoleController extends BaseController {
         this.roleService.updateById(role);
 
         //删除缓存
-        CacheKit.removeAll(Cache.CONSTANT);
+        CacheUtil.removeAll(Cache.CONSTANT);
         return SUCCESS_TIP;
     }
 
@@ -180,7 +180,7 @@ public class RoleController extends BaseController {
         this.roleService.delRoleById(roleId);
 
         //删除缓存
-        CacheKit.removeAll(Cache.CONSTANT);
+        CacheUtil.removeAll(Cache.CONSTANT);
         return SUCCESS_TIP;
     }
 

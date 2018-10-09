@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.page;
+package cn.stylefeng.guns.core.common.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
 

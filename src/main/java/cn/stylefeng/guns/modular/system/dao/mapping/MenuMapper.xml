@@ -42,7 +42,7 @@
         sys_relation where roleid = #{roleId}
     </select>
 
-    <select id="menuTreeList" resultType="cn.stylefeng.guns.core.node.ZTreeNode">
+    <select id="menuTreeList" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
         SELECT
         m1.id AS id,
         (
@@ -70,7 +70,7 @@
         m1.id ASC
     </select>
 
-    <select id="menuTreeListByMenuIds" resultType="cn.stylefeng.guns.core.node.ZTreeNode">
+    <select id="menuTreeListByMenuIds" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
         SELECT
         m1.id AS id,
         (
@@ -132,7 +132,7 @@
         where rel.roleid = #{roleId}
     </select>
 
-    <select id="getMenusByRoleIds" resultType="cn.stylefeng.guns.core.node.MenuNode">
+    <select id="getMenusByRoleIds" resultType="cn.stylefeng.guns.core.common.node.MenuNode">
         SELECT
         m1.id AS id,
         m1.icon AS icon,

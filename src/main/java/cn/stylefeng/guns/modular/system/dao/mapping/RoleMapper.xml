@@ -30,13 +30,13 @@
 		delete from sys_relation where roleid = #{roleId}
 	</delete>
 
-	<select id="roleTreeList" resultType="cn.stylefeng.guns.core.node.ZTreeNode">
+	<select id="roleTreeList" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
 		select id "id",pId
 		"pId",name as "name",(case when (pId=0 or pId is null) then 'true'
 		else 'false' end) "open" from sys_role
 	</select>
 
-	<select id="roleTreeListByRoleId" resultType="cn.stylefeng.guns.core.node.ZTreeNode">
+	<select id="roleTreeListByRoleId" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
 		SELECT
 		r.id "id",
 		pId "pId",

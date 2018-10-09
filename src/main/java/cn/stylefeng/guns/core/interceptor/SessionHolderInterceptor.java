@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.intercept;
+package cn.stylefeng.guns.core.interceptor;
 
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.HttpSessionContext;

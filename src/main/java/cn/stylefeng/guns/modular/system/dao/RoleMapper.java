@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.dao;
 
-import cn.stylefeng.guns.core.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.model.Role;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;

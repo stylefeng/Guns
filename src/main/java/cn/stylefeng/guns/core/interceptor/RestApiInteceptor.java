@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.intercept;
+package cn.stylefeng.guns.core.interceptor;
 
+import cn.stylefeng.guns.core.common.constant.JwtConstants;
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.util.JwtTokenUtil;
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import cn.stylefeng.roses.core.util.RenderUtil;
-import cn.stylefeng.guns.core.common.constant.JwtConstants;
-import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import io.jsonwebtoken.JwtException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

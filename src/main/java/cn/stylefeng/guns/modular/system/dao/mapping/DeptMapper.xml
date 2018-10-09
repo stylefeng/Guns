@@ -14,7 +14,7 @@
         <result column="version" property="version"/>
     </resultMap>
 
-    <select id="tree" resultType="cn.stylefeng.guns.core.node.ZTreeNode">
+    <select id="tree" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
 		select id,pid as pId,simplename as name,
 		(
 		CASE

@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package cn.stylefeng.guns.core.intercept;
+package cn.stylefeng.guns.core.interceptor;
 
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import org.apache.shiro.subject.Subject;

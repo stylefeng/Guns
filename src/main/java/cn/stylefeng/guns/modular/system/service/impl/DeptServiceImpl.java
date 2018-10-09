@@ -15,13 +15,13 @@
  */
 package cn.stylefeng.guns.modular.system.service.impl;
 
-import cn.stylefeng.guns.core.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.modular.system.dao.DeptMapper;
+import cn.stylefeng.guns.modular.system.model.Dept;
 import cn.stylefeng.guns.modular.system.service.IDeptService;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import cn.stylefeng.guns.modular.system.dao.DeptMapper;
-import cn.stylefeng.guns.modular.system.model.Dept;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

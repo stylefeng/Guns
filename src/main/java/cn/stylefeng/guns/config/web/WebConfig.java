@@ -16,8 +16,8 @@
 package cn.stylefeng.guns.config.web;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
-import cn.stylefeng.guns.core.controller.GunsErrorView;
-import cn.stylefeng.guns.core.intercept.RestApiInteceptor;
+import cn.stylefeng.guns.core.common.controller.GunsErrorView;
+import cn.stylefeng.guns.core.interceptor.RestApiInteceptor;
 import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.roses.core.xss.XssFilter;
 import com.alibaba.druid.pool.DruidDataSource;

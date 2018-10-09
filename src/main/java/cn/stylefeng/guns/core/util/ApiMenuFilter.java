@@ -15,10 +15,10 @@
  */
 package cn.stylefeng.guns.core.util;
 
-import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.guns.config.properties.GunsProperties;
 import cn.stylefeng.guns.core.common.constant.Const;
-import cn.stylefeng.guns.core.node.MenuNode;
+import cn.stylefeng.guns.core.common.node.MenuNode;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
 
 import java.util.ArrayList;
 import java.util.List;
