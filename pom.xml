@@ -40,6 +40,7 @@
 
     <dependencies>
 
+        <!--代码生成器-->
         <dependency>
             <groupId>cn.stylefeng.guns</groupId>
             <artifactId>guns-generator</artifactId>
@@ -50,7 +51,7 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>kernel-core</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
