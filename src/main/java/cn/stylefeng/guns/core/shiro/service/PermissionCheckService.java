@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-2017, Chill Zhuang 庄骞 (smallchill@163.com).
+ * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.shiro.check;
+package cn.stylefeng.guns.core.shiro.service;
 
 /**
  * 检查用接口
  */
-public interface ICheck {
+public interface PermissionCheckService {
 
     /**
      * 检查当前登录用户是否拥有指定的角色访问当

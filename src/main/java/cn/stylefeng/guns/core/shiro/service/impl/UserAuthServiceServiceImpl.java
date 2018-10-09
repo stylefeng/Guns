@@ -13,16 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.shiro.factory;
+package cn.stylefeng.guns.core.shiro.service.impl;
 
 import cn.hutool.core.convert.Convert;
-import cn.stylefeng.guns.core.shiro.ShiroUser;
-import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
+import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.shiro.service.UserAuthService;
 import cn.stylefeng.guns.modular.system.dao.MenuMapper;
 import cn.stylefeng.guns.modular.system.dao.UserMapper;
 import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -39,7 +40,7 @@ import java.util.List;
 @Service
 @DependsOn("springContextHolder")
 @Transactional(readOnly = true)
-public class ShiroFactroy implements IShiro {
+public class UserAuthServiceServiceImpl implements UserAuthService {
 
     @Autowired
     private UserMapper userMapper;
@@ -47,8 +48,8 @@ public class ShiroFactroy implements IShiro {
     @Autowired
     private MenuMapper menuMapper;
 
-    public static IShiro me() {
-        return SpringContextHolder.getBean(IShiro.class);
+    public static UserAuthService me() {
+        return SpringContextHolder.getBean(UserAuthService.class);
     }
 
     @Override

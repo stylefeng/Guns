@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.shiro.factory;
+package cn.stylefeng.guns.core.shiro.service;
 
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.modular.system.model.User;
@@ -27,7 +27,7 @@ import java.util.List;
  * @author fengshuonan
  * @date 2016年12月5日 上午10:23:34
  */
-public interface IShiro {
+public interface UserAuthService {
 
     /**
      * 根据账号获取登录用户

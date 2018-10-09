@@ -16,12 +16,13 @@
 package cn.stylefeng.guns.core.aop;
 
 import cn.stylefeng.guns.core.common.annotion.Permission;
-import cn.stylefeng.guns.core.shiro.check.PermissionCheckManager;
+import cn.stylefeng.guns.core.shiro.service.PermissionCheckService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +40,9 @@ import java.lang.reflect.Method;
 @Order(200)
 public class PermissionAop {
 
+    @Autowired
+    private PermissionCheckService check;
+
     @Pointcut(value = "@annotation(cn.stylefeng.guns.core.common.annotion.Permission)")
     private void cutPermission() {
 
@@ -51,16 +55,19 @@ public class PermissionAop {
         Permission permission = method.getAnnotation(Permission.class);
         Object[] permissions = permission.value();
         if (permissions.length == 0) {
+
             //检查全体角色
-            boolean result = PermissionCheckManager.checkAll();
+            boolean result = check.checkAll();
             if (result) {
                 return point.proceed();
             } else {
                 throw new NoPermissionException();
             }
+
         } else {
+
             //检查指定角色
-            boolean result = PermissionCheckManager.check(permissions);
+            boolean result = check.check(permissions);
             if (result) {
                 return point.proceed();
             } else {

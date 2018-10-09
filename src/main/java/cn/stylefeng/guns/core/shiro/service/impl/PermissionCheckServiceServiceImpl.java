@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015-2017, Chill Zhuang 庄骞 (smallchill@163.com).
+ * Copyright 2018-2020 stylefeng & fengshuonan (https://gitee.com/stylefeng)
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.guns.core.shiro.check;
+package cn.stylefeng.guns.core.shiro.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.shiro.service.PermissionCheckService;
 import cn.stylefeng.roses.core.util.HttpContext;
-import cn.stylefeng.roses.core.util.SpringContextHolder;
-import cn.stylefeng.guns.core.listener.ConfigListener;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,13 +31,8 @@ import java.util.ArrayList;
  * 权限自定义检查
  */
 @Service
-@DependsOn("springContextHolder")
 @Transactional(readOnly = true)
-public class PermissionCheckFactory implements ICheck {
-
-    public static ICheck me() {
-        return SpringContextHolder.getBean(ICheck.class);
-    }
+public class PermissionCheckServiceServiceImpl implements PermissionCheckService {
 
     @Override
     public boolean check(Object[] permissions) {
