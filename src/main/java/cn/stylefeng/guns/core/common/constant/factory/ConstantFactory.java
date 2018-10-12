@@ -94,6 +94,9 @@ public class ConstantFactory implements IConstantFactory {
     @Override
     @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.ROLES_NAME + "'+#roleIds")
     public String getRoleName(String roleIds) {
+        if (ToolUtil.isEmpty(roleIds)) {
+            return "";
+        }
         Integer[] roles = Convert.toIntArray(roleIds);
         StringBuilder sb = new StringBuilder();
         for (int role : roles) {
@@ -320,7 +323,7 @@ public class ConstantFactory implements IConstantFactory {
 
         ArrayList<Integer> deptids = new ArrayList<>();
 
-        if(depts != null && depts.size() > 0){
+        if (depts != null && depts.size() > 0) {
             for (Dept dept : depts) {
                 deptids.add(dept.getId());
             }

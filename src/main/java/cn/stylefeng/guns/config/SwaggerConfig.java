@@ -53,7 +53,7 @@ public class SwaggerConfig{
         return new ApiInfoBuilder()
                 .title("Guns Doc")
                 .description("Guns Api文档")
-                .termsOfServiceUrl("http://git.oschina.net/naan1993/guns")
+                .termsOfServiceUrl("https://gitee.com/stylefeng/guns")
                 .contact("stylefeng")
                 .version("2.0")
                 .build();
