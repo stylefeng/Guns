@@ -7,7 +7,7 @@ Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整�
 
 > * 框架整体的包名变为cn开头，和域名stylefeng.cn保持一致！
 > * 优化了shiro相关的几个服务类的结构，整体业务逻辑不变，优化了部分包结构和类之间的关系，项目整体更加简洁和易维护！
-> * 整合了guns-core，和roses项目的kernel-core，以后维护一套项目骨架，并把kernel-core上传到了maven的中央仓库！
+> * 整合了guns-core，和roses项目的kernel-core，并把kernel-core上传到了maven的中央仓库！
 > * 剔除了guns-generator模块，抽出单独的项目https://gitee.com/stylefeng/guns-generator来维护，并且guns-generator也上传到了maven中央仓库！
 > * 框架整体回归了单模块应用，返璞归真，开箱即用，快速开发新项目，新业务！
 
