@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author fengshuonan
@@ -42,8 +42,8 @@ public class Test implements Serializable {
     @Override
     public String toString() {
         return "Test{" +
-        "aaa=" + aaa +
-        ", bbb=" + bbb +
-        "}";
+                "aaa=" + aaa +
+                ", bbb=" + bbb +
+                "}";
     }
 }

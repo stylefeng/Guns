@@ -36,7 +36,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 @ConditionalOnProperty(prefix = "guns", name = "swagger-open", havingValue = "true")
-public class SwaggerConfig{
+public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {

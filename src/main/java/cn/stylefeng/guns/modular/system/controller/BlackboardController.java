@@ -15,8 +15,8 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.guns.modular.system.service.INoticeService;
+import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -15,11 +15,11 @@
  */
 package cn.stylefeng.guns.modular.system.service.impl;
 
+import cn.stylefeng.guns.modular.system.dao.UserMapper;
+import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import cn.stylefeng.guns.modular.system.dao.UserMapper;
-import cn.stylefeng.guns.modular.system.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -17,18 +17,18 @@ package cn.stylefeng.guns.modular.system.controller;
 
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
-import cn.stylefeng.guns.core.log.LogObjectHolder;
-import cn.stylefeng.roses.core.base.controller.BaseController;
-import cn.stylefeng.roses.core.util.ToolUtil;
-import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.dictmap.DictMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.model.Dict;
 import cn.stylefeng.guns.modular.system.service.IDictService;
 import cn.stylefeng.guns.modular.system.warpper.DictWarpper;
+import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,11 +94,11 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object add(String dictCode,String dictTips,String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictCode,dictName, dictValues)) {
+    public Object add(String dictCode, String dictTips, String dictName, String dictValues) {
+        if (ToolUtil.isOneEmpty(dictCode, dictName, dictValues)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.dictService.addDict(dictCode,dictName,dictTips,dictValues);
+        this.dictService.addDict(dictCode, dictName, dictTips, dictValues);
         return SUCCESS_TIP;
     }
 
@@ -130,11 +130,11 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object update(Integer dictId,String dictCode,String dictName, String dictTips,String dictValues) {
+    public Object update(Integer dictId, String dictCode, String dictName, String dictTips, String dictValues) {
         if (ToolUtil.isOneEmpty(dictId, dictCode, dictName, dictValues)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        dictService.editDict(dictId, dictCode,dictName, dictTips,dictValues);
+        dictService.editDict(dictId, dictCode, dictName, dictTips, dictValues);
         return SUCCESS_TIP;
     }
 

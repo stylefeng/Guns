@@ -28,8 +28,8 @@ public abstract class AbstractDictMap {
     protected HashMap<String, String> dictory = new HashMap<>();
     protected HashMap<String, String> fieldWarpperDictory = new HashMap<>();
 
-    public AbstractDictMap(){
-        put("id","主键id");
+    public AbstractDictMap() {
+        put("id", "主键id");
         init();
         initBeWrapped();
     }
@@ -58,11 +58,11 @@ public abstract class AbstractDictMap {
         this.dictory.put(key, value);
     }
 
-    public String getFieldWarpperMethodName(String key){
+    public String getFieldWarpperMethodName(String key) {
         return this.fieldWarpperDictory.get(key);
     }
 
-    public void putFieldWrapperMethodName(String key,String methodName){
-        this.fieldWarpperDictory.put(key,methodName);
+    public void putFieldWrapperMethodName(String key, String methodName) {
+        this.fieldWarpperDictory.put(key, methodName);
     }
 }

@@ -15,8 +15,8 @@
  */
 package cn.stylefeng.guns.modular.system.service;
 
-import com.baomidou.mybatisplus.service.IService;
 import cn.stylefeng.guns.modular.system.model.Relation;
+import com.baomidou.mybatisplus.service.IService;
 
 /**
  * <p>

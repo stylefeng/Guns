@@ -30,12 +30,12 @@ public class DictTest extends BaseJunit {
         String dictName = "字典测试";
         String dictTips = "这是一个字典测试";
         String dictValues = "1:测试1:1;2:测试2:2";
-        dictService.addDict(dictCode,dictName,dictTips, dictValues);
+        dictService.addDict(dictCode, dictName, dictTips, dictValues);
     }
 
     @Test
     public void editTest() {
-        dictService.editDict(16, "tes","测试","备注", "1:测试1;2:测试2");
+        dictService.editDict(16, "tes", "测试", "备注", "1:测试1;2:测试2");
     }
 
     @Test

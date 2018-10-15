@@ -22,102 +22,102 @@ public class Expense extends Model<Expense> {
 
     private static final long serialVersionUID = 1L;
 
-	@TableId(value="id", type= IdType.AUTO)
-	private Integer id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
     /**
      * 报销金额
      */
-	private BigDecimal money;
+    private BigDecimal money;
     /**
      * 描述
      */
-	private String desc;
-	private Date createtime;
+    private String desc;
+    private Date createtime;
     /**
      * 状态: 1.待提交  2:待审核   3.审核通过
      */
-	private Integer state;
+    private Integer state;
     /**
      * 用户id
      */
-	private Integer userid;
+    private Integer userid;
     /**
      * 流程定义id
      */
-	private String processId;
+    private String processId;
 
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public BigDecimal getMoney() {
-		return money;
-	}
+    public BigDecimal getMoney() {
+        return money;
+    }
 
-	public void setMoney(BigDecimal money) {
-		this.money = money;
-	}
+    public void setMoney(BigDecimal money) {
+        this.money = money;
+    }
 
-	public String getDesc() {
-		return desc;
-	}
+    public String getDesc() {
+        return desc;
+    }
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
 
-	public Date getCreatetime() {
-		return createtime;
-	}
+    public Date getCreatetime() {
+        return createtime;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
 
-	public Integer getState() {
-		return state;
-	}
+    public Integer getState() {
+        return state;
+    }
 
-	public void setState(Integer state) {
-		this.state = state;
-	}
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
-	public Integer getUserid() {
-		return userid;
-	}
+    public Integer getUserid() {
+        return userid;
+    }
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
-	}
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
-	public String getProcessId() {
-		return processId;
-	}
+    public String getProcessId() {
+        return processId;
+    }
 
-	public void setProcessId(String processId) {
-		this.processId = processId;
-	}
+    public void setProcessId(String processId) {
+        this.processId = processId;
+    }
 
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 
-	@Override
-	public String toString() {
-		return "Expense{" +
-			"id=" + id +
-			", money=" + money +
-			", desc=" + desc +
-			", createtime=" + createtime +
-			", state=" + state +
-			", userid=" + userid +
-			", processId=" + processId +
-			"}";
-	}
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "id=" + id +
+                ", money=" + money +
+                ", desc=" + desc +
+                ", createtime=" + createtime +
+                ", state=" + state +
+                ", userid=" + userid +
+                ", processId=" + processId +
+                "}";
+    }
 }

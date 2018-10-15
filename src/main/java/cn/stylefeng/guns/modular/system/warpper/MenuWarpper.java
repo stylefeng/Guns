@@ -15,11 +15,11 @@
  */
 package cn.stylefeng.guns.modular.system.warpper;
 
+import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.plugins.Page;
-import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 
 import java.util.List;
 import java.util.Map;

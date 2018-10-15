@@ -24,131 +24,131 @@ public class OperationLog extends Model<OperationLog> {
     /**
      * 主键
      */
-	@TableId(value="id", type= IdType.AUTO)
-	private Integer id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
     /**
      * 日志类型
      */
-	private String logtype;
+    private String logtype;
     /**
      * 日志名称
      */
-	private String logname;
+    private String logname;
     /**
      * 用户id
      */
-	private Integer userid;
+    private Integer userid;
     /**
      * 类名称
      */
-	private String classname;
+    private String classname;
     /**
      * 方法名称
      */
-	private String method;
+    private String method;
     /**
      * 创建时间
      */
-	private Date createtime;
+    private Date createtime;
     /**
      * 是否成功
      */
-	private String succeed;
+    private String succeed;
     /**
      * 备注
      */
-	private String message;
+    private String message;
 
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getLogtype() {
-		return logtype;
-	}
+    public String getLogtype() {
+        return logtype;
+    }
 
-	public void setLogtype(String logtype) {
-		this.logtype = logtype;
-	}
+    public void setLogtype(String logtype) {
+        this.logtype = logtype;
+    }
 
-	public String getLogname() {
-		return logname;
-	}
+    public String getLogname() {
+        return logname;
+    }
 
-	public void setLogname(String logname) {
-		this.logname = logname;
-	}
+    public void setLogname(String logname) {
+        this.logname = logname;
+    }
 
-	public Integer getUserid() {
-		return userid;
-	}
+    public Integer getUserid() {
+        return userid;
+    }
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
-	}
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
-	public String getClassname() {
-		return classname;
-	}
+    public String getClassname() {
+        return classname;
+    }
 
-	public void setClassname(String classname) {
-		this.classname = classname;
-	}
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
 
-	public String getMethod() {
-		return method;
-	}
+    public String getMethod() {
+        return method;
+    }
 
-	public void setMethod(String method) {
-		this.method = method;
-	}
+    public void setMethod(String method) {
+        this.method = method;
+    }
 
-	public Date getCreatetime() {
-		return createtime;
-	}
+    public Date getCreatetime() {
+        return createtime;
+    }
 
-	public void setCreatetime(Date createtime) {
-		this.createtime = createtime;
-	}
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
 
-	public String getSucceed() {
-		return succeed;
-	}
+    public String getSucceed() {
+        return succeed;
+    }
 
-	public void setSucceed(String succeed) {
-		this.succeed = succeed;
-	}
+    public void setSucceed(String succeed) {
+        this.succeed = succeed;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 
-	@Override
-	public String toString() {
-		return "OperationLog{" +
-			"id=" + id +
-			", logtype=" + logtype +
-			", logname=" + logname +
-			", userid=" + userid +
-			", classname=" + classname +
-			", method=" + method +
-			", createtime=" + createtime +
-			", succeed=" + succeed +
-			", message=" + message +
-			"}";
-	}
+    @Override
+    public String toString() {
+        return "OperationLog{" +
+                "id=" + id +
+                ", logtype=" + logtype +
+                ", logname=" + logname +
+                ", userid=" + userid +
+                ", classname=" + classname +
+                ", method=" + method +
+                ", createtime=" + createtime +
+                ", succeed=" + succeed +
+                ", message=" + message +
+                "}";
+    }
 }

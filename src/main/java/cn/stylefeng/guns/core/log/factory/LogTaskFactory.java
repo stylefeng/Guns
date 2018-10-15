@@ -15,8 +15,6 @@
  */
 package cn.stylefeng.guns.core.log.factory;
 
-import cn.stylefeng.roses.core.util.SpringContextHolder;
-import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.guns.core.common.constant.state.LogSucceed;
 import cn.stylefeng.guns.core.common.constant.state.LogType;
 import cn.stylefeng.guns.core.log.LogManager;
@@ -24,6 +22,8 @@ import cn.stylefeng.guns.modular.system.dao.LoginLogMapper;
 import cn.stylefeng.guns.modular.system.dao.OperationLogMapper;
 import cn.stylefeng.guns.modular.system.model.LoginLog;
 import cn.stylefeng.guns.modular.system.model.OperationLog;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

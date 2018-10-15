@@ -15,14 +15,14 @@
  */
 package cn.stylefeng.guns.modular.system.service.impl;
 
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import cn.stylefeng.guns.modular.system.dao.DictMapper;
+import cn.stylefeng.guns.modular.system.model.Dict;
 import cn.stylefeng.guns.modular.system.service.IDictService;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import cn.stylefeng.guns.modular.system.dao.DictMapper;
-import cn.stylefeng.guns.modular.system.model.Dict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +40,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     private DictMapper dictMapper;
 
     @Override
-    public void addDict(String dictCode,String dictName,String dictTips, String dictValues) {
+    public void addDict(String dictCode, String dictName, String dictTips, String dictValues) {
         //判断有没有该字典
         List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("code", dictCode).and().eq("pid", 0));
         if (dicts != null && dicts.size() > 0) {
@@ -79,12 +79,12 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     }
 
     @Override
-    public void editDict(Integer dictId,String dictCode, String dictName,String dictTips, String dicts) {
+    public void editDict(Integer dictId, String dictCode, String dictName, String dictTips, String dicts) {
         //删除之前的字典
         this.delteDict(dictId);
 
         //重新添加新的字典
-        this.addDict(dictCode,dictName,dictTips, dicts);
+        this.addDict(dictCode, dictName, dictTips, dicts);
     }
 
     @Override

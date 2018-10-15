@@ -15,8 +15,8 @@
  */
 package cn.stylefeng.guns.core.util;
 
-import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
 
 /**
  * 验证码工具类

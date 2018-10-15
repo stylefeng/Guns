@@ -15,8 +15,8 @@
  */
 package cn.stylefeng.guns.modular.system.service;
 
-import com.baomidou.mybatisplus.service.IService;
 import cn.stylefeng.guns.modular.system.model.Dict;
+import com.baomidou.mybatisplus.service.IService;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public interface IDictService extends IService<Dict> {
     /**
      * 编辑字典
      */
-    void editDict(Integer dictId,String dictCode, String dictName,String dictTips, String dicts);
+    void editDict(Integer dictId, String dictCode, String dictName, String dictTips, String dicts);
 
     /**
      * 删除字典

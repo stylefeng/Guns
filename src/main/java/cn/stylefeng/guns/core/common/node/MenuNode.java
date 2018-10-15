@@ -230,22 +230,22 @@ public class MenuNode implements Comparable {
         Map<Long, List<MenuNode>> currentMap = new HashMap<>();
         //由于按等级从小到大排序，需要从后往前排序
         //判断该节点是否属于当前循环的等级,不等于则跳出循环
-        for (n = menuList.size() - 1; n >=0&&menuList.get(n).getLevels() == rank; n--) {
+        for (n = menuList.size() - 1; n >= 0 && menuList.get(n).getLevels() == rank; n--) {
             //判断之前的调用是否有返回以该节点的id为key的map，有则设置为children列表。
             if (listMap != null && listMap.get(menuList.get(n).getId()) != null) {
                 menuList.get(n).setChildren(listMap.get(menuList.get(n).getId()));
             }
-            if (menuList.get(n).getParentId()!=null&&menuList.get(n).getParentId()!=0) {
+            if (menuList.get(n).getParentId() != null && menuList.get(n).getParentId() != 0) {
                 //判断当前节点所属的pid是否已经创建了以该pid为key的键值对，没有则创建新的链表
                 currentMap.computeIfAbsent(menuList.get(n).getParentId(), k -> new LinkedList<>());
                 //将该节点插入到对应的list的头部
                 currentMap.get(menuList.get(n).getParentId()).add(0, menuList.get(n));
             }
         }
-        if (n <0) {
+        if (n < 0) {
             return menuList;
         } else {
-            return mergeList(menuList.subList(0, n+1), menuList.get(n).getLevels(), currentMap);
+            return mergeList(menuList.subList(0, n + 1), menuList.get(n).getLevels(), currentMap);
         }
     }
 

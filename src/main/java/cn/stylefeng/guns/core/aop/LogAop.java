@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.core.aop;
 
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 import cn.stylefeng.guns.core.log.LogManager;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
@@ -23,7 +24,6 @@ import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.util.Contrast;
 import cn.stylefeng.roses.core.util.HttpContext;
-import cn.stylefeng.guns.core.common.constant.dictmap.base.AbstractDictMap;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -112,7 +112,7 @@ public class LogAop {
         } else {
             Map<String, String> parameters = HttpContext.getRequestParameters();
             AbstractDictMap dictMap = (AbstractDictMap) dictClass.newInstance();
-            msg = Contrast.parseMutiKey(dictMap,key,parameters);
+            msg = Contrast.parseMutiKey(dictMap, key, parameters);
         }
 
         LogManager.me().executeLog(LogTaskFactory.bussinessLog(user.getId(), bussinessName, className, methodName, msg));

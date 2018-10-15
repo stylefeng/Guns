@@ -47,27 +47,27 @@ public class BeetlProperties {
     @Value("${spring.mvc.view.prefix}")
     private String prefix;
 
-    public Properties getProperties(){
+    public Properties getProperties() {
         Properties properties = new Properties();
-        if(ToolUtil.isNotEmpty(delimiterStatementStart)){
-            if(delimiterStatementStart.startsWith("\\")){
+        if (ToolUtil.isNotEmpty(delimiterStatementStart)) {
+            if (delimiterStatementStart.startsWith("\\")) {
                 delimiterStatementStart = delimiterStatementStart.substring(1);
             }
-            properties.setProperty("DELIMITER_STATEMENT_START",delimiterStatementStart);
+            properties.setProperty("DELIMITER_STATEMENT_START", delimiterStatementStart);
         }
-        if(ToolUtil.isNotEmpty(delimiterStatementEnd)){
-            properties.setProperty("DELIMITER_STATEMENT_END",delimiterStatementEnd);
-        }else{
-            properties.setProperty("DELIMITER_STATEMENT_END","null");
+        if (ToolUtil.isNotEmpty(delimiterStatementEnd)) {
+            properties.setProperty("DELIMITER_STATEMENT_END", delimiterStatementEnd);
+        } else {
+            properties.setProperty("DELIMITER_STATEMENT_END", "null");
         }
-        if(ToolUtil.isNotEmpty(resourceTagroot)){
-            properties.setProperty("RESOURCE.tagRoot",resourceTagroot);
+        if (ToolUtil.isNotEmpty(resourceTagroot)) {
+            properties.setProperty("RESOURCE.tagRoot", resourceTagroot);
         }
-        if(ToolUtil.isNotEmpty(resourceTagsuffix)){
-            properties.setProperty("RESOURCE.tagSuffix",resourceTagsuffix);
+        if (ToolUtil.isNotEmpty(resourceTagsuffix)) {
+            properties.setProperty("RESOURCE.tagSuffix", resourceTagsuffix);
         }
-        if(ToolUtil.isNotEmpty(resourceAutoCheck)){
-            properties.setProperty("RESOURCE.autoCheck",resourceAutoCheck);
+        if (ToolUtil.isNotEmpty(resourceAutoCheck)) {
+            properties.setProperty("RESOURCE.autoCheck", resourceAutoCheck);
         }
         return properties;
     }

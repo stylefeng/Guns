@@ -30,11 +30,11 @@ public class BaseJunit {
     protected MockMvc mockMvc;
 
     @Before
-    public void setupMockMvc(){
+    public void setupMockMvc() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
     @Before
-    public void initDatabase(){
+    public void initDatabase() {
     }
 }

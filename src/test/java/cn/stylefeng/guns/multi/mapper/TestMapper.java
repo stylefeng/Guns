@@ -1,11 +1,11 @@
 package cn.stylefeng.guns.multi.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
 import cn.stylefeng.guns.multi.entity.Test;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author fengshuonan

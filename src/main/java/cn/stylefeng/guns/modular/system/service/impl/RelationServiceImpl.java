@@ -15,10 +15,10 @@
  */
 package cn.stylefeng.guns.modular.system.service.impl;
 
-import cn.stylefeng.guns.modular.system.service.IRelationService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import cn.stylefeng.guns.modular.system.dao.RelationMapper;
 import cn.stylefeng.guns.modular.system.model.Relation;
+import cn.stylefeng.guns.modular.system.service.IRelationService;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
