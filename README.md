@@ -1,33 +1,17 @@
-# Guns V5.0
+# Guns V5.1
 
 ## 介绍
 Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 2018目标 `更简洁`，`更规范`!
 
-### Guns v5.0更新内容
+### Guns v5.1更新内容
 
-> * 剔除了shiro，集成自研单点登陆框架，详情见`sso`分支（shiro版本还是在master分支），点击进入sso分支[https://gitee.com/stylefeng/guns/tree/sso/](https://gitee.com/stylefeng/guns/tree/sso/)
+> * 框架整体的包名变为cn开头，和域名stylefeng.cn保持一致！
+> * 优化了shiro相关的几个服务类的结构，整体业务逻辑不变，优化了部分包结构和类之间的关系，项目整体更加简洁和易维护！
+> * 整合了guns-core，和roses项目的kernel-core，以后维护一套项目骨架，并把kernel-core上传到了maven的中央仓库！
+> * 剔除了guns-generator模块，抽出单独的项目https://gitee.com/stylefeng/guns-generator来维护，并且guns-generator也上传到了maven中央仓库！
+> * 框架整体回归了单模块应用，返璞归真，开箱即用，快速开发新项目，新业务！
 
-### Guns v4.0更新内容
-
-> * guns-admin提供rest api服务，并以jwt方式鉴权，所有以`/gunsApi`开头的接口走这种鉴权方式，其他接口仍为shiro鉴权
-> * spring boot升级到2.0版本！
-> * 简化前端所有的html，js，css等资源文件，由11.8MB缩减为4.8MB！
-> * 新增手动增加标签页的方法，Feng.newCrontab(href，menuName);
-> * laydate时间插件和layer弹出层插件更新为官网最新，可以看着layui官网的文档直接开发啦！
-> * 去掉animate动画效果，加快页面响应速度！
-> * 修复登陆后重启应用造成404的bug！
-> * 增强core模块的功能，拿来即用开发新的模块的后端管理系统！
-> * 升级各个依赖包的版本！
-> * 简化applicatioin.yml的配置，一些固定不变的配置写在core模块的default-config.properties！
-> * 简化多数据源配置，简化mybatis-plus的配置！
-> * 优化日志记录格式和策略，详情见logback-spring.xml！
-> * 修复菜单折叠无法折叠子菜单的子菜单的bug！
-> * 感谢Guns and Roses技术交流2群网友摇了摇头（931483459）提供的oracle版本的Guns，现在已上传到oracle分支
-
-### Guns v3.0更新内容
-
-> * Guns v3.0新增rest api服务,提供对接服务端接口的支持,并利用jwt token鉴权机制给予客户端的访问权限,传输数据进行md5签名保证传输过程数据的安全性!
-> * Guns v3.1新增集成工作流引擎flowable6.2.0!
+**另外更新了Guns技术文档的版本到5.1，与项目版本保持一致，详情见文档详情！**
 
 ## 最新Guns技术文档
 Guns框架有作者在业余时间整理的技术文档，详情点击[查看详情](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
