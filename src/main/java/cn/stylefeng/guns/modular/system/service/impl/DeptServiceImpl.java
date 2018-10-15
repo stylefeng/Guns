@@ -29,14 +29,20 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 部门服务
+ *
+ * @author fengshuonan
+ * @Date 2018/10/15 下午11:39
+ */
 @Service
-@Transactional
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements IDeptService {
 
     @Resource
     private DeptMapper deptMapper;
 
     @Override
+    @Transactional
     public void deleteDept(Integer deptId) {
         Dept dept = deptMapper.selectById(deptId);
 

@@ -32,14 +32,20 @@ import java.util.Map;
 
 import static cn.stylefeng.guns.core.common.constant.factory.MutiStrFactory.*;
 
+/**
+ * 字典服务
+ *
+ * @author fengshuonan
+ * @Date 2018/10/15 下午11:39
+ */
 @Service
-@Transactional
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
 
     @Resource
     private DictMapper dictMapper;
 
     @Override
+    @Transactional
     public void addDict(String dictCode, String dictName, String dictTips, String dictValues) {
         //判断有没有该字典
         List<Dict> dicts = dictMapper.selectList(new EntityWrapper<Dict>().eq("code", dictCode).and().eq("pid", 0));
@@ -79,6 +85,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     }
 
     @Override
+    @Transactional
     public void editDict(Integer dictId, String dictCode, String dictName, String dictTips, String dicts) {
         //删除之前的字典
         this.delteDict(dictId);
@@ -88,6 +95,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
     }
 
     @Override
+    @Transactional
     public void delteDict(Integer dictId) {
         //删除这个字典的子词典
         Wrapper<Dict> dictEntityWrapper = new EntityWrapper<>();

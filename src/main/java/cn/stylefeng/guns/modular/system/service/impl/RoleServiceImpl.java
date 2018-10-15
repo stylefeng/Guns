@@ -30,6 +30,12 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 角色服务
+ *
+ * @author fengshuonan
+ * @Date 2018/10/15 下午11:40
+ */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
@@ -40,7 +46,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     private RelationMapper relationMapper;
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void setAuthority(Integer roleId, String ids) {
 
         // 删除该角色所有的权限
@@ -56,7 +62,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void delRoleById(Integer roleId) {
         //删除角色
         this.roleMapper.deleteById(roleId);
