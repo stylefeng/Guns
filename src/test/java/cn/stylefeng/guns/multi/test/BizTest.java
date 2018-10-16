@@ -14,14 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class BizTest extends BaseJunit {
 
     @Autowired
-    TestService testService;
+    private TestService testService;
 
     @Test
     public void test() {
         testService.testGuns();
 
         testService.testBiz();
-
-        //testService.testAll();
     }
 }

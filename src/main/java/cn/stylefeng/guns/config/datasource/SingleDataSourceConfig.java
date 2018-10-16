@@ -22,6 +22,7 @@ import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -37,6 +38,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @MapperScan(basePackages = {"cn.stylefeng.guns.modular.*.dao"})
 public class SingleDataSourceConfig {
+
+    /**
+     * druid配置
+     */
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DruidProperties druidProperties() {
+        return new DruidProperties();
+    }
 
     /**
      * 单数据源连接池配置

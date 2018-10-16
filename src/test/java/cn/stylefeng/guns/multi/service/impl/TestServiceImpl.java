@@ -40,13 +40,4 @@ public class TestServiceImpl implements TestService {
         test.setBbb("gunsTest");
         testMapper.insert(test);
     }
-
-    @Override
-    @Transactional
-    public void testAll() {
-        testBiz();
-        testGuns();
-        //int i = 1 / 0;
-    }
-
 }

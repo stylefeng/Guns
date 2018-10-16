@@ -26,12 +26,4 @@ public interface TestService {
      */
     void testGuns();
 
-
-    /**
-     * 测试多数据源的业务
-     *
-     * @author stylefeng
-     * @Date 2017/6/23 23:02
-     */
-    void testAll();
 }

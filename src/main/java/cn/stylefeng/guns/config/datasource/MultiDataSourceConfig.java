@@ -28,7 +28,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.SQLException;
@@ -44,16 +43,31 @@ import java.util.HashMap;
  */
 @Configuration
 @ConditionalOnProperty(prefix = "guns.muti-datasource", name = "open", havingValue = "true")
-@EnableTransactionManagement(order = 2)
+@EnableTransactionManagement(order = 2, proxyTargetClass = true)
 @MapperScan(basePackages = {"cn.stylefeng.guns.modular.*.dao", "cn.stylefeng.guns.multi.mapper"})
 public class MultiDataSourceConfig {
 
+    /**
+     * druid配置
+     */
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DruidProperties druidProperties() {
+        return new DruidProperties();
+    }
+
+    /**
+     * 多数据源配置
+     */
     @Bean
     @ConfigurationProperties(prefix = "guns.muti-datasource")
     public MutiDataSourceProperties mutiDataSourceProperties() {
         return new MutiDataSourceProperties();
     }
 
+    /**
+     * 多数据源切换的aop
+     */
     @Bean
     public MultiSourceExAop multiSourceExAop() {
         return new MultiSourceExAop();
@@ -125,16 +139,5 @@ public class MultiDataSourceConfig {
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
-    }
-
-    /**
-     * 事务配置
-     *
-     * @author stylefeng
-     * @Date 2018/6/27 23:11
-     */
-    @Bean
-    public DataSourceTransactionManager dataSourceTransactionManager(DynamicDataSource mutiDataSource) {
-        return new DataSourceTransactionManager(mutiDataSource);
     }
 }
