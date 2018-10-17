@@ -4,7 +4,7 @@
 
 star作者的两个项目，Guns（https://gitee.com/stylefeng/guns）和Roese（https://gitee.com/stylefeng/roses）
 
-加入qq群：254550081（1群） 684163663（2群） 207434260（3群）找群主索要
+加入qq群：254550081（1群） 684163663（2群） 207434260（3群）找群主领取
 
 ## 收费版
 
