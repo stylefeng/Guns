@@ -19,7 +19,6 @@ import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.model.Menu;
 import com.baomidou.mybatisplus.service.IService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -54,7 +53,7 @@ public interface IMenuService extends IService<Menu> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Map<String, Object>> selectMenus(@Param("condition") String condition, @Param("level") String level);
+    List<Map<String, Object>> selectMenus(String condition, String level);
 
     /**
      * 根据条件查询菜单
@@ -62,7 +61,7 @@ public interface IMenuService extends IService<Menu> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Long> getMenuIdsByRoleId(@Param("roleId") Integer roleId);
+    List<Long> getMenuIdsByRoleId(Integer roleId);
 
     /**
      * 获取菜单列表树

@@ -37,7 +37,6 @@
                     toolbar: "#" + this.toolbarId,//顶部工具条
                     striped: true,     			//是否显示行间隔色
                     cache: false,      			//是否使用缓存,默认为true
-                    pagination: true,     		//是否显示分页（*）
                     sortable: true,      		//是否启用排序
                     sortOrder: "desc",     		//排序方式
                     pageNumber: 1,      			//初始化加载第一页，默认第一页

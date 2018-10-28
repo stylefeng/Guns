@@ -18,7 +18,6 @@ package cn.stylefeng.guns.modular.system.service;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.model.Role;
 import com.baomidou.mybatisplus.service.IService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -54,7 +53,7 @@ public interface IRoleService extends IService<Role> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Map<String, Object>> selectRoles(@Param("condition") String condition);
+    List<Map<String, Object>> selectRoles(String condition);
 
     /**
      * 删除某个角色的所有权限
@@ -63,7 +62,7 @@ public interface IRoleService extends IService<Role> {
      * @return
      * @date 2017年2月13日 下午7:57:51
      */
-    int deleteRolesById(@Param("roleId") Integer roleId);
+    int deleteRolesById(Integer roleId);
 
     /**
      * 获取角色列表树
