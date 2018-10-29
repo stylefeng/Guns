@@ -16,14 +16,14 @@ spring:
   profiles:
     active: @spring.active@
   mvc:
-    static-path-pattern: /static/**
+    static-path-pattern: /assets/**
     view:
-      prefix: /WEB-INF/view
+      prefix: /WEB-INF
   devtools:
     restart:
       enabled: false
       additional-paths: src/main/java
-      exclude: static/**,WEB-INF/view/**
+      exclude: assets/**,WEB-INF/**
   servlet:
     multipart:
       max-request-size: 100MB
