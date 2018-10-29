@@ -16,7 +16,6 @@ spring:
   profiles:
     active: @spring.active@
   mvc:
-    static-path-pattern: /assets/**
     view:
       prefix: /WEB-INF
   devtools:
