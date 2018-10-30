@@ -2,33 +2,35 @@
     <div class="scroll-sidebar">
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li>
-                    <a href="/blackboard"><i class="mdi mdi-access-point"></i>通知</a>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-account-circle"></i><span class="hide-menu">系统管理</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="index.html">用户管理</a></li>
-                        <li><a href="index2.html">角色管理</a></li>
-                        <li><a href="index3.html">部门管理</a></li>
-                        <li><a href="index4.html">字典管理</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-apps"></i><span class="hide-menu">后台管理 </span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="index2.html">菜单管理</a></li>
+                @for(title in titles){
+                    @if(tool.isEmpty(title.children)){
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false">日志管理</a>
+                            <a href="${ctxPath}${title.url}"><i class="mdi ${title.icon}"></i>${title.name}</a>
+                        </li>
+                    @}else{
+                        <li>
+                            <a class="has-arrow " href="#" aria-expanded="false">
+                                <i class="mdi ${title.icon}"></i><span class="hide-menu">${title.name} </span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="log1.html">登录日志</a></li>
-                                <li><a href="log2.html">业务日志</a></li>
+                                @for(subTitle in title.children){
+                                    @if(tool.isEmpty(subTitle.children)){
+                                        <li><a href="${ctxPath}${subTitle.url}">${subTitle.name}</a></li>
+                                    @}else{
+                                        <li>
+                                            <a class="has-arrow" href="#" aria-expanded="false">${subTitle.name}</a>
+                                            <ul aria-expanded="false" class="collapse">
+                                                @for(thirdTitle in subTitle.children){
+                                                    <li><a href="${ctxPath}${thirdTitle.url}">${thirdTitle.name}</a></li>
+                                                @}
+                                            </ul>
+                                        </li>
+                                    @}
+                                @}
                             </ul>
                         </li>
-                        <li><a href="index3.html">监控管理</a></li>
-                        <li><a href="index5.html">通知管理</a></li>
-                    </ul>
-                </li>
+                    @}
+                @}
             </ul>
         </nav>
     </div>

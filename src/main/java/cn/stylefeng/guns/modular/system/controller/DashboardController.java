@@ -15,6 +15,10 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.stylefeng.guns.core.common.node.MenuNode;
+import cn.stylefeng.guns.core.util.ApiMenuFilter;
+import cn.stylefeng.guns.modular.system.service.IMenuService;
 import cn.stylefeng.guns.modular.system.service.INoticeService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +42,9 @@ public class DashboardController extends BaseController {
     @Autowired
     private INoticeService noticeService;
 
+    @Autowired
+    private IMenuService menuService;
+
     /**
      * 跳转到黑板
      */
@@ -45,6 +52,17 @@ public class DashboardController extends BaseController {
     public String blackboard(Model model) {
         List<Map<String, Object>> notices = noticeService.list(null);
         model.addAttribute("noticeList", notices);
+
+        //获取菜单列表
+        List<MenuNode> menus = menuService.getMenusByRoleIds(CollectionUtil.newArrayList(1));
+        List<MenuNode> titles = MenuNode.buildTitle(menus);
+        titles = ApiMenuFilter.build(titles);
+
+        model.addAttribute("titles", titles);
+
+        //获取用户头像
+        model.addAttribute("avatar", "12.jpg");
+
         return "/dashboard.html";
     }
 }
