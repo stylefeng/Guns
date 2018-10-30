@@ -1,0 +1,22 @@
+1 dictSelector(字典选择器)
+    此标签是为了方便在前台form表单中使用系统中维护的字典而开发的，具体说明如下：
+1.1 标签样例
+    <#dictSelector id="sex" name ="sex" code="sys_sex" readonly="readonly" label="性别"  underline="true"  value="${user.sex}" />
+1.2 属性说明
+    id: (非必须) 控件的id
+    name: (非必须) 控件的name
+    code:(必须) 字典类型编码,根据code的值去后台查询该类型的字典。
+    type:(非必须) 控件类型，可选项为[select,radio,checkbox],标签会根据填写的类型，生成不同的控件。
+    searchnum：(非必须)下拉框达到多少个，开启搜索框，默认10个,type为select起效。
+    label：(非必须) 字典属性名称
+    width：(非必须) 控件的宽度单位为px，type为select起效。
+    value: (非必须) 控件默认值,多选时值要用,分隔。
+    placeholder：(非必须) 控件提示信息，type为select起效。
+    multiple：(非必须) 是否开启多选,可选值[true,false],默认为false,type为select起效。
+    underline:(非必须) 是否显示分割线,可选值[true,false],默认为false。
+    onchange：(非必须) onchange事件方法名称,会传入更改后的值作为参数,例：onchange="myOnChange" function myOnChange(newVal){}。
+    readonly：(非必须)只读控件,可选值[true,false],默认false
+    disabled：(非必须) 禁用控件,可选值[true,false],默认false
+
+
+
