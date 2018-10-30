@@ -16,16 +16,12 @@
 package cn.stylefeng.guns.modular.system.controller;
 
 import cn.stylefeng.guns.core.common.exception.InvalidKaptchaException;
-import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.log.LogManager;
 import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
-import cn.stylefeng.guns.core.util.ApiMenuFilter;
 import cn.stylefeng.guns.core.util.KaptchaUtil;
-import cn.stylefeng.guns.modular.system.model.User;
-import cn.stylefeng.guns.modular.system.service.IMenuService;
-import cn.stylefeng.guns.modular.system.service.IUserService;
+import cn.stylefeng.guns.modular.system.service.INoticeService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.google.code.kaptcha.Constants;
@@ -38,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import java.util.Map;
 
 import static cn.stylefeng.roses.core.util.HttpContext.getIp;
 
@@ -51,34 +48,24 @@ import static cn.stylefeng.roses.core.util.HttpContext.getIp;
 public class LoginController extends BaseController {
 
     @Autowired
-    private IMenuService menuService;
-
-    @Autowired
-    private IUserService userService;
+    private INoticeService noticeService;
 
     /**
      * 跳转到主页
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        //获取菜单列表
+
         List<Integer> roleList = ShiroKit.getUser().getRoleList();
         if (roleList == null || roleList.size() == 0) {
             ShiroKit.getSubject().logout();
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return "/login.html";
         }
-        List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
-        List<MenuNode> titles = MenuNode.buildTitle(menus);
-        titles = ApiMenuFilter.build(titles);
 
-        model.addAttribute("titles", titles);
-
-        //获取用户头像
-        Integer id = ShiroKit.getUser().getId();
-        User user = userService.selectById(id);
-        String avatar = user.getAvatar();
-        model.addAttribute("avatar", avatar);
+        //主页包含通知列表
+        List<Map<String, Object>> notices = noticeService.list(null);
+        model.addAttribute("noticeList", notices);
 
         return "/index.html";
     }

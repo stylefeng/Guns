@@ -24,20 +24,20 @@
     <div class="login-register" style="background-image:url(../assets/images/login-register.jpg);">
         <div class="login-box card">
             <div class="card-block">
-                <form class="form-horizontal form-material" id="loginform" action="index.html">
+                <form class="form-horizontal form-material" id="loginform" action="${ctxPath}/login" method="post">
                     <h3 class="box-title m-b-30">Guns管理系统</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="账号" autocomplete="off"></div>
+                            <input class="form-control" name="username" type="text" required="" placeholder="账号" autocomplete="off"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="密码" autocomplete="off"></div>
+                            <input class="form-control" name="password" type="password" required="" placeholder="密码" autocomplete="off"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12 p-l-0">
                             <div class="checkbox checkbox-primary p-t-0">
-                                <input id="checkbox-signup" type="checkbox">
+                                <input id="checkbox-signup" type="checkbox" name="remember">
                                 <label for="checkbox-signup"> 记住我 </label>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            <p>没有账号? <a href="register.html" class="text-info m-l-5"><b>点击注册</b></a></p>
+                            <p>没有账号? <a href="#" class="text-info m-l-5"><b>点击注册</b></a></p>
                         </div>
                     </div>
                 </form>

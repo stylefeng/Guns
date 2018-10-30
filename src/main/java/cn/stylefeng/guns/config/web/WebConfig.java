@@ -17,6 +17,7 @@ package cn.stylefeng.guns.config.web;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
 import cn.stylefeng.guns.core.common.controller.GunsErrorView;
+import cn.stylefeng.guns.core.interceptor.AttributeSetInteceptor;
 import cn.stylefeng.guns.core.interceptor.RestApiInteceptor;
 import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.roses.core.xss.XssFilter;
@@ -43,6 +44,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 import java.util.Properties;
+
+import static cn.stylefeng.guns.core.common.constant.Const.NONE_PERMISSION_RES;
 
 /**
  * web 配置类
@@ -73,6 +76,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new RestApiInteceptor()).addPathPatterns("/gunsApi/**");
+        registry.addInterceptor(new AttributeSetInteceptor()).excludePathPatterns(NONE_PERMISSION_RES).addPathPatterns("/**");
     }
 
     /**

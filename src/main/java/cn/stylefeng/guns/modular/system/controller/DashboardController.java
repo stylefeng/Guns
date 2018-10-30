@@ -15,11 +15,6 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.stylefeng.guns.core.common.node.MenuNode;
-import cn.stylefeng.guns.core.listener.ConfigListener;
-import cn.stylefeng.guns.core.util.ApiMenuFilter;
-import cn.stylefeng.guns.modular.system.service.IMenuService;
 import cn.stylefeng.guns.modular.system.service.INoticeService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +32,11 @@ import java.util.Map;
  * @Date 2017年3月4日23:05:54
  */
 @Controller
-@RequestMapping("/blackboard")
+@RequestMapping("/dashboard")
 public class DashboardController extends BaseController {
 
     @Autowired
     private INoticeService noticeService;
-
-    @Autowired
-    private IMenuService menuService;
 
     /**
      * 跳转到黑板
@@ -53,19 +45,6 @@ public class DashboardController extends BaseController {
     public String blackboard(Model model) {
         List<Map<String, Object>> notices = noticeService.list(null);
         model.addAttribute("noticeList", notices);
-
-        //获取菜单列表
-        List<MenuNode> tempMenus = menuService.getMenusByRoleIds(CollectionUtil.newArrayList(1));
-        List<MenuNode> menus = MenuNode.buildTitle(tempMenus);
-        menus = ApiMenuFilter.build(menus);
-
-        model.addAttribute("menus", menus);
-
-        //获取用户头像
-        model.addAttribute("name", "stylefeng");
-        model.addAttribute("avatar", ConfigListener.getConf().get("contextPath") + "/assets/images/users/1.jpg");
-        model.addAttribute("email", "sn93@qq.com");
-
         return "/dashboard.html";
     }
 }
