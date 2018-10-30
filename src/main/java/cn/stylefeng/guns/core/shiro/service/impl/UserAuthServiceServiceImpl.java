@@ -18,11 +18,13 @@ package cn.stylefeng.guns.core.shiro.service.impl;
 import cn.hutool.core.convert.Convert;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.shiro.service.UserAuthService;
 import cn.stylefeng.guns.modular.system.dao.MenuMapper;
 import cn.stylefeng.guns.modular.system.dao.UserMapper;
 import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -48,6 +50,9 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
     @Autowired
     private MenuMapper menuMapper;
 
+    @Autowired
+    private IUserService userService;
+
     public static UserAuthService me() {
         return SpringContextHolder.getBean(UserAuthService.class);
     }
@@ -70,23 +75,24 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
 
     @Override
     public ShiroUser shiroUser(User user) {
-        ShiroUser shiroUser = new ShiroUser();
 
-        shiroUser.setId(user.getId());
-        shiroUser.setAccount(user.getAccount());
-        shiroUser.setDeptId(user.getDeptid());
-        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
-        shiroUser.setName(user.getName());
+        ShiroUser shiroUser = ShiroKit.createShiroUser(user);
 
+        //用户角色数组
         Integer[] roleArray = Convert.toIntArray(user.getRoleid());
-        List<Integer> roleList = new ArrayList<Integer>();
-        List<String> roleNameList = new ArrayList<String>();
+
+        //获取用户角色列表
+        List<Integer> roleList = new ArrayList<>();
+        List<String> roleNameList = new ArrayList<>();
         for (int roleId : roleArray) {
             roleList.add(roleId);
             roleNameList.add(ConstantFactory.me().getSingleRoleName(roleId));
         }
         shiroUser.setRoleList(roleList);
         shiroUser.setRoleNames(roleNameList);
+
+        //获取用户拥有的菜单
+        shiroUser.setMenus(userService.getUserMenuNodes(roleList));
 
         return shiroUser;
     }

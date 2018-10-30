@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.service;
 
+import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.service.IService;
@@ -56,5 +57,10 @@ public interface IUserService extends IService<User> {
      * 通过账号获取用户
      */
     User getByAccount(String account);
+
+    /**
+     * 获取用户菜单列表
+     */
+    List<MenuNode> getUserMenuNodes(List<Integer> roleList);
 
 }

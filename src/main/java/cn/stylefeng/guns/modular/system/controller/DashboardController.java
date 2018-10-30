@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.core.common.node.MenuNode;
+import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.guns.core.util.ApiMenuFilter;
 import cn.stylefeng.guns.modular.system.service.IMenuService;
 import cn.stylefeng.guns.modular.system.service.INoticeService;
@@ -62,7 +63,7 @@ public class DashboardController extends BaseController {
 
         //获取用户头像
         model.addAttribute("name", "stylefeng");
-        model.addAttribute("avatar", "/assets/images/users/1.jpg");
+        model.addAttribute("avatar", ConfigListener.getConf().get("contextPath") + "/assets/images/users/1.jpg");
         model.addAttribute("email", "sn93@qq.com");
 
         return "/dashboard.html";

@@ -17,6 +17,7 @@ package cn.stylefeng.guns.core.shiro;
 
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
@@ -277,6 +278,27 @@ public class ShiroKit {
             }
         }
         return false;
+    }
+
+    /**
+     * 通过用户表的信息创建一个shiroUser对象
+     */
+    public static ShiroUser createShiroUser(User user) {
+        ShiroUser shiroUser = new ShiroUser();
+
+        if (user == null) {
+            return shiroUser;
+        }
+
+        shiroUser.setId(user.getId());
+        shiroUser.setAccount(user.getAccount());
+        shiroUser.setDeptId(user.getDeptid());
+        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
+        shiroUser.setName(user.getName());
+        shiroUser.setEmail(user.getEmail());
+        shiroUser.setAvatar(user.getAvatar());
+
+        return shiroUser;
     }
 
 }

@@ -15,13 +15,18 @@
  */
 package cn.stylefeng.guns.modular.system.service.impl;
 
+import cn.stylefeng.guns.core.common.node.MenuNode;
+import cn.stylefeng.guns.core.util.ApiMenuFilter;
 import cn.stylefeng.guns.modular.system.dao.UserMapper;
 import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.service.IMenuService;
 import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +40,9 @@ import java.util.Map;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+
+    @Autowired
+    private IMenuService menuService;
 
     @Override
     public int setStatus(Integer userId, int status) {
@@ -59,5 +67,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public User getByAccount(String account) {
         return this.baseMapper.getByAccount(account);
+    }
+
+    @Override
+    public List<MenuNode> getUserMenuNodes(List<Integer> roleList) {
+        if (roleList == null || roleList.size() == 0) {
+            return new ArrayList<>();
+        } else {
+            List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
+            List<MenuNode> titles = MenuNode.buildTitle(menus);
+            return ApiMenuFilter.build(titles);
+        }
+
     }
 }
