@@ -1,4 +1,8 @@
-.condition-button{
+.condition-button {
     height: 38px;
     margin-left: 10px;
+}
+
+.condition-button-width {
+    width: 85px;
 }
