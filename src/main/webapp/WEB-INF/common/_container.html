@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+@/**
+@ * 本页面所用的模板变量
+@ *
+@ * otherCss        :  引用这个layout的其他加载css
+@ * otherJs         :  引用这个layout的其他加载js
+@ * title           :  页面的标题
+@ * layoutContent   :  主页面的html内容
+@ **/
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>${title!"Guns管理系统"}</title>
+    <meta name="description" content="Guns管理系统">
+    <meta name="author" content="stylefeng">
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="${ctxPath}/assets/favicon.png">
+
+    <!-- ============================================================== -->
+    <!-- css资源文件 -->
+    <!-- ============================================================== -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="${ctxPath}/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- toast提示框 CSS -->
+    <link href="${ctxPath}/assets/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${ctxPath}/assets/static/css/style.css" rel="stylesheet">
+
+    <!-- You can change the theme colors from here -->
+    <link href="${ctxPath}/assets/static/css/colors/blue.css" id="theme" rel="stylesheet">
+
+    <!--其他css-->
+    ${otherCss!}
+
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+
+<!-- ============================================================== -->
+<!-- Preloader加载层 - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+
+    <!-- 顶部导航栏 - style you can find in pages.scss -->
+    @include("/common/_top_header.html"){}
+
+    <!-- 左侧菜单列表 - style you can find in sidebar.scss  -->
+    @include("/common/_sidebar.html"){}
+
+    <!-- 主页正式内容开始 -->
+    @include("/common/_content.html",{layoutContent:layoutContent}){}
+
+</div>
+<!-- jquery -->
+<script src="${ctxPath}/assets/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="${ctxPath}/assets/plugins/bootstrap/js/tether.min.js"></script>
+<script src="${ctxPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- slimscrollbar scrollbar JavaScript（滚动条插件） -->
+<script src="${ctxPath}/assets/static/js/jquery.slimscroll.js"></script>
+
+<!--Wave Effects（点击按钮的波浪效果） -->
+<script src="${ctxPath}/assets/static/js/waves.js"></script>
+
+<!--Menu sidebar （左侧菜单切换插件） -->
+<script src="${ctxPath}/assets/static/js/sidebarmenu.js"></script>
+
+<!--stickey kit（页面头部工具栏固定） -->
+<script src="${ctxPath}/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+
+<!--Guns JavaScript -->
+<script src="${ctxPath}/assets/static/js/Feng.js"></script>
+
+<!--Custom JavaScript -->
+<script src="${ctxPath}/assets/static/js/custom.min.js"></script>
+
+<!-- 右侧主题设置  -->
+<script src="${ctxPath}/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+<!-- 加入contextPath属性和session超时的配置  -->
+<script type="text/javascript">
+    Feng.addCtx("${ctxPath}");
+    Feng.sessionTimeoutRegistry();
+</script>
+
+<!--其他js-->
+${otherJs!}
+
+</body>
+
+</html>
