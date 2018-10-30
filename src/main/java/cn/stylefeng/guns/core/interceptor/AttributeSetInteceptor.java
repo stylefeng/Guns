@@ -15,9 +15,9 @@
  */
 package cn.stylefeng.guns.core.interceptor;
 
-import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.util.DefaultImages;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,7 +57,7 @@ public class AttributeSetInteceptor extends HandlerInterceptorAdapter {
             modelAndView.addObject("name", user.getName());
 
             if (ToolUtil.isEmpty(user.getAvatar())) {
-                modelAndView.addObject("avatar", ConfigListener.getConf().get("contextPath") + "/assets/images/users/1.jpg");
+                modelAndView.addObject("avatar", DefaultImages.userAvatar());
             } else {
                 modelAndView.addObject("avatar", user.getAvatar());
             }

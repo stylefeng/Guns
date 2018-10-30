@@ -21,7 +21,8 @@
 </div>
 
 <section id="wrapper">
-    <div class="login-register" style="background-image:url(../assets/images/login-register.jpg);">
+    @var bgImg = images.loginBg();
+    <div class="login-register" style="background-image:url(${bgImg});">
         <div class="login-box card">
             <div class="card-block">
                 <form class="form-horizontal form-material" id="loginform" action="${ctxPath}/login" method="post">
@@ -54,7 +55,7 @@
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            <p>没有账号? <a href="#" class="text-info m-l-5"><b>点击注册</b></a></p>
+                        <p>没有账号? <a href="#" class="text-info m-l-5"><b>点击注册</b></a></p>
                         </div>
                     </div>
                 </form>
