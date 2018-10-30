@@ -54,14 +54,16 @@ public class DashboardController extends BaseController {
         model.addAttribute("noticeList", notices);
 
         //获取菜单列表
-        List<MenuNode> menus = menuService.getMenusByRoleIds(CollectionUtil.newArrayList(1));
-        List<MenuNode> titles = MenuNode.buildTitle(menus);
-        titles = ApiMenuFilter.build(titles);
+        List<MenuNode> tempMenus = menuService.getMenusByRoleIds(CollectionUtil.newArrayList(1));
+        List<MenuNode> menus = MenuNode.buildTitle(tempMenus);
+        menus = ApiMenuFilter.build(menus);
 
-        model.addAttribute("titles", titles);
+        model.addAttribute("menus", menus);
 
         //获取用户头像
-        model.addAttribute("avatar", "12.jpg");
+        model.addAttribute("name", "stylefeng");
+        model.addAttribute("avatar", "/assets/images/users/1.jpg");
+        model.addAttribute("email", "sn93@qq.com");
 
         return "/dashboard.html";
     }

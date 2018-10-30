@@ -4,10 +4,17 @@
 @/**
 @ * 本页面所用的模板变量
 @ *
-@ * otherCss        :  引用这个layout的其他加载css
-@ * otherJs         :  引用这个layout的其他加载js
-@ * title           :  页面的标题
-@ * layoutContent   :  主页面的html内容
+@ * otherCss       :  引用这个layout的其他加载css
+@ * otherJs        :  引用这个layout的其他加载js
+@ * title          :  页面的标题
+@ * layoutContent  :  主页面的html内容
+@ *
+@ *      下面的需要从后台返回
+@ *
+@ * menus          :  菜单列表的集合
+@ * name           :  姓名
+@ * avatar         :  头像
+@ * email          :  邮箱
 @ **/
 <head>
     <meta charset="utf-8">
@@ -67,7 +74,7 @@
     @include("/common/_sidebar.html"){}
 
     <!-- 主页正式内容开始 -->
-    @include("/common/_content.html",{layoutContent:layoutContent}){}
+    @include("/common/_content.html"){}
 
 </div>
 <!-- jquery -->

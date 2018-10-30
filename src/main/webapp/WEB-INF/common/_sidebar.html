@@ -2,7 +2,7 @@
     <div class="scroll-sidebar">
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                @for(title in titles){
+                @for(title in menus){
                     @if(tool.isEmpty(title.children)){
                         <li>
                             <a href="${ctxPath}${title.url}"><i class="mdi ${title.icon}"></i>${title.name}</a>
