@@ -14,7 +14,7 @@
         this.paginationType = "server";			//默认分页方式是服务器分页,可选项"client"
         this.toolbarId = bstableId + "Toolbar";
         this.columns = columns;
-        this.height = 665;						//默认表格高度665
+        this.height = $(window).height() - 320;
         this.data = {};
         this.queryParams = {}; // 向后台传递的自定义参数
     };
@@ -40,8 +40,8 @@
                     sortable: true,      		//是否启用排序
                     sortOrder: "desc",     		//排序方式
                     pageNumber: 1,      			//初始化加载第一页，默认第一页
-                    pageSize: 14,      			//每页的记录行数（*）
-                    pageList: [14, 50, 100],  	//可供选择的每页的行数（*）
+                    pageSize: 20,      			//每页的记录行数（*）
+                    pageList: [20, 50, 100],  	//可供选择的每页的行数（*）
                     queryParamsType: 'limit', 	//默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
                     queryParams: function (param) {
                         return $.extend(me.queryParams, param);
@@ -49,8 +49,6 @@
                     sidePagination: this.paginationType,   //分页方式：client客户端分页，server服务端分页（*）
                     search: false,      		//是否显示表格搜索，此搜索是客户端搜索，不会进服务端
                     strictSearch: true,			//设置为 true启用 全匹配搜索，否则为模糊搜索
-                    showColumns: true,     		//是否显示所有的列
-                    showRefresh: true,     		//是否显示刷新按钮
                     minimumCountColumns: 2,    	//最少允许的列数
                     clickToSelect: true,    	//是否启用点击选中行
                     searchOnEnterKey: true,		//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法

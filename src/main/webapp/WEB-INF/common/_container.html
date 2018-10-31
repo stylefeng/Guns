@@ -7,6 +7,8 @@
 @ * plugins        :  需要用到的插件，目前有["table"]
 @ * title          :  页面的标题
 @ * layoutContent  :  主页面的html内容
+@ * js             :  业务所需要的js，为数组
+@ * css            :  业务所需要的css，为数组
 @ *
 @ *      下面的需要从后台返回
 @ *
@@ -46,13 +48,22 @@
     <!-- You can change the theme colors from here -->
     <link href="${ctxPath}/assets/common/static/css/colors/blue.css" id="theme" rel="stylesheet">
 
-    <!--其他css-->
+    <!--其他插件css-->
     @if(isNotEmpty(plugins)){
         @if(array.contain(plugins,"table")){
         <link href="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
         @}
     @}
 
+    <!--其他业务用的css-->
+    @if(isNotEmpty(css)){
+        @for(item in css){
+            @if(strutil.startWith(item,"/")){
+                @item = item + ctxPath;
+            @}
+            <link href="${item}" rel="stylesheet" type="text/css" />
+        @}
+    @}
 
 </head>
 
@@ -116,11 +127,22 @@
     Feng.sessionTimeoutRegistry();
 </script>
 
-<!--其他js-->
+<!--其他插件js-->
 @if(isNotEmpty(plugins)){
     @if(array.contain(plugins,"table")){
     <script src="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/assets/common/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
     <script src="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table-object.js"></script>
+    @}
+@}
+
+<!--其他业务用的js-->
+@if(isNotEmpty(js)){
+    @for(item in js){
+        @if(strutil.startWith(item,"/")){
+            @item = item + ctxPath;
+        @}
+        <script src="${item}"></script>
     @}
 @}
 
