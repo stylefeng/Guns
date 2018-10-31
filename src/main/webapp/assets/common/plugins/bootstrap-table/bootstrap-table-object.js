@@ -14,7 +14,7 @@
         this.paginationType = "server";			//默认分页方式是服务器分页,可选项"client"
         this.toolbarId = bstableId + "Toolbar";
         this.columns = columns;
-        this.height = $(window).height() - 320;
+        this.height = $(window).height() - 278;
         this.data = {};
         this.queryParams = {}; // 向后台传递的自定义参数
     };
