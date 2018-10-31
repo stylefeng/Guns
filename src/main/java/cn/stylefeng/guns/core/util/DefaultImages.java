@@ -17,7 +17,7 @@ public class DefaultImages {
      * @Date 2018/10/30 5:51 PM
      */
     public static String loginBg() {
-        return ConfigListener.getConf().get("contextPath") + "/assets/images/login-register.jpg";
+        return ConfigListener.getConf().get("contextPath") + "/assets/common/images/login-register.jpg";
     }
 
     /**
@@ -27,7 +27,7 @@ public class DefaultImages {
      * @Date 2018/10/30 5:51 PM
      */
     public static String userAvatar() {
-        return ConfigListener.getConf().get("contextPath") + "/assets/images/users/1.jpg";
+        return ConfigListener.getConf().get("contextPath") + "/assets/common/images/users/1.jpg";
     }
 
     /**
@@ -37,6 +37,6 @@ public class DefaultImages {
      * @Date 2018/10/30 5:51 PM
      */
     public static String error404() {
-        return ConfigListener.getConf().get("contextPath") + "/assets/images/error-bg.jpg";
+        return ConfigListener.getConf().get("contextPath") + "/assets/common/images/error-bg.jpg";
     }
 }

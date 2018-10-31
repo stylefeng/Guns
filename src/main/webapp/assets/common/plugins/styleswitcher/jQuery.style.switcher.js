@@ -12,12 +12,12 @@ $(document).ready(function () {
         e.preventDefault();
         var currentStyle = $(this).attr('data-theme');
         store('theme', currentStyle);
-        $('#theme').attr({href: Feng.ctxPath + '/assets/static/css/colors/' + currentStyle + '.css'})
+        $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentStyle + '.css'})
     });
 
     var currentTheme = get('theme');
     if (currentTheme) {
-        $('#theme').attr({href: Feng.ctxPath + '/assets/static/css/colors/' + currentTheme + '.css'});
+        $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentTheme + '.css'});
     }
     // color selector
     $('#themecolors').on('click', 'a', function () {
@@ -36,12 +36,12 @@ $(document).ready(function () {
         e.preventDefault();
         var currentStyle = $(this).attr('data-theme');
         store('theme', currentStyle);
-        $('#theme').attr({href: Feng.ctxPath + '/assets/static/css/colors/' + currentStyle + '.css'})
+        $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentStyle + '.css'})
     });
 
     var currentTheme = get('theme');
     if (currentTheme) {
-        $('#theme').attr({href: Feng.ctxPath + '/assets/static/css/colors/' + currentTheme + '.css'});
+        $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentTheme + '.css'});
     }
     // color selector
     $('#themecolors').on('click', 'a', function () {
