@@ -35,12 +35,3 @@
 .fixed-table-pagination .btn{
     border-color: #DDDDDD;
 }
-
-.dropdown-menu > li > a {
-    border-radius: 3px;
-    color: inherit;
-    line-height: 25px;
-    margin: 4px;
-    text-align: left;
-    font-weight: normal;
-}
