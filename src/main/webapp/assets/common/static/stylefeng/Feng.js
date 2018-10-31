@@ -158,39 +158,5 @@ var Feng = {
                 return 0;
                 break;
         }
-    },
-    newCrontab: function (href, menuName) {
-        var dataUrl = href;
-        var needCreateCrontab = true;
-
-        // 轮询已有的标签，判断是否已经存在标签
-        parent.$('.J_menuTab').each(function () {
-            if ($(this).data('id') == dataUrl) {
-                if (!$(this).hasClass('active')) {
-                    $(this).addClass('active').siblings('.J_menuTab').removeClass('active');
-                    parent.MyCrontab.scrollToTab(this);
-                    parent.MyCrontab.$('.J_mainContent .J_iframe').each(function () {
-                        if ($(this).data('id') == dataUrl) {
-                            $(this).show().siblings('.J_iframe').hide();
-                            $(this).attr('src', $(this).attr('src'));
-                            return false;
-                        }
-                    });
-                }
-                needCreateCrontab = false;
-                return false;
-            }
-        });
-
-        //创建标签
-        if (needCreateCrontab) {
-            var tabLink = '<a href="javascript:;" class="active J_menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-times-circle"></i></a>';
-            parent.$('.J_menuTab').removeClass('active');
-            parent.$('.J_menuTabs .page-tabs-content').append(tabLink);
-
-            var iframeContent = '<iframe class="J_iframe" name="iframe' + Feng.randomNum(100, 999) + '" width="100%" height="100%" src="' + dataUrl + '" frameborder="0" data-id="' + dataUrl + '" seamless></iframe>';
-            parent.$('.J_mainContent').find('iframe.J_iframe').hide().parents('.J_mainContent').append(iframeContent);
-            parent.MyCrontab.scrollToTab($('.J_menuTab.active'));
-        }
     }
 };
