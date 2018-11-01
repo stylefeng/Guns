@@ -56,6 +56,9 @@
         @if(array.contain(plugins,"ztree")){
         <link href="${ctxPath}/assets/common/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
         @}
+        @if(array.contain(plugins,"sweet-alert")){
+        <link href="${ctxPath}/assets/common/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+        @}
     @}
 
     <!--其他业务用的css-->
@@ -115,6 +118,9 @@
 <!--stickey kit（页面头部工具栏固定） -->
 <script src="${ctxPath}/assets/common/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
 
+<!--toast（提示框） -->
+<script src="${ctxPath}/assets/common/plugins/toast-master/js/jquery.toast.js"></script>
+
 <!--Guns JavaScript -->
 <script src="${ctxPath}/assets/common/static/stylefeng/Feng.js"></script>
 <script src="${ctxPath}/assets/common/static/stylefeng/ajax-object.js"></script>
@@ -142,6 +148,12 @@
     <script src="${ctxPath}/assets/common/plugins/ztree/jquery.ztree.all.min.js"></script>
     <script src="${ctxPath}/assets/common/plugins/ztree/ztree-object.js"></script>
     @}
+    @if(array.contain(plugins,"layer")){
+    <script src="${ctxPath}/assets/common/plugins/layer/layer.js"></script>
+    @}
+    @if(array.contain(plugins,"sweet-alert")){
+    <script src="${ctxPath}/assets/common/plugins/sweetalert/sweetalert.min.js"></script>
+    @}
 @}
 
 <!--其他业务用的js-->
@@ -153,7 +165,6 @@
         <script src="${item}"></script>
     @}
 @}
-
 
 </body>
 

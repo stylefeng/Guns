@@ -1,40 +1,75 @@
 var Feng = {
     ctxPath: "",
     addCtx: function (ctx) {
-        if (this.ctxPath == "") {
+        if (this.ctxPath === "") {
             this.ctxPath = ctx;
         }
     },
     confirm: function (tip, ensure) {//询问框
-        parent.layer.confirm(tip, {
-            btn: ['确定', '取消']
-        }, function (index) {
+        swal({
+            title: "请确认",
+            text: tip,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#009efb",
+            confirmButtonText: "确认执行",
+            cancelButtonText: "取消",
+            closeOnConfirm: false
+        }, function () {
             ensure();
-            parent.layer.close(index);
-        }, function (index) {
-            parent.layer.close(index);
+            swal.close();
         });
     },
     log: function (info) {
         console.log(info);
     },
     alert: function (info, iconIndex) {
-        parent.layer.msg(info, {
-            icon: iconIndex
+        $.toast({
+            heading: '提示',
+            text: info,
+            position: 'bottom-right',
+            loaderBg: '#ff6849',
+            icon: 'info',
+            hideAfter: 2000,
+            stack: 6
         });
     },
     info: function (info) {
-        Feng.alert(info, 0);
+        $.toast({
+            heading: '提示',
+            text: info,
+            position: 'bottom-right',
+            loaderBg: '#ff6849',
+            icon: 'info',
+            hideAfter: 2000,
+            stack: 6
+        });
     },
     success: function (info) {
-        Feng.alert(info, 1);
+        $.toast({
+            heading: '成功',
+            text: info,
+            position: 'bottom-right',
+            loaderBg: '#ff6849',
+            icon: 'success',
+            hideAfter: 2000,
+            stack: 6
+        });
     },
     error: function (info) {
-        Feng.alert(info, 2);
+        $.toast({
+            heading: '错误',
+            text: info,
+            position: 'bottom-right',
+            loaderBg: '#ff6849',
+            icon: 'error',
+            hideAfter: 2000,
+            stack: 6
+        });
     },
     infoDetail: function (title, info) {
         var display = "";
-        if (typeof info == "string") {
+        if (typeof info === "string") {
             display = info;
         } else {
             if (info instanceof Array) {
@@ -53,26 +88,15 @@ var Feng = {
             content: '<div style="padding: 20px;">' + display + '</div>'
         });
     },
-    writeObj: function (obj) {
-        var description = "";
-        for (var i in obj) {
-            var property = obj[i];
-            description += i + " = " + property + ",";
-        }
-        layer.alert(description, {
-            skin: 'layui-layer-molv',
-            closeBtn: 0
-        });
-    },
     showInputTree: function (inputId, inputTreeContentId, leftOffset, rightOffset) {
         var onBodyDown = function (event) {
-            if (!(event.target.id == "menuBtn" || event.target.id == inputTreeContentId || $(event.target).parents("#" + inputTreeContentId).length > 0)) {
+            if (!(event.target.id === "menuBtn" || event.target.id === inputTreeContentId || $(event.target).parents("#" + inputTreeContentId).length > 0)) {
                 $("#" + inputTreeContentId).fadeOut("fast");
                 $("body").unbind("mousedown", onBodyDown);// mousedown当鼠标按下就可以触发，不用弹起
             }
         };
 
-        if (leftOffset == undefined && rightOffset == undefined) {
+        if (leftOffset === undefined && rightOffset === undefined) {
             var inputDiv = $("#" + inputId);
             var inputDivOffset = $("#" + inputId).offset();
             $("#" + inputTreeContentId).css({
@@ -119,7 +143,7 @@ var Feng = {
             complete: function (XMLHttpRequest, textStatus) {
                 //通过XMLHttpRequest取得响应头，sessionstatus，
                 var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
-                if (sessionstatus == "timeout") {
+                if (sessionstatus === "timeout") {
                     //如果超时就处理 ，指定要跳转的页面
                     window.location = Feng.ctxPath + "/global/sessionError";
                 }
