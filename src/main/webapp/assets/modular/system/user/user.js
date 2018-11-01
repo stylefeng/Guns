@@ -185,8 +185,7 @@ MgrUser.search = function () {
 
     queryData['deptid'] = MgrUser.deptid;
     queryData['name'] = $("#name").val();
-    queryData['beginTime'] = $("#beginTime").val();
-    queryData['endTime'] = $("#endTime").val();
+    queryData['timeLimit'] = $("#timeLimit").val();
 
     MgrUser.table.refresh({query: queryData});
 }
@@ -204,4 +203,11 @@ $(function () {
     var ztree = new $ZTree("deptTree", "/dept/tree");
     ztree.bindOnClick(MgrUser.onClickDept);
     ztree.init();
+
+    laydate.render({
+        elem: '#timeLimit',
+        range: true,
+        theme: '#009efb',
+        max: Feng.currentDate()
+    });
 });

@@ -1,4 +1,4 @@
-@layout("/common/_container.html",{plugins:["table","ztree","layer","sweet-alert"],js:["/assets/modular/system/user/user.js"]}){
+@layout("/common/_container.html",{plugins:["table","ztree","layer","sweet-alert","laydate"],js:["/assets/modular/system/user/user.js"]}){
 <div class="row">
     <div class="col-lg-2 col-sm-3 p-r-0">
         <div class="card card-outline-info m-b-10">
@@ -24,13 +24,13 @@
                                     <div class="col-md-3">
                                         <div class="input-group condition-button">
                                             <span class="input-group-addon">用户名称</span>
-                                            <input type="text" class="form-control" id="name" placeholder="账号/姓名/手机号">
+                                            <input type="text" class="form-control" id="name" placeholder="账号/姓名/手机号" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="input-group condition-button">
                                             <span class="input-group-addon">注册日期</span>
-                                            <input type="text" class="form-control" id="timeLimit" placeholder="注册日期">
+                                            <input type="text" class="form-control" id="timeLimit" placeholder="注册日期" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
