@@ -53,6 +53,9 @@
         @if(array.contain(plugins,"table")){
         <link href="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
         @}
+        @if(array.contain(plugins,"ztree")){
+        <link href="${ctxPath}/assets/common/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+        @}
     @}
 
     <!--其他业务用的css-->
@@ -114,6 +117,7 @@
 
 <!--Guns JavaScript -->
 <script src="${ctxPath}/assets/common/static/stylefeng/Feng.js"></script>
+<script src="${ctxPath}/assets/common/static/stylefeng/ajax-object.js"></script>
 
 <!--Custom JavaScript -->
 <script src="${ctxPath}/assets/common/static/js/custom.min.js"></script>
@@ -133,6 +137,10 @@
     <script src="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${ctxPath}/assets/common/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
     <script src="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table-object.js"></script>
+    @}
+    @if(array.contain(plugins,"ztree")){
+    <script src="${ctxPath}/assets/common/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/assets/common/plugins/ztree/ztree-object.js"></script>
     @}
 @}
 
