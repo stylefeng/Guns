@@ -35,7 +35,7 @@ public class DictTest extends BaseJunit {
 
     @Test
     public void editTest() {
-        dictService.editDict(16, "tes", "测试", "备注", "1:测试1;2:测试2");
+        dictService.editDict(16, "tes", "测试", "备注", "1:测试1:1;2:测试2:2");
     }
 
     @Test
