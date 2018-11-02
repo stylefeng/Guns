@@ -211,6 +211,8 @@ function onBodyDown(event) {
 
 $(function () {
 
+    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
+
     //初始化性别选项
     $("#sex").val($("#sexValue").val());
 
