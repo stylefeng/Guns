@@ -1,84 +1,78 @@
 @layout("/common/_dialog.html",{plugins:["laydate"],js:["/assets/modular/system/user/user_info.js"]}){
-<div class="row">
-	<div class="col-6">
-		<div class="card">
-			<div class="card-block">
-				<form class="" novalidate>
-					<div class="form-group">
-						<h5>账号 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>姓名 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>性别 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>出生日期 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>电话 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<div class="col-6">
-		<div class="card">
-			<div class="card-block">
-				<form class="" novalidate>
-					<div class="form-group">
-						<h5>邮箱 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>密码 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>确认密码 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>部门 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="form-group">
-						<h5>邮箱 <span class="text-danger">*</span></h5>
-						<div class="controls">
-							<input type="text" name="text" class="form-control" required data-validation-required-message="This field is required"> </div>
-						<div class="form-control-feedback"><small>Add <code>required</code> attribute to field for required validation.</small></div>
-					</div>
-					<div class="text-xs-right">
-						<button type="submit" class="btn btn-info">Submit</button>
-						<button type="reset" class="btn btn-inverse">Cancel</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <form novalidate>
+                <div class="form-group">
+                    <h5>账号 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input type="text" name="account" id="account" class="form-control" required data-validation-required-message="此项是必填项">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>密码 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input type="password" name="password" id="password" class="form-control" required data-validation-required-message="此项是必填项">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>重复密码 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input type="password" name="password2" data-validation-match-match="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>姓名 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input type="text" name="name" id="name" class="form-control" required data-validation-required-message="此项是必填项">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>邮箱</h5>
+                    <div class="controls">
+                        <input type="email" name="email" id="email" class="form-control">
+                    </div>
+                </div>
+                <div class="text-xs-right">
+                    <button type="submit" class="btn btn-info">Submit</button>
+                    <button type="reset" class="btn btn-inverse">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <form novalidate>
+                <div class="form-group">
+                    <h5>性别</h5>
+                    <div class="controls">
+                        <input type="email" name="sex" id="sex" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>出生日期</h5>
+                    <div class="controls">
+                        <input type="email" name="birthday" id="birthday" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>部门 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input type="email" name="deptid" id="deptid" class="form-control" required data-validation-required-message="此项是必填项">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>电话</h5>
+                    <div class="controls">
+                        <input type="email" name="phone" id="phone" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>角色</h5>
+                    <div class="controls">
+                        <input disabled type="text" name="xxxxx" class="form-control" value="请在分配角色功能里配置">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @}

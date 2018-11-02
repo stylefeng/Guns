@@ -49,7 +49,7 @@ MgrUser.openAddMgr = function () {
     var index = layer.open({
         type: 2,
         title: '添加管理员',
-        area: ['800px', '560px'], //宽高
+        area: ['800px', '580px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/mgr/user_add'
@@ -66,7 +66,7 @@ MgrUser.openChangeUser = function () {
         var index = layer.open({
             type: 2,
             title: '编辑管理员',
-            area: ['800px', '450px'], //宽高
+            area: ['800px', '490px'], //宽高
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/mgr/user_edit/' + this.seItem.id
