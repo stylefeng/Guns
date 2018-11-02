@@ -9,13 +9,6 @@
 @ * layoutContent  :  主页面的html内容
 @ * js             :  业务所需要的js，为数组
 @ * css            :  业务所需要的css，为数组
-@ *
-@ *      下面的需要从后台返回
-@ *
-@ * menus          :  菜单列表的集合
-@ * name           :  姓名
-@ * avatar         :  头像
-@ * email          :  邮箱
 @ **/
 <head>
     <meta charset="utf-8">
@@ -88,16 +81,7 @@
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <div id="main-wrapper">
-
-    <!-- 顶部导航栏 - style you can find in pages.scss -->
-    @include("/common/_top_header.html"){}
-
-    <!-- 左侧菜单列表 - style you can find in sidebar.scss  -->
-    @include("/common/_sidebar.html"){}
-
-    <!-- 主页正式内容开始 -->
-    @include("/common/_content.html"){}
-
+    ${layoutContent}
 </div>
 <!-- jquery -->
 <script src="${ctxPath}/assets/common/plugins/jquery/jquery.min.js"></script>

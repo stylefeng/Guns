@@ -272,6 +272,10 @@ function onBodyDown(event) {
 }
 
 $(function () {
+    laydate.render({
+        elem: '#birthday'
+    });
+
     Feng.initValidator("userInfoForm", UserInfoDlg.validateFields);
 
     //初始化性别选项
