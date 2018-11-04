@@ -2,7 +2,7 @@
  * 系统管理--用户管理的单例对象
  */
 var MgrUser = {
-    id: "managerTable",//表格id
+    id: "managerTable", //表格id
     seItem: null,		//选中的条目
     table: null,
     layerIndex: -1,
@@ -66,7 +66,7 @@ MgrUser.openChangeUser = function () {
         var index = layer.open({
             type: 2,
             title: '编辑管理员',
-            area: ['800px', '490px'], //宽高
+            area: ['800px', '500px'], //宽高
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/mgr/user_edit/' + this.seItem.id
@@ -188,7 +188,7 @@ MgrUser.search = function () {
     queryData['timeLimit'] = $("#timeLimit").val();
 
     MgrUser.table.refresh({query: queryData});
-}
+};
 
 MgrUser.onClickDept = function (e, treeId, treeNode) {
     MgrUser.deptid = treeNode.id;

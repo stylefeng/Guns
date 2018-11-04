@@ -2,60 +2,19 @@
  * 用户详情对话框（可用于添加和修改对话框）
  */
 var UserInfoDlg = {
-    userInfoData: {}
-};
-
-/**
- * 清除数据
- */
-UserInfoDlg.clearData = function () {
-    this.userInfoData = {};
-};
-
-/**
- * 设置对话框中的数据
- *
- * @param key 数据的名称
- * @param val 数据的具体值
- */
-UserInfoDlg.set = function (key, value) {
-    if(typeof value == "undefined"){
-        if(typeof $("#" + key).val() =="undefined"){
-            var str="";
-            var ids="";
-            $("input[name='"+key+"']:checkbox").each(function(){
-                if(true == $(this).is(':checked')){
-                    str+=$(this).val()+",";
-                }
-            });
-            if(str){
-                if(str.substr(str.length-1)== ','){
-                    ids = str.substr(0,str.length-1);
-                }
-            }else{
-                $("input[name='"+key+"']:radio").each(function(){
-                    if(true == $(this).is(':checked')){
-                        ids=$(this).val()
-                    }
-                });
-            }
-            this.userInfoData[key] = ids;
-        }else{
-            this.userInfoData[key]= $("#" + key).val();
-        }
+    data: {
+        id: "",
+        account: "",
+        sex: "",
+        password: "",
+        rePassword: "",
+        avatar: "",
+        email: "",
+        name: "",
+        birthday: "",
+        deptid: "",
+        phone: ""
     }
-
-    return this;
-};
-
-/**
- * 设置对话框中的数据
- *
- * @param key 数据的名称
- * @param val 数据的具体值
- */
-UserInfoDlg.get = function (key) {
-    return $("#" + key).val();
 };
 
 /**
@@ -119,23 +78,27 @@ UserInfoDlg.hideDeptSelectTree = function () {
 };
 
 /**
- * 收集数据
+ * 验证表单
  */
-UserInfoDlg.collectData = function () {
-    this.set('id').set('account').set('sex').set('password').set('avatar')
-        .set('email').set('name').set('birthday').set('rePassword').set('deptid').set('phone');
-};
+UserInfoDlg.validateForm = function () {
 
-/**
- * 验证两个密码是否一致
- */
-UserInfoDlg.validatePwd = function () {
-    var password = this.get("password");
-    var rePassword = this.get("rePassword");
-    if (password === rePassword) {
+    var data = UserInfoDlg.data;
+
+    if (data.account && data.password && data.name && data.deptid) {
         return true;
-    } else {
-        return false;
+    }
+
+    if (!data.account) {
+        return "请输入账号";
+    }
+    if (!(data.password === data.rePassword)) {
+        return "两次密码输入不一致";
+    }
+    if (!data.name) {
+        return "请输入姓名";
+    }
+    if (!data.deptid) {
+        return "请选择部门";
     }
 };
 
@@ -143,24 +106,14 @@ UserInfoDlg.validatePwd = function () {
  * 提交添加用户
  */
 UserInfoDlg.addSubmit = function () {
-
-    this.clearData();
-    this.collectData();
-
-    if (!this.validatePwd()) {
-        Feng.error("两次密码输入不一致");
-        return;
-    }
-
-    //提交信息
     var ajax = new $ax(Feng.ctxPath + "/mgr/add", function (data) {
-        Feng.success("添加成功!");
+        window.parent.Feng.success("添加成功!");
         window.parent.MgrUser.table.refresh();
         UserInfoDlg.close();
     }, function (data) {
-        Feng.error("添加失败!" + data.responseJSON.message + "!");
+        window.parent.Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.userInfoData);
+    ajax.set(this.data);
     ajax.start();
 };
 
@@ -182,7 +135,7 @@ UserInfoDlg.editSubmit = function () {
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.userInfoData);
+    ajax.set(this.data);
     ajax.start();
 };
 
@@ -204,26 +157,37 @@ UserInfoDlg.chPwd = function () {
 
 function onBodyDown(event) {
     if (!(event.target.id == "menuBtn" || event.target.id == "menuContent" || $(
-            event.target).parents("#menuContent").length > 0)) {
+        event.target).parents("#menuContent").length > 0)) {
         UserInfoDlg.hideDeptSelectTree();
     }
 }
 
 $(function () {
 
-    $("input,select,textarea").not("[type=submit]").jqBootstrapValidation();
+    UserInfoDlg.app = new Vue({
+        el: '#userAddForm',
+        data: UserInfoDlg.data,
+        methods: {
+            submitForm: function (e) {
+                var result = UserInfoDlg.validateForm();
+                if (result === true) {
+                    UserInfoDlg.addSubmit();
+                } else {
+                    Feng.alert(result);
+                    e.preventDefault();
+                }
+            }
+        }
+    });
 
-    //初始化性别选项
-    $("#sex").val($("#sexValue").val());
-
-    var ztree = new $ZTree("treeDemo", "/dept/tree");
-    ztree.bindOnClick(UserInfoDlg.onClickDept);
-    ztree.init();
-    instance = ztree;
+    // var ztree = new $ZTree("treeDemo", "/dept/tree");
+    // ztree.bindOnClick(UserInfoDlg.onClickDept);
+    // ztree.init();
+    // instance = ztree;
 
     // 初始化头像上传
-    var avatarUp = new $WebUpload("avatar");
-    avatarUp.setUploadBarId("progressBar");
-    avatarUp.init();
+    // var avatarUp = new $WebUpload("avatar");
+    // avatarUp.setUploadBarId("progressBar");
+    // avatarUp.init();
 
 });

@@ -1,78 +1,85 @@
-@layout("/common/_dialog.html",{plugins:["laydate","validation"],js:["/assets/modular/system/user/user_info.js"]}){
+@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert"],js:["/assets/modular/system/user/user_info.js"]}){
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-6">
-            <form novalidate>
+    <form id="userAddForm" \@submit="submitForm">
+        <div class="row">
+            <div class="col-6">
                 <div class="form-group">
                     <h5>账号 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input type="text" name="account" id="account" class="form-control" required data-validation-required-message="此项是必填项">
+                        <input v-model="sex" type="hidden" value="1" class="form-control">
+                        <input v-model="account" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>密码 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input type="password" name="password" id="password" class="form-control" required data-validation-required-message="此项是必填项">
+                        <input v-model="password" type="password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>重复密码 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input type="password" name="password2" data-validation-match-match="password" class="form-control" required>
+                        <input v-model="rePassword" type="password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>姓名 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input type="text" name="name" id="name" class="form-control" required data-validation-required-message="此项是必填项">
+                        <input v-model="name" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>邮箱</h5>
                     <div class="controls">
-                        <input type="email" name="email" id="email" class="form-control">
+                        <input v-model="email" type="email" class="form-control">
                     </div>
                 </div>
-                <div class="text-xs-right">
-                    <button type="submit" class="btn btn-info">Submit</button>
-                    <button type="reset" class="btn btn-inverse">Cancel</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-6">
-            <form novalidate>
+            </div>
+            <div class="col-6">
                 <div class="form-group">
                     <h5>性别</h5>
                     <div class="controls">
-                        <input type="email" name="sex" id="sex" class="form-control">
+                        <select v-model="sex" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>出生日期</h5>
                     <div class="controls">
-                        <input type="email" name="birthday" id="birthday" class="form-control">
+                        <input v-model="birthday" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>部门 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input type="email" name="deptid" id="deptid" class="form-control" required data-validation-required-message="此项是必填项">
+                        <input v-model="deptid" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>电话</h5>
                     <div class="controls">
-                        <input type="email" name="phone" id="phone" class="form-control">
+                        <input v-model="phone" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>角色</h5>
                     <div class="controls">
-                        <input disabled type="text" name="xxxxx" class="form-control" value="请在分配角色功能里配置">
+                        <input disabled type="text" class="form-control" value="请在分配角色功能里配置">
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="text-xs-right">
+                    <button class="btn btn-info">submit</button>
+                    <button class="btn btn-inverse" onclick="UserInfoDlg.close()">取消</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 @}

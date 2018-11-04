@@ -23,16 +23,11 @@ var Feng = {
     log: function (info) {
         console.log(info);
     },
-    alert: function (info, iconIndex) {
-        $.toast({
-            heading: '提示',
-            text: info,
-            position: 'bottom-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 2000,
-            stack: 6
-        });
+    alert: function (info) {
+        swal(info);
+    },
+    alert: function (title, info) {
+        swal(title, info);
     },
     info: function (info) {
         $.toast({
@@ -208,5 +203,9 @@ var Feng = {
 
         // 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
         return date.getFullYear() + seperator + nowMonth + seperator + strDate;
+    },
+    testEmail: function (email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
 };

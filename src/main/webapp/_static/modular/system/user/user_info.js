@@ -2,7 +2,7 @@
  * 用户详情对话框（可用于添加和修改对话框）
  */
 var UserInfoDlg = {
-    userInfoData: {},
+    data: {},
     validateFields: {
         account: {
             validators: {
@@ -54,7 +54,7 @@ var UserInfoDlg = {
  * 清除数据
  */
 UserInfoDlg.clearData = function () {
-    this.userInfoData = {};
+    this.data = {};
 };
 
 /**
@@ -84,9 +84,9 @@ UserInfoDlg.set = function (key, value) {
                     }
                 });
             }
-            this.userInfoData[key] = ids;
+            this.data[key] = ids;
         }else{
-            this.userInfoData[key]= $("#" + key).val();
+            this.data[key]= $("#" + key).val();
         }
     }
 
@@ -218,7 +218,7 @@ UserInfoDlg.addSubmit = function () {
     }, function (data) {
         Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.userInfoData);
+    ajax.set(this.data);
     ajax.start();
 };
 
@@ -244,7 +244,7 @@ UserInfoDlg.editSubmit = function () {
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.userInfoData);
+    ajax.set(this.data);
     ajax.start();
 };
 
