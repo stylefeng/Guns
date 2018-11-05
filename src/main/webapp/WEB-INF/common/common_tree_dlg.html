@@ -71,26 +71,34 @@
 
 <script type="text/javascript">
 
-    var ZTreeDlg = {};
+    var ZTreeDlg = {
+        index: parent.layer.getFrameIndex(window.name)
+    };
 
     ZTreeDlg.onClickItem = function (e, treeId, treeNode) {
         ${formName} = ZTreeDlg.instance.getSelectedVal();
         ${formId} = treeNode.id;
     };
 
+    ZTreeDlg.onDBClickItem = function (e, treeId, treeNode) {
+        ${formName} = ZTreeDlg.instance.getSelectedVal();
+        ${formId} = treeNode.id;
+        parent.layer.close(ZTreeDlg.index);
+    };
+
     $(function () {
 
-        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
         $("#closeButton").bind("click", function () {
-            parent.layer.close(index);
+            parent.layer.close(ZTreeDlg.index);
         });
 
         $("#saveButton").bind("click", function () {
-            parent.layer.close(index);
+            parent.layer.close(ZTreeDlg.index);
         });
 
         var ztree = new $ZTree("zTree", "${treeUrl}");
         ztree.bindOnClick(ZTreeDlg.onClickItem);
+        ztree.bindOnDblClick(ZTreeDlg.onDBClickItem);
         ztree.init();
         ZTreeDlg.instance = ztree;
     });
