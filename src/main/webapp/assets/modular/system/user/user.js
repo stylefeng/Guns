@@ -59,7 +59,6 @@ MgrUser.openAddMgr = function () {
 
 /**
  * 点击修改按钮时
- * @param userId 管理员id
  */
 MgrUser.openChangeUser = function () {
     if (this.check()) {
@@ -77,7 +76,6 @@ MgrUser.openChangeUser = function () {
 
 /**
  * 点击角色分配
- * @param
  */
 MgrUser.roleAssign = function () {
     if (this.check()) {
@@ -135,7 +133,6 @@ MgrUser.freezeAccount = function () {
 
 /**
  * 解除冻结用户账户
- * @param userId
  */
 MgrUser.unfreeze = function () {
     if (this.check()) {
@@ -149,7 +146,7 @@ MgrUser.unfreeze = function () {
         ajax.set("userId", userId);
         ajax.start();
     }
-}
+};
 
 /**
  * 重置密码
@@ -178,7 +175,7 @@ MgrUser.resetSearch = function () {
     $("#endTime").val("");
 
     MgrUser.search();
-}
+};
 
 MgrUser.search = function () {
     var queryData = {};

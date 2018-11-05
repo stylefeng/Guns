@@ -13,6 +13,7 @@ var UserInfoDlg = {
         name: "",
         birthday: "",
         deptid: "",
+        detpName: "",
         phone: ""
     }
 };
@@ -22,59 +23,6 @@ var UserInfoDlg = {
  */
 UserInfoDlg.close = function () {
     parent.layer.close(window.parent.MgrUser.layerIndex);
-};
-
-/**
- * 点击部门input框时
- *
- * @param e
- * @param treeId
- * @param treeNode
- * @returns
- */
-UserInfoDlg.onClickDept = function (e, treeId, treeNode) {
-    $("#citySel").attr("value", instance.getSelectedVal());
-    $("#deptid").attr("value", treeNode.id);
-};
-
-/**
- * 显示部门选择的树
- *
- * @returns
- */
-UserInfoDlg.showDeptSelectTree = function () {
-    var cityObj = $("#citySel");
-    var cityOffset = $("#citySel").offset();
-    $("#menuContent").css({
-        left: cityOffset.left + "px",
-        top: cityOffset.top + cityObj.outerHeight() + "px"
-    }).slideDown("fast");
-
-    $("body").bind("mousedown", onBodyDown);
-};
-
-/**
- * 显示用户详情部门选择的树
- *
- * @returns
- */
-UserInfoDlg.showInfoDeptSelectTree = function () {
-    var cityObj = $("#citySel");
-    var cityPosition = $("#citySel").position();
-    $("#menuContent").css({
-        left: cityPosition.left + "px",
-        top: cityPosition.top + cityObj.outerHeight() + "px"
-    }).slideDown("fast");
-
-    $("body").bind("mousedown", onBodyDown);
-};
-
-/**
- * 隐藏部门选择的树
- */
-UserInfoDlg.hideDeptSelectTree = function () {
-    $("#menuContent").fadeOut("fast");
-    $("body").unbind("mousedown", onBodyDown);// mousedown当鼠标按下就可以触发，不用弹起
 };
 
 /**
@@ -121,14 +69,9 @@ UserInfoDlg.addSubmit = function () {
  * 提交修改
  */
 UserInfoDlg.editSubmit = function () {
-
-    this.clearData();
-    this.collectData();
-
-    //提交信息
     var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
         Feng.success("修改成功!");
-        if (window.parent.MgrUser != undefined) {
+        if (window.parent.MgrUser !== undefined) {
             window.parent.MgrUser.table.refresh();
             UserInfoDlg.close();
         }
@@ -152,15 +95,7 @@ UserInfoDlg.chPwd = function () {
     ajax.set("newPwd");
     ajax.set("rePwd");
     ajax.start();
-
 };
-
-function onBodyDown(event) {
-    if (!(event.target.id == "menuBtn" || event.target.id == "menuContent" || $(
-        event.target).parents("#menuContent").length > 0)) {
-        UserInfoDlg.hideDeptSelectTree();
-    }
-}
 
 $(function () {
 
@@ -179,15 +114,5 @@ $(function () {
             }
         }
     });
-
-    // var ztree = new $ZTree("treeDemo", "/dept/tree");
-    // ztree.bindOnClick(UserInfoDlg.onClickDept);
-    // ztree.init();
-    // instance = ztree;
-
-    // 初始化头像上传
-    // var avatarUp = new $WebUpload("avatar");
-    // avatarUp.setUploadBarId("progressBar");
-    // avatarUp.init();
 
 });
