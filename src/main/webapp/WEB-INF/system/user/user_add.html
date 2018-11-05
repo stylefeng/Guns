@@ -1,4 +1,4 @@
-@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert"],js:["/assets/modular/system/user/user_info.js"]}){
+@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert","layer"],js:["/assets/modular/system/user/user_info.js"]}){
 <div class="container-fluid">
     <form id="userAddForm" \@submit="submitForm">
         <div class="row">
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <h5>部门 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input v-model="detpName" id="detpName" type="text" class="form-control">
+                        <input v-model="deptName" id="detpName" \@click="showDeptSelectTree" type="text" class="form-control" autocomplete="off">
                         <input v-model="deptid" type="hidden" class="form-control">
                     </div>
                 </div>

@@ -1,16 +1,13 @@
-@layout("/common/_container.html"){
-
-
+@layout("/common/_tree_dialog.html"){
 <script type="text/javascript">
     $(function () {
 
         var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-
-        $("#btn_close").bind("click", function () {
+        $("#closeButton").bind("click", function () {
             parent.layer.close(index);
         });
 
-        $("#btn_save").bind("click", function () {
+        $("#saveButton").bind("click", function () {
             var ids = Feng.zTreeCheckedNodes("zTree");
             var ajax = new $ax(Feng.ctxPath + "/mgr/setRole", function (data) {
                 Feng.success("分配角色成功!");
@@ -42,38 +39,9 @@
                 }
             }
         };
-
         var ztree = new $ZTree("zTree", "/role/roleTreeListByUserId/${userId}");
         ztree.setSettings(setting);
         ztree.init();
     }
 </script>
-
-
-<!-- 配置grid -->
-<div class="container"
-     style="padding:  0px 10px !important; margin-top: -10px; text-align: center !important;">
-    <div class="row">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>${userAccount!}</h5>
-            </div>
-            <div class="ibox-content">
-                <ul id="zTree" class="ztree"></ul>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <button class="btn btn-sm btn-info" type="button" id="btn_save">
-                <i class="ace-icon fa fa-check bigger-110"></i> 保存
-            </button>
-            &nbsp;
-            <button class="btn btn-sm btn-danger" type="button" id="btn_close">
-                <i class="ace-icon fa fa-close bigger-110"></i> 关闭
-            </button>
-        </div>
-    </div>
-</div>
-
 @}

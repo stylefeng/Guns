@@ -13,7 +13,7 @@ var UserInfoDlg = {
         name: "",
         birthday: "",
         deptid: "",
-        detpName: "",
+        deptName: "",
         phone: ""
     }
 };
@@ -111,6 +111,19 @@ $(function () {
                     Feng.alert(result);
                     e.preventDefault();
                 }
+            },
+            showDeptSelectTree: function () {
+
+                var formName = encodeURIComponent("parent.UserInfoDlg.app.deptName");
+                var formId = encodeURIComponent("parent.UserInfoDlg.app.deptid");
+                var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
+
+                layer.open({
+                    type: 2,
+                    title: '部门选择',
+                    area: ['300px', '400px'],
+                    content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
+                });
             }
         }
     });
