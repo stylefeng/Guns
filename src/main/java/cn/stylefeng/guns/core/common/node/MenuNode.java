@@ -17,6 +17,7 @@ package cn.stylefeng.guns.core.common.node;
 
 import cn.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -24,7 +25,7 @@ import java.util.*;
  * @Description 菜单的节点
  * @date 2016年12月6日 上午11:34:17
  */
-public class MenuNode implements Comparable {
+public class MenuNode implements Comparable, Serializable {
 
     /**
      * 节点id
@@ -245,7 +246,7 @@ public class MenuNode implements Comparable {
         if (n < 0) {
             return menuList;
         } else {
-            return mergeList(menuList.subList(0, n + 1), menuList.get(n).getLevels(), currentMap);
+            return mergeList(new ArrayList<>(menuList.subList(0, n + 1)), menuList.get(n).getLevels(), currentMap);
         }
     }
 
