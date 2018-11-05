@@ -6,6 +6,10 @@
     width: 85px;
 }
 
+.normal-button-width {
+    width: 65px;
+}
+
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
