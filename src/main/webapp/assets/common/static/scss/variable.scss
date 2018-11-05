@@ -1,16 +1,11 @@
-// Variables
-@import 'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900';
-
-$bodyfont:'Rubik', sans-serif;
-$headingfont:'Rubik', sans-serif;
-
+$bodyfont: "Arial", "Microsoft YaHei", "SimHei", "SimSun", sans-serif;
+$headingfont: "Arial", "Microsoft YaHei", "SimHei", "SimSun", sans-serif;
 
 /*Theme Colors*/
-
 $topbar: #fff;
 $sidebar: #fff;
 $sidebar-white: #ffffff;
-$sidebar-alt:#e8eff0;
+$sidebar-alt: #e8eff0;
 $bodycolor: #fff;
 $headingtext: #2c2b2e;
 $bodytext: #54667a;
@@ -40,9 +35,7 @@ $light-warning: #fff8ec;
 $light-primary: #f1effd;
 $light-info: #cfecfe;
 $light-inverse: #f6f6f6;
-$light-megna: #e0f2f4; 
-
-
+$light-megna: #e0f2f4;
 
 $danger-dark: #e6294b;
 $success-dark: #4ab657;
@@ -51,8 +44,7 @@ $primary-dark: #6352ce;
 $info-dark: #028ee1;
 $red-dark: #d61f1f;
 $inverse-dark: #232a37;
-$dark-transparent:rgba(0, 0, 0, 0.05);
-
+$dark-transparent: rgba(0, 0, 0, 0.05);
 
 /*Normal Color*/
 $white: #ffffff;
@@ -66,22 +58,22 @@ $megna: #01c0c8;
 $rgt: right;
 $lft: left;
 $border: rgba(120, 130, 140, 0.13);
-$table-border:#f3f1f1;
+$table-border: #f3f1f1;
 $dark-text: #848a96;
 $radius: 4px;
 $form-brd: #d9d9d9;
 /*Preloader*/
-.preloader{
-    width: 100%;
-    height: 100%;
-    top:0px;
-    position: fixed;
-    z-index: 99999;
-    background: #fff;
-    .cssload-speeding-wheel{
-        position: absolute;
-        top: calc(50% - 3.5px);
-        left: calc(50% - 3.5px);
-    }
+.preloader {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: fixed;
+  z-index: 99999;
+  background: #fff;
+  .cssload-speeding-wheel {
+    position: absolute;
+    top: calc(50% - 3.5px);
+    left: calc(50% - 3.5px);
+  }
 }
 
