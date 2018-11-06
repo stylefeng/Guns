@@ -1,11 +1,11 @@
 @/**
 @ * 本页面所用的模板变量
 @ *
-@ * name      :    用户姓名
-@ * email     :    邮箱
-@ * roleName  :    角色名称
-@ * phone     :    电话
-@ * deptName  :    部门名称
+@ * name      :   用户姓名
+@ * email     :   邮箱
+@ * roleName  :   角色名称
+@ * phone     :   电话
+@ * deptName  :   部门名称
 @ **/
 @layout("/common/_container.html",{plugins:["cropper"],js:["/assets/modular/system/user/user_view.js"]}){
 <div class="row">
@@ -16,8 +16,8 @@
                     <h4 class="card-title m-t-10">${name}</h4>
                     <h6 class="card-subtitle">${roleName!} ${deptName!}</h6>
                     <div class="row text-center justify-content-md-center">
-                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <span class="font-medium">254</span></a></div>
+                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <span class="font-medium">54</span></a></div>
                     </div>
                 </div>
             </div>
@@ -45,67 +45,85 @@
     </div>
     <div class="col-lg-8 col-xlg-9 col-md-7">
         <div class="card">
-            <!-- Nav tabs -->
+            <!-- 导航卡标签 -->
             <ul class="nav nav-tabs profile-tab" role="tablist">
                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#personal" role="tab">个人信息</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#avatar" role="tab">修改头像</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#loginLog" role="tab">登录日志</a></li>
             </ul>
-            <!-- Tab panes -->
+            <!-- 导航卡容器 -->
             <div class="tab-content">
+
+                @
+                @   个人信息
+                @
                 <div class="tab-pane active" id="personal" role="tabpanel">
                     <div class="card-block">
                         <form class="form-horizontal form-material">
                             <div class="form-group">
-                                <label class="col-md-12">Full Name</label>
+                                <label class="col-md-12">账号</label>
                                 <div class="col-md-12">
-                                    <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
+                                    <input v-model="account" type="text" placeholder="请输入账号" class="form-control form-control-line">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="example-email" class="col-md-12">Email</label>
+                                <label class="col-md-12">性别</label>
                                 <div class="col-md-12">
-                                    <input type="email" placeholder="johnathan\@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-12">Password</label>
-                                <div class="col-md-12">
-                                    <input type="password" value="password" class="form-control form-control-line">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-12">Phone No</label>
-                                <div class="col-md-12">
-                                    <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-12">Message</label>
-                                <div class="col-md-12">
-                                    <textarea rows="5" class="form-control form-control-line"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-12">Select Country</label>
-                                <div class="col-sm-12">
-                                    <select class="form-control form-control-line">
-                                        <option>London</option>
-                                        <option>India</option>
-                                        <option>Usa</option>
-                                        <option>Canada</option>
-                                        <option>Thailand</option>
+                                    <select v-model="sex" class="form-control">
+                                        <option value="">请选择</option>
+                                        <option value="1">男</option>
+                                        <option value="2">女</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-12">邮箱</label>
+                                <div class="col-md-12">
+                                    <input v-model="email" type="email" placeholder="请输入邮箱" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">姓名</label>
+                                <div class="col-md-12">
+                                    <input v-model="name" type="text" placeholder="请输入姓名" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">出生日期</label>
+                                <div class="col-md-12">
+                                    <input v-model="birthday" type="text" placeholder="请输入出生日期" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">电话</label>
+                                <div class="col-md-12">
+                                    <input v-model="phone" type="text" placeholder="请输入电话" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">角色名称</label>
+                                <div class="col-md-12">
+                                    <input v-model="roleName" type="text" disabled class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">部门</label>
+                                <div class="col-md-12">
+                                    <input v-model="deptid" type="text" placeholder="请输入部门" class="form-control form-control-line">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-success">Update Profile</button>
+                                    <button class="btn btn-success waves-effect">Update Profile</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+
+                @
+                @   编辑头像
+                @
                 <div class="tab-pane" id="avatar" role="tabpanel">
                     <div class="card-block" style="height: 500px;">
                         <div>
@@ -113,6 +131,10 @@
                         </div>
                     </div>
                 </div>
+
+                @
+                @   登录日志
+                @
                 <div class="tab-pane" id="loginLog" role="tabpanel">
                     <div class="card-block">
                         <div class="profiletimeline">
