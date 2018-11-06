@@ -54,13 +54,13 @@
                                     <div class="u-img"><img src="${avatar}" alt="user"></div>
                                     <div class="u-text">
                                         <h4>${name!}</h4>
-                                        <p class="text-muted">${email!}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">个人信息</a></div>
+                                        <p class="text-muted">${email!}</p><a href="${ctxPath}/mgr/user_info" class="btn btn-rounded btn-danger btn-sm">个人信息</a></div>
                                 </div>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-user"></i> 编辑资料</a></li>
+                            <li><a href="${ctxPath}/mgr/user_info"><i class="ti-user"></i> 编辑资料</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="ti-settings"></i> 修改密码</a></li>
+                            <li><a href="${ctxPath}/mgr/user_chpwd"><i class="ti-settings"></i> 修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#"><i class="fa fa-power-off"></i> 退出</a></li>
                         </ul>

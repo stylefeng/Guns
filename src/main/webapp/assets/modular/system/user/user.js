@@ -13,7 +13,7 @@ var MgrUser = {
  * 初始化表格的列
  */
 MgrUser.initColumn = function () {
-    var columns = [
+    return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true},
@@ -25,7 +25,6 @@ MgrUser.initColumn = function () {
         {title: '电话', field: 'phone', align: 'center', valign: 'middle', sortable: true},
         {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true},
         {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}];
-    return columns;
 };
 
 /**
