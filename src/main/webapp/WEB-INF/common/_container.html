@@ -59,6 +59,9 @@
         @if(array.contain(plugins,"sweet-alert")){
         <link href="${ctxPath}/assets/common/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
         @}
+        @if(array.contain(plugins,"cropper")){
+        <link href="${ctxPath}/assets/common/plugins/cropper/cropper.min.css" rel="stylesheet" type="text/css" />
+        @}
     @}
 
     <!--其他业务用的css-->
@@ -159,6 +162,9 @@
     @}
     @if(array.contain(plugins,"laydate")){
     <script src="${ctxPath}/assets/common/plugins/laydate/laydate.js"></script>
+    @}
+    @if(array.contain(plugins,"cropper")){
+    <script src="${ctxPath}/assets/common/plugins/cropper/cropper.min.js"></script>
     @}
 @}
 

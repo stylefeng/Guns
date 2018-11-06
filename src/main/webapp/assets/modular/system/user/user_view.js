@@ -1,7 +1,7 @@
 /**
  * 用户详情对话框（可用于添加和修改对话框）
  */
-var UserInfoDlg = {
+var UserViewPage = {
     data: {
         id: "",
         account: "",
@@ -21,16 +21,16 @@ var UserInfoDlg = {
 /**
  * 关闭此对话框
  */
-UserInfoDlg.close = function () {
-    parent.layer.close(window.parent.MgrUser.layerIndex);
+UserViewPage.close = function () {
+
 };
 
 /**
  * 验证表单
  */
-UserInfoDlg.validateForm = function () {
+UserViewPage.validateForm = function () {
 
-    var data = UserInfoDlg.data;
+    var data = UserViewPage.data;
 
     if (data.account && data.password && data.name && data.deptid) {
         return true;
@@ -50,86 +50,19 @@ UserInfoDlg.validateForm = function () {
     }
 };
 
-/**
- * 提交添加用户
- */
-UserInfoDlg.addSubmit = function () {
-    var ajax = new $ax(Feng.ctxPath + "/mgr/add", function (data) {
-        window.parent.Feng.success("添加成功!");
-        window.parent.MgrUser.table.refresh();
-        UserInfoDlg.close();
-    }, function (data) {
-        window.parent.Feng.error("添加失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.data);
-    ajax.start();
-};
-
-/**
- * 提交修改
- */
-UserInfoDlg.editSubmit = function () {
-    var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
-        Feng.success("修改成功!");
-        if (window.parent.MgrUser !== undefined) {
-            window.parent.MgrUser.table.refresh();
-            UserInfoDlg.close();
-        }
-    }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.data);
-    ajax.start();
-};
-
-/**
- * 修改密码
- */
-UserInfoDlg.chPwd = function () {
-    var ajax = new $ax(Feng.ctxPath + "/mgr/changePwd", function (data) {
-        Feng.success("修改成功!");
-    }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set("oldPwd");
-    ajax.set("newPwd");
-    ajax.set("rePwd");
-    ajax.start();
-};
-
 $(function () {
 
-    UserInfoDlg.app = new Vue({
-        el: '#userForm',
-        data: UserInfoDlg.data,
-        methods: {
-            submitForm: function (e) {
-                var result = UserInfoDlg.validateForm();
-                if (result === true) {
-                    UserInfoDlg.addSubmit();
-                } else {
-                    Feng.alert(result);
-                    e.preventDefault();
-                }
-            },
-            showDeptSelectTree: function () {
-
-                var formName = encodeURIComponent("parent.UserInfoDlg.app.deptName");
-                var formId = encodeURIComponent("parent.UserInfoDlg.app.deptid");
-                var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
-
-                layer.open({
-                    type: 2,
-                    title: '部门选择',
-                    area: ['300px', '400px'],
-                    content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
-                });
-            }
-        }
+    var image = document.getElementById('cropperImage');
+    var cropper = new Cropper(image, {
+        aspectRatio: 16 / 9,
+        crop(event) {
+            console.log(event.detail.x);
+            console.log(event.detail.y);
+            console.log(event.detail.width);
+            console.log(event.detail.height);
+            console.log(event.detail.rotate);
+            console.log(event.detail.scaleX);
+            console.log(event.detail.scaleY);
+        },
     });
-
-    laydate.render({
-        elem: '#birthday'
-    });
-
 });
