@@ -72,12 +72,14 @@
 <script type="text/javascript">
 
     var ZTreeDlg = {
-        index: parent.layer.getFrameIndex(window.name)
+        index: parent.layer.getFrameIndex(window.name),
+        tempName: "",
+        tempId: ""
     };
 
     ZTreeDlg.onClickItem = function (e, treeId, treeNode) {
-        ${formName} = ZTreeDlg.instance.getSelectedVal();
-        ${formId} = treeNode.id;
+        ZTreeDlg.tempName = ZTreeDlg.instance.getSelectedVal();
+        ZTreeDlg.tempId = treeNode.id;
     };
 
     ZTreeDlg.onDBClickItem = function (e, treeId, treeNode) {
@@ -88,11 +90,13 @@
 
     $(function () {
 
-        $("#closeButton").bind("click", function () {
+        $("#saveButton").bind("click", function () {
+            ${formName} = ZTreeDlg.tempName;
+            ${formId} = ZTreeDlg.tempId;
             parent.layer.close(ZTreeDlg.index);
         });
 
-        $("#saveButton").bind("click", function () {
+        $("#closeButton").bind("click", function () {
             parent.layer.close(ZTreeDlg.index);
         });
 

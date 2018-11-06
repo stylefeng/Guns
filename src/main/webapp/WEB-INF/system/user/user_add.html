@@ -1,6 +1,6 @@
-@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert","layer"],js:["/assets/modular/system/user/user_info.js"]}){
+@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert","layer"],js:["/assets/modular/system/user/user_add.js"]}){
 <div class="container-fluid">
-    <form id="userAddForm" \@submit="submitForm">
+    <form id="userForm" \@submit="submitForm">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -36,6 +36,13 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
+                    <h5>出生日期</h5>
+                    <div class="controls">
+                        <input v-model="birthday" id="birthday" type="hidden" class="form-control" autocomplete="off">
+                        <input id="dateSelect" type="text" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group">
                     <h5>性别</h5>
                     <div class="controls">
                         <select v-model="sex" class="form-control">
@@ -43,12 +50,6 @@
                             <option value="1">男</option>
                             <option value="2">女</option>
                         </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h5>出生日期</h5>
-                    <div class="controls">
-                        <input v-model="birthday" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,8 +76,8 @@
         <div class="row">
             <div class="col-6">
                 <div class="text-xs-right">
-                    <button class="btn btn-info normal-button-width">提交</button>
-                    <button class="btn btn-inverse normal-button-width m-l-10" onclick="UserInfoDlg.close()">取消</button>
+                    <button class="btn btn-info normal-button-width" \@click="ensure">提交</button>
+                    <button class="btn btn-inverse normal-button-width m-l-10" \@click="close">取消</button>
                 </div>
             </div>
         </div>

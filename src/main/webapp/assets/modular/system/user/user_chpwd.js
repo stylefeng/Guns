@@ -51,38 +51,6 @@ UserInfoDlg.validateForm = function () {
 };
 
 /**
- * 提交添加用户
- */
-UserInfoDlg.addSubmit = function () {
-    var ajax = new $ax(Feng.ctxPath + "/mgr/add", function (data) {
-        window.parent.Feng.success("添加成功!");
-        window.parent.MgrUser.table.refresh();
-        UserInfoDlg.close();
-    }, function (data) {
-        window.parent.Feng.error("添加失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.data);
-    ajax.start();
-};
-
-/**
- * 提交修改
- */
-UserInfoDlg.editSubmit = function () {
-    var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
-        Feng.success("修改成功!");
-        if (window.parent.MgrUser !== undefined) {
-            window.parent.MgrUser.table.refresh();
-            UserInfoDlg.close();
-        }
-    }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.data);
-    ajax.start();
-};
-
-/**
  * 修改密码
  */
 UserInfoDlg.chPwd = function () {
@@ -100,7 +68,7 @@ UserInfoDlg.chPwd = function () {
 $(function () {
 
     UserInfoDlg.app = new Vue({
-        el: '#userAddForm',
+        el: '#userForm',
         data: UserInfoDlg.data,
         methods: {
             submitForm: function (e) {

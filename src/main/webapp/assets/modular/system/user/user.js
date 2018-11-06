@@ -33,7 +33,7 @@ MgrUser.initColumn = function () {
  */
 MgrUser.check = function () {
     var selected = $('#' + this.id).bootstrapTable('getSelections');
-    if (selected.length == 0) {
+    if (selected.length === 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
@@ -46,7 +46,7 @@ MgrUser.check = function () {
  * 点击添加管理员
  */
 MgrUser.openAddMgr = function () {
-    var index = layer.open({
+    this.layerIndex = layer.open({
         type: 2,
         title: '添加管理员',
         area: ['800px', '580px'], //宽高
@@ -54,7 +54,6 @@ MgrUser.openAddMgr = function () {
         maxmin: true,
         content: Feng.ctxPath + '/mgr/user_add'
     });
-    this.layerIndex = index;
 };
 
 /**
@@ -62,15 +61,14 @@ MgrUser.openAddMgr = function () {
  */
 MgrUser.openChangeUser = function () {
     if (this.check()) {
-        var index = layer.open({
+        this.layerIndex = layer.open({
             type: 2,
             title: '编辑管理员',
             area: ['800px', '500px'], //宽高
-            fix: false, //不固定
+            fix: false,
             maxmin: true,
-            content: Feng.ctxPath + '/mgr/user_edit/' + this.seItem.id
+            content: Feng.ctxPath + '/mgr/user_edit?userId=' + this.seItem.id
         });
-        this.layerIndex = index;
     }
 };
 
@@ -79,15 +77,14 @@ MgrUser.openChangeUser = function () {
  */
 MgrUser.roleAssign = function () {
     if (this.check()) {
-        var index = layer.open({
+        this.layerIndex = layer.open({
             type: 2,
             title: '角色分配',
             area: ['300px', '400px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/mgr/role_assign/' + this.seItem.id
+            content: Feng.ctxPath + '/mgr/role_assign?userId=' + this.seItem.id
         });
-        this.layerIndex = index;
     }
 };
 

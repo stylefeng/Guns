@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.config.properties.GunsProperties;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
@@ -35,6 +36,7 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +46,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.naming.NoPermissionException;
 import javax.validation.Valid;
 import java.io.File;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -89,10 +90,9 @@ public class UserMgrController extends BaseController {
     /**
      * 跳转到角色分配页面
      */
-    //@RequiresPermissions("/mgr/role_assign")  //利用shiro自带的权限检查
     @Permission
-    @RequestMapping("/role_assign/{userId}")
-    public String roleAssign(@PathVariable Integer userId, Model model) {
+    @RequestMapping("/role_assign")
+    public String roleAssign(@RequestParam Integer userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -106,16 +106,12 @@ public class UserMgrController extends BaseController {
      * 跳转到编辑管理员页面
      */
     @Permission
-    @RequestMapping("/user_edit/{userId}")
-    public String userEdit(@PathVariable Integer userId, Model model) {
+    @RequestMapping("/user_edit")
+    public String userEdit(@RequestParam Integer userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        assertAuth(userId);
         User user = this.userService.selectById(userId);
-        model.addAttribute(user);
-        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
-        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
         LogObjectHolder.me().set(user);
         return PREFIX + "user_edit.html";
     }
@@ -146,6 +142,27 @@ public class UserMgrController extends BaseController {
     }
 
     /**
+     * 获取用户详情
+     */
+    @RequestMapping("/getUserInfo")
+    @ResponseBody
+    public Object getUserInfo(@RequestParam Integer userId) {
+        if (ToolUtil.isEmpty(userId)) {
+            throw new RequestEmptyException();
+        }
+        assertAuth(userId);
+        User user = this.userService.selectById(userId);
+        Map<String, Object> map = UserFactory.removeUnSafeFields(user);
+
+        HashMap<Object, Object> hashMap = CollectionUtil.newHashMap();
+        hashMap.putAll(map);
+        hashMap.put("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
+        hashMap.put("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+
+        return ResponseData.success(hashMap);
+    }
+
+    /**
      * 修改当前用户的密码
      */
     @RequestMapping("/changePwd")
@@ -173,7 +190,10 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/list")
     @Permission
     @ResponseBody
-    public Object list(@RequestParam(required = false) String name, @RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) Integer deptid) {
+    public Object list(@RequestParam(required = false) String name,
+                       @RequestParam(required = false) String beginTime,
+                       @RequestParam(required = false) String endTime,
+                       @RequestParam(required = false) Integer deptid) {
         if (ShiroKit.isAdmin()) {
             List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).wrap();
@@ -203,24 +223,20 @@ public class UserMgrController extends BaseController {
         }
 
         // 完善账号信息
-        user.setSalt(ShiroKit.getRandomSalt(5));
-        user.setPassword(ShiroKit.md5(user.getPassword(), user.getSalt()));
-        user.setStatus(ManagerStatus.OK.getCode());
-        user.setCreatetime(new Date());
+        String salt = ShiroKit.getRandomSalt(5);
+        String password = ShiroKit.md5(user.getPassword(), salt);
 
-        this.userService.insert(UserFactory.createUser(user));
+        this.userService.insert(UserFactory.createUser(user, password, salt));
         return SUCCESS_TIP;
     }
 
     /**
      * 修改管理员
-     *
-     * @throws NoPermissionException
      */
     @RequestMapping("/edit")
     @BussinessLog(value = "修改管理员", key = "account", dict = UserDict.class)
     @ResponseBody
-    public ResponseData edit(@Valid UserDto user, BindingResult result) throws NoPermissionException {
+    public ResponseData edit(@Valid UserDto user, BindingResult result) {
         if (result.hasErrors()) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
