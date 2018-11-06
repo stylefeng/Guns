@@ -32,10 +32,6 @@ UserInfoDlg.validateForm = function () {
 
     var data = UserInfoDlg.data;
 
-    if (data.account && data.password && data.name && data.deptid) {
-        return true;
-    }
-
     if (!data.account) {
         return "请输入账号";
     }
@@ -48,6 +44,8 @@ UserInfoDlg.validateForm = function () {
     if (!data.deptid) {
         return "请选择部门";
     }
+
+    return true;
 };
 
 /**

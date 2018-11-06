@@ -36,8 +36,8 @@
                     }
                 },
                 error: function (data) {
-                    if (me.success !== undefined) {
-                        me.success(data);
+                    if (me.error !== undefined) {
+                        me.error(data);
                     }
                 }
             });

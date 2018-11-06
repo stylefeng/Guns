@@ -167,15 +167,15 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/changePwd")
     @ResponseBody
-    public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
-        if (!newPwd.equals(rePwd)) {
-            throw new ServiceException(BizExceptionEnum.TWO_PWD_NOT_MATCH);
+    public Object changePwd(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
+        if (ToolUtil.isOneEmpty(oldPassword, newPassword)) {
+            throw new RequestEmptyException();
         }
         Integer userId = ShiroKit.getUser().getId();
         User user = userService.selectById(userId);
-        String oldMd5 = ShiroKit.md5(oldPwd, user.getSalt());
+        String oldMd5 = ShiroKit.md5(oldPassword, user.getSalt());
         if (user.getPassword().equals(oldMd5)) {
-            String newMd5 = ShiroKit.md5(newPwd, user.getSalt());
+            String newMd5 = ShiroKit.md5(newPassword, user.getSalt());
             user.setPassword(newMd5);
             user.updateById();
             return SUCCESS_TIP;

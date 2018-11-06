@@ -36,7 +36,7 @@ var Feng = {
             position: 'bottom-right',
             loaderBg: '#ff6849',
             icon: 'info',
-            hideAfter: 2000,
+            hideAfter: 3000,
             stack: 6
         });
     },
@@ -47,7 +47,7 @@ var Feng = {
             position: 'bottom-right',
             loaderBg: '#ff6849',
             icon: 'success',
-            hideAfter: 2000,
+            hideAfter: 3000,
             stack: 6
         });
     },
@@ -58,7 +58,7 @@ var Feng = {
             position: 'bottom-right',
             loaderBg: '#ff6849',
             icon: 'error',
-            hideAfter: 2000,
+            hideAfter: 3000,
             stack: 6
         });
     },

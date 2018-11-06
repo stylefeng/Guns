@@ -25,10 +25,6 @@ UserPwdPage.validateForm = function () {
 
     var data = UserPwdPage.data;
 
-    if (data.oldPassword && data.newPassword && data.repeatPassword) {
-        return true;
-    }
-
     if (!data.oldPassword) {
         return "请输入旧密码";
     }
@@ -39,6 +35,7 @@ UserPwdPage.validateForm = function () {
         return "两次密码输入不一致";
     }
 
+    return true;
 };
 
 /**
@@ -61,7 +58,12 @@ $(function () {
         data: UserPwdPage.data,
         methods: {
             ensure: function () {
-                UserPwdPage.chPwd();
+                var validateForm = UserPwdPage.validateForm();
+                if (validateForm === true) {
+                    UserPwdPage.chPwd();
+                } else {
+                    Feng.alert(validateForm);
+                }
             },
             reset: function () {
                 UserPwdPage.reset();
