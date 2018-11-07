@@ -36,6 +36,13 @@
     text-decoration: none;
 }
 
-.fixed-table-pagination .btn{
+.fixed-table-pagination .btn {
     border-color: #DDDDDD;
+}
+
+.div-center {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
