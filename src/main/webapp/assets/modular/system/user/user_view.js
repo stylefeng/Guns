@@ -37,22 +37,22 @@ $(function () {
     // Cropper
     $image.on({
         ready: function (e) {
-            console.log(e.type);
+            // console.log(e.type);
         },
         cropstart: function (e) {
-            console.log(e.type, e.detail.action);
+            // console.log(e.type, e.detail.action);
         },
         cropmove: function (e) {
-            console.log(e.type, e.detail.action);
+            // console.log(e.type, e.detail.action);
         },
         cropend: function (e) {
-            console.log(e.type, e.detail.action);
+            // console.log(e.type, e.detail.action);
         },
         crop: function (e) {
-            console.log(e.type);
+            // console.log(e.type);
         },
         zoom: function (e) {
-            console.log(e.type, e.detail.ratio);
+            // console.log(e.type, e.detail.ratio);
         }
     }).cropper(options);
 
