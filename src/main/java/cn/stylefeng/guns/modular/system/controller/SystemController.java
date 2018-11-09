@@ -15,13 +15,21 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -37,6 +45,9 @@ import java.net.URLDecoder;
 public class SystemController extends BaseController {
 
     private String PREFIX = "/common/";
+
+    @Autowired
+    private IUserService userService;
 
     /**
      * 通用的树列表选择器
@@ -59,6 +70,32 @@ public class SystemController extends BaseController {
         }
 
         return PREFIX + "common_tree_dlg.html";
+    }
+
+    /**
+     * 上传头像
+     *
+     * @author fengshuonan
+     * @Date 2018/11/9 12:45 PM
+     */
+    @RequestMapping("/uploadAvatar")
+    @ResponseBody
+    public Object uploadAvatar(@RequestParam String avatar) {
+
+        if (ToolUtil.isEmpty(avatar)) {
+            throw new RequestEmptyException("请求头像为空");
+        }
+
+        ShiroUser currentUser = ShiroKit.getUser();
+        if (currentUser == null) {
+            throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+        }
+
+        User user = userService.selectById(currentUser.getId());
+        user.setAvatar(avatar);
+        userService.updateById(user);
+
+        return SUCCESS_TIP;
     }
 
 }

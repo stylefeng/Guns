@@ -1,7 +1,10 @@
 $(function () {
     'use strict';
 
-    var console = window.console || { log: function () {} };
+    var console = window.console || {
+        log: function () {
+        }
+    };
     var URL = window.URL || window.webkitURL;
     var $image = $('#image');
     var $download = $('#download');
@@ -166,13 +169,7 @@ $(function () {
 
                 case 'getCroppedCanvas':
                     if (result) {
-                        // Bootstrap's Modal
                         $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-
-                        if (!$download.hasClass('disabled')) {
-                            download.download = uploadedImageName;
-                            $download.attr('href', result.toDataURL(uploadedImageType));
-                        }
                     }
 
                     break;
@@ -195,6 +192,23 @@ $(function () {
                 }
             }
         }
+    });
+
+    //绑定上传的操作
+    $download.on('click', function () {
+        var data = $("#uploadAvatar").data();
+        var result = $image.cropper(data.method, data.option, data.secondOption);
+        var imgBase = result.toDataURL('image/jpeg');
+        var requestData = {avatar: imgBase};
+
+        var ajax = new $ax(Feng.ctxPath + "/system/uploadAvatar", function (data) {
+            window.parent.Feng.success("上传成功!");
+            $("#getCroppedCanvasModal").modal('hide');
+        }, function (data) {
+            window.parent.Feng.error("上传失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set(requestData);
+        ajax.start();
     });
 
     // Keyboard
