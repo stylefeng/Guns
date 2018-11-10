@@ -373,6 +373,12 @@ INSERT INTO `sys_user` VALUES ('44', null, 'test', '45abb7879f6a8268f1ef600e6038
 INSERT INTO `sys_user` VALUES ('45', null, 'boss', '71887a5ad666a18f709e1d4e693d5a35', '1f7bf', '老板', '2017-12-04 00:00:00', '1', '', '', '1', '24', '1', '2017-12-04 22:24:02', null);
 INSERT INTO `sys_user` VALUES ('46', null, 'manager', 'b53cac62e7175637d4beb3b16b2f7915', 'j3cs9', '经理', '2017-12-04 00:00:00', '1', '', '', '1', '24', '1', '2017-12-04 22:24:24', null);
 
+DROP TABLE IF EXISTS `sys_file_info`;
+CREATE TABLE `sys_file_info` (
+  `id` varchar(50) NOT NULL COMMENT '主键id',
+  `file_data` text COMMENT 'base64编码的文件',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件信息表\n';
 
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (

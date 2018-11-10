@@ -1,6 +1,5 @@
 package cn.stylefeng.guns.core.util;
 
-import cn.stylefeng.guns.core.common.constant.DefaultAvatar;
 import cn.stylefeng.guns.core.listener.ConfigListener;
 
 /**
@@ -27,8 +26,8 @@ public class DefaultImages {
      * @author fengshuonan
      * @Date 2018/10/30 5:51 PM
      */
-    public static String defaultAvatar() {
-        return DefaultAvatar.BASE_64_AVATAR;
+    public static String defaultAvatarUrl() {
+        return ConfigListener.getConf().get("contextPath") + "/system/previewAvatar";
     }
 
     /**
