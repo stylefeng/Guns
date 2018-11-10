@@ -6,7 +6,10 @@ var MgrUser = {
     seItem: null,		//选中的条目
     table: null,
     layerIndex: -1,
-    deptid:0
+    condition: {
+        name: "",
+        deptId: ""
+    }
 };
 
 /**
@@ -48,8 +51,8 @@ MgrUser.openAddMgr = function () {
     this.layerIndex = layer.open({
         type: 2,
         title: '添加管理员',
-        area: ['800px', '580px'], //宽高
-        fix: false, //不固定
+        area: ['800px', '580px'],
+        fix: false,
         maxmin: true,
         content: Feng.ctxPath + '/mgr/user_add'
     });
@@ -63,7 +66,7 @@ MgrUser.openChangeUser = function () {
         this.layerIndex = layer.open({
             type: 2,
             title: '编辑管理员',
-            area: ['800px', '500px'], //宽高
+            area: ['800px', '500px'],
             fix: false,
             maxmin: true,
             content: Feng.ctxPath + '/mgr/user_edit?userId=' + this.seItem.id
@@ -79,9 +82,8 @@ MgrUser.roleAssign = function () {
         this.layerIndex = layer.open({
             type: 2,
             title: '角色分配',
-            area: ['300px', '400px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
+            area: ['300px', '400px'],
+            fix: false,
             content: Feng.ctxPath + '/mgr/role_assign?userId=' + this.seItem.id
         });
     }
@@ -92,8 +94,7 @@ MgrUser.roleAssign = function () {
  */
 MgrUser.delMgrUser = function () {
     if (this.check()) {
-
-        var operation = function(){
+        var operation = function () {
             var userId = MgrUser.seItem.id;
             var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function () {
                 Feng.success("删除成功!");
@@ -105,13 +106,12 @@ MgrUser.delMgrUser = function () {
             ajax.start();
         };
 
-        Feng.confirm("是否删除用户" + MgrUser.seItem.account + "?",operation);
+        Feng.confirm("是否删除用户" + MgrUser.seItem.account + "?", operation);
     }
 };
 
 /**
  * 冻结用户账户
- * @param userId
  */
 MgrUser.freezeAccount = function () {
     if (this.check()) {
@@ -165,34 +165,39 @@ MgrUser.resetPwd = function () {
     }
 };
 
-MgrUser.resetSearch = function () {
-    $("#name").val("");
-    $("#beginTime").val("");
-    $("#endTime").val("");
-
-    MgrUser.search();
-};
-
+/**
+ * 点击查询按钮
+ */
 MgrUser.search = function () {
     var queryData = {};
 
-    queryData['deptid'] = MgrUser.deptid;
-    queryData['name'] = $("#name").val();
+    queryData['deptid'] = MgrUser.condition.deptId;
+    queryData['name'] = MgrUser.condition.name;
     queryData['timeLimit'] = $("#timeLimit").val();
 
     MgrUser.table.refresh({query: queryData});
 };
 
+/**
+ * 选择部门时
+ */
 MgrUser.onClickDept = function (e, treeId, treeNode) {
-    MgrUser.deptid = treeNode.id;
+    MgrUser.condition.deptId = treeNode.id;
     MgrUser.search();
 };
 
 $(function () {
+
+    MgrUser.app = new Vue({
+        el: '#userManagerPage',
+        data: MgrUser.condition
+    });
+
     var defaultColunms = MgrUser.initColumn();
     var table = new BSTable("managerTable", "/mgr/list", defaultColunms);
     table.setPaginationType("client");
     MgrUser.table = table.init();
+
     var ztree = new $ZTree("deptTree", "/dept/tree");
     ztree.bindOnClick(MgrUser.onClickDept);
     ztree.init();

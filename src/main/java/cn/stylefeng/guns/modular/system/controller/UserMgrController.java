@@ -191,9 +191,19 @@ public class UserMgrController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(@RequestParam(required = false) String name,
-                       @RequestParam(required = false) String beginTime,
-                       @RequestParam(required = false) String endTime,
+                       @RequestParam(required = false) String timeLimit,
                        @RequestParam(required = false) Integer deptid) {
+
+        //拼接查询条件
+        String beginTime = "";
+        String endTime = "";
+
+        if (ToolUtil.isNotEmpty(timeLimit)) {
+            String[] split = timeLimit.split(" - ");
+            beginTime = split[0];
+            endTime = split[1];
+        }
+
         if (ShiroKit.isAdmin()) {
             List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptid);
             return new UserWarpper(users).wrap();
