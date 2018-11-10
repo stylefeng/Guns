@@ -2,16 +2,15 @@
 @import 'app';
 @import 'pages';
 @import 'sidebar';
-@import '../scss/icons/font-awesome/css/font-awesome.min.css';
-@import '../scss/icons/simple-line-icons/css/simple-line-icons.css';
-@import '../scss/icons/weather-icons/css/weather-icons.min.css';
-@import '../scss/icons/linea-icons/linea.css';
-@import '../scss/icons/themify-icons/themify-icons.css'; 
-@import '../scss/icons/flag-icon-css/flag-icon.min.css';
-@import "../scss/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import 'icons/font-awesome/css/font-awesome.min.css';
+@import 'icons/simple-line-icons/css/simple-line-icons.css';
+@import 'icons/weather-icons/css/weather-icons.min.css';
+@import 'icons/linea-icons/linea.css';
+@import 'icons/themify-icons/themify-icons.css';
+@import 'icons/flag-icon-css/flag-icon.min.css';
+@import "icons/material-design-iconic-font/css/materialdesignicons.min.css";
 @import 'widgets';
 @import 'grid';
-@import 'responsive'; 
-@import '../css/spinners.css';
-@import '../css/animate.css';
-   
+@import 'responsive';
+@import 'spinners.css';
+@import 'animate.css';
