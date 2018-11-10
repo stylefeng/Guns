@@ -72,16 +72,15 @@
         $("#saveButton").bind("click", function () {
             var ids = Feng.zTreeCheckedNodes("zTree");
             var ajax = new $ax(Feng.ctxPath + "/mgr/setRole", function (data) {
-                Feng.success("分配角色成功!");
+                parent.Feng.success("分配角色成功!");
                 window.parent.MgrUser.table.refresh();
-                parent.layer.close(index);
+                parent.layer.close(parent.MgrUser.layerIndex);
             }, function (data) {
-                Feng.error("分配角色失败!" + data.responseJSON.message + "!");
+                parent.Feng.error("分配角色失败!" + data.responseJSON.message + "!");
             });
             ajax.set("roleIds", ids);
             ajax.set("userId", "${userId}");
             ajax.start();
-            parent.layer.close(parent.MgrUser.layerIndex);
         });
 
         $("#closeButton").bind("click", function () {
