@@ -126,7 +126,11 @@ public class SystemController extends BaseController {
             avatar = DefaultAvatar.BASE_64_AVATAR;
         } else {
             FileInfo fileInfo = fileInfoService.selectById(avatar);
-            avatar = fileInfo.getFileData();
+            if(fileInfo == null){
+                avatar = DefaultAvatar.BASE_64_AVATAR;
+            }else{
+                avatar = fileInfo.getFileData();
+            }
         }
 
         //输出图片的文件流
