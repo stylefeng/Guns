@@ -7,7 +7,7 @@
 @ * phone     :   电话
 @ * deptName  :   部门名称
 @ **/
-@layout("/common/_container.html",{plugins:["cropper"],js:["/assets/modular/system/user/user_view.js"]}){
+@layout("/common/_container.html",{plugins:["cropper","laydate"],js:["/assets/modular/system/user/user_view.js"]}){
 <div class="row">
     <div class="col-lg-4 col-xlg-3 col-md-5">
         <div class="card">
@@ -57,11 +57,11 @@
                 @ **/
                 <div class="tab-pane active" id="personal" role="tabpanel">
                     <div class="card-block">
-                        <form class="form-horizontal form-material">
+                        <div class="form-horizontal form-material">
                             <div class="form-group">
                                 <label class="col-md-12">账号</label>
                                 <div class="col-md-12">
-                                    <input v-model="account" type="text" placeholder="" class="form-control form-control-line" autocomplete="false">
+                                    <input v-model="account" disabled type="text" placeholder="" class="form-control form-control-line" autocomplete="false">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -89,7 +89,8 @@
                             <div class="form-group">
                                 <label class="col-md-12">出生日期</label>
                                 <div class="col-md-12">
-                                    <input v-model="birthday" type="text" placeholder="" class="form-control form-control-line" autocomplete="false">
+                                    <input v-model="birthday" type="hidden" class="form-control form-control-line" autocomplete="false">
+                                    <input id="dateSelect" type="text" class="form-control" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -100,10 +101,10 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-success waves-effect">更新个人信息</button>
+                                    <button class="btn btn-success waves-effect" \@click="submit">更新个人信息</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
 

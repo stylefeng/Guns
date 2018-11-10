@@ -1,4 +1,55 @@
+var UserViewPage = {
+    data: {
+        account: "",
+        sex: "",
+        email: "",
+        name: "",
+        birthday: "",
+        phone: ""
+    }
+};
+
+/**
+ * 更新个人信息
+ */
+UserViewPage.submit = function () {
+
+    //注意！vue的model绑定和layui有冲突！手动赋值一下！
+    UserViewPage.data.birthday = Feng.getLaydate();
+
+    var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
+        Feng.success("修改成功!");
+    }, function (data) {
+        Feng.error("修改失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set(UserViewPage.data);
+    ajax.start();
+};
+
 $(function () {
+
+    /**
+     * 用户详情的逻辑
+     */
+    var ajax = new $ax(Feng.ctxPath + "/system/currentUserInfo");
+    var result = ajax.start();
+    UserViewPage.data = result.data;
+
+    UserViewPage.app = new Vue({
+        el: '#personal',
+        data: UserViewPage.data,
+        methods: {
+            submit: function () {
+                UserViewPage.submit();
+            }
+        }
+    });
+
+    Feng.initLaydate(UserViewPage.data.birthday);
+
+    /**
+     * 剪辑头像的逻辑
+     */
     'use strict';
 
     var console = window.console || {

@@ -16,14 +16,18 @@
 package cn.stylefeng.guns.modular.system.controller;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.core.common.constant.DefaultAvatar;
+import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.modular.system.factory.UserFactory;
 import cn.stylefeng.guns.modular.system.model.FileInfo;
 import cn.stylefeng.guns.modular.system.model.User;
 import cn.stylefeng.guns.modular.system.service.IFileInfoService;
 import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
@@ -40,6 +44,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 通用控制器
@@ -144,6 +150,29 @@ public class SystemController extends BaseController {
         }
 
         return null;
+    }
+
+    /**
+     * 获取当前用户详情
+     */
+    @RequestMapping("/currentUserInfo")
+    @ResponseBody
+    public Object getUserInfo() {
+
+        ShiroUser currentUser = ShiroKit.getUser();
+        if (currentUser == null) {
+            throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+        }
+
+        User user = userService.selectById(currentUser.getId());
+        Map<String, Object> map = UserFactory.removeUnSafeFields(user);
+
+        HashMap<Object, Object> hashMap = CollectionUtil.newHashMap();
+        hashMap.putAll(map);
+        hashMap.put("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
+        hashMap.put("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+
+        return ResponseData.success(hashMap);
     }
 
 }
