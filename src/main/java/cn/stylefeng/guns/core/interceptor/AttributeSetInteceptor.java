@@ -57,7 +57,7 @@ public class AttributeSetInteceptor extends HandlerInterceptorAdapter {
             modelAndView.addObject("name", user.getName());
 
             if (ToolUtil.isEmpty(user.getAvatar())) {
-                modelAndView.addObject("avatar", DefaultImages.userAvatar());
+                modelAndView.addObject("avatar", DefaultImages.defaultAvatar());
             } else {
                 modelAndView.addObject("avatar", user.getAvatar());
             }
