@@ -68,7 +68,7 @@
 		#{userId}
 	</update>
 
-	<select id="getByAccount" resultType="user">
+	<select id="getByAccount" resultType="cn.stylefeng.guns.modular.system.model.User">
 		select
 		<include refid="Base_Column_List_With_Pwd" />
 		from sys_user where account = #{account} and status != 3

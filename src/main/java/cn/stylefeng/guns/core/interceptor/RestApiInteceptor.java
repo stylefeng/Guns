@@ -21,7 +21,6 @@ import cn.stylefeng.guns.core.util.JwtTokenUtil;
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import cn.stylefeng.roses.core.util.RenderUtil;
 import io.jsonwebtoken.JwtException;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,11 +40,10 @@ public class RestApiInteceptor extends HandlerInterceptorAdapter {
         if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
             return true;
         }
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        return check(request, response, handlerMethod);
+        return check(request, response);
     }
 
-    private boolean check(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod) {
+    private boolean check(HttpServletRequest request, HttpServletResponse response) {
         if (request.getServletPath().equals(JwtConstants.AUTH_PATH)) {
             return true;
         }

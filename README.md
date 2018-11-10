@@ -3,6 +3,9 @@
 ## 介绍
 Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 2018目标 `更简洁`，`更规范`!
 
+## 云服务器全网最低 Guns专属优惠
+1核2G 99/年，298/3年，2核4G 500/1年，1227/3年，2核8G 5M带宽 2000/3年，仅限阿里云新用户，想买的老用户可以注册一个哦，点击链接购买[https://m.aliyun.com/act/team1111/#/share?params=N.lqp2rk5ITB.p4kqz45e](https://m.aliyun.com/act/team1111/#/share?params=N.lqp2rk5ITB.p4kqz45e) 
+
 ### Guns v5.1更新内容
 
 > * 框架整体的包名变为cn开头，和域名stylefeng.cn保持一致！

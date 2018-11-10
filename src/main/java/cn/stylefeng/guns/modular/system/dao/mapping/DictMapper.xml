@@ -16,14 +16,14 @@
 		id, num, pid, name,code,tips
 	</sql>
 
-    <select id="selectByCode" resultType="dict">
+    <select id="selectByCode" resultType="cn.stylefeng.guns.modular.system.model.Dict">
         select
         <include refid="Base_Column_List"/>
         from sys_dict
         where code = #{code}
     </select>
 
-    <select id="selectByParentCode" resultType="dict">
+    <select id="selectByParentCode" resultType="cn.stylefeng.guns.modular.system.model.Dict">
         select
         <include refid="Base_Column_List"/>
         from sys_dict
