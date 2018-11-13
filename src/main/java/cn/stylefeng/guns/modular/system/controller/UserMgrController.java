@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.config.properties.GunsProperties;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
@@ -126,7 +127,7 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = this.userService.selectById(userId);
-        model.addAttribute(user);
+        model.addAllAttributes(BeanUtil.beanToMap(user));
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
         LogObjectHolder.me().set(user);
