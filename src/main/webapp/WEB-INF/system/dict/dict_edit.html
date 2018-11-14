@@ -1,0 +1,86 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-12" id="itemsArea">
+                    <input type="hidden" id="itemSize" value="${subDicts.~size!0}" />
+                    <div class="form-group">
+
+                        <label class="col-sm-2 control-label">类型编码</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="dictCode" type="text" value="${dict.code}">
+                        </div>
+
+                        <label class="col-sm-2 control-label">类型名称</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="dictName" type="text" value="${dict.name}">
+                            <input type="hidden" id="dictId" value="${dict.id}">
+                        </div>
+
+                        <div class="col-sm-2">
+                            <#button btnCss="info" name="增加" icon="fa-plus" clickFun="DictInfoDlg.addItem()"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="dictTips" type="text" value="${dict.tips}">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    @for(item in subDicts){
+                    <div class="form-group" name="dictItem" id="dictItem${itemLP.index}">
+                        <label class="col-sm-1 control-label">值</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="itemCode" value="${item.code}">
+                        </div>
+                        <label class="col-sm-1 control-label" >名称</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="itemName" value="${item.name}">
+                        </div>
+                        <label class="col-sm-1 control-label" >序号</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="itemNum" value="${item.num}">
+                        </div>
+                        <div class="col-sm-2">
+                            <#button btnCss="danger" name="删除" id="cancel" icon="fa-remove" clickFun="DictInfoDlg.deleteItem(event)"/>
+                        </div>
+                    </div>
+                    @}
+                    </input>
+                </div>
+                <div class="row btn-group-m-t">
+                    <div class="col-sm-10">
+                        <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DictInfoDlg.editSubmit()"/>
+                        <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DictInfoDlg.close()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/template" id="itemTemplate">
+            <div class="form-group" name="dictItem" id="dictItem">
+                <label class="col-sm-1 control-label">值</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" name="itemCode">
+                </div>
+                <label class="col-sm-1 control-label" >名称</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" name="itemName">
+                </div>
+                <label class="col-sm-1 control-label" >序号</label>
+                <div class="col-sm-2">
+                    <input class="form-control" type="text" name="itemNum">
+                </div>
+                <div class="col-sm-2">
+                    <#button btnCss="danger" name="删除" id="cancel" icon="fa-remove" clickFun="DictInfoDlg.deleteItem(event)"/>
+                </div>
+            </div>
+        </script>
+
+        <script src="${ctxPath}/static/modular/system/dict/dict_info.js"></script>
+        @}

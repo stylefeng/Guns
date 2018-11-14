@@ -1,0 +1,46 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>业务日志</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#TimeCon id="beginTime" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#TimeCon id="endTime" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#NameCon id="logName" name="日志名称" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="logType" name="日志类型" >
+                                    <option value="0">全部</option>
+                                    <option value="1">业务日志</option>
+                                    <option value="2">异常日志</option>
+                                </#SelectCon>
+                            </div>
+                            <div class="col-sm-2">
+                                <#button name="搜索" icon="fa-search" clickFun="OptLog.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="OptLogTableToolbar" role="group">
+                            <#button name="查看详情" icon="fa-plus" clickFun="OptLog.detail()"/>
+                            @if(shiro.hasPermission("/log/delLog")){
+                                <#button name="清空日志" icon="fa-plus" clickFun="OptLog.delLog()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="OptLogTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/log/log.js"></script>
+@}
