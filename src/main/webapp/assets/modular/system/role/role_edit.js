@@ -1,194 +1,114 @@
 /**
  * 角色详情对话框（可用于添加和修改对话框）
  */
-var RolInfoDlg = {
-    roleInfoData: {},
-    deptZtree: null,
-    pNameZtree: null,
-    validateFields: {
-        name: {
-            validators: {
-                notEmpty: {
-                    message: '用户名不能为空'
-                }
-            }
-        },
-        tips: {
-            validators: {
-                notEmpty: {
-                    message: '别名不能为空'
-                }
-            }
-        },
-        pName: {
-            validators: {
-                notEmpty: {
-                    message: '父级名称不能为空'
-                }
-            }
-        }
+var RoleEditDlg = {
+    data: {
+        id: "",
+        name: "",
+        pName: "",
+        pid: "",
+        tips: "",
+        deptName: "",
+        deptid: "",
+        num: ""
     }
-};
-
-/**
- * 清除数据
- */
-RolInfoDlg.clearData = function () {
-    this.roleInfoData = {};
-};
-
-/**
- * 设置对话框中的数据
- *
- * @param key 数据的名称
- * @param val 数据的具体值
- */
-RolInfoDlg.set = function (key, value) {
-    this.roleInfoData[key] = (typeof value == "undefined") ? $("#" + key).val() : value;
-    return this;
-};
-
-/**
- * 设置对话框中的数据
- *
- * @param key 数据的名称
- * @param val 数据的具体值
- */
-RolInfoDlg.get = function (key) {
-    return $("#" + key).val();
 };
 
 /**
  * 关闭此对话框
  */
-RolInfoDlg.close = function () {
+RoleEditDlg.close = function () {
     parent.layer.close(window.parent.Role.layerIndex);
 };
 
 /**
- * 点击部门input框时
- *
- * @param e
- * @param treeId
- * @param treeNode
- * @returns
+ * 验证表单
  */
-RolInfoDlg.onClickDept = function (e, treeId, treeNode) {
-    $("#deptName").attr("value", RolInfoDlg.deptZtree.getSelectedVal());
-    $("#deptid").attr("value", treeNode.id);
-};
-RolInfoDlg.onDblClickDept = function (e, treeId, treeNode) {
-    $("#deptName").attr("value", RolInfoDlg.deptZtree.getSelectedVal());
-    $("#deptid").attr("value", treeNode.id);
-    $("#deptContent").fadeOut("fast");
-};
+RoleEditDlg.validateForm = function () {
 
-/**
- * 点击父级菜单input框时
- *
- * @param e
- * @param treeId
- * @param treeNode
- * @returns
- */
-RolInfoDlg.onClickPName = function (e, treeId, treeNode) {
-    $("#pName").attr("value", RolInfoDlg.pNameZtree.getSelectedVal());
-    $("#pid").attr("value", treeNode.id);
-};
+    var data = RoleEditDlg.data;
 
-/**
- * 显示部门选择的树
- *
- * @returns
- */
-RolInfoDlg.showDeptSelectTree = function () {
-    Feng.showInputTree("deptName", "deptContent");
-};
-
-/**
- * 显示父级菜单的树
- *
- * @returns
- */
-RolInfoDlg.showPNameSelectTree = function () {
-    Feng.showInputTree("pName", "pNameContent");
-};
-
-/**
- * 收集数据
- */
-RolInfoDlg.collectData = function () {
-    this.set('id').set('name').set('pid').set('deptid').set('tips').set('num');
-};
-
-/**
- * 验证数据是否为空
- */
-RolInfoDlg.validate = function () {
-    $('#roleInfoForm').data("bootstrapValidator").resetForm();
-    $('#roleInfoForm').bootstrapValidator('validate');
-    return $("#roleInfoForm").data('bootstrapValidator').isValid();
-};
-
-/**
- * 提交添加用户
- */
-RolInfoDlg.addSubmit = function () {
-
-    this.clearData();
-    this.collectData();
-
-    if (!this.validate()) {
-        return;
+    if (!data.name) {
+        return "请输入角色名称";
+    }
+    if (!(data.pName)) {
+        return "请输入上级名称";
+    }
+    if (!data.deptName) {
+        return "请输入部门名称";
+    }
+    if (!data.tips) {
+        return "请输入备注";
     }
 
-    //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/role/add", function (data) {
-        Feng.success("添加成功!");
-        window.parent.Role.table.refresh();
-        RolInfoDlg.close();
-    }, function (data) {
-        Feng.error("添加失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(this.roleInfoData);
-    ajax.start();
+    return true;
 };
 
 /**
- * 提交修改
+ * 提交添加角色
  */
-RolInfoDlg.editSubmit = function () {
-
-    this.clearData();
-    this.collectData();
-
-    if (!this.validate()) {
-        return;
-    }
-
-    //提交信息
+RoleEditDlg.editSubmit = function () {
     var ajax = new $ax(Feng.ctxPath + "/role/edit", function (data) {
         Feng.success("修改成功!");
         window.parent.Role.table.refresh();
-        RolInfoDlg.close();
+        RoleEditDlg.close();
     }, function (data) {
         Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
-    ajax.set(this.roleInfoData);
+    ajax.set(this.data);
     ajax.start();
 };
 
 $(function () {
-    Feng.initValidator("roleInfoForm", RolInfoDlg.validateFields);
 
-    var deptTree = new $ZTree("deptTree", "/dept/tree");
-    deptTree.bindOnClick(RolInfoDlg.onClickDept);
-    deptTree.bindOnDblClick(RolInfoDlg.onDblClickDept)
-    deptTree.init();
-    RolInfoDlg.deptZtree = deptTree;
+    //初始化角色的详情数据
+    var ajax = new $ax(Feng.ctxPath + "/role/view/" + Feng.getUrlParam("roleId"));
+    var result = ajax.start();
+    RoleEditDlg.data = result.data;
 
-    var pNameTree = new $ZTree("pNameTree", "/role/roleTreeList");
-    pNameTree.bindOnClick(RolInfoDlg.onClickPName);
-    pNameTree.init();
-    RolInfoDlg.pNameZtree = pNameTree;
+    RoleEditDlg.app = new Vue({
+        el: '#roleForm',
+        data: RoleEditDlg.data,
+        methods: {
+            submitForm: function (e) {
+                e.preventDefault();
+            },
+            showDeptSelectTree: function () {
+                var formName = encodeURIComponent("parent.RoleEditDlg.app.deptName");
+                var formId = encodeURIComponent("parent.RoleEditDlg.app.deptid");
+                var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
+
+                layer.open({
+                    type: 2,
+                    title: '部门选择',
+                    area: ['300px', '400px'],
+                    content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
+                });
+            },
+            showParentSelectTree: function () {
+                var formName = encodeURIComponent("parent.RoleEditDlg.app.pName");
+                var formId = encodeURIComponent("parent.RoleEditDlg.app.pid");
+                var treeUrl = encodeURIComponent(Feng.ctxPath + "/role/roleTreeList");
+
+                layer.open({
+                    type: 2,
+                    title: '部门选择',
+                    area: ['300px', '400px'],
+                    content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
+                });
+            },
+            ensure: function () {
+                var result = RoleEditDlg.validateForm();
+                if (result === true) {
+                    RoleEditDlg.editSubmit();
+                } else {
+                    Feng.alert(result);
+                }
+            },
+            close: function () {
+                RoleEditDlg.close();
+            }
+        }
+    });
+
 });

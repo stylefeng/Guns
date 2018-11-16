@@ -63,7 +63,7 @@ Role.openChangeRole = function () {
             area: ['800px', '450px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/role/role_edit/' + this.seItem.id
+            content: Feng.ctxPath + '/role/role_edit?roleId=' + this.seItem.id
         });
         this.layerIndex = index;
     }

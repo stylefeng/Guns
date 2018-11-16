@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
@@ -85,8 +86,8 @@ public class RoleController extends BaseController {
      * 跳转到修改角色
      */
     @Permission
-    @RequestMapping(value = "/role_edit/{roleId}")
-    public String roleEdit(@PathVariable Integer roleId, Model model) {
+    @RequestMapping(value = "/role_edit")
+    public String roleEdit(@RequestParam Integer roleId, Model model) {
         if (ToolUtil.isEmpty(roleId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -193,8 +194,17 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.roleService.selectById(roleId);
-        return SUCCESS_TIP;
+        Role role = this.roleService.selectById(roleId);
+        Map<String, Object> roleMap = BeanUtil.beanToMap(role);
+
+        Integer pid = role.getPid();
+        String pName = ConstantFactory.me().getSingleRoleName(pid);
+        roleMap.put("pName", pName);
+
+        String deptName = ConstantFactory.me().getDeptName(role.getDeptid());
+        roleMap.put("deptName", deptName);
+
+        return ResponseData.success(roleMap);
     }
 
     /**
