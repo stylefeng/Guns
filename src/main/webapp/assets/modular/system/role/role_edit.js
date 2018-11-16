@@ -38,7 +38,7 @@ RoleEditDlg.validateForm = function () {
         return "请输入部门名称";
     }
     if (!data.tips) {
-        return "请输入备注";
+        return "请输入别名";
     }
 
     return true;
