@@ -1,6 +1,7 @@
 package cn.stylefeng.guns;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,12 @@ public class MavenDeployLocalFile {
     /**
      * 当前工作目录
      */
-    private String CURRENT_PATH = "/Users/stylefeng/tmp/";
+    private String CURRENT_PATH = "/Users/stylefeng/work/repository/";
 
     /**
      * 仓库的地址
      */
-    private String REPO_PATH = "/Users/stylefeng/tmp/share";
+    private String REPO_PATH = "/Users/stylefeng/work/repository";
 
     /**
      * maven的settings文件配置路径
@@ -33,6 +34,8 @@ public class MavenDeployLocalFile {
      * 仓库的url
      */
     private String REPOSITORY_URL = "http://172.23.2.3:8081/repository/maven-host-sedinBJ/";
+
+    private List<String> finalCommands = new ArrayList<>();
 
     /**
      * 递归获取一个目录下的所有文件目录路径
@@ -167,6 +170,9 @@ public class MavenDeployLocalFile {
                 doOnlyPom(directory);
             }
         }
+
+        //输出文件
+        writeToFile("/Users/stylefeng/tmp/bash.sh", finalCommands);
     }
 
     /**
@@ -177,11 +183,39 @@ public class MavenDeployLocalFile {
      */
     private void executeCommand(String command) {
         try {
-            Process exec = Runtime.getRuntime().exec(command);
-            int i = exec.waitFor();
-            System.out.println("执行结果：" + i);
-        } catch (IOException | InterruptedException e) {
+            System.out.println(command);
+            finalCommands.add(command);
+            //Process exec = Runtime.getRuntime().exec(command);
+            //int i = exec.waitFor();
+            //System.out.println("执行结果：" + i);
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 写出到文件
+     *
+     * @author fengshuonan
+     * @Date 2018/11/18 1:04 PM
+     */
+    private void writeToFile(String path, List<String> lists) {
+        File file = new File(path);
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+            for (String list : lists) {
+                fileWriter.write(list + "\n");
+            }
+            fileWriter.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
