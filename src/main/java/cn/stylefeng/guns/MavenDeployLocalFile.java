@@ -1,8 +1,9 @@
 package cn.stylefeng.guns;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +14,12 @@ public class MavenDeployLocalFile {
     /**
      * 当前工作目录
      */
-    private String CURRENT_PATH = "/Users/stylefeng/work/repository/";
+    private String CURRENT_PATH = "/Users/stylefeng/tmp/";
 
     /**
      * 仓库的地址
      */
-    private String REPO_PATH = "/Users/stylefeng/work/repository";
+    private String REPO_PATH = "/Users/stylefeng/tmp/share";
 
     /**
      * maven的settings文件配置路径
@@ -34,8 +35,6 @@ public class MavenDeployLocalFile {
      * 仓库的url
      */
     private String REPOSITORY_URL = "http://172.23.2.3:8081/repository/maven-host-sedinBJ/";
-
-    private List<String> finalCommands = new ArrayList<>();
 
     /**
      * 递归获取一个目录下的所有文件目录路径
@@ -110,7 +109,7 @@ public class MavenDeployLocalFile {
             }
         }
 
-        String command = buildComman(FileType.POM, pom);
+        String command = buildComman(FileType.POM, null, pom);
         executeCommand(command);
     }
 
@@ -136,13 +135,8 @@ public class MavenDeployLocalFile {
             }
         }
 
-        if (pom != null) {
-            String command = buildComman(FileType.POM, pom);
-            executeCommand(command);
-        }
-
         if (jar != null) {
-            String command = buildComman(FileType.JAR, jar);
+            String command = buildComman(FileType.JAR, jar, pom);
             executeCommand(command);
         }
 
@@ -170,9 +164,6 @@ public class MavenDeployLocalFile {
                 doOnlyPom(directory);
             }
         }
-
-        //输出文件
-        writeToFile("/Users/stylefeng/tmp/bash.sh", finalCommands);
     }
 
     /**
@@ -184,7 +175,6 @@ public class MavenDeployLocalFile {
     private void executeCommand(String command) {
         try {
             System.out.println(command);
-            finalCommands.add(command);
             //Process exec = Runtime.getRuntime().exec(command);
             //int i = exec.waitFor();
             //System.out.println("执行结果：" + i);
@@ -194,29 +184,30 @@ public class MavenDeployLocalFile {
     }
 
     /**
-     * 写出到文件
+     * 判断packing是不是pom
      *
      * @author fengshuonan
-     * @Date 2018/11/18 1:04 PM
+     * @Date 2018/11/19 12:25 PM
      */
-    private void writeToFile(String path, List<String> lists) {
-        File file = new File(path);
-        FileWriter fileWriter = null;
+    public static boolean packingIsPom(File pom) {
+        BufferedReader reader = null;
         try {
-            fileWriter = new FileWriter(file);
-            for (String list : lists) {
-                fileWriter.write(list + "\n");
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(pom)));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().contains("<packaging>pom</packaging>")) {
+                    return true;
+                }
             }
-            fileWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                reader.close();
+            } catch (Exception e) {
             }
         }
+        return false;
     }
 
     /**
@@ -225,42 +216,45 @@ public class MavenDeployLocalFile {
      * @author fengshuonan
      * @Date 2018/11/18 11:38 AM
      */
-    private String buildComman(FileType fileType, File deployFile) {
+    private String buildComman(FileType fileType, File deployJar, File deployJarPom) {
+
+        if (fileType.equals(FileType.POM)) {
+
+            //判断是不是packing pom
+            if (!packingIsPom(deployJarPom)) {
+                return "";
+            }
+        }
 
         String command = "mvn " +
                 "-s " + SETTINGS_CONFIG + " " +
                 "deploy:deploy-file " +
                 "-Durl=" + REPOSITORY_URL + " " +
-                "-DrepositoryId=" + REPOSITORY_ID + " ";
-
-        String absolutePath = deployFile.getAbsolutePath();
-        String leaveString = absolutePath.substring(0, absolutePath.lastIndexOf("/"));
-
-        //获取version
-        String version = leaveString.substring(leaveString.lastIndexOf("/") + 1);
-        leaveString = absolutePath.substring(0, leaveString.lastIndexOf("/"));
-
-        //获取artifactId
-        String artifactId = leaveString.substring(leaveString.lastIndexOf("/") + 1);
-        leaveString = absolutePath.substring(0, leaveString.lastIndexOf("/"));
-
-        //获取groupId
-        leaveString = leaveString.substring(CURRENT_PATH.length());
-        String groupId = leaveString.replaceAll("/", ".");
+                "-DrepositoryId=" + REPOSITORY_ID + " " +
+                "-DgeneratePom=false ";
 
         //获取packing
         String packing;
         if (fileType.equals(FileType.JAR)) {
             packing = "-Dpackaging=jar ";
         } else {
-            packing = "-Dpackaging=pom ";
+            packing = " ";
+        }
+
+        //获取pomFile和file
+        String pomFile;
+        String file;
+        if (fileType.equals(FileType.POM)) {
+            file = deployJarPom.getAbsolutePath();
+            pomFile = deployJarPom.getAbsolutePath();
+        } else {
+            pomFile = deployJarPom.getAbsolutePath();
+            file = deployJar.getAbsolutePath();
         }
 
         command += packing;
-        command += " -Dfile=" + deployFile.getAbsolutePath() + " ";
-        command += " -DgroupId=" + groupId + " ";
-        command += " -DartifactId=" + artifactId + " ";
-        command += " -Dversion=" + version + " ";
+        command += " -Dfile=" + file + " ";
+        command += " -DpomFile=" + pomFile + " ";
 
         return command;
     }
