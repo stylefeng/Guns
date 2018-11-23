@@ -4,9 +4,9 @@
   width: 100px;
 }
 .preloader:before{
-    content: '';
-    display: block;
-    padding-top: 100%;
+  content: '';
+  display: block;
+  padding-top: 100%;
 }
 .circular {
   animation: rotate 2s linear infinite;
