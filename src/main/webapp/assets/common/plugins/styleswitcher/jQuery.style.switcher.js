@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentStyle + '.css'})
     });
 
-    var currentTheme = get('theme');
+    var currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentTheme + '.css'});
     }
@@ -31,21 +31,23 @@ function get(name) {
 
 }
 
-$(document).ready(function () {
-    $("*[data-theme]").click(function (e) {
-        e.preventDefault();
+/*
+$(document).ready(function(){
+    $("*[data-theme]").click(function(e){
+      e.preventDefault();
         var currentStyle = $(this).attr('data-theme');
         store('theme', currentStyle);
-        $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentStyle + '.css'})
+        $('#theme').attr({href: 'css/colors/'+currentStyle+'.css'})
     });
 
     var currentTheme = get('theme');
-    if (currentTheme) {
-        $('#theme').attr({href: Feng.ctxPath + '/assets/common/static/css/colors/' + currentTheme + '.css'});
+    if(currentTheme)
+    {
+      $('#theme').attr({href: 'css/colors/'+currentTheme+'.css'});
     }
     // color selector
-    $('#themecolors').on('click', 'a', function () {
+$('#themecolors').on('click', 'a', function(){
         $('#themecolors li a').removeClass('working');
         $(this).addClass('working')
-    });
-});
+      });
+});*/
