@@ -1,11 +1,11 @@
 @layout("/common/_container.html",{plugins:["table","ztree","layer","sweet-alert","laydate"],js:["/assets/modular/system/user/user.js"]}){
 <div class="row">
     <div class="col-lg-2 col-sm-3 p-r-0">
-        <div class="card card-outline-info m-b-10">
+        <div class="card card-outline-info">
             <div class="card-header">
                 <h5 class="m-b-0 text-white">部门选择</h5>
             </div>
-            <div class="card-block">
+            <div class="card-body">
                 <ul id="deptTree" class="ztree"></ul>
             </div>
         </div>
@@ -17,20 +17,24 @@
                     <div class="card-header">
                         <h5 class="m-b-0 text-white">用户管理</h5>
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <div class="input-group condition-button">
-                                            <span class="input-group-addon">用户名称</span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">用户名称</div>
+                                            </div>
                                             <input v-model="name" type="text" class="form-control" placeholder="账号/姓名/手机号" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="input-group condition-button">
-                                            <span class="input-group-addon">注册日期</span>
-                                            <input type="text" class="form-control" id="timeLimit" placeholder="注册日期" autocomplete="off">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">注册日期</div>
+                                            </div>
+                                            <input type="text" id="timeLimit" class="form-control" placeholder="注册日期" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -51,7 +55,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-outline-info m-b-0">
-                    <div class="card-block p-t-0 p-b-0">
+                    <div class="card-body p-t-0 p-b-0">
                         <div class="form-horizontal">
                             <div class="form-actions">
                                 <div class="row">
