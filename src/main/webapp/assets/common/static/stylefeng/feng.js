@@ -225,5 +225,9 @@ var Feng = {
     },
     getLaydate: function () {
         return $("#dateSelect").val();
+    },
+    showRightSideBar: function () {
+        $(".right-sidebar").slideDown(50);
+        $(".right-sidebar").toggleClass("shw-rside");
     }
 };
