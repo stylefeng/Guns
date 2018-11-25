@@ -174,7 +174,7 @@
 @if(isNotEmpty(js)){
     @for(item in js){
         @if(strutil.startWith(item,"/")){
-            @item = item + ctxPath;
+            @item = ctxPath + item;
         @}
         <script src="${item}"></script>
     @}
