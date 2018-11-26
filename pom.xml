@@ -167,6 +167,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -199,6 +200,30 @@
                         <delimiter>@</delimiter>
                     </delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.1</version>
+                <configuration>
+                    <dockerHost>tcp://demo.stylefeng.cn:2376</dockerHost>
+                    <certPath>_dockerCerts</certPath>
+                    <images>
+                        <image>
+                            <alias>service</alias>
+                            <name>stylefeng/${project.artifactId}:latest</name>
+                            <build>
+                                <from>java:8</from>
+                                <assembly>
+                                    <descriptor>docker-assembly.xml</descriptor>
+                                </assembly>
+                                <cmd>
+                                    <shell>java -jar /maven/${project.artifactId}.jar</shell>
+                                </cmd>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
         </plugins>
