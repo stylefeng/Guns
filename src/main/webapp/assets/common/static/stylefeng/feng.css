@@ -10,6 +10,7 @@
     width: 65px;
 }
 
+/*分页的主题颜色*/
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -23,6 +24,7 @@
     z-index: 2;
 }
 
+/*分页的主题颜色*/
 .pagination > li > a,
 .pagination > li > span {
     background-color: #FFFFFF;
