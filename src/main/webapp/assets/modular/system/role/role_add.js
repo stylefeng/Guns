@@ -75,7 +75,7 @@ $(function () {
                 layer.open({
                     type: 2,
                     title: '部门选择',
-                    area: ['300px', '320px'],
+                    area: ['300px', '350px'],
                     content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
                 });
             },
@@ -87,7 +87,7 @@ $(function () {
                 layer.open({
                     type: 2,
                     title: '父级角色选择',
-                    area: ['300px', '320px'],
+                    area: ['300px', '350px'],
                     content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
                 });
             },
