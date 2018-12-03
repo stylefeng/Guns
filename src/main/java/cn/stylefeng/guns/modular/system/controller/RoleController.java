@@ -100,7 +100,7 @@ public class RoleController extends BaseController {
     }
 
     /**
-     * 跳转到角色分配
+     * 跳转到权限分配
      */
     @Permission
     @RequestMapping(value = "/role_assign/{roleId}")
