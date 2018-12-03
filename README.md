@@ -3,14 +3,8 @@
 ## 介绍
 Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 2018目标 `更简洁`，`更规范`!
 
-## 直播预告
-这周日（11月25日）晚上7点，直播分享最新Guns旗舰版介绍，斗鱼直播间[https://douyu.com/stylefeng](https://douyu.com/stylefeng),欢迎收看
-
-## 2018年度最受欢迎开源软件评选
-Guns在行业多年始终坚持免费原则，也是一直在坚持维护系统。在Guns成长的这段期间，我在此真诚的感谢支持Guns，一直不停为Guns完善做出贡献的朋友们，因为有你们Guns才一点一点的变得越来越好。
-这次Guns参加了中国最受欢迎开源项目评比，目的就是让更多的人认识Guns、了解Guns、使用Guns。
-请大家帮忙投上一票，为我们的项目助力！
-https://www.oschina.net/project/top_cn_2018?sort=1
+## 旗舰版抢先看
+Guns旗舰版预计12月底发布第一个版本，目前功能尚不完善，demo地址（admin/111111）：http://demo.stylefeng.cn，不要再问旗舰版收不收费，不然我真的就收费了 :smiling_imp:  :smiling_imp: 
 
 ### Guns v5.1更新内容
 
