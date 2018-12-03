@@ -48,11 +48,11 @@ RoleAddDlg.validateForm = function () {
  */
 RoleAddDlg.addSubmit = function () {
     var ajax = new $ax(Feng.ctxPath + "/role/add", function (data) {
-        Feng.success("添加成功!");
+        parent.Feng.success("添加成功!");
         window.parent.Role.table.refresh();
         RoleAddDlg.close();
     }, function (data) {
-        Feng.error("添加失败!" + data.responseJSON.message + "!");
+        parent.Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
     ajax.set(this.data);
     ajax.start();

@@ -49,11 +49,11 @@ RoleEditDlg.validateForm = function () {
  */
 RoleEditDlg.editSubmit = function () {
     var ajax = new $ax(Feng.ctxPath + "/role/edit", function (data) {
-        Feng.success("修改成功!");
+        parent.Feng.success("修改成功!");
         window.parent.Role.table.refresh();
         RoleEditDlg.close();
     }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
+        parent.Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
     ajax.set(this.data);
     ajax.start();
