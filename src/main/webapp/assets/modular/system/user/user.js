@@ -18,6 +18,11 @@ var MgrUser = {
 MgrUser.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
+        {
+            title: '序号', field: 'number', width: 1, align: 'center', valign: 'middle', formatter: function (value, row, index) {
+                return index;
+            }
+        },
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
         {title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true},
         {title: '姓名', field: 'name', align: 'center', valign: 'middle', sortable: true},
@@ -30,11 +35,11 @@ MgrUser.initColumn = function () {
         {
             title: '状态', field: 'status', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
                 if (value === 1) {
-                    return '<button type="button" class="btn btn-sm btn-success">启用</button>';
+                    return '<button type="button" class="btn btn-xs btn-success">启用</button>';
                 } else if (value === 2) {
-                    return '<button type="button" class="btn btn-sm btn-warning">冻结</button>';
+                    return '<button type="button" class="btn btn-xs btn-warning">冻结</button>';
                 } else if (value === 3) {
-                    return '<button type="button" class="btn btn-sm btn-danger">删除</button>';
+                    return '<button type="button" class="btn btn-xs btn-danger">删除</button>';
                 }
             }
         }];
