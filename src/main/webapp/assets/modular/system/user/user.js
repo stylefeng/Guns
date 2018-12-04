@@ -27,7 +27,17 @@ MgrUser.initColumn = function () {
         {title: '邮箱', field: 'email', align: 'center', valign: 'middle', sortable: true},
         {title: '电话', field: 'phone', align: 'center', valign: 'middle', sortable: true},
         {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true},
-        {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}];
+        {
+            title: '状态', field: 'status', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
+                if (value === 1) {
+                    return '<button type="button" class="btn btn-sm btn-success">启用</button>';
+                } else if (value === 2) {
+                    return '<button type="button" class="btn btn-sm btn-warning">冻结</button>';
+                } else if (value === 3) {
+                    return '<button type="button" class="btn btn-sm btn-danger">删除</button>';
+                }
+            }
+        }];
 };
 
 /**
@@ -150,7 +160,7 @@ MgrUser.unfreeze = function () {
 MgrUser.resetPwd = function () {
     if (this.check()) {
         var userId = this.seItem.id;
-        Feng.confirm("是否重置密码为111111 ?", function(){
+        Feng.confirm("是否重置密码为111111 ?", function () {
             var ajax = new $ax(Feng.ctxPath + "/mgr/reset", function (data) {
                 Feng.success("重置密码成功!");
             }, function (data) {
