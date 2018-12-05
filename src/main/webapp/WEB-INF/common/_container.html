@@ -62,6 +62,9 @@
         @if(array.contain(plugins,"cropper")){
         <link href="${ctxPath}/assets/common/plugins/cropper/cropper.min.css" rel="stylesheet" type="text/css" />
         @}
+        @if(array.contain(plugins,"bootstrap-treetable")){
+        <link href="${ctxPath}/assets/common/plugins/bootstrap-treetable/bootstrap-treetable.min.css" rel="stylesheet" type="text/css" />
+        @}
     @}
 
     <!--其他业务用的css-->
@@ -158,6 +161,9 @@
     @if(array.contain(plugins,"cropper")){
     <script src="${ctxPath}/assets/common/plugins/cropper/cropper.min.js"></script>
     <script src="${ctxPath}/assets/common/plugins/cropper/cropper.jquery.min.js"></script>
+    @}
+    @if(array.contain(plugins,"bootstrap-treetable")){
+    <script src="${ctxPath}/assets/common/plugins/bootstrap-treetable/bootstrap-treetable.min.js"></script>
     @}
 @}
 
