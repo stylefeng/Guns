@@ -24,7 +24,11 @@ MgrUser.initColumn = function () {
             }
         },
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
-        {title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true},
+        {
+            title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
+                return '<a href="javascript:void(0);" onclick="MgrUser.openChangeUser(\'' + row.id + '\')"">' + value + '</a>'
+            }
+        },
         {title: '姓名', field: 'name', align: 'center', valign: 'middle', sortable: true},
         {title: '性别', field: 'sexName', align: 'center', valign: 'middle', sortable: true},
         {title: '角色', field: 'roleName', align: 'center', valign: 'middle', sortable: true},
@@ -76,15 +80,20 @@ MgrUser.openAddMgr = function () {
 /**
  * 点击修改按钮时
  */
-MgrUser.openChangeUser = function () {
+MgrUser.openChangeUser = function (userId) {
     if (this.check()) {
+        var selectId = userId;
+        if (!userId) {
+            selectId = this.seItem.id;
+        }
+
         this.layerIndex = layer.open({
             type: 2,
             title: '编辑管理员',
             area: ['800px', '500px'],
             fix: false,
             maxmin: true,
-            content: Feng.ctxPath + '/mgr/user_edit?userId=' + this.seItem.id
+            content: Feng.ctxPath + '/mgr/user_edit?userId=' + selectId
         });
     }
 };
