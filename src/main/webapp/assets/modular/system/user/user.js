@@ -39,12 +39,23 @@ MgrUser.initColumn = function () {
         {
             title: '状态', field: 'status', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
                 if (value === 1) {
-                    return '<button type="button" class="btn btn-xs btn-success">启用</button>';
+                    return '<button type="button" class="btn btn-xs btn-success">已启用</button>';
                 } else if (value === 2) {
-                    return '<button type="button" class="btn btn-xs btn-warning">冻结</button>';
+                    return '<button type="button" class="btn btn-xs btn-warning">已冻结</button>';
                 } else if (value === 3) {
-                    return '<button type="button" class="btn btn-xs btn-danger">删除</button>';
+                    return '<button type="button" class="btn btn-xs btn-danger">已删除</button>';
                 }
+            }
+        },
+        {
+            title: '操作', field: 'operate', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
+                var returnHtml = '<button type="button" class="btn btn-xs btn-danger" onclick="MgrUser.delMgrUserById(\'' + row.id + '\',\'' + row.account + '\')">删除</button> ';
+                if (row.status === 1) {
+                    returnHtml += '<button type="button" class="btn btn-xs btn-warning" onclick="MgrUser.freezeAccountById(\'' + row.id + '\')">冻结</button> ';
+                } else if (row.status === 2) {
+                    returnHtml += '<button type="button" class="btn btn-xs btn-success" onclick="MgrUser.unfreezeById(\'' + row.id + '\')">解冻</button> ';
+                }
+                return returnHtml + '<button type="button" class="btn btn-xs btn-info" onclick="MgrUser.resetPwdById(\'' + row.id + '\')">重置密码</button>';
             }
         }];
 };
@@ -135,6 +146,24 @@ MgrUser.delMgrUser = function () {
 };
 
 /**
+ * 删除用户 通过传递用户id
+ */
+MgrUser.delMgrUserById = function (userId, account) {
+    var operation = function () {
+        var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function () {
+            Feng.success("删除成功!");
+            MgrUser.table.refresh();
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("userId", userId);
+        ajax.start();
+    };
+
+    Feng.confirm("是否删除用户" + account + "?", operation);
+};
+
+/**
  * 冻结用户账户
  */
 MgrUser.freezeAccount = function () {
@@ -149,6 +178,20 @@ MgrUser.freezeAccount = function () {
         ajax.set("userId", userId);
         ajax.start();
     }
+};
+
+/**
+ * 冻结用户账户 通过传递用户id
+ */
+MgrUser.freezeAccountById = function (userId) {
+    var ajax = new $ax(Feng.ctxPath + "/mgr/freeze", function (data) {
+        Feng.success("冻结成功!");
+        MgrUser.table.refresh();
+    }, function (data) {
+        Feng.error("冻结失败!" + data.responseJSON.message + "!");
+    });
+    ajax.set("userId", userId);
+    ajax.start();
 };
 
 /**
@@ -169,6 +212,20 @@ MgrUser.unfreeze = function () {
 };
 
 /**
+ * 解除冻结用户账户
+ */
+MgrUser.unfreezeById = function (userId) {
+    var ajax = new $ax(Feng.ctxPath + "/mgr/unfreeze", function (data) {
+        Feng.success("解除冻结成功!");
+        MgrUser.table.refresh();
+    }, function (data) {
+        Feng.error("解除冻结失败!");
+    });
+    ajax.set("userId", userId);
+    ajax.start();
+};
+
+/**
  * 重置密码
  */
 MgrUser.resetPwd = function () {
@@ -184,6 +241,21 @@ MgrUser.resetPwd = function () {
             ajax.start();
         });
     }
+};
+
+/**
+ * 重置密码  通过用户id
+ */
+MgrUser.resetPwdById = function (userId) {
+    Feng.confirm("是否重置密码为111111 ?", function () {
+        var ajax = new $ax(Feng.ctxPath + "/mgr/reset", function (data) {
+            Feng.success("重置密码成功!");
+        }, function (data) {
+            Feng.error("重置密码失败!");
+        });
+        ajax.set("userId", userId);
+        ajax.start();
+    });
 };
 
 /**
