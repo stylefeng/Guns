@@ -1,38 +1,73 @@
-@layout("/common/_container.html"){
+@layout("/common/_container.html",{plugins:["table","layer","bootstrap-treetable"],js:["/assets/modular/system/dept/dept.js"]}){
 <div class="row">
-    <div class="col-sm-12">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5>部门管理</h5>
+    <div class="col-12" id="deptPage">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-outline-theme m-b-10">
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">部门名称</div>
+                                            </div>
+                                            <input v-model="name" type="text" class="form-control" placeholder="" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group condition-button">
+                                            <div class="input-group-btn condition-button">
+                                                <button type="button" id="check-minutes"
+                                                        class="btn btn-info waves-effect waves-light condition-button-width" onclick="Dept.search()">查询
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="ibox-content">
-                <div class="row row-lg">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <#NameCon id="condition" name="名称" />
-                            </div>
-                            <div class="col-sm-3">
-                                <#button name="搜索" icon="fa-search" clickFun="Dept.search()"/>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-outline-theme m-b-0">
+                    <div class="card-body p-t-0 p-b-0">
+                        <div class="form-horizontal">
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card m-b-0 p-b-0">
+                                            <div class="hidden-xs" id="managerTableToolbar" role="group">
+                                                @if(shiro.hasPermission("/dept/add")){
+                                                <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dept.openAddDept()">
+                                                    <i class="fa fa-check-circle"></i>&nbsp;添加
+                                                </button>
+                                                @}
+                                                @if(shiro.hasPermission("/dept/update")){
+                                                <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dept.openDeptDetail()">
+                                                    <i class="fa fa-check-circle"></i>&nbsp;修改
+                                                </button>
+                                                @}
+                                                @if(shiro.hasPermission("/dept/delete")){
+                                                <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dept.delete()">
+                                                    <i class="fa fa-check-circle"></i>&nbsp;删除
+                                                </button>
+                                                @}
+                                            </div>
+                                            <#table id="DeptTable"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden-xs" id="DeptTableToolbar" role="group">
-                            @if(shiro.hasPermission("/dept/add")){
-                                <#button name="添加" icon="fa-plus" clickFun="Dept.openAddDept()"/>
-                            @}
-                            @if(shiro.hasPermission("/dept/update")){
-                                <#button name="修改" icon="fa-plus" clickFun="Dept.openDeptDetail()" space="true"/>
-                            @}
-                            @if(shiro.hasPermission("/dept/delete")){
-                                <#button name="删除" icon="fa-plus" clickFun="Dept.delete()" space="true"/>
-                            @}
-                        </div>
-                        <#table id="DeptTable"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="${ctxPath}/static/modular/system/dept/dept.js"></script>
 @}
