@@ -20,7 +20,7 @@ MgrUser.initColumn = function () {
         {field: 'selectItem', radio: true},
         {
             title: '序号', field: 'number', width: 1, align: 'center', valign: 'middle', formatter: function (value, row, index) {
-                return index;
+                return index + 1;
             }
         },
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
