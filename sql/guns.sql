@@ -410,6 +410,28 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `sys_user` VALUES (1, '1', 'admin', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (2, '1', 'test1', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 2, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (3, '1', 'test2', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (4, '1', 'test3', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (5, '1', 'test4', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (6, '1', 'test5', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (7, '1', 'test6', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 2, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (8, '1', 'test7', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 2, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (9, '1', 'test8', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (10, '1', 'test9', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 2, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (11, '1', 'test10', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (12, '1', 'test11', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (13, '1', 'test12', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (14, '1', 'test13', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (15, '1', 'test14', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (16, '1', 'test15', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (17, '1', 'test16', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (18, '1', 'test17', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (19, '1', 'test18', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (20, '1', 'test19', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (21, '1', 'test20', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (22, '1', 'test21', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
+INSERT INTO `sys_user` VALUES (23, '1', 'test22', 'ecfadcde9305f8891bcfe5a1e28c253e', '8pgby', 'stylefeng', '2018-11-16 00:00:00', 1, 'sn93@qq.com', '18200000000', '1', 27, 1, '2016-01-29 08:49:53', 25);
 COMMIT;
 
 -- ----------------------------

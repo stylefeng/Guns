@@ -3,7 +3,7 @@
  */
 var LoginLog = {
     id: "loginLogTable",	//表格id
-    seItem: null,		//选中的条目
+    seItem: null,		    //选中的条目
     table: null,
     layerIndex: -1,
     condition: {
@@ -45,7 +45,7 @@ LoginLog.delLog = function () {
         ajax.start();
         LoginLog.table.refresh();
     });
-}
+};
 
 $(function () {
 
