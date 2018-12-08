@@ -50,8 +50,8 @@ public class UserWarpper extends BaseControllerWrapper {
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
         map.put("sexName", ConstantFactory.me().getSexName((String) map.get("sex")));
-        map.put("roleName", ConstantFactory.me().getRoleName((String) map.get("roleid")));
-        map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptid")));
+        map.put("roleName", ConstantFactory.me().getRoleName((String) map.get("roleId")));
+        map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptId")));
         map.put("statusName", ConstantFactory.me().getStatusName((String) map.get("status")));
     }
 

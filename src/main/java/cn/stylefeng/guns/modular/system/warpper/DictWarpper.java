@@ -52,7 +52,7 @@ public class DictWarpper extends BaseControllerWrapper {
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
         StringBuffer detail = new StringBuffer();
-        Long id = Long.valueOf(map.get("id").toString());
+        Long id = Long.valueOf(map.get("dictId").toString());
         List<Dict> dicts = ConstantFactory.me().findInDict(id);
         if (dicts != null) {
             for (Dict dict : dicts) {

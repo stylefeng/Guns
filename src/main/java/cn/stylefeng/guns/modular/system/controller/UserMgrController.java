@@ -252,15 +252,15 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
-        User oldUser = userService.selectById(user.getId());
+        User oldUser = userService.selectById(user.getUserId());
 
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
             this.userService.updateById(UserFactory.editUser(user, oldUser));
             return SUCCESS_TIP;
         } else {
-            assertAuth(user.getId());
+            assertAuth(user.getUserId());
             ShiroUser shiroUser = ShiroKit.getUser();
-            if (shiroUser.getId().equals(user.getId())) {
+            if (shiroUser.getId().equals(user.getUserId())) {
                 this.userService.updateById(UserFactory.editUser(user, oldUser));
                 return SUCCESS_TIP;
             } else {

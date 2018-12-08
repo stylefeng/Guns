@@ -26,8 +26,8 @@
                     <div class="controls">
                         <select v-model="sex" class="form-control">
                             <option value="">请选择</option>
-                            <option value="1">男</option>
-                            <option value="2">女</option>
+                            <option value="M">男</option>
+                            <option value="F">女</option>
                         </select>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     <h5>部门 <span class="text-danger">*</span></h5>
                     <div class="controls">
                         <input v-model="deptName" id="detpName" \@click="showDeptSelectTree" type="text" class="form-control" autocomplete="off">
-                        <input v-model="deptid" type="hidden" class="form-control">
+                        <input v-model="deptId" type="hidden" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">

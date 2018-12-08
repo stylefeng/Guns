@@ -3,13 +3,13 @@
  */
 var UserInfoDlg = {
     data: {
-        id: "",
+        userId: "",
         account: "",
         sex: "",
         email: "",
         name: "",
         birthday: "",
-        deptid: "",
+        deptId: "",
         deptName: "",
         phone: "",
         roleName: ""
@@ -30,7 +30,7 @@ UserInfoDlg.validateForm = function () {
 
     var data = UserInfoDlg.data;
 
-    if (data.account && data.name && data.deptid) {
+    if (data.account && data.name && data.deptId) {
         return true;
     }
 
@@ -40,7 +40,7 @@ UserInfoDlg.validateForm = function () {
     if (!data.name) {
         return "请输入姓名";
     }
-    if (!data.deptid) {
+    if (!data.deptId) {
         return "请选择部门";
     }
 };
@@ -82,7 +82,7 @@ $(function () {
             },
             showDeptSelectTree: function () {
                 var formName = encodeURIComponent("parent.UserInfoDlg.app.deptName");
-                var formId = encodeURIComponent("parent.UserInfoDlg.app.deptid");
+                var formId = encodeURIComponent("parent.UserInfoDlg.app.deptId");
                 var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
 
                 layer.open({
