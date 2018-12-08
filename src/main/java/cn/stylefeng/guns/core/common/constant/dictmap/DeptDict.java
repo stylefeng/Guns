@@ -32,7 +32,7 @@ public class DeptDict extends AbstractDictMap {
         put("pid", "上级名称");
         put("simplename", "部门简称");
         put("fullname", "部门全称");
-        put("tips", "备注");
+        put("description", "备注");
     }
 
     @Override

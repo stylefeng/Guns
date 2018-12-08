@@ -32,7 +32,7 @@ public class RoleDict extends AbstractDictMap {
         put("pid", "角色的父级");
         put("name", "角色名称");
         put("deptId", "部门名称");
-        put("tips", "备注");
+        put("description", "备注");
         put("ids", "资源名称");
     }
 

@@ -7,7 +7,7 @@ var RoleEditDlg = {
         name: "",
         pName: "",
         pid: "",
-        tips: "",
+        description: "",
         deptName: "",
         deptId: "",
         num: ""
@@ -37,7 +37,7 @@ RoleEditDlg.validateForm = function () {
     if (!data.deptName) {
         return "请输入部门名称";
     }
-    if (!data.tips) {
+    if (!data.description) {
         return "请输入别名";
     }
 

@@ -21,7 +21,7 @@ Dept.initColumn = function () {
         {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle', sortable: true},
         {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle', sortable: true},
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
-        {title: '备注', field: 'tips', align: 'center', valign: 'middle', sortable: true}];
+        {title: '备注', field: 'description', align: 'center', valign: 'middle', sortable: true}];
 };
 
 /**
