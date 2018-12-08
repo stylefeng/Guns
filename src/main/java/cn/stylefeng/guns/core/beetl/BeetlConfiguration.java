@@ -15,7 +15,6 @@
  */
 package cn.stylefeng.guns.core.beetl;
 
-import cn.stylefeng.guns.core.tag.DictSelectorTag;
 import cn.stylefeng.guns.core.util.DefaultImages;
 import cn.stylefeng.guns.core.util.KaptchaUtil;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -39,9 +38,6 @@ public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
     @Autowired
     private Environment env;
 
-    @Autowired
-    private DictSelectorTag dictSelectorTag;
-
     @Override
     public void initOther() {
 
@@ -49,7 +45,6 @@ public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
         groupTemplate.registerFunctionPackage("shiro", new ShiroExt());
         groupTemplate.registerFunctionPackage("tool", new ToolUtil());
         groupTemplate.registerFunctionPackage("kaptcha", new KaptchaUtil());
-        groupTemplate.registerTagFactory("dictSelector", () -> dictSelectorTag);
 
         groupTemplate.registerFunction("env", new Function() {
             @Override

@@ -1,29 +1,37 @@
-@layout("/common/_dialog.html",{plugins:["sweet-alert","layer"],js:["/assets/modular/system/role/role_edit.js"]}){
+@layout("/common/_dialog.html",{plugins:["sweet-alert","layer"],js:["/assets/modular/system/dict/dict_add_item.js"]}){
 <div class="container-fluid">
-    <form id="roleForm" \@submit="submitForm">
+    <form id="dictForm" \@submit="submitForm">
+
+        <input value="${dictTypeId}" type="hidden" class="form-control">
+
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <h5>角色名称 <span class="text-danger">*</span></h5>
+                    <h5>父级字典</h5>
+                    <div class="controls">
+                        <input value="${dictTypeName}" disabled="disabled" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>字典名称 <span class="text-danger">*</span></h5>
                     <div class="controls">
                         <input v-model="name" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
-                    <h5>上级名称 <span class="text-danger">*</span></h5>
+                    <h5>字典编码 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input v-model="pName" id="pName" \@click="showParentSelectTree" type="text" class="form-control" autocomplete="off">
-                        <input v-model="pid" type="hidden" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h5>别名 <span class="text-danger">*</span></h5>
-                    <div class="controls">
-                        <input v-model="description" type="text" class="form-control">
+                        <input v-model="code" type="text" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="col-6">
+                <div class="form-group">
+                    <h5>描述</h5>
+                    <div class="controls">
+                        <input v-model="description" type="text" class="form-control">
+                    </div>
+                </div>
                 <div class="form-group">
                     <h5>排序</h5>
                     <div class="controls">

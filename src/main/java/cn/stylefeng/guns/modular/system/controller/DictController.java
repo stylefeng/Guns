@@ -23,6 +23,7 @@ import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Dict;
+import cn.stylefeng.guns.modular.system.model.DictDto;
 import cn.stylefeng.guns.modular.system.service.DictService;
 import cn.stylefeng.guns.modular.system.warpper.DictWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -64,11 +65,21 @@ public class DictController extends BaseController {
     }
 
     /**
-     * 跳转到添加字典
+     * 跳转到添加字典类型
      */
-    @RequestMapping("/dict_add")
-    public String deptAdd() {
-        return PREFIX + "dict_add.html";
+    @RequestMapping("/dict_add_type")
+    public String deptAddType() {
+        return PREFIX + "dict_add_type.html";
+    }
+
+    /**
+     * 跳转到添加字典条目
+     */
+    @RequestMapping("/dict_add_item")
+    public String deptAddItem(@RequestParam("dictId") Long dictId, Model model) {
+        model.addAttribute("dictTypeId", dictId);
+        model.addAttribute("dictTypeName", ConstantFactory.me().getDictName(dictId));
+        return PREFIX + "dict_add_item.html";
     }
 
     /**
@@ -76,7 +87,7 @@ public class DictController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping("/dict_edit/{dictId}")
-    public String deptUpdate(@PathVariable Integer dictId, Model model) {
+    public String deptUpdate(@PathVariable Long dictId, Model model) {
         Dict dict = dictService.selectById(dictId);
         model.addAttribute("dict", dict);
         List<Dict> subDicts = dictService.selectList(new EntityWrapper<Dict>().eq("PID", dictId));
@@ -87,18 +98,21 @@ public class DictController extends BaseController {
 
     /**
      * 新增字典
-     *
-     * @param dictValues 格式例如   "1:启用;2:禁用;3:冻结"
      */
-    @BussinessLog(value = "添加字典记录", key = "dictName,dictValues", dict = DictMap.class)
     @RequestMapping(value = "/add")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object add(String dictCode, String dictTips, String dictName, String dictValues) {
-        if (ToolUtil.isOneEmpty(dictCode, dictName, dictValues)) {
+    public Object add(DictDto dictDto) {
+        if (ToolUtil.isOneEmpty(dictDto, dictDto.getCode(), dictDto.getName())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.dictService.addDict(dictCode, dictName, dictTips, dictValues);
+
+        if (ToolUtil.isEmpty(dictDto.getDictTypeId())) {
+            this.dictService.addDictType(dictDto);
+        } else {
+            //TODO
+        }
+
         return SUCCESS_TIP;
     }
 
@@ -151,7 +165,7 @@ public class DictController extends BaseController {
         LogObjectHolder.me().set(ConstantFactory.me().getDictName(dictId));
 
         this.dictService.delteDict(dictId);
-        
+
         return SUCCESS_TIP;
     }
 

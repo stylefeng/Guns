@@ -2,10 +2,13 @@
  * 字典管理初始化
  */
 var Dict = {
-    id: "DictTable",	//表格id
+    id: "dictTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
-    layerIndex: -1
+    layerIndex: -1,
+    condition: {
+        condition: ""
+    }
 };
 
 /**
@@ -14,8 +17,9 @@ var Dict = {
 Dict.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: 'id', field: 'dictId', visible: false, align: 'center', valign: 'middle'},
         {title: '名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
+        {title: '字典编码', field: 'code', align: 'center', valign: 'middle', sortable: true},
         {title: '详情', field: 'detail', align: 'center', valign: 'middle', sortable: true},
         {title: '备注', field: 'description', align: 'center', valign: 'middle', sortable: true}];
 };
@@ -25,7 +29,7 @@ Dict.initColumn = function () {
  */
 Dict.check = function () {
     var selected = $('#' + this.id).bootstrapTable('getSelections');
-    if (selected.length == 0) {
+    if (selected.length === 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
@@ -35,18 +39,33 @@ Dict.check = function () {
 };
 
 /**
- * 点击添加字典
+ * 点击添加字典类型
  */
-Dict.openAddDict = function () {
-    var index = layer.open({
+Dict.openAddType = function () {
+    this.layerIndex = layer.open({
         type: 2,
-        title: '添加字典',
+        title: '添加字典类型',
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/dict/dict_add'
+        content: Feng.ctxPath + '/dict/dict_add_type'
     });
-    this.layerIndex = index;
+};
+
+/**
+ * 点击添加字典子条目
+ */
+Dict.openAddItem = function () {
+    if (this.check()) {
+        this.layerIndex = layer.open({
+            type: 2,
+            title: '添加字典条目',
+            area: ['800px', '420px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/dict/dict_add_item?dictId=' + Dict.seItem.dictId
+        });
+    }
 };
 
 /**
@@ -54,15 +73,14 @@ Dict.openAddDict = function () {
  */
 Dict.openDictDetail = function () {
     if (this.check()) {
-        var index = layer.open({
+        this.layerIndex = layer.open({
             type: 2,
             title: '字典详情',
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/dict/dict_edit/' + Dict.seItem.id
+            content: Feng.ctxPath + '/dict/dict_edit/' + Dict.seItem.dictId
         });
-        this.layerIndex = index;
     }
 };
 
@@ -72,14 +90,14 @@ Dict.openDictDetail = function () {
 Dict.delete = function () {
     if (this.check()) {
 
-        var operation = function(){
+        var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
                 Feng.success("删除成功!");
                 Dict.table.refresh();
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("dictId", Dict.seItem.id);
+            ajax.set("dictId", Dict.seItem.dictId);
             ajax.start();
         };
 

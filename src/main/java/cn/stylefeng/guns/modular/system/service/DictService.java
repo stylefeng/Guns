@@ -1,8 +1,10 @@
 package cn.stylefeng.guns.modular.system.service;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.modular.system.entity.Dict;
 import cn.stylefeng.guns.modular.system.mapper.DictMapper;
+import cn.stylefeng.guns.modular.system.model.DictDto;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
@@ -29,6 +31,19 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
 
     @Resource
     private DictMapper dictMapper;
+
+    /**
+     * 添加字典类型
+     */
+    public void addDictType(DictDto dictDto) {
+        Dict dict = new Dict();
+        BeanUtil.copyProperties(dictDto, dict);
+
+        //类型的父级id都为0
+        dict.setPid(0L);
+
+        this.insert(dict);
+    }
 
     /**
      * 添加字典
