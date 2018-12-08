@@ -23,10 +23,10 @@ MgrUser.initColumn = function () {
                 return index + 1;
             }
         },
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: 'userId', field: 'userId', visible: false, align: 'center', valign: 'middle'},
         {
             title: '账号', field: 'account', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
-                return '<a href="javascript:void(0);" onclick="MgrUser.openChangeUser(\'' + row.id + '\')"">' + value + '</a>'
+                return '<a href="javascript:void(0);" onclick="MgrUser.openChangeUser(\'' + row.userId + '\')"">' + value + '</a>'
             }
         },
         {title: '姓名', field: 'name', align: 'center', valign: 'middle', sortable: true},
@@ -35,27 +35,27 @@ MgrUser.initColumn = function () {
         {title: '部门', field: 'deptName', align: 'center', valign: 'middle', sortable: true},
         {title: '邮箱', field: 'email', align: 'center', valign: 'middle', sortable: true},
         {title: '电话', field: 'phone', align: 'center', valign: 'middle', sortable: true},
-        {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true},
+        {title: '创建时间', field: 'createTime', align: 'center', valign: 'middle', sortable: true},
         {
             title: '状态', field: 'status', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
-                if (value === 1) {
+                if (value === 'ENABLE') {
                     return '<button type="button" class="btn btn-xs btn-success">已启用</button>';
-                } else if (value === 2) {
+                } else if (value === 'LOCKED') {
                     return '<button type="button" class="btn btn-xs btn-warning">已冻结</button>';
-                } else if (value === 3) {
+                } else if (value === 'DELETED') {
                     return '<button type="button" class="btn btn-xs btn-danger">已删除</button>';
                 }
             }
         },
         {
             title: '操作', field: 'operate', align: 'center', valign: 'middle', sortable: true, formatter: function (value, row, index) {
-                var returnHtml = '<button type="button" class="btn btn-xs btn-danger" onclick="MgrUser.delMgrUserById(\'' + row.id + '\',\'' + row.account + '\')">删除</button> ';
-                if (row.status === 1) {
-                    returnHtml += '<button type="button" class="btn btn-xs btn-warning" onclick="MgrUser.freezeAccountById(\'' + row.id + '\')">冻结</button> ';
-                } else if (row.status === 2) {
-                    returnHtml += '<button type="button" class="btn btn-xs btn-success" onclick="MgrUser.unfreezeById(\'' + row.id + '\')">解冻</button> ';
+                var returnHtml = '<button type="button" class="btn btn-xs btn-danger" onclick="MgrUser.delMgrUserById(\'' + row.userId + '\',\'' + row.account + '\')">删除</button> ';
+                if (row.status === 'ENABLE') {
+                    returnHtml += '<button type="button" class="btn btn-xs btn-warning" onclick="MgrUser.freezeAccountById(\'' + row.userId + '\')">冻结</button> ';
+                } else if (row.status === 'LOCKED') {
+                    returnHtml += '<button type="button" class="btn btn-xs btn-success" onclick="MgrUser.unfreezeById(\'' + row.userId + '\')">解冻</button> ';
                 }
-                return returnHtml + '<button type="button" class="btn btn-xs btn-info" onclick="MgrUser.resetPwdById(\'' + row.id + '\')">重置密码</button>';
+                return returnHtml + '<button type="button" class="btn btn-xs btn-info" onclick="MgrUser.resetPwdById(\'' + row.userId + '\')">重置密码</button>';
             }
         }];
 };
@@ -95,7 +95,7 @@ MgrUser.openChangeUser = function (userId) {
     if (this.check()) {
         var selectId = userId;
         if (!userId) {
-            selectId = this.seItem.id;
+            selectId = this.seItem.userId;
         }
 
         this.layerIndex = layer.open({
@@ -119,7 +119,7 @@ MgrUser.roleAssign = function () {
             title: '角色分配',
             area: ['300px', '400px'],
             fix: false,
-            content: Feng.ctxPath + '/mgr/role_assign?userId=' + this.seItem.id
+            content: Feng.ctxPath + '/mgr/role_assign?userId=' + this.seItem.userId
         });
     }
 };
@@ -130,7 +130,7 @@ MgrUser.roleAssign = function () {
 MgrUser.delMgrUser = function () {
     if (this.check()) {
         var operation = function () {
-            var userId = MgrUser.seItem.id;
+            var userId = MgrUser.seItem.userId;
             var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function () {
                 Feng.success("删除成功!");
                 MgrUser.table.refresh();
@@ -168,7 +168,7 @@ MgrUser.delMgrUserById = function (userId, account) {
  */
 MgrUser.freezeAccount = function () {
     if (this.check()) {
-        var userId = this.seItem.id;
+        var userId = this.seItem.userId;
         var ajax = new $ax(Feng.ctxPath + "/mgr/freeze", function (data) {
             Feng.success("冻结成功!");
             MgrUser.table.refresh();
@@ -199,7 +199,7 @@ MgrUser.freezeAccountById = function (userId) {
  */
 MgrUser.unfreeze = function () {
     if (this.check()) {
-        var userId = this.seItem.id;
+        var userId = this.seItem.userId;
         var ajax = new $ax(Feng.ctxPath + "/mgr/unfreeze", function (data) {
             Feng.success("解除冻结成功!");
             MgrUser.table.refresh();
@@ -230,7 +230,7 @@ MgrUser.unfreezeById = function (userId) {
  */
 MgrUser.resetPwd = function () {
     if (this.check()) {
-        var userId = this.seItem.id;
+        var userId = this.seItem.userId;
         Feng.confirm("是否重置密码为111111 ?", function () {
             var ajax = new $ax(Feng.ctxPath + "/mgr/reset", function (data) {
                 Feng.success("重置密码成功!");
