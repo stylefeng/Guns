@@ -7,9 +7,7 @@ var RoleAddDlg = {
         pName: "",
         pid: "",
         description: "",
-        deptName: "",
-        deptId: "",
-        num: ""
+        sort: ""
     }
 };
 
@@ -32,9 +30,6 @@ RoleAddDlg.validateForm = function () {
     }
     if (!(data.pName)) {
         return "请输入上级名称";
-    }
-    if (!data.deptName) {
-        return "请输入部门名称";
     }
     if (!data.description) {
         return "请输入别名";
@@ -66,18 +61,6 @@ $(function () {
         methods: {
             submitForm: function (e) {
                 e.preventDefault();
-            },
-            showDeptSelectTree: function () {
-                var formName = encodeURIComponent("parent.RoleAddDlg.app.deptName");
-                var formId = encodeURIComponent("parent.RoleAddDlg.app.deptId");
-                var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
-
-                layer.open({
-                    type: 2,
-                    title: '部门选择',
-                    area: ['300px', '350px'],
-                    content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
-                });
             },
             showParentSelectTree: function () {
                 var formName = encodeURIComponent("parent.RoleAddDlg.app.pName");

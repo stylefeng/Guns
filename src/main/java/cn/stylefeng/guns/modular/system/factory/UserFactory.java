@@ -19,7 +19,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.modular.system.entity.User;
-import cn.stylefeng.guns.modular.system.transfer.UserDto;
+import cn.stylefeng.guns.modular.system.model.UserDto;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.springframework.beans.BeanUtils;
 

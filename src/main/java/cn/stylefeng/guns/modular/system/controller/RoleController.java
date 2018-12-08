@@ -28,6 +28,7 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.util.CacheUtil;
 import cn.stylefeng.guns.modular.system.entity.Role;
 import cn.stylefeng.guns.modular.system.entity.User;
+import cn.stylefeng.guns.modular.system.model.RoleDto;
 import cn.stylefeng.guns.modular.system.service.RoleService;
 import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.guns.modular.system.warpper.RoleWarpper;
@@ -38,13 +39,11 @@ import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -130,11 +129,10 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "添加角色", key = "name", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public ResponseData add(@Valid Role role, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
+    public ResponseData add(Role role) {
+
         role.setRoleId(null);
+
         this.roleService.insert(role);
         return SUCCESS_TIP;
     }
@@ -146,14 +144,15 @@ public class RoleController extends BaseController {
     @BussinessLog(value = "修改角色", key = "name", dict = RoleDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public ResponseData edit(@Valid Role role, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
-        this.roleService.updateById(role);
+    public ResponseData edit(RoleDto roleDto) {
+
+        Role old = this.roleService.selectById(roleDto.getRoleId());
+        BeanUtil.copyProperties(roleDto, old);
+        this.roleService.updateById(old);
 
         //删除缓存
         CacheUtil.removeAll(Cache.CONSTANT);
+
         return SUCCESS_TIP;
     }
 
