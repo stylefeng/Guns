@@ -1,8 +1,8 @@
 package cn.stylefeng.guns.system;
 
 import cn.stylefeng.guns.base.BaseJunit;
-import cn.stylefeng.guns.modular.system.dao.MenuMapper;
-import cn.stylefeng.guns.modular.system.model.Menu;
+import cn.stylefeng.guns.modular.system.entity.Menu;
+import cn.stylefeng.guns.modular.system.mapper.MenuMapper;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import org.junit.Test;
@@ -54,13 +54,13 @@ public class MenuTest extends BaseJunit {
 
                 menu.setPcodes(sb.toString());
             }
-            menu.updateById();
+            menuMapper.updateById(menu);
         }
     }
 
     private Menu getParentMenu(String code) {
         Wrapper<Menu> wrapper = new EntityWrapper<Menu>();
-        wrapper = wrapper.eq("code", code);
+        wrapper = wrapper.eq("CODE", code);
         List<Menu> menus = menuMapper.selectList(wrapper);
         if (menus == null || menus.size() == 0) {
             return new Menu();

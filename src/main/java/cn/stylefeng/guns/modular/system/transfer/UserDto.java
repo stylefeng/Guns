@@ -29,19 +29,19 @@ import java.util.Date;
 @Data
 public class UserDto {
 
-    private Integer id;
+    private Long id;
     private String account;
     private String password;
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
-    private Integer sex;
+    private String sex;
     private String email;
     private String phone;
     private String roleid;
-    private Integer deptid;
-    private Integer status;
+    private Long deptid;
+    private String status;
     private String avatar;
 
 }

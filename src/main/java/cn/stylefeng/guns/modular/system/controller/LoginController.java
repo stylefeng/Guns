@@ -21,7 +21,7 @@ import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.util.KaptchaUtil;
-import cn.stylefeng.guns.modular.system.service.INoticeService;
+import cn.stylefeng.guns.modular.system.service.NoticeService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.google.code.kaptcha.Constants;
@@ -48,7 +48,7 @@ import static cn.stylefeng.roses.core.util.HttpContext.getIp;
 public class LoginController extends BaseController {
 
     @Autowired
-    private INoticeService noticeService;
+    private NoticeService noticeService;
 
     /**
      * 跳转到主页
@@ -56,7 +56,7 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
 
-        List<Integer> roleList = ShiroKit.getUser().getRoleList();
+        List<Long> roleList = ShiroKit.getUser().getRoleList();
         if (roleList == null || roleList.size() == 0) {
             ShiroKit.getSubject().logout();
             model.addAttribute("tips", "该用户没有角色，无法登陆");

@@ -17,7 +17,7 @@ package cn.stylefeng.guns.core.shiro;
 
 import cn.stylefeng.guns.core.shiro.service.UserAuthService;
 import cn.stylefeng.guns.core.shiro.service.impl.UserAuthServiceServiceImpl;
-import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -56,12 +56,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         UserAuthService shiroFactory = UserAuthServiceServiceImpl.me();
         ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-        List<Integer> roleList = shiroUser.getRoleList();
+        List<Long> roleList = shiroUser.getRoleList();
 
         Set<String> permissionSet = new HashSet<>();
         Set<String> roleNameSet = new HashSet<>();
 
-        for (Integer roleId : roleList) {
+        for (Long roleId : roleList) {
             List<String> permissions = shiroFactory.findPermissionsByRoleId(roleId);
             if (permissions != null) {
                 for (String permission : permissions) {

@@ -28,9 +28,9 @@ import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.factory.UserFactory;
-import cn.stylefeng.guns.modular.system.model.User;
-import cn.stylefeng.guns.modular.system.service.IUserService;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.guns.modular.system.transfer.UserDto;
 import cn.stylefeng.guns.modular.system.warpper.UserWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -70,7 +70,7 @@ public class UserMgrController extends BaseController {
     private GunsProperties gunsProperties;
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     /**
      * 跳转到查看管理员列表的页面
@@ -93,11 +93,11 @@ public class UserMgrController extends BaseController {
      */
     @Permission
     @RequestMapping("/role_assign")
-    public String roleAssign(@RequestParam Integer userId, Model model) {
+    public String roleAssign(@RequestParam Long userId, Model model) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        User user = this.userService.selectOne(new EntityWrapper<User>().eq("id", userId));
+        User user = this.userService.selectOne(new EntityWrapper<User>().eq("USER_ID", userId));
         model.addAttribute("userId", userId);
         model.addAttribute("userAccount", user.getAccount());
         return PREFIX + "user_roleassign.html";
@@ -122,14 +122,14 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/user_info")
     public String userInfo(Model model) {
-        Integer userId = ShiroKit.getUser().getId();
+        Long userId = ShiroKit.getUser().getId();
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         User user = this.userService.selectById(userId);
         model.addAllAttributes(BeanUtil.beanToMap(user));
-        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
-        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
         LogObjectHolder.me().set(user);
         return PREFIX + "user_view.html";
     }
@@ -147,7 +147,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/getUserInfo")
     @ResponseBody
-    public Object getUserInfo(@RequestParam Integer userId) {
+    public Object getUserInfo(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new RequestEmptyException();
         }
@@ -157,8 +157,8 @@ public class UserMgrController extends BaseController {
 
         HashMap<Object, Object> hashMap = CollectionUtil.newHashMap();
         hashMap.putAll(map);
-        hashMap.put("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
-        hashMap.put("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+        hashMap.put("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        hashMap.put("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
 
         return ResponseData.success(hashMap);
     }
@@ -172,13 +172,13 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isOneEmpty(oldPassword, newPassword)) {
             throw new RequestEmptyException();
         }
-        Integer userId = ShiroKit.getUser().getId();
+        Long userId = ShiroKit.getUser().getId();
         User user = userService.selectById(userId);
         String oldMd5 = ShiroKit.md5(oldPassword, user.getSalt());
         if (user.getPassword().equals(oldMd5)) {
             String newMd5 = ShiroKit.md5(newPassword, user.getSalt());
             user.setPassword(newMd5);
-            user.updateById();
+            this.userService.updateById(user);
             return SUCCESS_TIP;
         } else {
             throw new ServiceException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
@@ -193,7 +193,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String name,
                        @RequestParam(required = false) String timeLimit,
-                       @RequestParam(required = false) Integer deptid) {
+                       @RequestParam(required = false) Long deptid) {
 
         //拼接查询条件
         String beginTime = "";
@@ -276,7 +276,7 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
     @Permission
     @ResponseBody
-    public ResponseData delete(@RequestParam Integer userId) {
+    public ResponseData delete(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -294,7 +294,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/view/{userId}")
     @ResponseBody
-    public User view(@PathVariable Integer userId) {
+    public User view(@PathVariable Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -309,7 +309,7 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public ResponseData reset(@RequestParam Integer userId) {
+    public ResponseData reset(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -328,7 +328,7 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public ResponseData freeze(@RequestParam Integer userId) {
+    public ResponseData freeze(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -348,7 +348,7 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public ResponseData unfreeze(@RequestParam Integer userId) {
+    public ResponseData unfreeze(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -364,7 +364,7 @@ public class UserMgrController extends BaseController {
     @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public ResponseData setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
+    public ResponseData setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -397,13 +397,13 @@ public class UserMgrController extends BaseController {
     /**
      * 判断当前登录的用户是否有操作这个用户的权限
      */
-    private void assertAuth(Integer userId) {
+    private void assertAuth(Long userId) {
         if (ShiroKit.isAdmin()) {
             return;
         }
-        List<Integer> deptDataScope = ShiroKit.getDeptDataScope();
+        List<Long> deptDataScope = ShiroKit.getDeptDataScope();
         User user = this.userService.selectById(userId);
-        Integer deptid = user.getDeptid();
+        Long deptid = user.getDeptId();
         if (deptDataScope.contains(deptid)) {
             return;
         } else {

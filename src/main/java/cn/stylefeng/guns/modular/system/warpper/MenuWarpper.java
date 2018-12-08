@@ -50,7 +50,7 @@ public class MenuWarpper extends BaseControllerWrapper {
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        map.put("statusName", ConstantFactory.me().getMenuStatusName((Integer) map.get("status")));
+        map.put("statusName", ConstantFactory.me().getMenuStatusName((String) map.get("status")));
         map.put("isMenuName", YesOrNotEnum.valueOf((Integer) map.get("ismenu")));
     }
 

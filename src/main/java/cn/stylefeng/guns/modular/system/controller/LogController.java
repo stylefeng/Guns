@@ -22,8 +22,8 @@ import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
 import cn.stylefeng.guns.core.common.constant.state.BizLogType;
 import cn.stylefeng.guns.core.common.page.PageInfoBT;
-import cn.stylefeng.guns.modular.system.model.OperationLog;
-import cn.stylefeng.guns.modular.system.service.IOperationLogService;
+import cn.stylefeng.guns.modular.system.entity.OperationLog;
+import cn.stylefeng.guns.modular.system.service.OperationLogService;
 import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
@@ -51,7 +51,7 @@ public class LogController extends BaseController {
     private static String PREFIX = "/system/log/";
 
     @Autowired
-    private IOperationLogService operationLogService;
+    private OperationLogService operationLogService;
 
     /**
      * 跳转到日志管理的首页
@@ -80,7 +80,7 @@ public class LogController extends BaseController {
     @RequestMapping("/detail/{id}")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object detail(@PathVariable Integer id) {
+    public Object detail(@PathVariable Long id) {
         OperationLog operationLog = operationLogService.selectById(id);
         Map<String, Object> stringObjectMap = BeanUtil.beanToMap(operationLog);
         return super.warpObject(new LogWarpper(stringObjectMap));

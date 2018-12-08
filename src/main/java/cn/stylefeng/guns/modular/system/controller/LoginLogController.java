@@ -20,8 +20,8 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
 import cn.stylefeng.guns.core.common.page.PageInfoBT;
-import cn.stylefeng.guns.modular.system.model.LoginLog;
-import cn.stylefeng.guns.modular.system.service.ILoginLogService;
+import cn.stylefeng.guns.modular.system.entity.LoginLog;
+import cn.stylefeng.guns.modular.system.service.LoginLogService;
 import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
@@ -48,7 +48,7 @@ public class LoginLogController extends BaseController {
     private static String PREFIX = "/system/log/";
 
     @Autowired
-    private ILoginLogService loginLogService;
+    private LoginLogService loginLogService;
 
     /**
      * 跳转到日志管理的首页

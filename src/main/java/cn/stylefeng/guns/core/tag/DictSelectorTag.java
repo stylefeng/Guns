@@ -16,8 +16,8 @@
 package cn.stylefeng.guns.core.tag;
 
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
-import cn.stylefeng.guns.modular.system.model.Dict;
-import cn.stylefeng.guns.modular.system.service.IDictService;
+import cn.stylefeng.guns.modular.system.entity.Dict;
+import cn.stylefeng.guns.modular.system.service.DictService;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import org.beetl.core.Tag;
@@ -40,7 +40,7 @@ import java.util.Map;
 public class DictSelectorTag extends Tag {
 
     @Autowired
-    IDictService iDictService;
+    DictService dictService;
 
     @Override
     public void render() {
@@ -79,7 +79,7 @@ public class DictSelectorTag extends Tag {
         //searchnum 下拉选项数量达到多少启用搜索,默认10
         int searchnum = ToolUtil.isNum(attrs.get("searchnum")) ? Integer.parseInt(attrs.get("searchnum").toString()) : 10;
         //根据code查询字典数据
-        List<Dict> list = iDictService.selectByParentCode(code);
+        List<Dict> list = dictService.selectByParentCode(code);
 
         StringBuffer html = new StringBuffer();
         html.append("<div class=\"form-group\">\r\n");

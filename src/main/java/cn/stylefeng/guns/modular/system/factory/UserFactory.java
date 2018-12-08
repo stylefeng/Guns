@@ -18,7 +18,7 @@ package cn.stylefeng.guns.modular.system.factory;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
-import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.transfer.UserDto;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.springframework.beans.BeanUtils;
@@ -44,7 +44,7 @@ public class UserFactory {
         } else {
             User user = new User();
             BeanUtils.copyProperties(userDto, user);
-            user.setCreatetime(new Date());
+            user.setCreateTime(new Date());
             user.setStatus(ManagerStatus.OK.getCode());
             user.setPassword(md5Password);
             user.setSalt(salt);
@@ -69,7 +69,7 @@ public class UserFactory {
                 oldUser.setBirthday(newUser.getBirthday());
             }
             if (ToolUtil.isNotEmpty(newUser.getDeptid())) {
-                oldUser.setDeptid(newUser.getDeptid());
+                oldUser.setDeptId(newUser.getDeptid());
             }
             if (ToolUtil.isNotEmpty(newUser.getSex())) {
                 oldUser.setSex(newUser.getSex());

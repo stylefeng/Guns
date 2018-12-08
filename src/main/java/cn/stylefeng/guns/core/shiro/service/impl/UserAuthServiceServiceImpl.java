@@ -21,10 +21,10 @@ import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.shiro.service.UserAuthService;
-import cn.stylefeng.guns.modular.system.dao.MenuMapper;
-import cn.stylefeng.guns.modular.system.dao.UserMapper;
-import cn.stylefeng.guns.modular.system.model.User;
-import cn.stylefeng.guns.modular.system.service.IUserService;
+import cn.stylefeng.guns.modular.system.entity.User;
+import cn.stylefeng.guns.modular.system.mapper.MenuMapper;
+import cn.stylefeng.guns.modular.system.mapper.UserMapper;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -51,7 +51,7 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
     private MenuMapper menuMapper;
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     public static UserAuthService me() {
         return SpringContextHolder.getBean(UserAuthService.class);
@@ -67,7 +67,7 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
             throw new CredentialsException();
         }
         // 账号被冻结
-        if (user.getStatus() != ManagerStatus.OK.getCode()) {
+        if (!user.getStatus().equals(ManagerStatus.OK.getCode())) {
             throw new LockedAccountException();
         }
         return user;
@@ -79,12 +79,12 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
         ShiroUser shiroUser = ShiroKit.createShiroUser(user);
 
         //用户角色数组
-        Integer[] roleArray = Convert.toIntArray(user.getRoleid());
+        Long[] roleArray = Convert.toLongArray(user.getRoleId());
 
         //获取用户角色列表
-        List<Integer> roleList = new ArrayList<>();
+        List<Long> roleList = new ArrayList<>();
         List<String> roleNameList = new ArrayList<>();
-        for (int roleId : roleArray) {
+        for (Long roleId : roleArray) {
             roleList.add(roleId);
             roleNameList.add(ConstantFactory.me().getSingleRoleName(roleId));
         }
@@ -98,12 +98,12 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
     }
 
     @Override
-    public List<String> findPermissionsByRoleId(Integer roleId) {
+    public List<String> findPermissionsByRoleId(Long roleId) {
         return menuMapper.getResUrlsByRoleId(roleId);
     }
 
     @Override
-    public String findRoleNameByRoleId(Integer roleId) {
+    public String findRoleNameByRoleId(Long roleId) {
         return ConstantFactory.me().getSingleRoleTip(roleId);
     }
 

@@ -17,7 +17,7 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import cn.stylefeng.guns.modular.system.model.Dict;
+import cn.stylefeng.guns.modular.system.entity.Dict;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -52,7 +52,7 @@ public class DictWarpper extends BaseControllerWrapper {
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
         StringBuffer detail = new StringBuffer();
-        Integer id = Integer.valueOf(map.get("id").toString());
+        Long id = Long.valueOf(map.get("id").toString());
         List<Dict> dicts = ConstantFactory.me().findInDict(id);
         if (dicts != null) {
             for (Dict dict : dicts) {

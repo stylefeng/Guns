@@ -22,8 +22,8 @@ import cn.stylefeng.guns.core.common.constant.dictmap.DictMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
-import cn.stylefeng.guns.modular.system.model.Dict;
-import cn.stylefeng.guns.modular.system.service.IDictService;
+import cn.stylefeng.guns.modular.system.entity.Dict;
+import cn.stylefeng.guns.modular.system.service.DictService;
 import cn.stylefeng.guns.modular.system.warpper.DictWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -53,7 +53,7 @@ public class DictController extends BaseController {
     private String PREFIX = "/system/dict/";
 
     @Autowired
-    private IDictService dictService;
+    private DictService dictService;
 
     /**
      * 跳转到字典管理首页
@@ -79,7 +79,7 @@ public class DictController extends BaseController {
     public String deptUpdate(@PathVariable Integer dictId, Model model) {
         Dict dict = dictService.selectById(dictId);
         model.addAttribute("dict", dict);
-        List<Dict> subDicts = dictService.selectList(new EntityWrapper<Dict>().eq("pid", dictId));
+        List<Dict> subDicts = dictService.selectList(new EntityWrapper<Dict>().eq("PID", dictId));
         model.addAttribute("subDicts", subDicts);
         LogObjectHolder.me().set(dict);
         return PREFIX + "dict_edit.html";
@@ -130,7 +130,7 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/update")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object update(Integer dictId, String dictCode, String dictName, String dictTips, String dictValues) {
+    public Object update(Long dictId, String dictCode, String dictName, String dictTips, String dictValues) {
         if (ToolUtil.isOneEmpty(dictId, dictCode, dictName, dictValues)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -145,12 +145,13 @@ public class DictController extends BaseController {
     @RequestMapping(value = "/delete")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object delete(@RequestParam Integer dictId) {
+    public Object delete(@RequestParam Long dictId) {
 
         //缓存被删除的名称
         LogObjectHolder.me().set(ConstantFactory.me().getDictName(dictId));
 
         this.dictService.delteDict(dictId);
+        
         return SUCCESS_TIP;
     }
 

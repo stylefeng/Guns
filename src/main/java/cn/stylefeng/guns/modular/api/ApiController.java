@@ -18,8 +18,8 @@ package cn.stylefeng.guns.modular.api;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.util.JwtTokenUtil;
-import cn.stylefeng.guns.modular.system.dao.UserMapper;
-import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.entity.User;
+import cn.stylefeng.guns.modular.system.mapper.UserMapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
@@ -76,7 +76,7 @@ public class ApiController extends BaseController {
 
         if (passwordTrueFlag) {
             HashMap<String, Object> result = new HashMap<>();
-            result.put("token", JwtTokenUtil.generateToken(String.valueOf(user.getId())));
+            result.put("token", JwtTokenUtil.generateToken(String.valueOf(user.getUserId())));
             return result;
         } else {
             return new ErrorResponseData(500, "账号密码错误！");

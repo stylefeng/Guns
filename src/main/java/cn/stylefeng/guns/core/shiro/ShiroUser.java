@@ -35,7 +35,7 @@ public class ShiroUser implements Serializable {
     /**
      * 用户主键ID
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 账号
@@ -60,12 +60,12 @@ public class ShiroUser implements Serializable {
     /**
      * 部门id
      */
-    private Integer deptId;
+    private Long deptId;
 
     /**
      * 角色集
      */
-    private List<Integer> roleList;
+    private List<Long> roleList;
 
     /**
      * 部门名称

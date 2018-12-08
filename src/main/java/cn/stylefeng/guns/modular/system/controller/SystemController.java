@@ -21,11 +21,11 @@ import cn.stylefeng.guns.core.common.constant.DefaultAvatar;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.modular.system.entity.FileInfo;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.factory.UserFactory;
-import cn.stylefeng.guns.modular.system.model.FileInfo;
-import cn.stylefeng.guns.modular.system.model.User;
-import cn.stylefeng.guns.modular.system.service.IFileInfoService;
-import cn.stylefeng.guns.modular.system.service.IUserService;
+import cn.stylefeng.guns.modular.system.service.FileInfoService;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -61,10 +61,10 @@ public class SystemController extends BaseController {
     private String PREFIX = "/common/";
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
-    private IFileInfoService fileInfoService;
+    private FileInfoService fileInfoService;
 
     /**
      * 通用的树列表选择器
@@ -132,9 +132,9 @@ public class SystemController extends BaseController {
             avatar = DefaultAvatar.BASE_64_AVATAR;
         } else {
             FileInfo fileInfo = fileInfoService.selectById(avatar);
-            if(fileInfo == null){
+            if (fileInfo == null) {
                 avatar = DefaultAvatar.BASE_64_AVATAR;
-            }else{
+            } else {
                 avatar = fileInfo.getFileData();
             }
         }
@@ -169,8 +169,8 @@ public class SystemController extends BaseController {
 
         HashMap<Object, Object> hashMap = CollectionUtil.newHashMap();
         hashMap.putAll(map);
-        hashMap.put("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
-        hashMap.put("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+        hashMap.put("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        hashMap.put("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
 
         return ResponseData.success(hashMap);
     }

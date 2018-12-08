@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns;
 
+import cn.stylefeng.guns.generator.config.GeneratorAutoConfiguration;
 import cn.stylefeng.roses.core.config.WebAutoConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author stylefeng
  * @Date 2017/5/21 12:06
  */
-@SpringBootApplication(exclude = WebAutoConfiguration.class)
+@SpringBootApplication(exclude = {WebAutoConfiguration.class, GeneratorAutoConfiguration.class})
 public class GunsApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(GunsApplication.class);
@@ -35,5 +36,16 @@ public class GunsApplication {
     public static void main(String[] args) {
         SpringApplication.run(GunsApplication.class, args);
         logger.info("GunsApplication is success!");
+
+//        GenerateParams generateParams = new GenerateParams();
+//
+//        generateParams.setRemoveTablePrefix(new String[]{"sys_"});
+//        generateParams.setAuthor("stylefeng");
+//        generateParams.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT");
+//        generateParams.setGeneratorInterface(false);
+//        generateParams.setParentPackage("cn.stylefeng.guns.modular.system");
+//        generateParams.setGeneratorInterface(false);
+//
+//        SimpleGenerator.doGeneration(generateParams);
     }
 }

@@ -18,10 +18,10 @@ package cn.stylefeng.guns.core.log.factory;
 import cn.stylefeng.guns.core.common.constant.state.LogSucceed;
 import cn.stylefeng.guns.core.common.constant.state.LogType;
 import cn.stylefeng.guns.core.log.LogManager;
-import cn.stylefeng.guns.modular.system.dao.LoginLogMapper;
-import cn.stylefeng.guns.modular.system.dao.OperationLogMapper;
-import cn.stylefeng.guns.modular.system.model.LoginLog;
-import cn.stylefeng.guns.modular.system.model.OperationLog;
+import cn.stylefeng.guns.modular.system.entity.LoginLog;
+import cn.stylefeng.guns.modular.system.entity.OperationLog;
+import cn.stylefeng.guns.modular.system.mapper.LoginLogMapper;
+import cn.stylefeng.guns.modular.system.mapper.OperationLogMapper;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.slf4j.Logger;
@@ -41,7 +41,7 @@ public class LogTaskFactory {
     private static LoginLogMapper loginLogMapper = SpringContextHolder.getBean(LoginLogMapper.class);
     private static OperationLogMapper operationLogMapper = SpringContextHolder.getBean(OperationLogMapper.class);
 
-    public static TimerTask loginLog(final Integer userId, final String ip) {
+    public static TimerTask loginLog(final Long userId, final String ip) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -70,7 +70,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask exitLog(final Integer userId, final String ip) {
+    public static TimerTask exitLog(final Long userId, final String ip) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -84,7 +84,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask bussinessLog(final Integer userId, final String bussinessName, final String clazzName, final String methodName, final String msg) {
+    public static TimerTask bussinessLog(final Long userId, final String bussinessName, final String clazzName, final String methodName, final String msg) {
         return new TimerTask() {
             @Override
             public void run() {
@@ -99,7 +99,7 @@ public class LogTaskFactory {
         };
     }
 
-    public static TimerTask exceptionLog(final Integer userId, final Exception exception) {
+    public static TimerTask exceptionLog(final Long userId, final Exception exception) {
         return new TimerTask() {
             @Override
             public void run() {

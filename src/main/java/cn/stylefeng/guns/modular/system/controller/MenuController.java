@@ -25,8 +25,8 @@ import cn.stylefeng.guns.core.common.constant.state.MenuStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
-import cn.stylefeng.guns.modular.system.model.Menu;
-import cn.stylefeng.guns.modular.system.service.IMenuService;
+import cn.stylefeng.guns.modular.system.entity.Menu;
+import cn.stylefeng.guns.modular.system.service.MenuService;
 import cn.stylefeng.guns.modular.system.warpper.MenuWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
@@ -59,7 +59,7 @@ public class MenuController extends BaseController {
     private static String PREFIX = "/system/menu/";
 
     @Autowired
-    private IMenuService menuService;
+    private MenuService menuService;
 
     /**
      * 跳转到菜单列表列表页面
@@ -98,7 +98,7 @@ public class MenuController extends BaseController {
             menu.setPcode("0");
         } else {
             //设置父级菜单的code为父级菜单的id
-            menu.setPcode(String.valueOf(pMenu.getId()));
+            menu.setPcode(String.valueOf(pMenu.getMenuId()));
         }
 
         Map<String, Object> menuMap = BeanUtil.beanToMap(menu);
@@ -220,7 +220,7 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/menuTreeListByRoleId/{roleId}")
     @ResponseBody
-    public List<ZTreeNode> menuTreeListByRoleId(@PathVariable Integer roleId) {
+    public List<ZTreeNode> menuTreeListByRoleId(@PathVariable Long roleId) {
         List<Long> menuIds = this.menuService.getMenuIdsByRoleId(roleId);
         if (ToolUtil.isEmpty(menuIds)) {
             return this.menuService.menuTreeList();

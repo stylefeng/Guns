@@ -22,8 +22,8 @@ import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
-import cn.stylefeng.guns.modular.system.model.Dept;
-import cn.stylefeng.guns.modular.system.service.IDeptService;
+import cn.stylefeng.guns.modular.system.entity.Dept;
+import cn.stylefeng.guns.modular.system.service.DeptService;
 import cn.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -52,7 +52,7 @@ public class DeptController extends BaseController {
     private String PREFIX = "/system/dept/";
 
     @Autowired
-    private IDeptService deptService;
+    private DeptService deptService;
 
     /**
      * 跳转到部门管理首页
@@ -75,7 +75,7 @@ public class DeptController extends BaseController {
      */
     @Permission
     @RequestMapping("/dept_update/{deptId}")
-    public String deptUpdate(@PathVariable Integer deptId, Model model) {
+    public String deptUpdate(@PathVariable Long deptId, Model model) {
         Dept dept = deptService.selectById(deptId);
         model.addAttribute(dept);
         model.addAttribute("pName", ConstantFactory.me().getDeptName(dept.getPid()));
@@ -102,9 +102,10 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object add(Dept dept) {
-        if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
+        if (ToolUtil.isOneEmpty(dept, dept.getSimpleName())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
+
         //完善pids,根据pid拿到pid的pids
         deptSetPids(dept);
         return this.deptService.insert(dept);
@@ -127,7 +128,7 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/detail/{deptId}")
     @Permission
     @ResponseBody
-    public Object detail(@PathVariable("deptId") Integer deptId) {
+    public Object detail(@PathVariable("deptId") Long deptId) {
         return deptService.selectById(deptId);
     }
 
@@ -139,7 +140,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object update(Dept dept) {
-        if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
+        if (ToolUtil.isEmpty(dept) || dept.getDeptId() == null) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         deptSetPids(dept);
@@ -154,7 +155,7 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/delete")
     @Permission
     @ResponseBody
-    public Object delete(@RequestParam Integer deptId) {
+    public Object delete(@RequestParam Long deptId) {
 
         //缓存被删除的部门名称
         LogObjectHolder.me().set(ConstantFactory.me().getDeptName(deptId));
@@ -165,11 +166,11 @@ public class DeptController extends BaseController {
     }
 
     private void deptSetPids(Dept dept) {
-        if (ToolUtil.isEmpty(dept.getPid()) || dept.getPid().equals(0)) {
-            dept.setPid(0);
+        if (ToolUtil.isEmpty(dept.getPid()) || dept.getPid().equals(0L)) {
+            dept.setPid(0L);
             dept.setPids("[0],");
         } else {
-            int pid = dept.getPid();
+            Long pid = dept.getPid();
             Dept temp = deptService.selectById(pid);
             String pids = temp.getPids();
             dept.setPid(pid);

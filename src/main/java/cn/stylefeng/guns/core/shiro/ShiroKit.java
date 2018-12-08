@@ -17,7 +17,7 @@ package cn.stylefeng.guns.core.shiro;
 
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.Md5Hash;
@@ -259,9 +259,9 @@ public class ShiroKit {
     /**
      * 获取当前用户的部门数据范围的集合
      */
-    public static List<Integer> getDeptDataScope() {
-        Integer deptId = getUser().getDeptId();
-        List<Integer> subDeptIds = ConstantFactory.me().getSubDeptId(deptId);
+    public static List<Long> getDeptDataScope() {
+        Long deptId = getUser().getDeptId();
+        List<Long> subDeptIds = ConstantFactory.me().getSubDeptId(deptId);
         subDeptIds.add(deptId);
         return subDeptIds;
     }
@@ -270,8 +270,8 @@ public class ShiroKit {
      * 判断当前用户是否是超级管理员
      */
     public static boolean isAdmin() {
-        List<Integer> roleList = ShiroKit.getUser().getRoleList();
-        for (Integer integer : roleList) {
+        List<Long> roleList = ShiroKit.getUser().getRoleList();
+        for (Long integer : roleList) {
             String singleRoleTip = ConstantFactory.me().getSingleRoleTip(integer);
             if (singleRoleTip.equals(Const.ADMIN_NAME)) {
                 return true;
@@ -290,10 +290,10 @@ public class ShiroKit {
             return shiroUser;
         }
 
-        shiroUser.setId(user.getId());
+        shiroUser.setId(user.getUserId());
         shiroUser.setAccount(user.getAccount());
-        shiroUser.setDeptId(user.getDeptid());
-        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptid()));
+        shiroUser.setDeptId(user.getDeptId());
+        shiroUser.setDeptName(ConstantFactory.me().getDeptName(user.getDeptId()));
         shiroUser.setName(user.getName());
         shiroUser.setEmail(user.getEmail());
         shiroUser.setAvatar(user.getAvatar());
