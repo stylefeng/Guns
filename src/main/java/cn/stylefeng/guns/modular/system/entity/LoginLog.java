@@ -25,7 +25,7 @@ public class LoginLog implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "LOGIN_LOG_ID", type = IdType.AUTO)
+    @TableId(value = "LOGIN_LOG_ID", type = IdType.ID_WORKER)
     private Long loginLogId;
     /**
      * 日志名称

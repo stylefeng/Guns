@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
 
+import static com.baomidou.mybatisplus.enums.IdType.ID_WORKER;
+
 /**
  * <p>
  * 角色和菜单关联表
@@ -22,7 +24,7 @@ public class Relation implements Serializable {
     /**
      * 主键
      */
-    @TableId("RELATION_ID")
+    @TableId(value = "RELATION_ID", type = ID_WORKER)
     private Long relationId;
     /**
      * 菜单id
@@ -63,9 +65,9 @@ public class Relation implements Serializable {
     @Override
     public String toString() {
         return "Relation{" +
-        ", relationId=" + relationId +
-        ", menuId=" + menuId +
-        ", roleId=" + roleId +
-        "}";
+                ", relationId=" + relationId +
+                ", menuId=" + menuId +
+                ", roleId=" + roleId +
+                "}";
     }
 }

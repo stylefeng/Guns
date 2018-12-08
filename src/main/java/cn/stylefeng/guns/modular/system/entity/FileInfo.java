@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldFill;
+import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
 /**
  * <p>
  * 文件信息表
-
+ *
  * </p>
  *
  * @author stylefeng
@@ -25,7 +26,7 @@ public class FileInfo implements Serializable {
     /**
      * 主键id
      */
-    @TableId("FILE_ID")
+    @TableId(value = "FILE_ID", type = IdType.ID_WORKER_STR)
     private String fileId;
     /**
      * base64编码的文件
@@ -105,12 +106,12 @@ public class FileInfo implements Serializable {
     @Override
     public String toString() {
         return "FileInfo{" +
-        ", fileId=" + fileId +
-        ", fileData=" + fileData +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", createUser=" + createUser +
-        ", updateUser=" + updateUser +
-        "}";
+                ", fileId=" + fileId +
+                ", fileData=" + fileData +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createUser=" + createUser +
+                ", updateUser=" + updateUser +
+                "}";
     }
 }

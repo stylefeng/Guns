@@ -25,7 +25,7 @@ public class Notice implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "NOTICE_ID", type = IdType.AUTO)
+    @TableId(value = "NOTICE_ID", type = IdType.ID_WORKER)
     private Long noticeId;
     /**
      * 标题

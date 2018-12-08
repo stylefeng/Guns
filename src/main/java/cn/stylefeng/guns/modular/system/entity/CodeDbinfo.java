@@ -22,7 +22,7 @@ public class CodeDbinfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "DB_ID", type = IdType.AUTO)
+    @TableId(value = "DB_ID", type = IdType.ID_WORKER)
     private Long dbId;
     /**
      * 别名
