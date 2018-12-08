@@ -316,9 +316,9 @@ public class ConstantFactory implements IConstantFactory {
      * 获取子部门id
      */
     @Override
-    public List<Long> getSubDeptId(Long deptid) {
+    public List<Long> getSubDeptId(Long deptId) {
         Wrapper<Dept> wrapper = new EntityWrapper<>();
-        wrapper = wrapper.like("PIDS", "%[" + deptid + "]%");
+        wrapper = wrapper.like("PIDS", "%[" + deptId + "]%");
         List<Dept> depts = this.deptMapper.selectList(wrapper);
 
         ArrayList<Long> deptids = new ArrayList<>();
@@ -336,8 +336,8 @@ public class ConstantFactory implements IConstantFactory {
      * 获取所有父部门id
      */
     @Override
-    public List<Long> getParentDeptIds(Long deptid) {
-        Dept dept = deptMapper.selectById(deptid);
+    public List<Long> getParentDeptIds(Long deptId) {
+        Dept dept = deptMapper.selectById(deptId);
         String pids = dept.getPids();
         String[] split = pids.split(",");
         ArrayList<Long> parentDeptIds = new ArrayList<>();

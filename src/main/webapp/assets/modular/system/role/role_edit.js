@@ -9,7 +9,7 @@ var RoleEditDlg = {
         pid: "",
         tips: "",
         deptName: "",
-        deptid: "",
+        deptId: "",
         num: ""
     }
 };
@@ -75,7 +75,7 @@ $(function () {
             },
             showDeptSelectTree: function () {
                 var formName = encodeURIComponent("parent.RoleEditDlg.app.deptName");
-                var formId = encodeURIComponent("parent.RoleEditDlg.app.deptid");
+                var formId = encodeURIComponent("parent.RoleEditDlg.app.deptId");
                 var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
 
                 layer.open({

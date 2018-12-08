@@ -264,7 +264,7 @@ MgrUser.resetPwdById = function (userId) {
 MgrUser.search = function () {
     var queryData = {};
 
-    queryData['deptid'] = MgrUser.condition.deptId;
+    queryData['deptId'] = MgrUser.condition.deptId;
     queryData['name'] = MgrUser.condition.name;
     queryData['timeLimit'] = $("#timeLimit").val();
 

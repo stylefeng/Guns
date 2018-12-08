@@ -49,8 +49,8 @@
             or ACCOUNT like CONCAT('%',#{name},'%')
             or NAME like CONCAT('%',#{name},'%'))
         </if>
-        <if test="deptid != null and deptid != 0">
-            and (DEPT_ID = #{deptid} or DEPT_ID in ( select DEPT_ID from sys_dept where PIDS like CONCAT('%[', #{deptid}, ']%') ))
+        <if test="deptId != null and deptId != 0">
+            and (DEPT_ID = #{deptId} or DEPT_ID in ( select DEPT_ID from sys_dept where PIDS like CONCAT('%[', #{deptId}, ']%') ))
         </if>
         <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
             and (CREATE_TIME between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))

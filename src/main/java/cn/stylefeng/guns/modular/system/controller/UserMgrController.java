@@ -193,7 +193,7 @@ public class UserMgrController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(required = false) String name,
                        @RequestParam(required = false) String timeLimit,
-                       @RequestParam(required = false) Long deptid) {
+                       @RequestParam(required = false) Long deptId) {
 
         //拼接查询条件
         String beginTime = "";
@@ -206,11 +206,11 @@ public class UserMgrController extends BaseController {
         }
 
         if (ShiroKit.isAdmin()) {
-            List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptId);
             return new UserWarpper(users).wrap();
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
-            List<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptid);
+            List<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptId);
             return new UserWarpper(users).wrap();
         }
     }
@@ -403,8 +403,8 @@ public class UserMgrController extends BaseController {
         }
         List<Long> deptDataScope = ShiroKit.getDeptDataScope();
         User user = this.userService.selectById(userId);
-        Long deptid = user.getDeptId();
-        if (deptDataScope.contains(deptid)) {
+        Long deptId = user.getDeptId();
+        if (deptDataScope.contains(deptId)) {
             return;
         } else {
             throw new ServiceException(BizExceptionEnum.NO_PERMITION);

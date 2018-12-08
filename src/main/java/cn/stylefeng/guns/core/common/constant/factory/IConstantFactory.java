@@ -121,11 +121,11 @@ public interface IConstantFactory {
     /**
      * 获取子部门id
      */
-    List<Long> getSubDeptId(Long deptid);
+    List<Long> getSubDeptId(Long deptId);
 
     /**
      * 获取所有父部门id
      */
-    List<Long> getParentDeptIds(Long deptid);
+    List<Long> getParentDeptIds(Long deptId);
 
 }
