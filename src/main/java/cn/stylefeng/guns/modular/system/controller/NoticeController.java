@@ -89,7 +89,7 @@ public class NoticeController extends BaseController {
     public String hello() {
         List<Map<String, Object>> notices = noticeService.list(null);
         super.setAttr("noticeList", notices);
-        return "/blackboard.html";
+        return PREFIX + "notice_index.html";
     }
 
     /**
