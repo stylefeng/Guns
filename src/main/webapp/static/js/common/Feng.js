@@ -169,7 +169,7 @@ var Feng = {
                 if (!$(this).hasClass('active')) {
                     $(this).addClass('active').siblings('.J_menuTab').removeClass('active');
                     parent.MyCrontab.scrollToTab(this);
-                    parent.MyCrontab.$('.J_mainContent .J_iframe').each(function () {
+                    parent.$('.J_mainContent .J_iframe').each(function () {
                         if ($(this).data('id') == dataUrl) {
                             $(this).show().siblings('.J_iframe').hide();
                             $(this).attr('src', $(this).attr('src'));
