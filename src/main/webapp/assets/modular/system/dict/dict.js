@@ -69,22 +69,6 @@ Dict.openAddItem = function () {
 };
 
 /**
- * 打开查看字典详情
- */
-Dict.openDictDetail = function () {
-    if (this.check()) {
-        this.layerIndex = layer.open({
-            type: 2,
-            title: '字典详情',
-            area: ['800px', '420px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/dict/dict_edit/' + Dict.seItem.dictId
-        });
-    }
-};
-
-/**
  * 删除字典
  */
 Dict.delete = function () {
@@ -110,11 +94,17 @@ Dict.delete = function () {
  */
 Dict.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = Dict.condition.condition;
     Dict.table.refresh({query: queryData});
 };
 
 $(function () {
+
+    Dict.app = new Vue({
+        el: '#dictPage',
+        data: Dict.condition
+    });
+
     var defaultColunms = Dict.initColumn();
     var table = new BSTable(Dict.id, "/dict/list", defaultColunms);
     table.setPaginationType("client");
