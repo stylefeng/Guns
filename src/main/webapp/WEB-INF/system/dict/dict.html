@@ -50,11 +50,6 @@
                                             <i class="fa fa-plus"></i>&nbsp;添加子条目
                                         </button>
                                         @}
-                                        @if(shiro.hasPermission("/dict/update")){
-                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dict.openDictDetail()">
-                                            <i class="fa fa-edit"></i>&nbsp;修改
-                                        </button>
-                                        @}
                                         @if(shiro.hasPermission("/dict/delete")){
                                         <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dict.delete()">
                                             <i class="fa fa-remove"></i>&nbsp;删除
