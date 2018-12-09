@@ -1,24 +1,14 @@
 /**
- * 初始化字典详情对话框
+ * 角色详情对话框（可用于添加和修改对话框）
  */
 var DictInfoDlg = {
-    count: $("#itemSize").val(),
-    dictName: '',			    //字典的名称
-    dictCode: '',               //字典类型编码
-    dictTips: '',               //字典备注
-    mutiString: '',		        //拼接字符串内容(拼接字典条目)
-    itemTemplate: $("#itemTemplate").html()
-};
-
-/**
- * item获取新的id
- */
-DictInfoDlg.newId = function () {
-    if(this.count == undefined){
-        this.count = 0;
+    data: {
+        dictTypeId: $("#dictTypeId").val(),
+        name: "",
+        code: "",
+        description: "",
+        sort: ""
     }
-    this.count = this.count + 1;
-    return "dictItem" + this.count;
 };
 
 /**
@@ -29,90 +19,58 @@ DictInfoDlg.close = function () {
 };
 
 /**
- * 添加条目
+ * 验证表单
  */
-DictInfoDlg.addItem = function () {
-    $("#itemsArea").append(this.itemTemplate);
-    $("#dictItem").attr("id", this.newId());
+DictInfoDlg.validateForm = function () {
+
+    var data = DictInfoDlg.data;
+
+    if (!data.name) {
+        return "请输入字典名称";
+    }
+    if (!(data.code)) {
+        return "请输入字典编码";
+    }
+
+    return true;
 };
 
 /**
- * 删除item
- */
-DictInfoDlg.deleteItem = function (event) {
-    var obj = Feng.eventParseObject(event);
-    obj = obj.is('button') ? obj : obj.parent();
-    obj.parent().parent().remove();
-};
-
-/**
- * 清除为空的item Dom
- */
-DictInfoDlg.clearNullDom = function(){
-    $("[name='dictItem']").each(function(){
-        var num = $(this).find("[name='itemNum']").val();
-        var name = $(this).find("[name='itemName']").val();
-        if(num == '' || name == ''){
-            $(this).remove();
-        }
-    });
-};
-
-/**
- * 收集添加字典的数据
- */
-DictInfoDlg.collectData = function () {
-    this.clearNullDom();
-    var mutiString = "";
-    $("[name='dictItem']").each(function(){
-        var code = $(this).find("[name='itemCode']").val();
-        var name = $(this).find("[name='itemName']").val();
-        var num = $(this).find("[name='itemNum']").val();
-        mutiString = mutiString + (code + ":" + name + ":"+ num+";");
-    });
-    this.dictName = $("#dictName").val();
-    this.dictCode = $("#dictCode").val();
-    this.dictTips = $("#dictTips").val();
-    this.mutiString = mutiString;
-};
-
-
-/**
- * 提交添加字典
+ * 提交添加角色
  */
 DictInfoDlg.addSubmit = function () {
-    this.collectData();
-    //提交信息
     var ajax = new $ax(Feng.ctxPath + "/dict/add", function (data) {
-        Feng.success("添加成功!");
+        parent.Feng.success("添加成功!");
         window.parent.Dict.table.refresh();
         DictInfoDlg.close();
     }, function (data) {
-        Feng.error("添加失败!" + data.responseJSON.message + "!");
+        parent.Feng.error("添加失败!" + data.responseJSON.message + "!");
     });
-    ajax.set('dictName',this.dictName);
-    ajax.set('dictCode',this.dictCode);
-    ajax.set('dictTips',this.dictTips);
-    ajax.set('dictValues',this.mutiString);
+    ajax.set(this.data);
     ajax.start();
 };
 
-/**
- * 提交修改
- */
-DictInfoDlg.editSubmit = function () {
-    this.collectData();
-    var ajax = new $ax(Feng.ctxPath + "/dict/update", function (data) {
-        Feng.success("修改成功!");
-        window.parent.Dict.table.refresh();
-        DictInfoDlg.close();
-    }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
+$(function () {
+
+    DictInfoDlg.app = new Vue({
+        el: '#dictForm',
+        data: DictInfoDlg.data,
+        methods: {
+            submitForm: function (e) {
+                e.preventDefault();
+            },
+            ensure: function () {
+                var result = DictInfoDlg.validateForm();
+                if (result === true) {
+                    DictInfoDlg.addSubmit();
+                } else {
+                    Feng.alert(result);
+                }
+            },
+            close: function () {
+                DictInfoDlg.close();
+            }
+        }
     });
-    ajax.set('dictId',$("#dictId").val());
-    ajax.set('dictName',this.dictName);
-    ajax.set('dictCode',this.dictCode);
-    ajax.set('dictTips',this.dictTips);
-    ajax.set('dictValues',this.mutiString);
-    ajax.start();
-};
+
+});

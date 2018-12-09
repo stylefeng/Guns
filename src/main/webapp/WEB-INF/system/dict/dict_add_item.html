@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <form id="dictForm" \@submit="submitForm">
 
-        <input value="${dictTypeId}" type="hidden" class="form-control">
+        <input id="dictTypeId" value="${dictTypeId}" type="hidden" class="form-control">
 
         <div class="row">
             <div class="col-6">
@@ -13,15 +13,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <h5>字典名称 <span class="text-danger">*</span></h5>
-                    <div class="controls">
-                        <input v-model="name" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
                     <h5>字典编码 <span class="text-danger">*</span></h5>
                     <div class="controls">
                         <input v-model="code" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>字典编码对应的值 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="name" type="text" class="form-control">
                     </div>
                 </div>
             </div>

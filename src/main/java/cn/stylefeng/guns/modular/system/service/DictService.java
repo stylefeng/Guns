@@ -46,6 +46,19 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
     }
 
     /**
+     * 添加字典子类型
+     */
+    public void addDictItem(DictDto dictDto) {
+        Dict dict = new Dict();
+        BeanUtil.copyProperties(dictDto, dict);
+
+        //字典的父级id为字典tyeId
+        dict.setPid(dictDto.getDictTypeId());
+
+        this.insert(dict);
+    }
+
+    /**
      * 添加字典
      */
     @Transactional

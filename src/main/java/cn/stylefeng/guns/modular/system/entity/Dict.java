@@ -157,16 +157,16 @@ public class Dict implements Serializable {
     @Override
     public String toString() {
         return "Dict{" +
-        ", dictId=" + dictId +
-        ", pid=" + pid +
-        ", name=" + name +
-        ", code=" + code +
-        ", description=" + description +
-        ", sort=" + sort +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", createUser=" + createUser +
-        ", updateUser=" + updateUser +
-        "}";
+                ", dictId=" + dictId +
+                ", pid=" + pid +
+                ", name=" + name +
+                ", code=" + code +
+                ", description=" + description +
+                ", sort=" + sort +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createUser=" + createUser +
+                ", updateUser=" + updateUser +
+                "}";
     }
 }

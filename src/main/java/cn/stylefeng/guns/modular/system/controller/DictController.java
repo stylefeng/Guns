@@ -110,7 +110,7 @@ public class DictController extends BaseController {
         if (ToolUtil.isEmpty(dictDto.getDictTypeId())) {
             this.dictService.addDictType(dictDto);
         } else {
-            //TODO
+            this.dictService.addDictItem(dictDto);
         }
 
         return SUCCESS_TIP;
