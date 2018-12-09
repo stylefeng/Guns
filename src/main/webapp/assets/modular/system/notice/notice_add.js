@@ -21,6 +21,10 @@ NoticeAddDlg.close = function () {
  */
 NoticeAddDlg.validateForm = function () {
 
+    //接收数据
+    NoticeAddDlg.data.title = $("#title").val();
+    NoticeAddDlg.data.content = NoticeAddDlg.editor.txt.html();
+
     var data = NoticeAddDlg.data;
 
     if (!data.title) {
@@ -49,26 +53,31 @@ NoticeAddDlg.addSubmit = function () {
     ajax.start();
 };
 
+/**
+ * 确认按钮
+ */
+NoticeAddDlg.ensure = function () {
+    var result = NoticeAddDlg.validateForm();
+    if (result === true) {
+        NoticeAddDlg.addSubmit();
+    } else {
+        Feng.alert(result);
+    }
+};
+
+/**
+ * 取消按钮
+ */
+NoticeAddDlg.close = function () {
+    NoticeAddDlg.close();
+};
+
 $(function () {
-    NoticeAddDlg.app = new Vue({
-        el: '#noticeForm',
-        data: NoticeAddDlg.data,
-        methods: {
-            submitForm: function (e) {
-                e.preventDefault();
-            },
-            ensure: function () {
-                var result = NoticeAddDlg.validateForm();
-                if (result === true) {
-                    NoticeAddDlg.addSubmit();
-                } else {
-                    Feng.alert(result);
-                }
-            },
-            close: function () {
-                NoticeAddDlg.close();
-            }
-        }
-    });
+
+    //初始化富文本编辑器
+    var E = window.wangEditor;
+    var editor2 = new E('#editor');
+    editor2.create();
+    NoticeAddDlg.editor = editor2;
 
 });
