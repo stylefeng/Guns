@@ -22,6 +22,10 @@ NoticeEditDlg.close = function () {
  */
 NoticeEditDlg.validateForm = function () {
 
+    //接收数据
+    NoticeEditDlg.data.title = $("#title").val();
+    NoticeEditDlg.data.content = NoticeEditDlg.editor.txt.html();
+
     var data = NoticeEditDlg.data;
 
     if (!data.title) {
@@ -50,26 +54,32 @@ NoticeEditDlg.editSubmit = function () {
     ajax.start();
 };
 
+/**
+ * 确认按钮
+ */
+NoticeEditDlg.ensure = function () {
+    var result = NoticeEditDlg.validateForm();
+    if (result === true) {
+        NoticeEditDlg.editSubmit();
+    } else {
+        Feng.alert(result);
+    }
+};
+
+/**
+ * 取消按钮
+ */
+NoticeEditDlg.close = function () {
+    NoticeEditDlg.close();
+};
+
 $(function () {
-    NoticeEditDlg.app = new Vue({
-        el: '#noticeForm',
-        data: NoticeEditDlg.data,
-        methods: {
-            submitForm: function (e) {
-                e.preventDefault();
-            },
-            ensure: function () {
-                var result = NoticeEditDlg.validateForm();
-                if (result === true) {
-                    NoticeEditDlg.editSubmit();
-                } else {
-                    Feng.alert(result);
-                }
-            },
-            close: function () {
-                NoticeEditDlg.close();
-            }
-        }
-    });
+
+    //初始化编辑器
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create();
+    editor.txt.html($("#contentVal").val());
+    NoticeEditDlg.editor = editor;
 
 });

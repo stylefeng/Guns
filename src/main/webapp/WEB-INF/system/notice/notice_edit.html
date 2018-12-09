@@ -1,21 +1,22 @@
-@layout("/common/_dialog.html",{plugins:["sweet-alert","layer"],js:["/assets/modular/system/notice/notice_edit.js"]}){
+@layout("/common/_dialog.html",{plugins:["sweet-alert","layer","wangEditor"],js:["/assets/modular/system/notice/notice_edit.js"]}){
 <div class="container-fluid">
-    <form id="noticeForm" \@submit="submitForm">
+    <form id="noticeForm">
 
         <input id="noticeId" value="${noticeId}" type="hidden" class="form-control">
+        <input id="contentVal" value="${content}" type="hidden" class="form-control">
 
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
                     <h5>标题 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input v-model="title" id="title" value="${title}" type="text" class="form-control">
+                        <input id="title" value="${title}" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <h5>内容 <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input v-model="content" id="content" value="${content}" type="text" class="form-control">
+                        <div id="editor"></div>
                     </div>
                 </div>
             </div>
@@ -23,8 +24,8 @@
         <div class="row">
             <div class="col-6">
                 <div class="text-xs-right">
-                    <button class="btn btn-info normal-button-width" \@click="ensure">提交</button>
-                    <button class="btn btn-inverse normal-button-width m-l-10" \@click="close">取消</button>
+                    <button class="btn btn-info normal-button-width" onclick="NoticeEditDlg.ensure()">提交</button>
+                    <button class="btn btn-inverse normal-button-width m-l-10" onclick="NoticeEditDlg.close()">取消</button>
                 </div>
             </div>
         </div>
