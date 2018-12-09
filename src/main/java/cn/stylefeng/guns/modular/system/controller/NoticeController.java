@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
@@ -76,7 +77,7 @@ public class NoticeController extends BaseController {
     @RequestMapping("/notice_update/{noticeId}")
     public String noticeUpdate(@PathVariable Long noticeId, Model model) {
         Notice notice = this.noticeService.selectById(noticeId);
-        model.addAttribute("notice", notice);
+        model.addAllAttributes(BeanUtil.beanToMap(notice));
         LogObjectHolder.me().set(notice);
         return PREFIX + "notice_edit.html";
     }

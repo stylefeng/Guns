@@ -5,7 +5,10 @@ var Notice = {
     id: "NoticeTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
-    layerIndex: -1
+    layerIndex: -1,
+    condition: {
+        condition: ""
+    }
 };
 
 /**
@@ -14,11 +17,11 @@ var Notice = {
 Notice.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: 'id', field: 'noticeId', visible: false, align: 'center', valign: 'middle'},
         {title: '标题', field: 'title', align: 'center', valign: 'middle', sortable: true},
         {title: '内容', field: 'content', align: 'center', valign: 'middle', sortable: true},
         {title: '发布者', field: 'createrName', align: 'center', valign: 'middle', sortable: true},
-        {title: '创建时间', field: 'createtime', align: 'center', valign: 'middle', sortable: true}
+        {title: '创建时间', field: 'createTime', align: 'center', valign: 'middle', sortable: true}
     ];
 };
 
@@ -62,7 +65,7 @@ Notice.openNoticeDetail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/notice/notice_update/' + Notice.seItem.id
+            content: Feng.ctxPath + '/notice/notice_update/' + Notice.seItem.noticeId
         });
         this.layerIndex = index;
     }
@@ -74,14 +77,14 @@ Notice.openNoticeDetail = function () {
 Notice.delete = function () {
     if (this.check()) {
 
-        var operation = function(){
+        var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/notice/delete", function (data) {
                 Feng.success("删除成功!");
                 Notice.table.refresh();
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("noticeId", Notice.seItem.id);
+            ajax.set("noticeId", Notice.seItem.noticeId);
             ajax.start();
         };
 
@@ -94,11 +97,17 @@ Notice.delete = function () {
  */
 Notice.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = Notice.condition.condition;
     Notice.table.refresh({query: queryData});
 };
 
 $(function () {
+
+    Notice.app = new Vue({
+        el: '#noticePage',
+        data: Notice.condition
+    });
+
     var defaultColunms = Notice.initColumn();
     var table = new BSTable(Notice.id, "/notice/list", defaultColunms);
     table.setPaginationType("client");
