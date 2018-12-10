@@ -15,6 +15,14 @@ public class GunsMpFieldHandler extends CustomMetaObjectHandler {
 
     @Override
     protected Object getUserUniqueId() {
-        return ShiroKit.getUser().getId();
+        try {
+
+            return ShiroKit.getUser().getId();
+
+        } catch (Exception e) {
+
+            //如果获取不到当前用户就存空id
+            return "";
+        }
     }
 }
