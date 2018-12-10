@@ -1,5 +1,5 @@
 /**
- * 角色管理的单例
+ * 登陆日志
  */
 var LoginLog = {
     id: "loginLogTable",	//表格id
