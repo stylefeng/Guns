@@ -63,7 +63,7 @@ Dept.openDeptDetail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/dept/dept_update/' + Dept.seItem.deptId
+            content: Feng.ctxPath + '/dept/dept_update?deptId=' + Dept.seItem.deptId
         });
     }
 };
