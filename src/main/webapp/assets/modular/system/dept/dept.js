@@ -17,10 +17,10 @@ var Dept = {
 Dept.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', align: 'center', valign: 'middle', width: '50px'},
-        {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle', sortable: true},
-        {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle', sortable: true},
-        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
+        {title: 'id', field: 'deptId', align: 'center', valign: 'middle', width: '50px'},
+        {title: '部门简称', field: 'simpleName', align: 'center', valign: 'middle', sortable: true},
+        {title: '部门全称', field: 'fullName', align: 'center', valign: 'middle', sortable: true},
+        {title: '排序', field: 'sort', align: 'center', valign: 'middle', sortable: true},
         {title: '备注', field: 'description', align: 'center', valign: 'middle', sortable: true}];
 };
 
@@ -28,8 +28,8 @@ Dept.initColumn = function () {
  * 检查是否选中
  */
 Dept.check = function () {
-    var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
-    if (selected.length == 0) {
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
+    if (selected.length === 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
@@ -42,7 +42,7 @@ Dept.check = function () {
  * 点击添加部门
  */
 Dept.openAddDept = function () {
-    var index = layer.open({
+    this.layerIndex = layer.open({
         type: 2,
         title: '添加部门',
         area: ['800px', '420px'], //宽高
@@ -50,7 +50,6 @@ Dept.openAddDept = function () {
         maxmin: true,
         content: Feng.ctxPath + '/dept/dept_add'
     });
-    this.layerIndex = index;
 };
 
 /**
@@ -58,15 +57,14 @@ Dept.openAddDept = function () {
  */
 Dept.openDeptDetail = function () {
     if (this.check()) {
-        var index = layer.open({
+        this.layerIndex = layer.open({
             type: 2,
             title: '部门详情',
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/dept/dept_update/' + Dept.seItem.id
+            content: Feng.ctxPath + '/dept/dept_update/' + Dept.seItem.deptId
         });
-        this.layerIndex = index;
     }
 };
 
@@ -83,7 +81,7 @@ Dept.delete = function () {
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("deptId", Dept.seItem.id);
+            ajax.set("deptId", Dept.seItem.deptId);
             ajax.start();
         };
 
@@ -101,19 +99,64 @@ Dept.search = function () {
 };
 
 $(function () {
+
+    var defaultData = [
+        {
+            text: 'Parent 1',
+            href: '#parent1',
+            tags: ['4'],
+            nodes: [
+                {
+                    text: 'Child 1',
+                    href: '#child1',
+                    tags: ['2'],
+                    nodes: [
+                        {
+                            text: 'Grandchild 1',
+                            href: '#grandchild1',
+                            tags: ['0']
+                        },
+                        {
+                            text: 'Grandchild 2',
+                            href: '#grandchild2',
+                            tags: ['0']
+                        }
+                    ]
+                },
+                {
+                    text: 'Child 2',
+                    href: '#child2',
+                    tags: ['0']
+                }
+            ]
+        },
+        {
+            text: 'Parent 2'
+        },
+        {
+            text: 'Parent 3'
+        },
+        {
+            text: 'Parent 4'
+        }
+    ];
+
+    $('#deptTree').treeview({
+        selectedBackColor: "#03a9f3",
+        onhoverColor: "rgba(0, 0, 0, 0.05)",
+        expandIcon: 'ti-plus',
+        collapseIcon: 'ti-minus',
+        nodeIcon: 'fa fa-home',
+        data: defaultData
+    });
+
     Dept.app = new Vue({
         el: '#deptPage',
         data: Dept.condition
     });
 
     var defaultColunms = Dept.initColumn();
-    var table = new BSTreeTable('DeptTable', "/dept/list", defaultColunms);
-    table.setExpandColumn(2);
-    table.setIdField("id");
-    table.setCodeField("id");
-    table.setParentCodeField("pid");
-    table.setExpandAll(true);
-    table.init();
+    var table = new BSTable("DeptTable", "/dept/list", defaultColunms);
+    table.setPaginationType("client");
     Dept.table = table.init();
-
 });

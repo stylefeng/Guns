@@ -1,6 +1,16 @@
-@layout("/common/_container.html",{plugins:["table","layer","bootstrap-treetable"],js:["/assets/modular/system/dept/dept.js"]}){
+@layout("/common/_container.html",{plugins:["table","layer","sweet-alert","treeview"],js:["/assets/modular/system/dept/dept.js"]}){
 <div class="row">
-    <div class="col-12" id="deptPage">
+    <div class="col-lg-2 col-sm-3 p-r-0">
+        <div class="card card-outline-theme">
+            <div class="card-header">
+                <h5 class="m-b-0 text-white">部门树列表</h5>
+            </div>
+            <div class="card-body">
+                <ul id="deptTree" class="p-l-0"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10 col-sm-9" id="deptPage">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-outline-theme m-b-10">
@@ -41,7 +51,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card m-b-0 p-b-0">
-                                            <div class="hidden-xs" id="managerTableToolbar" role="group">
+                                            <div class="hidden-xs" id="DeptTableToolbar" role="group">
                                                 @if(shiro.hasPermission("/dept/add")){
                                                 <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dept.openAddDept()">
                                                     <i class="fa fa-check-circle"></i>&nbsp;添加

@@ -65,6 +65,9 @@
         @if(array.contain(plugins,"bootstrap-treetable")){
         <link href="${ctxPath}/assets/common/plugins/bootstrap-treetable/bootstrap-treetable.min.css" rel="stylesheet" type="text/css" />
         @}
+        @if(array.contain(plugins,"treeview")){
+        <link href="${ctxPath}/assets/common/plugins/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet" type="text/css" />
+        @}
     @}
 
     <!--其他业务用的css-->
@@ -165,6 +168,9 @@
     @if(array.contain(plugins,"bootstrap-treetable")){
     <script src="${ctxPath}/assets/common/plugins/bootstrap-treetable/bootstrap-treetable.min.js"></script>
     <script src="${ctxPath}/assets/common/plugins/bootstrap-treetable/bootstrap-treetable-object.js"></script>
+    @}
+    @if(array.contain(plugins,"treeview")){
+    <script src="${ctxPath}/assets/common/plugins/bootstrap-treeview/bootstrap-treeview.min.js"></script>
     @}
 @}
 
