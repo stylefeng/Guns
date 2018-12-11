@@ -1,42 +1,51 @@
-@layout("/common/_container.html"){
-<div class="ibox float-e-margins">
-    <div class="ibox-content">
-        <div class="form-horizontal" id="deptInfoForm">
-
-            <input type="hidden" id="id" value="">
-
-            <div class="row">
-                <div class="col-sm-6 b-r">
-                    <#input id="simplename" name="部门名称" underline="true"/>
-
-                    <#input id="fullname" name="部门全称" underline="true"/>
-
-                    <#input id="description" name="备注" underline="true"/>
+@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert","layer"],js:["/assets/modular/system/dept/dept_add.js"]}){
+<div class="container-fluid">
+    <form id="deptForm" \@submit="submitForm">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>部门名称 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="simpleName" type="text" class="form-control">
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <#input id="num" name="排序" underline="true"/>
-
-                    <#input id="pName" name="上级部门" readonly="readonly" hidden="pid"
-                            clickFun="DeptInfoDlg.showDeptSelectTree(); return false;"
-                            style="background-color: #ffffff !important;"/>
+                <div class="form-group">
+                    <h5>部门全称 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="fullName" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>备注 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="description" type="text" class="form-control">
+                    </div>
                 </div>
             </div>
-
-            <!-- 父级部门的选择框 -->
-            <div id="parentDeptMenu" class="menuContent"
-                 style="display: none; position: absolute; z-index: 200;">
-                <ul id="parentDeptMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
-            </div>
-
-            <div class="row btn-group-m-t">
-                <div class="col-sm-10">
-                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DeptInfoDlg.addSubmit()"/>
-                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DeptInfoDlg.close()"/>
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>排序</h5>
+                    <div class="controls">
+                        <input v-model="sort" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>上级部门 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="pName" id="detpName" \@click="showDeptSelectTree" type="text" class="form-control" autocomplete="off">
+                        <input v-model="pid" type="hidden" class="form-control">
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="text-xs-right">
+                    <button class="btn btn-info normal-button-width" \@click="ensure">提交</button>
+                    <button class="btn btn-inverse normal-button-width m-l-10" \@click="close">取消</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-<script src="${ctxPath}/static/modular/system/dept/dept_info.js"></script>
 @}
