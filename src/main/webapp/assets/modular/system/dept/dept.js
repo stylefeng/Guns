@@ -94,7 +94,7 @@ Dept.delete = function () {
  */
 Dept.search = function () {
     var queryData = {};
-    queryData['condition'] = $("#condition").val();
+    queryData['condition'] = Dept.condition.name;
     Dept.table.refresh({query: queryData});
 };
 
