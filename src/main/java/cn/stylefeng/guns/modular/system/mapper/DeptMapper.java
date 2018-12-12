@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.system.mapper;
 
+import cn.stylefeng.guns.core.common.node.TreeviewNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Dept;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
@@ -26,6 +27,10 @@ public interface DeptMapper extends BaseMapper<Dept> {
     /**
      * 获取所有部门列表
      */
-    List<Map<String, Object>> list(@Param("condition") String condition);
+    List<Map<String, Object>> list(@Param("condition") String condition, @Param("deptId") String deptId);
 
+    /**
+     * 获取所有部门树列表
+     */
+    List<TreeviewNode> treeviewNodes();
 }

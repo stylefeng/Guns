@@ -38,11 +38,18 @@
     <select id="list" resultType="map">
         select
         <include refid="Base_Column_List"/>
-        from sys_dept
+        from sys_dept where 1 = 1
         <if test="condition != null and condition != ''">
-            where SIMPLE_NAME like CONCAT('%',#{condition},'%') or FULL_NAME like CONCAT('%',#{condition},'%')
+            and SIMPLE_NAME like CONCAT('%',#{condition},'%') or FULL_NAME like CONCAT('%',#{condition},'%')
+        </if>
+        <if test="deptId != null and deptId != ''">
+            and (DEPT_ID = #{deptId} or DEPT_ID in ( select DEPT_ID from sys_dept where PIDS like CONCAT('%[', #{deptId}, ']%') ))
         </if>
         order by SORT ASC
+    </select>
+
+    <select id="treeviewNodes" resultType="cn.stylefeng.guns.core.common.node.TreeviewNode">
+        select DEPT_ID AS tags, PID as parentId, SIMPLE_NAME as text from sys_dept
     </select>
 
 </mapper>

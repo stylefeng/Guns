@@ -7,7 +7,8 @@ var Dept = {
     table: null,
     layerIndex: -1,
     condition: {
-        name: ''
+        name: '',
+        deptId: ''
     }
 };
 
@@ -95,59 +96,25 @@ Dept.delete = function () {
 Dept.search = function () {
     var queryData = {};
     queryData['condition'] = Dept.condition.name;
+    queryData['deptId'] = Dept.condition.deptId;
     Dept.table.refresh({query: queryData});
 };
 
 $(function () {
 
-    var defaultData = [
-        {
-            text: 'Parent 1',
-            href: '#parent1',
-            tags: ['4'],
-            nodes: [
-                {
-                    text: 'Child 1',
-                    href: '#child1',
-                    tags: ['2'],
-                    nodes: [
-                        {
-                            text: 'Grandchild 1',
-                            href: '#grandchild1',
-                            tags: ['0']
-                        },
-                        {
-                            text: 'Grandchild 2',
-                            href: '#grandchild2',
-                            tags: ['0']
-                        }
-                    ]
-                },
-                {
-                    text: 'Child 2',
-                    href: '#child2',
-                    tags: ['0']
-                }
-            ]
-        },
-        {
-            text: 'Parent 2'
-        },
-        {
-            text: 'Parent 3'
-        },
-        {
-            text: 'Parent 4'
-        }
-    ];
+    //获取部门树
+    var ajax = new $ax(Feng.ctxPath + "/dept/treeview");
+    var result = ajax.start();
 
     $('#deptTree').treeview({
         selectedBackColor: "#03a9f3",
-        onhoverColor: "rgba(0, 0, 0, 0.05)",
         expandIcon: 'ti-plus',
         collapseIcon: 'ti-minus',
-        nodeIcon: 'fa fa-home',
-        data: defaultData
+        data: result,
+        onNodeSelected: function (event, data) {
+            Dept.condition.deptId = data.tags;
+            Dept.search();
+        }
     });
 
     Dept.app = new Vue({

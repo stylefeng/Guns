@@ -21,13 +21,16 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import cn.stylefeng.guns.core.common.node.TreeviewNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Dept;
 import cn.stylefeng.guns.modular.system.model.DeptDto;
 import cn.stylefeng.guns.modular.system.service.DeptService;
+import cn.stylefeng.guns.modular.system.warpper.DeptTreeWarpper;
 import cn.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.treebuild.DefaultTreeBuildFactory;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +100,24 @@ public class DeptController extends BaseController {
     }
 
     /**
+     * 获取部门的tree列表
+     */
+    @RequestMapping(value = "/treeview")
+    @ResponseBody
+    public List<TreeviewNode> treeview() {
+        List<TreeviewNode> treeviewNodes = this.deptService.treeviewNodes();
+
+        //构建树
+        DefaultTreeBuildFactory<TreeviewNode> factory = new DefaultTreeBuildFactory<>();
+        factory.setRootParentId("0");
+        List<TreeviewNode> results = factory.doTreeBuild(treeviewNodes);
+
+        //把子节点为空的设为null
+        DeptTreeWarpper.clearNull(results);
+        return results;
+    }
+
+    /**
      * 新增部门
      */
     @BussinessLog(value = "添加部门", key = "simplename", dict = DeptDict.class)
@@ -119,8 +140,9 @@ public class DeptController extends BaseController {
     @RequestMapping(value = "/list")
     @Permission
     @ResponseBody
-    public Object list(String condition) {
-        List<Map<String, Object>> list = this.deptService.list(condition);
+    public Object list(@RequestParam(value = "condition", required = false) String condition,
+                       @RequestParam(value = "deptId", required = false) String deptId) {
+        List<Map<String, Object>> list = this.deptService.list(condition, deptId);
         return super.warpObject(new DeptWarpper(list));
     }
 

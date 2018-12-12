@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.system.service;
 
+import cn.stylefeng.guns.core.common.node.TreeviewNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Dept;
 import cn.stylefeng.guns.modular.system.mapper.DeptMapper;
@@ -52,10 +53,17 @@ public class DeptService extends ServiceImpl<DeptMapper, Dept> {
     }
 
     /**
+     * 获取ztree的节点列表
+     */
+    public List<TreeviewNode> treeviewNodes() {
+        return this.baseMapper.treeviewNodes();
+    }
+
+    /**
      * 获取所有部门列表
      */
-    public List<Map<String, Object>> list(String condition) {
-        return this.baseMapper.list(condition);
+    public List<Map<String, Object>> list(String condition, String deptId) {
+        return this.baseMapper.list(condition,deptId);
     }
 
 }

@@ -52,7 +52,7 @@ public class DeptTest extends BaseJunit {
 
     @Test
     public void listTest() {
-        List<Map<String, Object>> list = this.deptMapper.list("总公司");
+        List<Map<String, Object>> list = this.deptMapper.list("总公司", null);
         assertTrue(list.size() > 0);
     }
 }
