@@ -108,7 +108,7 @@ public class UserMgrController extends BaseController {
      */
     @Permission
     @RequestMapping("/user_edit")
-    public String userEdit(@RequestParam Integer userId) {
+    public String userEdit(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
