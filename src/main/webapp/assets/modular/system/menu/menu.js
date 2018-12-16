@@ -23,7 +23,7 @@ Menu.initColumn = function () {
         {title: '菜单编号', field: 'code', align: 'center', valign: 'middle', sortable: true},
         {title: '菜单父编号', field: 'pcode', align: 'center', valign: 'middle', sortable: true},
         {title: '请求地址', field: 'url', align: 'center', valign: 'middle', sortable: true},
-        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
+        {title: '排序', field: 'sort', align: 'center', valign: 'middle', sortable: true},
         {title: '层级', field: 'levels', align: 'center', valign: 'middle', sortable: true},
         {title: '是否是菜单', field: 'isMenuName', align: 'center', valign: 'middle', sortable: true},
         {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}];
@@ -34,7 +34,7 @@ Menu.initColumn = function () {
  * 检查是否选中
  */
 Menu.check = function () {
-    var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
     if (selected.length === 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
@@ -101,8 +101,8 @@ Menu.delMenu = function () {
 Menu.search = function () {
     var queryData = {};
 
-    queryData['menuName'] = $("#menuName").val();
-    queryData['level'] = $("#level").val();
+    queryData['menuName'] = Menu.condition.menuName;
+    queryData['level'] = Menu.condition.level;
 
     Menu.table.refresh({query: queryData});
 };
