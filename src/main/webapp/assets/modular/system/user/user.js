@@ -92,21 +92,23 @@ MgrUser.openAddMgr = function () {
  * 点击修改按钮时
  */
 MgrUser.openChangeUser = function (userId) {
-    if (this.check()) {
-        var selectId = userId;
-        if (!userId) {
-            selectId = this.seItem.userId;
+    if(!userId){
+        if (!this.check()) {
+            return;
         }
-
-        this.layerIndex = layer.open({
-            type: 2,
-            title: '编辑管理员',
-            area: ['800px', '500px'],
-            fix: false,
-            maxmin: true,
-            content: Feng.ctxPath + '/mgr/user_edit?userId=' + selectId
-        });
     }
+    var selectId = userId;
+    if (!userId) {
+        selectId = this.seItem.userId;
+    }
+    this.layerIndex = layer.open({
+        type: 2,
+        title: '编辑管理员',
+        area: ['800px', '500px'],
+        fix: false,
+        maxmin: true,
+        content: Feng.ctxPath + '/mgr/user_edit?userId=' + selectId
+    });
 };
 
 /**
