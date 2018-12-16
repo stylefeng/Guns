@@ -5,16 +5,20 @@ var Menu = {
     id: "menuTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
-    layerIndex: -1
+    layerIndex: -1,
+    condition: {
+        menuName: "",
+        level: ""
+    }
 };
 
 /**
  * 初始化表格的列
  */
 Menu.initColumn = function () {
-    var columns = [
+    return [
         {field: 'selectItem', radio: true},
-        {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle'},
+        {title: 'id', field: 'menuId', visible: false, align: 'center', valign: 'middle'},
         {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true},
         {title: '菜单编号', field: 'code', align: 'center', valign: 'middle', sortable: true},
         {title: '菜单父编号', field: 'pcode', align: 'center', valign: 'middle', sortable: true},
@@ -22,8 +26,7 @@ Menu.initColumn = function () {
         {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
         {title: '层级', field: 'levels', align: 'center', valign: 'middle', sortable: true},
         {title: '是否是菜单', field: 'isMenuName', align: 'center', valign: 'middle', sortable: true},
-        {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}]
-    return columns;
+        {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}];
 };
 
 
@@ -32,7 +35,7 @@ Menu.initColumn = function () {
  */
 Menu.check = function () {
     var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
-    if (selected.length == 0) {
+    if (selected.length === 0) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
@@ -45,7 +48,7 @@ Menu.check = function () {
  * 点击添加菜单
  */
 Menu.openAddMenu = function () {
-    var index = layer.open({
+    this.layerIndex = layer.open({
         type: 2,
         title: '添加菜单',
         area: ['830px', '450px'], //宽高
@@ -53,7 +56,6 @@ Menu.openAddMenu = function () {
         maxmin: true,
         content: Feng.ctxPath + '/menu/menu_add'
     });
-    this.layerIndex = index;
 };
 
 /**
@@ -61,7 +63,7 @@ Menu.openAddMenu = function () {
  */
 Menu.openChangeMenu = function () {
     if (this.check()) {
-        var index = layer.open({
+        this.layerIndex = layer.open({
             type: 2,
             title: '修改菜单',
             area: ['800px', '450px'], //宽高
@@ -69,7 +71,6 @@ Menu.openChangeMenu = function () {
             maxmin: true,
             content: Feng.ctxPath + '/menu/menu_edit/' + this.seItem.id
         });
-        this.layerIndex = index;
     }
 };
 
@@ -104,16 +105,16 @@ Menu.search = function () {
     queryData['level'] = $("#level").val();
 
     Menu.table.refresh({query: queryData});
-}
+};
 
 $(function () {
+    Menu.app = new Vue({
+        el: '#menuPage',
+        data: Menu.condition
+    });
+
     var defaultColunms = Menu.initColumn();
-    var table = new BSTreeTable(Menu.id, "/menu/list", defaultColunms);
-    table.setExpandColumn(2);
-    table.setIdField("id");
-    table.setCodeField("code");
-    table.setParentCodeField("pcode");
-    table.setExpandAll(true);
-    table.init();
-    Menu.table = table;
+    var table = new BSTable(Menu.id, "/menu/list", defaultColunms);
+    table.setPaginationType("client");
+    Menu.table = table.init();
 });
