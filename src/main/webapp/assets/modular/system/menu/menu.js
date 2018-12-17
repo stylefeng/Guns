@@ -51,7 +51,7 @@ Menu.openAddMenu = function () {
     this.layerIndex = layer.open({
         type: 2,
         title: '添加菜单',
-        area: ['830px', '450px'], //宽高
+        area: ['830px', '500px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/menu/menu_add'
@@ -66,7 +66,7 @@ Menu.openChangeMenu = function () {
         this.layerIndex = layer.open({
             type: 2,
             title: '修改菜单',
-            area: ['800px', '450px'], //宽高
+            area: ['800px', '500px'], //宽高
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/menu/menu_edit/' + this.seItem.id
@@ -87,7 +87,7 @@ Menu.delMenu = function () {
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("menuId", Menu.seItem.id);
+            ajax.set("menuId", Menu.seItem.menuId);
             ajax.start();
         };
 
