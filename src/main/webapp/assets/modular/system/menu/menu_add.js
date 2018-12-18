@@ -9,10 +9,10 @@ var MenuInfoDlg = {
         pcode: "",
         pcodeName: "",
         url: "",
-        num: "",
+        sort: "",
         levels: "",
         icon: "",
-        ismenu: ""
+        menuFlag: ""
     }
 };
 
@@ -39,7 +39,7 @@ MenuInfoDlg.validateForm = function () {
     if (!data.pcode) {
         return "请输入菜单上级";
     }
-    if (!data.ismenu) {
+    if (!data.menuFlag) {
         return "请输入是否是菜单";
     }
     if (!data.url) {
