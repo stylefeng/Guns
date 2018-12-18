@@ -69,7 +69,7 @@ Menu.openChangeMenu = function () {
             area: ['800px', '500px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/menu/menu_edit/' + this.seItem.id
+            content: Feng.ctxPath + '/menu/menu_edit?menuId=' + this.seItem.menuId
         });
     }
 };

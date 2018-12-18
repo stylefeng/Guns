@@ -81,8 +81,8 @@ public class MenuController extends BaseController {
      * 跳转到菜单详情列表页面
      */
     @Permission(Const.ADMIN_NAME)
-    @RequestMapping(value = "/menu_edit/{menuId}")
-    public String menuEdit(@PathVariable Long menuId, Model model) {
+    @RequestMapping(value = "/menu_edit")
+    public String menuEdit(@RequestParam Long menuId, Model model) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
@@ -193,6 +193,18 @@ public class MenuController extends BaseController {
         }
         this.menuService.selectById(menuId);
         return SUCCESS_TIP;
+    }
+
+    /**
+     * 获取菜单信息
+     */
+    @RequestMapping(value = "/getMenuInfo")
+    @ResponseBody
+    public Object getMenuInfo(@RequestParam Long menuId) {
+        if (ToolUtil.isEmpty(menuId)) {
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
+        }
+        return this.menuService.selectById(menuId);
     }
 
     /**
