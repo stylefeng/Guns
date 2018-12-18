@@ -26,6 +26,7 @@ import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Menu;
+import cn.stylefeng.guns.modular.system.model.MenuDto;
 import cn.stylefeng.guns.modular.system.service.MenuService;
 import cn.stylefeng.guns.modular.system.warpper.MenuWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -200,11 +201,17 @@ public class MenuController extends BaseController {
      */
     @RequestMapping(value = "/getMenuInfo")
     @ResponseBody
-    public Object getMenuInfo(@RequestParam Long menuId) {
+    public ResponseData getMenuInfo(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        return this.menuService.selectById(menuId);
+
+        Menu menu = this.menuService.selectById(menuId);
+        MenuDto menuDto = new MenuDto();
+        BeanUtil.copyProperties(menu,menuDto);
+        menuDto.setPcodeName(ConstantFactory.me().getMenuNameByCode(menuDto.getPcode()));
+
+        return ResponseData.success(menuDto);
     }
 
     /**
