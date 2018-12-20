@@ -54,11 +54,11 @@ MenuInfoDlg.validateForm = function () {
  */
 MenuInfoDlg.addSubmit = function () {
     var ajax = new $ax(Feng.ctxPath + "/menu/edit", function (data) {
-        Feng.success("修改成功!");
+        parent.Feng.success("修改成功!");
         window.parent.Menu.table.refresh();
         MenuInfoDlg.close();
     }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
+        parent.Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
     ajax.set(this.data);
     ajax.start();

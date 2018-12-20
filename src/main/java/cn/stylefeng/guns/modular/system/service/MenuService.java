@@ -136,9 +136,20 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
      * @return
      * @date 2017年2月19日 下午10:35:40
      */
-
     public List<MenuNode> getMenusByRoleIds(List<Long> roleIds) {
         return this.baseMapper.getMenusByRoleIds(roleIds);
+    }
+
+    /**
+     * 根据code查询菜单
+     *
+     * @author fengshuonan
+     * @Date 2018/12/20 21:54
+     */
+    public Menu selectByCode(String code) {
+        Menu menu = new Menu();
+        menu.setCode(code);
+        return this.baseMapper.selectOne(menu);
     }
 
 }
