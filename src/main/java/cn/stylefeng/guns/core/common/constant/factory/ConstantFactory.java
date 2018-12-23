@@ -82,9 +82,9 @@ public class ConstantFactory implements IConstantFactory {
         if (ToolUtil.isEmpty(roleIds)) {
             return "";
         }
-        Integer[] roles = Convert.toIntArray(roleIds);
+        Long[] roles = Convert.toLongArray(roleIds);
         StringBuilder sb = new StringBuilder();
-        for (int role : roles) {
+        for (Long role : roles) {
             Role roleObj = roleMapper.selectById(role);
             if (ToolUtil.isNotEmpty(roleObj) && ToolUtil.isNotEmpty(roleObj.getName())) {
                 sb.append(roleObj.getName()).append(",");
@@ -137,9 +137,9 @@ public class ConstantFactory implements IConstantFactory {
 
     @Override
     public String getMenuNames(String menuIds) {
-        Integer[] menus = Convert.toIntArray(menuIds);
+        Long[] menus = Convert.toLongArray(menuIds);
         StringBuilder sb = new StringBuilder();
-        for (int menu : menus) {
+        for (Long menu : menus) {
             Menu menuObj = menuMapper.selectById(menu);
             if (ToolUtil.isNotEmpty(menuObj) && ToolUtil.isNotEmpty(menuObj.getName())) {
                 sb.append(menuObj.getName()).append(",");

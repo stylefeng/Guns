@@ -28,6 +28,7 @@
         <if test="condition != null">
             where NAME like CONCAT('%',#{condition},'%')
         </if>
+        order by SORT asc
     </select>
 
     <delete id="deleteRolesById">
