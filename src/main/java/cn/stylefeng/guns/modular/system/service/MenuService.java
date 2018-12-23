@@ -1,9 +1,17 @@
 package cn.stylefeng.guns.modular.system.service;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.common.constant.state.MenuStatus;
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.mapper.MenuMapper;
+import cn.stylefeng.guns.modular.system.model.MenuDto;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -27,6 +35,33 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
 
     @Resource
     private MenuMapper menuMapper;
+
+    /**
+     * 添加菜单
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:59 PM
+     */
+    @Transactional
+    public void addMenu(MenuDto menuDto) {
+
+        if (ToolUtil.isOneEmpty(menuDto, menuDto.getCode(), menuDto.getName(), menuDto.getPid(), menuDto.getMenuFlag(), menuDto.getUrl())) {
+            throw new RequestEmptyException();
+        }
+
+        //判断是否已经存在该编号
+        String existedMenuName = ConstantFactory.me().getMenuNameByCode(menuDto.getCode());
+        if (ToolUtil.isNotEmpty(existedMenuName)) {
+            throw new ServiceException(BizExceptionEnum.EXISTED_THE_MENU);
+        }
+
+        //组装属性，设置父级菜单编号
+        Menu resultMenu = this.menuSetPcode(menuDto);
+
+        resultMenu.setStatus(MenuStatus.ENABLE.getCode());
+
+        this.insert(resultMenu);
+    }
 
     /**
      * 删除菜单
@@ -150,6 +185,39 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
         Menu menu = new Menu();
         menu.setCode(code);
         return this.baseMapper.selectOne(menu);
+    }
+
+    /**
+     * 根据请求的父级菜单编号设置pcode和层级
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:54 PM
+     */
+    public Menu menuSetPcode(MenuDto menuParam) {
+
+        Menu resultMenu = new Menu();
+        BeanUtil.copyProperties(menuParam, resultMenu);
+
+        if (ToolUtil.isEmpty(menuParam.getPid()) || menuParam.getPid().equals(0L)) {
+            resultMenu.setPcode("0");
+            resultMenu.setPcodes("[0],");
+            resultMenu.setLevels(1);
+        } else {
+            Long pid = menuParam.getPid();
+            Menu pMenu = this.selectById(pid);
+            Integer pLevels = pMenu.getLevels();
+            resultMenu.setPcode(pMenu.getCode());
+
+            //如果编号和父编号一致会导致无限递归
+            if (menuParam.getCode().equals(menuParam.getPcode())) {
+                throw new ServiceException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
+            }
+
+            resultMenu.setLevels(pLevels + 1);
+            resultMenu.setPcodes(pMenu.getPcodes() + "[" + pMenu.getCode() + "],");
+        }
+
+        return resultMenu;
     }
 
 }

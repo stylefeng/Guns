@@ -21,7 +21,6 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.dictmap.MenuDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import cn.stylefeng.guns.core.common.constant.state.MenuStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
@@ -33,10 +32,8 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,6 +59,9 @@ public class MenuController extends BaseController {
 
     /**
      * 跳转到菜单列表列表页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @RequestMapping("")
     public String index() {
@@ -70,6 +70,9 @@ public class MenuController extends BaseController {
 
     /**
      * 跳转到菜单列表列表页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @RequestMapping(value = "/menu_add")
     public String menuAdd() {
@@ -78,37 +81,29 @@ public class MenuController extends BaseController {
 
     /**
      * 跳转到菜单详情列表页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/menu_edit")
-    public String menuEdit(@RequestParam Long menuId, Model model) {
+    public String menuEdit(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
+
+        //获取菜单当前信息，记录日志用
         Menu menu = this.menuService.selectById(menuId);
-
-        //获取父级菜单的id
-        Menu temp = new Menu();
-        temp.setCode(menu.getPcode());
-        Menu pMenu = this.menuService.selectOne(new EntityWrapper<>(temp));
-
-        //如果父级是顶级菜单
-        if (pMenu == null) {
-            menu.setPcode("0");
-        } else {
-            //设置父级菜单的code为父级菜单的id
-            menu.setPcode(String.valueOf(pMenu.getMenuId()));
-        }
-
-        Map<String, Object> menuMap = BeanUtil.beanToMap(menu);
-        menuMap.put("pcodeName", ConstantFactory.me().getMenuNameByCode(temp.getCode()));
-        model.addAttribute("menu", menuMap);
         LogObjectHolder.me().set(menu);
+
         return PREFIX + "menu_edit.html";
     }
 
     /**
      * 修该菜单
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/edit")
@@ -117,48 +112,48 @@ public class MenuController extends BaseController {
     public ResponseData edit(MenuDto menu) {
 
         //设置父级菜单编号
-        Menu resultMenu = menuSetPcode(menu);
+        Menu resultMenu = this.menuService.menuSetPcode(menu);
 
         this.menuService.updateById(resultMenu);
+
         return SUCCESS_TIP;
     }
 
     /**
      * 获取菜单列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
+    public Object list(@RequestParam(required = false) String menuName,
+                       @RequestParam(required = false) String level) {
         List<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level);
         return super.warpObject(new MenuWarpper(menus));
     }
 
     /**
      * 新增菜单
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/add")
     @BussinessLog(value = "菜单新增", key = "name", dict = MenuDict.class)
     @ResponseBody
     public ResponseData add(MenuDto menu) {
-
-        //判断是否存在该编号
-        String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
-        if (ToolUtil.isNotEmpty(existedMenuName)) {
-            throw new ServiceException(BizExceptionEnum.EXISTED_THE_MENU);
-        }
-
-        //设置父级菜单编号
-        Menu resultMenu = menuSetPcode(menu);
-
-        resultMenu.setStatus(MenuStatus.ENABLE.getCode());
-        this.menuService.insert(resultMenu);
+        this.menuService.addMenu(menu);
         return SUCCESS_TIP;
     }
 
     /**
      * 删除菜单
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove")
@@ -173,11 +168,15 @@ public class MenuController extends BaseController {
         LogObjectHolder.me().set(ConstantFactory.me().getMenuName(menuId));
 
         this.menuService.delMenuContainSubMenus(menuId);
+
         return SUCCESS_TIP;
     }
 
     /**
      * 查看菜单
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @RequestMapping(value = "/view/{menuId}")
     @ResponseBody
@@ -191,6 +190,9 @@ public class MenuController extends BaseController {
 
     /**
      * 获取菜单信息
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:53 PM
      */
     @RequestMapping(value = "/getMenuInfo")
     @ResponseBody
@@ -200,8 +202,11 @@ public class MenuController extends BaseController {
         }
 
         Menu menu = this.menuService.selectById(menuId);
+
         MenuDto menuDto = new MenuDto();
         BeanUtil.copyProperties(menu, menuDto);
+
+        //设置pid和父级名称
         menuDto.setPid(ConstantFactory.me().getMenuIdByCode(menuDto.getPcode()));
         menuDto.setPcodeName(ConstantFactory.me().getMenuNameByCode(menuDto.getPcode()));
 
@@ -210,6 +215,9 @@ public class MenuController extends BaseController {
 
     /**
      * 获取菜单列表(首页用)
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:54 PM
      */
     @RequestMapping(value = "/menuTreeList")
     @ResponseBody
@@ -219,6 +227,9 @@ public class MenuController extends BaseController {
 
     /**
      * 获取菜单列表(选择父级菜单用)
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:54 PM
      */
     @RequestMapping(value = "/selectMenuTreeList")
     @ResponseBody
@@ -229,7 +240,10 @@ public class MenuController extends BaseController {
     }
 
     /**
-     * 获取角色列表
+     * 获取角色的菜单列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:54 PM
      */
     @RequestMapping(value = "/menuTreeListByRoleId/{roleId}")
     @ResponseBody
@@ -240,36 +254,6 @@ public class MenuController extends BaseController {
         } else {
             return this.menuService.menuTreeListByMenuIds(menuIds);
         }
-    }
-
-    /**
-     * 根据请求的父级菜单编号设置pcode和层级
-     */
-    private Menu menuSetPcode(MenuDto menuParam) {
-
-        Menu resultMenu = new Menu();
-        BeanUtil.copyProperties(menuParam, resultMenu);
-
-        if (ToolUtil.isEmpty(menuParam.getPid()) || menuParam.getPid().equals(0L)) {
-            resultMenu.setPcode("0");
-            resultMenu.setPcodes("[0],");
-            resultMenu.setLevels(1);
-        } else {
-            Long pid = menuParam.getPid();
-            Menu pMenu = menuService.selectById(pid);
-            Integer pLevels = pMenu.getLevels();
-            resultMenu.setPcode(pMenu.getCode());
-
-            //如果编号和父编号一致会导致无限递归
-            if (menuParam.getCode().equals(menuParam.getPcode())) {
-                throw new ServiceException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
-            }
-
-            resultMenu.setLevels(pLevels + 1);
-            resultMenu.setPcodes(pMenu.getPcodes() + "[" + pMenu.getCode() + "],");
-        }
-
-        return resultMenu;
     }
 
 }
