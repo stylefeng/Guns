@@ -57,6 +57,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 跳转到通知列表首页
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("")
     public String index() {
@@ -65,6 +68,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 跳转到添加通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("/notice_add")
     public String noticeAdd() {
@@ -73,6 +79,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 跳转到修改通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("/notice_update/{noticeId}")
     public String noticeUpdate(@PathVariable Long noticeId, Model model) {
@@ -84,6 +93,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 跳转到首页通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("/hello")
     public String hello() {
@@ -94,6 +106,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 获取通知列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/list")
     @ResponseBody
@@ -104,6 +119,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 新增通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/add")
     @ResponseBody
@@ -112,7 +130,7 @@ public class NoticeController extends BaseController {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        notice.setCreateUser(ShiroKit.getUser().getId());
+        notice.setCreateUser(ShiroKit.getUserNotNull().getId());
         notice.setCreateTime(new Date());
         this.noticeService.insert(notice);
         return SUCCESS_TIP;
@@ -120,6 +138,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 删除通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
@@ -136,6 +157,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 修改通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/update")
     @ResponseBody

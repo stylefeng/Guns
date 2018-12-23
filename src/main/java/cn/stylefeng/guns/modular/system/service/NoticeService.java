@@ -21,6 +21,9 @@ public class NoticeService extends ServiceImpl<NoticeMapper, Notice> {
 
     /**
      * 获取通知列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:05 PM
      */
     public List<Map<String, Object>> list(String condition) {
         return this.baseMapper.list(condition);
