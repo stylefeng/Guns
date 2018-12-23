@@ -52,6 +52,9 @@ public class LoginLogController extends BaseController {
 
     /**
      * 跳转到日志管理的首页
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:51 PM
      */
     @RequestMapping("")
     public String index() {
@@ -60,19 +63,32 @@ public class LoginLogController extends BaseController {
 
     /**
      * 查询登录日志列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:51 PM
      */
     @RequestMapping("/list")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName) {
+    public Object list(@RequestParam(required = false) String beginTime,
+                       @RequestParam(required = false) String endTime,
+                       @RequestParam(required = false) String logName) {
+
+        //获取分页参数
         Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
+
+        //根据条件查询日志
         List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName, page.getOrderByField(), page.isAsc());
         page.setRecords(new LogWarpper(result).wrap());
+
         return new PageInfoBT<>(page);
     }
 
     /**
      * 清空日志
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:51 PM
      */
     @BussinessLog("清空登录日志")
     @RequestMapping("/delLoginLog")
