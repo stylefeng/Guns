@@ -1,9 +1,12 @@
 package cn.stylefeng.guns.modular.system.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.modular.system.entity.Dict;
 import cn.stylefeng.guns.modular.system.mapper.DictMapper;
 import cn.stylefeng.guns.modular.system.model.DictDto;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
@@ -29,9 +32,31 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
     private DictMapper dictMapper;
 
     /**
-     * 添加字典类型
+     * 添加字典
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:25 PM
      */
-    public void addDictType(DictDto dictDto) {
+    public void addDict(DictDto dictDto) {
+
+        if (ToolUtil.isOneEmpty(dictDto, dictDto.getCode(), dictDto.getName())) {
+            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
+        }
+
+        if (ToolUtil.isEmpty(dictDto.getDictTypeId())) {
+            this.addDictType(dictDto);
+        } else {
+            this.addDictItem(dictDto);
+        }
+    }
+
+    /**
+     * 添加字典类型
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:25 PM
+     */
+    private void addDictType(DictDto dictDto) {
         Dict dict = new Dict();
         BeanUtil.copyProperties(dictDto, dict);
 
@@ -43,8 +68,11 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
 
     /**
      * 添加字典子类型
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:25 PM
      */
-    public void addDictItem(DictDto dictDto) {
+    private void addDictItem(DictDto dictDto) {
         Dict dict = new Dict();
         BeanUtil.copyProperties(dictDto, dict);
 
@@ -56,6 +84,9 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
 
     /**
      * 删除字典
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:25 PM
      */
     @Transactional
     public void delteDict(Long dictId) {
@@ -71,6 +102,9 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
 
     /**
      * 根据编码获取词典列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:25 PM
      */
     public List<Dict> selectByCode(String code) {
         return this.baseMapper.selectByCode(code);
@@ -78,6 +112,9 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
 
     /**
      * 根据父类编码获取词典列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:26 PM
      */
     public List<Dict> selectByParentCode(String code) {
         return this.baseMapper.selectByParentCode(code);
@@ -85,6 +122,9 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
 
     /**
      * 查询字典列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:26 PM
      */
     public List<Map<String, Object>> list(String conditiion) {
         return this.baseMapper.list(conditiion);

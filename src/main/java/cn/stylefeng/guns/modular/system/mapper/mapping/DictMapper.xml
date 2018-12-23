@@ -43,6 +43,6 @@
         <if test="condition != null and condition != ''">
             AND NAME like CONCAT('%',#{condition},'%')
         </if>
-        order by DICT_ID ASC
+        order by SORT ASC
     </select>
 </mapper>
