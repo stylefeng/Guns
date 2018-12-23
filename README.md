@@ -6,6 +6,9 @@ Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整�
 ## 旗舰版抢先看
 Guns旗舰版预计12月底发布第一个版本，目前功能尚不完善，demo地址（admin/111111）：[http://demo.stylefeng.cn](http://demo.stylefeng.cn)，不要再问旗舰版收不收费，不然我真的就收费了 :smiling_imp:  :smiling_imp: 
 
+## 《Guns技术文档》+《Guns视频教程》免费送活动
+Guns联合阿里云，推出年终促销活动，买阿里云服务器，送文档和视频教程，包更新，详情点击[http://stylefeng.cn/](http://stylefeng.cn/)
+
 ### Guns v5.1更新内容
 
 > * 框架整体的包名变为cn开头，和域名stylefeng.cn保持一致！
