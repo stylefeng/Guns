@@ -68,6 +68,9 @@ public class SystemController extends BaseController {
 
     /**
      * 通用的树列表选择器
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:59 PM
      */
     @RequestMapping("/commonTree")
     public String deptTreeList(@RequestParam("formName") String formName,
@@ -125,9 +128,11 @@ public class SystemController extends BaseController {
             throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
         }
 
+        //获取当前用户的头像id
         User user = userService.selectById(currentUser.getId());
-
         String avatar = user.getAvatar();
+
+        //如果头像id为空就返回默认的
         if (ToolUtil.isEmpty(avatar)) {
             avatar = DefaultAvatar.BASE_64_AVATAR;
         } else {
@@ -154,10 +159,13 @@ public class SystemController extends BaseController {
 
     /**
      * 获取当前用户详情
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:59 PM
      */
     @RequestMapping("/currentUserInfo")
     @ResponseBody
-    public Object getUserInfo() {
+    public ResponseData getUserInfo() {
 
         ShiroUser currentUser = ShiroKit.getUser();
         if (currentUser == null) {
