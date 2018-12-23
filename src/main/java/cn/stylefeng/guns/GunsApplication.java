@@ -36,16 +36,5 @@ public class GunsApplication {
     public static void main(String[] args) {
         SpringApplication.run(GunsApplication.class, args);
         logger.info("GunsApplication is success!");
-
-//        GenerateParams generateParams = new GenerateParams();
-//
-//        generateParams.setRemoveTablePrefix(new String[]{"sys_"});
-//        generateParams.setAuthor("stylefeng");
-//        generateParams.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT");
-//        generateParams.setGeneratorInterface(false);
-//        generateParams.setParentPackage("cn.stylefeng.guns.modular.system");
-//        generateParams.setGeneratorInterface(false);
-//
-//        SimpleGenerator.doGeneration(generateParams);
     }
 }

@@ -6,7 +6,7 @@ var MenuInfoDlg = {
         menuId: "",
         name: "",
         code: "",
-        pcode: "",
+        pid: "",
         pcodeName: "",
         url: "",
         sort: "",
@@ -36,7 +36,7 @@ MenuInfoDlg.validateForm = function () {
     if (!data.code) {
         return "请输入菜单编号";
     }
-    if (!data.pcode) {
+    if (!data.pid) {
         return "请输入菜单上级";
     }
     if (!data.menuFlag) {
@@ -80,7 +80,7 @@ $(function () {
             },
             showMenuSelectTree: function () {
                 var formName = encodeURIComponent("parent.MenuInfoDlg.app.pcodeName");
-                var formId = encodeURIComponent("parent.MenuInfoDlg.app.pcode");
+                var formId = encodeURIComponent("parent.MenuInfoDlg.app.pid");
                 var treeUrl = encodeURIComponent(Feng.ctxPath + "/menu/selectMenuTreeList");
 
                 layer.open({

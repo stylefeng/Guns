@@ -37,13 +37,11 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -116,14 +114,12 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/edit")
     @BussinessLog(value = "修改菜单", key = "name", dict = MenuDict.class)
     @ResponseBody
-    public ResponseData edit(@Valid Menu menu, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
-        //设置父级菜单编号
-        menuSetPcode(menu);
+    public ResponseData edit(MenuDto menu) {
 
-        this.menuService.updateById(menu);
+        //设置父级菜单编号
+        Menu resultMenu = menuSetPcode(menu);
+
+        this.menuService.updateById(resultMenu);
         return SUCCESS_TIP;
     }
 
@@ -145,10 +141,7 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/add")
     @BussinessLog(value = "菜单新增", key = "name", dict = MenuDict.class)
     @ResponseBody
-    public ResponseData add(@Valid Menu menu, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
+    public ResponseData add(MenuDto menu) {
 
         //判断是否存在该编号
         String existedMenuName = ConstantFactory.me().getMenuNameByCode(menu.getCode());
@@ -157,10 +150,10 @@ public class MenuController extends BaseController {
         }
 
         //设置父级菜单编号
-        menuSetPcode(menu);
+        Menu resultMenu = menuSetPcode(menu);
 
-        menu.setStatus(MenuStatus.ENABLE.getCode());
-        this.menuService.insert(menu);
+        resultMenu.setStatus(MenuStatus.ENABLE.getCode());
+        this.menuService.insert(resultMenu);
         return SUCCESS_TIP;
     }
 
@@ -192,8 +185,8 @@ public class MenuController extends BaseController {
         if (ToolUtil.isEmpty(menuId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        this.menuService.selectById(menuId);
-        return SUCCESS_TIP;
+        Menu menu = this.menuService.selectById(menuId);
+        return ResponseData.success(menu);
     }
 
     /**
@@ -208,7 +201,8 @@ public class MenuController extends BaseController {
 
         Menu menu = this.menuService.selectById(menuId);
         MenuDto menuDto = new MenuDto();
-        BeanUtil.copyProperties(menu,menuDto);
+        BeanUtil.copyProperties(menu, menuDto);
+        menuDto.setPid(ConstantFactory.me().getMenuIdByCode(menuDto.getPcode()));
         menuDto.setPcodeName(ConstantFactory.me().getMenuNameByCode(menuDto.getPcode()));
 
         return ResponseData.success(menuDto);
@@ -251,25 +245,31 @@ public class MenuController extends BaseController {
     /**
      * 根据请求的父级菜单编号设置pcode和层级
      */
-    private void menuSetPcode(@Valid Menu menu) {
-        if (ToolUtil.isEmpty(menu.getPcode()) || menu.getPcode().equals("0")) {
-            menu.setPcode("0");
-            menu.setPcodes("[0],");
-            menu.setLevels(1);
+    private Menu menuSetPcode(MenuDto menuParam) {
+
+        Menu resultMenu = new Menu();
+        BeanUtil.copyProperties(menuParam, resultMenu);
+
+        if (ToolUtil.isEmpty(menuParam.getPid()) || menuParam.getPid().equals(0L)) {
+            resultMenu.setPcode("0");
+            resultMenu.setPcodes("[0],");
+            resultMenu.setLevels(1);
         } else {
-            String code = menu.getPcode();
-            Menu pMenu = menuService.selectByCode(code);
+            Long pid = menuParam.getPid();
+            Menu pMenu = menuService.selectById(pid);
             Integer pLevels = pMenu.getLevels();
-            menu.setPcode(pMenu.getCode());
+            resultMenu.setPcode(pMenu.getCode());
 
             //如果编号和父编号一致会导致无限递归
-            if (menu.getCode().equals(menu.getPcode())) {
+            if (menuParam.getCode().equals(menuParam.getPcode())) {
                 throw new ServiceException(BizExceptionEnum.MENU_PCODE_COINCIDENCE);
             }
 
-            menu.setLevels(pLevels + 1);
-            menu.setPcodes(pMenu.getPcodes() + "[" + pMenu.getCode() + "],");
+            resultMenu.setLevels(pLevels + 1);
+            resultMenu.setPcodes(pMenu.getPcodes() + "[" + pMenu.getCode() + "],");
         }
+
+        return resultMenu;
     }
 
 }

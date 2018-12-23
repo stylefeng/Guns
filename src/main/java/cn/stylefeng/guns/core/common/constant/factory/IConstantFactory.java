@@ -79,6 +79,11 @@ public interface IConstantFactory {
     String getMenuNameByCode(String code);
 
     /**
+     * 获取菜单名称通过编号
+     */
+    Long getMenuIdByCode(String code);
+
+    /**
      * 获取字典名称
      */
     String getDictName(Long dictId);

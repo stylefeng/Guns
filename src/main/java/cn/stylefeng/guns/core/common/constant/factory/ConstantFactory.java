@@ -56,12 +56,6 @@ public class ConstantFactory implements IConstantFactory {
         return SpringContextHolder.getBean("constantFactory");
     }
 
-    /**
-     * 根据用户id获取用户名称
-     *
-     * @author stylefeng
-     * @Date 2017/5/9 23:41
-     */
     @Override
     public String getUserNameById(Long userId) {
         User user = userMapper.selectById(userId);
@@ -72,12 +66,6 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 根据用户id获取用户账号
-     *
-     * @author stylefeng
-     * @date 2017年5月16日21:55:371
-     */
     @Override
     public String getUserAccountById(Long userId) {
         User user = userMapper.selectById(userId);
@@ -88,9 +76,6 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 通过角色ids获取角色名称
-     */
     @Override
     @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.ROLES_NAME + "'+#roleIds")
     public String getRoleName(String roleIds) {
@@ -108,9 +93,6 @@ public class ConstantFactory implements IConstantFactory {
         return StrUtil.removeSuffix(sb.toString(), ",");
     }
 
-    /**
-     * 通过角色id获取角色名称
-     */
     @Override
     @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_NAME + "'+#roleId")
     public String getSingleRoleName(Long roleId) {
@@ -124,9 +106,6 @@ public class ConstantFactory implements IConstantFactory {
         return "";
     }
 
-    /**
-     * 通过角色id获取角色英文名称
-     */
     @Override
     @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.SINGLE_ROLE_TIP + "'+#roleId")
     public String getSingleRoleTip(Long roleId) {
@@ -140,9 +119,6 @@ public class ConstantFactory implements IConstantFactory {
         return "";
     }
 
-    /**
-     * 获取部门名称
-     */
     @Override
     @Cacheable(value = Cache.CONSTANT, key = "'" + CacheKey.DEPT_NAME + "'+#deptId")
     public String getDeptName(Long deptId) {
@@ -159,9 +135,6 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 获取菜单的名称们(多个)
-     */
     @Override
     public String getMenuNames(String menuIds) {
         Integer[] menus = Convert.toIntArray(menuIds);
@@ -175,9 +148,6 @@ public class ConstantFactory implements IConstantFactory {
         return StrUtil.removeSuffix(sb.toString(), ",");
     }
 
-    /**
-     * 获取菜单名称
-     */
     @Override
     public String getMenuName(Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {
@@ -192,13 +162,12 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 获取菜单名称通过编号
-     */
     @Override
     public String getMenuNameByCode(String code) {
         if (ToolUtil.isEmpty(code)) {
             return "";
+        } else if (code.equals("0")) {
+            return "顶级";
         } else {
             Menu param = new Menu();
             param.setCode(code);
@@ -211,9 +180,20 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 获取字典名称
-     */
+    @Override
+    public Long getMenuIdByCode(String code) {
+        if (ToolUtil.isEmpty(code)) {
+            return 0L;
+        } else if (code.equals("0")) {
+            return 0L;
+        } else {
+            Menu menu = new Menu();
+            menu.setCode(code);
+            Menu tempMenu = this.menuMapper.selectOne(menu);
+            return tempMenu.getMenuId();
+        }
+    }
+
     @Override
     public String getDictName(Long dictId) {
         if (ToolUtil.isEmpty(dictId)) {
@@ -228,9 +208,6 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 获取通知标题
-     */
     @Override
     public String getNoticeTitle(Long dictId) {
         if (ToolUtil.isEmpty(dictId)) {
@@ -245,9 +222,6 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 根据字典名称和字典中的值获取对应的名称
-     */
     @Override
     public String getDictsByName(String name, String code) {
         Dict temp = new Dict();
@@ -268,33 +242,21 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 获取性别名称
-     */
     @Override
     public String getSexName(String sexCode) {
         return getDictsByName("性别", sexCode);
     }
 
-    /**
-     * 获取用户登录状态
-     */
     @Override
     public String getStatusName(String status) {
         return ManagerStatus.getDescription(status);
     }
 
-    /**
-     * 获取菜单状态
-     */
     @Override
     public String getMenuStatusName(String status) {
         return MenuStatus.getDescription(status);
     }
 
-    /**
-     * 查询字典
-     */
     @Override
     public List<Dict> findInDict(Long id) {
         if (ToolUtil.isEmpty(id)) {
@@ -310,17 +272,11 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
-    /**
-     * 获取被缓存的对象(用户删除业务)
-     */
     @Override
     public String getCacheObject(String para) {
         return LogObjectHolder.me().get().toString();
     }
 
-    /**
-     * 获取子部门id
-     */
     @Override
     public List<Long> getSubDeptId(Long deptId) {
         Wrapper<Dept> wrapper = new EntityWrapper<>();
@@ -338,9 +294,6 @@ public class ConstantFactory implements IConstantFactory {
         return deptids;
     }
 
-    /**
-     * 获取所有父部门id
-     */
     @Override
     public List<Long> getParentDeptIds(Long deptId) {
         Dept dept = deptMapper.selectById(deptId);
