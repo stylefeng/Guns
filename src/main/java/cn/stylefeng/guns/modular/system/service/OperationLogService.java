@@ -22,6 +22,9 @@ public class OperationLogService extends ServiceImpl<OperationLogMapper, Operati
 
     /**
      * 获取操作日志列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:41 PM
      */
     public List<Map<String, Object>> getOperationLogs(Page<OperationLog> page, String beginTime, String endTime, String logName, String s, String orderByField, boolean asc) {
         return this.baseMapper.getOperationLogs(page, beginTime, endTime, logName, s, orderByField, asc);
