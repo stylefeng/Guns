@@ -20,7 +20,6 @@ import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.TreeviewNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
@@ -30,12 +29,12 @@ import cn.stylefeng.guns.modular.system.service.DeptService;
 import cn.stylefeng.guns.modular.system.warpper.DeptTreeWarpper;
 import cn.stylefeng.guns.modular.system.warpper.DeptWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.treebuild.DefaultTreeBuildFactory;
 import cn.stylefeng.roses.core.util.ToolUtil;
-import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,6 +60,9 @@ public class DeptController extends BaseController {
 
     /**
      * 跳转到部门管理首页
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:56 PM
      */
     @RequestMapping("")
     public String index() {
@@ -69,6 +71,9 @@ public class DeptController extends BaseController {
 
     /**
      * 跳转到添加部门
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:56 PM
      */
     @RequestMapping("/dept_add")
     public String deptAdd() {
@@ -77,19 +82,30 @@ public class DeptController extends BaseController {
 
     /**
      * 跳转到修改部门
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:56 PM
      */
     @Permission
     @RequestMapping("/dept_update")
-    public String deptUpdate(@RequestParam("deptId") Long deptId, Model model) {
+    public String deptUpdate(@RequestParam("deptId") Long deptId) {
+
+        if (ToolUtil.isEmpty(deptId)) {
+            throw new RequestEmptyException();
+        }
+
+        //缓存部门修改前详细信息
         Dept dept = deptService.selectById(deptId);
-        model.addAttribute(dept);
-        model.addAttribute("pName", ConstantFactory.me().getDeptName(dept.getPid()));
         LogObjectHolder.me().set(dept);
+
         return PREFIX + "dept_edit.html";
     }
 
     /**
-     * 获取部门的tree列表
+     * 获取部门的tree列表，ztree格式
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:56 PM
      */
     @RequestMapping(value = "/tree")
     @ResponseBody
@@ -100,7 +116,10 @@ public class DeptController extends BaseController {
     }
 
     /**
-     * 获取部门的tree列表
+     * 获取部门的tree列表，treeview格式
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:57 PM
      */
     @RequestMapping(value = "/treeview")
     @ResponseBody
@@ -114,28 +133,30 @@ public class DeptController extends BaseController {
 
         //把子节点为空的设为null
         DeptTreeWarpper.clearNull(results);
+
         return results;
     }
 
     /**
      * 新增部门
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:57 PM
      */
-    @BussinessLog(value = "添加部门", key = "simplename", dict = DeptDict.class)
+    @BussinessLog(value = "添加部门", key = "simpleName", dict = DeptDict.class)
     @RequestMapping(value = "/add")
     @Permission
     @ResponseBody
-    public Object add(Dept dept) {
-        if (ToolUtil.isOneEmpty(dept, dept.getSimpleName())) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
-
-        //完善pids,根据pid拿到pid的pids
-        deptSetPids(dept);
-        return this.deptService.insert(dept);
+    public ResponseData add(Dept dept) {
+        this.deptService.addDept(dept);
+        return SUCCESS_TIP;
     }
 
     /**
      * 获取所有部门列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:57 PM
      */
     @RequestMapping(value = "/list")
     @Permission
@@ -148,6 +169,9 @@ public class DeptController extends BaseController {
 
     /**
      * 部门详情
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:57 PM
      */
     @RequestMapping(value = "/detail/{deptId}")
     @Permission
@@ -162,28 +186,30 @@ public class DeptController extends BaseController {
 
     /**
      * 修改部门
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:57 PM
      */
-    @BussinessLog(value = "修改部门", key = "simplename", dict = DeptDict.class)
+    @BussinessLog(value = "修改部门", key = "simpleName", dict = DeptDict.class)
     @RequestMapping(value = "/update")
     @Permission
     @ResponseBody
-    public Object update(Dept dept) {
-        if (ToolUtil.isEmpty(dept) || dept.getDeptId() == null) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
-        deptSetPids(dept);
-        deptService.updateById(dept);
+    public ResponseData update(Dept dept) {
+        deptService.editDept(dept);
         return SUCCESS_TIP;
     }
 
     /**
      * 删除部门
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 4:57 PM
      */
     @BussinessLog(value = "删除部门", key = "deptId", dict = DeptDict.class)
     @RequestMapping(value = "/delete")
     @Permission
     @ResponseBody
-    public Object delete(@RequestParam Long deptId) {
+    public ResponseData delete(@RequestParam Long deptId) {
 
         //缓存被删除的部门名称
         LogObjectHolder.me().set(ConstantFactory.me().getDeptName(deptId));
@@ -193,16 +219,4 @@ public class DeptController extends BaseController {
         return SUCCESS_TIP;
     }
 
-    private void deptSetPids(Dept dept) {
-        if (ToolUtil.isEmpty(dept.getPid()) || dept.getPid().equals(0L)) {
-            dept.setPid(0L);
-            dept.setPids("[0],");
-        } else {
-            Long pid = dept.getPid();
-            Dept temp = deptService.selectById(pid);
-            String pids = temp.getPids();
-            dept.setPid(pid);
-            dept.setPids(pids + "[" + pid + "],");
-        }
-    }
 }

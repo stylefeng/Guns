@@ -45,11 +45,11 @@ DeptEditInfoDlg.validateForm = function () {
  */
 DeptEditInfoDlg.addSubmit = function () {
     var ajax = new $ax(Feng.ctxPath + "/dept/update", function (data) {
-        Feng.success("修改成功!");
+        parent.Feng.success("修改成功!");
         window.parent.Dept.table.refresh();
         DeptEditInfoDlg.close();
     }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
+        parent.Feng.error("修改失败!" + data.responseJSON.message + "!");
     });
     ajax.set(DeptEditInfoDlg.data);
     ajax.start();
@@ -59,8 +59,7 @@ $(function () {
 
     //获取部门信息
     var ajax = new $ax(Feng.ctxPath + "/dept/detail/" + Feng.getUrlParam("deptId"));
-    var result = ajax.start();
-    DeptEditInfoDlg.data = result;
+    DeptEditInfoDlg.data = ajax.start();
 
     DeptEditInfoDlg.app = new Vue({
         el: '#deptEditForm',
