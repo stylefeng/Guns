@@ -27,7 +27,6 @@ import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
-import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.factory.UserFactory;
 import cn.stylefeng.guns.modular.system.model.UserDto;
@@ -167,7 +166,8 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new RequestEmptyException();
         }
-        assertAuth(userId);
+
+        this.userService.assertAuth(userId);
         User user = this.userService.selectById(userId);
         Map<String, Object> map = UserFactory.removeUnSafeFields(user);
 
@@ -191,17 +191,8 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isOneEmpty(oldPassword, newPassword)) {
             throw new RequestEmptyException();
         }
-        Long userId = ShiroKit.getUserNotNull().getId();
-        User user = userService.selectById(userId);
-        String oldMd5 = ShiroKit.md5(oldPassword, user.getSalt());
-        if (user.getPassword().equals(oldMd5)) {
-            String newMd5 = ShiroKit.md5(newPassword, user.getSalt());
-            user.setPassword(newMd5);
-            this.userService.updateById(user);
-            return SUCCESS_TIP;
-        } else {
-            throw new ServiceException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
-        }
+        this.userService.changePwd(oldPassword,newPassword);
+        return SUCCESS_TIP;
     }
 
     /**
@@ -251,18 +242,7 @@ public class UserMgrController extends BaseController {
         if (result.hasErrors()) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-
-        // 判断账号是否重复
-        User theUser = userService.getByAccount(user.getAccount());
-        if (theUser != null) {
-            throw new ServiceException(BizExceptionEnum.USER_ALREADY_REG);
-        }
-
-        // 完善账号信息
-        String salt = ShiroKit.getRandomSalt(5);
-        String password = ShiroKit.md5(user.getPassword(), salt);
-
-        this.userService.insert(UserFactory.createUser(user, password, salt));
+        this.userService.addUser(user);
         return SUCCESS_TIP;
     }
 
@@ -279,22 +259,8 @@ public class UserMgrController extends BaseController {
         if (result.hasErrors()) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-
-        User oldUser = userService.selectById(user.getUserId());
-
-        if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
-            this.userService.updateById(UserFactory.editUser(user, oldUser));
-            return SUCCESS_TIP;
-        } else {
-            assertAuth(user.getUserId());
-            ShiroUser shiroUser = ShiroKit.getUserNotNull();
-            if (shiroUser.getId().equals(user.getUserId())) {
-                this.userService.updateById(UserFactory.editUser(user, oldUser));
-                return SUCCESS_TIP;
-            } else {
-                throw new ServiceException(BizExceptionEnum.NO_PERMITION);
-            }
-        }
+        this.userService.editUser(user);
+        return SUCCESS_TIP;
     }
 
     /**
@@ -311,12 +277,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        //不能删除超级管理员
-        if (userId.equals(Const.ADMIN_ID)) {
-            throw new ServiceException(BizExceptionEnum.CANT_DELETE_ADMIN);
-        }
-        assertAuth(userId);
-        this.userService.setStatus(userId, ManagerStatus.DELETED.getCode());
+        this.userService.deleteUser(userId);
         return SUCCESS_TIP;
     }
 
@@ -332,7 +293,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        assertAuth(userId);
+        this.userService.assertAuth(userId);
         return this.userService.selectById(userId);
     }
 
@@ -350,7 +311,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        assertAuth(userId);
+        this.userService.assertAuth(userId);
         User user = this.userService.selectById(userId);
         user.setSalt(ShiroKit.getRandomSalt(5));
         user.setPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
@@ -376,7 +337,7 @@ public class UserMgrController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new ServiceException(BizExceptionEnum.CANT_FREEZE_ADMIN);
         }
-        assertAuth(userId);
+        this.userService.assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.FREEZED.getCode());
         return SUCCESS_TIP;
     }
@@ -395,7 +356,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        assertAuth(userId);
+        this.userService.assertAuth(userId);
         this.userService.setStatus(userId, ManagerStatus.OK.getCode());
         return SUCCESS_TIP;
     }
@@ -418,7 +379,7 @@ public class UserMgrController extends BaseController {
         if (userId.equals(Const.ADMIN_ID)) {
             throw new ServiceException(BizExceptionEnum.CANT_CHANGE_ADMIN);
         }
-        assertAuth(userId);
+        this.userService.assertAuth(userId);
         this.userService.setRoles(userId, roleIds);
         return SUCCESS_TIP;
     }
@@ -441,26 +402,5 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
-    }
-
-    /**
-     * 判断当前登录的用户是否有操作这个用户的权限
-     *
-     * @author fengshuonan
-     * @Date 2018/12/24 22:44
-     */
-    private void assertAuth(Long userId) {
-        if (ShiroKit.isAdmin()) {
-            return;
-        }
-        List<Long> deptDataScope = ShiroKit.getDeptDataScope();
-        User user = this.userService.selectById(userId);
-        Long deptId = user.getDeptId();
-        if (deptDataScope.contains(deptId)) {
-            return;
-        } else {
-            throw new ServiceException(BizExceptionEnum.NO_PERMITION);
-        }
-
     }
 }

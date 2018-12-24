@@ -1,10 +1,18 @@
 package cn.stylefeng.guns.modular.system.service;
 
+import cn.stylefeng.guns.core.common.constant.Const;
+import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.MenuNode;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.util.ApiMenuFilter;
 import cn.stylefeng.guns.modular.system.entity.User;
+import cn.stylefeng.guns.modular.system.factory.UserFactory;
 import cn.stylefeng.guns.modular.system.mapper.UserMapper;
+import cn.stylefeng.guns.modular.system.model.UserDto;
 import cn.stylefeng.roses.core.datascope.DataScope;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +36,65 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     private MenuService menuService;
 
     /**
+     * 添加用戶
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:51
+     */
+    public void addUser(UserDto user){
+
+        // 判断账号是否重复
+        User theUser = this.getByAccount(user.getAccount());
+        if (theUser != null) {
+            throw new ServiceException(BizExceptionEnum.USER_ALREADY_REG);
+        }
+
+        // 完善账号信息
+        String salt = ShiroKit.getRandomSalt(5);
+        String password = ShiroKit.md5(user.getPassword(), salt);
+
+        this.insert(UserFactory.createUser(user, password, salt));
+    }
+
+    /**
+     * 修改用户
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:53
+     */
+    public void editUser(UserDto user){
+        User oldUser = this.selectById(user.getUserId());
+
+        if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
+            this.updateById(UserFactory.editUser(user, oldUser));
+        } else {
+            this.assertAuth(user.getUserId());
+            ShiroUser shiroUser = ShiroKit.getUserNotNull();
+            if (shiroUser.getId().equals(user.getUserId())) {
+                this.updateById(UserFactory.editUser(user, oldUser));
+            } else {
+                throw new ServiceException(BizExceptionEnum.NO_PERMITION);
+            }
+        }
+    }
+
+    /**
+     * 删除用户
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:54
+     */
+    public void deleteUser(Long userId){
+
+        //不能删除超级管理员
+        if (userId.equals(Const.ADMIN_ID)) {
+            throw new ServiceException(BizExceptionEnum.CANT_DELETE_ADMIN);
+        }
+        this.assertAuth(userId);
+        this.setStatus(userId, ManagerStatus.DELETED.getCode());
+    }
+
+    /**
      * 修改用户状态
      *
      * @author fengshuonan
@@ -43,8 +110,19 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      * @author fengshuonan
      * @Date 2018/12/24 22:45
      */
-    public int changePwd(Long userId, String pwd) {
-        return this.baseMapper.changePwd(userId, pwd);
+    public void changePwd(String oldPassword,String newPassword) {
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.selectById(userId);
+
+        String oldMd5 = ShiroKit.md5(oldPassword, user.getSalt());
+
+        if (user.getPassword().equals(oldMd5)) {
+            String newMd5 = ShiroKit.md5(newPassword, user.getSalt());
+            user.setPassword(newMd5);
+            this.updateById(user);
+        } else {
+            throw new ServiceException(BizExceptionEnum.OLD_PWD_NOT_RIGHT);
+        }
     }
 
     /**
@@ -90,6 +168,27 @@ public class UserService extends ServiceImpl<UserMapper, User> {
             List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
             List<MenuNode> titles = MenuNode.buildTitle(menus);
             return ApiMenuFilter.build(titles);
+        }
+
+    }
+
+    /**
+     * 判断当前登录的用户是否有操作这个用户的权限
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
+     */
+    public void assertAuth(Long userId) {
+        if (ShiroKit.isAdmin()) {
+            return;
+        }
+        List<Long> deptDataScope = ShiroKit.getDeptDataScope();
+        User user = this.selectById(userId);
+        Long deptId = user.getDeptId();
+        if (deptDataScope.contains(deptId)) {
+            return;
+        } else {
+            throw new ServiceException(BizExceptionEnum.NO_PERMITION);
         }
 
     }
