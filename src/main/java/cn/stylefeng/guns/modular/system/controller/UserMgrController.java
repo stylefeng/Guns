@@ -39,7 +39,6 @@ import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,6 +73,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 跳转到查看管理员列表的页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("")
     public String index() {
@@ -82,6 +84,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 跳转到查看管理员列表的页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("/user_add")
     public String addView() {
@@ -90,6 +95,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 跳转到角色分配页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @Permission
     @RequestMapping("/role_assign")
@@ -97,14 +105,15 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        User user = this.userService.selectOne(new EntityWrapper<User>().eq("USER_ID", userId));
         model.addAttribute("userId", userId);
-        model.addAttribute("userAccount", user.getAccount());
         return PREFIX + "user_roleassign.html";
     }
 
     /**
      * 跳转到编辑管理员页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @Permission
     @RequestMapping("/user_edit")
@@ -119,14 +128,15 @@ public class UserMgrController extends BaseController {
 
     /**
      * 跳转到查看用户详情页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("/user_info")
     public String userInfo(Model model) {
-        Long userId = ShiroKit.getUser().getId();
-        if (ToolUtil.isEmpty(userId)) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
+        Long userId = ShiroKit.getUserNotNull().getId();
         User user = this.userService.selectById(userId);
+
         model.addAllAttributes(BeanUtil.beanToMap(user));
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
@@ -136,6 +146,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 跳转到修改密码界面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("/user_chpwd")
     public String chPwd() {
@@ -144,6 +157,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 获取用户详情
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("/getUserInfo")
     @ResponseBody
@@ -165,6 +181,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 修改当前用户的密码
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("/changePwd")
     @ResponseBody
@@ -172,7 +191,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isOneEmpty(oldPassword, newPassword)) {
             throw new RequestEmptyException();
         }
-        Long userId = ShiroKit.getUser().getId();
+        Long userId = ShiroKit.getUserNotNull().getId();
         User user = userService.selectById(userId);
         String oldMd5 = ShiroKit.md5(oldPassword, user.getSalt());
         if (user.getPassword().equals(oldMd5)) {
@@ -187,6 +206,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 查询管理员列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
      */
     @RequestMapping("/list")
     @Permission
@@ -217,6 +239,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 添加管理员
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/add")
     @BussinessLog(value = "添加管理员", key = "account", dict = UserDict.class)
@@ -243,6 +268,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 修改管理员
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/edit")
     @BussinessLog(value = "修改管理员", key = "account", dict = UserDict.class)
@@ -259,7 +287,7 @@ public class UserMgrController extends BaseController {
             return SUCCESS_TIP;
         } else {
             assertAuth(user.getUserId());
-            ShiroUser shiroUser = ShiroKit.getUser();
+            ShiroUser shiroUser = ShiroKit.getUserNotNull();
             if (shiroUser.getId().equals(user.getUserId())) {
                 this.userService.updateById(UserFactory.editUser(user, oldUser));
                 return SUCCESS_TIP;
@@ -271,6 +299,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 删除管理员（逻辑删除）
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/delete")
     @BussinessLog(value = "删除管理员", key = "userId", dict = UserDict.class)
@@ -291,6 +322,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 查看管理员详情
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/view/{userId}")
     @ResponseBody
@@ -304,6 +338,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 重置管理员的密码
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/reset")
     @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
@@ -323,6 +360,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 冻结用户
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/freeze")
     @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
@@ -343,6 +383,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 解除冻结用户
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/unfreeze")
     @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
@@ -359,6 +402,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 分配角色
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping("/setRole")
     @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
@@ -379,6 +425,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 上传图片
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
     @ResponseBody
@@ -396,6 +445,9 @@ public class UserMgrController extends BaseController {
 
     /**
      * 判断当前登录的用户是否有操作这个用户的权限
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:44
      */
     private void assertAuth(Long userId) {
         if (ShiroKit.isAdmin()) {
