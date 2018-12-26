@@ -8,7 +8,8 @@ var Menu = {
     layerIndex: -1,
     condition: {
         menuName: "",
-        level: ""
+        level: "",
+        menuId: ""
     }
 };
 
@@ -101,10 +102,19 @@ Menu.delMenu = function () {
 Menu.search = function () {
     var queryData = {};
 
+    queryData['menuId'] = Menu.condition.menuId;
     queryData['menuName'] = Menu.condition.menuName;
     queryData['level'] = Menu.condition.level;
 
     Menu.table.refresh({query: queryData});
+};
+
+/**
+ * 选择菜单树时候
+ */
+Menu.onClickMenuTree = function (e, treeId, treeNode) {
+    Menu.condition.menuId = treeNode.id;
+    Menu.search();
 };
 
 $(function () {
@@ -112,6 +122,10 @@ $(function () {
         el: '#menuPage',
         data: Menu.condition
     });
+
+    var ztree = new $ZTree("menuTree", "/menu/selectMenuTreeList");
+    ztree.bindOnClick(Menu.onClickMenuTree);
+    ztree.init();
 
     var defaultColunms = Menu.initColumn();
     var table = new BSTable(Menu.id, "/menu/list", defaultColunms);
