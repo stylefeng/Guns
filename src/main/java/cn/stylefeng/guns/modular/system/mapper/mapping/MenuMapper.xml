@@ -40,6 +40,9 @@
         <if test="level != null and level != ''">
             and LEVELS = #{level}
         </if>
+        <if test="menuId != null and menuId != 0">
+            and (MENU_ID = #{menuId} or MENU_ID in ( select MENU_ID from sys_menu where PCODES like CONCAT('%[', #{code}, ']%') ))
+        </if>
     </select>
 
     <select id="getMenuIdsByRoleId" resultType="long">

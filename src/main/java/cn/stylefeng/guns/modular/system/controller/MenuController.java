@@ -129,8 +129,9 @@ public class MenuController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(required = false) String menuName,
-                       @RequestParam(required = false) String level) {
-        List<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level);
+                       @RequestParam(required = false) String level,
+                       @RequestParam(required = false) Long menuId) {
+        List<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level, menuId);
         return super.warpObject(new MenuWarpper(menus));
     }
 

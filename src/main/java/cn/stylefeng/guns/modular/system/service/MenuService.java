@@ -108,8 +108,16 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Map<String, Object>> selectMenus(String condition, String level) {
-        return this.baseMapper.selectMenus(condition, level);
+    public List<Map<String, Object>> selectMenus(String condition, String level, Long menuId) {
+
+        //获取menuId的code
+        String code = "";
+        if (menuId != null) {
+            Menu menu = this.selectById(menuId);
+            code = menu.getCode();
+        }
+
+        return this.baseMapper.selectMenus(condition, level, menuId, code);
     }
 
     /**
