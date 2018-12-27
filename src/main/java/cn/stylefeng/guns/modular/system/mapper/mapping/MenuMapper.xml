@@ -70,7 +70,7 @@
         ELSE
         'false'
         END
-        ) as isOpen
+        ) as open
         FROM
         sys_menu m1
         LEFT join sys_menu m2 ON m1.PCODE = m2.CODE
@@ -98,7 +98,7 @@
         ELSE
         'false'
         END
-        ) as isOpen,
+        ) as open,
         (
         CASE
         WHEN (m3.MENU_ID = 0 OR m3.MENU_ID
