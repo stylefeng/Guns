@@ -444,6 +444,6 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, '1', 'admin', '1d6b1208c7d151d335790276a18e3d99', 'q6taw', 'stylefeng', '2018-11-16 00:00:00', '2', 'sn93@qq.com', '18200000000', '1', 27, 'ENABLE', '2016-01-29 08:49:53', NULL, '2018-12-08 22:36:42', 24, 25);
+INSERT INTO `sys_user`(`USER_ID`, `AVATAR`, `ACCOUNT`, `PASSWORD`, `SALT`, `NAME`, `BIRTHDAY`, `SEX`, `EMAIL`, `PHONE`, `ROLE_ID`, `DEPT_ID`, `STATUS`, `CREATE_TIME`, `CREATE_USER`, `UPDATE_TIME`, `UPDATE_USER`, `VERSION`) VALUES (1, '1', 'admin', '1d6b1208c7d151d335790276a18e3d99', 'q6taw', 'stylefeng', '2018-11-16 00:00:00', 'M', 'sn93@qq.com', '18200000000', '1', 27, 'ENABLE', '2016-01-29 08:49:53', NULL, '2018-12-28 22:52:24', 24, 25);
 
 SET FOREIGN_KEY_CHECKS = 1;
