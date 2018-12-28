@@ -248,8 +248,9 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 -- Records of sys_notice
 -- ----------------------------
-INSERT INTO `sys_notice` VALUES (6, '世界', '<span style=\"font-weight: bold; text-decoration-line: line-through;\">欢迎使用Guns管理系统</span>', '2017-01-11 08:53:20', 1, '2018-12-09 22:31:11', 1);
-INSERT INTO `sys_notice` VALUES (8, '你好', '你好', '2017-05-10 19:28:57', 1, NULL, NULL);
+INSERT INTO `sys_notice`(`NOTICE_ID`, `TITLE`, `CONTENT`, `CREATE_TIME`, `CREATE_USER`, `UPDATE_TIME`, `UPDATE_USER`) VALUES (6, '欢迎', 'hi，Guns旗舰版发布了！', '2017-01-11 08:53:20', 1, '2018-12-28 23:24:48', 1);
+INSERT INTO `sys_notice`(`NOTICE_ID`, `TITLE`, `CONTENT`, `CREATE_TIME`, `CREATE_USER`, `UPDATE_TIME`, `UPDATE_USER`) VALUES (8, '你好', '你好，世界！', '2017-05-10 19:28:57', 1, '2018-12-28 23:28:26', 1);
+
 
 -- ----------------------------
 -- Table structure for sys_operation_log
