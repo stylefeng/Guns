@@ -1,20 +1,20 @@
-# Guns V5.1
+# Guns旗舰版v1.0 震撼发布
 
 ## 介绍
-Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 2018目标 `更简洁`，`更规范`!
+Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 
 
-## 云服务器全网最低 Guns专属优惠
-1核2G 99/年，298/3年，2核4G 500/1年，1227/3年，2核8G 5M带宽 2000/3年，仅限阿里云新用户，想买的老用户可以注册一个哦，点击链接购买[https://m.aliyun.com/act/team1111/#/share?params=N.lqp2rk5ITB.p4kqz45e](https://m.aliyun.com/act/team1111/#/share?params=N.lqp2rk5ITB.p4kqz45e) 
+### Guns旗舰版v1.0 更新内容
 
-### Guns v5.1更新内容
+> * 前端页面风格和架构焕然一新，全面升级bootstrap 4.0，您现在拥有两种界面风格可选
+> * 引入vue.js，实现业务数据双向绑定，不增加学习成本的情况下，提升自己的开发效率
+> * 优化前端框架结构，加载速度更快，使用更加灵活可配置
+> * 前后端代码整体重构，逻辑更加清晰，代码量更加简洁，增加关键部分注释，代码的可读性提高
+> * 增加docker-maven-plugin插件，可快速部署项目到装有docker的服务器
+> * 重构shiro部分的业务代码和配置，更加清晰简洁
+> * 规范后端数据库设计，字段和表的命名都修改为下划线命名，将以往的全小写命名去除
 
-> * 框架整体的包名变为cn开头，和域名stylefeng.cn保持一致！
-> * 优化了shiro相关的几个服务类的结构，整体业务逻辑不变，优化了部分包结构和类之间的关系，项目整体更加简洁和易维护！
-> * 整合了guns-core，和roses项目的kernel-core，并把kernel-core上传到了maven的中央仓库！
-> * 剔除了guns-generator模块，抽出单独的项目https://gitee.com/stylefeng/guns-generator来维护，并且guns-generator也上传到了maven中央仓库！
-> * 框架整体回归了单模块应用，返璞归真，开箱即用，快速开发新项目，新业务！
-
-**另外更新了Guns技术文档的版本到5.1，与项目版本保持一致，详情见文档详情！**
+## 旗舰版在线demo
+demo地址（admin/111111）：[http://demo.stylefeng.cn](http://demo.stylefeng.cn)
 
 ## 最新Guns技术文档
 Guns框架有作者在业余时间整理的技术文档，详情点击[查看详情](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
@@ -23,7 +23,7 @@ Guns框架有作者在业余时间整理的技术文档，详情点击[查看详
 Guns框架有作者在业余时间录制的视频教程，详情点击[教程介绍](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
 ## 技术讨论 & [wiki地址](https://gitee.com/stylefeng/guns/wikis/Home)
-如果对项目有任何疑问或者建议，欢迎加入Guns技术交流1群:254550081，Guns技术交流2群：684163663，Guns技术交流3群：207434260(加之前先看下文档guns-admin/doc/Guns技术文档 v1.0.pdf)
+如果对项目有任何疑问或者建议，欢迎加入Guns技术交流1群:254550081，Guns技术交流2群：684163663，Guns技术交流3群：207434260
 
 ## 管理系统功能
 1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成
