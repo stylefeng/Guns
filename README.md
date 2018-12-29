@@ -1,7 +1,4 @@
-# Guns旗舰版v1.0 发布
-
-## 介绍
-Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 
+# Guns旗舰版v1.0 震撼发布
 
 ### Guns旗舰版v1.0 更新内容
 
@@ -12,6 +9,9 @@ Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整�
 > * 增加docker-maven-plugin插件，可一键部署项目到装有docker的服务器
 > * 重构shiro部分的业务代码和配置，更加清晰简洁
 > * 规范后端数据库设计，字段和表的命名都修改为下划线命名，将以往的全小写命名去除
+
+## 介绍
+Guns基于SpringBoot 2，致力于做更简洁的后台管理系统，完美整合springmvc + shiro + mybatis-plus + beetl!Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架! 
 
 ## 旗舰版在线demo
 demo地址（admin/111111）：[http://demo.stylefeng.cn](http://demo.stylefeng.cn)
