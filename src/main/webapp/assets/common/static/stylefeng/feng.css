@@ -1,0 +1,58 @@
+.condition-button {
+    height: 38px;
+}
+
+.condition-button-width {
+    width: 85px;
+}
+
+.normal-button-width {
+    width: 65px;
+}
+
+/*分页的主题颜色*/
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #f4f4f4;
+    border-color: #DDDDDD;
+    color: inherit;
+    cursor: default;
+    z-index: 2;
+}
+
+/*分页的主题颜色*/
+.pagination > li > a,
+.pagination > li > span {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    color: inherit;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 4px 10px;
+    position: relative;
+    text-decoration: none;
+}
+
+.fixed-table-pagination .btn {
+    border-color: #DDDDDD;
+}
+
+.div-center {
+    width: auto;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-35 {
+    top: 35px !important;
+}
+
+.lh-11 {
+    line-height: 1.1 !important;
+}

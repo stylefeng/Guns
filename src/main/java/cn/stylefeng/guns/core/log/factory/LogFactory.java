@@ -17,8 +17,8 @@ package cn.stylefeng.guns.core.log.factory;
 
 import cn.stylefeng.guns.core.common.constant.state.LogSucceed;
 import cn.stylefeng.guns.core.common.constant.state.LogType;
-import cn.stylefeng.guns.modular.system.model.LoginLog;
-import cn.stylefeng.guns.modular.system.model.OperationLog;
+import cn.stylefeng.guns.modular.system.entity.LoginLog;
+import cn.stylefeng.guns.modular.system.entity.OperationLog;
 
 import java.util.Date;
 
@@ -33,14 +33,14 @@ public class LogFactory {
     /**
      * 创建操作日志
      */
-    public static OperationLog createOperationLog(LogType logType, Integer userId, String bussinessName, String clazzName, String methodName, String msg, LogSucceed succeed) {
+    public static OperationLog createOperationLog(LogType logType, Long userId, String bussinessName, String clazzName, String methodName, String msg, LogSucceed succeed) {
         OperationLog operationLog = new OperationLog();
-        operationLog.setLogtype(logType.getMessage());
-        operationLog.setLogname(bussinessName);
-        operationLog.setUserid(userId);
-        operationLog.setClassname(clazzName);
+        operationLog.setLogType(logType.getMessage());
+        operationLog.setLogName(bussinessName);
+        operationLog.setUserId(userId);
+        operationLog.setClassName(clazzName);
         operationLog.setMethod(methodName);
-        operationLog.setCreatetime(new Date());
+        operationLog.setCreateTime(new Date());
         operationLog.setSucceed(succeed.getMessage());
         operationLog.setMessage(msg);
         return operationLog;
@@ -49,13 +49,13 @@ public class LogFactory {
     /**
      * 创建登录日志
      */
-    public static LoginLog createLoginLog(LogType logType, Integer userId, String msg, String ip) {
+    public static LoginLog createLoginLog(LogType logType, Long userId, String msg, String ip) {
         LoginLog loginLog = new LoginLog();
-        loginLog.setLogname(logType.getMessage());
-        loginLog.setUserid(userId);
-        loginLog.setCreatetime(new Date());
+        loginLog.setLogName(logType.getMessage());
+        loginLog.setUserId(userId);
+        loginLog.setCreateTime(new Date());
         loginLog.setSucceed(LogSucceed.SUCCESS.getMessage());
-        loginLog.setIp(ip);
+        loginLog.setIpAddress(ip);
         loginLog.setMessage(msg);
         return loginLog;
     }

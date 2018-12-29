@@ -1,29 +1,29 @@
 server:
-  port: 8080
+  port: 80
+  tomcat:
+    max-http-header-size: 10240     #单位：字节
 
 guns:
-  swagger-open: true              #是否开启swagger (true/false)
-  kaptcha-open: false             #是否开启登录时验证码 (true/false)
-  #  file-upload-path: d:/tmp     #文件上传目录(不配置的话为java.io.tmpdir目录)
-  spring-session-open: false      #是否开启spring session,如果是多机环境需要开启(true/false)
+  swagger-open: true                #是否开启swagger (true/false)
+  kaptcha-open: false               #是否开启登录时验证码 (true/false)
+  spring-session-open: false        #是否开启spring session,如果是多机环境需要开启(true/false)
   session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
   session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
 
 beetl:
-  resource-auto-check: true       #热加载beetl模板，开发时候用
+  resource-auto-check: true         #热加载beetl模板，开发时候用
 
 spring:
   profiles:
     active: @spring.active@
   mvc:
-    static-path-pattern: /static/**
     view:
-      prefix: /WEB-INF/view
+      prefix: /WEB-INF
   devtools:
     restart:
       enabled: false
       additional-paths: src/main/java
-      exclude: static/**,WEB-INF/view/**
+      exclude: assets/**,WEB-INF/**
   servlet:
     multipart:
       max-request-size: 100MB
@@ -31,58 +31,8 @@ spring:
 
 mybatis-plus:
   typeAliasesPackage: cn.stylefeng.guns.modular.system.model
+  global-config:
+    metaObject-handler: cn.stylefeng.guns.core.metadata.GunsMpFieldHandler
 
 log:
   path: guns-logs
-
----
-
-spring:
-  profiles: local
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: root
-    password: root
-    filters: wall,mergeStat
-
-#多数据源情况的配置
-guns:
-  muti-datasource:
-    open: false
-    url: jdbc:mysql://127.0.0.1:3306/guns_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: root
-    password: root
-    dataSourceNames:
-    - dataSourceGuns
-    - dataSourceBiz
-
----
-
-spring:
-  profiles: dev
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: root
-    password: root
-    filters: wall,mergeStat
-
----
-
-spring:
-  profiles: test
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: root
-    password: root
-    filters: wall,mergeStat
-
----
-
-spring:
-  profiles: produce
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: root
-    password: root
-    filters: wall,mergeStat
-

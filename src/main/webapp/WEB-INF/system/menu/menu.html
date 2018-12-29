@@ -1,0 +1,91 @@
+@layout("/common/_container.html",{plugins:["table","layer","sweet-alert","ztree"],js:["/assets/modular/system/menu/menu.js"]}){
+<div class="row" id="menuPage">
+    <div class="col-lg-2 col-sm-3 p-r-0">
+        <div class="card card-outline-theme">
+            <div class="card-header">
+                <h5 class="m-b-0 text-white">菜单树</h5>
+            </div>
+            <div class="card-body">
+                <ul id="menuTree" class="ztree"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10 col-sm-9">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-outline-theme m-b-10">
+                    <div class="card-body">
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">菜单名称</div>
+                                            </div>
+                                            <input v-model="menuName" type="text" class="form-control" placeholder="菜单名称" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">层级</div>
+                                            </div>
+                                            <input v-model="level" type="text" class="form-control" placeholder="层级" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="input-group condition-button">
+                                            <div class="input-group-btn condition-button">
+                                                <button type="button" id="check-minutes"
+                                                        class="btn btn-info waves-effect waves-light condition-button-width" onclick="Menu.search()">查询
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-outline-theme m-b-0">
+                    <div class="card-body p-t-0 p-b-0">
+                        <div class="form-horizontal">
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card m-b-0 p-b-0">
+                                            <div class="hidden-xs" id="menuTableToolbar" role="group">
+                                                @if(shiro.hasPermission("/menu/add")){
+                                                <button type="button" class="btn btn-primary waves-effect" onclick="Menu.openAddMenu()">
+                                                    <i class="fa fa-plus"></i>&nbsp;添加
+                                                </button>
+                                                @}
+                                                @if(shiro.hasPermission("/menu/edit")){
+                                                <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Menu.openChangeMenu()">
+                                                    <i class="fa fa-edit"></i>&nbsp;修改
+                                                </button>
+                                                @}
+                                                @if(shiro.hasPermission("/menu/remove")){
+                                                <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Menu.delMenu()">
+                                                    <i class="fa fa-remove"></i>&nbsp;删除
+                                                </button>
+                                                @}
+                                            </div>
+                                            <#table id="menuTable"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

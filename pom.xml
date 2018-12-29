@@ -45,7 +45,7 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>kernel-core</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.2</version>
         </dependency>
 
         <dependency>
@@ -149,6 +149,12 @@
             <version>${jwt.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!--需要分布式session的话需要放开注释-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.session</groupId>-->
@@ -161,6 +167,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -174,6 +181,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
                 </configuration>
@@ -186,6 +200,30 @@
                         <delimiter>@</delimiter>
                     </delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.26.1</version>
+                <configuration>
+                    <dockerHost>tcp://demo.stylefeng.cn:2376</dockerHost>
+                    <certPath>_dockerCerts</certPath>
+                    <images>
+                        <image>
+                            <alias>service</alias>
+                            <name>stylefeng/${project.artifactId}:latest</name>
+                            <build>
+                                <from>java:8</from>
+                                <assembly>
+                                    <descriptor>docker-assembly.xml</descriptor>
+                                </assembly>
+                                <cmd>
+                                    <shell>java -jar /maven/${project.artifactId}.jar</shell>
+                                </cmd>
+                            </build>
+                        </image>
+                    </images>
                 </configuration>
             </plugin>
         </plugins>

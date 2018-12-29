@@ -15,6 +15,9 @@
  */
 package cn.stylefeng.guns.core.shiro;
 
+import cn.stylefeng.guns.core.common.node.MenuNode;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,73 +27,60 @@ import java.util.List;
  * @author fengshuonan
  * @date 2016年12月5日 上午10:26:43
  */
+@Data
 public class ShiroUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer id;          // 主键ID
-    public String account;      // 账号
-    public String name;         // 姓名
-    public Integer deptId;      // 部门id
-    public List<Integer> roleList; // 角色集
-    public String deptName;        // 部门名称
-    public List<String> roleNames; // 角色名称集
+    /**
+     * 用户主键ID
+     */
+    private Long id;
 
+    /**
+     * 账号
+     */
+    private String account;
 
-    public Integer getId() {
-        return id;
-    }
+    /**
+     * 姓名
+     */
+    private String name;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    /**
+     * 邮箱
+     */
+    private String email;
 
-    public String getAccount() {
-        return account;
-    }
+    /**
+     * 头像
+     */
+    private String avatar;
 
-    public void setAccount(String account) {
-        this.account = account;
-    }
+    /**
+     * 部门id
+     */
+    private Long deptId;
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * 角色集
+     */
+    private List<Long> roleList;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * 部门名称
+     */
+    private String deptName;
 
-    public Integer getDeptId() {
-        return deptId;
-    }
+    /**
+     * 角色名称集
+     */
+    private List<String> roleNames;
 
-    public void setDeptId(Integer deptId) {
-        this.deptId = deptId;
-    }
+    /**
+     * 用户所能看到的菜单列表
+     */
+    private List<MenuNode> menus;
 
-    public List<Integer> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Integer> roleList) {
-        this.roleList = roleList;
-    }
-
-    public String getDeptName() {
-        return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
-    }
-
-    public List<String> getRoleNames() {
-        return roleNames;
-    }
-
-    public void setRoleNames(List<String> roleNames) {
-        this.roleNames = roleNames;
-    }
 
 }

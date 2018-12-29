@@ -205,9 +205,9 @@ public class Contrast {
                 String value = requests.get(item);
                 if (fieldWarpperMethodName != null) {
                     Object valueWarpper = DictFieldWarpperFactory.createFieldWarpper(value, fieldWarpperMethodName);
-                    sb.append(dictMap.get(item) + "=" + valueWarpper + ",");
+                    sb.append(dictMap.get(item)).append("=").append(valueWarpper).append(",");
                 } else {
-                    sb.append(dictMap.get(item) + "=" + value + ",");
+                    sb.append(dictMap.get(item)).append("=").append(value).append(",");
                 }
             }
             return StrUtil.removeSuffix(sb.toString(), ",");
@@ -216,9 +216,9 @@ public class Contrast {
             String value = requests.get(key);
             if (fieldWarpperMethodName != null) {
                 Object valueWarpper = DictFieldWarpperFactory.createFieldWarpper(value, fieldWarpperMethodName);
-                sb.append(dictMap.get(key) + "=" + valueWarpper);
+                sb.append(dictMap.get(key)).append("=").append(valueWarpper);
             } else {
-                sb.append(dictMap.get(key) + "=" + value);
+                sb.append(dictMap.get(key)).append("=").append(value);
             }
             return sb.toString();
         }

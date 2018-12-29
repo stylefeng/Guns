@@ -1,0 +1,74 @@
+@layout("/common/_container.html",{plugins:["table","layer","sweet-alert"],js:["/assets/modular/system/role/role.js"]}){
+<div class="row" id="rolePage">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-10">
+            <div class="card-body">
+                <div class="form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">角色名称</div>
+                                    </div>
+                                    <input v-model="roleName" type="text" class="form-control" placeholder="角色名称" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group condition-button">
+                                    <div class="input-group-btn condition-button">
+                                        <button type="button" id="check-minutes"
+                                                class="btn btn-info waves-effect waves-light condition-button-width" onclick="Role.search()">查询
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-0">
+            <div class="card-body p-t-0 p-b-0">
+                <div class="form-horizontal">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card m-b-0 p-b-0">
+                                    <div class="hidden-xs" id="roleTableToolbar" role="group">
+                                        @if(shiro.hasPermission("/mgr/add")){
+                                        <button type="button" class="btn btn-primary waves-effect" onclick="Role.openAddRole()">
+                                            <i class="fa fa-plus"></i>&nbsp;添加
+                                        </button>
+                                        @}
+                                        @if(shiro.hasPermission("/mgr/edit")){
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Role.openChangeRole()">
+                                            <i class="fa fa-edit"></i>&nbsp;修改
+                                        </button>
+                                        @}
+                                        @if(shiro.hasPermission("/mgr/delete")){
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Role.delRole()">
+                                            <i class="fa fa-remove"></i>&nbsp;删除
+                                        </button>
+                                        @}
+                                        @if(shiro.hasPermission("/role/setAuthority")){
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Role.assign()">
+                                            <i class="fa fa-user-secret"></i>&nbsp;权限配置
+                                        </button>
+                                        @}
+                                    </div>
+                                    <#table id="roleTable"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

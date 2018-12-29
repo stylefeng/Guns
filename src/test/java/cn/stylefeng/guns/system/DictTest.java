@@ -1,8 +1,8 @@
 package cn.stylefeng.guns.system;
 
 import cn.stylefeng.guns.base.BaseJunit;
-import cn.stylefeng.guns.modular.system.dao.DictMapper;
-import cn.stylefeng.guns.modular.system.service.IDictService;
+import cn.stylefeng.guns.modular.system.mapper.DictMapper;
+import cn.stylefeng.guns.modular.system.service.DictService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,28 +19,14 @@ import java.util.Map;
 public class DictTest extends BaseJunit {
 
     @Resource
-    IDictService dictService;
+    DictService dictService;
 
     @Resource
     DictMapper dictMapper;
 
     @Test
-    public void addTest() {
-        String dictCode = "test";
-        String dictName = "字典测试";
-        String dictTips = "这是一个字典测试";
-        String dictValues = "1:测试1:1;2:测试2:2";
-        dictService.addDict(dictCode, dictName, dictTips, dictValues);
-    }
-
-    @Test
-    public void editTest() {
-        dictService.editDict(16, "tes", "测试", "备注", "1:测试1:1;2:测试2:2");
-    }
-
-    @Test
     public void deleteTest() {
-        this.dictService.delteDict(16);
+        this.dictService.delteDict(16L);
     }
 
     @Test

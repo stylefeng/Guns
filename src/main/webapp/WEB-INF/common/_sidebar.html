@@ -1,0 +1,60 @@
+<aside class="left-sidebar">
+    <div class="scroll-sidebar">
+
+        <!--顶部用户头像部分-->
+        <div class="user-profile">
+            <div class="profile-img"> <img src="${avatar}" alt="user" /> </div>
+            <div class="profile-text">
+                <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">${name!}<span class="caret"></span></a>
+                <div class="dropdown-menu animated flipInY top-35">
+                    <a href="${ctxPath}/mgr/user_info" class="dropdown-item"><i class="ti-user"></i>个人信息</a>
+                    <div class="dropdown-divider"></div> <a href="${ctxPath}/mgr/user_chpwd" class="dropdown-item"><i class="ti-settings"></i>修改密码</a>
+                    <div class="dropdown-divider"></div> <a href="${ctxPath}/logout" class="dropdown-item"><i class="fa fa-power-off"></i>退出</a>
+                </div>
+            </div>
+        </div>
+
+        <!--菜单条-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                @for(title in menus!){
+                    <!--这个是分组线和分割线-->
+                    <!--<li class="nav-devider"></li>-->
+                    <!--<li class="nav-small-cap">PERSONAL</li>-->
+                    @if(tool.isEmpty(title.children)){
+                        <li>
+                            <a href="${ctxPath}${title.url}"><i class="mdi ${title.icon}"></i>${title.name}</a>
+                        </li>
+                    @}else{
+                        <li>
+                            <a class="has-arrow " href="#" aria-expanded="false">
+                                <i class="fa ${title.icon}"></i><span class="hide-menu">${title.name} </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                @for(subTitle in title.children){
+                                    @if(tool.isEmpty(subTitle.children)){
+                                        <li><a href="${ctxPath}${subTitle.url}">${subTitle.name}</a></li>
+                                    @}else{
+                                        <li>
+                                            <a class="has-arrow" href="#" aria-expanded="false">${subTitle.name}</a>
+                                            <ul aria-expanded="false" class="collapse">
+                                                @for(thirdTitle in subTitle.children){
+                                                    <li><a href="${ctxPath}${thirdTitle.url}">${thirdTitle.name}</a></li>
+                                                @}
+                                            </ul>
+                                        </li>
+                                    @}
+                                @}
+                            </ul>
+                        </li>
+                    @}
+                @}
+            </ul>
+        </nav>
+    </div>
+    <div class="sidebar-footer">
+        <a href="${ctxPath}/mgr/user_info" class="link" data-toggle="tooltip" title="编辑资料"><i class="mdi mdi-account"></i></a>
+        <a href="${ctxPath}/mgr/user_chpwd" class="link" data-toggle="tooltip" title="修改密码"><i class="ti-settings"></i></a>
+        <a href="${ctxPath}/logout" class="link" data-toggle="tooltip" title="退出登录"><i class="mdi mdi-power"></i></a>
+    </div>
+</aside>

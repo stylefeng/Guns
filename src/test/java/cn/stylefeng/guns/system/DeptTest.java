@@ -1,8 +1,8 @@
 package cn.stylefeng.guns.system;
 
 import cn.stylefeng.guns.base.BaseJunit;
-import cn.stylefeng.guns.modular.system.dao.DeptMapper;
-import cn.stylefeng.guns.modular.system.model.Dept;
+import cn.stylefeng.guns.modular.system.entity.Dept;
+import cn.stylefeng.guns.modular.system.mapper.DeptMapper;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -26,11 +26,11 @@ public class DeptTest extends BaseJunit {
     @Test
     public void addDeptTest() {
         Dept dept = new Dept();
-        dept.setFullname("测试fullname");
-        dept.setNum(5);
-        dept.setPid(1);
-        dept.setSimplename("测试");
-        dept.setTips("测试tips");
+        dept.setFullName("测试fullname");
+        dept.setSort(5);
+        dept.setPid(1L);
+        dept.setSimpleName("测试");
+        dept.setDescription("测试tips");
         dept.setVersion(1);
         Integer insert = deptMapper.insert(dept);
         assertEquals(insert, new Integer(1));
@@ -39,9 +39,8 @@ public class DeptTest extends BaseJunit {
     @Test
     public void updateTest() {
         Dept dept = this.deptMapper.selectById(24);
-        dept.setTips("哈哈");
-        boolean flag = dept.updateById();
-        assertTrue(flag);
+        dept.setDescription("哈哈");
+        deptMapper.updateById(dept);
     }
 
     @Test
@@ -53,7 +52,7 @@ public class DeptTest extends BaseJunit {
 
     @Test
     public void listTest() {
-        List<Map<String, Object>> list = this.deptMapper.list("总公司");
+        List<Map<String, Object>> list = this.deptMapper.list("总公司", null);
         assertTrue(list.size() > 0);
     }
 }

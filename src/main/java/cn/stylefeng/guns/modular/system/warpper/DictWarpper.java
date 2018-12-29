@@ -17,10 +17,8 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import cn.stylefeng.guns.modular.system.model.Dict;
+import cn.stylefeng.guns.modular.system.entity.Dict;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
-import cn.stylefeng.roses.kernel.model.page.PageResult;
-import com.baomidou.mybatisplus.plugins.Page;
 
 import java.util.List;
 import java.util.Map;
@@ -33,30 +31,18 @@ import java.util.Map;
  */
 public class DictWarpper extends BaseControllerWrapper {
 
-    public DictWarpper(Map<String, Object> single) {
-        super(single);
-    }
-
     public DictWarpper(List<Map<String, Object>> multi) {
         super(multi);
     }
 
-    public DictWarpper(Page<Map<String, Object>> page) {
-        super(page);
-    }
-
-    public DictWarpper(PageResult<Map<String, Object>> pageResult) {
-        super(pageResult);
-    }
-
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        StringBuffer detail = new StringBuffer();
-        Integer id = Integer.valueOf(map.get("id").toString());
+        StringBuilder detail = new StringBuilder();
+        Long id = Long.valueOf(map.get("dictId").toString());
         List<Dict> dicts = ConstantFactory.me().findInDict(id);
         if (dicts != null) {
             for (Dict dict : dicts) {
-                detail.append(dict.getCode() + ":" + dict.getName() + ",");
+                detail.append(dict.getCode()).append(":").append(dict.getName()).append(",");
             }
             map.put("detail", StrUtil.removeSuffix(detail.toString(), ","));
         }

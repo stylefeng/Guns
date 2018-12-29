@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>${title!"Guns管理系统"}</title>
+    <meta name="description" content="Guns管理系统">
+    <meta name="author" content="stylefeng">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="${ctxPath}/assets/common/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${ctxPath}/assets/common/static/css/style.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/stylefeng/feng.css" rel="stylesheet">
+
+    <!--其他插件css-->
+    <link href="${ctxPath}/assets/common/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+<div id="main-wrapper">
+    <div class="container-fluid">
+        <div class="row p-10" style="background: #f2f7f8;">
+            <ul id="zTree" class="ztree"></ul>
+        </div>
+        <div class="row p-10" style="background: #CFD4D5;">
+            <div style="float:left;margin: auto">
+                <button class="btn btn-sm btn-info" type="button" id="saveButton">
+                    <i class="ace-icon fa fa-check"></i> 保存
+                </button>
+                <button class="btn btn-sm btn-danger" type="button" id="closeButton">
+                    <i class="ace-icon fa fa-close"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jquery -->
+<script src="${ctxPath}/assets/common/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/tether.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!--Guns JavaScript -->
+<script src="${ctxPath}/assets/common/static/stylefeng/feng.js"></script>
+<script src="${ctxPath}/assets/common/static/stylefeng/ajax-object.js"></script>
+
+<!-- vue  -->
+<script src="${ctxPath}/assets/common/plugins/vue/vue.js"></script>
+
+<!-- 加入contextPath属性和session超时的配置  -->
+<script type="text/javascript">
+    Feng.addCtx("${ctxPath}");
+    Feng.sessionTimeoutRegistry();
+</script>
+
+<!--其他插件js-->
+<script src="${ctxPath}/assets/common/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/ztree/ztree-object.js"></script>
+
+<script type="text/javascript">
+
+    var ZTreeDlg = {
+    };
+
+    $(function () {
+
+        $("#saveButton").bind("click", function () {
+            var ids = Feng.zTreeCheckedNodes("zTree");
+            var ajax = new $ax(Feng.ctxPath + "/mgr/setRole", function (data) {
+                parent.Feng.success("分配角色成功!");
+                window.parent.MgrUser.table.refresh();
+                parent.layer.close(parent.MgrUser.layerIndex);
+            }, function (data) {
+                parent.Feng.error("分配角色失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("roleIds", ids);
+            ajax.set("userId", "${userId}");
+            ajax.start();
+        });
+
+        $("#closeButton").bind("click", function () {
+            parent.layer.close(parent.MgrUser.layerIndex);
+        });
+
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: {
+                    "Y": "",
+                    "N": ""
+                }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var ztree = new $ZTree("zTree", "/role/roleTreeListByUserId/${userId}");
+        ztree.setSettings(setting);
+        ztree.init();
+        ZTreeDlg.instance = ztree;
+    });
+</script>
+
+</body>
+
+</html>

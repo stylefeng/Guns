@@ -43,6 +43,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static cn.stylefeng.guns.core.common.constant.Const.NONE_PERMISSION_RES;
+
 /**
  * shiro权限管理的配置
  *
@@ -175,11 +177,9 @@ public class ShiroConfig {
          *
          */
         Map<String, String> hashMap = new LinkedHashMap<>();
-        hashMap.put("/static/**", "anon");
-        hashMap.put("/gunsApi/**", "anon");
-        hashMap.put("/login", "anon");
-        hashMap.put("/global/sessionError", "anon");
-        hashMap.put("/kaptcha", "anon");
+        for (String nonePermissionRe : NONE_PERMISSION_RES) {
+            hashMap.put(nonePermissionRe, "anon");
+        }
         hashMap.put("/**", "user");
         shiroFilter.setFilterChainDefinitionMap(hashMap);
         return shiroFilter;
@@ -192,7 +192,7 @@ public class ShiroConfig {
     public MethodInvokingFactoryBean methodInvokingFactoryBean(DefaultWebSecurityManager securityManager) {
         MethodInvokingFactoryBean bean = new MethodInvokingFactoryBean();
         bean.setStaticMethod("org.apache.shiro.SecurityUtils.setSecurityManager");
-        bean.setArguments(new Object[]{securityManager});
+        bean.setArguments(securityManager);
         return bean;
     }
 

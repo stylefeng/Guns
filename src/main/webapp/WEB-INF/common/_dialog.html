@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+@/**
+@ *      本页面所用的模板变量
+@ *
+@ * plugins        :  需要用到的插件，目前有["table","ztree","sweet-alert","laydate","layer"]
+@ * title          :  页面的标题
+@ * layoutContent  :  主页面的html内容
+@ * js             :  业务所需要的js，为数组
+@ * css            :  业务所需要的css，为数组
+@ **/
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>${title!"Guns管理系统"}</title>
+    <meta name="description" content="Guns管理系统">
+    <meta name="author" content="stylefeng">
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="${ctxPath}/assets/common/favicon.ico">
+
+    <!-- ============================================================== -->
+    <!-- css资源文件 -->
+    <!-- ============================================================== -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="${ctxPath}/assets/common/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- toast提示框 CSS -->
+    <link href="${ctxPath}/assets/common/plugins/toast-master/css/jquery.toast.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${ctxPath}/assets/common/static/css/style.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/stylefeng/feng.css" rel="stylesheet">
+
+    <!-- You can change the theme colors from here -->
+    <link href="${ctxPath}/assets/common/static/css/colors/blue.css" id="theme" rel="stylesheet">
+
+    <!--其他插件css-->
+    @if(isNotEmpty(plugins)){
+        @if(array.contain(plugins,"table")){
+        <link href="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+        @}
+        @if(array.contain(plugins,"ztree")){
+        <link href="${ctxPath}/assets/common/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+        @}
+        @if(array.contain(plugins,"sweet-alert")){
+        <link href="${ctxPath}/assets/common/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+        @}
+    @}
+
+    <!--其他业务用的css-->
+    @if(isNotEmpty(css)){
+        @for(item in css){
+            @if(strutil.startWith(item,"/")){
+                @item = item + ctxPath;
+            @}
+            <link href="${item}" rel="stylesheet" type="text/css" />
+        @}
+    @}
+
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    ${layoutContent}
+</div>
+<!-- jquery -->
+<script src="${ctxPath}/assets/common/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/tether.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- slimscrollbar scrollbar JavaScript（滚动条插件） -->
+<script src="${ctxPath}/assets/common/static/js/jquery.slimscroll.js"></script>
+
+<!--Wave Effects（点击按钮的波浪效果） -->
+<script src="${ctxPath}/assets/common/static/js/waves.js"></script>
+
+<!--Menu sidebar （左侧菜单切换插件） -->
+<script src="${ctxPath}/assets/common/static/js/sidebarmenu.js"></script>
+
+<!--stickey kit（页面头部工具栏固定） -->
+<script src="${ctxPath}/assets/common/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+
+<!--toast（提示框） -->
+<script src="${ctxPath}/assets/common/plugins/toast-master/js/jquery.toast.js"></script>
+
+<!--Guns JavaScript -->
+<script src="${ctxPath}/assets/common/static/stylefeng/feng.js"></script>
+<script src="${ctxPath}/assets/common/static/stylefeng/ajax-object.js"></script>
+
+<!--Custom JavaScript -->
+<script src="${ctxPath}/assets/common/static/js/custom.min.js"></script>
+
+<!-- vue  -->
+<script src="${ctxPath}/assets/common/plugins/vue/vue.js"></script>
+
+<!-- 加入contextPath属性和session超时的配置  -->
+<script type="text/javascript">
+    Feng.addCtx("${ctxPath}");
+    Feng.sessionTimeoutRegistry();
+</script>
+
+<!--其他插件js-->
+@if(isNotEmpty(plugins)){
+    @if(array.contain(plugins,"table")){
+    <script src="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${ctxPath}/assets/common/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${ctxPath}/assets/common/plugins/bootstrap-table/bootstrap-table-object.js"></script>
+    @}
+    @if(array.contain(plugins,"ztree")){
+    <script src="${ctxPath}/assets/common/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/assets/common/plugins/ztree/ztree-object.js"></script>
+    @}
+    @if(array.contain(plugins,"layer")){
+    <script src="${ctxPath}/assets/common/plugins/layer/layer.js"></script>
+    @}
+    @if(array.contain(plugins,"sweet-alert")){
+    <script src="${ctxPath}/assets/common/plugins/sweetalert/sweetalert.min.js"></script>
+    @}
+    @if(array.contain(plugins,"laydate")){
+    <script src="${ctxPath}/assets/common/plugins/laydate/laydate.js"></script>
+    @}
+    @if(array.contain(plugins,"validation")){
+    <script src="${ctxPath}/assets/common/plugins/validation/validation.js"></script>
+    @}
+    @if(array.contain(plugins,"wangEditor")){
+    <script src="${ctxPath}/assets/common/plugins/wangEditor/wangEditor.min.js"></script>
+    @}
+@}
+
+<!--其他业务用的js-->
+@if(isNotEmpty(js)){
+    @for(item in js){
+        @if(strutil.startWith(item,"/")){
+            @item = ctxPath + item;
+        @}
+        <script src="${item}"></script>
+    @}
+@}
+
+</body>
+
+</html>

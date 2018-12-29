@@ -20,8 +20,8 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
 import cn.stylefeng.guns.core.common.page.PageInfoBT;
-import cn.stylefeng.guns.modular.system.model.LoginLog;
-import cn.stylefeng.guns.modular.system.service.ILoginLogService;
+import cn.stylefeng.guns.modular.system.entity.LoginLog;
+import cn.stylefeng.guns.modular.system.service.LoginLogService;
 import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
@@ -48,10 +48,13 @@ public class LoginLogController extends BaseController {
     private static String PREFIX = "/system/log/";
 
     @Autowired
-    private ILoginLogService loginLogService;
+    private LoginLogService loginLogService;
 
     /**
      * 跳转到日志管理的首页
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:51 PM
      */
     @RequestMapping("")
     public String index() {
@@ -60,19 +63,32 @@ public class LoginLogController extends BaseController {
 
     /**
      * 查询登录日志列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:51 PM
      */
     @RequestMapping("/list")
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
-    public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime, @RequestParam(required = false) String logName) {
+    public Object list(@RequestParam(required = false) String beginTime,
+                       @RequestParam(required = false) String endTime,
+                       @RequestParam(required = false) String logName) {
+
+        //获取分页参数
         Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
+
+        //根据条件查询日志
         List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName, page.getOrderByField(), page.isAsc());
         page.setRecords(new LogWarpper(result).wrap());
+
         return new PageInfoBT<>(page);
     }
 
     /**
      * 清空日志
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:51 PM
      */
     @BussinessLog("清空登录日志")
     @RequestMapping("/delLoginLog")

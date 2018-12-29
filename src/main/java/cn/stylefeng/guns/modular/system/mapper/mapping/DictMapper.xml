@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.mapper.DictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Dict">
+        <id column="DICT_ID" property="dictId"/>
+        <result column="PID" property="pid"/>
+        <result column="NAME" property="name"/>
+        <result column="CODE" property="code"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="SORT" property="sort"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="CREATE_USER" property="createUser"/>
+        <result column="UPDATE_USER" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DICT_ID AS dictId, PID AS pid, NAME AS name, CODE AS code, DESCRIPTION AS description, SORT AS sort, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+    </sql>
+
+    <select id="selectByCode" resultType="cn.stylefeng.guns.modular.system.entity.Dict">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where CODE = #{code}
+    </select>
+
+    <select id="selectByParentCode" resultType="cn.stylefeng.guns.modular.system.entity.Dict">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where PID in(select DICT_ID from sys_dict where CODE = #{code}) order by SORT asc
+    </select>
+
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where PID = 0
+        <if test="condition != null and condition != ''">
+            AND NAME like CONCAT('%',#{condition},'%')
+        </if>
+        order by SORT ASC
+    </select>
+</mapper>

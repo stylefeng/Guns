@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+@/**
+@ * 本页面所用的模板变量
+@ *
+@ * treeUrl   :  加载树的url
+@ * fromName  :  需要设置的显示名称
+@ * fromId    :  需要设置的隐藏id
+@ **/
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>${title!"Guns管理系统"}</title>
+    <meta name="description" content="Guns管理系统">
+    <meta name="author" content="stylefeng">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="${ctxPath}/assets/common/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="${ctxPath}/assets/common/static/css/style.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/stylefeng/feng.css" rel="stylesheet">
+
+    <!--其他插件css-->
+    <link href="${ctxPath}/assets/common/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body class="fix-header fix-sidebar card-no-border">
+<div id="main-wrapper">
+    <div class="container-fluid">
+        <div class="row p-10" style="background: #f2f7f8;">
+            <ul id="zTree" class="ztree"></ul>
+        </div>
+        <div class="row p-10" style="background: #CFD4D5;">
+            <div style="float:left;margin: auto">
+                <button class="btn btn-sm btn-info" type="button" id="saveButton">
+                    <i class="ace-icon fa fa-check"></i> 保存
+                </button>
+                <button class="btn btn-sm btn-danger" type="button" id="closeButton">
+                    <i class="ace-icon fa fa-close"></i> 关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jquery -->
+<script src="${ctxPath}/assets/common/plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap tether Core JavaScript -->
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/tether.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!--Guns JavaScript -->
+<script src="${ctxPath}/assets/common/static/stylefeng/feng.js"></script>
+<script src="${ctxPath}/assets/common/static/stylefeng/ajax-object.js"></script>
+
+<!-- vue  -->
+<script src="${ctxPath}/assets/common/plugins/vue/vue.js"></script>
+
+<!-- 加入contextPath属性和session超时的配置  -->
+<script type="text/javascript">
+    Feng.addCtx("${ctxPath}");
+    Feng.sessionTimeoutRegistry();
+</script>
+
+<!--其他插件js-->
+<script src="${ctxPath}/assets/common/plugins/ztree/jquery.ztree.all.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/ztree/ztree-object.js"></script>
+
+<script type="text/javascript">
+
+    var ZTreeDlg = {
+        index: parent.layer.getFrameIndex(window.name),
+        tempName: "",
+        tempId: ""
+    };
+
+    ZTreeDlg.onClickItem = function (e, treeId, treeNode) {
+        ZTreeDlg.tempName = ZTreeDlg.instance.getSelectedVal();
+        ZTreeDlg.tempId = treeNode.id;
+    };
+
+    ZTreeDlg.onDBClickItem = function (e, treeId, treeNode) {
+        ${formName} = ZTreeDlg.instance.getSelectedVal();
+        ${formId} = treeNode.id;
+        parent.layer.close(ZTreeDlg.index);
+    };
+
+    $(function () {
+
+        $("#saveButton").bind("click", function () {
+            ${formName} = ZTreeDlg.tempName;
+            ${formId} = ZTreeDlg.tempId;
+            parent.layer.close(ZTreeDlg.index);
+        });
+
+        $("#closeButton").bind("click", function () {
+            parent.layer.close(ZTreeDlg.index);
+        });
+
+        var ztree = new $ZTree("zTree", "${treeUrl}");
+        ztree.bindOnClick(ZTreeDlg.onClickItem);
+        ztree.bindOnDblClick(ZTreeDlg.onDBClickItem);
+        ztree.init();
+        ZTreeDlg.instance = ztree;
+    });
+</script>
+
+</body>
+
+</html>

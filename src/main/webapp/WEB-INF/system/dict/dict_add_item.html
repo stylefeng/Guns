@@ -1,0 +1,53 @@
+@layout("/common/_dialog.html",{plugins:["sweet-alert","layer"],js:["/assets/modular/system/dict/dict_add_item.js"]}){
+<div class="container-fluid">
+    <form id="dictForm" \@submit="submitForm">
+
+        <input id="dictTypeId" value="${dictTypeId}" type="hidden" class="form-control">
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>父级字典</h5>
+                    <div class="controls">
+                        <input value="${dictTypeName}" disabled="disabled" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>字典编码 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="code" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>字典编码对应的名称 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="name" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>描述</h5>
+                    <div class="controls">
+                        <input v-model="description" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>排序</h5>
+                    <div class="controls">
+                        <input v-model="sort" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="text-xs-right">
+                    <button class="btn btn-info normal-button-width" \@click="ensure">提交</button>
+                    <button class="btn btn-inverse normal-button-width m-l-10" \@click="close">取消</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@}

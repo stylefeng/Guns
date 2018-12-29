@@ -16,7 +16,9 @@
 package cn.stylefeng.guns.core.common.node;
 
 import cn.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
+import lombok.Data;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -24,7 +26,8 @@ import java.util.*;
  * @Description 菜单的节点
  * @date 2016年12月6日 上午11:34:17
  */
-public class MenuNode implements Comparable {
+@Data
+public class MenuNode implements Comparable, Serializable {
 
     /**
      * 节点id
@@ -47,9 +50,9 @@ public class MenuNode implements Comparable {
     private Integer levels;
 
     /**
-     * 按钮级别
+     * 按钮级别(Y  N)
      */
-    private Integer ismenu;
+    private String ismenu;
 
     /**
      * 按钮的排序
@@ -74,7 +77,7 @@ public class MenuNode implements Comparable {
     /**
      * 查询子节点时候的临时集合
      */
-    private List<MenuNode> linkedList = new ArrayList<MenuNode>();
+    private List<MenuNode> linkedList = new ArrayList<>();
 
     public MenuNode() {
         super();
@@ -84,97 +87,6 @@ public class MenuNode implements Comparable {
         super();
         this.id = id;
         this.parentId = parentId;
-    }
-
-    public Integer getLevels() {
-        return levels;
-    }
-
-    public void setLevels(Integer levels) {
-        this.levels = levels;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public static MenuNode createRoot() {
-        return new MenuNode(0L, -1L);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public List<MenuNode> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<MenuNode> children) {
-        this.children = children;
-    }
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    public Integer getIsmenu() {
-        return ismenu;
-    }
-
-    public void setIsmenu(Integer ismenu) {
-        this.ismenu = ismenu;
-    }
-
-    @Override
-    public String toString() {
-        return "MenuNode{" +
-                "id=" + id +
-                ", parentId=" + parentId +
-                ", name='" + name + '\'' +
-                ", levels=" + levels +
-                ", num=" + num +
-                ", url='" + url + '\'' +
-                ", icon='" + icon + '\'' +
-                ", children=" + children +
-                ", linkedList=" + linkedList +
-                '}';
     }
 
     /**
@@ -209,8 +121,10 @@ public class MenuNode implements Comparable {
         if (nodes.size() <= 0) {
             return nodes;
         }
+
         //剔除非菜单
-        nodes.removeIf(node -> !node.getIsmenu().equals(YesOrNotEnum.Y.getCode()));
+        nodes.removeIf(node -> !node.getIsmenu().equals(YesOrNotEnum.Y.name()));
+
         //对菜单排序，返回列表按菜单等级，序号的排序方式排列
         Collections.sort(nodes);
         return mergeList(nodes, nodes.get(nodes.size() - 1).getLevels(), null);
@@ -245,7 +159,7 @@ public class MenuNode implements Comparable {
         if (n < 0) {
             return menuList;
         } else {
-            return mergeList(menuList.subList(0, n + 1), menuList.get(n).getLevels(), currentMap);
+            return mergeList(new ArrayList<>(menuList.subList(0, n + 1)), menuList.get(n).getLevels(), currentMap);
         }
     }
 

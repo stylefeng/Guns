@@ -1,0 +1,70 @@
+@layout("/common/_container.html",{plugins:["table","layer","sweet-alert"],js:["/assets/modular/system/dict/dict.js"]}){
+<div class="row" id="dictPage">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-10">
+            <div class="card-body">
+                <div class="form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">字典名称</div>
+                                    </div>
+                                    <input v-model="condition" type="text" class="form-control" placeholder="字典名称" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group condition-button">
+                                    <div class="input-group-btn condition-button">
+                                        <button type="button" id="check-minutes"
+                                                class="btn btn-info waves-effect waves-light condition-button-width" onclick="Dict.search()">查询
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-0">
+            <div class="card-body p-t-0 p-b-0">
+                <div class="form-horizontal">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card m-b-0 p-b-0">
+                                    <div class="hidden-xs" id="dictTableToolbar" role="group">
+                                        @if(shiro.hasPermission("/dict/add")){
+                                        <button type="button" class="btn btn-primary waves-effect" onclick="Dict.openAddType()">
+                                            <i class="fa fa-plus"></i>&nbsp;添加类型
+                                        </button>
+                                        @}
+                                        @if(shiro.hasPermission("/dict/add")){
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dict.openAddItem()">
+                                            <i class="fa fa-plus"></i>&nbsp;添加子条目
+                                        </button>
+                                        @}
+                                        @if(shiro.hasPermission("/dict/delete")){
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="Dict.delete()">
+                                            <i class="fa fa-remove"></i>&nbsp;删除
+                                        </button>
+                                        @}
+                                    </div>
+                                    <#table id="dictTable"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}
+

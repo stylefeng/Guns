@@ -36,7 +36,7 @@ public class MenuDict extends AbstractDictMap {
         put("url", "url地址");
         put("num", "菜单排序号");
         put("levels", "菜单层级");
-        put("tips", "备注");
+        put("description", "备注");
         put("status", "菜单状态");
         put("isopen", "是否打开");
         put("", "");

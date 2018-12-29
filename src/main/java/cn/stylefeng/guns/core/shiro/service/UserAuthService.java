@@ -16,7 +16,7 @@
 package cn.stylefeng.guns.core.shiro.service;
 
 import cn.stylefeng.guns.core.shiro.ShiroUser;
-import cn.stylefeng.guns.modular.system.model.User;
+import cn.stylefeng.guns.modular.system.entity.User;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 
 import java.util.List;
@@ -48,14 +48,14 @@ public interface UserAuthService {
      *
      * @param roleId 角色id
      */
-    List<String> findPermissionsByRoleId(Integer roleId);
+    List<String> findPermissionsByRoleId(Long roleId);
 
     /**
      * 根据角色id获取角色名称
      *
      * @param roleId 角色id
      */
-    String findRoleNameByRoleId(Integer roleId);
+    String findRoleNameByRoleId(Long roleId);
 
     /**
      * 获取shiro的认证信息

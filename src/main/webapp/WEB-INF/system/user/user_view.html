@@ -1,0 +1,271 @@
+@/**
+@ * 本页面所用的模板变量
+@ *
+@ * name      :   用户姓名
+@ * email     :   邮箱
+@ * roleName  :   角色名称
+@ * phone     :   电话
+@ * deptName  :   部门名称
+@ **/
+@layout("/common/_container.html",{plugins:["cropper","laydate"],js:["/assets/modular/system/user/user_view.js"]}){
+<div class="row">
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="m-t-30" style="text-align: center;"><img src="${avatar}" class="img-circle" width="150"/>
+                    <h4 class="card-title m-t-10">${name}</h4>
+                    <h6 class="card-subtitle">${roleName!} ${deptName!}</h6>
+                    <div class="row text-center justify-content-md-center">
+                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <span class="font-medium">10</span></a></div>
+                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <span class="font-medium">20</span></a></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <hr>
+            </div>
+            <div class="card-body">
+                <small class="text-muted">Email address</small>
+                <h6>${email!}</h6>
+                <small class="text-muted p-t-30 db">Phone</small>
+                <h6>${phone!}</h6>
+                <small class="text-muted p-t-30 db">Address</small>
+                <h6>中国 北京市 朝阳区 第一街道 000号</h6>
+                <div class="map-box">
+                    <!--<img src="${avatar}" width="100%" height="150" style="border:0"/>-->
+                </div>
+                <small class="text-muted p-t-30 db">Social Profile</small>
+                <br/>
+                <button class="btn btn-circle btn-secondary"><i class="fa fa-facebook"></i></button>
+                <button class="btn btn-circle btn-secondary"><i class="fa fa-twitter"></i></button>
+                <button class="btn btn-circle btn-secondary"><i class="fa fa-youtube"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card">
+            <!-- 导航卡标签 -->
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#personal" role="tab">个人信息</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#avatar" role="tab">修改头像</a></li>
+            </ul>
+            <!-- 导航卡容器 -->
+            <div class="tab-content">
+
+                @/**
+                @/* 个人信息
+                @ **/
+                <div class="tab-pane active" id="personal" role="tabpanel">
+                    <div class="card-body">
+                        <div class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="col-md-12">账号</label>
+                                <div class="col-md-12">
+                                    <input v-model="account" disabled type="text" placeholder="" class="form-control form-control-line" autocomplete="false">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">性别</label>
+                                <div class="col-md-12">
+                                    <select v-model="sex" class="form-control">
+                                        <option value="">请选择</option>
+                                        <option value="1">男</option>
+                                        <option value="2">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">邮箱</label>
+                                <div class="col-md-12">
+                                    <input v-model="email" type="email" placeholder="" class="form-control form-control-line" autocomplete="false">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">姓名</label>
+                                <div class="col-md-12">
+                                    <input v-model="name" type="text" placeholder="" class="form-control form-control-line" autocomplete="false">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">出生日期</label>
+                                <div class="col-md-12">
+                                    <input v-model="birthday" type="hidden" class="form-control form-control-line" autocomplete="false">
+                                    <input id="dateSelect" type="text" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12">电话</label>
+                                <div class="col-md-12">
+                                    <input v-model="phone" type="text" placeholder="" class="form-control form-control-line" autocomplete="false">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success waves-effect" \@click="submit">更新个人信息</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @/**
+                @/* 编辑头像
+                @ **/
+                <div class="tab-pane" id="avatar" role="tabpanel">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="img-container">
+                                    <img id="image" style="max-width: 100%;" src="${avatar}" alt="Picture">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-t-10">
+                            <div class="col-md-12 docs-buttons">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+                                          <span class="fa fa-arrows"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
+                                          <span class="fa fa-crop"></span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                          <span class="fa fa-search-plus"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                          <span class="fa fa-search-minus"></span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, -10, 0)">
+                                          <span class="fa fa-arrow-left"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 10, 0)">
+                                          <span class="fa fa-arrow-right"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, -10)">
+                                          <span class="fa fa-arrow-up"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, 10)">
+                                          <span class="fa fa-arrow-down"></span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
+                                          <span class="fa fa-rotate-left"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
+                                          <span class="fa fa-rotate-right"></span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
+                                          <span class="fa fa-arrows-h"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
+                                          <span class="fa fa-arrows-v"></span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="crop" title="Crop">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;crop&quot;)">
+                                          <span class="fa fa-check"></span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-method="clear" title="Clear">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;clear&quot;)">
+                                          <span class="fa fa-remove"></span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="重置位置">
+                                          <span class="fa fa-refresh"></span>
+                                        </span>
+                                    </button>
+                                    <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+                                        <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="选择本地图片">
+                                          <span class="fa fa-upload"></span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="btn-group btn-group-crop">
+                                    <button id="uploadAvatar" type="button" class="btn btn-info" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 100, &quot;maxHeight&quot;: 100 }">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 100, maxHeight: 100 })">上传预览</span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group btn-group-crop">
+                                    <button type="button" class="btn btn-info" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 200, &quot;height&quot;: 200 }">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 200, height: 200 })">
+                                          200&times;200
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-info" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 300, &quot;height&quot;: 300 }">
+                                        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 300, height: 300 })">
+                                          300&times;300
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="getCroppedCanvasTitle">预览</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body"></div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-info" id="download" href="javascript:void(0);" download="cropped.jpg">上传</a>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

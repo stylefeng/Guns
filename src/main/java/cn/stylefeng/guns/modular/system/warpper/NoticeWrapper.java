@@ -49,7 +49,7 @@ public class NoticeWrapper extends BaseControllerWrapper {
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        Integer creater = (Integer) map.get("creater");
+        Long creater = (Long) map.get("createUser");
         map.put("createrName", ConstantFactory.me().getUserNameById(creater));
     }
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.mapper.DeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Dept">
+        <id column="DEPT_ID" property="deptId"/>
+        <result column="PID" property="pid"/>
+        <result column="PIDS" property="pids"/>
+        <result column="SIMPLE_NAME" property="simpleName"/>
+        <result column="FULL_NAME" property="fullName"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="VERSION" property="version"/>
+        <result column="SORT" property="sort"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="CREATE_USER" property="createUser"/>
+        <result column="UPDATE_USER" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        DEPT_ID AS deptId, PID AS pid, PIDS AS pids, SIMPLE_NAME AS simpleName, FULL_NAME AS fullName, DESCRIPTION AS description, VERSION AS version, SORT AS sort, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+    </sql>
+
+    <select id="tree" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+		select DEPT_ID AS id, PID as pId, SIMPLE_NAME as name,
+		(
+		CASE
+		WHEN (PID = 0 OR PID IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as open from sys_dept
+	</select>
+
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="condition != null and condition != ''">
+            and SIMPLE_NAME like CONCAT('%',#{condition},'%') or FULL_NAME like CONCAT('%',#{condition},'%')
+        </if>
+        <if test="deptId != null and deptId != ''">
+            and (DEPT_ID = #{deptId} or DEPT_ID in ( select DEPT_ID from sys_dept where PIDS like CONCAT('%[', #{deptId}, ']%') ))
+        </if>
+        order by SORT ASC
+    </select>
+
+    <select id="treeviewNodes" resultType="cn.stylefeng.guns.core.common.node.TreeviewNode">
+        select DEPT_ID AS tags, PID as parentId, SIMPLE_NAME as text from sys_dept
+    </select>
+
+</mapper>

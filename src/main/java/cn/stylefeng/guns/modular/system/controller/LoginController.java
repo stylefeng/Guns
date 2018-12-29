@@ -15,23 +15,13 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.stylefeng.guns.core.common.exception.InvalidKaptchaException;
-import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.log.LogManager;
 import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
-import cn.stylefeng.guns.core.util.ApiMenuFilter;
-import cn.stylefeng.guns.core.util.KaptchaUtil;
-import cn.stylefeng.guns.modular.system.model.User;
-import cn.stylefeng.guns.modular.system.service.IMenuService;
-import cn.stylefeng.guns.modular.system.service.IUserService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
-import cn.stylefeng.roses.core.util.ToolUtil;
-import com.google.code.kaptcha.Constants;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,41 +40,32 @@ import static cn.stylefeng.roses.core.util.HttpContext.getIp;
 @Controller
 public class LoginController extends BaseController {
 
-    @Autowired
-    private IMenuService menuService;
-
-    @Autowired
-    private IUserService userService;
-
     /**
      * 跳转到主页
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:41 PM
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        //获取菜单列表
-        List<Integer> roleList = ShiroKit.getUser().getRoleList();
+
+        //获取当前用户角色列表
+        List<Long> roleList = ShiroKit.getUserNotNull().getRoleList();
+
         if (roleList == null || roleList.size() == 0) {
             ShiroKit.getSubject().logout();
             model.addAttribute("tips", "该用户没有角色，无法登陆");
             return "/login.html";
         }
-        List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
-        List<MenuNode> titles = MenuNode.buildTitle(menus);
-        titles = ApiMenuFilter.build(titles);
-
-        model.addAttribute("titles", titles);
-
-        //获取用户头像
-        Integer id = ShiroKit.getUser().getId();
-        User user = userService.selectById(id);
-        String avatar = user.getAvatar();
-        model.addAttribute("avatar", avatar);
 
         return "/index.html";
     }
 
     /**
      * 跳转到登录页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:41 PM
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
@@ -97,6 +78,9 @@ public class LoginController extends BaseController {
 
     /**
      * 点击登录执行的动作
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:42 PM
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginVali() {
@@ -105,30 +89,21 @@ public class LoginController extends BaseController {
         String password = super.getPara("password").trim();
         String remember = super.getPara("remember");
 
-        //验证验证码是否正确
-        if (KaptchaUtil.getKaptchaOnOff()) {
-            String kaptcha = super.getPara("kaptcha").trim();
-            String code = (String) super.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-            if (ToolUtil.isEmpty(kaptcha) || !kaptcha.equalsIgnoreCase(code)) {
-                throw new InvalidKaptchaException();
-            }
-        }
-
         Subject currentUser = ShiroKit.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password.toCharArray());
 
+        //如果开启了记住我功能
         if ("on".equals(remember)) {
             token.setRememberMe(true);
         } else {
             token.setRememberMe(false);
         }
 
+        //执行shiro登录操作
         currentUser.login(token);
 
-        ShiroUser shiroUser = ShiroKit.getUser();
-        super.getSession().setAttribute("shiroUser", shiroUser);
-        super.getSession().setAttribute("username", shiroUser.getAccount());
-
+        //登录成功，记录登录日志
+        ShiroUser shiroUser = ShiroKit.getUserNotNull();
         LogManager.me().executeLog(LogTaskFactory.loginLog(shiroUser.getId(), getIp()));
 
         ShiroKit.getSession().setAttribute("sessionFlag", true);
@@ -138,10 +113,13 @@ public class LoginController extends BaseController {
 
     /**
      * 退出登录
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:42 PM
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logOut() {
-        LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroKit.getUser().getId(), getIp()));
+        LogManager.me().executeLog(LogTaskFactory.exitLog(ShiroKit.getUserNotNull().getId(), getIp()));
         ShiroKit.getSubject().logout();
         deleteAllCookie();
         return REDIRECT + "/login";

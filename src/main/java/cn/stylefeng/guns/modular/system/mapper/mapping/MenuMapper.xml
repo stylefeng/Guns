@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Menu">
+        <id column="MENU_ID" property="menuId"/>
+        <result column="CODE" property="code"/>
+        <result column="PCODE" property="pcode"/>
+        <result column="PCODES" property="pcodes"/>
+        <result column="NAME" property="name"/>
+        <result column="ICON" property="icon"/>
+        <result column="URL" property="url"/>
+        <result column="SORT" property="sort"/>
+        <result column="LEVELS" property="levels"/>
+        <result column="MENU_FLAG" property="menuFlag"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="STATUS" property="status"/>
+        <result column="NEW_PAGE_FLAG" property="newPageFlag"/>
+        <result column="OPEN_FLAG" property="openFlag"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="CREATE_USER" property="createUser"/>
+        <result column="UPDATE_USER" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MENU_ID AS menuId, CODE AS code, PCODE AS pcode, PCODES AS pcodes, NAME AS name, ICON AS icon, URL AS url, SORT AS sort, LEVELS AS levels, MENU_FLAG AS menuFlag, DESCRIPTION AS description, STATUS AS status, NEW_PAGE_FLAG AS newPageFlag, OPEN_FLAG AS openFlag, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+    </sql>
+
+    <select id="selectMenus" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where STATUS = 'ENABLE'
+        <if test="condition != null and condition != ''">
+            and (NAME like CONCAT('%',#{condition},'%') or CODE like CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="level != null and level != ''">
+            and LEVELS = #{level}
+        </if>
+        <if test="menuId != null and menuId != 0">
+            and (MENU_ID = #{menuId} or MENU_ID in ( select MENU_ID from sys_menu where PCODES like CONCAT('%[', #{code}, ']%') ))
+        </if>
+    </select>
+
+    <select id="getMenuIdsByRoleId" resultType="long">
+        select MENU_ID from
+        sys_relation where ROLE_ID = #{roleId}
+    </select>
+
+    <select id="menuTreeList" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        SELECT
+        m1.MENU_ID AS id,
+        (
+        CASE
+        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        0
+        ELSE
+        m2.MENU_ID
+        END
+        ) AS pId,
+        m1.NAME
+        AS NAME,
+        (
+        CASE
+        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as open
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.PCODE = m2.CODE
+        ORDER BY
+        m1.MENU_ID ASC
+    </select>
+
+    <select id="menuTreeListByMenuIds" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        SELECT
+        m1.MENU_ID AS id,
+        (
+        CASE
+        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        0
+        ELSE
+        m2.MENU_ID
+        END
+        ) AS pId,
+        m1.NAME AS name,
+        (
+        CASE
+        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS
+        NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as open,
+        (
+        CASE
+        WHEN (m3.MENU_ID = 0 OR m3.MENU_ID
+        IS NULL) THEN
+        'false'
+        ELSE
+        'true'
+        END
+        ) as `checked`
+        FROM
+        sys_menu m1
+        LEFT JOIN
+        sys_menu m2
+        ON m1.PCODE = m2.CODE
+        left join (
+        SELECT
+        MENU_ID
+        FROM
+        sys_menu
+        WHERE
+        MENU_ID IN
+        <foreach collection="list" index="index" item="i" open="("
+                 separator="," close=")">
+            #{i}
+        </foreach>
+        ) m3 on m1.MENU_ID = m3.MENU_ID
+        ORDER BY
+        m1.MENU_ID ASC
+    </select>
+
+    <delete id="deleteRelationByMenu">
+        delete from sys_relation where MENU_ID = #{menuId}
+    </delete>
+
+    <select id="getResUrlsByRoleId" resultType="string">
+        select URL from
+        sys_relation rel
+        inner join sys_menu m on rel.MENU_ID = m.MENU_ID
+        where rel.ROLE_ID = #{roleId}
+    </select>
+
+    <select id="getMenusByRoleIds" resultType="cn.stylefeng.guns.core.common.node.MenuNode">
+        SELECT
+        m1.MENU_ID AS id,
+        m1.ICON AS icon,
+        (
+        CASE
+        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        0
+        ELSE
+        m2.MENU_ID
+        END
+        ) AS parentId,
+        m1.NAME as name,
+        m1.URL as url,
+        m1.LEVELS as levels,
+        m1.MENU_FLAG as ismenu,
+        m1.SORT as num
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.PCODE = m2.CODE
+        INNER JOIN (
+        SELECT
+        MENU_ID
+        FROM
+        sys_menu
+        WHERE
+        MENU_ID IN (
+        SELECT
+        MENU_ID
+        FROM
+        sys_relation rela
+        WHERE
+        rela.ROLE_ID IN
+        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+        )
+        ) m3 ON m1.MENU_ID = m3.MENU_ID
+        where m1.MENU_FLAG = 'Y'
+        order by LEVELS,m1.SORT asc
+    </select>
+
+</mapper>

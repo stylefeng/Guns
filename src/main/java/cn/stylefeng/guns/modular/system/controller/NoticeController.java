@@ -15,14 +15,15 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
-import cn.stylefeng.guns.modular.system.model.Notice;
-import cn.stylefeng.guns.modular.system.service.INoticeService;
+import cn.stylefeng.guns.modular.system.entity.Notice;
+import cn.stylefeng.guns.modular.system.service.NoticeService;
 import cn.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -52,10 +53,13 @@ public class NoticeController extends BaseController {
     private String PREFIX = "/system/notice/";
 
     @Autowired
-    private INoticeService noticeService;
+    private NoticeService noticeService;
 
     /**
      * 跳转到通知列表首页
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("")
     public String index() {
@@ -64,6 +68,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 跳转到添加通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("/notice_add")
     public String noticeAdd() {
@@ -72,27 +79,36 @@ public class NoticeController extends BaseController {
 
     /**
      * 跳转到修改通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("/notice_update/{noticeId}")
-    public String noticeUpdate(@PathVariable Integer noticeId, Model model) {
+    public String noticeUpdate(@PathVariable Long noticeId, Model model) {
         Notice notice = this.noticeService.selectById(noticeId);
-        model.addAttribute("notice", notice);
+        model.addAllAttributes(BeanUtil.beanToMap(notice));
         LogObjectHolder.me().set(notice);
         return PREFIX + "notice_edit.html";
     }
 
     /**
      * 跳转到首页通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping("/hello")
     public String hello() {
         List<Map<String, Object>> notices = noticeService.list(null);
         super.setAttr("noticeList", notices);
-        return "/blackboard.html";
+        return PREFIX + "notice_index.html";
     }
 
     /**
      * 获取通知列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/list")
     @ResponseBody
@@ -103,6 +119,9 @@ public class NoticeController extends BaseController {
 
     /**
      * 新增通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/add")
     @ResponseBody
@@ -111,19 +130,22 @@ public class NoticeController extends BaseController {
         if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        notice.setCreater(ShiroKit.getUser().getId());
-        notice.setCreatetime(new Date());
-        notice.insert();
+        notice.setCreateUser(ShiroKit.getUserNotNull().getId());
+        notice.setCreateTime(new Date());
+        this.noticeService.insert(notice);
         return SUCCESS_TIP;
     }
 
     /**
      * 删除通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
     @BussinessLog(value = "删除通知", key = "noticeId", dict = NoticeMap.class)
-    public Object delete(@RequestParam Integer noticeId) {
+    public Object delete(@RequestParam Long noticeId) {
 
         //缓存通知名称
         LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(noticeId));
@@ -135,18 +157,21 @@ public class NoticeController extends BaseController {
 
     /**
      * 修改通知
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 6:06 PM
      */
     @RequestMapping(value = "/update")
     @ResponseBody
     @BussinessLog(value = "修改通知", key = "title", dict = NoticeMap.class)
     public Object update(Notice notice) {
-        if (ToolUtil.isOneEmpty(notice, notice.getId(), notice.getTitle(), notice.getContent())) {
+        if (ToolUtil.isOneEmpty(notice, notice.getNoticeId(), notice.getTitle(), notice.getContent())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        Notice old = this.noticeService.selectById(notice.getId());
+        Notice old = this.noticeService.selectById(notice.getNoticeId());
         old.setTitle(notice.getTitle());
         old.setContent(notice.getContent());
-        old.updateById();
+        this.noticeService.updateById(old);
         return SUCCESS_TIP;
     }
 

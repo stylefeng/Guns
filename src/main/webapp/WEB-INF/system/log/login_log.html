@@ -1,0 +1,77 @@
+@layout("/common/_container.html",{plugins:["table","layer","sweet-alert","laydate"],js:["/assets/modular/system/log/login_log.js"]}){
+<div class="row" id="loginLogPage">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-10">
+            <div class="card-body">
+                <div class="form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">开始时间</div>
+                                    </div>
+                                    <input type="text" id="beginTime" class="form-control" placeholder="开始时间"
+                                           autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">结束时间</div>
+                                    </div>
+                                    <input type="text" id="endTime" class="form-control" placeholder="结束时间"
+                                           autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">日志名称</div>
+                                    </div>
+                                    <input v-model="logName" type="text" class="form-control" placeholder="日志名称"
+                                           autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group condition-button">
+                                    <div class="input-group-btn condition-button">
+                                        <button type="button" id="check-minutes"
+                                                class="btn btn-info waves-effect waves-light condition-button-width"
+                                                onclick="LoginLog.search()">查询
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-0">
+            <div class="card-body p-t-0 p-b-0">
+                <div class="form-horizontal">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card m-b-0 p-b-0">
+                                    <div class="hidden-xs" id="loginLogTableToolbar" role="group">
+                                        <button type="button" class="btn btn-primary waves-effect" onclick="LoginLog.delLog()">
+                                            <i class="fa fa-plus"></i>&nbsp;清空日志
+                                        </button>
+                                    </div>
+                                    <#table id="loginLogTable"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

@@ -1,0 +1,101 @@
+@layout("/common/_container.html",{title:"代码生成"}){
+<div class="row" xmlns="">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>代码生成</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="form-horizontal" id="generate">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <#input id="projectPath" name="项目路径" value="${params.projectPath}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <#input id="projectPackage" name="项目的包" value="${params.projectPackage}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <#input id="corePackage" name="核心包" value="${params.corePackage}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <#input id="author" name="作者" value="${params.author!}"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <#input id="bizName" name="业务名称" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <#input id="moduleName" name="模块名称" value="${params.moduleName}"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <#input id="parentMenuName" name="父级菜单名称" underline="false" value="${params.parentMenuName}"
+                                            hidden="pid" readonly="readonly"
+                                            clickFun="Code.showMenuSelectTree(); return false;"
+                                            style="background-color: #ffffff !important;"
+                                            selectFlag="true" selectId="pcodeTreeDiv" selectTreeId="pcodeTree" selectStyle=""/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <#input id="tableName" name="表名称" disabled="disabled"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <#input id="ignoreTabelPrefix" name="表前缀" value="${params.ignoreTabelPrefix}"/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <#input id="className" name="类名" disabled="disabled"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button id="genBtn" type="button" class="btn btn-primary mr10"
+                                            onclick="Code.generate()">
+                                        <span style="padding: 5px 20px;">生成</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding-top: 10px; overflow: hidden"
+                             class="container-fluid">
+                            <div class="col-md-12">
+                                <div class="row admin-form">
+                                    <div class="col-md-3 col-md-offset-3">
+                                        <h2>数据表</h2>
+                                        <div class="list-group" id="tableList"
+                                             data-bind="foreach: tables"
+                                             style="height: 500px; overflow-y: scroll">
+                                            @for(table in tables!){
+                                                <a href="javascript:void(0)" class="list-group-item" tableName="${table.tableName}" onclick="Code.selectTable('${table.tableName}')">${table.tableName}-${table.tableComment}</a>
+                                            @}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span><h2>模板</h2></span>
+                                        <div class="list-group" id="templateList"
+                                             style="height: 500px; overflow-y: scroll">
+                                            @for(template in templates!){
+                                                <a href="javascript:void(0)" class="list-group-item" key="${template.key}" onclick="Code.selectTemplate('${template.key}')">${template.desc}</a>
+                                            @}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="nav nav-list">
+                            <li class="divider"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/js/common/select-list-object.js"></script>
+<script src="${ctxPath}/static/modular/code/gen.js"></script>
+@}
+

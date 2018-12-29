@@ -1,0 +1,67 @@
+@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert","layer"],js:["/assets/modular/system/menu/menu_edit.js"]}){
+<div class="container-fluid">
+    <form id="menuForm" \@submit="submitForm">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>名称 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="name" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>菜单编号 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="code" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>父级编号 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="pcodeName" id="detpName" \@click="showMenuSelectTree" type="text" class="form-control" autocomplete="off">
+                        <input v-model="pid" type="hidden" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>是否是菜单 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <select v-model="menuFlag" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="Y">是</option>
+                            <option value="N">不是</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>请求地址 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="url" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>排序</h5>
+                    <div class="controls">
+                        <input v-model="sort" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>图标</h5>
+                    <div class="controls">
+                        <input v-model="icon" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="text-xs-right">
+                    <button class="btn btn-info normal-button-width" \@click="ensure">提交</button>
+                    <button class="btn btn-inverse normal-button-width m-l-10" \@click="close">取消</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@}

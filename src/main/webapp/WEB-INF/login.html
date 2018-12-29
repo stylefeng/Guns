@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="${ctxPath}/assets/common/favicon.ico">
+    <title>登录 - Guns</title>
+    <link href="${ctxPath}/assets/common/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/css/style.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+
+<section id="wrapper">
+    @var bgImg = images.loginBg();
+    <div class="login-register" style="background-image:url(${bgImg});">
+        <div class="login-box card">
+            <div class="card-body">
+                <form class="form-horizontal form-material" id="loginform" action="${ctxPath}/login" method="post">
+                    <h3 class="box-title m-b-30">Guns管理系统</h3>
+
+                    @if(isNotEmpty(tips)){
+                        <h5 class="box-title m-b-30" style="color: red;">${tips}</h5>
+                    @}
+
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="username" type="text" required="" placeholder="账号" autocomplete="off"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="password" type="password" required="" placeholder="密码" autocomplete="off"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 p-l-0">
+                            <div class="checkbox checkbox-info p-t-0">
+                                <input id="checkbox-signup" type="checkbox" name="remember">
+                                <label for="checkbox-signup"> 记住我 </label>
+                            </div>
+                        </div>
+                        <div class="form-group text-center m-t-20 m-b-0">
+                            <div class="col-xs-12">
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">登录</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-12 text-center">
+                        <p>没有账号? <a href="#" class="text-info m-l-5"><b>点击注册</b></a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="${ctxPath}/assets/common/plugins/jquery/jquery.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/tether.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="${ctxPath}/assets/common/static/js/waves.js"></script>
+<script src="${ctxPath}/assets/common/static/js/custom.min.js"></script>
+</body>
+
+</html>

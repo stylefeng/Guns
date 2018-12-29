@@ -15,47 +15,34 @@
  */
 package cn.stylefeng.guns.core.common.constant.state;
 
+import lombok.Getter;
+
 /**
  * 菜单的状态
  *
  * @author fengshuonan
  * @Date 2017年1月22日 下午12:14:59
  */
+@Getter
 public enum MenuStatus {
 
-    ENABLE(1, "启用"),
-    DISABLE(0, "禁用");
+    ENABLE("ENABLE", "启用"),
+    DISABLE("DISABLE", "禁用");
 
-    int code;
+    String code;
     String message;
 
-    MenuStatus(int code, String message) {
+    MenuStatus(String code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public static String valueOf(Integer status) {
+    public static String getDescription(String status) {
         if (status == null) {
             return "";
         } else {
             for (MenuStatus s : MenuStatus.values()) {
-                if (s.getCode() == status) {
+                if (s.getCode().equals(status)) {
                     return s.getMessage();
                 }
             }

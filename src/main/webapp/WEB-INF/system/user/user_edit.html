@@ -1,0 +1,76 @@
+@layout("/common/_dialog.html",{plugins:["laydate","sweet-alert","layer"],js:["/assets/modular/system/user/user_edit.js"]}){
+<div class="container-fluid">
+    <form id="userForm" \@submit="submitForm">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>账号 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="account" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>姓名 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="name" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>邮箱</h5>
+                    <div class="controls">
+                        <input v-model="email" type="email" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>性别</h5>
+                    <div class="controls">
+                        <select v-model="sex" class="form-control">
+                            <option value="">请选择</option>
+                            <option value="M">男</option>
+                            <option value="F">女</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <h5>出生日期</h5>
+                    <div class="controls">
+                        <input v-model="birthday" id="birthday" type="hidden" class="form-control" autocomplete="off">
+                        <input id="dateSelect" type="text" class="form-control" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h5>部门 <span class="text-danger">*</span></h5>
+                    <div class="controls">
+                        <input v-model="deptName" id="detpName" \@click="showDeptSelectTree" type="text" class="form-control" autocomplete="off">
+                        <input v-model="deptId" type="hidden" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>电话</h5>
+                    <div class="controls">
+                        <input v-model="phone" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>角色</h5>
+                    <div class="controls">
+                        <input v-model="roleName" disabled type="text" class="form-control" value="请在分配角色功能里配置">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="text-xs-right">
+                    <button class="btn btn-info normal-button-width" \@click="ensure">提交</button>
+                    <button class="btn btn-inverse normal-button-width m-l-10" \@click="close">取消</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@}
+

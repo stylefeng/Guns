@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="${ctxPath}/assets/common/favicon.ico">
+    <title> 404 - Guns</title>
+    <link href="${ctxPath}/assets/common/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/css/style.css" rel="stylesheet">
+    <link href="${ctxPath}/assets/common/static/css/colors/blue.css" id="theme" rel="stylesheet">
+</head>
+
+<body class="fix-header card-no-border">
+<section id="wrapper" class="error-page">
+    @var bgImg = images.error404();
+    <div class="error-box" style="background-image:url(${bgImg});">
+        <div class="error-body text-center">
+            <h1>404</h1>
+            <h3 class="text-uppercase">Page Not Found !</h3>
+            <p class="text-muted m-t-30 m-b-30">YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</p>
+            <a href="${ctxPath}/" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Back to home</a></div>
+        <footer class="footer text-center">
+            © 2018 Guns by stylefeng （https://gitee.com/stylefeng/guns）
+        </footer>
+    </div>
+</section>
+
+<script src="${ctxPath}/assets/common/plugins/jquery/jquery.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/tether.min.js"></script>
+<script src="${ctxPath}/assets/common/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="${ctxPath}/assets/common/static/js/waves.js"></script>
+</body>
+
+</html>
