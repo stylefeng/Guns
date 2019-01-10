@@ -13,7 +13,7 @@ import cn.stylefeng.guns.modular.system.mapper.UserMapper;
 import cn.stylefeng.guns.modular.system.model.UserDto;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +53,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         String salt = ShiroKit.getRandomSalt(5);
         String password = ShiroKit.md5(user.getPassword(), salt);
 
-        this.insert(UserFactory.createUser(user, password, salt));
+        this.save(UserFactory.createUser(user, password, salt));
     }
 
     /**
@@ -63,7 +63,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      * @Date 2018/12/24 22:53
      */
     public void editUser(UserDto user){
-        User oldUser = this.selectById(user.getUserId());
+        User oldUser = this.getById(user.getUserId());
 
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
             this.updateById(UserFactory.editUser(user, oldUser));
@@ -112,7 +112,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      */
     public void changePwd(String oldPassword,String newPassword) {
         Long userId = ShiroKit.getUserNotNull().getId();
-        User user = this.selectById(userId);
+        User user = this.getById(userId);
 
         String oldMd5 = ShiroKit.md5(oldPassword, user.getSalt());
 
@@ -183,7 +183,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
             return;
         }
         List<Long> deptDataScope = ShiroKit.getDeptDataScope();
-        User user = this.selectById(userId);
+        User user = this.getById(userId);
         Long deptId = user.getDeptId();
         if (deptDataScope.contains(deptId)) {
             return;

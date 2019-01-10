@@ -12,9 +12,8 @@ import cn.stylefeng.guns.modular.system.model.MenuDto;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,7 +59,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
 
         resultMenu.setStatus(MenuStatus.ENABLE.getCode());
 
-        this.insert(resultMenu);
+        this.save(resultMenu);
     }
 
     /**
@@ -94,7 +93,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
         delMenu(menuId);
 
         //删除所有子菜单
-        Wrapper<Menu> wrapper = new EntityWrapper<>();
+        QueryWrapper<Menu> wrapper = new QueryWrapper<>();
         wrapper = wrapper.like("PCODES", "%[" + menu.getCode() + "]%");
         List<Menu> menus = menuMapper.selectList(wrapper);
         for (Menu temp : menus) {
@@ -113,7 +112,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
         //获取menuId的code
         String code = "";
         if (menuId != null) {
-            Menu menu = this.selectById(menuId);
+            Menu menu = this.getById(menuId);
             code = menu.getCode();
         }
 
@@ -192,7 +191,8 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
     public Menu selectByCode(String code) {
         Menu menu = new Menu();
         menu.setCode(code);
-        return this.baseMapper.selectOne(menu);
+        QueryWrapper<Menu> queryWrapper = new QueryWrapper<>(menu);
+        return this.baseMapper.selectOne(queryWrapper);
     }
 
     /**
@@ -212,7 +212,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
             resultMenu.setLevels(1);
         } else {
             Long pid = menuParam.getPid();
-            Menu pMenu = this.selectById(pid);
+            Menu pMenu = this.getById(pid);
             Integer pLevels = pMenu.getLevels();
             resultMenu.setPcode(pMenu.getCode());
 

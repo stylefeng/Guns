@@ -1,12 +1,12 @@
 package cn.stylefeng.guns.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 
-import static com.baomidou.mybatisplus.enums.IdType.ID_WORKER;
+import static com.baomidou.mybatisplus.annotation.IdType.ID_WORKER;
 
 /**
  * <p>

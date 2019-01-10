@@ -1,10 +1,6 @@
 package cn.stylefeng.guns.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -167,17 +163,17 @@ public class CodeDbinfo implements Serializable {
     @Override
     public String toString() {
         return "CodeDbinfo{" +
-        ", dbId=" + dbId +
-        ", name=" + name +
-        ", dbDriver=" + dbDriver +
-        ", dbUrl=" + dbUrl +
-        ", dbUserName=" + dbUserName +
-        ", dbPassword=" + dbPassword +
-        ", dbType=" + dbType +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", createUser=" + createUser +
-        ", updateUser=" + updateUser +
-        "}";
+                ", dbId=" + dbId +
+                ", name=" + name +
+                ", dbDriver=" + dbDriver +
+                ", dbUrl=" + dbUrl +
+                ", dbUserName=" + dbUserName +
+                ", dbPassword=" + dbPassword +
+                ", dbType=" + dbType +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createUser=" + createUser +
+                ", updateUser=" + updateUser +
+                "}";
     }
 }

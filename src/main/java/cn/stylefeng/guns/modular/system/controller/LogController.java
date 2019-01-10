@@ -26,8 +26,8 @@ import cn.stylefeng.guns.modular.system.entity.OperationLog;
 import cn.stylefeng.guns.modular.system.service.OperationLogService;
 import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
-import com.baomidou.mybatisplus.mapper.SqlRunner;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,11 +79,10 @@ public class LogController extends BaseController {
                        @RequestParam(required = false) Integer logType) {
 
         //获取分页参数
-        Page<OperationLog> page = new PageFactory<OperationLog>().defaultPage();
+        Page page = new PageFactory().defaultPage();
 
         //根据条件查询操作日志
-        List<Map<String, Object>> result = operationLogService.getOperationLogs(page, beginTime, endTime, logName,
-                BizLogType.valueOf(logType), page.getOrderByField(), page.isAsc());
+        List<Map<String, Object>> result = operationLogService.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType));
 
         page.setRecords(new LogWarpper(result).wrap());
 
@@ -100,7 +99,7 @@ public class LogController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object detail(@PathVariable Long id) {
-        OperationLog operationLog = operationLogService.selectById(id);
+        OperationLog operationLog = operationLogService.getById(id);
         Map<String, Object> stringObjectMap = BeanUtil.beanToMap(operationLog);
         return super.warpObject(new LogWarpper(stringObjectMap));
     }

@@ -33,21 +33,6 @@
         <if test="logType != null and logType !=''">
             and LOG_TYPE like CONCAT('%',#{logType},'%')
         </if>
-        <choose>
-            <when test="orderByField != null and orderByField !=''">
-                <choose>
-                    <when test="isAsc == true">
-                        order by ${orderByField} ASC
-                    </when>
-                    <otherwise>
-                        order by ${orderByField} DESC
-                    </otherwise>
-                </choose>
-            </when>
-            <otherwise>
-                order by CREATE_TIME DESC
-            </otherwise>
-        </choose>
     </select>
 
 </mapper>

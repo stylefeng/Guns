@@ -1,10 +1,6 @@
 package cn.stylefeng.guns.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -144,15 +140,15 @@ public class OperationLog implements Serializable {
     @Override
     public String toString() {
         return "OperationLog{" +
-        ", operationLogId=" + operationLogId +
-        ", logType=" + logType +
-        ", logName=" + logName +
-        ", userId=" + userId +
-        ", className=" + className +
-        ", method=" + method +
-        ", createTime=" + createTime +
-        ", succeed=" + succeed +
-        ", message=" + message +
-        "}";
+                ", operationLogId=" + operationLogId +
+                ", logType=" + logType +
+                ", logName=" + logName +
+                ", userId=" + userId +
+                ", className=" + className +
+                ", method=" + method +
+                ", createTime=" + createTime +
+                ", succeed=" + succeed +
+                ", message=" + message +
+                "}";
     }
 }

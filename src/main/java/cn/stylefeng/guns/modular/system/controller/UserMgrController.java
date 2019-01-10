@@ -120,7 +120,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isEmpty(userId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        User user = this.userService.selectById(userId);
+        User user = this.userService.getById(userId);
         LogObjectHolder.me().set(user);
         return PREFIX + "user_edit.html";
     }
@@ -134,7 +134,7 @@ public class UserMgrController extends BaseController {
     @RequestMapping("/user_info")
     public String userInfo(Model model) {
         Long userId = ShiroKit.getUserNotNull().getId();
-        User user = this.userService.selectById(userId);
+        User user = this.userService.getById(userId);
 
         model.addAllAttributes(BeanUtil.beanToMap(user));
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
@@ -168,7 +168,7 @@ public class UserMgrController extends BaseController {
         }
 
         this.userService.assertAuth(userId);
-        User user = this.userService.selectById(userId);
+        User user = this.userService.getById(userId);
         Map<String, Object> map = UserFactory.removeUnSafeFields(user);
 
         HashMap<Object, Object> hashMap = CollectionUtil.newHashMap();
@@ -294,7 +294,7 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         this.userService.assertAuth(userId);
-        return this.userService.selectById(userId);
+        return this.userService.getById(userId);
     }
 
     /**
@@ -312,7 +312,7 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
         this.userService.assertAuth(userId);
-        User user = this.userService.selectById(userId);
+        User user = this.userService.getById(userId);
         user.setSalt(ShiroKit.getRandomSalt(5));
         user.setPassword(ShiroKit.md5(Const.DEFAULT_PWD, user.getSalt()));
         this.userService.updateById(user);

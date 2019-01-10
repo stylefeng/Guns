@@ -2,7 +2,7 @@ package cn.stylefeng.guns.modular.system.mapper;
 
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Role;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

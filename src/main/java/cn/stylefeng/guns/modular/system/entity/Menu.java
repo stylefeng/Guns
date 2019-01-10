@@ -1,10 +1,6 @@
 package cn.stylefeng.guns.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -261,24 +257,24 @@ public class Menu implements Serializable {
     @Override
     public String toString() {
         return "Menu{" +
-        ", menuId=" + menuId +
-        ", code=" + code +
-        ", pcode=" + pcode +
-        ", pcodes=" + pcodes +
-        ", name=" + name +
-        ", icon=" + icon +
-        ", url=" + url +
-        ", sort=" + sort +
-        ", levels=" + levels +
-        ", menuFlag=" + menuFlag +
-        ", description=" + description +
-        ", status=" + status +
-        ", newPageFlag=" + newPageFlag +
-        ", openFlag=" + openFlag +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        ", createUser=" + createUser +
-        ", updateUser=" + updateUser +
-        "}";
+                ", menuId=" + menuId +
+                ", code=" + code +
+                ", pcode=" + pcode +
+                ", pcodes=" + pcodes +
+                ", name=" + name +
+                ", icon=" + icon +
+                ", url=" + url +
+                ", sort=" + sort +
+                ", levels=" + levels +
+                ", menuFlag=" + menuFlag +
+                ", description=" + description +
+                ", status=" + status +
+                ", newPageFlag=" + newPageFlag +
+                ", openFlag=" + openFlag +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", createUser=" + createUser +
+                ", updateUser=" + updateUser +
+                "}";
     }
 }

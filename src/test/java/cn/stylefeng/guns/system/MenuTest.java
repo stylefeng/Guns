@@ -3,8 +3,7 @@ package cn.stylefeng.guns.system;
 import cn.stylefeng.guns.base.BaseJunit;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.mapper.MenuMapper;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,7 +58,7 @@ public class MenuTest extends BaseJunit {
     }
 
     private Menu getParentMenu(String code) {
-        Wrapper<Menu> wrapper = new EntityWrapper<Menu>();
+        QueryWrapper<Menu> wrapper = new QueryWrapper<>();
         wrapper = wrapper.eq("CODE", code);
         List<Menu> menus = menuMapper.selectList(wrapper);
         if (menus == null || menus.size() == 0) {

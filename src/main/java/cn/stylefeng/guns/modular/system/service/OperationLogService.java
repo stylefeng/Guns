@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.system.service;
 
 import cn.stylefeng.guns.modular.system.entity.OperationLog;
 import cn.stylefeng.guns.modular.system.mapper.OperationLogMapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +26,8 @@ public class OperationLogService extends ServiceImpl<OperationLogMapper, Operati
      * @author fengshuonan
      * @Date 2018/12/23 5:41 PM
      */
-    public List<Map<String, Object>> getOperationLogs(Page<OperationLog> page, String beginTime, String endTime, String logName, String s, String orderByField, boolean asc) {
-        return this.baseMapper.getOperationLogs(page, beginTime, endTime, logName, s, orderByField, asc);
+    public List<Map<String, Object>> getOperationLogs(Page page, String beginTime, String endTime, String logName, String s) {
+        return this.baseMapper.getOperationLogs(page, beginTime, endTime, logName, s);
     }
 
 }

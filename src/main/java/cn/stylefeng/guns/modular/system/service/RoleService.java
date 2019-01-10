@@ -17,7 +17,7 @@ import cn.stylefeng.guns.modular.system.model.RoleDto;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,7 +57,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> {
 
         role.setRoleId(null);
 
-        this.insert(role);
+        this.save(role);
     }
 
     /**
@@ -73,7 +73,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> {
             throw new RequestEmptyException();
         }
 
-        Role old = this.selectById(roleDto.getRoleId());
+        Role old = this.getById(roleDto.getRoleId());
         BeanUtil.copyProperties(roleDto, old);
         this.updateById(old);
 

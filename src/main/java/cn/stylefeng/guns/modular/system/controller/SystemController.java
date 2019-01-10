@@ -129,14 +129,14 @@ public class SystemController extends BaseController {
         }
 
         //获取当前用户的头像id
-        User user = userService.selectById(currentUser.getId());
+        User user = userService.getById(currentUser.getId());
         String avatar = user.getAvatar();
 
         //如果头像id为空就返回默认的
         if (ToolUtil.isEmpty(avatar)) {
             avatar = DefaultAvatar.BASE_64_AVATAR;
         } else {
-            FileInfo fileInfo = fileInfoService.selectById(avatar);
+            FileInfo fileInfo = fileInfoService.getById(avatar);
             if (fileInfo == null) {
                 avatar = DefaultAvatar.BASE_64_AVATAR;
             } else {
@@ -172,7 +172,7 @@ public class SystemController extends BaseController {
             throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
         }
 
-        User user = userService.selectById(currentUser.getId());
+        User user = userService.getById(currentUser.getId());
         Map<String, Object> map = UserFactory.removeUnSafeFields(user);
 
         HashMap<Object, Object> hashMap = CollectionUtil.newHashMap();

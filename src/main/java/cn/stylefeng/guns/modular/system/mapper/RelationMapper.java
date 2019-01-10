@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.modular.system.mapper;
 
 import cn.stylefeng.guns.modular.system.entity.Relation;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>

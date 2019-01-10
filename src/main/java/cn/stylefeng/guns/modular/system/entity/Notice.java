@@ -1,10 +1,6 @@
 package cn.stylefeng.guns.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.FieldFill;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -118,13 +114,13 @@ public class Notice implements Serializable {
     @Override
     public String toString() {
         return "Notice{" +
-        ", noticeId=" + noticeId +
-        ", title=" + title +
-        ", content=" + content +
-        ", createTime=" + createTime +
-        ", createUser=" + createUser +
-        ", updateTime=" + updateTime +
-        ", updateUser=" + updateUser +
-        "}";
+                ", noticeId=" + noticeId +
+                ", title=" + title +
+                ", content=" + content +
+                ", createTime=" + createTime +
+                ", createUser=" + createUser +
+                ", updateTime=" + updateTime +
+                ", updateUser=" + updateUser +
+                "}";
     }
 }

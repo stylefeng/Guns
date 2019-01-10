@@ -20,12 +20,11 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
 import cn.stylefeng.guns.core.common.page.PageInfoBT;
-import cn.stylefeng.guns.modular.system.entity.LoginLog;
 import cn.stylefeng.guns.modular.system.service.LoginLogService;
 import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
-import com.baomidou.mybatisplus.mapper.SqlRunner;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,10 +74,10 @@ public class LoginLogController extends BaseController {
                        @RequestParam(required = false) String logName) {
 
         //获取分页参数
-        Page<LoginLog> page = new PageFactory<LoginLog>().defaultPage();
+        Page page = new PageFactory().defaultPage();
 
         //根据条件查询日志
-        List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName, page.getOrderByField(), page.isAsc());
+        List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName);
         page.setRecords(new LogWarpper(result).wrap());
 
         return new PageInfoBT<>(page);

@@ -16,7 +16,7 @@
 package cn.stylefeng.guns.config.datasource;
 
 import cn.stylefeng.roses.core.datascope.DataScopeInterceptor;
-import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

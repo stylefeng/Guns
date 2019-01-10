@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.modular.system.mapper;
 
 import cn.stylefeng.guns.modular.system.entity.Dict;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

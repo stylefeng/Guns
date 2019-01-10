@@ -7,8 +7,8 @@ import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.mapper.FileInfoMapper;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.toolkit.IdWorker;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,13 +41,13 @@ public class FileInfoService extends ServiceImpl<FileInfoMapper, FileInfo> {
             throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
         }
 
-        User user = userService.selectById(currentUser.getId());
+        User user = userService.getById(currentUser.getId());
 
         //保存文件信息
         FileInfo fileInfo = new FileInfo();
         fileInfo.setFileId(IdWorker.getIdStr());
         fileInfo.setFileData(avatar);
-        this.insert(fileInfo);
+        this.save(fileInfo);
 
         //更新用户的头像
         user.setAvatar(fileInfo.getFileId());

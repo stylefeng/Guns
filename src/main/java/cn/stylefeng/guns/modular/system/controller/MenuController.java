@@ -93,7 +93,7 @@ public class MenuController extends BaseController {
         }
 
         //获取菜单当前信息，记录日志用
-        Menu menu = this.menuService.selectById(menuId);
+        Menu menu = this.menuService.getById(menuId);
         LogObjectHolder.me().set(menu);
 
         return PREFIX + "menu_edit.html";
@@ -185,7 +185,7 @@ public class MenuController extends BaseController {
         if (ToolUtil.isEmpty(menuId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        Menu menu = this.menuService.selectById(menuId);
+        Menu menu = this.menuService.getById(menuId);
         return ResponseData.success(menu);
     }
 
@@ -202,7 +202,7 @@ public class MenuController extends BaseController {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
 
-        Menu menu = this.menuService.selectById(menuId);
+        Menu menu = this.menuService.getById(menuId);
 
         MenuDto menuDto = new MenuDto();
         BeanUtil.copyProperties(menu, menuDto);

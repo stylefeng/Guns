@@ -21,8 +21,8 @@ import cn.stylefeng.roses.core.datascope.DataScopeInterceptor;
 import cn.stylefeng.roses.core.mutidatasource.DynamicDataSource;
 import cn.stylefeng.roses.core.mutidatasource.aop.MultiSourceExAop;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor;
-import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -140,4 +140,5 @@ public class MultiDataSourceConfig {
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
     }
+
 }

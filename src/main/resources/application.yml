@@ -31,8 +31,6 @@ spring:
 
 mybatis-plus:
   typeAliasesPackage: cn.stylefeng.guns.modular.system.model
-  global-config:
-    metaObject-handler: cn.stylefeng.guns.core.metadata.GunsMpFieldHandler
 
 log:
   path: guns-logs

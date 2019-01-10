@@ -18,7 +18,7 @@ package cn.stylefeng.guns.core.common.constant.factory;
 import cn.stylefeng.guns.core.common.constant.state.Order;
 import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.core.util.ToolUtil;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,9 +28,9 @@ import javax.servlet.http.HttpServletRequest;
  * @author fengshuonan
  * @date 2017-04-05 22:25
  */
-public class PageFactory<T> {
+public class PageFactory {
 
-    public Page<T> defaultPage() {
+    public Page defaultPage() {
         HttpServletRequest request = HttpContext.getRequest();
 
         //每页多少条数据
@@ -47,18 +47,15 @@ public class PageFactory<T> {
 
         //如果没有排序字段名称
         if (ToolUtil.isEmpty(sort)) {
-
-            Page<T> page = new Page<>((offset / limit + 1), limit);
-            page.setOpenSort(false);
-            return page;
+            return new Page((offset / limit + 1), limit);
         } else {
 
             //如果有排序字段
-            Page<T> page = new Page<>((offset / limit + 1), limit, sort);
+            Page page = new Page((offset / limit + 1), limit);
             if (Order.ASC.getDes().equals(order)) {
-                page.setAsc(true);
+                page.setAsc(sort);
             } else {
-                page.setAsc(false);
+                page.setDesc(sort);
             }
             return page;
         }

@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.guns.core.common.page;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
 

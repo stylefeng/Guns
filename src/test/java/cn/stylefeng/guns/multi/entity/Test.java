@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.multi.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 

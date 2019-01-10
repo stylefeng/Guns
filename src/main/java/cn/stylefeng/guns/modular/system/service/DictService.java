@@ -7,9 +7,8 @@ import cn.stylefeng.guns.modular.system.mapper.DictMapper;
 import cn.stylefeng.guns.modular.system.model.DictDto;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,7 +62,7 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
         //类型的父级id都为0
         dict.setPid(0L);
 
-        this.insert(dict);
+        this.save(dict);
     }
 
     /**
@@ -79,7 +78,7 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
         //字典的父级id为字典tyeId
         dict.setPid(dictDto.getDictTypeId());
 
-        this.insert(dict);
+        this.save(dict);
     }
 
     /**
@@ -92,7 +91,7 @@ public class DictService extends ServiceImpl<DictMapper, Dict> {
     public void delteDict(Long dictId) {
 
         //删除这个字典的子词典
-        Wrapper<Dict> dictEntityWrapper = new EntityWrapper<>();
+        QueryWrapper<Dict> dictEntityWrapper = new QueryWrapper<>();
         dictEntityWrapper = dictEntityWrapper.eq("PID", dictId);
         dictMapper.delete(dictEntityWrapper);
 

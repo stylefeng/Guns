@@ -18,7 +18,7 @@
         LOGIN_LOG_ID AS loginLogId, LOG_NAME AS logName, USER_ID AS userId, CREATE_TIME AS createTime, SUCCEED AS succeed, MESSAGE AS message, IP_ADDRESS AS ipAddress
     </sql>
 
-    <select id="getLoginLogs" resultType="map" parameterType="com.baomidou.mybatisplus.plugins.Page">
+    <select id="getLoginLogs" resultType="map" parameterType="com.baomidou.mybatisplus.extension.plugins.pagination.Page">
         select
         <include refid="Base_Column_List"/>
         from sys_login_log where 1 = 1
@@ -28,21 +28,6 @@
         <if test="logName != null and logName !=''">
             and LOG_NAME like CONCAT('%',#{logName},'%')
         </if>
-        <choose>
-            <when test="orderByField != null and orderByField !=''">
-                <choose>
-                    <when test="isAsc == true">
-                        order by ${orderByField} ASC
-                    </when>
-                    <otherwise>
-                        order by ${orderByField} DESC
-                    </otherwise>
-                </choose>
-            </when>
-            <otherwise>
-                order by CREATE_TIME DESC
-            </otherwise>
-        </choose>
     </select>
 
 </mapper>

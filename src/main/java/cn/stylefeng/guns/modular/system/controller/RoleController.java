@@ -97,7 +97,7 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        Role role = this.roleService.selectById(roleId);
+        Role role = this.roleService.getById(roleId);
         LogObjectHolder.me().set(role);
         return PREFIX + "/role_edit.html";
     }
@@ -189,7 +189,7 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        Role role = this.roleService.selectById(roleId);
+        Role role = this.roleService.getById(roleId);
         Map<String, Object> roleMap = BeanUtil.beanToMap(role);
 
         Long pid = role.getPid();
@@ -240,7 +240,7 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/roleTreeListByUserId/{userId}")
     @ResponseBody
     public List<ZTreeNode> roleTreeListByUserId(@PathVariable Long userId) {
-        User theUser = this.userService.selectById(userId);
+        User theUser = this.userService.getById(userId);
         String roleId = theUser.getRoleId();
         if (ToolUtil.isEmpty(roleId)) {
             return this.roleService.roleTreeList();

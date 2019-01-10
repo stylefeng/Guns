@@ -26,8 +26,7 @@ import cn.stylefeng.guns.modular.system.entity.*;
 import cn.stylefeng.guns.modular.system.mapper.*;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.roses.core.util.ToolUtil;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -171,7 +170,8 @@ public class ConstantFactory implements IConstantFactory {
         } else {
             Menu param = new Menu();
             param.setCode(code);
-            Menu menu = menuMapper.selectOne(param);
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>(param);
+            Menu menu = menuMapper.selectOne(queryWrapper);
             if (menu == null) {
                 return "";
             } else {
@@ -189,7 +189,8 @@ public class ConstantFactory implements IConstantFactory {
         } else {
             Menu menu = new Menu();
             menu.setCode(code);
-            Menu tempMenu = this.menuMapper.selectOne(menu);
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>(menu);
+            Menu tempMenu = this.menuMapper.selectOne(queryWrapper);
             return tempMenu.getMenuId();
         }
     }
@@ -226,11 +227,12 @@ public class ConstantFactory implements IConstantFactory {
     public String getDictsByName(String name, String code) {
         Dict temp = new Dict();
         temp.setName(name);
-        Dict dict = dictMapper.selectOne(temp);
+        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>(temp);
+        Dict dict = dictMapper.selectOne(queryWrapper);
         if (dict == null) {
             return "";
         } else {
-            Wrapper<Dict> wrapper = new EntityWrapper<>();
+            QueryWrapper<Dict> wrapper = new QueryWrapper<>();
             wrapper = wrapper.eq("PID", dict.getDictId());
             List<Dict> dicts = dictMapper.selectList(wrapper);
             for (Dict item : dicts) {
@@ -262,7 +264,7 @@ public class ConstantFactory implements IConstantFactory {
         if (ToolUtil.isEmpty(id)) {
             return null;
         } else {
-            EntityWrapper<Dict> wrapper = new EntityWrapper<>();
+            QueryWrapper<Dict> wrapper = new QueryWrapper<>();
             List<Dict> dicts = dictMapper.selectList(wrapper.eq("PID", id));
             if (dicts == null || dicts.size() == 0) {
                 return null;
@@ -279,7 +281,7 @@ public class ConstantFactory implements IConstantFactory {
 
     @Override
     public List<Long> getSubDeptId(Long deptId) {
-        Wrapper<Dept> wrapper = new EntityWrapper<>();
+        QueryWrapper<Dept> wrapper = new QueryWrapper<>();
         wrapper = wrapper.like("PIDS", "%[" + deptId + "]%");
         List<Dept> depts = this.deptMapper.selectList(wrapper);
 

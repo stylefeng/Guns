@@ -95,7 +95,7 @@ public class DeptController extends BaseController {
         }
 
         //缓存部门修改前详细信息
-        Dept dept = deptService.selectById(deptId);
+        Dept dept = deptService.getById(deptId);
         LogObjectHolder.me().set(dept);
 
         return PREFIX + "dept_edit.html";
@@ -177,7 +177,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object detail(@PathVariable("deptId") Long deptId) {
-        Dept dept = deptService.selectById(deptId);
+        Dept dept = deptService.getById(deptId);
         DeptDto deptDto = new DeptDto();
         BeanUtil.copyProperties(dept, deptDto);
         deptDto.setPName(ConstantFactory.me().getDeptName(deptDto.getPid()));

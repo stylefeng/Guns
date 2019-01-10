@@ -2,7 +2,7 @@ package cn.stylefeng.guns.modular.system.service;
 
 import cn.stylefeng.guns.modular.system.entity.CodeDbinfo;
 import cn.stylefeng.guns.modular.system.mapper.CodeDbinfoMapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

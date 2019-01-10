@@ -85,7 +85,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/notice_update/{noticeId}")
     public String noticeUpdate(@PathVariable Long noticeId, Model model) {
-        Notice notice = this.noticeService.selectById(noticeId);
+        Notice notice = this.noticeService.getById(noticeId);
         model.addAllAttributes(BeanUtil.beanToMap(notice));
         LogObjectHolder.me().set(notice);
         return PREFIX + "notice_edit.html";
@@ -99,7 +99,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping("/hello")
     public String hello() {
-        List<Map<String, Object>> notices = noticeService.list(null);
+        List<Notice> notices = noticeService.list();
         super.setAttr("noticeList", notices);
         return PREFIX + "notice_index.html";
     }
@@ -132,7 +132,7 @@ public class NoticeController extends BaseController {
         }
         notice.setCreateUser(ShiroKit.getUserNotNull().getId());
         notice.setCreateTime(new Date());
-        this.noticeService.insert(notice);
+        this.noticeService.save(notice);
         return SUCCESS_TIP;
     }
 
@@ -150,7 +150,7 @@ public class NoticeController extends BaseController {
         //缓存通知名称
         LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(noticeId));
 
-        this.noticeService.deleteById(noticeId);
+        this.noticeService.removeById(noticeId);
 
         return SUCCESS_TIP;
     }
@@ -168,7 +168,7 @@ public class NoticeController extends BaseController {
         if (ToolUtil.isOneEmpty(notice, notice.getNoticeId(), notice.getTitle(), notice.getContent())) {
             throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
         }
-        Notice old = this.noticeService.selectById(notice.getNoticeId());
+        Notice old = this.noticeService.getById(notice.getNoticeId());
         old.setTitle(notice.getTitle());
         old.setContent(notice.getContent());
         this.noticeService.updateById(old);
