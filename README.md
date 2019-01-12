@@ -21,10 +21,10 @@
         </a>    
         +
         <a href="http://spring.io/projects/spring-boot">
-            <img src="https://img.shields.io/badge/spring--boot-2.0.1-green.svg" alt="spring-boot">
+            <img src="https://img.shields.io/badge/spring--boot-2.1.1-green.svg" alt="spring-boot">
         </a>
         <a href="http://mp.baomidou.com">
-            <img src="https://img.shields.io/badge/mybatis--plus-2.3-blue.svg" alt="mybatis-plus">
+            <img src="https://img.shields.io/badge/mybatis--plus-3.0-blue.svg" alt="mybatis-plus">
         </a>  
         <a href="http://ibeetl.com/">
             <img src="https://img.shields.io/badge/beetl-2.9.3-yellow.svg" alt="beetl">
