@@ -25,7 +25,8 @@
         <java.version>1.8</java.version>
         <shiro.version>1.4.0</shiro.version>
         <kaptcha.version>2.3.2</kaptcha.version>
-        <ehcache.version>3.3.1</ehcache.version>
+        <ehcache3.version>3.6.3</ehcache3.version>
+        <ehcache2.version>2.10.6</ehcache2.version>
         <beetl.version>2.9.3</beetl.version>
         <swagger.version>2.9.2</swagger.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
@@ -102,12 +103,21 @@
                     <artifactId>slf4j-api</artifactId>
                     <groupId>org.slf4j</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>ehcache-core</artifactId>
+                    <groupId>net.sf.ehcache</groupId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache2.version}</version>
         </dependency>
         <dependency>
             <groupId>org.ehcache</groupId>
             <artifactId>ehcache</artifactId>
-            <version>${ehcache.version}</version>
+            <version>${ehcache3.version}</version>
         </dependency>
 
         <!--验证码-->
