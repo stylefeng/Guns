@@ -1,11 +1,13 @@
 package cn.stylefeng.guns.modular.system.service;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.core.shiro.service.UserAuthService;
 import cn.stylefeng.guns.core.util.ApiMenuFilter;
 import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.factory.UserFactory;
@@ -35,13 +37,16 @@ public class UserService extends ServiceImpl<UserMapper, User> {
     @Autowired
     private MenuService menuService;
 
+    @Autowired
+    private UserAuthService userAuthService;
+
     /**
      * 添加用戶
      *
      * @author fengshuonan
      * @Date 2018/12/24 22:51
      */
-    public void addUser(UserDto user){
+    public void addUser(UserDto user) {
 
         // 判断账号是否重复
         User theUser = this.getByAccount(user.getAccount());
@@ -62,7 +67,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      * @author fengshuonan
      * @Date 2018/12/24 22:53
      */
-    public void editUser(UserDto user){
+    public void editUser(UserDto user) {
         User oldUser = this.getById(user.getUserId());
 
         if (ShiroKit.hasRole(Const.ADMIN_NAME)) {
@@ -84,7 +89,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      * @author fengshuonan
      * @Date 2018/12/24 22:54
      */
-    public void deleteUser(Long userId){
+    public void deleteUser(Long userId) {
 
         //不能删除超级管理员
         if (userId.equals(Const.ADMIN_ID)) {
@@ -110,7 +115,7 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      * @author fengshuonan
      * @Date 2018/12/24 22:45
      */
-    public void changePwd(String oldPassword,String newPassword) {
+    public void changePwd(String oldPassword, String newPassword) {
         Long userId = ShiroKit.getUserNotNull().getId();
         User user = this.getById(userId);
 
@@ -191,6 +196,21 @@ public class UserService extends ServiceImpl<UserMapper, User> {
             throw new ServiceException(BizExceptionEnum.NO_PERMITION);
         }
 
+    }
+
+    /**
+     * 刷新当前登录用户的信息
+     *
+     * @author fengshuonan
+     * @Date 2019/1/19 5:59 PM
+     */
+    public void refreshCurrentUser() {
+        ShiroUser user = ShiroKit.getUserNotNull();
+        Long id = user.getId();
+        User currentUser = this.getById(id);
+        ShiroUser shiroUser = userAuthService.shiroUser(currentUser);
+        ShiroUser lastUser = ShiroKit.getUser();
+        BeanUtil.copyProperties(shiroUser, lastUser);
     }
 
 }

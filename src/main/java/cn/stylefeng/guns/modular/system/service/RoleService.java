@@ -42,6 +42,9 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> {
     @Resource
     private RelationMapper relationMapper;
 
+    @Resource
+    private UserService userService;
+
     /**
      * 添加角色
      *
@@ -101,6 +104,9 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> {
             relation.setMenuId(id);
             this.relationMapper.insert(relation);
         }
+
+        // 刷新当前用户的权限
+        userService.refreshCurrentUser();
     }
 
     /**

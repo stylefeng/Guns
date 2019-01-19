@@ -27,6 +27,7 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
 import cn.stylefeng.guns.modular.system.service.MenuService;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.guns.modular.system.warpper.MenuWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
@@ -56,6 +57,9 @@ public class MenuController extends BaseController {
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 跳转到菜单列表列表页面
@@ -115,6 +119,9 @@ public class MenuController extends BaseController {
         Menu resultMenu = this.menuService.menuSetPcode(menu);
 
         this.menuService.updateById(resultMenu);
+
+        //刷新当前用户菜单
+        this.userService.refreshCurrentUser();
 
         return SUCCESS_TIP;
     }
