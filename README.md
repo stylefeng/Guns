@@ -40,6 +40,12 @@
 ### Guns 旗舰版在线demo
 账号密码：admin/111111，地址：http://demo.stylefeng.cn
 
+### Guns VIP计划
+Guns VIP计划，详情点击[https://www.stylefeng.cn/gunsVIP](https://www.stylefeng.cn/gunsVIP)
+
+### Roses企业级微服务视频教程
+Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rosesVideo](https://www.stylefeng.cn/rosesVideo)
+
 ### 最新Guns技术文档和视频教程
 Guns框架有作者在业余时间整理的技术文档，详情点击[技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)
 
@@ -49,6 +55,7 @@ Guns框架有作者在业余时间录制的视频教程，详情点击[视频教
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
+| Guns旗舰版 v1.1 | 升级spring boot和mybatis-plus版本 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.1/ |
 | Guns旗舰版 v1.0 | 全新的UI界面，采用bootstrap 4 + vue，全新的规范化的数据库设计，demo地址：http://demo.stylefeng.cn | https://gitee.com/stylefeng/guns/tree/ultimate-v1.0/ |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 | Guns v4.2 | spring boot升级到了2.0，大大简化了前端的体积，升级了一些组件到最新版本 | https://gitee.com/stylefeng/guns/tree/v4.2 |
