@@ -26,15 +26,35 @@ import lombok.Data;
 @Data
 public class ZTreeNode {
 
-    private Long id;          //节点id
+    /**
+     * 节点id
+     */
+    private Long id;
 
-    private Long pId;         //父节点id
+    /**
+     * 父节点id
+     */
+    private Long pId;
 
-    private String name;      //节点名称
+    /**
+     * 节点名称
+     */
+    private String name;
 
-    private Boolean open;     //是否打开节点
+    /**
+     * 是否打开节点
+     */
+    private Boolean open;
 
-    private Boolean checked;  //是否被选中
+    /**
+     * 是否被选中
+     */
+    private Boolean checked;
+
+    /**
+     * 节点图标  single or group
+     */
+    private String iconSkin;
 
     /**
      * 创建ztree的父级节点

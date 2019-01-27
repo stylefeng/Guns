@@ -6,6 +6,7 @@ import cn.stylefeng.guns.core.common.constant.state.MenuStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.mapper.MenuMapper;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
@@ -13,6 +14,7 @@ import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -107,7 +109,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Map<String, Object>> selectMenus(String condition, String level, Long menuId) {
+    public Page<Map<String, Object>> selectMenus(String condition, String level, Long menuId) {
 
         //获取menuId的code
         String code = "";
@@ -116,7 +118,9 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
             code = menu.getCode();
         }
 
-        return this.baseMapper.selectMenus(condition, level, menuId, code);
+        Page page = LayuiPageFactory.defaultPage();
+
+        return this.baseMapper.selectMenus(page, condition, level, menuId, code);
     }
 
     /**

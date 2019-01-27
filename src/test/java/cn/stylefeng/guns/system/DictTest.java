@@ -28,10 +28,4 @@ public class DictTest extends BaseJunit {
     public void deleteTest() {
         this.dictService.delteDict(16L);
     }
-
-    @Test
-    public void listTest() {
-        List<Map<String, Object>> list = this.dictMapper.list("性别");
-        Assert.assertTrue(list.size() > 0);
-    }
 }

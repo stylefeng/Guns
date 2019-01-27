@@ -5,6 +5,7 @@ import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.MenuNode;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.shiro.service.UserAuthService;
@@ -15,6 +16,7 @@ import cn.stylefeng.guns.modular.system.mapper.UserMapper;
 import cn.stylefeng.guns.modular.system.model.UserDto;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -136,8 +138,9 @@ public class UserService extends ServiceImpl<UserMapper, User> {
      * @author fengshuonan
      * @Date 2018/12/24 22:45
      */
-    public List<Map<String, Object>> selectUsers(DataScope dataScope, String name, String beginTime, String endTime, Long deptId) {
-        return this.baseMapper.selectUsers(dataScope, name, beginTime, endTime, deptId);
+    public Page<Map<String, Object>> selectUsers(DataScope dataScope, String name, String beginTime, String endTime, Long deptId) {
+        Page page = LayuiPageFactory.defaultPage();
+        return this.baseMapper.selectUsers(page, dataScope, name, beginTime, endTime, deptId);
     }
 
     /**

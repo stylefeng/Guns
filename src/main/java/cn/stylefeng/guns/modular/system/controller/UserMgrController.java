@@ -15,7 +15,6 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.config.properties.GunsProperties;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
@@ -25,6 +24,7 @@ import cn.stylefeng.guns.core.common.constant.dictmap.UserDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.system.entity.User;
@@ -38,6 +38,7 @@ import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +49,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -62,7 +62,7 @@ import java.util.UUID;
 @RequestMapping("/mgr")
 public class UserMgrController extends BaseController {
 
-    private static String PREFIX = "/system/user/";
+    private static String PREFIX = "/modular/system/user/";
 
     @Autowired
     private GunsProperties gunsProperties;
@@ -126,35 +126,6 @@ public class UserMgrController extends BaseController {
     }
 
     /**
-     * 跳转到查看用户详情页面
-     *
-     * @author fengshuonan
-     * @Date 2018/12/24 22:43
-     */
-    @RequestMapping("/user_info")
-    public String userInfo(Model model) {
-        Long userId = ShiroKit.getUserNotNull().getId();
-        User user = this.userService.getById(userId);
-
-        model.addAllAttributes(BeanUtil.beanToMap(user));
-        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
-        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
-        LogObjectHolder.me().set(user);
-        return PREFIX + "user_view.html";
-    }
-
-    /**
-     * 跳转到修改密码界面
-     *
-     * @author fengshuonan
-     * @Date 2018/12/24 22:43
-     */
-    @RequestMapping("/user_chpwd")
-    public String chPwd() {
-        return PREFIX + "user_chpwd.html";
-    }
-
-    /**
      * 获取用户详情
      *
      * @author fengshuonan
@@ -191,7 +162,7 @@ public class UserMgrController extends BaseController {
         if (ToolUtil.isOneEmpty(oldPassword, newPassword)) {
             throw new RequestEmptyException();
         }
-        this.userService.changePwd(oldPassword,newPassword);
+        this.userService.changePwd(oldPassword, newPassword);
         return SUCCESS_TIP;
     }
 
@@ -219,12 +190,14 @@ public class UserMgrController extends BaseController {
         }
 
         if (ShiroKit.isAdmin()) {
-            List<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptId);
-            return new UserWarpper(users).wrap();
+            Page<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptId);
+            Page wrapped = new UserWarpper(users).wrap();
+            return LayuiPageFactory.createPageInfo(wrapped);
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
-            List<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptId);
-            return new UserWarpper(users).wrap();
+            Page<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptId);
+            Page wrapped = new UserWarpper(users).wrap();
+            return LayuiPageFactory.createPageInfo(wrapped);
         }
     }
 

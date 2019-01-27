@@ -23,6 +23,7 @@ import cn.stylefeng.guns.core.common.constant.dictmap.RoleDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Role;
 import cn.stylefeng.guns.modular.system.entity.User;
@@ -34,6 +35,7 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,7 +57,7 @@ import java.util.Map;
 @RequestMapping("/role")
 public class RoleController extends BaseController {
 
-    private static String PREFIX = "/system/role";
+    private static String PREFIX = "/modular/system/role";
 
     @Autowired
     private UserService userService;
@@ -128,8 +130,9 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(@RequestParam(value = "roleName", required = false) String roleName) {
-        List<Map<String, Object>> roles = this.roleService.selectRoles(roleName);
-        return super.warpObject(new RoleWarpper(roles));
+        Page<Map<String, Object>> roles = this.roleService.selectRoles(roleName);
+        Page<Map<String, Object>> wrap = new RoleWarpper(roles).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
     }
 
     /**

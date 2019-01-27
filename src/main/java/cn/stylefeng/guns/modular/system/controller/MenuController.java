@@ -23,6 +23,7 @@ import cn.stylefeng.guns.core.common.constant.dictmap.MenuDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
@@ -33,6 +34,7 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +55,7 @@ import java.util.Map;
 @RequestMapping("/menu")
 public class MenuController extends BaseController {
 
-    private static String PREFIX = "/system/menu/";
+    private static String PREFIX = "/modular/system/menu/";
 
     @Autowired
     private MenuService menuService;
@@ -138,8 +140,9 @@ public class MenuController extends BaseController {
     public Object list(@RequestParam(required = false) String menuName,
                        @RequestParam(required = false) String level,
                        @RequestParam(required = false) Long menuId) {
-        List<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level, menuId);
-        return super.warpObject(new MenuWarpper(menus));
+        Page<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level, menuId);
+        Page<Map<String, Object>> wrap = new MenuWarpper(menus).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
     }
 
     /**

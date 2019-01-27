@@ -20,6 +20,7 @@ import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.system.entity.Notice;
@@ -28,6 +29,7 @@ import cn.stylefeng.guns.modular.system.warpper.NoticeWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +52,7 @@ import java.util.Map;
 @RequestMapping("/notice")
 public class NoticeController extends BaseController {
 
-    private String PREFIX = "/system/notice/";
+    private String PREFIX = "/modular/system/notice/";
 
     @Autowired
     private NoticeService noticeService;
@@ -113,8 +115,9 @@ public class NoticeController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.noticeService.list(condition);
-        return super.warpObject(new NoticeWrapper(list));
+        Page<Map<String, Object>> list = this.noticeService.list(condition);
+        Page<Map<String, Object>> wrap = new NoticeWrapper(list).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
     }
 
     /**

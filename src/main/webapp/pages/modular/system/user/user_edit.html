@@ -1,0 +1,47 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/user/user_edit.js"]}){
+<form id="userForm" lay-filter="userForm" class="layui-form model-form">
+    <input name="userId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="name" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出生日期</label>
+        <div class="layui-input-block">
+            <input id="birthday" name="birthday" placeholder="请输入生日" type="text" class="layui-input" autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="email" placeholder="请输入邮箱" type="text" class="layui-input" lay-verify="required|email" required />
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="M" title="男" checked/>
+            <input type="radio" name="sex" value="F" title="女"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="deptId" name="deptId" type="hidden">
+            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+            <input name="phone" placeholder="请输入电话" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+    </div>
+</form>
+@}

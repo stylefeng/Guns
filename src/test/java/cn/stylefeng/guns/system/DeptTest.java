@@ -49,10 +49,4 @@ public class DeptTest extends BaseJunit {
         Integer integer = deptMapper.deleteById(dept);
         assertTrue(integer > 0);
     }
-
-    @Test
-    public void listTest() {
-        List<Map<String, Object>> list = this.deptMapper.list("总公司", null);
-        assertTrue(list.size() > 0);
-    }
 }

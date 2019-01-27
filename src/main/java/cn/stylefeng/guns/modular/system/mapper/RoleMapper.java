@@ -3,6 +3,7 @@ package cn.stylefeng.guns.modular.system.mapper;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Map<String, Object>> selectRoles(@Param("condition") String condition);
+    Page<Map<String, Object>> selectRoles(@Param("page") Page page, @Param("condition") String condition);
 
     /**
      * 删除某个角色的所有权限

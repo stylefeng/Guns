@@ -10,7 +10,7 @@
         <version>2.1.1.RELEASE</version>
     </parent>
 
-    <groupId>cn.stylefeng.guns</groupId>
+    <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
     <version>1.0.0</version>
 
@@ -262,18 +262,6 @@
             <id>dev</id>
             <properties>
                 <spring.active>dev</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <spring.active>test</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>produce</id>
-            <properties>
-                <spring.active>produce</spring.active>
             </properties>
         </profile>
     </profiles>

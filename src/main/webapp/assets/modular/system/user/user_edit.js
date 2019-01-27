@@ -1,112 +1,77 @@
 /**
- * 用户详情对话框（可用于添加和修改对话框）
+ * 用户详情对话框
  */
 var UserInfoDlg = {
     data: {
-        userId: "",
-        account: "",
-        sex: "",
-        email: "",
-        name: "",
-        birthday: "",
         deptId: "",
-        deptName: "",
-        phone: "",
-        roleName: ""
+        deptName: ""
     }
 };
 
-/**
- * 关闭此对话框
- */
-UserInfoDlg.close = function () {
-    parent.layer.close(window.parent.MgrUser.layerIndex);
-};
+layui.use(['layer', 'form', 'admin', 'laydate', 'ax'], function () {
+    var $ = layui.jquery;
+    var $ax = layui.ax;
+    var form = layui.form;
+    var admin = layui.admin;
+    var laydate = layui.laydate;
+    var layer = layui.layer;
 
-/**
- * 验证表单
- */
-UserInfoDlg.validateForm = function () {
-
-    var data = UserInfoDlg.data;
-
-    if (data.account && data.name && data.deptId) {
-        return true;
-    }
-
-    if (!data.account) {
-        return "请输入账号";
-    }
-    if (!data.name) {
-        return "请输入姓名";
-    }
-    if (!data.deptId) {
-        return "请选择部门";
-    }
-};
-
-/**
- * 提交修改
- */
-UserInfoDlg.editSubmit = function () {
-
-    //注意！vue的model绑定和layui有冲突！手动赋值一下！
-    UserInfoDlg.data.birthday = Feng.getLaydate();
-
-    var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
-        window.parent.Feng.success("修改成功!");
-        if (window.parent.MgrUser !== undefined) {
-            window.parent.MgrUser.table.refresh();
-            UserInfoDlg.close();
-        }
-    }, function (data) {
-        Feng.error("修改失败!" + data.responseJSON.message + "!");
-    });
-    ajax.set(UserInfoDlg.data);
-    ajax.start();
-};
-
-$(function () {
+    // 让当前iframe弹层高度适应
+    admin.iframeAuto();
 
     //获取用户信息
     var ajax = new $ax(Feng.ctxPath + "/mgr/getUserInfo?userId=" + Feng.getUrlParam("userId"));
     var result = ajax.start();
-    UserInfoDlg.data = result.data;
+    form.val('userForm', result.data);
 
-    UserInfoDlg.app = new Vue({
-        el: '#userForm',
-        data: UserInfoDlg.data,
-        methods: {
-            submitForm: function (e) {
-                e.preventDefault();
-            },
-            showDeptSelectTree: function () {
-                var formName = encodeURIComponent("parent.UserInfoDlg.app.deptName");
-                var formId = encodeURIComponent("parent.UserInfoDlg.app.deptId");
-                var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
+    // 点击部门时
+    $('#deptName').click(function () {
+        var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
+        var formId = encodeURIComponent("parent.UserInfoDlg.data.deptId");
+        var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
 
-                layer.open({
-                    type: 2,
-                    title: '部门选择',
-                    area: ['300px', '400px'],
-                    content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl
-                });
-            },
-            ensure: function () {
-                var result = UserInfoDlg.validateForm();
-                if (result === true) {
-                    UserInfoDlg.editSubmit();
-                } else {
-                    Feng.alert(result);
-                }
-            },
-            close: function () {
-                UserInfoDlg.close();
+        layer.open({
+            type: 2,
+            title: '部门选择',
+            area: ['300px', '400px'],
+            content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
+            end: function () {
+                console.log(UserInfoDlg.data);
+                $("#deptId").val(UserInfoDlg.data.deptId);
+                $("#deptName").val(UserInfoDlg.data.deptName);
+            }
+        });
+    });
+
+    // 添加表单验证方法
+    form.verify({
+        psw: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'],
+        repsw: function (value) {
+            if (value !== $('#userForm input[name=password]').val()) {
+                return '两次密码输入不一致';
             }
         }
     });
 
-    //注意！vue的model绑定和layui有冲突！
-    Feng.initLaydate(UserInfoDlg.data.birthday);
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#birthday'
+    });
 
+    // 表单提交事件
+    form.on('submit(btnSubmit)', function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
+            Feng.success("修改成功！");
+
+            //传给上个页面，刷新table用
+            admin.putTempData('formOk', true);
+
+            //关掉对话框
+            admin.closeThisDialog();
+        }, function (data) {
+            Feng.error("修改成功！" + data.responseJSON.message)
+        });
+        ajax.set(data.field);
+        ajax.start();
+    });
 });

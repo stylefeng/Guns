@@ -1,0 +1,128 @@
+@layout("/common/_container.html",{title:"消息列表",css:["/assets/modular/frame/message.css"],js:["/assets/modular/frame/message.js"]}){
+<div class="layui-tab layui-tab-brief" style="padding: 5px 0;margin: 0;">
+    <ul class="layui-tab-title" style="text-align: center;">
+        <li class="layui-this">通知(5)</li>
+        <li>私信(12)</li>
+        <li>待办(3)</li>
+    </ul>
+    <div class="layui-tab-content" style="padding: 5px 0;">
+
+        <!-- tab1 -->
+        <div class="layui-tab-item layui-show">
+            <div class="message-list">
+                <!-- 实际项目请使用后台数据循环出来 -->
+                <a class="message-list-item" href="javascript:;">
+                    <img class="message-item-icon" src="${ctxPath}/assets/common/images/message.png">
+                    <div class="message-item-right">
+                        <h2 class="message-item-title">你收到了14份新周报</h2>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+                <a class="message-list-item" href="javascript:;">
+                    <img class="message-item-icon" src="${ctxPath}/assets/common/images/message.png">
+                    <div class="message-item-right">
+                        <h2 class="message-item-title">你收到了14份新周报</h2>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+                <a class="message-list-item" href="javascript:;">
+                    <img class="message-item-icon" src="${ctxPath}/assets/common/images/message.png">
+                    <div class="message-item-right">
+                        <h2 class="message-item-title">你收到了14份新周报</h2>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+
+                <!-- 列表为空 -->
+                <div class="message-list-empty" style="display: none;">
+                    <img src="${ctxPath}/assets/common/images/img_msg_notice.svg">
+                    <div>没有通知</div>
+                </div>
+
+            </div>
+
+            <a class="message-btn-clear" href="javascript:;">全部标记已读</a>
+
+        </div>
+
+        <!-- tab2 -->
+        <div class="layui-tab-item">
+            <div class="message-list">
+                <a class="message-list-item" href="javascript:;">
+                    <img class="message-item-icon" src="${ctxPath}/assets/common/images/head.png">
+                    <div class="message-item-right">
+                        <h2 class="message-item-title">xx评论了你</h2>
+                        <p class="message-item-text">哈哈哈哈哈哈</p>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+                <a class="message-list-item" href="javascript:;">
+                    <img class="message-item-icon" src="${ctxPath}/assets/common/images/head.png">
+                    <div class="message-item-right">
+                        <h2 class="message-item-title">xx评论了你</h2>
+                        <p class="message-item-text">哈哈哈哈哈哈</p>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+                <a class="message-list-item" href="javascript:;">
+                    <img class="message-item-icon" src="${ctxPath}/assets/common/images/head.png">
+                    <div class="message-item-right">
+                        <h2 class="message-item-title">xx评论了你</h2>
+                        <p class="message-item-text">哈哈哈哈哈哈</p>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+
+                <a id="btn-more1" class="message-btn-more" href="javascript:;">加载更多</a>
+
+                <!-- 列表为空 -->
+                <div class="message-list-empty" style="display: none;">
+                    <img src="${ctxPath}/assets/common/images/img_msg_pri.svg">
+                    <div>没有消息</div>
+                </div>
+
+            </div>
+
+            <a class="message-btn-clear" href="javascript:;">清空消息</a>
+
+        </div>
+
+        <!-- tab3 -->
+        <div class="layui-tab-item">
+            <div class="message-list">
+                <a class="message-list-item" href="javascript:;">
+                    <div class="message-item-right">
+                        <span class="layui-badge pull-right">待完成</span>
+                        <h2 class="message-item-title">你收到了14份新周报</h2>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+                <a class="message-list-item" href="javascript:;">
+                    <div class="message-item-right">
+                        <span class="layui-badge layui-bg-gray pull-right">已完成</span>
+                        <h2 class="message-item-title">你收到了14份新周报</h2>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+                <a class="message-list-item" href="javascript:;">
+                    <div class="message-item-right">
+                        <span class="layui-badge layui-bg-gray pull-right">已完成</span>
+                        <h2 class="message-item-title">你收到了14份新周报</h2>
+                        <p class="message-item-text">10个月前</p>
+                    </div>
+                </a>
+
+                <!-- 列表为空 -->
+                <div class="message-list-empty" style="display: none;">
+                    <img src="${ctxPath}/assets/common/images/img_msg_db.svg">
+                    <div>没有待办</div>
+                </div>
+
+            </div>
+
+            <a class="message-btn-clear" href="javascript:;">清空待办</a>
+
+        </div>
+    </div>
+</div>
+@}

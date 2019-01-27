@@ -162,6 +162,25 @@ public class ConstantFactory implements IConstantFactory {
     }
 
     @Override
+    public Menu getMenuByCode(String code) {
+        if (ToolUtil.isEmpty(code)) {
+            return new Menu();
+        } else if (code.equals("0")) {
+            return new Menu();
+        } else {
+            Menu param = new Menu();
+            param.setCode(code);
+            QueryWrapper<Menu> queryWrapper = new QueryWrapper<>(param);
+            Menu menu = menuMapper.selectOne(queryWrapper);
+            if (menu == null) {
+                return new Menu();
+            } else {
+                return menu;
+            }
+        }
+    }
+
+    @Override
     public String getMenuNameByCode(String code) {
         if (ToolUtil.isEmpty(code)) {
             return "";

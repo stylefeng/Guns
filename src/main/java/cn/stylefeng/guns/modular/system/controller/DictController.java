@@ -20,12 +20,14 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.dictmap.DictMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.model.DictDto;
 import cn.stylefeng.guns.modular.system.service.DictService;
 import cn.stylefeng.guns.modular.system.warpper.DictWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,7 +47,7 @@ import java.util.Map;
 @RequestMapping("/dict")
 public class DictController extends BaseController {
 
-    private String PREFIX = "/system/dict/";
+    private String PREFIX = "/modular/system/dict/";
 
     @Autowired
     private DictService dictService;
@@ -110,8 +111,9 @@ public class DictController extends BaseController {
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public Object list(String condition) {
-        List<Map<String, Object>> list = this.dictService.list(condition);
-        return super.warpObject(new DictWarpper(list));
+        Page<Map<String, Object>> list = this.dictService.list(condition);
+        Page<Map<String, Object>> warpper = new DictWarpper(list).wrap();
+        return LayuiPageFactory.createPageInfo(warpper);
     }
 
     /**

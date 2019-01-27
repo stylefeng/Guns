@@ -4,6 +4,7 @@ import cn.stylefeng.guns.core.common.node.TreeviewNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Dept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface DeptMapper extends BaseMapper<Dept> {
     /**
      * 获取所有部门列表
      */
-    List<Map<String, Object>> list(@Param("condition") String condition, @Param("deptId") String deptId);
+    Page<Map<String, Object>> list(@Param("page") Page page, @Param("condition") String condition, @Param("deptId") String deptId);
 
     /**
      * 获取所有部门树列表

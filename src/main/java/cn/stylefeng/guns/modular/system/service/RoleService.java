@@ -7,6 +7,7 @@ import cn.stylefeng.guns.core.common.constant.cache.Cache;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.util.CacheUtil;
 import cn.stylefeng.guns.modular.system.entity.Relation;
@@ -17,6 +18,7 @@ import cn.stylefeng.guns.modular.system.model.RoleDto;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -146,8 +148,9 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    public List<Map<String, Object>> selectRoles(String condition) {
-        return this.baseMapper.selectRoles(condition);
+    public Page<Map<String, Object>> selectRoles(String condition) {
+        Page page = LayuiPageFactory.defaultPage();
+        return this.baseMapper.selectRoles(page, condition);
     }
 
     /**

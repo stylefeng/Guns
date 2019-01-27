@@ -4,6 +4,7 @@ import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @return
      * @date 2017年2月12日 下午9:14:34
      */
-    List<Map<String, Object>> selectMenus(@Param("condition") String condition, @Param("level") String level, @Param("menuId") Long menuId, @Param("code") String code);
+    Page<Map<String, Object>> selectMenus(@Param("page") Page page, @Param("condition") String condition, @Param("level") String level, @Param("menuId") Long menuId, @Param("code") String code);
 
     /**
      * 根据条件查询菜单

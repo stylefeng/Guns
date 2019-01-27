@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.core.common.constant.factory;
 
 import cn.stylefeng.guns.modular.system.entity.Dict;
+import cn.stylefeng.guns.modular.system.entity.Menu;
 
 import java.util.List;
 
@@ -72,6 +73,11 @@ public interface IConstantFactory {
      * 获取菜单名称
      */
     String getMenuName(Long menuId);
+
+    /**
+     * 获取菜单通过编号
+     */
+    Menu getMenuByCode(String code);
 
     /**
      * 获取菜单名称通过编号

@@ -21,9 +21,4 @@ public class BlackBoardTest extends BaseJunit {
     @Autowired
     NoticeMapper noticeMapper;
 
-    @Test
-    public void blackBoardTest() {
-        List<Map<String, Object>> notices = noticeMapper.list(null);
-        assertTrue(notices.size() > 0);
-    }
 }

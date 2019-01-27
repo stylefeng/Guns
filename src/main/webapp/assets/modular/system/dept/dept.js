@@ -1,129 +1,137 @@
-/**
- * 部门管理初始化
- */
-var Dept = {
-    id: "DeptTable",	//表格id
-    seItem: null,		//选中的条目
-    table: null,
-    layerIndex: -1,
-    condition: {
-        name: '',
-        deptId: ''
-    }
-};
+layui.use(['table', 'admin', 'ax'], function () {
+    var $ = layui.$;
+    var table = layui.table;
+    var $ax = layui.ax;
+    var admin = layui.admin;
 
-/**
- * 初始化表格的列
- */
-Dept.initColumn = function () {
-    return [
-        {field: 'selectItem', radio: true},
-        {title: 'id', field: 'deptId', align: 'center', valign: 'middle', width: '50px'},
-        {title: '部门简称', field: 'simpleName', align: 'center', valign: 'middle', sortable: true},
-        {title: '部门全称', field: 'fullName', align: 'center', valign: 'middle', sortable: true},
-        {title: '排序', field: 'sort', align: 'center', valign: 'middle', sortable: true},
-        {title: '备注', field: 'description', align: 'center', valign: 'middle', sortable: true}];
-};
+    /**
+     * 系统管理--部门管理
+     */
+    var Dept = {
+        tableId: "deptTable"
+    };
 
-/**
- * 检查是否选中
- */
-Dept.check = function () {
-    var selected = $('#' + this.id).bootstrapTable('getSelections');
-    if (selected.length === 0) {
-        Feng.info("请先选中表格中的某一记录！");
-        return false;
-    } else {
-        Dept.seItem = selected[0];
-        return true;
-    }
-};
+    /**
+     * 初始化表格的列
+     */
+    Dept.initColumn = function () {
+        return [[
+            {type: 'checkbox'},
+            {field: 'deptId', hide: true, sort: true, title: 'id'},
+            {field: 'simpleName', sort: true, title: '部门简称'},
+            {field: 'fullName', sort: true, title: '部门全称'},
+            {field: 'sort', sort: true, title: '排序'},
+            {field: 'description', sort: true, title: '备注'},
+            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
+        ]];
+    };
 
-/**
- * 点击添加部门
- */
-Dept.openAddDept = function () {
-    this.layerIndex = layer.open({
-        type: 2,
-        title: '添加部门',
-        area: ['800px', '420px'], //宽高
-        fix: false, //不固定
-        maxmin: true,
-        content: Feng.ctxPath + '/dept/dept_add'
-    });
-};
+    /**
+     * 点击查询按钮
+     */
+    Dept.search = function () {
+        var queryData = {};
+        queryData['condition'] = $("#name").val();
+        table.reload(Dept.tableId, {where: queryData});
+    };
 
-/**
- * 打开查看部门详情
- */
-Dept.openDeptDetail = function () {
-    if (this.check()) {
-        this.layerIndex = layer.open({
+    /**
+     * 弹出添加
+     */
+    Dept.openAddDept = function () {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
             type: 2,
-            title: '部门详情',
-            area: ['800px', '420px'], //宽高
-            fix: false, //不固定
-            maxmin: true,
-            content: Feng.ctxPath + '/dept/dept_update?deptId=' + Dept.seItem.deptId
+            title: '添加部门',
+            content: Feng.ctxPath + '/dept/dept_add',
+            end: function () {
+                admin.getTempData('formOk') && table.reload(Dept.tableId);
+            }
         });
-    }
-};
+    };
 
-/**
- * 删除部门
- */
-Dept.delete = function () {
-    if (this.check()) {
+    /**
+     * 导出excel按钮
+     */
+    Dept.exportExcel = function () {
+        var checkRows = table.checkStatus(Dept.tableId);
+        if (checkRows.data.length === 0) {
+            Feng.error("请选择要导出的数据");
+        } else {
+            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
+        }
+    };
 
+    /**
+     * 点击编辑部门
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Dept.onEditDept = function (data) {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
+            type: 2,
+            title: '修改部门',
+            content: Feng.ctxPath + '/dept/dept_update?deptId=' + data.deptId,
+            end: function () {
+                admin.getTempData('formOk') && table.reload(Dept.tableId);
+            }
+        });
+    };
+
+    /**
+     * 点击删除部门
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Dept.onDeleteDept = function (data) {
         var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/dept/delete", function () {
                 Feng.success("删除成功!");
-                Dept.table.refresh();
+                table.reload(Dept.tableId);
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("deptId", Dept.seItem.deptId);
+            ajax.set("deptId", data.deptId);
             ajax.start();
         };
+        Feng.confirm("是否删除部门 " + data.simpleName + "?", operation);
+    };
 
-        Feng.confirm("是否刪除该部门?", operation);
-    }
-};
+    // 渲染表格
+    var tableResult = table.render({
+        elem: '#' + Dept.tableId,
+        url: Feng.ctxPath + '/dept/list',
+        page: true,
+        height: "full-158",
+        cellMinWidth: 100,
+        cols: Dept.initColumn()
+    });
 
-/**
- * 查询部门列表
- */
-Dept.search = function () {
-    var queryData = {};
-    queryData['condition'] = Dept.condition.name;
-    queryData['deptId'] = Dept.condition.deptId;
-    Dept.table.refresh({query: queryData});
-};
+    // 搜索按钮点击事件
+    $('#btnSearch').click(function () {
+        Dept.search();
+    });
 
-$(function () {
+    // 添加按钮点击事件
+    $('#btnAdd').click(function () {
+        Dept.openAddDept();
+    });
 
-    //获取部门树
-    var ajax = new $ax(Feng.ctxPath + "/dept/treeview");
-    var result = ajax.start();
+    // 导出excel
+    $('#btnExp').click(function () {
+        Dept.exportExcel();
+    });
 
-    $('#deptTree').treeview({
-        selectedBackColor: "#03a9f3",
-        expandIcon: 'ti-plus',
-        collapseIcon: 'ti-minus',
-        data: result,
-        onNodeSelected: function (event, data) {
-            Dept.condition.deptId = data.tags;
-            Dept.search();
+    // 工具条点击事件
+    table.on('tool(' + Dept.tableId + ')', function (obj) {
+        var data = obj.data;
+        var layEvent = obj.event;
+
+        if (layEvent === 'edit') {
+            Dept.onEditDept(data);
+        } else if (layEvent === 'delete') {
+            Dept.onDeleteDept(data);
         }
     });
-
-    Dept.app = new Vue({
-        el: '#deptPage',
-        data: Dept.condition
-    });
-
-    var defaultColunms = Dept.initColumn();
-    var table = new BSTable("DeptTable", "/dept/list", defaultColunms);
-    table.setPaginationType("client");
-    Dept.table = table.init();
 });

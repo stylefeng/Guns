@@ -22,6 +22,7 @@ import cn.stylefeng.guns.core.common.constant.dictmap.DeptDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.node.TreeviewNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Dept;
 import cn.stylefeng.guns.modular.system.model.DeptDto;
@@ -33,6 +34,7 @@ import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.treebuild.DefaultTreeBuildFactory;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +55,7 @@ import java.util.Map;
 @RequestMapping("/dept")
 public class DeptController extends BaseController {
 
-    private String PREFIX = "/system/dept/";
+    private String PREFIX = "/modular/system/dept/";
 
     @Autowired
     private DeptService deptService;
@@ -163,8 +165,9 @@ public class DeptController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(value = "condition", required = false) String condition,
                        @RequestParam(value = "deptId", required = false) String deptId) {
-        List<Map<String, Object>> list = this.deptService.list(condition, deptId);
-        return super.warpObject(new DeptWarpper(list));
+        Page<Map<String, Object>> list = this.deptService.list(condition, deptId);
+        Page<Map<String, Object>> wrap = new DeptWarpper(list).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
     }
 
     /**

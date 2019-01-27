@@ -18,8 +18,7 @@ package cn.stylefeng.guns.modular.system.controller;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
-import cn.stylefeng.guns.core.common.constant.factory.PageFactory;
-import cn.stylefeng.guns.core.common.page.PageInfoBT;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.modular.system.service.LoginLogService;
 import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -44,7 +43,7 @@ import java.util.Map;
 @RequestMapping("/loginLog")
 public class LoginLogController extends BaseController {
 
-    private static String PREFIX = "/system/log/";
+    private static String PREFIX = "/modular/system/log/";
 
     @Autowired
     private LoginLogService loginLogService;
@@ -74,13 +73,13 @@ public class LoginLogController extends BaseController {
                        @RequestParam(required = false) String logName) {
 
         //获取分页参数
-        Page page = new PageFactory().defaultPage();
+        Page page = LayuiPageFactory.defaultPage();
 
         //根据条件查询日志
         List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName);
         page.setRecords(new LogWarpper(result).wrap());
 
-        return new PageInfoBT<>(page);
+        return LayuiPageFactory.createPageInfo(page);
     }
 
     /**

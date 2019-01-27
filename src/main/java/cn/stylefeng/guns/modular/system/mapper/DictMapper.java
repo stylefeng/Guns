@@ -2,6 +2,7 @@ package cn.stylefeng.guns.modular.system.mapper;
 
 import cn.stylefeng.guns.modular.system.entity.Dict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public interface DictMapper extends BaseMapper<Dict> {
     /**
      * 查询字典列表
      */
-    List<Map<String, Object>> list(@Param("condition") String conditiion);
+    Page<Map<String, Object>> list(@Param("page") Page page, @Param("condition") String conditiion);
 
     /**
      * 根据父类编码获取词典列表

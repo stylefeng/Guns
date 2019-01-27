@@ -1,0 +1,40 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/dept/dept_add.js"]}){
+<form id="deptForm" lay-filter="deptForm" class="layui-form model-form">
+    <input name="deptId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门名称<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="simpleName" placeholder="请输入部门名称" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上级名称<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="pid" name="pid" type="hidden">
+            <input id="pName" name="pName" placeholder="请输入上级名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">部门全称<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="fullName" name="fullName" placeholder="请输入部门全称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <input name="description" placeholder="请输入备注" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input name="sort" placeholder="请输入排序" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+    </div>
+</form>
+@}

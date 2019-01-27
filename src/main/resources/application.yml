@@ -1,7 +1,6 @@
 server:
   port: 80
-  tomcat:
-    max-http-header-size: 10240     #单位：字节
+  max-http-header-size: 10240
 
 guns:
   swagger-open: true                #是否开启swagger (true/false)
@@ -18,12 +17,12 @@ spring:
     active: @spring.active@
   mvc:
     view:
-      prefix: /WEB-INF
+      prefix: /pages
   devtools:
     restart:
       enabled: false
       additional-paths: src/main/java
-      exclude: assets/**,WEB-INF/**
+      exclude: assets/**,pages/**
   servlet:
     multipart:
       max-request-size: 100MB

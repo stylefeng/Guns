@@ -1,0 +1,46 @@
+@layout("/common/_container.html",{js:["/assets/modular/system/log/log.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">操作日志</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="beginTime" class="layui-input" type="text" placeholder="开始时间"/>
+                            </div>
+                            <div class="layui-inline">
+                                <input id="endTime" class="layui-input" type="text" placeholder="结束时间"/>
+                            </div>
+                            <div class="layui-inline">
+                                <input id="logName" class="layui-input" type="text" placeholder="日志名称"/>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="logType">
+                                    <option value="">类型</option>
+                                    <option value="0">全部</option>
+                                    <option value="1">业务日志</option>
+                                    <option value="2">异常日志</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                <button id="btnClean" class="layui-btn icon-btn layui-btn-danger"><i class="layui-icon">&#xe67d;</i>清空日志</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="logTable" lay-filter="logTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看详情</a>
+</script>
+@}

@@ -1,0 +1,7 @@
+@layout("/common/_container.html",{bg:"bg-white",title:"概览"}){
+<div style="padding: 20px;">
+    @for(notice in noticeList){
+    <blockquote class="layui-elem-quote">${notice.content}</blockquote>
+    @}
+</div>
+@}

@@ -15,10 +15,12 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.core.common.constant.DefaultAvatar;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.modular.system.entity.FileInfo;
@@ -58,13 +60,73 @@ import java.util.Map;
 @Slf4j
 public class SystemController extends BaseController {
 
-    private String PREFIX = "/common/";
-
     @Autowired
     private UserService userService;
 
     @Autowired
     private FileInfoService fileInfoService;
+
+    /**
+     * 主页面
+     *
+     * @author fengshuonan
+     * @Date 2019/1/24 3:38 PM
+     */
+    @RequestMapping("/welcome")
+    public String console() {
+        return "/modular/frame/welcome.html";
+    }
+
+    /**
+     * 主题页面
+     *
+     * @author fengshuonan
+     * @Date 2019/1/24 3:38 PM
+     */
+    @RequestMapping("/theme")
+    public String theme() {
+        return "/modular/frame/theme.html";
+    }
+
+    /**
+     * 跳转到修改密码界面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
+     */
+    @RequestMapping("/user_chpwd")
+    public String chPwd() {
+        return "/modular/frame/password.html";
+    }
+
+    /**
+     * 个人消息列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
+     */
+    @RequestMapping("/message")
+    public String message() {
+        return "/modular/frame/message.html";
+    }
+
+    /**
+     * 跳转到查看用户详情页面
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
+     */
+    @RequestMapping("/user_info")
+    public String userInfo(Model model) {
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.userService.getById(userId);
+
+        model.addAllAttributes(BeanUtil.beanToMap(user));
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
+        LogObjectHolder.me().set(user);
+        return "/modular/frame/user_info.html";
+    }
 
     /**
      * 通用的树列表选择器
@@ -89,7 +151,7 @@ public class SystemController extends BaseController {
             throw new RequestEmptyException("请求数据不完整！");
         }
 
-        return PREFIX + "common_tree_dlg.html";
+        return "/common/tree_dlg.html";
     }
 
     /**
