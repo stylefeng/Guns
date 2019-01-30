@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.core.common.page;
 
 import cn.stylefeng.roses.core.util.HttpContext;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +53,7 @@ public class LayuiPageFactory {
      * @author fengshuonan
      * @Date 2019/1/25 22:14
      */
-    public static LayuiPageInfo createPageInfo(Page page) {
+    public static LayuiPageInfo createPageInfo(IPage page) {
         LayuiPageInfo result = new LayuiPageInfo();
         result.setCount(page.getTotal());
         result.setData(page.getRecords());
