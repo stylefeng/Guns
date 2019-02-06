@@ -15,7 +15,6 @@
  */
 package cn.stylefeng.guns.core.shiro;
 
-import cn.stylefeng.guns.core.common.node.MenuNode;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -76,11 +75,5 @@ public class ShiroUser implements Serializable {
      * 角色名称集
      */
     private List<String> roleNames;
-
-    /**
-     * 用户所能看到的菜单列表
-     */
-    private List<MenuNode> menus;
-
 
 }

@@ -15,13 +15,16 @@
  */
 package cn.stylefeng.guns.modular.system.controller;
 
+import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.log.LogManager;
 import cn.stylefeng.guns.core.log.factory.LogTaskFactory;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.shiro.ShiroUser;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +42,9 @@ import static cn.stylefeng.roses.core.util.HttpContext.getIp;
  */
 @Controller
 public class LoginController extends BaseController {
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 跳转到主页
@@ -59,7 +65,8 @@ public class LoginController extends BaseController {
             return "/login.html";
         }
 
-        model.addAttribute("menus", user.getMenus());
+        List<MenuNode> menus = userService.getUserMenuNodes(roleList);
+        model.addAttribute("menus", menus);
 
         return "/index.html";
     }

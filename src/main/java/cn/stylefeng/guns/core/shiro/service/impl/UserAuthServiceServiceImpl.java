@@ -91,9 +91,6 @@ public class UserAuthServiceServiceImpl implements UserAuthService {
         shiroUser.setRoleList(roleList);
         shiroUser.setRoleNames(roleNameList);
 
-        //获取用户拥有的菜单
-        shiroUser.setMenus(userService.getUserMenuNodes(roleList));
-
         return shiroUser;
     }
 

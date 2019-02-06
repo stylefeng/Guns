@@ -7,6 +7,7 @@ import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.MenuNode;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
+import cn.stylefeng.guns.core.listener.ConfigListener;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.mapper.MenuMapper;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
@@ -183,7 +184,14 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
      * @date 2017年2月19日 下午10:35:40
      */
     public List<MenuNode> getMenusByRoleIds(List<Long> roleIds) {
-        return this.baseMapper.getMenusByRoleIds(roleIds);
+        List<MenuNode> menus = this.baseMapper.getMenusByRoleIds(roleIds);
+
+        //给所有的菜单url加上ctxPath
+        for (MenuNode menuItem : menus) {
+            menuItem.setUrl(ConfigListener.getConf().get("contextPath") + menuItem.getUrl());
+        }
+
+        return menus;
     }
 
     /**

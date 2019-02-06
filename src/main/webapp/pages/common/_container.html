@@ -31,7 +31,7 @@
     @if(isNotEmpty(css)){
         @for(item in css){
             @if(strutil.startWith(item,"/")){
-                @item = item + ctxPath;
+                @item = ctxPath + item;
             @}
             <link href="${item}" rel="stylesheet" type="text/css" />
         @}
