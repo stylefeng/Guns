@@ -46,14 +46,22 @@
 @/* 正文 */
 ${layoutContent}
 
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "",
+        addCtx: function (ctx) {
+            if (this.ctxPath === "") {
+                this.ctxPath = ctx;
+            }
+        }
+    };
+    Feng.addCtx("${ctxPath}");
+</script>
+
 @/* js和业务用的js数组 */
 <script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.js"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
-
-@/* 加入contextPath属性和session超时的配置 */
-<script type="text/javascript">
-    Feng.addCtx("${ctxPath}");
-</script>
 
 <!--其他插件js-->
 @if(isNotEmpty(plugins)){

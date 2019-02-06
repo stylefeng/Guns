@@ -32,14 +32,20 @@
 <!-- 加载动画，移除位置在common.js中 -->
 @include("/common/loading.html"){}
 
-<!-- js部分 -->
-<script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.js"></script>
-<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
-
-<!-- 加入contextPath属性和session超时的配置  -->
+@/* 加入contextPath属性和session超时的配置 */
 <script type="text/javascript">
+    var Feng = {
+        ctxPath: "",
+        addCtx: function (ctx) {
+            if (this.ctxPath === "") {
+                this.ctxPath = ctx;
+            }
+        }
+    };
     Feng.addCtx("${ctxPath}");
 </script>
+<script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.js"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
 
 <script>
     layui.use(['layer', 'element', 'admin', 'index'], function () {
