@@ -9,7 +9,7 @@
             </li>
             @}else{
             <li class="layui-nav-item">
-                <a><i class="layui-icon layui-icon-set"></i>&emsp;<cite>${menu.name}</cite></a>
+                <a><i class="${menu.icon}"></i>&emsp;<cite>${menu.name}</cite></a>
                 <dl class="layui-nav-child">
                 @for(subMenu in menu.children){
                     @if(tool.isEmpty(subMenu.children)){
