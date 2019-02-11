@@ -15,9 +15,10 @@
  */
 package cn.stylefeng.guns.modular.system.warpper;
 
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.modular.system.entity.Dict;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
-import cn.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -25,39 +26,27 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 菜单列表的包装类
+ * 字典列表的包装
  *
  * @author fengshuonan
- * @date 2017年2月19日15:07:29
+ * @date 2017年4月25日 18:10:31
  */
-public class MenuWarpper extends BaseControllerWrapper {
+public class DictWrapper extends BaseControllerWrapper {
 
-    public MenuWarpper(Map<String, Object> single) {
-        super(single);
-    }
-
-    public MenuWarpper(List<Map<String, Object>> multi) {
-        super(multi);
-    }
-
-    public MenuWarpper(Page<Map<String, Object>> page) {
+    public DictWrapper(Page<Map<String, Object>> page) {
         super(page);
-    }
-
-    public MenuWarpper(PageResult<Map<String, Object>> pageResult) {
-        super(pageResult);
     }
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        map.put("statusName", ConstantFactory.me().getMenuStatusName((String) map.get("status")));
-
-        String menuFlag = (String) map.get("menuFlag");
-        for (YesOrNotEnum value : YesOrNotEnum.values()) {
-            if(value.name().equals(menuFlag)){
-                map.put("isMenuName", value.getDesc());
+        StringBuilder detail = new StringBuilder();
+        Long id = Long.valueOf(map.get("dictId").toString());
+        List<Dict> dicts = ConstantFactory.me().findInDict(id);
+        if (dicts != null) {
+            for (Dict dict : dicts) {
+                detail.append(dict.getCode()).append(":").append(dict.getName()).append(",");
             }
+            map.put("detail", StrUtil.removeSuffix(detail.toString(), ","));
         }
     }
-
 }

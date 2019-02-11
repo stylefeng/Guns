@@ -23,7 +23,7 @@ import cn.stylefeng.guns.core.common.constant.state.BizLogType;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.modular.system.entity.OperationLog;
 import cn.stylefeng.guns.modular.system.service.OperationLogService;
-import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
+import cn.stylefeng.guns.modular.system.warpper.LogWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
@@ -83,7 +83,7 @@ public class LogController extends BaseController {
         //根据条件查询操作日志
         List<Map<String, Object>> result = operationLogService.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType));
 
-        page.setRecords(new LogWarpper(result).wrap());
+        page.setRecords(new LogWrapper(result).wrap());
 
         return LayuiPageFactory.createPageInfo(page);
     }
@@ -100,7 +100,7 @@ public class LogController extends BaseController {
     public Object detail(@PathVariable Long id) {
         OperationLog operationLog = operationLogService.getById(id);
         Map<String, Object> stringObjectMap = BeanUtil.beanToMap(operationLog);
-        return super.warpObject(new LogWarpper(stringObjectMap));
+        return super.warpObject(new LogWrapper(stringObjectMap));
     }
 
     /**

@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
+import cn.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -24,35 +25,39 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 用户管理的包装类
+ * 菜单列表的包装类
  *
  * @author fengshuonan
- * @date 2017年2月13日 下午10:47:03
+ * @date 2017年2月19日15:07:29
  */
-public class UserWarpper extends BaseControllerWrapper {
+public class MenuWrapper extends BaseControllerWrapper {
 
-    public UserWarpper(Map<String, Object> single) {
+    public MenuWrapper(Map<String, Object> single) {
         super(single);
     }
 
-    public UserWarpper(List<Map<String, Object>> multi) {
+    public MenuWrapper(List<Map<String, Object>> multi) {
         super(multi);
     }
 
-    public UserWarpper(Page<Map<String, Object>> page) {
+    public MenuWrapper(Page<Map<String, Object>> page) {
         super(page);
     }
 
-    public UserWarpper(PageResult<Map<String, Object>> pageResult) {
+    public MenuWrapper(PageResult<Map<String, Object>> pageResult) {
         super(pageResult);
     }
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        map.put("sexName", ConstantFactory.me().getSexName((String) map.get("sex")));
-        map.put("roleName", ConstantFactory.me().getRoleName((String) map.get("roleId")));
-        map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptId")));
-        map.put("statusName", ConstantFactory.me().getStatusName((String) map.get("status")));
+        map.put("statusName", ConstantFactory.me().getMenuStatusName((String) map.get("status")));
+
+        String menuFlag = (String) map.get("menuFlag");
+        for (YesOrNotEnum value : YesOrNotEnum.values()) {
+            if(value.name().equals(menuFlag)){
+                map.put("isMenuName", value.getDesc());
+            }
+        }
     }
 
 }

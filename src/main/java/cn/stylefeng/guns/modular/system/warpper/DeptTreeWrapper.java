@@ -25,7 +25,7 @@ import java.util.List;
  * @author fengshuonan
  * @date 2017年4月25日 18:10:31
  */
-public class DeptTreeWarpper {
+public class DeptTreeWrapper {
 
     public static void clearNull(List<TreeviewNode> list) {
         if (list == null) {

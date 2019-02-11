@@ -24,7 +24,7 @@ import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.model.DictDto;
 import cn.stylefeng.guns.modular.system.service.DictService;
-import cn.stylefeng.guns.modular.system.warpper.DictWarpper;
+import cn.stylefeng.guns.modular.system.warpper.DictWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -112,7 +112,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public Object list(String condition) {
         Page<Map<String, Object>> list = this.dictService.list(condition);
-        Page<Map<String, Object>> warpper = new DictWarpper(list).wrap();
+        Page<Map<String, Object>> warpper = new DictWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(warpper);
     }
 

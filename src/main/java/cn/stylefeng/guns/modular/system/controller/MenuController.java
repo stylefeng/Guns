@@ -29,7 +29,7 @@ import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
 import cn.stylefeng.guns.modular.system.service.MenuService;
 import cn.stylefeng.guns.modular.system.service.UserService;
-import cn.stylefeng.guns.modular.system.warpper.MenuWarpper;
+import cn.stylefeng.guns.modular.system.warpper.MenuWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -141,7 +141,7 @@ public class MenuController extends BaseController {
                        @RequestParam(required = false) String level,
                        @RequestParam(required = false) Long menuId) {
         Page<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level, menuId);
-        Page<Map<String, Object>> wrap = new MenuWarpper(menus).wrap();
+        Page<Map<String, Object>> wrap = new MenuWrapper(menus).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
     }
 

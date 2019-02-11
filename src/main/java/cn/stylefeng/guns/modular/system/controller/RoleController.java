@@ -30,7 +30,7 @@ import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.model.RoleDto;
 import cn.stylefeng.guns.modular.system.service.RoleService;
 import cn.stylefeng.guns.modular.system.service.UserService;
-import cn.stylefeng.guns.modular.system.warpper.RoleWarpper;
+import cn.stylefeng.guns.modular.system.warpper.RoleWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -131,7 +131,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Object list(@RequestParam(value = "roleName", required = false) String roleName) {
         Page<Map<String, Object>> roles = this.roleService.selectRoles(roleName);
-        Page<Map<String, Object>> wrap = new RoleWarpper(roles).wrap();
+        Page<Map<String, Object>> wrap = new RoleWrapper(roles).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
     }
 

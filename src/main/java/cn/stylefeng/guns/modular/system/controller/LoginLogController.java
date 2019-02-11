@@ -20,7 +20,7 @@ import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.modular.system.service.LoginLogService;
-import cn.stylefeng.guns.modular.system.warpper.LogWarpper;
+import cn.stylefeng.guns.modular.system.warpper.LogWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
@@ -77,7 +77,7 @@ public class LoginLogController extends BaseController {
 
         //根据条件查询日志
         List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName);
-        page.setRecords(new LogWarpper(result).wrap());
+        page.setRecords(new LogWrapper(result).wrap());
 
         return LayuiPageFactory.createPageInfo(page);
     }

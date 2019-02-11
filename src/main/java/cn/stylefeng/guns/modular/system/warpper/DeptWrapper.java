@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -24,33 +25,37 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 角色列表的包装类
+ * 部门列表的包装
  *
  * @author fengshuonan
- * @date 2017年2月19日10:59:02
+ * @date 2017年4月25日 18:10:31
  */
-public class RoleWarpper extends BaseControllerWrapper {
+public class DeptWrapper extends BaseControllerWrapper {
 
-    public RoleWarpper(Map<String, Object> single) {
+    public DeptWrapper(Map<String, Object> single) {
         super(single);
     }
 
-    public RoleWarpper(List<Map<String, Object>> multi) {
+    public DeptWrapper(List<Map<String, Object>> multi) {
         super(multi);
     }
 
-    public RoleWarpper(Page<Map<String, Object>> page) {
+    public DeptWrapper(Page<Map<String, Object>> page) {
         super(page);
     }
 
-    public RoleWarpper(PageResult<Map<String, Object>> pageResult) {
+    public DeptWrapper(PageResult<Map<String, Object>> pageResult) {
         super(pageResult);
     }
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        map.put("pName", ConstantFactory.me().getSingleRoleName((Long) map.get("pid")));
-        map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptId")));
-    }
+        Long pid = (Long) map.get("pid");
 
+        if (ToolUtil.isEmpty(pid) || pid.equals(0)) {
+            map.put("pName", "--");
+        } else {
+            map.put("pName", ConstantFactory.me().getDeptName(pid));
+        }
+    }
 }

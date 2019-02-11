@@ -15,9 +15,7 @@
  */
 package cn.stylefeng.guns.modular.system.warpper;
 
-import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
-import cn.stylefeng.guns.modular.system.entity.Dict;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -26,27 +24,33 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 字典列表的包装
+ * 角色列表的包装类
  *
  * @author fengshuonan
- * @date 2017年4月25日 18:10:31
+ * @date 2017年2月19日10:59:02
  */
-public class DictWarpper extends BaseControllerWrapper {
+public class RoleWrapper extends BaseControllerWrapper {
 
-    public DictWarpper(Page<Map<String, Object>> page) {
+    public RoleWrapper(Map<String, Object> single) {
+        super(single);
+    }
+
+    public RoleWrapper(List<Map<String, Object>> multi) {
+        super(multi);
+    }
+
+    public RoleWrapper(Page<Map<String, Object>> page) {
         super(page);
+    }
+
+    public RoleWrapper(PageResult<Map<String, Object>> pageResult) {
+        super(pageResult);
     }
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        StringBuilder detail = new StringBuilder();
-        Long id = Long.valueOf(map.get("dictId").toString());
-        List<Dict> dicts = ConstantFactory.me().findInDict(id);
-        if (dicts != null) {
-            for (Dict dict : dicts) {
-                detail.append(dict.getCode()).append(":").append(dict.getName()).append(",");
-            }
-            map.put("detail", StrUtil.removeSuffix(detail.toString(), ","));
-        }
+        map.put("pName", ConstantFactory.me().getSingleRoleName((Long) map.get("pid")));
+        map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptId")));
     }
+
 }

@@ -27,8 +27,8 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Dept;
 import cn.stylefeng.guns.modular.system.model.DeptDto;
 import cn.stylefeng.guns.modular.system.service.DeptService;
-import cn.stylefeng.guns.modular.system.warpper.DeptTreeWarpper;
-import cn.stylefeng.guns.modular.system.warpper.DeptWarpper;
+import cn.stylefeng.guns.modular.system.warpper.DeptTreeWrapper;
+import cn.stylefeng.guns.modular.system.warpper.DeptWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.treebuild.DefaultTreeBuildFactory;
@@ -134,7 +134,7 @@ public class DeptController extends BaseController {
         List<TreeviewNode> results = factory.doTreeBuild(treeviewNodes);
 
         //把子节点为空的设为null
-        DeptTreeWarpper.clearNull(results);
+        DeptTreeWrapper.clearNull(results);
 
         return results;
     }
@@ -166,7 +166,7 @@ public class DeptController extends BaseController {
     public Object list(@RequestParam(value = "condition", required = false) String condition,
                        @RequestParam(value = "deptId", required = false) String deptId) {
         Page<Map<String, Object>> list = this.deptService.list(condition, deptId);
-        Page<Map<String, Object>> wrap = new DeptWarpper(list).wrap();
+        Page<Map<String, Object>> wrap = new DeptWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
     }
 

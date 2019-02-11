@@ -29,13 +29,13 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年4月5日22:56:24
  */
-public class LogWarpper extends BaseControllerWrapper {
+public class LogWrapper extends BaseControllerWrapper {
 
-    public LogWarpper(Map<String, Object> single) {
+    public LogWrapper(Map<String, Object> single) {
         super(single);
     }
 
-    public LogWarpper(List<Map<String, Object>> multi) {
+    public LogWrapper(List<Map<String, Object>> multi) {
         super(multi);
     }
 

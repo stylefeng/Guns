@@ -17,7 +17,6 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
-import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -25,37 +24,35 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 部门列表的包装
+ * 用户管理的包装类
  *
  * @author fengshuonan
- * @date 2017年4月25日 18:10:31
+ * @date 2017年2月13日 下午10:47:03
  */
-public class DeptWarpper extends BaseControllerWrapper {
+public class UserWrapper extends BaseControllerWrapper {
 
-    public DeptWarpper(Map<String, Object> single) {
+    public UserWrapper(Map<String, Object> single) {
         super(single);
     }
 
-    public DeptWarpper(List<Map<String, Object>> multi) {
+    public UserWrapper(List<Map<String, Object>> multi) {
         super(multi);
     }
 
-    public DeptWarpper(Page<Map<String, Object>> page) {
+    public UserWrapper(Page<Map<String, Object>> page) {
         super(page);
     }
 
-    public DeptWarpper(PageResult<Map<String, Object>> pageResult) {
+    public UserWrapper(PageResult<Map<String, Object>> pageResult) {
         super(pageResult);
     }
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        Long pid = (Long) map.get("pid");
-
-        if (ToolUtil.isEmpty(pid) || pid.equals(0)) {
-            map.put("pName", "--");
-        } else {
-            map.put("pName", ConstantFactory.me().getDeptName(pid));
-        }
+        map.put("sexName", ConstantFactory.me().getSexName((String) map.get("sex")));
+        map.put("roleName", ConstantFactory.me().getRoleName((String) map.get("roleId")));
+        map.put("deptName", ConstantFactory.me().getDeptName((Long) map.get("deptId")));
+        map.put("statusName", ConstantFactory.me().getStatusName((String) map.get("status")));
     }
+
 }

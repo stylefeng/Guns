@@ -31,7 +31,7 @@ import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.factory.UserFactory;
 import cn.stylefeng.guns.modular.system.model.UserDto;
 import cn.stylefeng.guns.modular.system.service.UserService;
-import cn.stylefeng.guns.modular.system.warpper.UserWarpper;
+import cn.stylefeng.guns.modular.system.warpper.UserWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
@@ -191,12 +191,12 @@ public class UserMgrController extends BaseController {
 
         if (ShiroKit.isAdmin()) {
             Page<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptId);
-            Page wrapped = new UserWarpper(users).wrap();
+            Page wrapped = new UserWrapper(users).wrap();
             return LayuiPageFactory.createPageInfo(wrapped);
         } else {
             DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
             Page<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptId);
-            Page wrapped = new UserWarpper(users).wrap();
+            Page wrapped = new UserWrapper(users).wrap();
             return LayuiPageFactory.createPageInfo(wrapped);
         }
     }
