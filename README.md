@@ -53,7 +53,7 @@ Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rose
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
 | Guns旗舰版 v2.0 | 基于layui的全新旗舰版，demo地址：http://demo.stylefeng.cn | https://gitee.com/stylefeng/guns/tree/ultimate-v2.0/ |
-| Guns旗舰版 v1.1 | 升级spring boot和mybatis-plus版本 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.1/ |
+| Guns旗舰版 v1.1 | 全面升级spring boot和mybatis-plus版本 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.1/ |
 | Guns旗舰版 v1.0 | 全新的UI界面，采用bootstrap 4 + vue，全新的规范化的数据库设计 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.0/ |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 | Guns v4.2 | spring boot升级到了2.0，大大简化了前端的体积，升级了一些组件到最新版本 | https://gitee.com/stylefeng/guns/tree/v4.2 |
