@@ -16,7 +16,7 @@ layui.define(['layer', 'admin', 'element', 'contextMenu'], function (exports) {
     var navFilter = 'admin-side-nav';
 
     var index = {
-        pageTabs: true,  // 是否开启多标签
+        pageTabs: false,  // 是否开启多标签
         maxTabNum: 20,  // 最多打开多少个tab
         openTabCtxMenu: true,  // 是否开启Tab右键菜单
         cacheTab: cacheTab == undefined ? true : cacheTab,  // 是否记忆打开的选项卡
