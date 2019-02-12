@@ -66,6 +66,15 @@
                                class="layui-input">
                     </div>
                 </div>
+                <div class="layui-form-item" onclick="showTip()">
+                    <label class="layui-form-label" id="rememberMeTip"><i class="layui-icon layui-icon-ok"></i></label>
+                    <div class="layui-input-block">
+                        <select name="remember" lay-verify="required">
+                            <option value="on">是</option>
+                            <option value="off">否</option>
+                        </select>
+                    </div>
+                </div>
                 <!--<div class="layui-form-item">-->
                 <!--<label class="layui-form-label"><i class="layui-icon layui-icon-vercode"></i></label>-->
                 <!--<div class="layui-input-block">-->
@@ -116,5 +125,13 @@
 </script>
 <script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.all.js"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
+
+<script>
+    function showTip() {
+        layer.tips('记住我？', '#rememberMeTip', {
+            tips: 4
+        });
+    }
+</script>
 </body>
 </html>
