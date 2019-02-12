@@ -30,7 +30,9 @@
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                @if(shiro.hasPermission("/log/delLog")){
                                 <button id="btnClean" class="layui-btn icon-btn layui-btn-danger"><i class="layui-icon">&#xe67d;</i>清空日志</button>
+                                @}
                             </div>
                         </div>
                     </div>
