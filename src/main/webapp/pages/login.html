@@ -53,26 +53,22 @@
             </div>
             <form class="layui-card-body layui-form layui-form-pane" action="${ctxPath}/login" method="post">
                 <div class="layui-form-item">
-                    <label class="layui-form-label"><i class="layui-icon layui-icon-username"></i></label>
+                    <label class="layui-form-label">账号</label>
                     <div class="layui-input-block">
-                        <input name="username" type="text" lay-verify="required" placeholder="账号"
-                               class="layui-input">
+                        <input name="username" type="text" lay-verify="required" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label"><i class="layui-icon layui-icon-password"></i></label>
+                    <label class="layui-form-label">密码</label>
                     <div class="layui-input-block">
-                        <input name="password" type="password" lay-verify="required" placeholder="密码"
-                               class="layui-input">
+                        <input name="password" type="password" lay-verify="required" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item" onclick="showTip()">
-                    <label class="layui-form-label" id="rememberMeTip"><i class="layui-icon layui-icon-ok"></i></label>
+                <div class="layui-form-item" pane="">
+                    <label class="layui-form-label">记住我</label>
                     <div class="layui-input-block">
-                        <select name="remember" lay-verify="required">
-                            <option value="on">是</option>
-                            <option value="off">否</option>
-                        </select>
+                        <input type="radio" name="remember" value="on" title="是">
+                        <input type="radio" name="remember" value="off" title="否" checked="">
                     </div>
                 </div>
                 <!--<div class="layui-form-item">-->
@@ -126,12 +122,5 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.all.js"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
 
-<script>
-    function showTip() {
-        layer.tips('记住我？', '#rememberMeTip', {
-            tips: 4
-        });
-    }
-</script>
 </body>
 </html>

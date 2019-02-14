@@ -34,11 +34,11 @@ body {
 }
 
 .login-body .layui-form-pane .layui-form-label {
-    width: 48px;
+    width: 78px;
 }
 
 .login-body .layui-form-pane .layui-input-block {
-    margin-left: 48px;
+    margin-left: 78px;
 }
 
 .login-body .login-captcha {
