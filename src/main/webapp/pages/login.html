@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item" pane="">
-                    <label class="layui-form-label">记住我</label>
+                    <label class="layui-form-label" lay-tips="7天内免登陆">记住我</label>
                     <div class="layui-input-block">
                         <input type="radio" name="remember" value="on" title="是">
                         <input type="radio" name="remember" value="off" title="否" checked="">
@@ -90,7 +90,7 @@
                     <a href="javascript:;" class="layui-link pull-right">忘记密码？</a>
                 </div>
                 <div class="layui-form-item">
-                    <button lay-filter="login-submit" class="layui-btn layui-btn-fluid" type="submit">登 录</button>
+                    <button lay-filter="login-submit" class="layui-btn layui-btn-fluid" lay-submit>登 录</button>
                 </div>
                 <div class="layui-form-item login-other">
                     <label>第三方登录</label>
@@ -119,8 +119,33 @@
     };
     Feng.addCtx("${ctxPath}");
 </script>
-<script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.js"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
+
+<script>
+    layui.use(['layer', 'form'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+
+        // 表单提交
+        form.on('submit(login-submit)', function (obj) {
+            return true;
+        });
+
+        // 图形验证码
+        // $('.login-captcha').click(function () {
+        //     this.src = this.src + '?t=' + (new Date).getTime();
+        // });
+
+        var errorMsg = "${tips!}";
+        if (errorMsg) {
+            layer.msg(errorMsg, {icon: 5, anim: 6});
+        }
+
+    });
+</script>
+
 
 </body>
 </html>
