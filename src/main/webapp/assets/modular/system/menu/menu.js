@@ -173,11 +173,6 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
         Menu.openAddMenu();
     });
 
-    // 导出excel
-    $('#btnExp').click(function () {
-        Menu.exportExcel();
-    });
-
     // 工具条点击事件
     table.on('tool(' + Menu.tableId + ')', function (obj) {
         var data = obj.data;
