@@ -144,6 +144,12 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
 
     // 渲染表格
     var tableResult = Menu.initTable(Menu.tableId);
+    $('#expandAll').click(function () {
+        treetable.expandAll('#' + Menu.tableId);
+    });
+    $('#foldAll').click(function () {
+        treetable.foldAll('#' + Menu.tableId);
+    });
 
     //渲染时间选择框
     laydate.render({
