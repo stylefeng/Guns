@@ -52,10 +52,9 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
      */
     Menu.search = function () {
         var queryData = {};
-        queryData['menuId'] = Menu.condition.menuId;
         queryData['menuName'] = $("#menuName").val();
         queryData['level'] = $("#level").val();
-        table.reload(Menu.tableId, {where: queryData});
+        Menu.initTable(Menu.tableId, queryData);
     };
 
     /**
@@ -68,7 +67,7 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
             title: '添加菜单',
             content: Feng.ctxPath + '/menu/menu_add',
             end: function () {
-                admin.getTempData('formOk') && table.reload(Menu.tableId);
+                admin.getTempData('formOk') && Menu.initTable(Menu.tableId);
             }
         });
     };
@@ -97,7 +96,7 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
             title: '编辑菜单',
             content: Feng.ctxPath + '/menu/menu_edit?menuId=' + data.menuId,
             end: function () {
-                admin.getTempData('formOk') && table.reload(Menu.tableId);
+                admin.getTempData('formOk') && Menu.initTable(Menu.tableId);
             }
         });
     };
@@ -112,7 +111,7 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
             var ajax = new $ax(Feng.ctxPath + "/menu/remove", function () {
                 Feng.success("删除成功!");
                 Menu.condition.menuId = "";
-                table.reload(Menu.tableId);
+                Menu.initTable(Menu.tableId);
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
@@ -122,21 +121,29 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
         Feng.confirm("是否删除菜单" + data.name + "?", operation);
     };
 
+    /**
+     * 初始化表格
+     */
+    Menu.initTable = function (menuId, data) {
+        return treetable.render({
+            elem: '#' + menuId,
+            url: Feng.ctxPath + '/menu/listTree',
+            where: data,
+            page: false,
+            height: "full-158",
+            cellMinWidth: 100,
+            cols: Menu.initColumn(),
+            treeColIndex: 2,
+            treeSpid: "0",
+            treeIdName: 'code',
+            treePidName: 'pcode',
+            treeDefaultClose: false,
+            treeLinkage: true
+        });
+    };
+
     // 渲染表格
-    var tableResult = treetable.render({
-        elem: '#' + Menu.tableId,
-        url: Feng.ctxPath + '/menu/listTree',
-        page: false,
-        height: "full-158",
-        cellMinWidth: 100,
-        cols: Menu.initColumn(),
-        treeColIndex: 2,
-        treeSpid: "0",
-        treeIdName: 'code',
-        treePidName: 'pcode',
-        treeDefaultClose: false,
-        treeLinkage: true
-    });
+    var tableResult = Menu.initTable(Menu.tableId);
 
     //渲染时间选择框
     laydate.render({
