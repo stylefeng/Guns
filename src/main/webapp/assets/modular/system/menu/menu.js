@@ -1,11 +1,12 @@
-layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], function () {
+layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetable'], function () {
     var layer = layui.layer;
     var form = layui.form;
-    var table = layui.table;
     var $ZTree = layui.ztree;
     var $ax = layui.ax;
     var laydate = layui.laydate;
     var admin = layui.admin;
+    var table = layui.table;
+    var treetable = layui.treetable;
 
     /**
      * 系统管理--菜单管理
@@ -24,7 +25,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
      */
     Menu.initColumn = function () {
         return [[
-            {type: 'checkbox'},
+            {type: 'numbers'},
             {field: 'menuId', hide: true, sort: true, title: 'id'},
             {field: 'name', sort: true, title: '菜单名称'},
             {field: 'code', sort: true, title: '菜单编号'},
@@ -122,13 +123,19 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
     };
 
     // 渲染表格
-    var tableResult = table.render({
+    var tableResult = treetable.render({
         elem: '#' + Menu.tableId,
-        url: Feng.ctxPath + '/menu/list',
-        page: true,
+        url: Feng.ctxPath + '/menu/listTree',
+        page: false,
         height: "full-158",
         cellMinWidth: 100,
-        cols: Menu.initColumn()
+        cols: Menu.initColumn(),
+        treeColIndex: 2,
+        treeSpid: "0",
+        treeIdName: 'code',
+        treePidName: 'pcode',
+        treeDefaultClose: false,
+        treeLinkage: true
     });
 
     //渲染时间选择框

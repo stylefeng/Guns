@@ -182,4 +182,17 @@
         order by LEVELS,m1.SORT asc
     </select>
 
+    <select id="selectMenuTree" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where STATUS = 'ENABLE'
+        <if test="condition != null and condition != ''">
+            and (NAME like CONCAT('%',#{condition},'%') or CODE like CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="level != null and level != ''">
+            and LEVELS = #{level}
+        </if>
+    </select>
+
 </mapper>

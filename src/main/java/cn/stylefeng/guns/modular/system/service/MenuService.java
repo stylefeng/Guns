@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -238,6 +239,31 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
         }
 
         return resultMenu;
+    }
+
+    /**
+     * 获取菜单树形列表
+     *
+     * @author fengshuonan
+     * @Date 2019/2/23 22:02
+     */
+    public List<Map<String, Object>> selectMenuTree(String condition, String level) {
+        List<Map<String, Object>> maps = this.baseMapper.selectMenuTree(condition, level);
+
+        if(maps == null){
+            maps = new ArrayList<>();
+        }
+
+        //创建根节点
+        Menu menu = new Menu();
+        menu.setMenuId(-1L);
+        menu.setName("根节点");
+        menu.setCode("0");
+        menu.setPcode("-2");
+
+        maps.add(BeanUtil.beanToMap(menu));
+
+        return maps;
     }
 
 }

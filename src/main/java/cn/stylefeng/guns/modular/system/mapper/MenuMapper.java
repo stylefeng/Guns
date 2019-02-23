@@ -79,4 +79,13 @@ public interface MenuMapper extends BaseMapper<Menu> {
      */
     List<MenuNode> getMenusByRoleIds(List<Long> roleIds);
 
+    /**
+     * 查询菜单树形列表
+     *
+     * @author fengshuonan
+     * @Date 2019/2/23 22:03
+     */
+    List<Map<String, Object>> selectMenuTree(@Param("condition") String condition, @Param("level") String level);
+
+
 }

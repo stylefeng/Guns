@@ -24,6 +24,7 @@ import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.node.ZTreeNode;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
+import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.modular.system.entity.Menu;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
@@ -143,6 +144,25 @@ public class MenuController extends BaseController {
         Page<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level, menuId);
         Page<Map<String, Object>> wrap = new MenuWrapper(menus).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
+    }
+
+    /**
+     * 获取菜单列表（s树形）
+     *
+     * @author fengshuonan
+     * @Date 2019年2月23日22:01:47
+     */
+    @Permission(Const.ADMIN_NAME)
+    @RequestMapping(value = "/listTree")
+    @ResponseBody
+    public Object listTree(@RequestParam(required = false) String menuName,
+                           @RequestParam(required = false) String level) {
+        List<Map<String, Object>> menus = this.menuService.selectMenuTree(menuName, level);
+        List<Map<String, Object>> menusWrap = new MenuWrapper(menus).wrap();
+
+        LayuiPageInfo result = new LayuiPageInfo();
+        result.setData(menusWrap);
+        return result;
     }
 
     /**
