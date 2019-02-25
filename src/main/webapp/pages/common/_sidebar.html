@@ -16,7 +16,7 @@
                     <dd><a lay-href="${subMenu.url}">${subMenu.name}</a></dd>
                     @}else{
                     <dd>
-                        <a>${subSubMenu.name}</a>
+                        <a>${subMenu.name}</a>
                         <dl class="layui-nav-child">
                         @for(subSubMenu in subMenu.children){
                             @if(tool.isEmpty(subSubMenu.children)){
