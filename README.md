@@ -40,6 +40,9 @@
 ### Guns 旗舰版在线demo
 账号密码：admin/111111，地址：http://demo.stylefeng.cn
 
+#### 阿里云5折优惠券
+https://www.aliyun.com/acts/product-section-2019/new-users?spm=5176.11533457.1089570.1.226d77e3EWv1Wn&userCode=p4kqz45e
+
 ### Guns VIP计划
 Guns VIP计划，详情点击[https://www.stylefeng.cn/gunsVIP](https://www.stylefeng.cn/gunsVIP)
 
