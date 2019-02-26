@@ -61,6 +61,14 @@ Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rose
 | Guns v2.4 | 基于spring boot全面升级，更加简化配置和依赖，更专注于开发业务 | https://gitee.com/stylefeng/guns/tree/v2.4/ |
 | Guns v1.0 | Guns的第一个版本，率先采用spring java bean方式的配置，零spring xml配置，spring用到极致 | https://gitee.com/stylefeng/guns/tree/v1.0/ |
 
+### Guns前端模板
+Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
+
+### 开源多年，请多star
+Guns从2017年开源以来，从最初的1.0版本发展到现在的旗舰版2.0，中间历经了十几个版本，一直坚持更新，尽力做到更好！如果Guns对您有所帮助，请`star`一下项目！支持一下作者！感谢！
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0226/084629_b4e7d751_551203.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0226/085037_0bed8003_551203.png "屏幕截图.png")
+
 ### Guns微服务版本
 
 Guns的核心是roses-kernel项目[https://gitee.com/stylefeng-Roses/roses-kernel](https://gitee.com/stylefeng-Roses/roses-kernel)，提供对spring cloud的支持。
