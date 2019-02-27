@@ -118,10 +118,8 @@ public class MenuController extends BaseController {
     @ResponseBody
     public ResponseData edit(MenuDto menu) {
 
-        //设置父级菜单编号
-        Menu resultMenu = this.menuService.menuSetPcode(menu);
-
-        this.menuService.updateById(resultMenu);
+        //如果修改了编号，则该菜单的子菜单也要修改对应编号
+        this.menuService.updateMenu(menu);
 
         //刷新当前用户菜单
         this.userService.refreshCurrentUser();

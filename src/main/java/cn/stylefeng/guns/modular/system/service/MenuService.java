@@ -67,6 +67,66 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
     }
 
     /**
+     * 更新菜单
+     *
+     * @author fengshuonan
+     * @Date 2019/2/27 4:09 PM
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void updateMenu(MenuDto menuDto) {
+
+        //如果菜单为空
+        if (menuDto == null || ToolUtil.isOneEmpty(menuDto.getMenuId(), menuDto.getCode())) {
+            throw new RequestEmptyException();
+        }
+
+        //获取旧的菜单
+        Long id = menuDto.getMenuId();
+        Menu menu = this.getById(id);
+
+        if (menu == null) {
+            throw new RequestEmptyException();
+        }
+
+        //如果菜单编号修改了，则遍历该菜单的所有子菜单，把对应的编码改了
+        if (!menu.getCode().equals(menuDto.getCode())) {
+            this.updateSubMenuCodes(menu.getCode(), menuDto.getCode());
+        }
+
+        //设置父级菜单编号
+        Menu resultMenu = this.menuSetPcode(menuDto);
+
+        this.updateById(resultMenu);
+    }
+
+    /**
+     * 更新所有子菜单的编码
+     *
+     * @param code    原编码
+     * @param newCode 新编码
+     * @author fengshuonan
+     * @Date 2019/2/27 4:25 PM
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void updateSubMenuCodes(String code, String newCode) {
+
+        QueryWrapper<Menu> wrapper = new QueryWrapper<>();
+        wrapper = wrapper.like("PCODES", "%[" + code + "]%");
+        List<Menu> menus = menuMapper.selectList(wrapper);
+
+        for (Menu menu : menus) {
+            if (code.equals(menu.getPcode())) {
+                menu.setPcode(newCode);
+            }
+            String pcodes = menu.getPcodes();
+            String resultPcodes = pcodes.replaceFirst("\\[" + code + "\\]", "\\[" + newCode + "\\]");
+            menu.setPcodes(resultPcodes);
+            this.updateById(menu);
+        }
+
+    }
+
+    /**
      * 删除菜单
      *
      * @author stylefeng
@@ -250,7 +310,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
     public List<Map<String, Object>> selectMenuTree(String condition, String level) {
         List<Map<String, Object>> maps = this.baseMapper.selectMenuTree(condition, level);
 
-        if(maps == null){
+        if (maps == null) {
             maps = new ArrayList<>();
         }
 
