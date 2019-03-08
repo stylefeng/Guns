@@ -28,10 +28,9 @@ public class RoleDict extends AbstractDictMap {
     @Override
     public void init() {
         put("roleId", "角色名称");
-        put("num", "角色排序");
+        put("sort", "角色排序");
         put("pid", "角色的父级");
         put("name", "角色名称");
-        put("deptId", "部门名称");
         put("description", "备注");
         put("ids", "资源名称");
     }

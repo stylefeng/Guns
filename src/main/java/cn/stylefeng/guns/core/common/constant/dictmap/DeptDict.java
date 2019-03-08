@@ -28,10 +28,10 @@ public class DeptDict extends AbstractDictMap {
     @Override
     public void init() {
         put("deptId", "部门名称");
-        put("num", "部门排序");
+        put("sort", "部门排序");
         put("pid", "上级名称");
-        put("simplename", "部门简称");
-        put("fullname", "部门全称");
+        put("simpleName", "部门简称");
+        put("fullName", "部门全称");
         put("description", "备注");
     }
 
