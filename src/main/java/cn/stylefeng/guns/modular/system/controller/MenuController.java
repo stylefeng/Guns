@@ -19,6 +19,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
+import cn.stylefeng.guns.core.common.constant.dictmap.DeleteDict;
 import cn.stylefeng.guns.core.common.constant.dictmap.MenuDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
@@ -186,7 +187,7 @@ public class MenuController extends BaseController {
      */
     @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除菜单", key = "menuId", dict = MenuDict.class)
+    @BussinessLog(value = "删除菜单", key = "menuId", dict = DeleteDict.class)
     @ResponseBody
     public ResponseData remove(@RequestParam Long menuId) {
         if (ToolUtil.isEmpty(menuId)) {

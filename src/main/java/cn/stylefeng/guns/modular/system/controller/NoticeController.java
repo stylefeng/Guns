@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
+import cn.stylefeng.guns.core.common.constant.dictmap.DeleteDict;
 import cn.stylefeng.guns.core.common.constant.dictmap.NoticeMap;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
@@ -147,7 +148,7 @@ public class NoticeController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    @BussinessLog(value = "删除通知", key = "noticeId", dict = NoticeMap.class)
+    @BussinessLog(value = "删除通知", key = "noticeId", dict = DeleteDict.class)
     public Object delete(@RequestParam Long noticeId) {
 
         //缓存通知名称

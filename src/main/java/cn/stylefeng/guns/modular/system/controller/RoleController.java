@@ -19,6 +19,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
 import cn.stylefeng.guns.core.common.constant.Const;
+import cn.stylefeng.guns.core.common.constant.dictmap.DeleteDict;
 import cn.stylefeng.guns.core.common.constant.dictmap.RoleDict;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
@@ -172,10 +173,14 @@ public class RoleController extends BaseController {
      * @Date 2018/12/23 6:31 PM
      */
     @RequestMapping(value = "/remove")
-    @BussinessLog(value = "删除角色", key = "roleId", dict = RoleDict.class)
+    @BussinessLog(value = "删除角色", key = "roleId", dict = DeleteDict.class)
     @Permission(Const.ADMIN_NAME)
     @ResponseBody
     public ResponseData remove(@RequestParam Long roleId) {
+
+        //缓存被删除的部门名称
+        LogObjectHolder.me().set(ConstantFactory.me().getDeptName(roleId));
+
         this.roleService.delRoleById(roleId);
         return SUCCESS_TIP;
     }
