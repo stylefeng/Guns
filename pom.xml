@@ -100,12 +100,12 @@
             <version>${shiro.version}</version>
             <exclusions>
                 <exclusion>
-                    <artifactId>slf4j-api</artifactId>
                     <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
                 </exclusion>
                 <exclusion>
-                    <artifactId>ehcache-core</artifactId>
                     <groupId>net.sf.ehcache</groupId>
+                    <artifactId>ehcache-core</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -113,11 +113,6 @@
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <version>${ehcache2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>${ehcache3.version}</version>
         </dependency>
 
         <!--验证码-->
