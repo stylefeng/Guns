@@ -45,6 +45,7 @@ https://www.aliyun.com/acts/product-section-2019/new-users?spm=5176.11533457.108
 
 ### 版权声明
 Guns经典版(v1.0-v5.1)为`Apache License2`协议，您可以在遵守开源协议的前提下，下载，学习或使用Guns经典版。
+
 Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为。
 
 ### Guns VIP计划
