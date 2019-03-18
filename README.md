@@ -43,11 +43,6 @@
 #### 阿里云5折优惠券
 https://www.aliyun.com/acts/product-section-2019/new-users?spm=5176.11533457.1089570.1.226d77e3EWv1Wn&userCode=p4kqz45e
 
-### 版权声明
-Guns经典版(v1.0-v5.1)为`Apache License2`协议，您可以在遵守开源协议的前提下，下载，学习或使用Guns经典版。
-
-Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为。
-
 ### Guns VIP计划
 Guns VIP计划，详情点击[https://www.stylefeng.cn/gunsVIP](https://www.stylefeng.cn/gunsVIP)
 
@@ -62,9 +57,9 @@ Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rose
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| Guns旗舰版 v2.3 | 强力集成atomikos，MM再也不用担心多数据源事务问题，感谢Guns二群`月下魔术师`兄弟贡献的解决方案 |
-| Guns旗舰版 v2.2 | 修复日志模块，记录业务日志，部分字段缺失的问题 |
-| Guns旗舰版 v2.1 | 菜单管理表格改为树形表格，部门增加左侧树 |
+| Guns旗舰版 v2.3 | 强力集成atomikos，MM再也不用担心多数据源事务问题，感谢Guns二群`月下魔术师`兄弟贡献的解决方案 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.3/ |
+| Guns旗舰版 v2.2 | 修复日志模块，记录业务日志，部分字段缺失的问题 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.2/ |
+| Guns旗舰版 v2.1 | 菜单管理表格改为树形表格，部门增加左侧树 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.1/ |
 | Guns旗舰版 v2.0 | 基于layui的全新旗舰版，demo地址：http://demo.stylefeng.cn | https://gitee.com/stylefeng/guns/tree/ultimate-v2.0/ |
 | Guns旗舰版 v1.1 | 全面升级spring boot和mybatis-plus版本 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.1/ |
 | Guns旗舰版 v1.0 | 全新的UI界面，采用bootstrap 4 + vue，全新的规范化的数据库设计 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.0/ |
@@ -73,6 +68,11 @@ Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rose
 | Guns v3.3 | 模块化了整个项目，整体拆分成4个模块，增加了jwt，并集成工作流flowable 6.2.0 | https://gitee.com/stylefeng/guns/tree/v3.3 |
 | Guns v2.4 | 基于spring boot全面升级，更加简化配置和依赖，更专注于开发业务 | https://gitee.com/stylefeng/guns/tree/v2.4/ |
 | Guns v1.0 | Guns的第一个版本，率先采用spring java bean方式的配置，零spring xml配置，spring用到极致 | https://gitee.com/stylefeng/guns/tree/v1.0/ |
+
+### 版权声明
+Guns经典版(v1.0-v5.1)为`Apache License2`协议，您可以在遵守开源协议的前提下，下载，学习或使用Guns经典版。
+
+Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为。
 
 ### Guns前端模板
 Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
