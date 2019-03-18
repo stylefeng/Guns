@@ -43,10 +43,16 @@
 #### 阿里云5折优惠券
 https://www.aliyun.com/acts/product-section-2019/new-users?spm=5176.11533457.1089570.1.226d77e3EWv1Wn&userCode=p4kqz45e
 
+### 版权声明
+Guns经典版(v1.0-v5.1)为`Apache License2`协议，您可以在遵守开源协议的前提下，下载，学习或使用Guns经典版。
+Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为。
+
 ### Guns VIP计划
 Guns VIP计划，详情点击[https://www.stylefeng.cn/gunsVIP](https://www.stylefeng.cn/gunsVIP)
 
 买vip送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
+
+**注：VIP为增值服务，不带表Guns收费，Guns除了vip均开源**
 
 ### Roses企业级微服务视频教程
 Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rosesVideo](https://www.stylefeng.cn/rosesVideo)
@@ -55,6 +61,9 @@ Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rose
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
+| Guns旗舰版 v2.3 | 强力集成atomikos，MM再也不用担心多数据源事务问题，感谢Guns二群`月下魔术师`兄弟贡献的解决方案 |
+| Guns旗舰版 v2.2 | 修复日志模块，记录业务日志，部分字段缺失的问题 |
+| Guns旗舰版 v2.1 | 菜单管理表格改为树形表格，部门增加左侧树 |
 | Guns旗舰版 v2.0 | 基于layui的全新旗舰版，demo地址：http://demo.stylefeng.cn | https://gitee.com/stylefeng/guns/tree/ultimate-v2.0/ |
 | Guns旗舰版 v1.1 | 全面升级spring boot和mybatis-plus版本 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.1/ |
 | Guns旗舰版 v1.0 | 全新的UI界面，采用bootstrap 4 + vue，全新的规范化的数据库设计 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.0/ |
