@@ -48,8 +48,6 @@ Guns VIP计划，详情点击[https://www.stylefeng.cn/gunsVIP](https://www.styl
 
 买vip送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
-ps：VIP为增值服务，不带表Guns收费，Guns除了vip均开源
-
 ### Roses企业级微服务视频教程
 Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rosesVideo](https://www.stylefeng.cn/rosesVideo)
 
