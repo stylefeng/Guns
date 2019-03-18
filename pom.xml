@@ -158,7 +158,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jta-atomikos</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <!--需要分布式session的话需要放开注释-->
