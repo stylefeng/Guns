@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.system.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.constant.state.MenuStatus;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
@@ -88,39 +89,47 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
             throw new RequestEmptyException();
         }
 
-        //如果菜单编号修改了，则遍历该菜单的所有子菜单，把对应的编码改了
-        if (!menu.getCode().equals(menuDto.getCode())) {
-            this.updateSubMenuCodes(menu.getCode(), menuDto.getCode());
-        }
-
         //设置父级菜单编号
         Menu resultMenu = this.menuSetPcode(menuDto);
+
+        //查找该节点的子集合,并修改相应的pcodes和level(因为修改菜单后,层级可能变化了)
+        updateSubMenuLevels(menu, resultMenu);
 
         this.updateById(resultMenu);
     }
 
     /**
-     * 更新所有子菜单的编码
+     * 更新所有子菜单的结构
      *
-     * @param code    原编码
-     * @param newCode 新编码
+     * @param oldMenu 原来的菜单
+     * @param newMenu 新菜单
      * @author fengshuonan
      * @Date 2019/2/27 4:25 PM
      */
     @Transactional(rollbackFor = Exception.class)
-    public void updateSubMenuCodes(String code, String newCode) {
+    public void updateSubMenuLevels(Menu oldMenu, Menu newMenu) {
 
         QueryWrapper<Menu> wrapper = new QueryWrapper<>();
-        wrapper = wrapper.like("PCODES", "%[" + code + "]%");
+        wrapper = wrapper.like("PCODES", "%[" + oldMenu.getCode() + "]%");
         List<Menu> menus = menuMapper.selectList(wrapper);
 
         for (Menu menu : menus) {
-            if (code.equals(menu.getPcode())) {
-                menu.setPcode(newCode);
+
+            //更新pcode
+            if (oldMenu.getCode().equals(menu.getPcode())) {
+                menu.setPcode(newMenu.getCode());
             }
-            String pcodes = menu.getPcodes();
-            String resultPcodes = pcodes.replaceFirst("\\[" + code + "\\]", "\\[" + newCode + "\\]");
-            menu.setPcodes(resultPcodes);
+
+            //更新pcodes
+            String oldPcodesPrefix = oldMenu.getPcodes() + "[" + oldMenu.getCode() + "],";
+            String oldPcodesSuffix = menu.getPcodes().substring(oldPcodesPrefix.length());
+            String menuPcodes = newMenu.getPcodes() + "[" + newMenu.getCode() + "]," + oldPcodesSuffix;
+            menu.setPcodes(menuPcodes);
+
+            //更新levels
+            int level = StrUtil.count(menuPcodes, "[");
+            menu.setLevels(level);
+
             this.updateById(menu);
         }
 
