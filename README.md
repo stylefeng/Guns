@@ -37,19 +37,16 @@
 
 -----------------------------------------------------------------------------------------------
 
-### Guns 旗舰版在线demo
+### 在线demo
 账号密码：admin/111111，地址：http://demo.stylefeng.cn
 
-#### 阿里云5折优惠券
-https://www.aliyun.com/acts/product-section-2019/new-users?spm=5176.11533457.1089570.1.226d77e3EWv1Wn&userCode=p4kqz45e
+### Guns 企业版
+Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylefeng.cn](https://www.stylefeng.cn)
 
-### Guns VIP计划
-Guns VIP计划，详情点击[https://www.stylefeng.cn/gunsVIP](https://www.stylefeng.cn/gunsVIP)
+买企业版送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
-买vip送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
-
-### Roses企业级微服务视频教程
-Roses企业级微服务视频教程，详情点击[https://www.stylefeng.cn/rosesVideo](https://www.stylefeng.cn/rosesVideo)
+### Guns&Roses架构师视频
+深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
 
 ### Guns历史版本
 
