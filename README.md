@@ -14,11 +14,11 @@
         <br>
         <br>
         <a href="https://getbootstrap.com/">
-            <img src="https://img.shields.io/badge/bootstrap-4.0-blue.svg" alt="bootstrap">
+            <img src="https://img.shields.io/badge/easyweb-3.1.1-green.svg" alt="bootstrap">
+        </a> 
+        <a href="https://getbootstrap.com/">
+            <img src="https://img.shields.io/badge/layui-2.4.5-blue.svg" alt="bootstrap">
         </a>  
-        <a href="https://cn.vuejs.org/index.html">
-            <img src="https://img.shields.io/badge/vue-2.5.17-blue.svg" alt="vue">
-        </a>    
         +
         <a href="http://spring.io/projects/spring-boot">
             <img src="https://img.shields.io/badge/spring--boot-2.1.1-green.svg" alt="spring-boot">
