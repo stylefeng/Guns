@@ -52,7 +52,7 @@ public class DeptWrapper extends BaseControllerWrapper {
     protected void wrapTheMap(Map<String, Object> map) {
         Long pid = (Long) map.get("pid");
 
-        if (ToolUtil.isEmpty(pid) || pid.equals(0)) {
+        if (ToolUtil.isEmpty(pid) || pid == 0) {
             map.put("pName", "--");
         } else {
             map.put("pName", ConstantFactory.me().getDeptName(pid));
