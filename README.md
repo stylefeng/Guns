@@ -48,6 +48,18 @@ Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylef
 ### Guns&Roses架构师视频
 深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
 
+### 扫码关注官方公众号和官方微信群
+<table>
+    <tr>
+        <td>官方公众号</td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/0415/104911_9bc924a5_551203.png" width="120"/></td>
+    </tr>
+    <tr>
+        <td>官方微信群</td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/0415/104934_dc9803b4_551203.png" width="120"/></td>
+    </tr>
+</table>
+
 ### Guns历史版本
 
 | 版本名称 | 说明 | 地址 |
