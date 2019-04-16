@@ -40,6 +40,8 @@
 ### 在线demo
 账号密码：admin/111111，地址：http://demo.stylefeng.cn
 
+阿里云5折优惠券，[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=p4kqz45e)
+
 ### Guns 企业版
 Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylefeng.cn](https://www.stylefeng.cn)
 
@@ -75,9 +77,7 @@ Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylef
 | Guns v1.0 | Guns的第一个版本，率先采用spring java bean方式的配置，零spring xml配置，spring用到极致 | https://gitee.com/stylefeng/guns/tree/v1.0/ |
 
 ### 版权声明
-Guns经典版(v1.0-v5.1)为`Apache License2`协议，您可以在遵守开源协议的前提下，下载，学习或使用Guns经典版。
-
-Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为。
+Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请购买授权。
 
 ### Guns前端模板
 Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
