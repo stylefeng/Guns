@@ -56,7 +56,7 @@ Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylef
         <td>官方公众号</td>
         <td><img src="https://images.gitee.com/uploads/images/2019/0415/104911_9bc924a5_551203.png" width="120"/></td>
         <td>官方微信群</td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/0418/142328_1011794c_551203.png" width="120"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/0419/103622_d6e9fa5d_551203.png" width="120"/></td>
     </tr>
 </table>
 
