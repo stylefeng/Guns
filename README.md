@@ -64,6 +64,7 @@ Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylef
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
+| Guns旗舰版 v2.4 | 修复单数据源下事务不生效问题，现为了防止单数据源多数据源冲突，现在多数据源的配置放入multi-datasource分支维护 |
 | Guns旗舰版 v2.3 | 强力集成atomikos，MM再也不用担心多数据源事务问题，感谢Guns二群`月下魔术师`兄弟贡献的解决方案 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.3/ |
 | Guns旗舰版 v2.2 | 修复日志模块，记录业务日志，部分字段缺失的问题 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.2/ |
 | Guns旗舰版 v2.1 | 菜单管理表格改为树形表格，部门增加左侧树 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.1/ |
