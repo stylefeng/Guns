@@ -64,21 +64,12 @@ Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylef
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| Guns旗舰版 v2.4 | 修复单数据源下事务不生效问题，现为了防止单数据源多数据源冲突，现在多数据源的配置放入multi-datasource分支维护 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.4/ |
-| Guns旗舰版 v2.3 | 强力集成atomikos，MM再也不用担心多数据源事务问题，感谢Guns二群`月下魔术师`兄弟贡献的解决方案 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.3/ |
-| Guns旗舰版 v2.2 | 修复日志模块，记录业务日志，部分字段缺失的问题 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.2/ |
-| Guns旗舰版 v2.1 | 菜单管理表格改为树形表格，部门增加左侧树 | https://gitee.com/stylefeng/guns/tree/ultimate-v2.1/ |
-| Guns旗舰版 v2.0 | 基于layui的全新旗舰版，demo地址：http://demo.stylefeng.cn | https://gitee.com/stylefeng/guns/tree/ultimate-v2.0/ |
-| Guns旗舰版 v1.1 | 全面升级spring boot和mybatis-plus版本 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.1/ |
-| Guns旗舰版 v1.0 | 全新的UI界面，采用bootstrap 4 + vue，全新的规范化的数据库设计 | https://gitee.com/stylefeng/guns/tree/ultimate-v1.0/ |
+| Guns企业版 | 付费授权，包含最新代码生成器，支持微服务，SSO，工作流等等 | https://www.stylefeng.cn/ |
+| Guns旗舰版 v2.5 | 最新开源版本，master分支 | https://gitee.com/stylefeng/guns |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
-| Guns v4.2 | spring boot升级到了2.0，大大简化了前端的体积，升级了一些组件到最新版本 | https://gitee.com/stylefeng/guns/tree/v4.2 |
-| Guns v3.3 | 模块化了整个项目，整体拆分成4个模块，增加了jwt，并集成工作流flowable 6.2.0 | https://gitee.com/stylefeng/guns/tree/v3.3 |
-| Guns v2.4 | 基于spring boot全面升级，更加简化配置和依赖，更专注于开发业务 | https://gitee.com/stylefeng/guns/tree/v2.4/ |
-| Guns v1.0 | Guns的第一个版本，率先采用spring java bean方式的配置，零spring xml配置，spring用到极致 | https://gitee.com/stylefeng/guns/tree/v1.0/ |
 
 ### 版权声明
-Guns旗舰版(v1.0-v2.3)采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请购买授权。
+Guns采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请购买授权。
 
 ### Guns前端模板
 Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
