@@ -1,0 +1,82 @@
+@layout("/common/_container.html",{js:["/assets/modular/system/dict/dict_edit.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">表单的示例-添加</span>
+</div>
+
+<div class="layui-fluid " style="">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form id="dictForm" lay-filter="dictForm" class="layui-form model-form" style="max-width: 700px;margin: 40px auto;">
+                <input id="dictId" name="dictId" type="hidden"/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典类型</label>
+                    <div class="layui-input-block">
+                        <input id="dictTypeId" name="dictTypeId" type="hidden" value="${dictTypeId}"/>
+                        <input type="text" class="layui-input white-border" value="${dictTypeName}" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典名称<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input id="name" name="name" placeholder="请输入字典名称" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典编码<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input id="code" name="code" placeholder="请输入字典编码" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">上级字典<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input id="parentId" name="parentId" type="hidden" class="layui-input" lay-verify="required" required/>
+                        <input id="parentName" name="parentName" placeholder="请选择上级字典，如没有请选择顶级" type="text" class="layui-input" lay-verify="required" required readonly="readonly"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input id="sort" name="sort" placeholder="请输入字典排序" type="text" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典描述</label>
+                    <div class="layui-input-block">
+                        <textarea id="description" name="description" placeholder="请输入字典描述" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">创建时间</label>
+                    <div class="layui-input-block">
+                        <input id="createTime" name="createTime" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">更新时间</label>
+                    <div class="layui-input-block">
+                        <input id="updateTime" name="updateTime" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">创建人</label>
+                    <div class="layui-input-block">
+                        <input id="createUser" name="createUser" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">修改人</label>
+                    <div class="layui-input-block">
+                        <input id="updateUser" name="updateUser" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item text-right">
+                    <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+                    <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog" id="backupPage">返回</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@}

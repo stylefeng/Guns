@@ -4,14 +4,14 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Relation">
-        <id column="RELATION_ID" property="relationId" />
-        <result column="MENU_ID" property="menuId" />
-        <result column="ROLE_ID" property="roleId" />
+        <id column="relation_id" property="relationId" />
+        <result column="menu_id" property="menuId" />
+        <result column="role_id" property="roleId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        RELATION_ID AS relationId, MENU_ID AS menuId, ROLE_ID AS roleId
+        relation_id AS "relationId", menu_id AS "menuId", role_id AS "roleId"
     </sql>
 
 </mapper>

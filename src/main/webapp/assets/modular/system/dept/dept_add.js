@@ -22,7 +22,7 @@ layui.use(['layer', 'form', 'admin', 'ax'], function () {
     $('#pName').click(function () {
         var formName = encodeURIComponent("parent.DeptInfoDlg.data.pName");
         var formId = encodeURIComponent("parent.DeptInfoDlg.data.pid");
-        var treeUrl = encodeURIComponent(Feng.ctxPath + "/dept/tree");
+        var treeUrl = encodeURIComponent("/dept/tree");
 
         layer.open({
             type: 2,

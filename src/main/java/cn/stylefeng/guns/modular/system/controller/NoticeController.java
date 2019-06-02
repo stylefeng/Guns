@@ -40,7 +40,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -92,19 +91,6 @@ public class NoticeController extends BaseController {
         model.addAllAttributes(BeanUtil.beanToMap(notice));
         LogObjectHolder.me().set(notice);
         return PREFIX + "notice_edit.html";
-    }
-
-    /**
-     * 跳转到首页通知
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping("/hello")
-    public String hello() {
-        List<Notice> notices = noticeService.list();
-        super.setAttr("noticeList", notices);
-        return PREFIX + "notice_index.html";
     }
 
     /**

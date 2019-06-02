@@ -164,7 +164,7 @@ public class DeptController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(@RequestParam(value = "condition", required = false) String condition,
-                       @RequestParam(value = "deptId", required = false) String deptId) {
+                       @RequestParam(value = "deptId", required = false) Long deptId) {
         Page<Map<String, Object>> list = this.deptService.list(condition, deptId);
         Page<Map<String, Object>> wrap = new DeptWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);

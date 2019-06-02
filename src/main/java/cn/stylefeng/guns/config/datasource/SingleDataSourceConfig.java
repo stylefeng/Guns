@@ -15,16 +15,15 @@
  */
 package cn.stylefeng.guns.config.datasource;
 
-import cn.stylefeng.roses.core.datascope.DataScopeInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 多数据源配置
+ * 多数据源配置，多数据源配置因为和单数据源冲突，所以现在默认版本删除了多数据源配置
+ *
+ * 可参考 https://gitee.com/stylefeng/guns/tree/multi-datasource/
  *
  * @author stylefeng
  * @Date 2017/5/20 21:58
@@ -34,22 +33,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan(basePackages = {"cn.stylefeng.guns.modular.*.mapper"})
 public class SingleDataSourceConfig {
-
-    /**
-     * 数据范围mybatis插件
-     */
-    @Bean
-    public DataScopeInterceptor dataScopeInterceptor() {
-        return new DataScopeInterceptor();
-    }
-
-    /**
-     * 乐观锁mybatis插件
-     */
-    @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
-        return new OptimisticLockerInterceptor();
-    }
 
 }
 

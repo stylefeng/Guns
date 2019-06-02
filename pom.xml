@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <shiro.version>1.4.0</shiro.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <ehcache3.version>3.6.3</ehcache3.version>
@@ -30,7 +31,6 @@
         <beetl.version>2.9.3</beetl.version>
         <swagger.version>2.9.2</swagger.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
-        <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <jwt.version>0.9.0</jwt.version>
     </properties>
 
@@ -40,9 +40,10 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>kernel-core</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.2</version>
         </dependency>
 
+        <!--数据库驱动,可根据自己需要自行删减-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -152,6 +153,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <!--excel导入导出-->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-web</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <!--quartz定时任务-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
         <!--需要分布式session的话需要放开注释-->

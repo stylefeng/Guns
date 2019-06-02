@@ -4,18 +4,18 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Notice">
-        <id column="NOTICE_ID" property="noticeId" />
-        <result column="TITLE" property="title" />
-        <result column="CONTENT" property="content" />
-        <result column="CREATE_TIME" property="createTime" />
-        <result column="CREATE_USER" property="createUser" />
-        <result column="UPDATE_TIME" property="updateTime" />
-        <result column="UPDATE_USER" property="updateUser" />
+        <id column="notice_id" property="noticeId" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_user" property="updateUser" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        NOTICE_ID AS noticeId, TITLE AS title, CONTENT AS content, CREATE_TIME AS createTime, CREATE_USER AS createUser, UPDATE_TIME AS updateTime, UPDATE_USER AS updateUser
+        notice_id AS "noticeId", title AS "title", content AS "content", create_time AS "createTime", create_user AS "createUser", update_time AS "updateTime", update_user AS "updateUser"
     </sql>
 
     <select id="list" resultType="map">
@@ -23,8 +23,9 @@
         <include refid="Base_Column_List"></include>
         from sys_notice
         <if test="condition != null and condition != ''">
-            where TITLE like CONCAT('%',#{condition},'%') or CONTENT like CONCAT('%',#{condition},'%')
+            where title like CONCAT('%',#{condition},'%') or content like CONCAT('%',#{condition},'%')
         </if>
-        order by CREATE_TIME DESC
+        order by create_time DESC
     </select>
+
 </mapper>

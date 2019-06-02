@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.util.Contrast;
+import cn.stylefeng.guns.core.util.DecimalUtil;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.core.util.ToolUtil;
 
@@ -43,7 +44,7 @@ public class LogWrapper extends BaseControllerWrapper {
     protected void wrapTheMap(Map<String, Object> map) {
         String message = (String) map.get("message");
 
-        Long userid = (Long) map.get("userId");
+        Long userid = DecimalUtil.getLong(map.get("userId"));
         map.put("userName", ConstantFactory.me().getUserNameById(userid));
 
         //如果信息过长,则只截取前100位字符串

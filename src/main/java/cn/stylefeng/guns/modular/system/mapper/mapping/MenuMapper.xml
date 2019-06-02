@@ -4,194 +4,203 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Menu">
-        <id column="MENU_ID" property="menuId"/>
-        <result column="CODE" property="code"/>
-        <result column="PCODE" property="pcode"/>
-        <result column="PCODES" property="pcodes"/>
-        <result column="NAME" property="name"/>
-        <result column="ICON" property="icon"/>
-        <result column="URL" property="url"/>
-        <result column="SORT" property="sort"/>
-        <result column="LEVELS" property="levels"/>
-        <result column="MENU_FLAG" property="menuFlag"/>
-        <result column="DESCRIPTION" property="description"/>
-        <result column="STATUS" property="status"/>
-        <result column="NEW_PAGE_FLAG" property="newPageFlag"/>
-        <result column="OPEN_FLAG" property="openFlag"/>
-        <result column="CREATE_TIME" property="createTime"/>
-        <result column="UPDATE_TIME" property="updateTime"/>
-        <result column="CREATE_USER" property="createUser"/>
-        <result column="UPDATE_USER" property="updateUser"/>
+        <id column="menu_id" property="menuId" />
+        <result column="code" property="code" />
+        <result column="pcode" property="pcode" />
+        <result column="pcodes" property="pcodes" />
+        <result column="name" property="name" />
+        <result column="icon" property="icon" />
+        <result column="url" property="url" />
+        <result column="sort" property="sort" />
+        <result column="levels" property="levels" />
+        <result column="menu_flag" property="menuFlag" />
+        <result column="description" property="description" />
+        <result column="status" property="status" />
+        <result column="new_page_flag" property="newPageFlag" />
+        <result column="open_flag" property="openFlag" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user" property="updateUser" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        MENU_ID AS menuId, CODE AS code, PCODE AS pcode, PCODES AS pcodes, NAME AS name, ICON AS icon, URL AS url, SORT AS sort, LEVELS AS levels, MENU_FLAG AS menuFlag, DESCRIPTION AS description, STATUS AS status, NEW_PAGE_FLAG AS newPageFlag, OPEN_FLAG AS openFlag, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+        menu_id AS "menuId", code AS "code", pcode AS "pcode", pcodes AS "pcodes", name AS "name", icon AS "icon", url AS "url", sort AS "sort", levels AS "levels", menu_flag AS "menuFlag", description AS "description", status AS "status", new_page_flag AS "newPageFlag", open_flag AS "openFlag", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
     </sql>
 
     <select id="selectMenus" resultType="map">
         select
         <include refid="Base_Column_List"/>
         from sys_menu
-        where STATUS = 'ENABLE'
+        where status = 'ENABLE'
         <if test="condition != null and condition != ''">
-            and (NAME like CONCAT('%',#{condition},'%') or CODE like CONCAT('%',#{condition},'%'))
+            and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
         </if>
         <if test="level != null and level != ''">
-            and LEVELS = #{level}
+            and levels = #{level}
         </if>
         <if test="menuId != null and menuId != 0">
-            and (MENU_ID = #{menuId} or MENU_ID in ( select MENU_ID from sys_menu where PCODES like CONCAT('%[', #{code}, ']%') ))
+            and (menu_id = #{menuId} or menu_id in ( select menu_id from sys_menu where pcodes like CONCAT('%$[', #{code}, '$]%') escape '$' ))
         </if>
     </select>
 
     <select id="getMenuIdsByRoleId" resultType="long">
-        select MENU_ID from
-        sys_relation where ROLE_ID = #{roleId}
+        select menu_id from
+        sys_relation where role_id = #{roleId}
     </select>
 
     <select id="menuTreeList" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
         SELECT
-        m1.MENU_ID AS id,
+        m1.menu_id AS id,
         (
         CASE
-        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
         0
         ELSE
-        m2.MENU_ID
+        m2.menu_id
         END
         ) AS pId,
-        m1.NAME
-        AS NAME,
+        m1.name
+        AS name,
         (
         CASE
-        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
         'true'
         ELSE
         'false'
         END
-        ) as open
+        ) as "open"
         FROM
         sys_menu m1
-        LEFT join sys_menu m2 ON m1.PCODE = m2.CODE
+        LEFT join sys_menu m2 ON m1.pcode = m2.code
         ORDER BY
-        m1.MENU_ID ASC
+        m1.menu_id ASC
     </select>
 
     <select id="menuTreeListByMenuIds" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
         SELECT
-        m1.MENU_ID AS id,
+        m1.menu_id AS id,
         (
         CASE
-        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
         0
         ELSE
-        m2.MENU_ID
+        m2.menu_id
         END
-        ) AS pId,
-        m1.NAME AS name,
+        ) AS "pId",
+        m1.name AS name,
         (
         CASE
-        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS
         NULL) THEN
         'true'
         ELSE
         'false'
         END
-        ) as open,
+        ) as "open",
         (
         CASE
-        WHEN (m3.MENU_ID = 0 OR m3.MENU_ID
+        WHEN (m3.menu_id = 0 OR m3.menu_id
         IS NULL) THEN
         'false'
         ELSE
         'true'
         END
-        ) as `checked`
+        ) as "checked"
         FROM
         sys_menu m1
         LEFT JOIN
         sys_menu m2
-        ON m1.PCODE = m2.CODE
+        ON m1.pcode = m2.code
         left join (
         SELECT
-        MENU_ID
+        menu_id
         FROM
         sys_menu
         WHERE
-        MENU_ID IN
+        menu_id IN
         <foreach collection="list" index="index" item="i" open="("
                  separator="," close=")">
             #{i}
         </foreach>
-        ) m3 on m1.MENU_ID = m3.MENU_ID
+        ) m3 on m1.menu_id = m3.menu_id
         ORDER BY
-        m1.MENU_ID ASC
+        m1.menu_id ASC
     </select>
 
     <delete id="deleteRelationByMenu">
-        delete from sys_relation where MENU_ID = #{menuId}
+        delete from sys_relation where menu_id = #{menuId}
     </delete>
 
     <select id="getResUrlsByRoleId" resultType="string">
         select URL from
         sys_relation rel
-        inner join sys_menu m on rel.MENU_ID = m.MENU_ID
-        where rel.ROLE_ID = #{roleId}
+        inner join sys_menu m on rel.menu_id = m.menu_id
+        where rel.role_id = #{roleId}
     </select>
 
     <select id="getMenusByRoleIds" resultType="cn.stylefeng.guns.core.common.node.MenuNode">
         SELECT
-        m1.MENU_ID AS id,
-        m1.ICON AS icon,
+        m1.menu_id AS id,
+        m1.icon AS icon,
         (
         CASE
-        WHEN (m2.MENU_ID = 0 OR m2.MENU_ID IS NULL) THEN
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
         0
         ELSE
-        m2.MENU_ID
+        m2.menu_id
         END
-        ) AS parentId,
-        m1.NAME as name,
-        m1.URL as url,
-        m1.LEVELS as levels,
-        m1.MENU_FLAG as ismenu,
-        m1.SORT as num
+        ) AS "parentId",
+        m1.name as name,
+        m1.url as url,
+        m1.levels as levels,
+        m1.menu_flag as ismenu,
+        m1.sort as num
         FROM
         sys_menu m1
-        LEFT join sys_menu m2 ON m1.PCODE = m2.CODE
+        LEFT join sys_menu m2 ON m1.pcode = m2.code
         INNER JOIN (
         SELECT
-        MENU_ID
+        menu_id
         FROM
         sys_menu
         WHERE
-        MENU_ID IN (
+        menu_id IN (
         SELECT
-        MENU_ID
+        menu_id
         FROM
         sys_relation rela
         WHERE
-        rela.ROLE_ID IN
+        rela.role_id IN
         <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
             #{i}
         </foreach>
         )
-        ) m3 ON m1.MENU_ID = m3.MENU_ID
-        where m1.MENU_FLAG = 'Y'
-        order by LEVELS,m1.SORT asc
+        ) m3 ON m1.menu_id = m3.menu_id
+        where m1.menu_flag = 'Y'
+        order by levels,m1.sort asc
     </select>
 
     <select id="selectMenuTree" resultType="java.util.Map">
         select
         <include refid="Base_Column_List"/>
         from sys_menu
-        where STATUS = 'ENABLE'
+        where status = 'ENABLE'
         <if test="condition != null and condition != ''">
-            and (NAME like CONCAT('%',#{condition},'%') or CODE like CONCAT('%',#{condition},'%'))
+            and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
         </if>
         <if test="level != null and level != ''">
-            and LEVELS = #{level}
+            and levels = #{level}
+        </if>
+    </select>
+
+    <select id="getMenusLikePcodes" resultType="cn.stylefeng.guns.modular.system.entity.Menu">
+        select
+        <include refid="Base_Column_List"></include>
+        from sys_menu where 1 = 1
+        <if test="code != null and code != ''">
+            and pcodes LIKE CONCAT('%$[',#{code},'$]%') escape '$'
         </if>
     </select>
 

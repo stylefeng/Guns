@@ -1,3 +1,4 @@
+# Mysql数据库
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -7,7 +8,7 @@ spring:
     filters: wall,mergeStat
     data-source-name: gunsdb
 
-#多数据源情况的配置
+# 多数据源情况的配置
 guns:
   muti-datasource:
     open: false

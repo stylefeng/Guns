@@ -116,7 +116,7 @@ layui.use(['table', 'admin', 'ax', 'ztree'], function () {
         elem: '#' + Dept.tableId,
         url: Feng.ctxPath + '/dept/list',
         page: true,
-        height: "full-158",
+        height: "full-98",
         cellMinWidth: 100,
         cols: Dept.initColumn()
     });

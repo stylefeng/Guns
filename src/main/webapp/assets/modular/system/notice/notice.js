@@ -93,7 +93,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
         elem: '#' + Notice.tableId,
         url: Feng.ctxPath + '/notice/list',
         page: true,
-        height: "full-158",
+        height: "full-98",
         cellMinWidth: 100,
         cols: Notice.initColumn()
     });

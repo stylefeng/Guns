@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.util.DecimalUtil;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
@@ -50,9 +51,9 @@ public class DeptWrapper extends BaseControllerWrapper {
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        Long pid = (Long) map.get("pid");
+        Long pid = DecimalUtil.getLong(map.get("pid"));
 
-        if (ToolUtil.isEmpty(pid) || pid == 0) {
+        if (ToolUtil.isEmpty(pid) || pid.equals(0L)) {
             map.put("pName", "--");
         } else {
             map.put("pName", ConstantFactory.me().getDeptName(pid));

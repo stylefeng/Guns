@@ -126,7 +126,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
         elem: '#' + Role.tableId,
         url: Feng.ctxPath + '/role/list',
         page: true,
-        height: "full-158",
+        height: "full-98",
         cellMinWidth: 100,
         cols: Role.initColumn()
     });

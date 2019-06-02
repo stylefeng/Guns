@@ -52,8 +52,6 @@
     background-color: #009688;
 }
 
-/** 主题颜色 */
-
 /** 侧边栏文字颜色 */
 .layui-side .layui-nav .layui-nav-item a {
     color: rgba(238, 238, 238, .7);
@@ -63,21 +61,8 @@
     color: #eee !important;
 }
 
-/** header线条 */
-.layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {
-    background-color: #eee;
-}
-
 /** tab下划线 */
 .layui-layout-admin .layui-body > .layui-tab > .layui-tab-title li.layui-this:after {
     background-color: #292B34;
     top: 38px;
-}
-
-/** 移动设备样式 */
-@media screen and (max-width: 750px) {
-    /** 去掉PC端折叠鼠标经过样式 */
-    .layui-layout-admin.admin-nav-mini .layui-side .layui-nav .layui-nav-item.admin-nav-hover > .layui-nav-child {
-        background-color: rgba(0, 0, 0, .3) !important;
-    }
 }

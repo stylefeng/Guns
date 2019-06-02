@@ -11,7 +11,7 @@ import java.util.Date;
  * </p>
  *
  * @author stylefeng
- * @since 2018-12-07
+ * @since 2019-04-01
  */
 @TableName("sys_login_log")
 public class LoginLog implements Serializable {
@@ -21,37 +21,43 @@ public class LoginLog implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "LOGIN_LOG_ID", type = IdType.ID_WORKER)
+    @TableId(value = "login_log_id", type = IdType.ID_WORKER)
     private Long loginLogId;
+
     /**
      * 日志名称
      */
-    @TableField("LOG_NAME")
+    @TableField("log_name")
     private String logName;
+
     /**
      * 管理员id
      */
-    @TableField("USER_ID")
+    @TableField("user_id")
     private Long userId;
+
     /**
      * 创建时间
      */
-    @TableField(value = "CREATE_TIME", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
+
     /**
      * 是否执行成功
      */
-    @TableField("SUCCEED")
+    @TableField("succeed")
     private String succeed;
+
     /**
      * 具体消息
      */
-    @TableField("MESSAGE")
+    @TableField("message")
     private String message;
+
     /**
      * 登录ip
      */
-    @TableField("IP_ADDRESS")
+    @TableField("ip_address")
     private String ipAddress;
 
 
@@ -114,13 +120,13 @@ public class LoginLog implements Serializable {
     @Override
     public String toString() {
         return "LoginLog{" +
-                ", loginLogId=" + loginLogId +
-                ", logName=" + logName +
-                ", userId=" + userId +
-                ", createTime=" + createTime +
-                ", succeed=" + succeed +
-                ", message=" + message +
-                ", ipAddress=" + ipAddress +
-                "}";
+        "loginLogId=" + loginLogId +
+        ", logName=" + logName +
+        ", userId=" + userId +
+        ", createTime=" + createTime +
+        ", succeed=" + succeed +
+        ", message=" + message +
+        ", ipAddress=" + ipAddress +
+        "}";
     }
 }

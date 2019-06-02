@@ -4,35 +4,35 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Dept">
-        <id column="DEPT_ID" property="deptId"/>
-        <result column="PID" property="pid"/>
-        <result column="PIDS" property="pids"/>
-        <result column="SIMPLE_NAME" property="simpleName"/>
-        <result column="FULL_NAME" property="fullName"/>
-        <result column="DESCRIPTION" property="description"/>
-        <result column="VERSION" property="version"/>
-        <result column="SORT" property="sort"/>
-        <result column="CREATE_TIME" property="createTime"/>
-        <result column="UPDATE_TIME" property="updateTime"/>
-        <result column="CREATE_USER" property="createUser"/>
-        <result column="UPDATE_USER" property="updateUser"/>
+        <id column="dept_id" property="deptId" />
+        <result column="pid" property="pid" />
+        <result column="pids" property="pids" />
+        <result column="simple_name" property="simpleName" />
+        <result column="full_name" property="fullName" />
+        <result column="description" property="description" />
+        <result column="version" property="version" />
+        <result column="sort" property="sort" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user" property="updateUser" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        DEPT_ID AS deptId, PID AS pid, PIDS AS pids, SIMPLE_NAME AS simpleName, FULL_NAME AS fullName, DESCRIPTION AS description, VERSION AS version, SORT AS sort, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+        dept_id AS "deptId", pid AS "pid", pids AS "pids", simple_name AS "simpleName", full_name AS "fullName", description AS "description", version AS "version", sort AS "sort", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
     </sql>
 
     <select id="tree" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
-		select DEPT_ID AS id, PID as pId, SIMPLE_NAME as name,
+		select dept_id AS id, pid as "pId", simple_name as name,
 		(
 		CASE
-		WHEN (PID = 0 OR PID IS NULL) THEN
+		WHEN (pid = 0 OR pid IS NULL) THEN
 		'true'
 		ELSE
 		'false'
 		END
-		) as open from sys_dept
+		) as "open" from sys_dept
 	</select>
 
     <select id="list" resultType="map">
@@ -40,16 +40,25 @@
         <include refid="Base_Column_List"/>
         from sys_dept where 1 = 1
         <if test="condition != null and condition != ''">
-            and SIMPLE_NAME like CONCAT('%',#{condition},'%') or FULL_NAME like CONCAT('%',#{condition},'%')
+            and simple_name like CONCAT('%',#{condition},'%') or full_name like CONCAT('%',#{condition},'%')
         </if>
         <if test="deptId != null and deptId != ''">
-            and (DEPT_ID = #{deptId} or DEPT_ID in ( select DEPT_ID from sys_dept where PIDS like CONCAT('%[', #{deptId}, ']%') ))
+            and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like CONCAT('%$[', #{deptId}, '$]%') escape '$' ))
         </if>
-        order by SORT ASC
+        order by sort ASC
     </select>
 
     <select id="treeviewNodes" resultType="cn.stylefeng.guns.core.common.node.TreeviewNode">
-        select DEPT_ID AS tags, PID as parentId, SIMPLE_NAME as text from sys_dept
+        select dept_id AS tags, pid as "parentId", simple_name as text from sys_dept
+    </select>
+
+    <select id="likePids" resultType="cn.stylefeng.guns.modular.system.entity.Dept">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="deptId != null and deptId != ''">
+            and pids LIKE CONCAT('%$[',#{deptId},'$]%') escape '$'
+        </if>
     </select>
 
 </mapper>

@@ -11,7 +11,7 @@ import java.util.Date;
  * </p>
  *
  * @author stylefeng
- * @since 2018-12-07
+ * @since 2019-04-01
  */
 @TableName("sys_dept")
 public class Dept implements Serializable {
@@ -21,62 +21,73 @@ public class Dept implements Serializable {
     /**
      * 主键id
      */
-    @TableId(value = "DEPT_ID", type = IdType.ID_WORKER)
+    @TableId(value = "dept_id", type = IdType.ID_WORKER)
     private Long deptId;
+
     /**
      * 父部门id
      */
-    @TableField("PID")
+    @TableField("pid")
     private Long pid;
+
     /**
      * 父级ids
      */
-    @TableField("PIDS")
+    @TableField("pids")
     private String pids;
+
     /**
      * 简称
      */
-    @TableField("SIMPLE_NAME")
+    @TableField("simple_name")
     private String simpleName;
+
     /**
      * 全称
      */
-    @TableField("FULL_NAME")
+    @TableField("full_name")
     private String fullName;
+
     /**
      * 描述
      */
-    @TableField("DESCRIPTION")
+    @TableField("description")
     private String description;
+
     /**
      * 版本（乐观锁保留字段）
      */
-    @TableField("VERSION")
+    @TableField("version")
     private Integer version;
+
     /**
      * 排序
      */
-    @TableField("SORT")
+    @TableField("sort")
     private Integer sort;
+
     /**
      * 创建时间
      */
-    @TableField(value = "CREATE_TIME", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
+
     /**
      * 修改时间
      */
-    @TableField(value = "UPDATE_TIME", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private Date updateTime;
+
     /**
      * 创建人
      */
-    @TableField(value = "CREATE_USER", fill = FieldFill.INSERT)
+    @TableField(value = "create_user", fill = FieldFill.INSERT)
     private Long createUser;
+
     /**
      * 修改人
      */
-    @TableField(value = "UPDATE_USER", fill = FieldFill.UPDATE)
+    @TableField(value = "update_user", fill = FieldFill.UPDATE)
     private Long updateUser;
 
 
@@ -179,7 +190,7 @@ public class Dept implements Serializable {
     @Override
     public String toString() {
         return "Dept{" +
-        ", deptId=" + deptId +
+        "deptId=" + deptId +
         ", pid=" + pid +
         ", pids=" + pids +
         ", simpleName=" + simpleName +

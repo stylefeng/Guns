@@ -4,45 +4,45 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Dict">
-        <id column="DICT_ID" property="dictId"/>
-        <result column="PID" property="pid"/>
-        <result column="NAME" property="name"/>
-        <result column="CODE" property="code"/>
-        <result column="DESCRIPTION" property="description"/>
-        <result column="SORT" property="sort"/>
-        <result column="CREATE_TIME" property="createTime"/>
-        <result column="UPDATE_TIME" property="updateTime"/>
-        <result column="CREATE_USER" property="createUser"/>
-        <result column="UPDATE_USER" property="updateUser"/>
+        <id column="dict_id" property="dictId" />
+        <result column="dict_type_id" property="dictTypeId" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="parent_id" property="parentId" />
+        <result column="parent_ids" property="parentIds" />
+        <result column="status" property="status" />
+        <result column="sort" property="sort" />
+        <result column="description" property="description" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user" property="updateUser" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        DICT_ID AS dictId, PID AS pid, NAME AS name, CODE AS code, DESCRIPTION AS description, SORT AS sort, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+        dict_id AS "dictId", dict_type_id AS "dictTypeId", code AS "code", name AS "name", parent_id AS "parentId", parent_ids AS "parentIds", status AS "status", sort AS "sort", description AS "description", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
     </sql>
 
-    <select id="selectByCode" resultType="cn.stylefeng.guns.modular.system.entity.Dict">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_dict
-        where CODE = #{code}
+    <select id="dictTree" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        select dict_id AS id, parent_id as "pId", name as name,
+		(
+		CASE
+		WHEN (parent_id = 0 OR parent_id IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as "open" from sys_dict where dict_type_id = #{dictTypeId}
     </select>
 
-    <select id="selectByParentCode" resultType="cn.stylefeng.guns.modular.system.entity.Dict">
+    <select id="likeParentIds" resultType="cn.stylefeng.guns.modular.system.entity.Dict">
         select
-        <include refid="Base_Column_List"/>
-        from sys_dict
-        where PID in(select DICT_ID from sys_dict where CODE = #{code}) order by SORT asc
-    </select>
-
-    <select id="list" resultType="map">
-        select
-        <include refid="Base_Column_List"/>
-        from sys_dict
-        where PID = 0
-        <if test="condition != null and condition != ''">
-            AND NAME like CONCAT('%',#{condition},'%')
+        <include refid="Base_Column_List"></include>
+        from sys_dict where 1 = 1
+        <if test="dictId != null and dictId != ''">
+            and parent_ids LIKE CONCAT('%$[',#{dictId},'$]%') escape '$'
         </if>
-        order by SORT ASC
     </select>
+
 </mapper>

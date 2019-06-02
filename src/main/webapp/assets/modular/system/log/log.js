@@ -96,7 +96,7 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
         elem: '#' + LoginLog.tableId,
         url: Feng.ctxPath + '/log/list',
         page: true,
-        height: "full-158",
+        height: "full-98",
         cellMinWidth: 100,
         cols: LoginLog.initColumn()
     });

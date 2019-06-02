@@ -23,7 +23,7 @@
     <!--其他插件css-->
     @if(isNotEmpty(plugins)){
         @if(array.contain(plugins,"ztree")){
-        <link href="${ctxPath}/assets/common/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+        <link href="${ctxPath}/assets/expand/plugins/ztree/zTreeStyle.css" rel="stylesheet" type="text/css" />
         @}
     @}
 
@@ -66,8 +66,8 @@ ${layoutContent}
 <!--其他插件js-->
 @if(isNotEmpty(plugins)){
     @if(array.contain(plugins,"ztree")){
-    <script src="${ctxPath}/assets/common/plugins/jquery/jquery-3.2.1.min.js"></script>
-    <script src="${ctxPath}/assets/common/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js"></script>
+    <script src="${ctxPath}/assets/expand/plugins/ztree/jquery.ztree.all.min.js"></script>
     @}
 @}
 

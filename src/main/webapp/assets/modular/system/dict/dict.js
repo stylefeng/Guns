@@ -1,19 +1,14 @@
-layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
+layui.use(['table', 'ax', 'treetable'], function () {
     var $ = layui.$;
-    var layer = layui.layer;
-    var form = layui.form;
     var table = layui.table;
     var $ax = layui.ax;
-    var admin = layui.admin;
+    var treetable = layui.treetable;
 
     /**
-     * 系统管理--字典管理
+     * 基础字典管理
      */
     var Dict = {
-        tableId: "dictTable",    //表格id
-        condition: {
-            condition: ""
-        }
+        tableId: "dictTable"
     };
 
     /**
@@ -22,12 +17,22 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
     Dict.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'dictId', hide: true, sort: true, title: 'id'},
-            {field: 'name', sort: true, title: '名称'},
+            {field: 'dictId', hide: true, title: '字典id'},
+            {field: 'name', sort: true, title: '字典名称'},
             {field: 'code', sort: true, title: '字典编码'},
-            {field: 'detail', sort: true, title: '详情'},
-            {field: 'description', sort: true, title: '备注'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
+            {field: 'description', sort: true, title: '字典的描述'},
+            {
+                field: 'status', sort: true, title: '状态', templet: function (d) {
+                    if (d.status === 'ENABLE') {
+                        return "启用";
+                    } else {
+                        return "禁用";
+                    }
+                }
+            },
+            {field: 'createTime', sort: true, title: '创建时间'},
+            {field: 'createUser', sort: true, title: '创建人'},
+            {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
 
@@ -37,79 +42,66 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
     Dict.search = function () {
         var queryData = {};
         queryData['condition'] = $("#condition").val();
-        table.reload(Dict.tableId, {where: queryData});
+        Dict.initTable(Dict.tableId, queryData);
     };
 
     /**
-     * 弹出添加字典
+     * 弹出添加对话框
      */
-    Dict.openAddDict = function () {
-        admin.putTempData('formOk', false);
-        top.layui.admin.open({
-            type: 2,
-            title: '添加字典类型',
-            content: Feng.ctxPath + '/dict/dict_add_type',
-            end: function () {
-                admin.getTempData('formOk') && table.reload(Dict.tableId);
-            }
-        });
+    Dict.openAddDlg = function () {
+        window.location.href = Feng.ctxPath + '/dict/add?dictTypeId=' + $("#dictTypeId").val();
     };
 
     /**
-     * 弹出添加子条目
-     */
-    Dict.openAddDictSub = function (data) {
-        admin.putTempData('formOk', false);
-        top.layui.admin.open({
-            type: 2,
-            title: '添加子条目',
-            content: Feng.ctxPath + '/dict/dict_add_item?dictId=' + data.dictId,
-            end: function () {
-                admin.getTempData('formOk') && table.reload(Dict.tableId);
-            }
-        });
-    };
-
-    /**
-     * 导出excel按钮
-     */
-    Dict.exportExcel = function () {
-        var checkRows = table.checkStatus(Dict.tableId);
-        if (checkRows.data.length === 0) {
-            Feng.error("请选择要导出的数据");
-        } else {
-            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-        }
-    };
-
-    /**
-     * 点击删除字典
+     * 点击编辑
      *
      * @param data 点击按钮时候的行数据
      */
-    Dict.onDeleteRole = function (data) {
+    Dict.openEditDlg = function (data) {
+        window.location.href = Feng.ctxPath + '/dict/edit?dictId=' + data.dictId;
+    };
+
+    /**
+     * 点击删除
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Dict.onDeleteItem = function (data) {
         var operation = function () {
             var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
                 Feng.success("删除成功!");
-                table.reload(Dict.tableId);
+                Dict.search();
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
             ajax.set("dictId", data.dictId);
             ajax.start();
         };
-        Feng.confirm("是否刪除字典 " + data.name + "?", operation);
+        Feng.confirm("是否删除?", operation);
     };
 
-    // 渲染表格
-    var tableResult = table.render({
-        elem: '#' + Dict.tableId,
-        url: Feng.ctxPath + '/dict/list',
-        page: true,
-        height: "full-158",
-        cellMinWidth: 100,
-        cols: Dict.initColumn()
-    });
+    /**
+     * 渲染表格
+     */
+    Dict.initTable = function (dictId, data) {
+        return treetable.render({
+            elem: '#' + dictId,
+            url: Feng.ctxPath + '/dict/list?dictTypeId=' + $("#dictTypeId").val(),
+            where: data,
+            height: "full-98",
+            cellMinWidth: 100,
+            cols: Dict.initColumn(),
+            page: false,
+            treeColIndex: 2,
+            treeSpid: "0",
+            treeIdName: 'dictId',
+            treePidName: 'parentId',
+            treeDefaultClose: false,
+            treeLinkage: true
+        });
+    };
+
+    Dict.initTable(Dict.tableId);
 
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
@@ -118,7 +110,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
 
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
-        Dict.openAddDict();
+        Dict.openAddDlg();
     });
 
     // 导出excel
@@ -126,17 +118,20 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax'], function () {
         Dict.exportExcel();
     });
 
+    // 关闭页面
+    $('#btnBack').click(function () {
+        window.location.href = Feng.ctxPath + "/dictType";
+    });
+
     // 工具条点击事件
     table.on('tool(' + Dict.tableId + ')', function (obj) {
         var data = obj.data;
         var layEvent = obj.event;
 
-        if (layEvent === 'addSub') {
-            Dict.openAddDictSub(data);
+        if (layEvent === 'edit') {
+            Dict.openEditDlg(data);
         } else if (layEvent === 'delete') {
-            Dict.onDeleteRole(data);
-        } else if (layEvent === 'roleAssign') {
-            Dict.roleAssign(data);
+            Dict.onDeleteItem(data);
         }
     });
 });

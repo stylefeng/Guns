@@ -4,17 +4,17 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.FileInfo">
-        <id column="FILE_ID" property="fileId" />
-        <result column="FILE_DATA" property="fileData" />
-        <result column="CREATE_TIME" property="createTime" />
-        <result column="UPDATE_TIME" property="updateTime" />
-        <result column="CREATE_USER" property="createUser" />
-        <result column="UPDATE_USER" property="updateUser" />
+        <id column="file_id" property="fileId" />
+        <result column="file_data" property="fileData" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_user" property="updateUser" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        FILE_ID AS fileId, FILE_DATA AS fileData, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+        file_id AS "fileId", file_data AS "fileData", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
     </sql>
 
 </mapper>

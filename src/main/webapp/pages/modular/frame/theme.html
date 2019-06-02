@@ -94,56 +94,18 @@
     </style>
 </head>
 <body>
-
 <div class="layui-card-header">设置主题</div>
 <div class="layui-card-body">
     <!-- 主题列表 -->
-    <div class="theme-div">
-        <div class="btnTheme" theme="admin" title="黑白主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_1.png">
-        </div>
-        <div class="btnTheme" theme="theme-black" title="黑色主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_2.png">
-        </div>
-        <div class="btnTheme" theme="theme-cyan" title="藏青主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_7.png">
-        </div>
-        <div class="btnTheme" theme="theme-blue-white" title="蓝白主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_3.png">
-        </div>
-        <div class="btnTheme" theme="theme-blue" title="蓝黑主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_4.png">
-        </div>
-        <div class="btnTheme" theme="theme-blue-side" title="蓝色主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_5.png">
-        </div>
-        <div class="btnTheme" theme="theme-white" title="白色主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_6.png" style="border-color: #cccccc;">
-        </div>
-        <div class="btnTheme" theme="theme-green-dark" title="暗绿主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_9.png">
-        </div>
-        <div class="btnTheme" theme="theme-green" title="绿色主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_8.png">
-        </div>
-        <div class="btnTheme" theme="theme-red-white" title="红白主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_12.png">
-        </div>
-        <div class="btnTheme" theme="theme-red-dark" title="暗红主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_11.png">
-        </div>
-        <div class="btnTheme" theme="theme-red" title="红色主题">
-            <img src="${ctxPath}/assets/common/module/theme/img/img_theme_10.png">
-        </div>
-    </div>
+    <div class="theme-div"></div>
 
     <!-- 导航 -->
     <div>
         <a class="more-menu-item" href="https://gitee.com/stylefeng/guns" target="_blank">
-            <i class="layui-icon layui-icon-theme"></i> Guns码云官网
+            <i class="layui-icon layui-icon-note" style="font-size: 19px;"></i> Guns码云官网
         </a>
         <a class="more-menu-item" href="https://www.stylefeng.cn" target="_blank">
-            <i class="layui-icon layui-icon-read" style="font-size: 19px;"></i> stylefeng开源技术
+            <i class="layui-icon layui-icon-app" style="font-size: 16px;"></i> &nbsp;stylefeng开源技术
         </a>
     </div>
 
@@ -193,6 +155,27 @@
         var layer = layui.layer;
         var form = layui.form;
         var admin = layui.admin;
+
+        var themes = [
+            {title: '黑白主题', theme: 'admin'},
+            {title: '黑色主题', theme: 'black'},
+            {title: '蓝色主题', theme: 'blue'},
+            {title: '藏青主题', theme: 'cyan'},
+            {title: '黄色主题', theme: 'yellow'},
+            {title: '绿色主题', theme: 'green'},
+            {title: '粉红主题', theme: 'pink'},
+            {title: '紫白主题', theme: 'purple-white'},
+            {title: '紫色主题', theme: 'purple'},
+            {title: '白色主题', theme: 'white'},
+            {title: '红白主题', theme: 'red-white'},
+            {title: '红色主题', theme: 'red'}
+        ];
+        for (var i = 0; i < themes.length; i++) {
+            var str = '<div class="btnTheme" theme="theme-' + themes[i].theme + '" title="' + themes[i].title + '">';
+            str += '      <img src="' + Feng.ctxPath + '/assets/common/module/theme/img/theme-' + themes[i].theme + '.png">';
+            str += '   </div>';
+            $('.theme-div').append(str)
+        }
 
         // 切换主题
         var mTheme = layui.data(admin.tableName).theme;

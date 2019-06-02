@@ -7,11 +7,11 @@ import java.util.Date;
 
 /**
  * <p>
- * 字典表
+ * 基础字典
  * </p>
  *
  * @author stylefeng
- * @since 2018-12-07
+ * @since 2019-04-01
  */
 @TableName("sys_dict")
 public class Dict implements Serializable {
@@ -19,54 +19,81 @@ public class Dict implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键id
+     * 字典id
      */
-    @TableId(value = "DICT_ID", type = IdType.ID_WORKER)
+    @TableId(value = "dict_id", type = IdType.ID_WORKER)
     private Long dictId;
+
     /**
-     * 父级字典id
+     * 所属字典类型的id
      */
-    @TableField("PID")
-    private Long pid;
+    @TableField("dict_type_id")
+    private Long dictTypeId;
+
+    /**
+     * 字典编码
+     */
+    @TableField("code")
+    private String code;
+
     /**
      * 字典名称
      */
-    @TableField("NAME")
+    @TableField("name")
     private String name;
+
     /**
-     * 字典的编码
+     * 上级代码id
      */
-    @TableField("CODE")
-    private String code;
+    @TableField("parent_id")
+    private Long parentId;
+
     /**
-     * 字典描述
+     * 所有上级id
      */
-    @TableField("DESCRIPTION")
-    private String description;
+    @TableField("parent_ids")
+    private String parentIds;
+
+    /**
+     * 状态（字典）
+     */
+    @TableField("status")
+    private String status;
+
     /**
      * 排序
      */
-    @TableField("SORT")
+    @TableField("sort")
     private Integer sort;
+
+    /**
+     * 字典的描述
+     */
+    @TableField("description")
+    private String description;
+
     /**
      * 创建时间
      */
-    @TableField(value = "CREATE_TIME", fill = FieldFill.INSERT)
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
+
     /**
-     * 修改时间
+     * 更新时间
      */
-    @TableField(value = "UPDATE_TIME", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private Date updateTime;
+
     /**
      * 创建人
      */
-    @TableField(value = "CREATE_USER", fill = FieldFill.INSERT)
+    @TableField(value = "create_user", fill = FieldFill.INSERT)
     private Long createUser;
+
     /**
      * 修改人
      */
-    @TableField(value = "UPDATE_USER", fill = FieldFill.UPDATE)
+    @TableField(value = "update_user", fill = FieldFill.UPDATE)
     private Long updateUser;
 
 
@@ -78,20 +105,12 @@ public class Dict implements Serializable {
         this.dictId = dictId;
     }
 
-    public Long getPid() {
-        return pid;
+    public Long getDictTypeId() {
+        return dictTypeId;
     }
 
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setDictTypeId(Long dictTypeId) {
+        this.dictTypeId = dictTypeId;
     }
 
     public String getCode() {
@@ -102,12 +121,36 @@ public class Dict implements Serializable {
         this.code = code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentIds() {
+        return parentIds;
+    }
+
+    public void setParentIds(String parentIds) {
+        this.parentIds = parentIds;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getSort() {
@@ -116,6 +159,14 @@ public class Dict implements Serializable {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreateTime() {
@@ -153,16 +204,19 @@ public class Dict implements Serializable {
     @Override
     public String toString() {
         return "Dict{" +
-                ", dictId=" + dictId +
-                ", pid=" + pid +
-                ", name=" + name +
-                ", code=" + code +
-                ", description=" + description +
-                ", sort=" + sort +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", createUser=" + createUser +
-                ", updateUser=" + updateUser +
-                "}";
+        "dictId=" + dictId +
+        ", dictTypeId=" + dictTypeId +
+        ", code=" + code +
+        ", name=" + name +
+        ", parentId=" + parentId +
+        ", parentIds=" + parentIds +
+        ", status=" + status +
+        ", sort=" + sort +
+        ", description=" + description +
+        ", createTime=" + createTime +
+        ", updateTime=" + updateTime +
+        ", createUser=" + createUser +
+        ", updateUser=" + updateUser +
+        "}";
     }
 }

@@ -130,7 +130,7 @@ layui.use(['layer', 'form', 'ztree', 'laydate', 'admin', 'ax', 'table', 'treetab
             url: Feng.ctxPath + '/menu/listTree',
             where: data,
             page: false,
-            height: "full-158",
+            height: "full-98",
             cellMinWidth: 100,
             cols: Menu.initColumn(),
             treeColIndex: 2,

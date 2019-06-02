@@ -188,7 +188,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
         elem: '#' + MgrUser.tableId,
         url: Feng.ctxPath + '/mgr/list',
         page: true,
-        height: "full-158",
+        height: "full-98",
         cellMinWidth: 100,
         cols: MgrUser.initColumn()
     });

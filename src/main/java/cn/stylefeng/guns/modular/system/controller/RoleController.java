@@ -253,8 +253,16 @@ public class RoleController extends BaseController {
         if (ToolUtil.isEmpty(roleId)) {
             return this.roleService.roleTreeList();
         } else {
+
             String[] strArray = roleId.split(",");
-            return this.roleService.roleTreeListByRoleId(strArray);
+
+            //转化成Long[]
+            Long[] longArray = new Long[strArray.length];
+            for (int i = 0; i < strArray.length; i++) {
+                longArray[i] = Long.valueOf(strArray[i]);
+            }
+
+            return this.roleService.roleTreeListByRoleId(longArray);
         }
     }
 

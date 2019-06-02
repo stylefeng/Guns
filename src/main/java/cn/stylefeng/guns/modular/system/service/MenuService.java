@@ -109,9 +109,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
     @Transactional(rollbackFor = Exception.class)
     public void updateSubMenuLevels(Menu oldMenu, Menu newMenu) {
 
-        QueryWrapper<Menu> wrapper = new QueryWrapper<>();
-        wrapper = wrapper.like("PCODES", "%[" + oldMenu.getCode() + "]%");
-        List<Menu> menus = menuMapper.selectList(wrapper);
+        List<Menu> menus = menuMapper.getMenusLikePcodes(oldMenu.getCode());
 
         for (Menu menu : menus) {
 
@@ -166,9 +164,8 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> {
         delMenu(menuId);
 
         //删除所有子菜单
-        QueryWrapper<Menu> wrapper = new QueryWrapper<>();
-        wrapper = wrapper.like("PCODES", "%[" + menu.getCode() + "]%");
-        List<Menu> menus = menuMapper.selectList(wrapper);
+        List<Menu> menus = menuMapper.getMenusLikePcodes(menu.getCode());
+
         for (Menu temp : menus) {
             delMenu(temp.getMenuId());
         }

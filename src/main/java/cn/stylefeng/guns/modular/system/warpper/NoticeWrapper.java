@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.util.DecimalUtil;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -49,7 +50,7 @@ public class NoticeWrapper extends BaseControllerWrapper {
 
     @Override
     protected void wrapTheMap(Map<String, Object> map) {
-        Long creater = (Long) map.get("createUser");
+        Long creater = DecimalUtil.getLong(map.get("createUser"));
         map.put("createrName", ConstantFactory.me().getUserNameById(creater));
     }
 }

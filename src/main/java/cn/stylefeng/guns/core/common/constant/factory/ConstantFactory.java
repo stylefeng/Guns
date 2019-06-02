@@ -47,6 +47,7 @@ public class ConstantFactory implements IConstantFactory {
     private RoleMapper roleMapper = SpringContextHolder.getBean(RoleMapper.class);
     private DeptMapper deptMapper = SpringContextHolder.getBean(DeptMapper.class);
     private DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
+    private DictTypeMapper dictTypeMapper = SpringContextHolder.getBean(DictTypeMapper.class);
     private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
     private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
     private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
@@ -244,15 +245,15 @@ public class ConstantFactory implements IConstantFactory {
 
     @Override
     public String getDictsByName(String name, String code) {
-        Dict temp = new Dict();
+        DictType temp = new DictType();
         temp.setName(name);
-        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>(temp);
-        Dict dict = dictMapper.selectOne(queryWrapper);
-        if (dict == null) {
+        QueryWrapper<DictType> queryWrapper = new QueryWrapper<>(temp);
+        DictType dictType = dictTypeMapper.selectOne(queryWrapper);
+        if (dictType == null) {
             return "";
         } else {
             QueryWrapper<Dict> wrapper = new QueryWrapper<>();
-            wrapper = wrapper.eq("PID", dict.getDictId());
+            wrapper = wrapper.eq("dict_type_id", dictType.getDictTypeId());
             List<Dict> dicts = dictMapper.selectList(wrapper);
             for (Dict item : dicts) {
                 if (item.getCode() != null && item.getCode().equals(code)) {
@@ -284,7 +285,7 @@ public class ConstantFactory implements IConstantFactory {
             return null;
         } else {
             QueryWrapper<Dict> wrapper = new QueryWrapper<>();
-            List<Dict> dicts = dictMapper.selectList(wrapper.eq("PID", id));
+            List<Dict> dicts = dictMapper.selectList(wrapper.eq("pid", id));
             if (dicts == null || dicts.size() == 0) {
                 return null;
             } else {
@@ -300,19 +301,20 @@ public class ConstantFactory implements IConstantFactory {
 
     @Override
     public List<Long> getSubDeptId(Long deptId) {
-        QueryWrapper<Dept> wrapper = new QueryWrapper<>();
-        wrapper = wrapper.like("PIDS", "%[" + deptId + "]%");
-        List<Dept> depts = this.deptMapper.selectList(wrapper);
+        ArrayList<Long> deptIds = new ArrayList<>();
 
-        ArrayList<Long> deptids = new ArrayList<>();
-
-        if (depts != null && depts.size() > 0) {
-            for (Dept dept : depts) {
-                deptids.add(dept.getDeptId());
+        if (deptId == null) {
+            return deptIds;
+        } else {
+            List<Dept> depts = this.deptMapper.likePids(deptId);
+            if (depts != null && depts.size() > 0) {
+                for (Dept dept : depts) {
+                    deptIds.add(dept.getDeptId());
+                }
             }
-        }
 
-        return deptids;
+            return deptIds;
+        }
     }
 
     @Override

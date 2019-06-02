@@ -96,21 +96,17 @@ layui.config({
     dtree: 'dtree/dtree',
     citypicker: 'city-picker/city-picker',
     tableSelect: 'tableSelect/tableSelect',
-    ax: 'ax/ax',
-    ztree: 'ztree/ztree-object'
+    selectPlus: '../../expand/module/selectPlus/selectPlus',
+    ax: '../../expand/module/ax/ax',
+    ztree: '../../expand/module/ztree/ztree-object'
 }).use(['admin'], function () {
-    var $ = layui.$;
+    var $ = layui.jquery;
     var admin = layui.admin;
-
-    // 单标签模式需要根据子页面的地址联动侧边栏的选中，用于适配浏览器前进后退按钮
-    if (window != top && top.layui && top.layui.index && !top.layui.index.pageTabs) {
-        top.layui.admin.activeNav(location.href.substring(Feng.ctxPath.length));
-    }
 
     // 移除loading动画
     setTimeout(function () {
         admin.removeLoading();
-    }, window == top ? 300 : 150);
+    }, window == top ? 600 : 100);
 
     //注册session超时的操作
     $.ajaxSetup({

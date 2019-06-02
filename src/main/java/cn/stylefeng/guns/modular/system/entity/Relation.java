@@ -1,12 +1,10 @@
 package cn.stylefeng.guns.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
-
-import static com.baomidou.mybatisplus.annotation.IdType.ID_WORKER;
 
 /**
  * <p>
@@ -14,7 +12,7 @@ import static com.baomidou.mybatisplus.annotation.IdType.ID_WORKER;
  * </p>
  *
  * @author stylefeng
- * @since 2018-12-07
+ * @since 2019-04-01
  */
 @TableName("sys_relation")
 public class Relation implements Serializable {
@@ -24,17 +22,19 @@ public class Relation implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "RELATION_ID", type = ID_WORKER)
+    @TableId(value = "relation_id", type = IdType.ID_WORKER)
     private Long relationId;
+
     /**
      * 菜单id
      */
-    @TableField("MENU_ID")
+    @TableField("menu_id")
     private Long menuId;
+
     /**
      * 角色id
      */
-    @TableField("ROLE_ID")
+    @TableField("role_id")
     private Long roleId;
 
 
@@ -65,9 +65,9 @@ public class Relation implements Serializable {
     @Override
     public String toString() {
         return "Relation{" +
-                ", relationId=" + relationId +
-                ", menuId=" + menuId +
-                ", roleId=" + roleId +
-                "}";
+        "relationId=" + relationId +
+        ", menuId=" + menuId +
+        ", roleId=" + roleId +
+        "}";
     }
 }

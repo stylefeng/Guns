@@ -1,0 +1,77 @@
+@layout("/common/_container.html",{js:["/assets/modular/system/dictType/dictType_edit.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">添加字典类型</span>
+</div>
+
+<div class="layui-fluid " style="">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form id="dictTypeForm" lay-filter="dictTypeForm" class="layui-form model-form" style="max-width: 700px;margin: 40px auto;">
+                <input name="dictTypeId" type="hidden"/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input id="name" name="name" placeholder="请输入字典类型名称，例如：状态标识" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">类型编码<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input id="code" name="code" placeholder="请输入字典类型编码，例如：STATUS" type="text" class="layui-input" lay-verify="required" required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否为系统字典<span style="color: red;">*</span></label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="systemFlag" value="Y" title="是">
+                        <input type="radio" name="systemFlag" value="N" title="否" checked="">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">系统字典与代码中枚举关联，添加后不可修改</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">排序</label>
+                    <div class="layui-input-block">
+                        <input id="sort" name="sort" placeholder="请输入字典排序" type="text" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">字典描述</label>
+                    <div class="layui-input-block">
+                        <textarea id="description" name="description" placeholder="请输入字典描述" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">创建时间</label>
+                    <div class="layui-input-block">
+                        <input id="createTime" name="createTime" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">创建人</label>
+                    <div class="layui-input-block">
+                        <input id="createUser" name="createUser" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">修改时间</label>
+                    <div class="layui-input-block">
+                        <input id="updateTime" name="updateTime" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">修改人</label>
+                    <div class="layui-input-block">
+                        <input id="updateUser" name="updateUser" type="text" class="layui-input white-border" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="layui-form-item text-right">
+                    <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+                    <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog" id="backupPage">返回</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@}
