@@ -3,7 +3,7 @@
     <br>      
     <br>      
     <p align="center">
-        Guns基于Spring Boot2，致力于做更简洁的后台管理系统。包含基础系统管理，创新代码生成，多数据库适配，持续集成，SSO单点登录，工作流，短信，邮件发送，第三方OAuth2登录，任务调度等功能。最新版同时提供Spring Cloud Alibaba微服务支持。
+        Guns基于Spring Boot2，致力于做更简洁的后台管理系统。包含系统管理，代码生成，多数据库适配，SSO单点登录，工作流，短信，邮件发送，OAuth2登录，任务调度，持续集成，docker部署等功。支持Spring Cloud Alibaba微服务。
         <br>      
         <br>      
         <span>
@@ -64,7 +64,7 @@
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| Guns企业版 | 创新代码生成，多数据库适配，持续集成，SSO单点登录，工作流，短信，邮件发送，第三方OAuth2登录，任务调度等功能，支持Spring Cloud Alibaba微服务 | https://www.stylefeng.cn/ |
+| Guns企业版 | 代码生成，多数据库适配，SSO单点登录，工作流，短信，邮件发送，OAuth2登录，任务调度，持续集成，docker部署 | https://www.stylefeng.cn/ |
 | Guns旗舰版 v2.5 | 最新开源版本，master分支 | https://gitee.com/stylefeng/guns |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 
