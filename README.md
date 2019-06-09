@@ -37,12 +37,11 @@
 
 -----------------------------------------------------------------------------------------------
 
-### \>\> 在线demo <<
-账号密码：admin/111111，地址：http://demo.stylefeng.cn
+### 在线demo
+* 账号密码：admin/111111，地址：http://demo.stylefeng.cn
+* 阿里云5折优惠券，[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=p4kqz45e)
 
-阿里云5折优惠券，[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=p4kqz45e)
-
-### \>\> 扫码关注官方公众号和官方微信群 <<
+### 扫码关注官方公众号和官方微信群
 <table>
     <tr>
         <td>官方公众号</td>
@@ -60,25 +59,18 @@
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 
 ### Guns 企业版
-**企业级，功能更强大，创新代码生成，高级sso，微服务，容器化部署等**，详情点击[https://www.stylefeng.cn](https://www.stylefeng.cn)
-
-买企业版送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
+* 企业级，功能更强大，创新代码生成，高级sso，微服务，容器化部署等，详情点击[https://www.stylefeng.cn](https://www.stylefeng.cn)
+* 买企业版送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
 ### Guns&Roses架构师视频
-深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
+* 深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
 
 
 ### 版权声明
-Guns采用定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请[购买授权](https://www.stylefeng.cn)。
+* Guns采用定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请[购买授权](https://www.stylefeng.cn)。
 
 ### Guns前端模板
-Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
-
-### Guns微服务版本
-
-Guns的核心是roses-kernel项目[https://gitee.com/stylefeng-Roses/roses-kernel](https://gitee.com/stylefeng-Roses/roses-kernel)，提供对spring cloud的支持。
-
-[Roses框架](https://gitee.com/stylefeng/roses)基于Spring Boot 2和Spring Cloud Finchley.RELEASE，整合Eureka + Hystrix + Ribbon + Feign + Zuul，更符合企业级的分布式和服务化解决方案，Roses拥有高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace）等等，一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战！
+* Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
 
 ### 管理系统功能
 1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成
