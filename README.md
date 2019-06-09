@@ -42,7 +42,7 @@
 
 阿里云5折优惠券，[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=p4kqz45e)
 
-### \>\> 扫码关注官方公众号和官方微信群
+### \>\> 扫码关注官方公众号和官方微信群 <<
 <table>
     <tr>
         <td>官方公众号</td>
@@ -52,23 +52,23 @@
     </tr>
 </table>
 
-### \>\> Guns版本说明 <<
+### Guns版本说明
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
 | Guns旗舰版 v2.5 | 最新开源版本，master分支 | https://gitee.com/stylefeng/guns |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 
-### \>\> Guns 企业版 <<
+### Guns 企业版
 **企业级，功能更强大，创新代码生成，高级sso，微服务，容器化部署等**，详情点击[https://www.stylefeng.cn](https://www.stylefeng.cn)
 
 买企业版送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
-### \>\> Guns&Roses架构师视频 <<
+### Guns&Roses架构师视频
 深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
 
 
-### 版权声明 
+### 版权声明
 Guns采用定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请[购买授权](https://www.stylefeng.cn)。
 
 ### Guns前端模板
