@@ -3,7 +3,7 @@
     <br>      
     <br>      
     <p align="center">
-        Guns基于SpringBoot 2，致力于做更简洁的后台管理系统。Guns项目代码简洁，注释丰富，上手容易，同时Guns包含许多基础模块(用户管理，角色管理，部门管理，字典管理等10个模块)，可以直接作为一个后台管理系统的脚手架!
+        Guns基于Spring Boot2，致力于做更简洁的后台管理系统。包含基础系统管理，创新代码生成，多数据库适配，持续集成，SSO单点登录，工作流，短信，邮件发送，OAuth2，任务调度等功能。最新版同时提供Spring Cloud Alibaba微服务支持。
         <br>      
         <br>      
         <span>
@@ -60,22 +60,19 @@ Guns企业级快速开发平台，开箱即用，详情点击[https://www.stylef
     </tr>
 </table>
 
-### Guns历史版本
+### Guns版本说明
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| Guns企业版 | 付费授权，包含最新代码生成器，支持微服务，SSO，工作流等等 | https://www.stylefeng.cn/ |
+| Guns企业版 | 支持微服务，创新代码生成，多数据库适配，持续集成，SSO单点登录，工作流，短信，邮件发送，OAuth2，任务调度等| https://www.stylefeng.cn/ |
 | Guns旗舰版 v2.5 | 最新开源版本，master分支 | https://gitee.com/stylefeng/guns |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 
 ### 版权声明
-Guns采用新的定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请购买授权。
+Guns采用定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请购买授权。
 
 ### Guns前端模板
 Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
-
-### 如有帮助，请多star
-Guns从2017年开源以来，从最初的1.0版本发展到现在的旗舰版2.0，中间历经了十几个版本，一直坚持更新，尽力做到更好！如果Guns对您有所帮助，请`star`一下项目！支持一下作者！感谢！
 
 ### Guns微服务版本
 
