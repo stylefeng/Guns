@@ -81,7 +81,7 @@ Guns的核心是roses-kernel项目[https://gitee.com/stylefeng-Roses/roses-kerne
 [Roses框架](https://gitee.com/stylefeng/roses)基于Spring Boot 2和Spring Cloud Finchley.RELEASE，整合Eureka + Hystrix + Ribbon + Feign + Zuul，更符合企业级的分布式和服务化解决方案，Roses拥有高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace）等等，一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战！
 
 ### 管理系统功能
-1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成（旗舰版目前还没完成）
+1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成
 
 ### 项目特点
 1. 基于SpringBoot，简化了大量项目配置和maven依赖，让您更专注于业务开发，独特的分包方式，代码多而不乱。
