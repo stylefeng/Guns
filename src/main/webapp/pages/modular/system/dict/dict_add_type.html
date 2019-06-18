@@ -1,0 +1,39 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/dict/dict_add_type.js"]}){
+<form id="userForm" lay-filter="roleForm" class="layui-form model-form">
+    <input name="roleId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">父级字典<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input value="顶级" type="text" class="layui-input" disabled="disabled"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">字典编码<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="code" name="code" placeholder="请输入字典编码" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">字典名称<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="description" name="name" placeholder="请输入字典名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <input name="description" placeholder="请输入描述" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">排序</label>
+        <div class="layui-input-block">
+            <input name="sort" placeholder="请输入排序" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+    </div>
+</form>
+@}

@@ -1,0 +1,35 @@
+/** 错误页面样式 */
+.error-page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.error-page-img {
+    min-width: 300px;
+    max-width: 100%;
+    max-height: 300px;
+}
+
+.error-page-info {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 30px;
+}
+
+.error-page-info h1 {
+    color: #434e59;
+    font-size: 72px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.error-page-info-desc {
+    color: #777;
+    font-size: 20px;
+    line-height: 28px;
+    margin-bottom: 16px;
+}

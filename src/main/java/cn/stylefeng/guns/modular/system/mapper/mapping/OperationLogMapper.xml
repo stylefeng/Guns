@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.mapper.OperationLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.OperationLog">
+        <id column="OPERATION_LOG_ID" property="operationLogId"/>
+        <result column="LOG_TYPE" property="logType"/>
+        <result column="LOG_NAME" property="logName"/>
+        <result column="USER_ID" property="userId"/>
+        <result column="CLASS_NAME" property="className"/>
+        <result column="METHOD" property="method"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="SUCCEED" property="succeed"/>
+        <result column="MESSAGE" property="message"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OPERATION_LOG_ID AS operationLogId, LOG_TYPE AS logType, LOG_NAME AS logName, USER_ID AS userId, CLASS_NAME AS className, METHOD AS method, CREATE_TIME AS createTime, SUCCEED AS succeed, MESSAGE AS message
+    </sql>
+
+    <select id="getOperationLogs" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_operation_log where 1 = 1
+        <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
+            and (CREATE_TIME between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+        </if>
+        <if test="logName != null and logName !=''">
+            and LOG_NAME like CONCAT('%',#{logName},'%')
+        </if>
+        <if test="logType != null and logType !=''">
+            and LOG_TYPE like CONCAT('%',#{logType},'%')
+        </if>
+    </select>
+
+</mapper>

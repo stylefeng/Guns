@@ -1,0 +1,98 @@
+.user-info-head {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    display: inline-block;
+}
+
+.user-info-head:hover:after {
+    content: '\e65d';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: #eee;
+    background: rgba(0, 0, 0, 0.5);
+    font-family: layui-icon;
+    font-size: 24px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: pointer;
+    line-height: 110px;
+    border-radius: 50%;
+}
+
+.user-info-head img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+}
+
+.info-list-item {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.info-list-item > .layui-icon {
+    position: absolute;
+}
+
+.info-list-item > p {
+    padding-left: 30px;
+}
+
+.dash {
+    border-bottom: 1px dashed #ccc;
+    margin: 15px 0;
+}
+
+.layui-badge-list .layui-badge {
+    margin-right: 6px;
+}
+
+.layui-badge-list .layui-badge {
+    padding: 2px 7px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    background-color: #fafafa !important;
+}
+
+.bd-list-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
+}
+
+.bd-list-item .bd-list-item-img {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    margin-right: 12px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bd-list-item .bd-list-item-content {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.bd-list-item .bd-list-item-lable {
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.bd-list-item .bd-list-item-oper {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    text-decoration: none !important;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.user-info-form .layui-form-item {
+    margin-bottom: 25px;
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.entity.Role">
+        <id column="ROLE_ID" property="roleId"/>
+        <result column="PID" property="pid"/>
+        <result column="NAME" property="name"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="SORT" property="sort"/>
+        <result column="VERSION" property="version"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="CREATE_USER" property="createUser"/>
+        <result column="UPDATE_USER" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID AS roleId, PID AS pid, NAME AS name, DESCRIPTION AS description, SORT AS sort, VERSION AS version, CREATE_TIME AS createTime, UPDATE_TIME AS updateTime, CREATE_USER AS createUser, UPDATE_USER AS updateUser
+    </sql>
+
+    <select id="selectRoles" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        <if test="condition != null">
+            where NAME like CONCAT('%',#{condition},'%')
+        </if>
+        order by SORT asc
+    </select>
+
+    <delete id="deleteRolesById">
+		delete from sys_relation where ROLE_ID = #{roleId}
+	</delete>
+
+    <select id="roleTreeList" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+		select ROLE_ID AS id, PID as pId,
+		NAME as name, (case when (PID = 0 or PID is null) then 'true'
+		else 'false' end) as `open` from sys_role
+	</select>
+
+    <select id="roleTreeListByRoleId" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        SELECT
+        r.ROLE_ID as id,
+        PID as pId,
+        NAME AS `name`,
+        (
+        CASE
+        WHEN (PID = 0 OR PID IS NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as `open`,
+        (
+        CASE
+        WHEN (r1.ROLE_ID = 0 OR r1.ROLE_ID IS NULL) THEN
+        'false'
+        ELSE
+        'true'
+        END
+        ) as checked
+        FROM
+        sys_role r
+        LEFT JOIN (
+        SELECT
+        ROLE_ID
+        FROM
+        sys_role
+        WHERE
+        ROLE_ID IN
+
+        <foreach collection="array" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+
+        ) r1 ON r.ROLE_ID = r1.ROLE_ID
+        ORDER BY PID,SORT ASC
+    </select>
+
+</mapper>

@@ -1,0 +1,283 @@
+/** EasyWeb dropdown data:2018-12-10 */
+
+/** 遮罩层 */
+html.dropdown-no-scroll {
+    overflow: hidden;
+}
+
+.dropdown-menu-shade {
+    z-index: 9999998;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.3;
+}
+
+.dropdown-menu-shade.no-shade {
+    opacity: 0;
+}
+
+/** 夜间主题 */
+.dropdown-menu.dark .dropdown-anchor, .dropdown-menu.dark .dropdown-anchor::after {
+    border-color: #32363F;
+}
+
+.dropdown-menu.dark ul {
+    background: #32363F
+}
+
+.dropdown-menu.dark ul li > a, .dropdown-menu.dark ul li label {
+    color: #a1a8b8
+}
+
+.dropdown-menu.dark ul li > a:hover, .dropdown-menu.dark ul li label:hover {
+    background-color: #272b34;
+}
+
+.dropdown-menu.dark ul li {
+    border-color: #484e58;
+}
+
+.dropdown-menu.dark ul li.title {
+    background: #474c58;
+    color: #868b9a;
+}
+
+/** 白色主题 */
+.dropdown-menu {
+    position: absolute;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+    border-radius: 3px;
+    display: none;
+}
+
+.dropdown-menu.fixed {
+    position: fixed;
+}
+
+.dropdown-opened {
+    display: block;
+}
+
+.dropdown-menu ul {
+    min-width: 100px;
+    list-style: none;
+    background: #ffffff;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.dropdown-menu ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    line-height: 18px;
+    border-bottom: 1px solid #e6e6e6;
+    cursor: pointer;
+}
+
+.dropdown-menu ul li:last-child {
+    border: none;
+}
+
+.dropdown-menu ul li > a, .dropdown-menu ul li label {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    line-height: 18px;
+    padding: 10px 15px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.dropdown-menu ul li > a:hover, .dropdown-menu ul li label:hover {
+    background-color: #eeeeee;
+}
+
+/** 禁用样式 */
+.dropdown-menu ul li > a.disabled, .dropdown-menu ul li > a.disabled:hover, .dropdown-menu ul li label.disabled, .dropdown-menu ul li label.disabled:hover {
+    cursor: not-allowed;
+    background: none;
+    color: #999;
+}
+
+/** 标题样式 */
+.dropdown-menu ul li.title {
+    padding: 5px 15px;
+    background: #f6f6f6;
+    color: #999;
+    font-family: "Roboto", "Open Sans", sans-serif;
+    font-size: 12px;
+}
+
+/** 小箭头 */
+.dropdown-menu .dropdown-anchor {
+    border: 7px solid #fff;
+}
+
+.dropdown-menu .dropdown-anchor, .dropdown-menu .dropdown-anchor::after {
+    position: absolute;
+    content: '';
+    display: inline-block;
+}
+
+.dropdown-menu .dropdown-anchor::after {
+    border: 6px solid #fff;
+}
+
+/** 上边箭头 */
+.dropdown-menu.dropdown-anchor-top-left .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-right .dropdown-anchor {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    top: -14px;
+}
+
+.dropdown-menu.dropdown-anchor-top-left .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-top-center .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-top-right .dropdown-anchor::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    margin-top: -5px;
+    margin-left: -6px;
+}
+
+.dropdown-menu.dropdown-anchor-top-left:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-top-center:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-top-right:not(.dropdown-overlay-trigger) {
+    margin-top: 10px;
+}
+
+.dropdown-menu.dropdown-anchor-top-left.dropdown-anchor-top-left .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-center.dropdown-anchor-top-left .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-right.dropdown-anchor-top-left .dropdown-anchor {
+    left: 15px;
+}
+
+.dropdown-menu.dropdown-anchor-top-left.dropdown-anchor-top-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-center.dropdown-anchor-top-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-right.dropdown-anchor-top-center .dropdown-anchor {
+    left: calc(50% - 7px)
+}
+
+.dropdown-menu.dropdown-anchor-top-left.dropdown-anchor-top-right .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-center.dropdown-anchor-top-right .dropdown-anchor, .dropdown-menu.dropdown-anchor-top-right.dropdown-anchor-top-right .dropdown-anchor {
+    left: calc(100% - 28px);
+}
+
+/** 下边箭头 */
+.dropdown-menu.dropdown-anchor-bottom-left .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-right .dropdown-anchor {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    top: 100%;
+}
+
+.dropdown-menu.dropdown-anchor-bottom-left .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-bottom-center .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-bottom-right .dropdown-anchor::after {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    margin-top: -7px;
+    margin-left: -6px;
+}
+
+.dropdown-menu.dropdown-anchor-bottom-left:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-bottom-center:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-bottom-right:not(.dropdown-overlay-trigger) {
+    margin-top: -10px;
+}
+
+.dropdown-menu.dropdown-anchor-bottom-left.dropdown-anchor-bottom-left .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-center.dropdown-anchor-bottom-left .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-right.dropdown-anchor-bottom-left .dropdown-anchor {
+    left: 15px;
+}
+
+.dropdown-menu.dropdown-anchor-bottom-left.dropdown-anchor-bottom-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-center.dropdown-anchor-bottom-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-right.dropdown-anchor-bottom-center .dropdown-anchor {
+    left: calc(50% - 7px);
+}
+
+.dropdown-menu.dropdown-anchor-bottom-left.dropdown-anchor-bottom-right .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-center.dropdown-anchor-bottom-right .dropdown-anchor, .dropdown-menu.dropdown-anchor-bottom-right.dropdown-anchor-bottom-right .dropdown-anchor {
+    left: calc(100% - 28px);
+}
+
+/** 左边箭头 */
+.dropdown-menu.dropdown-anchor-left-top:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-left-center:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-left-bottom:not(.dropdown-overlay-trigger) {
+    margin-left: 10px;
+}
+
+.dropdown-menu.dropdown-anchor-left-top .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-bottom .dropdown-anchor {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    left: -14px;
+}
+
+.dropdown-menu.dropdown-anchor-left-top .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-left-center .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-left-bottom .dropdown-anchor::after {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    margin-left: -5px;
+    margin-top: -6px;
+}
+
+.dropdown-menu.dropdown-anchor-left-top.dropdown-anchor-left-top .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-center.dropdown-anchor-left-top .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-bottom.dropdown-anchor-left-top .dropdown-anchor {
+    top: 11px;
+}
+
+.dropdown-menu.dropdown-anchor-left-top.dropdown-anchor-left-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-center.dropdown-anchor-left-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-bottom.dropdown-anchor-left-center .dropdown-anchor {
+    top: calc(50% - 7px);
+}
+
+.dropdown-menu.dropdown-anchor-left-top.dropdown-anchor-left-bottom .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-center.dropdown-anchor-left-bottom .dropdown-anchor, .dropdown-menu.dropdown-anchor-left-bottom.dropdown-anchor-left-bottom .dropdown-anchor {
+    top: calc(100% - 26px);
+}
+
+/** 右边箭头 */
+.dropdown-menu.dropdown-anchor-right-top .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-bottom .dropdown-anchor {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    left: 100%;
+}
+
+.dropdown-menu.dropdown-anchor-right-top .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-right-center .dropdown-anchor::after, .dropdown-menu.dropdown-anchor-right-bottom .dropdown-anchor::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    margin-left: -7px;
+    margin-top: -6px;
+}
+
+.dropdown-menu.dropdown-anchor-right-top:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-right-center:not(.dropdown-overlay-trigger), .dropdown-menu.dropdown-anchor-right-bottom:not(.dropdown-overlay-trigger) {
+    margin-left: -10px;
+}
+
+.dropdown-menu.dropdown-anchor-right-top.dropdown-anchor-right-top .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-center.dropdown-anchor-right-top .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-bottom.dropdown-anchor-right-top .dropdown-anchor {
+    top: 11px;
+}
+
+.dropdown-menu.dropdown-anchor-right-top.dropdown-anchor-right-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-center.dropdown-anchor-right-center .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-bottom.dropdown-anchor-right-center .dropdown-anchor {
+    top: calc(50% - 7px);
+}
+
+.dropdown-menu.dropdown-anchor-right-top.dropdown-anchor-right-bottom .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-center.dropdown-anchor-right-bottom .dropdown-anchor, .dropdown-menu.dropdown-anchor-right-bottom.dropdown-anchor-right-bottom .dropdown-anchor {
+    top: calc(100% - 26px);
+}
+
+/** 按钮里面三角形样式 */
+.icon-btn .layui-icon-triangle-d {
+    margin-right: 0;
+    font-size: 14px;
+}
+
+.layui-icon-triangle-d.top {
+    transform: rotate(180deg);
+    display: inline-table;
+}
+
+.layui-icon-triangle-d.left {
+    transform: rotate(90deg);
+    display: inline-table;
+}
+
+.layui-icon-triangle-d.right {
+    transform: rotate(-90deg);
+    display: inline-table;
+}
