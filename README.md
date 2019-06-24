@@ -41,6 +41,9 @@
 * 账号密码：admin/111111，地址：http://demo.stylefeng.cn
 * 阿里云5折优惠券，[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=p4kqz45e)
 
+### 最新免费教程
+[https://www.bilibili.com/video/av56718207](https://www.bilibili.com/video/av56718207)
+
 ### 扫码关注官方公众号和官方微信群
 <table>
     <tr>
