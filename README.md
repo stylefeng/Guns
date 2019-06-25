@@ -44,6 +44,8 @@
 ### 最新免费教程
 [https://www.bilibili.com/video/av56718207](https://www.bilibili.com/video/av56718207)
 
+配套课件：[https://gitee.com/stylefeng/Guns-Guide](https://gitee.com/stylefeng/Guns-Guide)
+
 ### 扫码关注官方公众号和官方微信群
 <table>
     <tr>
@@ -67,7 +69,6 @@
 
 ### Guns&Roses架构师视频
 * 深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
-
 
 ### 版权声明
 * Guns采用定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请[购买授权](https://www.stylefeng.cn)。
