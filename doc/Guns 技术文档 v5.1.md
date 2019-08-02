@@ -2,9 +2,7 @@
 
 ## 免费版
 
-star作者的两个项目，Guns（https://gitee.com/stylefeng/guns）和Roese（https://gitee.com/stylefeng/roses）
-
-加入qq群：254550081（1群） 684163663（2群） 207434260（3群）找群主领取
+https://gitee.com/stylefeng/guns/wikis/Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3?sort_id=200535
 
 ## 收费版
 
