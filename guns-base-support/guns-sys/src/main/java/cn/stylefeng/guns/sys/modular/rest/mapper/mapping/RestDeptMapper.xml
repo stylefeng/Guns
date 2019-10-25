@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.rest.mapper.RestDeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.rest.entity.RestDept">
+        <id column="dept_id" property="deptId"/>
+        <result column="pid" property="pid"/>
+        <result column="pids" property="pids"/>
+        <result column="simple_name" property="simpleName"/>
+        <result column="full_name" property="fullName"/>
+        <result column="description" property="description"/>
+        <result column="version" property="version"/>
+        <result column="sort" property="sort"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        dept_id AS "deptId", pid AS "pid", pids AS "pids", simple_name AS "simpleName", full_name AS "fullName", description AS "description", version AS "version", sort AS "sort", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
+    </sql>
+
+    <select id="tree" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode">
+		select dept_id AS id, pid as "pId", simple_name as name,
+		(
+		CASE
+		WHEN (pid = 0 OR pid IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as "open" from sys_dept
+	</select>
+
+    <select id="tree" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode" databaseId="oracle">
+		select dept_id AS id, pid as "pId", simple_name as name,
+		(
+		CASE
+		WHEN (pid = 0 OR pid IS NULL) THEN
+		'1'
+		ELSE
+		'0'
+		END
+		) as "open" from sys_dept
+	</select>
+
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="condition != null and condition != ''">
+            and simple_name like CONCAT('%',#{condition},'%') or full_name like CONCAT('%',#{condition},'%')
+        </if>
+        <if test="deptId != null and deptId != ''">
+            and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like CONCAT('%$[', #{deptId}, '$]%') escape '$' ))
+        </if>
+        order by sort ASC
+    </select>
+
+    <select id="listNotPage" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="condition != null and condition != ''">
+            and simple_name like CONCAT('%',#{condition},'%') or full_name like CONCAT('%',#{condition},'%')
+        </if>
+        <if test="deptId != null and deptId != ''">
+            and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like CONCAT('%$[', #{deptId}, '$]%') escape '$' ))
+        </if>
+        order by sort ASC
+    </select>
+
+    <select id="list" resultType="map" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="condition != null and condition != ''">
+            and simple_name like ('%' || #{condition} || '%') or full_name like ('%' || #{condition} || '%')
+        </if>
+        <if test="deptId != null and deptId != ''">
+            and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like '%[' || #{deptId} || ']%' ))
+        </if>
+        order by sort ASC
+    </select>
+
+    <select id="treeviewNodes" resultType="cn.stylefeng.guns.base.pojo.node.TreeviewNode">
+        select dept_id AS tags, pid as "parentId", simple_name as text from sys_dept
+    </select>
+
+    <select id="likePids" resultType="cn.stylefeng.guns.sys.modular.rest.entity.RestDept">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="deptId != null and deptId != ''">
+            and pids LIKE CONCAT('%$[',#{deptId},'$]%') escape '$'
+        </if>
+    </select>
+
+    <select id="likePids" resultType="cn.stylefeng.guns.sys.modular.rest.entity.RestDept" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dept where 1 = 1
+        <if test="deptId != null and deptId != ''">
+            and pids LIKE '%[' || #{deptId} || ']%'
+        </if>
+    </select>
+
+</mapper>

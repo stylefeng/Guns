@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.rest.mapper.RestMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.rest.entity.RestMenu">
+        <id column="menu_id" property="menuId"/>
+        <result column="code" property="code"/>
+        <result column="pcode" property="pcode"/>
+        <result column="pcodes" property="pcodes"/>
+        <result column="name" property="name"/>
+        <result column="icon" property="icon"/>
+        <result column="url" property="url"/>
+        <result column="sort" property="sort"/>
+        <result column="levels" property="levels"/>
+        <result column="menu_flag" property="menuFlag"/>
+        <result column="description" property="description"/>
+        <result column="status" property="status"/>
+        <result column="new_page_flag" property="newPageFlag"/>
+        <result column="open_flag" property="openFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        menu_id AS "menuId", code AS "code", pcode AS "pcode", pcodes AS "pcodes", name AS "name", icon AS "icon", url AS "url", sort AS "sort", levels AS "levels", menu_flag AS "menuFlag", description AS "description", status AS "status", new_page_flag AS "newPageFlag", open_flag AS "openFlag", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
+    </sql>
+
+    <select id="selectMenus" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where status = 'ENABLE'
+        <if test="condition != null and condition != ''">
+            and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="level != null and level != ''">
+            and levels = #{level}
+        </if>
+        <if test="menuId != null and menuId != 0">
+            and (menu_id = #{menuId} or menu_id in ( select menu_id from sys_menu where pcodes like CONCAT('%$[', #{code}, '$]%') escape '$' ))
+        </if>
+    </select>
+
+    <select id="selectMenus" resultType="map" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where status = 'ENABLE'
+        <if test="condition != null and condition != ''">
+            and (name like '%' || #{condition} || '%' or code like '%' || #{condition} || '%')
+        </if>
+        <if test="level != null and level != ''">
+            and levels = #{level}
+        </if>
+        <if test="menuId != null and menuId != 0">
+            and (menu_id = #{menuId} or menu_id in ( select menu_id from sys_menu where pcodes like '%[' || #{code} ']%' ))
+        </if>
+    </select>
+
+    <select id="getMenuIdsByRoleId" resultType="long">
+        select menu_id from
+        sys_relation where role_id = #{roleId} ORDER BY menu_id
+    </select>
+
+    <select id="getMenuNamesByRoleId" resultType="string">
+        SELECT
+            b.NAME as name
+        FROM
+            sys_relation a
+            LEFT JOIN sys_menu b ON a.menu_id = b.menu_id
+        WHERE
+            role_id = #{roleId}
+        ORDER BY b.menu_id
+    </select>
+
+    <select id="menuTreeList" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode">
+        SELECT
+        m1.menu_id AS id,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        0
+        ELSE
+        m2.menu_id
+        END
+        ) AS pId,
+        m1.name
+        AS name,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as "open"
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.pcode = m2.code
+        ORDER BY
+        m1.menu_id ASC
+    </select>
+
+    <select id="menuTreeList" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode" databaseId="oracle">
+        SELECT
+        m1.menu_id AS id,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        0
+        ELSE
+        m2.menu_id
+        END
+        ) AS pId,
+        m1.name
+        AS name,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        '1'
+        ELSE
+        '0'
+        END
+        ) as "open"
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.pcode = m2.code
+        ORDER BY
+        m1.menu_id ASC
+    </select>
+
+    <select id="menuTreeListByMenuIds" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode">
+        SELECT
+        m1.menu_id AS id,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        0
+        ELSE
+        m2.menu_id
+        END
+        ) AS "pId",
+        m1.name AS name,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS
+        NULL) THEN
+        'true'
+        ELSE
+        'false'
+        END
+        ) as "open",
+        (
+        CASE
+        WHEN (m3.menu_id = 0 OR m3.menu_id
+        IS NULL) THEN
+        'false'
+        ELSE
+        'true'
+        END
+        ) as "checked"
+        FROM
+        sys_menu m1
+        LEFT JOIN
+        sys_menu m2
+        ON m1.pcode = m2.code
+        left join (
+        SELECT
+        menu_id
+        FROM
+        sys_menu
+        WHERE
+        menu_id IN
+        <foreach collection="list" index="index" item="i" open="("
+                 separator="," close=")">
+            #{i}
+        </foreach>
+        ) m3 on m1.menu_id = m3.menu_id
+        ORDER BY
+        m1.menu_id ASC
+    </select>
+
+    <select id="menuTreeListByMenuIds" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode" databaseId="oracle">
+        SELECT
+        m1.menu_id AS id,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        0
+        ELSE
+        m2.menu_id
+        END
+        ) AS "pId",
+        m1.name AS name,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS
+        NULL) THEN
+        '1'
+        ELSE
+        '0'
+        END
+        ) as "open",
+        (
+        CASE
+        WHEN (m3.menu_id = 0 OR m3.menu_id
+        IS NULL) THEN
+        '0'
+        ELSE
+        '1'
+        END
+        ) as "checked"
+        FROM
+        sys_menu m1
+        LEFT JOIN
+        sys_menu m2
+        ON m1.pcode = m2.code
+        left join (
+        SELECT
+        menu_id
+        FROM
+        sys_menu
+        WHERE
+        menu_id IN
+        <foreach collection="list" index="index" item="i" open="("
+                 separator="," close=")">
+            #{i}
+        </foreach>
+        ) m3 on m1.menu_id = m3.menu_id
+        ORDER BY
+        m1.menu_id ASC
+    </select>
+
+    <delete id="deleteRelationByMenu">
+        delete from sys_relation where menu_id = #{menuId}
+    </delete>
+
+    <select id="getResUrlsByRoleId" resultType="string">
+        select URL from
+        sys_relation rel
+        inner join sys_menu m on rel.menu_id = m.menu_id
+        where rel.role_id = #{roleId}
+    </select>
+
+    <select id="getMenusByRoleIds" resultType="cn.stylefeng.guns.base.pojo.node.MenuNode">
+        SELECT
+        m1.menu_id AS id,
+        m1.icon AS icon,
+        (
+        CASE
+        WHEN (m2.menu_id = 0 OR m2.menu_id IS NULL) THEN
+        0
+        ELSE
+        m2.menu_id
+        END
+        ) AS "parentId",
+        m1.name as name,
+        m1.url as url,
+        m1.levels as levels,
+        m1.menu_flag as ismenu,
+        m1.system_type as systemType,
+        m1.sort as num
+        FROM
+        sys_menu m1
+        LEFT join sys_menu m2 ON m1.pcode = m2.code
+        INNER JOIN (
+        SELECT
+        menu_id
+        FROM
+        sys_menu
+        WHERE
+        menu_id IN (
+        SELECT
+        menu_id
+        FROM
+        sys_relation rela
+        WHERE
+        rela.role_id IN
+        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+        )
+        ) m3 ON m1.menu_id = m3.menu_id
+        where m1.menu_flag = 'Y'
+        order by levels,m1.sort asc
+    </select>
+
+    <select id="selectMenuTree" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where status = 'ENABLE'
+        <if test="condition != null and condition != ''">
+            and (name like CONCAT('%',#{condition},'%') or code like CONCAT('%',#{condition},'%'))
+        </if>
+        <if test="level != null and level != ''">
+            and levels = #{level}
+        </if>
+    </select>
+
+    <select id="selectMenuTree" resultType="java.util.Map" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_menu
+        where status = 'ENABLE'
+        <if test="condition != null and condition != ''">
+            and (name like '%' || #{condition} || '%' or code like '%' || #{condition} || '%')
+        </if>
+        <if test="level != null and level != ''">
+            and levels = #{level}
+        </if>
+    </select>
+
+    <select id="getMenusLikePcodes" resultType="cn.stylefeng.guns.sys.modular.rest.entity.RestMenu">
+        select
+        <include refid="Base_Column_List"></include>
+        from sys_menu where 1 = 1
+        <if test="code != null and code != ''">
+            and pcodes LIKE CONCAT('%$[',#{code},'$]%') escape '$'
+        </if>
+    </select>
+
+    <select id="getMenusLikePcodes" resultType="cn.stylefeng.guns.sys.modular.rest.entity.RestMenu" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"></include>
+        from sys_menu where 1 = 1
+        <if test="code != null and code != ''">
+            and pcodes LIKE '%[' || #{code} || ']%'
+        </if>
+    </select>
+
+    <select id="getMenusTypesByRoleIds" resultType="java.lang.String">
+        select DISTINCT system_type from
+        sys_relation rel
+        inner join sys_menu m on rel.menu_id = m.menu_id
+        where rel.role_id in
+        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </select>
+
+</mapper>

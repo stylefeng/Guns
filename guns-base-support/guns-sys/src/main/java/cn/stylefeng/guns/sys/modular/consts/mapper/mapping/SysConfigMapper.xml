@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.consts.mapper.SysConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.consts.entity.SysConfig">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="dict_flag" property="dictFlag"/>
+        <result column="dict_type_id" property="dictTypeId"/>
+        <result column="value" property="value"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", name AS "name", code AS "code", dict_flag AS "dictFlag", dict_type_id AS "dictTypeId", value AS "value", remark AS "remark", create_time AS "createTime", create_user AS "createUser", update_time AS "updateTime", update_user AS "updateUser"
+    </sql>
+
+
+    <select id="customList" resultType="cn.stylefeng.guns.sys.modular.consts.model.result.SysConfigResult" parameterType="cn.stylefeng.guns.sys.modular.consts.model.params.SysConfigParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config where 1 = 1
+        <if test="paramCondition.name != null and paramCondition.name != ''">
+            and name like CONCAT('%',#{paramCondition.name},'%')
+        </if>
+        <if test="paramCondition.code != null and paramCondition.code != ''">
+            and code like CONCAT('%',#{paramCondition.code},'%')
+        </if>
+        <if test="paramCondition.value != null and paramCondition.value != ''">
+            and value like CONCAT('%',#{paramCondition.value},'%')
+        </if>
+        <if test="paramCondition.remark != null and paramCondition.remark != ''">
+            and remark like CONCAT('%',#{paramCondition.remark},'%')
+        </if>
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.sys.modular.consts.model.params.SysConfigParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config where 1 = 1
+        <if test="paramCondition.name != null and paramCondition.name != ''">
+            and name like CONCAT('%',#{paramCondition.name},'%')
+        </if>
+        <if test="paramCondition.code != null and paramCondition.code != ''">
+            and code like CONCAT('%',#{paramCondition.code},'%')
+        </if>
+        <if test="paramCondition.value != null and paramCondition.value != ''">
+            and value like CONCAT('%',#{paramCondition.value},'%')
+        </if>
+        <if test="paramCondition.remark != null and paramCondition.remark != ''">
+            and remark like CONCAT('%',#{paramCondition.remark},'%')
+        </if>
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.sys.modular.consts.model.result.SysConfigResult" parameterType="cn.stylefeng.guns.sys.modular.consts.model.params.SysConfigParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config
+        <where>
+            <if test="paramCondition.name != null and paramCondition.name != ''">
+                name like CONCAT('%',#{paramCondition.name},'%')
+            </if>
+            <if test="paramCondition.code != null and paramCondition.code != ''">
+                or code like CONCAT('%',#{paramCondition.code},'%')
+            </if>
+            <if test="paramCondition.value != null and paramCondition.value != ''">
+                or value like CONCAT('%',#{paramCondition.value},'%')
+            </if>
+            <if test="paramCondition.remark != null and paramCondition.remark != ''">
+                or remark like CONCAT('%',#{paramCondition.remark},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.sys.modular.consts.model.params.SysConfigParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_config where 1 = 1
+        <if test="paramCondition.name != null and paramCondition.name != ''">
+            and name like CONCAT('%',#{paramCondition.name},'%')
+        </if>
+        <if test="paramCondition.code != null and paramCondition.code != ''">
+            and code like CONCAT('%',#{paramCondition.code},'%')
+        </if>
+        <if test="paramCondition.value != null and paramCondition.value != ''">
+            and value like CONCAT('%',#{paramCondition.value},'%')
+        </if>
+        <if test="paramCondition.remark != null and paramCondition.remark != ''">
+            and remark like CONCAT('%',#{paramCondition.remark},'%')
+        </if>
+    </select>
+
+</mapper>

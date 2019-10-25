@@ -1,0 +1,202 @@
+/** 透明侧边栏导航 */
+.layui-layout-admin .layui-side .layui-nav {
+    background-color: transparent;
+}
+
+.layui-layout-admin .layui-side .layui-nav .layui-nav-item > a:hover {
+    background: rgba(255, 255, 255, .03);
+}
+
+/** logo部分样式 */
+.layui-layout-admin .layui-header .layui-logo {
+    background-color: #F78400;
+    color: #fff;
+    box-shadow: none !important;
+}
+
+/** header样式 */
+.layui-layout-admin .layui-header {
+    background-color: #F78400;
+}
+
+.layui-layout-admin .layui-header a {
+    color: #fff;
+}
+
+.layui-layout-admin .layui-header a:hover {
+    color: #fff;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-more {
+    border-color: #eee transparent transparent;
+}
+
+.layui-layout-admin .layui-header .layui-nav .layui-nav-mored {
+    border-color: transparent transparent #eee;
+}
+
+/** header线条 */
+.layui-layout-admin .layui-header .layui-nav .layui-this:after, .layui-layout-admin .layui-header .layui-nav-bar {
+    background-color: #fff;
+}
+
+/** 侧边栏样式 */
+.layui-layout-admin .layui-side {
+    background-color: #222D32;
+}
+
+/** 侧边栏文字颜色 */
+.layui-side .layui-nav .layui-nav-item a {
+    color: #b8c7ce;
+}
+
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this > a, .layui-nav-tree .layui-this > a:hover {
+    background-color: #F78400;
+}
+
+.layui-nav-tree .layui-nav-bar, .layui-nav-tree > .layui-nav-item > a:before {
+    background-color: #F78400;
+}
+
+.layui-side .layui-nav-itemed > a, .layui-nav-tree .layui-nav-title a, .layui-nav-tree .layui-nav-title a:hover, .layui-side .layui-nav-item.layui-this > a {
+    color: #fff !important;
+}
+
+.layui-layout-admin .layui-side .layui-nav .layui-nav-itemed > .layui-nav-child {
+    background-color: rgba(0, 0, 0, .2) !important;
+}
+
+/** PC端折叠鼠标经过样式 */
+.layui-layout-admin.admin-nav-mini .layui-side .layui-nav .admin-nav-hover > .layui-nav-child:before {
+    background: #222D32 !important;
+}
+
+/** tab下划线 */
+.layui-layout-admin .layui-body > .layui-tab > .layui-tab-title li.layui-this:after {
+    background-color: #F78400;
+    top: 38px;
+}
+
+/** 主体标题 */
+.layui-body-header-title {
+    border-left-color: #F78400;
+}
+
+/** 主题切换 */
+.btnTheme:hover, .btnTheme.active {
+    border-color: #F78400;
+}
+
+/** admin风格弹窗样式 */
+.layui-layer.layui-layer-admin .layui-layer-title {
+    background-color: #F78400;
+    color: #ffffff;
+}
+
+/** 按钮颜色 */
+.layui-layer.layui-layer-admin .layui-layer-setwin a {
+    color: #ffffff;
+}
+
+/* 最小化按钮 */
+.layui-layer.layui-layer-admin .layui-layer-setwin .layui-layer-min cite {
+    background-color: #dddddd;
+}
+
+/** 弹窗按钮 */
+.layui-layer.layui-layer-admin .layui-layer-btn .layui-layer-btn0 {
+    border-color: #F78400;
+    background-color: #F78400;
+}
+
+/* 圆形按钮 */
+.btn-circle {
+    background: #F78400;
+}
+
+/** 主题颜色 */
+
+/** 按钮 */
+.layui-btn:not(.layui-btn-primary):not(.layui-btn-normal):not(.layui-btn-warm):not(.layui-btn-danger):not(.layui-btn-disabled) {
+    background-color: #F78400;
+}
+
+.layui-btn.layui-btn-primary:hover {
+    border-color: #F78400;
+}
+
+/** 开关 */
+.layui-form-onswitch {
+    border-color: #F78400;
+    background-color: #F78400;
+}
+
+/** 分页插件 */
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #F78400;
+}
+
+.layui-table-page .layui-laypage input:focus {
+    border-color: #F78400 !important;
+}
+
+.layui-table-view select:focus {
+    border-color: #F78400 !important;
+}
+
+.layui-table-page .layui-laypage a:hover {
+    color: #F78400;
+}
+
+/** 单选按钮 */
+.layui-form-radio > i:hover, .layui-form-radioed > i {
+    color: #F78400;
+}
+
+/** 下拉条目选中 */
+.layui-form-select dl dd.layui-this {
+    background-color: #F78400;
+}
+
+/** 选项卡 */
+.layui-tab-brief > .layui-tab-title .layui-this {
+    color: #F78400;
+}
+
+.layui-tab-brief > .layui-tab-more li.layui-this:after, .layui-tab-brief > .layui-tab-title .layui-this:after {
+    border-color: #F78400 !important;
+}
+
+/** 面包屑导航 */
+.layui-breadcrumb a:hover {
+    color: #F78400 !important;
+}
+
+/** 日期选择器按钮 */
+.laydate-footer-btns span:hover {
+    color: #F78400 !important;
+}
+
+/** 时间轴 */
+.layui-timeline-axis {
+    color: #F78400;
+}
+
+/** 复选框 */
+.layui-form-checked[lay-skin=primary] i {
+    border-color: #F78400 !important;
+    background-color: #F78400;
+}
+
+.layui-form-checkbox[lay-skin=primary] i:hover {
+    border-color: #F78400;
+}
+
+.layui-form-checkbox[lay-skin=primary]:hover i {
+    border-color: #F78400;
+}
+
+/** 加载动画颜色 */
+.ball-loader > span, .signal-loader > span {
+    background-color: #F78400;
+}

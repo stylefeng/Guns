@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录 - Guns</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/css/login.css?v=${constants.getReleaseVersion()}" media="all">
+    <style>
+        body {
+            background-image: url("${ctxPath}/assets/common/images/bg_login2.png");
+            background-position: center 110px;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-color: #f0f2f5;
+        }
+
+        .login-header {
+            color: rgba(0, 0, 0, .85) !important;
+        }
+
+        .login-footer {
+            color: rgba(0, 0, 0, 0.7) !important;
+        }
+
+        .login-footer a {
+            color: rgba(0, 0, 0, 0.7) !important;
+        }
+
+        .login-footer a:hover {
+            color: rgba(0, 0, 0, 0.4) !important;
+        }
+    </style>
+    <script>
+        if (window != top)
+            top.location.replace(location.href);
+    </script>
+</head>
+
+<body>
+<div class="login-wrapper">
+
+    <div class="login-header">
+        <img src="${ctxPath}/assets/expand/images/logo.png"> ${constants.getSystemName()}
+    </div>
+
+    <div class=" login-body">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <i class="layui-icon layui-icon-engine"></i>&nbsp;&nbsp;用户登录
+            </div>
+            <div class="layui-card-body layui-form layui-form-pane" lay-filter="loginForm">
+                @if(constants.getTenantOpen()){
+                <div class="layui-form-item">
+                    <label class="layui-form-label">租户</label>
+                    <div class="layui-input-block">
+                        <select name="tenantCode" id="tenantCode">
+                            <option value="">默认租户</option>
+                        </select>
+                    </div>
+                </div>
+                @}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block">
+                        <input name="username" id="username" placeholder="默认账号：admin" type="text" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input name="password" id="password" placeholder="默认密码：111111" type="password" lay-verify="required" class="layui-input">
+                    </div>
+                </div>
+                @if(constants.getKaptchaOpen()){
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码</label>
+                    <div class="layui-input-block">
+                        <div class="layui-row inline-block">
+                            <div class="layui-col-xs7">
+                                <input name="kaptcha" id="kaptcha" type="text" lay-verify="required" placeholder="验证码" class="layui-input">
+                            </div>
+                            <div class="layui-col-xs5" style="padding-left: 10px;">
+                                <img class="login-captcha" src="${ctxPath}/kaptcha">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @}
+                <div class="layui-form-item">
+                    <a href="javascript:;" class="layui-link">帐号注册</a>
+                    <a href="javascript:;" class="layui-link pull-right">忘记密码？</a>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid" id="submit">登 录</button>
+                </div>
+                <div class="layui-form-item login-other">
+                    <label>第三方登录</label>
+                    <a href="${ctxPath}/oauth/render/qq"><i class="layui-icon layui-icon-login-qq"></i></a>
+                    <a href="${ctxPath}/oauth/render/gitee"><img style="height: 28px;width: 28px" src="${ctxPath}/assets/expand/images/git.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-footer">
+        <p>© 2019 <a href="https://www.stylefeng.cn" target="_blank">stylefeng版权所有</a></p>
+    </div>
+</div>
+
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<script>
+    layui.use(['layer', 'form', 'index', 'ax'], function () {
+        var $ = layui.jquery;
+        var $ax = layui.ax;
+        var layer = layui.layer;
+        var form = layui.form;
+        var index = layui.index;
+
+        // 图形验证码
+        $('.login-captcha').click(function () {
+            this.src = this.src + '?t=' + (new Date).getTime();
+        });
+
+        var errorMsg = "${tips!}";
+        if (errorMsg) {
+            layer.msg(errorMsg, {icon: 5, anim: 6});
+        }
+
+        @if(constants.getTenantOpen()){
+            //初始化租户列表
+            var ajax = new $ax(Feng.ctxPath + "/tenantInfo/listTenants", function (data) {
+                for (var i = 0; i < data.data.length; i++) {
+                    var name = data.data[i].name;
+                    var code = data.data[i].code;
+                    $("#tenantCode").append('<option value="' + code + '">' + name + '</option>');
+                }
+                form.render();
+            }, function (data) {
+            });
+            ajax.start();
+        @}
+
+        //登录操作
+        $('#submit').click(function () {
+            var ajax = new $ax(Feng.ctxPath + "/login", function (data) {
+                Feng.success("登录成功!");
+                index.clearTabCache();
+                window.location.href = Feng.ctxPath + "/";
+            }, function (data) {
+                layer.msg("登录失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+            });
+            ajax.set("username", $("#username").val());
+            ajax.set("password", $("#password").val());
+            @if(constants.getTenantOpen()){
+                ajax.set("tenantCode", $("#tenantCode").val());
+            @}
+            @if(constants.getKaptchaOpen()){
+                ajax.set("kaptcha", $("#kaptcha").val());
+            @}
+            ajax.start();
+        });
+
+    });
+</script>
+
+
+</body>
+</html>

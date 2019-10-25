@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.rest.mapper.RestFileInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.rest.entity.RestFileInfo">
+        <id column="file_id" property="fileId"/>
+        <result column="file_bucket" property="fileBucket"/>
+        <result column="file_name" property="fileName"/>
+        <result column="file_suffix" property="fileSuffix"/>
+        <result column="file_size_kb" property="fileSizeKb"/>
+        <result column="final_name" property="finalName"/>
+        <result column="file_path" property="filePath"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        file_id AS "fileId", file_bucket AS "fileBucket", file_name AS "fileName", file_suffix AS "fileSuffix", file_size_kb AS "fileSizeKb", final_name AS "finalName", file_path AS "filePath", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
+    </sql>
+
+</mapper>

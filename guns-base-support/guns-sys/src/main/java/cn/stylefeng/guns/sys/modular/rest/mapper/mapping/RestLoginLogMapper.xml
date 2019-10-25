@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.rest.mapper.RestLoginLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.rest.entity.RestLoginLog">
+        <id column="login_log_id" property="loginLogId"/>
+        <result column="log_name" property="logName"/>
+        <result column="user_id" property="userId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="succeed" property="succeed"/>
+        <result column="message" property="message"/>
+        <result column="ip_address" property="ipAddress"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        login_log_id AS "loginLogId", log_name AS "logName", user_id AS "userId", create_time AS "createTime", succeed AS "succeed", message AS "message", ip_address AS "ipAddress"
+    </sql>
+
+    <select id="getLoginLogs" resultType="map" parameterType="com.baomidou.mybatisplus.extension.plugins.pagination.Page">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_login_log
+        where 1 = 1
+        <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
+            and (create_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+        </if>
+        <if test="logName != null and logName !=''">
+            and log_name like CONCAT('%',#{logName},'%')
+        </if>
+    </select>
+
+    <select id="getLoginLogs" resultType="map" parameterType="com.baomidou.mybatisplus.extension.plugins.pagination.Page" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_login_log
+        where 1 = 1
+        <if test="beginTime != null and beginTime !='' and endTime != null and endTime != ''">
+            and create_time &gt;= to_date(#{beginTime}||'00:00:00','yyyy-mm-dd hh24:mi:ss')
+            and create_time &lt;= to_date(#{endTime}||'23:59:59','yyyy-mm-dd hh24:mi:ss')
+        </if>
+        <if test="logName != null and logName !=''">
+            and log_name like '%' || #{logName} || '%'
+        </if>
+    </select>
+
+</mapper>

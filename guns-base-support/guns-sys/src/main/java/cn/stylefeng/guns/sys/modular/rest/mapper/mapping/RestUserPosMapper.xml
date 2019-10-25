@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.rest.mapper.RestUserPosMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.rest.entity.RestUserPos">
+        <id column="user_pos_id" property="userPosId"/>
+        <result column="user_id" property="userId"/>
+        <result column="pos_id" property="posId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_pos_id AS "userPosId", user_id AS "userId", pos_id AS "posId"
+    </sql>
+
+
+    <select id="customList" resultType="cn.stylefeng.guns.sys.modular.system.model.result.UserPosResult" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.UserPosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_pos where 1 = 1
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.UserPosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_pos where 1 = 1
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.sys.modular.system.model.result.UserPosResult" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.UserPosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_pos where 1 = 1
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.UserPosParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_pos where 1 = 1
+    </select>
+
+</mapper>

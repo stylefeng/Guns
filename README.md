@@ -13,15 +13,15 @@
         </span>
         <br>
         <br>
-        <a href="https://getbootstrap.com/">
-            <img src="https://img.shields.io/badge/easyweb-3.1.1-green.svg" alt="bootstrap">
+        <a href="https://easyweb.vip/">
+            <img src="https://img.shields.io/badge/easyweb-3.1.5-green.svg" alt="bootstrap">
         </a> 
-        <a href="https://getbootstrap.com/">
-            <img src="https://img.shields.io/badge/layui-2.4.5-blue.svg" alt="bootstrap">
+        <a href="https://www.layui.com">
+            <img src="https://img.shields.io/badge/layui-2.5.5-blue.svg" alt="bootstrap">
         </a>  
         +
         <a href="http://spring.io/projects/spring-boot">
-            <img src="https://img.shields.io/badge/spring--boot-2.1.1-green.svg" alt="spring-boot">
+            <img src="https://img.shields.io/badge/spring--boot-2.2.0-green.svg" alt="spring-boot">
         </a>
         <a href="http://mp.baomidou.com">
             <img src="https://img.shields.io/badge/mybatis--plus-3.0-blue.svg" alt="mybatis-plus">
@@ -29,9 +29,6 @@
         <a href="http://ibeetl.com/">
             <img src="https://img.shields.io/badge/beetl-2.9.3-yellow.svg" alt="beetl">
         </a> 
-        <a href="https://shiro.apache.org/">
-            <img src="https://img.shields.io/badge/shiro-1.4.0-blue.svg" alt="shiro">
-        </a>      
     </p>
 </p>
 
@@ -39,7 +36,7 @@
 
 ### 在线demo
 * 账号密码：admin/111111，地址：http://demo.stylefeng.cn
-* 阿里云5折优惠券，[点我领取](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=p4kqz45e)
+* 阿里云双十一特惠，1C2G 86/年 [点我领取](https://www.aliyun.com/1111/2019/group-buying-share?ptCode=CFCF7A45B182263D40A14DAAB0B30EFD647C88CF896EF535&userCode=p4kqz45e&share_source=copy_link)
 
 ### 最新免费教程
 [https://www.bilibili.com/video/av56718207](https://www.bilibili.com/video/av56718207)
@@ -56,40 +53,49 @@
     </tr>
 </table>
 
+### 最新6.0更新内容如下(更新日期2019.10.25)
+
+1. 前端框架升级easyweb 3.1.5，layui升级2.5.5。
+2. 优化整体前端UI界面，更加简洁，大气。
+3. 抽象出一套权限模型，利用接口进行权限控制和调用规则，方便在权限控制方面进行拓展。
+4. 替换掉了以往的ShiroKit，采用LoginContextHolder.getContext().getUser()获取当前登录用户。
+5. 权限框架替换为spring security + jwt，采用令牌登录方式，更加灵活可拓展，同时方便对接多系统SSO。
+6. 新增常量容器模型，对系统变量，常量，以及用户自定义的一些参数进行在线维护，在线刷新参数值，无需重启。
+7. 系统的验证码开关，顶部导航栏开关，系统默认密码等在常量容器进行维护，极大方便了系统使用。
+8. 所有页面加载的css和js进行版本控制，当升级项目时，更新对应版本号，可控制浏览器对缓存js和css的刷新。
+9. 增加用户的职务管理，可对用户进行职务绑定。
+
 ### Guns版本说明
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| Guns旗舰版 v2.5 | 最新开源版本，master分支 | https://gitee.com/stylefeng/guns |
+| Guns v6.0 | 最新开源版本，采用layui | https://gitee.com/stylefeng/guns |
 | Guns v5.1 | Guns经典版的最新版，采用bootstrap 3 | https://gitee.com/stylefeng/guns/tree/v5.1-final |
 
 ### Guns 企业版
 * 企业级，功能更强大，创新代码生成，高级sso，微服务，容器化部署等，详情点击[https://www.stylefeng.cn](https://www.stylefeng.cn)
 * 买企业版送最新Guns技术文档和视频教程，[点击查看技术文档](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3&parent=)，[点击查看视频教程](https://gitee.com/stylefeng/guns/wikis/pages?title=Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B&parent=)
 
-### Guns&Roses架构师视频
-* 深入了解Guns的核心，spring cloud微服务，docker等技术，详情点击[https://www.stylefeng.cn/video/roses](https://www.stylefeng.cn/video/roses)
-
 ### 版权声明
-* Guns采用定制协议：您可以随意下载，学习，或使用Guns，但禁止二次包装出售以及任何商业行为，如需商用请[购买授权](https://www.stylefeng.cn)。
+Guns采用LGPL-3.0开源协议
 
 ### Guns前端模板
 * Guns最新旗舰版，所用前端模板为EasyWeb后台开发框架,官网地址为：[https://easyweb.vip/](https://easyweb.vip/)，使用时已征求作者允许。
 
 ### 管理系统功能
-1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.代码生成
+1.用户管理 2.角色管理 3.部门管理 4.菜单管理 5.字典管理 6.业务日志 7.登录日志 8.监控管理 9.通知管理 10.职务管理 11.代码生成 12.在线参数配置
 
 ### 项目特点
 1. 基于SpringBoot，简化了大量项目配置和maven依赖，让您更专注于业务开发，独特的分包方式，代码多而不乱。
 2. 完善的日志记录体系，可记录登录日志，业务操作日志(可记录操作前和操作后的数据)，异常日志到数据库，通过@BussinessLog注解和LogObjectHolder.me().set()方法，业务操作日志可具体记录哪个用户，执行了哪些业务，修改了哪些数据，并且日志记录为异步执行，详情请见@BussinessLog注解和LogObjectHolder，LogManager，LogAop类。
 3. 利用beetl模板引擎对前台页面进行封装和拆分，使臃肿的html代码变得简洁，更加易维护。
-4. 对常用js插件进行二次封装，使js代码变得简洁，更加易维护，具体请见webapp/static/js/common文件夹内js代码。
-5. 利用ehcache框架对经常调用的查询进行缓存，提升运行速度，具体请见ConstantFactory类中@Cacheable标记的方法。
-6. controller层采用map + warpper方式的返回结果，返回给前端更为灵活的数据，具体参见com.stylefeng.guns.modular.system.warpper包中具体类。
-7. 防止XSS攻击，通过XssFilter类对所有的输入的非法字符串进行过滤以及替换。
-8. 简单可用的代码生成体系，通过SimpleTemplateEngine可生成带有主页跳转和增删改查的通用控制器、html页面以及相关的js，还可以生成Service和Dao，并且这些生成项都为可选的，通过ContextConfig下的一些列xxxSwitch开关，可灵活控制生成模板代码，让您把时间放在真正的业务上。
-9. 控制器层统一的异常拦截机制，利用@ControllerAdvice统一对异常拦截，具体见com.stylefeng.guns.core.aop.GlobalExceptionHandler类。
-10. 页面统一的js key-value单例模式写法，每个页面生成一个唯一的全局变量，提高js的利用效率，并且有效防止多个人员开发引起的函数名/类名冲突，并且可以更好地去维护代码。
+4. 对常用js插件进行二次封装，使js代码变得简洁，更加易维护。
+5. controller层采用map + warpper方式的返回结果，返回给前端更为灵活的数据，具体参见com.stylefeng.guns.modular.system.warpper包中具体类。
+6. 防止XSS攻击，通过XssFilter类对所有的输入的非法字符串进行过滤以及替换。
+7. 简单可用的代码生成体系，通过SimpleTemplateEngine可生成带有主页跳转和增删改查的通用控制器、html页面以及相关的js，还可以生成Service和Dao，并且这些生成项都为可选的，通过ContextConfig下的一些列xxxSwitch开关，可灵活控制生成模板代码，让您把时间放在真正的业务上。
+8. 控制器层统一的异常拦截机制，利用@ControllerAdvice统一对异常拦截，具体见com.stylefeng.guns.core.aop.GlobalExceptionHandler类。
+9. 页面统一的js key-value单例模式写法，每个页面生成一个唯一的全局变量，提高js的利用效率，并且有效防止多个人员开发引起的函数名/类名冲突，并且可以更好地去维护代码。
+10. 在线系统参数配置，灵活控制常用功能的开关，无需重启项目即可生效，实时刷新。
 
 ### 业务日志记录
 日志记录采用aop(LogAop类)方式对所有包含@BussinessLog注解的方法进行aop切入，会记录下当前用户执行了哪些操作（即@BussinessLog value属性的内容），如果涉及到数据修改，会取当前http请求的所有requestParameters与LogObjectHolder类中缓存的Object对象的所有字段作比较（所以在编辑之前的获取详情接口中需要缓存被修改对象之前的字段信息），日志内容会异步存入数据库中（通过ScheduledThreadPoolExecutor类）。
@@ -170,7 +176,7 @@ Guns的数据范围控制是指，对拥有相同角色的用户，根据部门�
 ### swagger api管理使用说明
 swagger会管理所有包含@ApiOperation注解的控制器方法，同时，可利用@ApiImplicitParams注解标记接口中的参数，具体用法请参考CodeController类中的用法。
 ```
- @ApiOperation("生成代码")
+ @ApiOperation("业务测试接口")
  @ApiImplicitParams({
          @ApiImplicitParam(name = "moduleName", value = "模块名称", required = true, dataType = "String"),
          @ApiImplicitParam(name = "bizChName", value = "业务名称", required = true, dataType = "String"),

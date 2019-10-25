@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.system.mapper.PositionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.system.entity.Position">
+        <id column="position_id" property="positionId"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="sort" property="sort"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        position_id AS "positionId", name AS "name", code AS "code", sort AS "sort", status AS "status", remark AS "remark", create_time AS "createTime", update_user AS "updateUser", update_time AS "updateTime", create_user AS "createUser"
+    </sql>
+
+    <select id="getAllPositionMap" resultType="java.util.Map">
+        select
+        position_id AS "positionId", name AS "name"
+        from sys_position
+    </select>
+
+    <select id="customList" resultType="cn.stylefeng.guns.sys.modular.system.model.result.PositionResult" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.PositionParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_position where 1 = 1
+        <if test="paramCondition.name != null and paramCondition.name != ''">
+            and name like CONCAT('%',#{paramCondition.name},'%')
+        </if>
+        <if test="paramCondition.code != null and paramCondition.code != ''">
+            and code like CONCAT('%',#{paramCondition.code},'%')
+        </if>
+        order by sort asc
+    </select>
+
+    <select id="customMapList" resultType="map" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.PositionParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_position where 1 = 1
+        <if test="paramCondition.name != null and paramCondition.name != ''">
+            and name like CONCAT('%',#{paramCondition.name},'%')
+        </if>
+        <if test="paramCondition.code != null and paramCondition.code != ''">
+            and code like CONCAT('%',#{paramCondition.code},'%')
+        </if>
+        order by sort asc
+    </select>
+
+    <select id="customPageList" resultType="cn.stylefeng.guns.sys.modular.system.model.result.PositionResult" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.PositionParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_position
+        <where>
+            <if test="paramCondition.name != null and paramCondition.name != ''">
+                name like CONCAT('%',#{paramCondition.name},'%')
+            </if>
+            <if test="paramCondition.code != null and paramCondition.code != ''">
+                or code like CONCAT('%',#{paramCondition.code},'%')
+            </if>
+        </where>
+        order by sort asc
+    </select>
+
+    <select id="customPageMapList" resultType="map" parameterType="cn.stylefeng.guns.sys.modular.system.model.params.PositionParam">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_position where 1 = 1
+        <if test="paramCondition.name != null and paramCondition.name != ''">
+            and name like CONCAT('%',#{paramCondition.name},'%')
+        </if>
+        <if test="paramCondition.code != null and paramCondition.code != ''">
+            and code like CONCAT('%',#{paramCondition.code},'%')
+        </if>
+        order by sort asc
+    </select>
+
+</mapper>

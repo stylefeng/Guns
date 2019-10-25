@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.sys.modular.rest.mapper.RestDictMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.sys.modular.rest.entity.RestDict">
+        <id column="dict_id" property="dictId"/>
+        <result column="dict_type_id" property="dictTypeId"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="parent_ids" property="parentIds"/>
+        <result column="status" property="status"/>
+        <result column="sort" property="sort"/>
+        <result column="description" property="description"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        dict_id AS "dictId", dict_type_id AS "dictTypeId", code AS "code", name AS "name", parent_id AS "parentId", parent_ids AS "parentIds", status AS "status", sort AS "sort", description AS "description", create_time AS "createTime", update_time AS "updateTime", create_user AS "createUser", update_user AS "updateUser"
+    </sql>
+
+    <select id="dictTree" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode">
+        select dict_id AS id, parent_id as "pId", name as name,
+		(
+		CASE
+		WHEN (parent_id = 0 OR parent_id IS NULL) THEN
+		'true'
+		ELSE
+		'false'
+		END
+		) as "open" from sys_dict where dict_type_id = #{dictTypeId}
+    </select>
+
+    <select id="dictTree" resultType="cn.stylefeng.guns.base.pojo.node.ZTreeNode" databaseId="oracle">
+        select dict_id AS id, parent_id as "pId", name as name,
+		(
+		CASE
+		WHEN (parent_id = 0 OR parent_id IS NULL) THEN
+		'1'
+		ELSE
+		'0'
+		END
+		) as "open" from sys_dict where dict_type_id = #{dictTypeId}
+    </select>
+
+    <select id="likeParentIds" resultType="cn.stylefeng.guns.sys.modular.rest.entity.RestDict">
+        select
+        <include refid="Base_Column_List"></include>
+        from sys_dict where 1 = 1
+        <if test="dictId != null and dictId != ''">
+            and parent_ids LIKE CONCAT('%$[',#{dictId},'$]%') escape '$'
+        </if>
+    </select>
+
+    <select id="likeParentIds" resultType="cn.stylefeng.guns.sys.modular.rest.entity.RestDict" databaseId="oracle">
+        select
+        <include refid="Base_Column_List"></include>
+        from sys_dict where 1 = 1
+        <if test="dictId != null and dictId != ''">
+            and parent_ids LIKE '%$[' || #{dictId} || ']%'
+        </if>
+    </select>
+
+</mapper>

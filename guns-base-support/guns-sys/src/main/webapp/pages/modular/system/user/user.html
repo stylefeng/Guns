@@ -1,0 +1,66 @@
+@layout("/common/_tree_container.html",{plugins:["ztree"],js:["/assets/modular/system/user/user.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">用户管理</span>
+</div>
+
+<div id="myContiner" style="height: 100%">
+    <div class="ui-layout-west">
+        <div class="box box-main">
+            <div class="ui-layout-content">
+                <div id="deptTree"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-layout-center">
+        <div class="layui-fluid">
+            <div class="layui-row">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-form toolbar">
+                                <input id="defaultPassword" class="layui-input" type="hidden" value="${constants.getDefaultPassword()}"/>
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <input id="name" class="layui-input" type="text" placeholder="姓名/电话"/>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <input id="timeLimit" class="layui-input" type="text" placeholder="注册时间"/>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                        @if(shiro.hasPermission("/mgr/add")){
+                                        <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                        @}
+                                        <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="layui-table" id="userTable" lay-filter="userTable"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    @if(shiro.hasPermission("/mgr/edit")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">编辑</a>
+    @}
+    @if(shiro.hasPermission("/mgr/delete")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+    @if(shiro.hasPermission("/mgr/setRole")){
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="roleAssign">分配角色</a>
+    @}
+    @if(shiro.hasPermission("/mgr/reset")){
+    <a class="layui-btn layui-btn-xs" lay-event="reset">重置密码</a>
+    @}
+</script>
+
+<script type="text/html" id="statusTpl">
+    <input type="checkbox" lay-filter="status" value="{{d.userId}}" lay-skin="switch" lay-text="激活|冻结" {{d.status=='ENABLE'?'checked':''}} />
+</script>
+@}
