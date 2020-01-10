@@ -257,25 +257,13 @@
         FROM
         sys_menu m1
         LEFT join sys_menu m2 ON m1.pcode = m2.code
-        INNER JOIN (
-        SELECT
-        menu_id
-        FROM
-        sys_menu
-        WHERE
-        menu_id IN (
-        SELECT
-        menu_id
-        FROM
-        sys_relation rela
-        WHERE
-        rela.role_id IN
-        <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
-            #{i}
-        </foreach>
+        where m1.menu_flag = 'Y' and
+        m1.menu_id IN (
+            SELECT menu_id FROM sys_relation rela WHERE rela.role_id IN
+                <foreach collection="list" index="index" item="i" open="(" separator="," close=")">
+                    #{i}
+                </foreach>
         )
-        ) m3 ON m1.menu_id = m3.menu_id
-        where m1.menu_flag = 'Y'
         order by levels,m1.sort asc
     </select>
 
