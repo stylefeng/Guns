@@ -535,7 +535,8 @@ CREATE TABLE `sys_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) DEFAULT NULL COMMENT '更新人',
   `version` int(11) DEFAULT NULL COMMENT '乐观锁',
-  PRIMARY KEY (`user_id`) USING BTREE
+  PRIMARY KEY (`user_id`) USING BTREE,
+  KEY `idx_account` (`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='管理员表';
 
 -- ----------------------------
