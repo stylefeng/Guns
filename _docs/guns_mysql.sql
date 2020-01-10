@@ -111,7 +111,8 @@ CREATE TABLE `sys_dict` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`dict_id`) USING BTREE
+  PRIMARY KEY (`dict_id`) USING BTREE,
+  KEY `idx_dict_type_id` (`dict_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='基础字典';
 
 -- ----------------------------
