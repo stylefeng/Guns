@@ -41,7 +41,7 @@
             and levels = #{level}
         </if>
         <if test="menuId != null and menuId != 0">
-            and (menu_id = #{menuId} or menu_id in ( select menu_id from sys_menu where pcodes like CONCAT('%$[', #{code}, '$]%') escape '$' ))
+            and (menu_id = #{menuId} or pcodes like CONCAT('%$[', #{code}, '$]%') escape '$')
         </if>
     </select>
 
@@ -57,7 +57,7 @@
             and levels = #{level}
         </if>
         <if test="menuId != null and menuId != 0">
-            and (menu_id = #{menuId} or menu_id in ( select menu_id from sys_menu where pcodes like '%[' || #{code} ']%' ))
+            and (menu_id = #{menuId} or pcodes like '%[' || #{code} ']%')
         </if>
     </select>
 
