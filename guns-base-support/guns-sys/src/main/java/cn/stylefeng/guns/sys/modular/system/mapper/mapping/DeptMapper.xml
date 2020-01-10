@@ -79,7 +79,7 @@
             and simple_name like CONCAT('%',#{condition},'%') or full_name like CONCAT('%',#{condition},'%')
         </if>
         <if test="deptId != null and deptId != ''">
-            and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like CONCAT('%$[', #{deptId}, '$]%') escape '$' ))
+            and (dept_id = #{deptId} or pids like CONCAT('%$[', #{deptId}, '$]%') escape '$')
         </if>
         order by sort ASC
     </select>
@@ -92,7 +92,7 @@
             and simple_name like ('%' || #{condition} || '%') or full_name like ('%' || #{condition} || '%')
         </if>
         <if test="deptId != null and deptId != ''">
-            and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like '%[' ||  #{deptId} || ']%' ))
+            and (dept_id = #{deptId} or pids like '%[' ||  #{deptId} || ']%')
         </if>
         order by sort ASC
     </select>
