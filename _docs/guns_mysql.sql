@@ -353,7 +353,8 @@ CREATE TABLE `sys_operation_log` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `succeed` varchar(32) DEFAULT NULL COMMENT '是否成功(字典)',
   `message` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '备注',
-  PRIMARY KEY (`operation_log_id`) USING BTREE
+  PRIMARY KEY (`operation_log_id`) USING BTREE,
+  KEY `sys_operation_log_create_time` (`create_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='操作日志';
 
 -- ----------------------------
