@@ -212,7 +212,8 @@ CREATE TABLE `sys_login_log` (
   `succeed` varchar(255) DEFAULT NULL COMMENT '是否执行成功',
   `message` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '具体消息',
   `ip_address` varchar(255) DEFAULT NULL COMMENT '登录ip',
-  PRIMARY KEY (`login_log_id`) USING BTREE
+  PRIMARY KEY (`login_log_id`) USING BTREE,
+  KEY `sys_login_log_create_time` (`create_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='登录记录';
 
 -- ----------------------------
