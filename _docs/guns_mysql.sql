@@ -501,7 +501,8 @@ CREATE TABLE `sys_role` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建用户',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改用户',
-  PRIMARY KEY (`role_id`) USING BTREE
+  PRIMARY KEY (`role_id`) USING BTREE,
+  KEY `sys_role_sort` (`sort`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色表';
 
 -- ----------------------------
