@@ -39,7 +39,7 @@ CREATE TABLE `sys_config` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='参数配置';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='参数配置';
 
 -- ----------------------------
 -- Records of sys_config
@@ -81,7 +81,7 @@ CREATE TABLE `sys_dept` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`dept_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='部门表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='部门表';
 
 -- ----------------------------
 -- Records of sys_dept
@@ -112,7 +112,7 @@ CREATE TABLE `sys_dict` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`dict_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='基础字典';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='基础字典';
 
 -- ----------------------------
 -- Records of sys_dict
@@ -158,7 +158,7 @@ CREATE TABLE `sys_dict_type` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`dict_type_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='字典类型表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='字典类型表';
 
 -- ----------------------------
 -- Records of sys_dict_type
@@ -191,7 +191,7 @@ CREATE TABLE `sys_file_info` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建用户',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改用户',
   PRIMARY KEY (`file_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文件信息表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='文件信息表';
 
 -- ----------------------------
 -- Records of sys_file_info
@@ -213,7 +213,7 @@ CREATE TABLE `sys_login_log` (
   `message` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '具体消息',
   `ip_address` varchar(255) DEFAULT NULL COMMENT '登录ip',
   PRIMARY KEY (`login_log_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='登录记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='登录记录';
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -240,7 +240,7 @@ CREATE TABLE `sys_menu` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of sys_menu
@@ -329,7 +329,7 @@ CREATE TABLE `sys_notice` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`notice_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='通知表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='通知表';
 
 -- ----------------------------
 -- Records of sys_notice
@@ -354,7 +354,7 @@ CREATE TABLE `sys_operation_log` (
   `succeed` varchar(32) DEFAULT NULL COMMENT '是否成功(字典)',
   `message` text CHARACTER SET utf8 COLLATE utf8_bin COMMENT '备注',
   PRIMARY KEY (`operation_log_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='操作日志';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='操作日志';
 
 -- ----------------------------
 -- Table structure for sys_position
@@ -373,7 +373,7 @@ CREATE TABLE `sys_position` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建者',
   PRIMARY KEY (`position_id`) USING BTREE,
   UNIQUE KEY `CODE_UNI` (`code`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='职位表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='职位表';
 
 -- ----------------------------
 -- Records of sys_position
@@ -392,7 +392,7 @@ CREATE TABLE `sys_relation` (
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单id',
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色id',
   PRIMARY KEY (`relation_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色和菜单关联表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色和菜单关联表';
 
 -- ----------------------------
 -- Records of sys_relation
@@ -502,7 +502,7 @@ CREATE TABLE `sys_role` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建用户',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改用户',
   PRIMARY KEY (`role_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色表';
 
 -- ----------------------------
 -- Records of sys_role
@@ -536,7 +536,7 @@ CREATE TABLE `sys_user` (
   `update_user` bigint(20) DEFAULT NULL COMMENT '更新人',
   `version` int(11) DEFAULT NULL COMMENT '乐观锁',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='管理员表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='管理员表';
 
 -- ----------------------------
 -- Records of sys_user
@@ -554,7 +554,7 @@ CREATE TABLE `sys_user_pos` (
   `user_id` bigint(20) NOT NULL COMMENT '用户id',
   `pos_id` bigint(20) NOT NULL COMMENT '职位id',
   PRIMARY KEY (`user_pos_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户职位关联表';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户职位关联表';
 
 -- ----------------------------
 -- Records of sys_user_pos
