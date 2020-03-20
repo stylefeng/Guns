@@ -391,7 +391,9 @@ CREATE TABLE `sys_relation` (
   `relation_id` bigint(20) NOT NULL COMMENT '主键',
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单id',
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色id',
-  PRIMARY KEY (`relation_id`) USING BTREE
+  PRIMARY KEY (`relation_id`) USING BTREE,
+  KEY `sys_relation_menu_id` (`menu_id`),
+  KEY `sys_relation_role_id` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='角色和菜单关联表';
 
 -- ----------------------------
