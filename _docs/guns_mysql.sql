@@ -329,7 +329,7 @@ CREATE TABLE `sys_notice` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`notice_id`) USING BTREE,
-  KEY `create_time` (`create_time`)
+  KEY `sys_notice_create_time` (`create_time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='通知表';
 
 -- ----------------------------
