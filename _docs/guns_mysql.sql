@@ -157,7 +157,10 @@ CREATE TABLE `sys_dict_type` (
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`dict_type_id`) USING BTREE
+  PRIMARY KEY (`dict_type_id`) USING BTREE,
+  KEY `sys_dict_type_code` (`code`),
+  KEY `sys_dict_type_name` (`name`),
+  KEY `sys_dict_sort` (`sort`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='字典类型表';
 
 -- ----------------------------
