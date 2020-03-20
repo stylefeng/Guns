@@ -241,7 +241,7 @@ CREATE TABLE `sys_menu` (
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`menu_id`) USING BTREE,
   KEY `sys_menu_code` (`code`),
-  KEY `sys_menu_status_level` (`status`, `levels`)
+  KEY `sys_menu_status_levels` (`status`, `levels`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单表';
 
 -- ----------------------------
