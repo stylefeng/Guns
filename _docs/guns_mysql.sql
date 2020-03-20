@@ -80,7 +80,8 @@ CREATE TABLE `sys_dept` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `create_user` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_user` bigint(20) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (`dept_id`) USING BTREE
+  PRIMARY KEY (`dept_id`) USING BTREE,
+  KEY `sys_dept_sort` (`sort`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='部门表';
 
 -- ----------------------------
