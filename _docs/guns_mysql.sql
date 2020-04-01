@@ -160,7 +160,8 @@ CREATE TABLE `sys_dict_type` (
   PRIMARY KEY (`dict_type_id`) USING BTREE,
   KEY `sys_dict_type_code` (`code`),
   KEY `sys_dict_type_name` (`name`),
-  KEY `sys_dict_sort` (`sort`)
+  KEY `sys_dict_sort` (`sort`),
+  KEY `sys_dict_system_flag_sort` (`system_flag`, `sort`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='字典类型表';
 
 -- ----------------------------
