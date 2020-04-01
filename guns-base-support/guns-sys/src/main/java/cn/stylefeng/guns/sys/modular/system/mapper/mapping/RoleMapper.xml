@@ -72,15 +72,15 @@
         ) as "open",
         (
         CASE
-        WHEN (r.role_id = 0
-          OR r.role_id IN
+        WHEN (r.role_id <> 0
+          AND r.role_id IN
           <foreach collection="array" index="index" item="i" open="(" separator="," close=")">
               #{i}
           </foreach>
         ) THEN
-        'false'
-        ELSE
         'true'
+        ELSE
+        'false'
         END
         ) as "checked"
         FROM
