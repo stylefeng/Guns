@@ -1,0 +1,73 @@
+@layout("/common/_form.html",{js:["/assets/modular/system/user/user_edit.js"],css:["/assets/expand/module/formSelects/formSelects-v4.css"]}){
+
+<form class="layui-form" id="userForm" lay-filter="userForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">${lang.get("TITLE_BASE_INFO","基本信息")}</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input name="userId" id="userId" type="hidden"/>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_NAME","名称")}<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input name="name" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_BIRTHDAY","出生日期")}</label>
+                        <div class="layui-input-block">
+                            <input id="birthday" name="birthday" placeholder="请输入生日" type="text" class="layui-input date-icon" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_EMAIL","邮箱")}<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input name="email" placeholder="请输入邮箱" type="text" class="layui-input" lay-verify="required|email" required />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_SEX","性别")}</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="sex" value="M" title="男" checked/>
+                            <input type="radio" name="sex" value="F" title="女"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_PHONE","电话")}</label>
+                        <div class="layui-input-block">
+                            <input name="phone" placeholder="请输入电话" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">${lang.get("TITLE_DUTY_INFO","职务信息")}</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_DEPT","部门")}<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="deptId" name="deptId" type="hidden">
+                            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">${lang.get("FIELD_POST","职位")}<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <select name="position" id="position" xm-select="selPosition" lay-verify="required" required>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;${lang.get("BTN_SUBMIT","提交")}&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;${lang.get("BTN_CANCEL","取消")}&emsp;</button>
+    </div>
+
+</form>
+
+@}

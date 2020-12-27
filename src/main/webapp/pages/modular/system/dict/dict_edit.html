@@ -1,0 +1,58 @@
+@layout("/common/_form.html",{js:["/assets/modular/system/dict/dict_edit.js"]}){
+
+<form class="layui-form" id="dictForm" lay-filter="dictForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本信息</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input id="dictId" name="dictId" type="hidden"/>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">字典类型</label>
+                        <div class="layui-input-block">
+                            <input id="dictTypeId" name="dictTypeId" type="hidden" value="${dictTypeId}"/>
+                            <input type="text" class="layui-input white-border layui-disabled" value="${dictTypeName}" disabled="disabled"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">字典名称<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="name" name="name" placeholder="请输入字典名称" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">字典编码<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="code" name="code" placeholder="请输入字典编码" type="text" class="layui-input layui-disabled" lay-verify="required" disabled required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">上级字典<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="parentId" name="parentId" type="hidden" class="layui-input" lay-verify="required" required/>
+                            <input id="parentName" name="parentName" placeholder="请选择上级字典，如没有请选择顶级" type="text" class="layui-input" lay-verify="required" required readonly="readonly"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">排序</label>
+                        <div class="layui-input-block">
+                            <input id="sort" name="sort" placeholder="请输入字典排序" type="text" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">字典描述</label>
+                        <div class="layui-input-block">
+                            <textarea id="description" name="description" placeholder="请输入字典描述" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+@}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="${bg!}">
+
+@/**
+@ *      本页面所用的模板变量
+@ *
+@ * title          :  页面的标题
+@ * layoutContent  :  主页面的html内容
+@ * js             :  业务所需要的js，为数组
+@ * css            :  业务所需要的css，为数组
+@ * bg             :  背景颜色
+@ * plugins        :  需要用到的插件，目前有["ztree"]
+@ **/
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${title!"管理系统"}</title>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/module/admin.css?v=${constants.getReleaseVersion()}" media="all"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/expand/css/style.css?v=${constants.getReleaseVersion()}" media="all"/>
+
+    <!--其他插件css-->
+    @if(isNotEmpty(plugins)){
+        @if(array.contain(plugins,"ztree")){
+        <link href="${ctxPath}/assets/expand/plugins/ztree/zTreeStyle.css?v=${constants.getReleaseVersion()}" rel="stylesheet" type="text/css" />
+        @}
+    @}
+
+    @/* 其他业务用的css */
+    @if(isNotEmpty(css)){
+        @for(item in css){
+            @if(strutil.startWith(item,"/")){
+                @item = ctxPath + item;
+            @}
+            <link href="${item}?v=${constants.getReleaseVersion()}" rel="stylesheet" type="text/css" />
+        @}
+    @}
+</head>
+
+<body>
+
+@/* 页面加载loading */
+@ include("/common/loading.html"){}
+
+@/* 正文 */
+${layoutContent}
+
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+
+@/* js和业务用的js数组 */
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<!--其他插件js-->
+@if(isNotEmpty(plugins)){
+    @if(array.contain(plugins,"ztree")){
+    <script src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
+    <script src="${ctxPath}/assets/expand/plugins/ztree/jquery.ztree.all.min.js?v=${constants.getReleaseVersion()}"></script>
+    @}
+@}
+
+@if(isNotEmpty(js)){
+    @for(item in js){
+        @if(strutil.startWith(item,"/")){
+            @item = ctxPath + item;
+        @}
+        <script src="${item}?v=${constants.getReleaseVersion()}"></script>
+    @}
+@}
+</body>
+</html>

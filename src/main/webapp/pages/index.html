@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="${ctxPath}/assets/expand/images/favicon.ico" rel="icon">
+    <title>${constants.getSystemName()}</title>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/module/admin.css?v=${constants.getReleaseVersion()}"/>
+</head>
+
+<body class="layui-layout-body">
+
+<div class="layui-layout layui-layout-admin">
+
+    <!-- 头部 -->
+    @include("/common/_header.html"){}
+
+    <!-- 侧边栏 -->
+    @include("/common/_sidebar.html"){}
+
+    <!-- 主体部分 -->
+    @include("/common/_body.html"){}
+
+    <!-- 底部 -->
+    @include("/common/_footer.html"){}
+
+</div>
+
+<!-- 加载动画，移除位置在common.js中 -->
+@include("/common/loading.html"){}
+
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<script>
+    layui.use(['layer', 'element', 'admin', 'index', 'ax'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var index = layui.index;
+        var $ax = layui.ax;
+
+        //获取支持的语言列表
+        var ajax = new $ax(Feng.ctxPath + "/translation/languages", function (data) {
+            for (var i = 0; i < data.data.length; i++) {
+                var code = data.data[i].code;
+                var description = data.data[i].description;
+                $("#languageDiv").append('<dd lay-unselect><a id="tran-' + code + '" href="javascript:;">' + description + '</a></dd>');
+
+                //设置监听事件，设置点击按钮切换当前系统语言
+                (function (code) {
+                    $('#tran-' + code).click(function () {
+                        var ajax = new $ax(Feng.ctxPath + "/translation/changeUserTranslation", function (data) {
+                            window.location.href = Feng.ctxPath + "/";
+                        }, function (data) {
+                            layer.msg("切换多语言失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+                        });
+                        ajax.set("code", code);
+                        ajax.start();
+                    });
+                })(code);
+            }
+        }, function (data) {
+            layer.msg("获取语言列表失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+        });
+        ajax.start();
+
+        // 加载当前语言字典并缓存
+        var getUserTranslationAjax = new $ax(Feng.ctxPath + "/translation/getUserTranslation", function (data) {
+            layui.data('system', {
+                key: "lang",
+                value: data.data
+            });
+        }, function (data) {
+            layer.msg("加载语言字典失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+        });
+        getUserTranslationAjax.start();
+
+        // 默认加载主页
+        index.loadHome({
+            menuPath: $("#firstPageAction").attr('lay-href'),
+            menuName: '<i class="layui-icon layui-icon-home"></i>'
+        });
+
+        // 修改密码点击事件
+        $('#setPsw').click(function () {
+
+            //获取多语言
+            var langs = layui.data('system').lang;
+
+            admin.open({
+                id: 'pswForm',
+                type: 2,
+                title: langs.MENU_CHANGE_PASSWORD,
+                shade: 0,
+                content: '${ctxPath}/system/user_chpwd'
+            });
+        });
+
+        // 退出登录点击事件
+        $('#btnLogout').click(function () {
+            var ajax = new $ax(Feng.ctxPath + "/logout", function (data) {
+                Feng.success("退出成功!");
+                window.location.href = Feng.ctxPath + "/";
+            }, function (data) {
+                layer.msg("退出失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+            });
+            ajax.start();
+        });
+    });
+</script>
+</body>
+
+</html>

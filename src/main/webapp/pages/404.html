@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${constants.getSystemName()}</title>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/module/admin.css?v=${constants.getReleaseVersion()}"/>
+</head>
+<body>
+
+<!-- 正文开始 -->
+<div class="error-page">
+    <img class="error-page-img" src="${ctxPath}/assets/common/images/ic_404.png">
+    <div class="error-page-info">
+        <h1>404</h1>
+        <p>啊哦，你访问的页面不存在(⋟﹏⋞)</p>
+        <div>
+            <a ew-href="${ctxPath}/" class="layui-btn">返回首页</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .error-page {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        -o-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .error-page .error-page-img {
+        display: inline-block;
+        height: 260px;
+        margin: 10px 15px;
+    }
+
+    .error-page .error-page-info {
+        vertical-align: middle;
+        display: inline-block;
+        margin: 10px 15px;
+    }
+
+    .error-page .error-page-info > h1 {
+        color: #434e59;
+        font-size: 72px;
+        font-weight: 600;
+    }
+
+    .error-page .error-page-info > p {
+        color: #777;
+        font-size: 20px;
+        margin-top: 5px;
+    }
+
+    .error-page .error-page-info > div {
+        margin-top: 30px;
+    }
+</style>
+
+
+<!-- js部分 -->
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<script>
+    layui.use(['admin'], function () {
+
+    });
+</script>
+</body>
+</html>

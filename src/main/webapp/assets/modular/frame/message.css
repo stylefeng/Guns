@@ -1,0 +1,83 @@
+.message-list {
+    position: absolute;
+    top: 51px;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+}
+
+.message-list-item {
+    padding: 10px 24px;
+    border-bottom: 1px solid #e8e8e8;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    display: flex;
+    -ms-flex: 1 1;
+    flex: 1 1;
+}
+
+.message-list-item:hover, .message-btn-clear:hover, .message-btn-more:hover {
+    background: #F2F2F2;
+}
+
+.message-item-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+    display: block;
+    margin-top: 4px;
+}
+
+.message-item-right {
+    display: block;
+    flex: 1 0;
+    line-height: 24px;
+}
+
+.message-item-title {
+    font-size: 14px;
+    color: rgba(0, 0, 0, .65);
+}
+
+.message-item-text {
+    color: rgba(0, 0, 0, .45);
+    font-size: 12px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.message-btn-clear, .message-btn-more {
+    display: block;
+    padding: 10px 5px;
+    text-align: center;
+    line-height: 24px;
+    color: #333;
+}
+
+.message-btn-clear {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: white;
+    right: 0;
+    border-top: 1px solid #e8e8e8;
+}
+
+.message-btn-more {
+    color: #666;
+    font-size: 13px;
+}
+
+.message-list-empty {
+    text-align: center;
+    color: rgba(0, 0, 0, .45);
+    padding: 73px 0 88px;
+}
+
+.message-list-empty img {
+    height: 76px;
+    margin-bottom: 16px;
+}

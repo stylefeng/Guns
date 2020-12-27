@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  max-http-header-size: 10240
+
+spring:
+  application:
+    name: guns
+  profiles:
+    active: @spring.active@
+  mvc:
+    view:
+      prefix: /pages
+  servlet:
+    multipart:
+      max-request-size: 200MB
+      max-file-size: 200MB
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    locale: zh_CN
+    serialization:
+      indent_output: false
+
+scanner:
+  open: true
+sys-log:
+  type: db # db-数据库，file-文件
+  file-save-path: _sys_logs
+
+mybatis-plus:
+  mapper-locations: classpath*:cn/stylefeng/**/mapping/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+  global-config:
+    banner: false
+    enable-sql-runner: true
+    db-config:
+      id-type: assign_id
+      table-underline: true
+
+session:
+  expiredSeconds: 1800
+
+log:
+  path: _app_logs

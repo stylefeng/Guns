@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>${constants.getSystemName()}</title>
+    <meta name="description" content="${constants.getSystemName()}">
+    <meta name="author" content="stylefeng">
+
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link href="${ctxPath}/assets/expand/plugins/ztree/zTreeStyle.css?v=${constants.getReleaseVersion()}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div id="deptForm" class="layui-fluid">
+    <div class="layui-row" style="margin-top:15px;background: #f2f7f8;padding: 20px;">
+        <ul id="zTree" class="ztree"></ul>
+    </div>
+    <div class="layui-row" style="background: #CFD4D5;padding: 10px;">
+        <div style="text-align: center;">
+            <button class="layui-btn layui-btn-sm" id="saveButton">${lang.get("BTN_SAVE","保存")}</button>
+            <button class="layui-btn layui-btn-sm layui-btn-primary" type="button" ew-event="closeDialog">${lang.get("BTN_CANCEL","取消")}</button>
+        </div>
+    </div>
+</div>
+
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<!--其他插件js-->
+<script type="text/javascript" src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/expand/plugins/ztree/jquery.ztree.all.min.js?v=${constants.getReleaseVersion()}"></script>
+
+<script type="text/javascript">
+
+    layui.use(['ztree', 'ax'], function () {
+        var $ZTree = layui.ztree;
+        var $ax = layui.ax;
+
+        var ZTreeDlg = {
+            index: parent.layer.getFrameIndex(window.name)
+        };
+
+        $("#saveButton").bind("click", function () {
+            var ids = Feng.zTreeCheckedNodes("zTree");
+            var ajax = new $ax(Feng.ctxPath + "/mgr/setRole", function (data) {
+                Feng.success("分配角色成功!");
+                parent.layer.close(ZTreeDlg.index);
+            }, function (data) {
+                Feng.error("分配角色失败!" + data.responseJSON.message + "!");
+            });
+            ajax.set("roleIds", ids);
+            ajax.set("userId", "${userId}");
+            ajax.start();
+        });
+
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: {
+                    "Y": "",
+                    "N": ""
+                }
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+
+        var ztree = new $ZTree("zTree", "/role/roleTreeListByUserId/${userId}");
+        ztree.setSettings(setting);
+        ztree.init();
+    });
+
+</script>
+
+</body>
+
+</html>

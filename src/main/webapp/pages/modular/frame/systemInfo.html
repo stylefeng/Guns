@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${constants.getSystemName()}</title>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/module/admin.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/expand/css/style.css?v=${constants.getReleaseVersion()}" media="all"/>
+</head>
+
+<body>
+
+<!-- 加载动画，移除位置在common.js中 -->
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+
+        <div class="layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-header">CPU信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <thead>
+                        <tr>
+                            <th>属性</th>
+                            <td>值</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>核心数</td>
+                            <td>${server.cpu.cpuNum!'0'}</td>
+                        </tr>
+                        <tr>
+                            <td>用户使用率</td>
+                            <td>${server.cpu.used!'0'}%</td>
+                        </tr>
+                        <tr>
+                            <td>系统使用率</td>
+                            <td id="sysUsage">${server.cpu.sys!'0'}%</td>
+                        </tr>
+                        <tr>
+                            <td>当前空闲率</td>
+                            <td>${server.cpu.free!'0'}%</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-header">内存信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>内存</th>
+                            <th>JVM</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>总内存</td>
+                            <td>${server.mem.total!'0'}GB</td>
+                            <td>${server.jvm.total!'0'}MB</td>
+                        </tr>
+                        <tr>
+                            <td>已用内存</td>
+                            <td>${server.mem.used!'0'}GB</td>
+                            <td>${server.jvm.used!'0'}MB</td>
+                        </tr>
+                        <tr>
+                            <td>剩余内存</td>
+                            <td>${server.mem.free!'0'}GB</td>
+                            <td>${server.jvm.free!'0'}MB</td>
+                        </tr>
+                        <tr>
+                            <td>使用率</td>
+                            <td id="memUsage">${server.mem.usage!'0'}%</td>
+                            <td id="jvmUsage">${server.jvm.usage!'0'}%</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-header">JAVA虚拟机信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <tbody>
+                        <tr>
+                            <td class="layui-table-header">Jvm名称</td>
+                            <td>${server.jvm.name!}</td>
+                            <td class="layui-table-header">Java版本</td>
+                            <td>${server.jvm.version!}</td>
+                        </tr>
+                        <tr>
+                            <td class="layui-table-header">启动时间</td>
+                            <td>${server.jvm.startTime}</td>
+                            <td class="layui-table-header">运行时长</td>
+                            <td>${server.jvm.runTime}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="layui-table-header">安装路径</td>
+                            <td colspan="3">${server.jvm.home}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="layui-table-header">项目路径</td>
+                            <td colspan="3">${server.sys.userDir}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-header">服务器信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <tbody>
+                        <tr>
+                            <td class="layui-table-header">服务器名称</td>
+                            <td>${server.sys.computerName}</td>
+                            <td class="layui-table-header">操作系统</td>
+                            <td>${server.sys.osName}</td>
+                        </tr>
+                        <tr>
+                            <td class="layui-table-header">服务器IP</td>
+                            <td>${server.sys.computerIp}</td>
+                            <td class="layui-table-header">系统架构</td>
+                            <td>${server.sys.osArch}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-header">磁盘信息</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <thead>
+                        <tr>
+                            <th>盘符路径</th>
+                            <th>文件系统</th>
+                            <th>盘符类型</th>
+                            <th>总大小</th>
+                            <th>可用大小</th>
+                            <th>已用大小</th>
+                            <th>已用百分比</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @for(sysFile in server.sysFiles){
+                        <tr>
+                            <td>${sysFile.dirName!}</td>
+                            <td>${sysFile.sysTypeName!}</td>
+                            <td>${sysFile.typeName!}</td>
+                            <td>${sysFile.total!'0'}GB</td>
+                            <td>${sysFile.free!'0'}GB</td>
+                            <td>${sysFile.used!'0'}GB</td>
+                            <td>${sysFile.usage}%</td>
+                        </tr>
+                        @}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- js部分 -->
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<script>
+    layui.use(['layer'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        var cpuUsage = ${server.cpu.sys!'0'};
+        var memUsage = ${server.mem.usage!'0'};
+        var jvmUsage = ${server.jvm.usage!'0'};
+
+        var msg = "";
+
+        if (cpuUsage >= 80) {
+            $("#sysUsage").addClass("text-danger");
+            msg += "提示：CPU使用率过高！</br>";
+        }
+
+        if (memUsage >= 80) {
+            $("#memUsage").addClass("text-danger");
+            msg += "提示：内存使用率过高！</br>";
+        }
+
+        if (jvmUsage >= 80) {
+            $("#jvmUsage").addClass("text-danger");
+            msg += "提示：jvm使用率过高！";
+        }
+
+        if (msg !== "") {
+            layer.msg(msg)
+        }
+
+    });
+</script>
+</body>
+
+</html>

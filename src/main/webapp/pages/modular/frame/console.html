@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>${constants.getSystemName()}</title>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/module/admin.css?v=${constants.getReleaseVersion()}"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/expand/css/style.css?v=${constants.getReleaseVersion()}" media="all"/>
+
+    <style>
+        /** 卡片轮播图样式 */
+        .admin-carousel .layui-carousel-ind {
+            position: absolute;
+            top: -41px;
+            text-align: right;
+        }
+
+        .admin-carousel .layui-carousel-ind ul {
+            background: 0 0;
+        }
+
+        .admin-carousel .layui-carousel-ind li {
+            background-color: #e2e2e2;
+        }
+
+        .admin-carousel .layui-carousel-ind li.layui-this {
+            background-color: #999;
+        }
+
+        /** 广告位轮播图 */
+        .admin-news .layui-carousel-ind {
+            height: 45px;
+        }
+
+        .admin-news a {
+            display: block;
+            line-height: 60px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- 加载动画，移除位置在common.js中 -->
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    访问量(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">12,500</p>
+                    <p>总计访问量<span class="pull-right">32万+ <i class="layui-icon layui-icon-flag"></i></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    下载量(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">2,400</p>
+                    <p>总下载<span class="pull-right">5万+ <i class="layui-icon layui-icon-note"></i></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    GIT PULL(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">1,500</p>
+                    <p>总PULL数<span class="pull-right">5万+ <i class="layui-icon layui-icon-notice"></i></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    GIT PUSH(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font">100</p>
+                    <p>总PUSH数<span class="pull-right">1066 <i class="layui-icon layui-icon-diamond"></i></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-lg8 layui-col-md7">
+            <div class="layui-card">
+                <div class="layui-card-header">更新日志</div>
+                <div class="layui-card-body">
+                    <ul class="layui-timeline">
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    高级企业版 V2.0
+                                    <small>更符合企业级开发的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-10-09</span>
+                                </h3>
+                                <ul>
+                                    <li class="text-danger">升级权限框架，采用spring security + jwt</li>
+                                    <li class="text-danger">集成适配新的单点登录接口</li>
+                                    <li class="text-danger">更新代码生成器，可生成带swagger注解的控制器和实体，可生成适用于微服务的api</li>
+                                    <li class="text-danger">增加更多的系统常量在线配置，简化本地配置</li>
+                                    <li class="text-danger">更新整体的弹框和其他组件ui样式</li>
+                                    <li class="text-danger">集成ueditor富文本编辑器到通知管理</li>
+                                    <li class="text-danger">增加工作流相关的模型设计，发起流程，代办已办等功能，并增加在线流程设计器</li>
+                                    <li class="text-danger">升级layui和easyweb到最新版本</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    企业版 V2.0
+                                    <small>更符合企业级开发的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-6-20</span>
+                                </h3>
+                                <ul>
+                                    <li>新增基于spring cloud alibaba的全新微服务版本(高级企业版)</li>
+                                    <li>新增多租户系统，采用数据库隔离的方式拓展多租户(高级企业版)</li>
+                                    <li>新增多数据源在线配置，无限拓展，告别繁琐的多数据源配置方式</li>
+                                    <li>新增第三方系统的OAuth2登录，例如qq登录，码云登录等</li>
+                                    <li>新增邮件发送，短信发送功能，短信适配的阿里云短信</li>
+                                    <li>新增系统参数在线配置功能，可实时修改系统的某些开关和配置</li>
+                                    <li>新增分布式job的支持，可通过job控制中心控制分布式任务</li>
+                                    <li>升级并适配easyweb框架到最新版本</li>
+                                    <li>完善系统的验证码，头像上传等功能，优化部分业务的界面</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    企业版 V1.0
+                                    <small>更符合企业级开发的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-4-1</span>
+                                </h3>
+                                <ul>
+                                    <li>最新独创领域驱动设计 + 数据驱动模式代码生成器</li>
+                                    <li>完美适配Mysql，Oracle，Sql Server，Postgre SQL多种数据库的支持</li>
+                                    <li>集成最新版flowable v6.4.1，提供使用用例，提供原装在线画图工具</li>
+                                    <li>新增haproxy + keepalived实现负载均衡和高可用的安装配置和相关脚本</li>
+                                    <li>提供接入spring cloud微服务方案，轻松搭建基于Guns的微服务</li>
+                                    <li>集成spring定时任务，quartz定时任务，提供分布式调度解决方案</li>
+                                    <li>新增pdf在线预览功能，提供word，excel，ppt，pdf在线预览</li>
+                                    <li>新增excel导入导出示例，可根据自定义sql进行报表导出</li>
+                                    <li>重构字典模块，系统枚举和字典的全新融合</li>
+                                    <li>新增高级表单demo，高级表格demo，增加文件上传，图片上传，富文本编辑框功能</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    旗舰版 V2.3
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-03-18</span>
+                                </h3>
+                                <ul>
+                                    <li>集成Atomikos，解决分布式事物问题，使用方便，开箱即用</li>
+                                    <li>修复若干bug</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    旗舰版 V2.2
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-03-11</span>
+                                </h3>
+                                <ul>
+                                    <li>修复菜单修改编码不能更改子菜单pcode问题</li>
+                                    <li>修复Guns的日志模块，记录业务日志，部分字段缺失的问题</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    旗舰版 V2.1
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-02-25</span>
+                                </h3>
+                                <ul>
+                                    <li>部门管理增加左侧树展示</li>
+                                    <li>菜单管理表格改为树形表格</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    旗舰版 V2.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-02-14</span>
+                                </h3>
+                                <ul>
+                                    <li>新增一套layui风格的前端界面，目前有三套ui可选</li>
+                                    <li>修复菜单图标显示问题</li>
+                                    <li>修复按钮的权限控制问题</li>
+                                    <li>默认登录改为单标签风格，可在主题设置改为多标签模式</li>
+                                    <li>优化rememberMe功能</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    旗舰版 V1.1
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2019-01-21</span>
+                                </h3>
+                                <ul>
+                                    <li>升级spring boot v2.1.1和mybatis-plus 3.0</li>
+                                    <li>修改角色和修改菜单可以实时刷新缓存，不用从新登录即可刷新菜单</li>
+                                    <li>菜单图标设置不同步的bug修改</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    旗舰版 V1.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-12-29</span>
+                                </h3>
+                                <ul>
+                                    <li>前端页面风格和架构焕然一新，全面升级bootstrap 4.0，您现在拥有两种界面风格可选</li>
+                                    <li>引入vue.js，实现业务数据双向绑定，不增加学习成本的情况下，提升自己的开发效率</li>
+                                    <li>优化前端框架结构，加载速度更快，使用更加灵活可配置</li>
+                                    <li>前后端代码整体重构，逻辑更加清晰，代码量更加简洁，增加关键部分注释，代码的可读性提高</li>
+                                    <li>增加docker-maven-plugin插件，可一键部署项目到装有docker的服务器</li>
+                                    <li>重构shiro部分的业务代码和配置，更加清晰简洁</li>
+                                    <li>规范后端数据库设计，字段和表的命名都修改为下划线命名，将以往的全小写命名去除</li>
+                                    <li>2018年最后一个版，前端整体框架大升级，后端数据库设计更规范合理，是这一年的呕心沥血之作</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V5.1
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-10-17</span>
+                                </h3>
+                                <ul>
+                                    <li>框架整体的包名变为cn.stylefeng开头</li>
+                                    <li>优化了shiro相关的几个服务类的结构，整体业务逻辑不变，优化了部分包结构和类之间的关系，项目整体更加简洁和易维护</li>
+                                    <li>整合了guns-core，和roses项目的kernel-core，并把kernel-core上传到了maven的中央仓库</li>
+                                    <li>剔除了guns-generator模块，抽出单独的项目https://gitee.com/stylefeng/guns-generator来维护，并且guns-generator也上传到了maven中央仓库</li>
+                                    <li>框架整体回归了单模块应用，返璞归真，开箱即用，快速开发新项目，新业务</li>
+                                    <li>另外更新了Guns技术文档的版本到5.1，与项目版本保持一致</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V5.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-09-03</span>
+                                </h3>
+                                <ul>
+                                    <li>集成自研SSO框架，做更简洁的管理系统</li>
+                                    <li>该版本SSO，思路可借鉴，不推荐线上使用，如需SSO，请关注Guns VIP版本</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V4.2
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-08-13</span>
+                                </h3>
+                                <ul>
+                                    <li>修复菜单折叠无法折叠子菜单的子菜单的bug！</li>
+                                    <li>新增Guns技术交流2群摇了摇头提供的oracle版本的Guns（现已剔除，如需oracle版本请关注Guns VIP）</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V4.1
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-07-24</span>
+                                </h3>
+                                <ul>
+                                    <li>新增rest api服务，并以jwt方式鉴权，所有以/gunsApi开头的接口走这种鉴权方式，其他接口仍为shiro鉴权</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V4.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-07-02</span>
+                                </h3>
+                                <ul>
+                                    <li>spring boot升级到2.0版本</li>
+                                    <li>简化前端所有的html，js，css等资源文件，由11.8MB缩减为4.8MB</li>
+                                    <li>新增手动增加标签页的方法，Feng.newCrontab(href,menuName)</li>
+                                    <li>laydate时间插件和layer弹出层插件更新为官网最新，可以看着layui官网的文档直接开发啦</li>
+                                    <li>去掉animate动画效果，加快页面响应速度</li>
+                                    <li>修复登陆后重启应用造成404的bug</li>
+                                    <li>增强core模块的功能，拿来即用开发新的模块的后端管理系统</li>
+                                    <li>升级各个pom依赖包的版本</li>
+                                    <li>大大简化applicatioin.yml的配置，一些固定不变的配置写在core模块的default-config.properties</li>
+                                    <li>简化多数据源配置，简化mybatis-plus的配置</li>
+                                    <li>优化日志记录格式和策略，详情见logback-spring.xml</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V3.2
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2018-03-02</span>
+                                </h3>
+                                <ul>
+                                    <li>规范化代码注释</li>
+                                    <li>规范化各个模块包下的逻辑调用关系</li>
+                                    <li>修复若干bug</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V3.1
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-12-11</span>
+                                </h3>
+                                <ul>
+                                    <li>整理部分代码结构</li>
+                                    <li>修改表名统一以sys_开头</li>
+                                    <li>集成flowable 6.2.0工作流框架,并提供一个报销流程示例</li>
+                                    <li>代码生成器单独分出一个模块,并提供完善的界面操作来进行代码生成操作</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V3.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-09-26</span>
+                                </h3>
+                                <ul>
+                                    <li>单模块拆分成如下多模块,guns-parent(maven父项目),guns-core(guns基础模块),guns-admin(guns后台管理系统),guns-rest(rest服务模块)</li>
+                                    <li>新增REST API服务,用于提供REST接口</li>
+                                    <li>GUNS-REST服务基于JWT TOKEN鉴权机制,给予访问者访问资源的权限</li>
+                                    <li>GUNS-REST服务对传输过程中的数据进行MD5签名校验,防止过程中的信息被篡改,签名过程中利用随机字符串进行签名混淆</li>
+                                    <li>guns-rest项目新增信息传递时的保护措施(对传输数据进行加密),并且加密方式可自由拓展,只需实现DataSecurityAction接口,并配置相关实现类到spring容器即可</li>
+                                    <li>修复guns-rest项目json解析顺序导致签名验签失败的问题</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V2.5
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-07-26</span>
+                                </h3>
+                                <ul>
+                                    <li>新增数据范围功能(例如，两个角色都有用户管理权限，但是下级部门不能看到上级部门的数据)(通过 MyBatis 拦截器实现)</li>
+                                    <li>代码生成的 bug 修复,现在兼容 Windows 和 Linux</li>
+                                    <li>Shiro 的过滤器链改为 LinkedHashMap</li>
+                                    <li>修复添加顶级部门添加不了的 bug</li>
+                                    <li>解决日期格式化工具类线程安全的问题</li>
+                                    <li>修复日志记录会出现多个重复文件的 bug</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V2.4
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-07-18</span>
+                                </h3>
+                                <ul>
+                                    <li>集成spring session,解决多机部署环境session共享问题</li>
+                                    <li>增加logback日志配置，日志记录统一用slf4j记录</li>
+                                    <li>修复linux下代码生成不兼容的问题</li>
+                                    <li>修复用户管理点击父级部门查询不到相关用户的问题</li>
+                                    <li>修复home图标点击不生效的问题</li>
+                                    <li>增加添加菜单时，对编号和父级编号可能一致的判断</li>
+                                    <li>修复添加一级菜单不生效的问题</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V2.3
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-07-10</span>
+                                </h3>
+                                <ul>
+                                    <li>增加多数据源支持</li>
+                                    <li>增加富文本编辑器支持</li>
+                                    <li>数据库字段增加注释</li>
+                                    <li>数据字典不单单是查询功能，可以动态绑定到业务中当做枚举值使用</li>
+                                    <li>上传图片增加进度条显示</li>
+                                    <li>增加上线发布流程文档（上线发布流程.md）</li>
+                                    <li>解决页面点击查询，左侧菜单高亮会消失bug</li>
+                                    <li>解决个人信息无法提交的bug</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V2.2
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-06-19</span>
+                                </h3>
+                                <ul>
+                                    <li>菜单树由最多二级菜单拓展为三级菜单</li>
+                                    <li>用户管理页面新增部门树，方便查询部门人员信息</li>
+                                    <li>完善系统的session机制，增加session失效时间的跳转</li>
+                                    <li>完善Guns代码生成功能,新增Dao和Service，并且所有的生成都是可选的</li>
+                                    <li>删除信息增加提示框</li>
+                                    <li>删除父菜单可以删除所有子菜单</li>
+                                    <li>新增对页面的js验证，所用框架为bootstrap validator</li>
+                                    <li>完善druid监控，新增Web应用监控，URI监控，session监控</li>
+                                    <li>修复新增含有0值的字典，查询会出现多条的bug</li>
+                                    <li>修复没有角色的用户登录报错的bug</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V2.1
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-06-04</span>
+                                </h3>
+                                <ul>
+                                    <li>集成swagger接口管理框架</li>
+                                    <li>升级bootstrap-table为v1.11.1，table更加好看，并且表格可以点击表头排序</li>
+                                    <li>菜单列表和部门列表表格升级为tree table形式，菜单与菜单之间，部门与部门之间父子关系更加清晰</li>
+                                    <li>完善权限管理，增加对列表和详情页面的权限把控</li>
+                                    <li>修复了一级菜单直接加按钮会显示在菜单列表中的bug</li>
+                                    <li>修复超级管理员可以被删除的bug</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V2.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-05-26</span>
+                                </h3>
+                                <ul>
+                                    <li>基于Spring Boot全面升级，成为开源中国第一批用Spring Boot的后台管理系统</li>
+                                    <li>整合最新版本SpringBoot 1.5.3.RELEASE</li>
+                                    <li>代码生成功能加入到菜单</li>
+                                    <li>新增和修改菜单更加人性化,不用手动输入父级编号,改为下拉框选择方式</li>
+                                    <li>maven profile向spring profile的转变,上线不用输入繁琐的maven命令</li>
+                                    <li>修复新增用户无法修改自己信息的bug</li>
+                                    <li>shiro集成ehcache</li>
+                                    <li>修复pom.xml中kaptcha报错的bug</li>
+                                    <li>新增两种项目启动方式,一种为jar包方式启动,一种为ide里直接运行main函数启动方式</li>
+                                    <li>修复linux中无法使用头像上传的bug</li>
+                                    <li>增加可以控制是否需要输入首页登录的验证码的开关</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">
+                                    V1.0
+                                    <small>更简洁的管理系统</small>&emsp;
+                                    <span class="layui-badge-rim">2017-05-20</span>
+                                </h3>
+                                <ul>
+                                    <li>零spring xml配置，简洁的配置，独特的开发体验</li>
+                                    <li>提供用户，权限，日志，字典，监控，代码生成等9个功能</li>
+                                    <li>完善的日志记录体系，可详细记录用户操作日志</li>
+                                    <li>利用beetl模板引擎对前台页面进行封装和拆分，使臃肿的html代码变得简洁，更加易维护</li>
+                                    <li>利用ehcache框架对经常调用的查询进行缓存，提升运行速度</li>
+                                    <li>controller层采用map + warpper方式的返回结果</li>
+                                    <li>简单可操作，易拓展的代码生成体系</li>
+                                    <li>防止XSS攻击,通过XssFilter类对所有的输入的非法字符串进行过滤以及替换</li>
+                                    <li>控制器层统一的异常拦截机制，\@ControllerAdvice统一对异常拦截</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg4 layui-col-md5">
+            <div class="layui-card">
+                <div class="layui-card-header">项目介绍</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <colgroup>
+                            <col width="100">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>项目名称</td>
+                            <td>Guns快速开发平台</td>
+                        </tr>
+                        <tr>
+                            <td>开源版本</td>
+                            <td>Guns 旗舰版 v2.5</td>
+                        </tr>
+                        <tr>
+                            <td>企业版版</td>
+                            <td>Guns 企业版 v2.0</td>
+                        </tr>
+                        <tr>
+                            <td>官方地址</td>
+                            <td><a href="https://www.stylefeng.cn/" target="_blank">https://www.stylefeng.cn</a></td>
+                        </tr>
+                        <tr>
+                            <td>gitee地址</td>
+                            <td><a href="https://gitee.com/stylefeng/guns" target="_blank">https://gitee.com/stylefeng/guns</a></td>
+                        </tr>
+                        <tr>
+                            <td>主要特色</td>
+                            <td>开源 / 简洁 / 功能丰富 / 易上手 / 文档丰富 / 社区活跃</td>
+                        </tr>
+                        <tr>
+                            <td>获取源码</td>
+                            <td>
+                                <a href="https://gitee.com/stylefeng/guns" target="_blank" class="layui-btn layui-btn-sm">前往官网</a>
+                                <a href="https://www.stylefeng.cn/" target="_blank" class="layui-btn layui-btn-danger layui-btn-sm">获取VIP</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>获取文档</td>
+                            <td>
+                                <a href="https://gitee.com/stylefeng/guns/wikis/Guns%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3?sort_id=200535" target="_blank" class="layui-btn layui-btn-sm">免费文档</a>
+                                <a href="https://www.stylefeng.cn/doc/guns" target="_blank" class="layui-btn layui-btn-danger layui-btn-sm">付费文档(更全)</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>获取视频教程</td>
+                            <td>
+                                <a href="https://gitee.com/stylefeng/guns/wikis/Guns%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B?sort_id=55850" target="_blank" class="layui-btn layui-btn-sm">免费视频</a>
+                                <a href="https://www.stylefeng.cn/video/roses" target="_blank" class="layui-btn layui-btn-danger layui-btn-sm">付费视频(更全)</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">前端框架</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <colgroup>
+                            <col width="100">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>基础框架</td>
+                            <td><a href="https://www.layui.com/" target="_blank">layui v2.4.5</a></td>
+                        </tr>
+                        <tr>
+                            <td>基础框架</td>
+                            <td><a href="https://easyweb.vip/" target="_blank">easyweb v3.1.1</a></td>
+                        </tr>
+                        <tr>
+                            <td>树形框架</td>
+                            <td><a href="http://www.treejs.cn/v3/main.php#_zTreeInfo" target="_blank">zTree v3.5.28</a></td>
+                        </tr>
+                        <tr>
+                            <td>其他框架</td>
+                            <td>jQuery、layui周边框架</td>
+                        </tr>
+                        <tr>
+                            <td>主要特色</td>
+                            <td>易上手 / 简约 / 依赖少</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">后台框架</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text">
+                        <colgroup>
+                            <col width="100">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>核心框架</td>
+                            <td>Spring Boot</td>
+                        </tr>
+                        <tr>
+                            <td>视图渲染</td>
+                            <td>Spring MVC、<a href="http://ibeetl.com" target="_blank">Beetl</a></td>
+                        </tr>
+                        <tr>
+                            <td>持久层</td>
+                            <td>MyBatis、Druid、<a href="http://mp.baomidou.com" target="_blank">MyBatis-Plus</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>权限框架</td>
+                            <td>Shiro、JWT(API接口权限)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>数据库</td>
+                            <td>支持Mysql、Oracle、Postgre SQL、Sql Server</td>
+                        </tr>
+                        <tr>
+                            <td>其他</td>
+                            <td>代码生成器</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header">开源荣誉</div>
+                <div class="layui-card-body">
+                    <div class="layui-carousel admin-carousel admin-news">
+                        <div carousel-item>
+                            <div>
+                                <a href="https://www.oschina.net/project/top_cn_2018" target="_blank" class="layui-bg-green">
+                                    Guns - 2018年度最受欢迎中国开源软件Top20
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://gitee.com/gvp" target="_blank" class="layui-bg-cyan">
+                                    Guns - 码云最受欢迎开源软件GVP
+                                </a>
+                            </div>
+                            <div>
+                                <a href="https://gitee.com/explore/starred?lang=Java" target="_blank" class="layui-bg-blue">
+                                    Guns - 码云开源软件 Java排行榜 第四名
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- js部分 -->
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<script>
+    layui.use(['layer', 'carousel'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var carousel = layui.carousel;
+        var device = layui.device;
+
+        // 渲染轮播
+        carousel.render({
+            elem: '.layui-carousel',
+            width: '100%',
+            height: '60px',
+            arrow: 'none',
+            autoplay: true,
+            trigger: device.ios || device.android ? 'click' : 'hover',
+            anim: 'fade'
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+@layout("/common/_form.html",{js:["/assets/modular/system/dictType/dictType_add.js"]}){
+
+<form class="layui-form" id="dictTypeForm" lay-filter="dictTypeForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-header">基本信息</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input name="dictTypeId" type="hidden"/>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">名称<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="name" name="name" placeholder="请输入字典类型名称，例如：状态标识" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">类型编码<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="code" name="code" placeholder="请输入字典类型编码，例如：STATUS" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">系统字典<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="systemFlag" value="Y" title="是">
+                            <input type="radio" name="systemFlag" value="N" title="否" checked="">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">系统字典与代码中枚举关联，添加后不可修改</div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">排序</label>
+                        <div class="layui-input-block">
+                            <input id="sort" name="sort" placeholder="请输入字典排序" type="text" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">字典描述</label>
+                        <div class="layui-input-block">
+                            <textarea id="description" name="description" placeholder="请输入字典描述" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+
+@}
