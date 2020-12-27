@@ -1,7 +1,9 @@
 package cn.stylefeng.guns.core.beetl;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.auth.api.LoginUserApi;
+import cn.stylefeng.roses.kernel.system.expander.SystemConfigExpander;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 
 /**
@@ -20,8 +22,16 @@ public class CustomBeetlGroupUtilConfiguration extends BeetlGroupUtilConfigurati
 
     @Override
     public void initOther() {
+
+        // 获取当前用户的接口
         groupTemplate.registerFunctionPackage("loginUserApi", loginUserApi);
-        groupTemplate.registerFunctionPackage("strUtil", StrUtil.class);
+
+        // 字符串处理工具类
+        groupTemplate.registerFunctionPackage("objectUtil", ObjectUtil.class);
+
+        // 获取基本信息的工具
+        groupTemplate.registerFunctionPackage("constants", SystemConfigExpander.class);
+
         // todo 多语言
 //        groupTemplate.registerFunctionPackage("lang", new UserTranslationContext());
     }

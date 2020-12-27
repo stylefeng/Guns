@@ -5,6 +5,7 @@ layui.define(['jquery'], function (exports) {
         this.url = url;
         this.type = "post";
         this.data = {};
+        this.contentType = "application/json";
         this.dataType = "json";
         this.async = false;
         this.success = success;
@@ -25,9 +26,10 @@ layui.define(['jquery'], function (exports) {
             $.ajax({
                 type: me.type,
                 url: me.url,
+                contentType: me.contentType,
                 dataType: me.dataType,
                 async: me.async,
-                data: me.data,
+                data: JSON.stringify(me.data),
                 beforeSend: function (data) {
 
                 },

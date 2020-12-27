@@ -2,48 +2,48 @@
 <div class="layui-side">
     <div class="layui-side-scroll">
 
-        @for(item in menus){
-            <ul class="layui-nav layui-nav-tree arrow2" nav-id="${item.systemType}" lay-shrink="all" lay-filter="admin-side-nav" style="margin-top: 15px;">
-            @for(menu in item.menus) {
-                @if(tool.isEmpty(menu.children)){
+        @for(item in layuiAppIndexMenus){
+            <ul class="layui-nav layui-nav-tree arrow2" nav-id="${item.appCode}" lay-shrink="all" lay-filter="admin-side-nav" style="margin-top: 15px;">
+            @for(menu in item.layuiIndexMenuTreeNodes) {
+                @if(objectUtil.isEmpty(menu.children)){
                 <li class="layui-nav-item">
                     @if(itemLP.first && menuLP.first){
-                    <a id="firstPageAction" lay-href="${menu.url}"><i class="layui-icon ${menu.icon}"></i>&emsp;<cite>${menu.name}</cite></a>
+                    <a id="firstPageAction" lay-href="${menu.router}"><i class="layui-icon ${menu.icon}"></i>&emsp;<cite>${menu.menuName}</cite></a>
                     @}else{
-                    <a lay-href="${menu.url}"><i class="layui-icon ${menu.icon}"></i>&emsp;<cite>${menu.name}</cite></a>
+                    <a lay-href="${menu.router}"><i class="layui-icon ${menu.icon}"></i>&emsp;<cite>${menu.menuName}</cite></a>
                     @}
                 </li>
                 @}else{
                 <li class="layui-nav-item">
-                    <a><i class="layui-icon ${menu.icon}"></i>&emsp;<cite>${menu.name}</cite></a>
+                    <a><i class="layui-icon ${menu.icon}"></i>&emsp;<cite>${menu.menuName}</cite></a>
                     <dl class="layui-nav-child">
                     @for(subMenu in menu.children){
-                        @if(tool.isEmpty(subMenu.children)){
+                        @if(objectUtil.isEmpty(subMenu.children)){
                             @if(itemLP.first && menuLP.first && subMenuLP.first){
-                            <dd><a id="firstPageAction" lay-href="${subMenu.url}">${subMenu.name}</a></dd>
+                            <dd><a id="firstPageAction" lay-href="${subMenu.router}">${subMenu.menuName}</a></dd>
                             @}else{
-                            <dd><a lay-href="${subMenu.url}">${subMenu.name}</a></dd>
+                            <dd><a lay-href="${subMenu.router}">${subMenu.menuName}</a></dd>
                             @}
                         @}else{
                         <dd>
-                            <a>${subMenu.name}</a>
+                            <a>${subMenu.menuName}</a>
                             <dl class="layui-nav-child">
                             @for(subSubMenu in subMenu.children){
-                                @if(tool.isEmpty(subSubMenu.children)){
+                                @if(objectUtil.isEmpty(subSubMenu.children)){
                                     @if(itemLP.first && menuLP.first && subMenuLP.first && subSubMenuLP.first){
-                                    <dd><a id="firstPageAction" lay-href="${subSubMenu.url}">${subSubMenu.name}</a></dd>
+                                    <dd><a id="firstPageAction" lay-href="${subSubMenu.router}">${subSubMenu.menuName}</a></dd>
                                     @}else{
-                                    <dd><a lay-href="${subSubMenu.url}">${subSubMenu.name}</a></dd>
+                                    <dd><a lay-href="${subSubMenu.router}">${subSubMenu.menuName}</a></dd>
                                     @}
                                 @}else{
                                 <dd>
-                                    <a>${subSubMenu.name}</a>
+                                    <a>${subSubMenu.menuName}</a>
                                     <dl class="layui-nav-child">
                                     @for(subSubSubMenu in subSubMenu.children){
                                         @if(itemLP.first && menuLP.first && subMenuLP.first && subSubMenuLP.first && subSubSubMenuLP.first){
-                                        <dd><a id="firstPageAction" lay-href="${subSubSubMenu.url}">${subSubSubMenu.name}</a></dd>
+                                        <dd><a id="firstPageAction" lay-href="${subSubSubMenu.router}">${subSubSubMenu.menuName}</a></dd>
                                         @}else{
-                                        <dd><a lay-href="${subSubSubMenu.url}">${subSubSubMenu.name}</a></dd>
+                                        <dd><a lay-href="${subSubSubMenu.router}">${subSubSubMenu.menuName}</a></dd>
                                         @}
                                     @}
                                     </dl>

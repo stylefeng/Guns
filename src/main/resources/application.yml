@@ -24,7 +24,8 @@ spring:
 scanner:
   open: true
 sys-log:
-  type: db # db-数据库，file-文件
+  # db-数据库，file-文件
+  type: db
   file-save-path: _sys_logs
 
 mybatis-plus:
@@ -40,9 +41,3 @@ mybatis-plus:
     db-config:
       id-type: assign_id
       table-underline: true
-
-session:
-  expiredSeconds: 1800
-
-log:
-  path: _app_logs

@@ -179,17 +179,13 @@
             <i class="layui-icon layui-icon-password"></i>
             <input class="layui-input" id="password" name="password" placeholder="请输入登录密码" value="111111" type="password" lay-verType="tips" lay-verify="required" required/>
         </div>
-        @if(constants.getKaptchaOpen()){
+        @if(constants.getCaptchaOpen()){
         <div class="layui-form-item layui-input-icon-group login-captcha-group">
             <i class="layui-icon layui-icon-auz"></i>
             <input class="layui-input" id="kaptcha" placeholder="请输入验证码" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
             <img class="login-captcha" src="${ctxPath}/kaptcha" alt=""/>
         </div>
         @}
-        <!--        <div class="layui-form-item">-->
-        <!--            <input type="checkbox" name="remember" title="记住密码" lay-skin="primary" checked>-->
-        <!--            <a href="javascript:;" class="layui-link pull-right">注册账号</a>-->
-        <!--        </div>-->
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-fluid" id="submit">登录</button>
         </div>
@@ -215,13 +211,12 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 <script>
-    layui.use(['layer', 'form', 'index', 'ax', 'notice'], function () {
+    layui.use(['layer', 'form', 'index', 'ax'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
         var $ax = layui.ax;
         var index = layui.index;
-        var notice = layui.notice;
 
         $('.login-wrapper').removeClass('layui-hide');
 
@@ -251,19 +246,19 @@
 
         //登录操作
         $('#submit').click(function () {
-            var ajax = new $ax(Feng.ctxPath + "/login", function (data) {
+            var ajax = new $ax(Feng.ctxPath + "/loginAction", function (data) {
                 Feng.success("登录成功!");
                 index.clearTabCache();
                 window.location.href = Feng.ctxPath + "/";
             }, function (data) {
                 layer.msg("登录失败！" + data.responseJSON.message, {icon: 5, anim: 6});
             });
-            ajax.set("username", $("#username").val());
+            ajax.set("account", $("#username").val());
             ajax.set("password", $("#password").val());
             @if(constants.getTenantOpen()){
                 ajax.set("tenantCode", $("#tenantCode").val());
             @}
-            @if(constants.getKaptchaOpen()){
+            @if(constants.getCaptchaOpen()){
                 ajax.set("kaptcha", $("#kaptcha").val());
             @}
             ajax.start();
@@ -271,7 +266,6 @@
 
     });
 </script>
-
 
 </body>
 </html>

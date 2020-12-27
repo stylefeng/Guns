@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "scanner.open",
+      "type": "java.lang.String",
+      "description": "Description for scanner.open."
+    },
+    {
+      "name": "sys-log.type",
+      "type": "java.lang.String",
+      "description": "Description for sys-log.type."
+    },
+    {
+      "name": "sys-log.file-save-path",
+      "type": "java.lang.String",
+      "description": "Description for sys-log.file-save-path."
+    },
+    {
+      "name": "spring.datasource.max-active",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.max-active."
+    },
+    {
+      "name": "spring.datasource.max-pool-prepared-statement-per-connection-size",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.max-pool-prepared-statement-per-connection-size."
+    }
+  ]
+}

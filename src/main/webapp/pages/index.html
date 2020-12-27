@@ -16,21 +16,21 @@
 <div class="layui-layout layui-layout-admin">
 
     <!-- 头部 -->
-    @include("/common/_header.html"){}
+    @include("/layout/_header.html"){}
 
     <!-- 侧边栏 -->
-    @include("/common/_sidebar.html"){}
+    @include("/layout/_sidebar.html"){}
 
     <!-- 主体部分 -->
-    @include("/common/_body.html"){}
+    @include("/layout/_body.html"){}
 
     <!-- 底部 -->
-    @include("/common/_footer.html"){}
+    @include("/layout/_footer.html"){}
 
 </div>
 
 <!-- 加载动画，移除位置在common.js中 -->
-@include("/common/loading.html"){}
+@include("/layout/loading.html"){}
 
 @/* 加入contextPath属性和session超时的配置 */
 <script type="text/javascript">

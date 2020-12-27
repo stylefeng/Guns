@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.controller;
 
 import cn.stylefeng.roses.kernel.auth.api.AuthServiceApi;
+import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
 import cn.stylefeng.roses.kernel.auth.api.pojo.auth.LoginRequest;
 import cn.stylefeng.roses.kernel.auth.api.pojo.auth.LoginResponse;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
@@ -9,36 +10,52 @@ import cn.stylefeng.roses.kernel.resource.api.annotation.PostResource;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
 /**
- * 登录登出控制器
+ * 首页相关的界面渲染
  *
- * @author majianguo
- * @date 2020/12/3 下午6:15
+ * @author fengshuonan
+ * @date 2020/12/27 16:23
  */
-@RestController
+@Controller
 @Slf4j
-@ApiResource(name = "登陆登出管理")
-public class LoginController {
+@ApiResource(name = "登录相关的接口")
+public class LoginViewController {
 
     @Resource
     private AuthServiceApi authServiceApi;
 
     /**
-     * 用户登陆
+     * 登录界面
      *
-     * @param loginRequest 用户帐号和密码
-     * @return 登陆成功返回token以及用户信息
-     * @author majianguo
-     * @date 2020/12/4 上午9:05
+     * @author fengshuonan
+     * @date 2020/12/27 17:10
      */
-    @PostResource(name = "登陆", path = "/login", requiredLogin = false, requiredPermission = false)
-    public ResponseData doAuth(@RequestBody @Validated LoginRequest loginRequest) {
+    @GetResource(name = "登录界面", path = "/login", requiredPermission = false, requiredLogin = false)
+    public String login() {
+        if (LoginContext.me().hasLogin()) {
+            return "redirect:/";
+        } else {
+            return "/login.html";
+        }
+    }
+
+    /**
+     * 登录接口
+     *
+     * @author fengshuonan
+     * @date 2020/12/27 17:10
+     */
+    @PostResource(name = "登录接口", path = "/loginAction", requiredPermission = false, requiredLogin = false)
+    @ResponseBody
+    public ResponseData loginAction(@RequestBody @Validated LoginRequest loginRequest) {
         LoginResponse loginResponse = authServiceApi.login(loginRequest);
         return new SuccessResponseData(loginResponse.getToken());
     }
@@ -50,7 +67,8 @@ public class LoginController {
      * @author majianguo
      * @date 2020/12/4 上午9:05
      */
-    @GetResource(name = "登出", path = "/logout", requiredPermission = false)
+    @GetResource(name = "登出接口", path = "/logout", requiredPermission = false)
+    @ResponseBody
     public ResponseData logoutPage() {
         authServiceApi.logout();
         return new SuccessResponseData();
