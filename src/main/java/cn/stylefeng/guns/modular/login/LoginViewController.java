@@ -66,7 +66,7 @@ public class LoginViewController {
      * @author majianguo
      * @date 2020/12/4 上午9:05
      */
-    @GetResource(name = "登出接口", path = "/logout", requiredPermission = false)
+    @PostResource(name = "登出接口", path = "/logout", requiredPermission = false)
     @ResponseBody
     public ResponseData logoutPage() {
         authServiceApi.logout();
