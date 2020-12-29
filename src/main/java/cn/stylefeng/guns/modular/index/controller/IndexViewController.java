@@ -1,9 +1,8 @@
-package cn.stylefeng.guns.modular.controller;
+package cn.stylefeng.guns.modular.index.controller;
 
 import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
 import cn.stylefeng.roses.kernel.auth.api.pojo.login.LoginUser;
 import cn.stylefeng.roses.kernel.auth.api.pojo.login.basic.SimpleUserInfo;
-import cn.stylefeng.roses.kernel.file.FileOperatorApi;
 import cn.stylefeng.roses.kernel.menu.modular.service.SysMenuService;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
@@ -39,7 +38,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/13 17:19
      */
-    @GetResource(name = "首页界面", path = "/", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "首页界面", path = "/", requiredLogin = false, requiredPermission = false)
     public String indexView(Model model) {
 
         // 当前用户已经登录，跳转到首页
@@ -63,6 +62,17 @@ public class IndexViewController {
 
         // 当前用户没有登录，跳转到登录页面
         return "/login.html";
+    }
+
+    /**
+     * 锁屏界面
+     *
+     * @author fengshuonan
+     * @date 2020/12/29 21:34
+     */
+    @GetResource(name = "锁屏界面", path = "/lock", requiredPermission = false)
+    public String lock() {
+        return "/modular/index/lock-screen.html";
     }
 
 }

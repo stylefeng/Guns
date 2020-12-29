@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.service;
+package cn.stylefeng.guns.modular.index.service;
 
 import org.springframework.stereotype.Service;
 

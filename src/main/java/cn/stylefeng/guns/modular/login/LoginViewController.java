@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.controller;
+package cn.stylefeng.guns.modular.login;
 
 import cn.stylefeng.roses.kernel.auth.api.AuthServiceApi;
 import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
@@ -11,7 +11,6 @@ import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
- * 首页相关的界面渲染
+ * 登录相关的界面渲染
  *
  * @author fengshuonan
  * @date 2020/12/27 16:23
