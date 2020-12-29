@@ -19,14 +19,47 @@ layui.use(['table', 'admin', 'ax', 'form', 'func'], function () {
     Position.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'positionId', hide: true, title: '主键id'},
-            {field: 'name', sort: true, title: '职位名称'},
-            {field: 'code', sort: true, title: '职位编码'},
-            {field: 'remark', sort: true, title: '备注'},
-            {field: 'createTime', sort: true, title: '创建时间'},
-            {field: 'updateTime', sort: true, title: '更新时间'},
-            {field: 'status', sort: true, templet: '#statusTpl', title: '状态'},
-            {align: 'center', toolbar: '#tableBar', title: '操作'}
+            {
+                field: 'positionId',
+                hide: true,
+                title: '主键id'
+            },
+            {
+                field: 'positionName',
+                sort: true,
+                title: '职位名称'
+            },
+            {
+                field: 'positionCode',
+                sort: true,
+                title: '职位编码'
+            },
+            {
+                field: 'positionRemark',
+                sort: true,
+                title: '备注'
+            },
+            {
+                field: 'createTime',
+                sort: true,
+                title: '创建时间'
+            },
+            {
+                field: 'updateTime',
+                sort: true,
+                title: '更新时间'
+            },
+            {
+                field: 'status',
+                sort: true,
+                templet: '#statusTpl',
+                title: '状态'
+            },
+            {
+                align: 'center',
+                toolbar: '#tableBar',
+                title: '操作'
+            }
         ]];
     };
 
@@ -37,7 +70,8 @@ layui.use(['table', 'admin', 'ax', 'form', 'func'], function () {
         var queryData = {};
         queryData['condition'] = $("#condition").val();
         table.reload(Position.tableId, {
-            where: queryData, page: {curr: 1}
+            where: queryData,
+            page: {curr: 1}
         });
     };
 
@@ -46,9 +80,9 @@ layui.use(['table', 'admin', 'ax', 'form', 'func'], function () {
      */
     Position.openAddDlg = function () {
         func.open({
-            height: 470,
+            height: 800,
             title: '添加职位',
-            content: Feng.ctxPath + '/position/add',
+            content: Feng.ctxPath + '/position/addView',
             tableId: Position.tableId
         });
     };
@@ -60,9 +94,9 @@ layui.use(['table', 'admin', 'ax', 'form', 'func'], function () {
      */
     Position.openEditDlg = function (data) {
         func.open({
-            height: 470,
+            height: 800,
             title: '修改职位',
-            content: Feng.ctxPath + '/position/edit?positionId=' + data.positionId,
+            content: Feng.ctxPath + '/position/editView?positionId=' + data.positionId,
             tableId: Position.tableId
         });
     };
@@ -116,11 +150,12 @@ layui.use(['table', 'admin', 'ax', 'form', 'func'], function () {
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + Position.tableId,
-        url: Feng.ctxPath + '/position/list',
+        url: Feng.ctxPath + '/hrPosition/page',
         page: true,
         height: "full-158",
         cellMinWidth: 100,
-        cols: Position.initColumn()
+        cols: Position.initColumn(),
+        parseData: Feng.parseData
     });
 
     // 搜索按钮点击事件

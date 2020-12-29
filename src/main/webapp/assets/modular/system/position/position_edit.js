@@ -22,13 +22,13 @@ layui.use(['form', 'admin', 'ax'], function () {
     var admin = layui.admin;
 
     //获取详情信息，填充表单
-    var ajax = new $ax(Feng.ctxPath + "/position/detail?positionId=" + Feng.getUrlParam("positionId"));
+    var ajax = new $ax(Feng.ctxPath + "/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"));
     var result = ajax.start();
     form.val('positionForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/position/editItem", function (data) {
+        var ajax = new $ax(Feng.ctxPath + "/hrPosition/edit", function (data) {
             Feng.success("更新成功！");
 
             //传给上个页面，刷新table用
