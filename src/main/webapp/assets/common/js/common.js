@@ -1,6 +1,16 @@
 /** EasyWeb iframe v3.1.8 date:2020-05-04 License By http://easyweb.vip */
 
 // 用common.js必须加上Feng.addCtx("${ctxPath}");
+
+/* 解析数据表格templet列 */
+Feng.parseData = function (res) {
+    return {
+        "code": res.code == "00000" ? "0" : res.code, //解析接口状态
+        "msg": res.message, //解析提示文本
+        "count": res.data.totalRows, //解析数据长度
+        "data": res.data.rows //解析数据列表
+    };
+};
 Feng.info = function (info) {
     top.layer.msg(info, {icon: 6});
 };
