@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.controller;
+package cn.stylefeng.guns.modular.position;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;

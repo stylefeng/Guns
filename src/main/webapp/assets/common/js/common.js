@@ -131,7 +131,8 @@ layui.config({
     iconPicker: '../../expand/module/iconPicker/iconPicker',
     ztree: '../../expand/module/ztree/ztree-object',
     ax: '../../expand/module/ax/ax',
-    func: '../../expand/module/func/func'
+    func: '../../expand/module/func/func',
+    ajaxUtil: '../../expand/module/ax/ajaxUtil'
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
     var layer = layui.layer;

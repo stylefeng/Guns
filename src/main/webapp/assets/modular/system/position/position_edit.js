@@ -15,34 +15,30 @@ var PositionInfoDlg = {
     }
 };
 
-layui.use(['form', 'admin', 'ax'], function () {
+layui.use(['form', 'admin', 'ax', 'ajaxUtil'], function () {
     var $ = layui.jquery;
     var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
-
+    var ajaxUtil = layui.ajaxUtil;
     //获取详情信息，填充表单
-    var ajax = new $ax(Feng.ctxPath + "/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"));
-    var result = ajax.start();
-    form.val('positionForm', result.data);
+
+    ajaxUtil.get("/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"), function (res) {
+        form.val('positionForm', res.data);
+    }, function (res) {
+        admin.closeThisDialog();
+        Feng.error("编辑异常！" + res.responseJSON.message);
+    });
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/hrPosition/edit", function (data) {
-            Feng.success("更新成功！");
-
-            //传给上个页面，刷新table用
+        ajaxUtil.post(Feng.ctxPath + "/hrPosition/edit", JSON.stringify(data.field), function (res) {
+            Feng.success("修改成功!");
             admin.putTempData('formOk', true);
-
-            //关掉对话框
             admin.closeThisDialog();
-
-        }, function (data) {
-            Feng.error("更新失败！" + data.responseJSON.message)
+        }, function (res) {
+            admin.closeThisDialog();
+            Feng.error("修改失败!" + res.responseJSON.message);
         });
-        ajax.set(data.field);
-        ajax.start();
-
-        return false;
     });
 });
