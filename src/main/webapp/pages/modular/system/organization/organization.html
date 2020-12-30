@@ -6,35 +6,32 @@
 
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
-        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+        <div class="layui-col-md3">
             <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="layui-form toolbar">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <input id="positionName" class="layui-input" type="text" placeholder="职位名称"/>
-                            </div>
-<!--                            <div class="layui-inline">-->
-<!--                                <input id="positionCode" class="layui-input" type="text" placeholder="职位编码"/>-->
-<!--                            </div>-->
-                            <div class="layui-inline">
-                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
-                                <!-- 下拉按钮 -->
-                                <div class="dropdown-menu dropdown-hover">
-                                    <button class="layui-btn icon-btn" type="button">
-                                        &nbsp;更多 <i class="layui-icon layui-icon-drop"></i></button>
-                                    <ul class="dropdown-menu-nav">
-                                        <li><a><i class="layui-icon layui-icon-edit"></i>test1</a></li>
-                                        <li><a><i class="layui-icon layui-icon-delete"></i>test2</a></li>
-                                        <li><a><i class="layui-icon layui-icon-password"></i>test3</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="layui-table" id="organizationTable" lay-filter="positionTable"></table>
+                <div class="layui-card-body" style="padding: 10px;">
+                    <!-- 树工具栏 -->
+<!--                    <div class="layui-form toolbar" id="organizationTreeBar">-->
+<!--                        <button id="organizationAddBtn" class="layui-btn layui-btn-sm icon-btn">-->
+<!--                            <i class="layui-icon">&#xe654;</i>添加-->
+<!--                        </button>&nbsp;-->
+<!--                        <button id="organizationEditBtn" class="layui-btn layui-btn-sm layui-btn-warm icon-btn">-->
+<!--                            <i class="layui-icon">&#xe642;</i>修改-->
+<!--                        </button>&nbsp;-->
+<!--                        <button id="organizationDelBtn"-->
+<!--                                class="layui-btn layui-btn-sm layui-btn-danger icon-btn">-->
+<!--                            <i class="layui-icon">&#xe640;</i>删除-->
+<!--                        </button>-->
+<!--                    </div>-->
+                    <!-- 左树 -->
+                    <div id="organizationTree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md9">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px;">
+                    <!-- 数据表格 -->
+                    <table id="organizationUserTable" lay-filter="organizationUserTable"></table>
                 </div>
             </div>
         </div>
