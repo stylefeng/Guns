@@ -15,7 +15,7 @@ var PositionInfoDlg = {
     }
 };
 
-layui.use(['form', 'admin', 'ax', 'ajaxUtil'], function () {
+layui.use(['form', 'admin', 'ajaxUtil'], function () {
     var $ = layui.jquery;
     var $ax = layui.ax;
     var form = layui.form;
@@ -32,7 +32,7 @@ layui.use(['form', 'admin', 'ax', 'ajaxUtil'], function () {
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        ajaxUtil.post(Feng.ctxPath + "/hrPosition/edit", JSON.stringify(data.field), function (res) {
+        ajaxUtil.post(Feng.ctxPath + "/hrPosition/edit", data.field, function (res) {
             Feng.success("修改成功!");
             admin.putTempData('formOk', true);
             admin.closeThisDialog();
