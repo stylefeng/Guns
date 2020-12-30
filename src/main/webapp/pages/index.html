@@ -95,15 +95,12 @@
         // 修改密码点击事件
         $('#setPsw').click(function () {
 
-            //获取多语言
-            var langs = layui.data('system').lang;
-
             admin.open({
                 id: 'pswForm',
                 type: 2,
-                title: langs.MENU_CHANGE_PASSWORD,
+                title: "修改密码",
                 shade: 0,
-                content: '${ctxPath}/system/user_chpwd'
+                content: '${ctxPath}/changePassword'
             });
         });
 

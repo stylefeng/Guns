@@ -1,9 +1,9 @@
-@layout("/layout/_container.html",{title:"个人中心",css:["/assets/modular/frame/user_info.css"],js:["/assets/modular/frame/user_info.js"]}){
+@layout("/layout/_container.html", {title:"个人中心", css:["/assets/modular/frame/user_info.css"], js:["/assets/modular/frame/user_info.js"]}){
 <div class="layui-body-header">
-    <span class="layui-body-header-title">${lang.get("MENU_PERSONAL_INFO","个人信息")}</span>
+    <span class="layui-body-header-title">个人信息</span>
     <span class="layui-breadcrumb pull-right">
-        <a href="${ctxPath}/system/console">${lang.get("MENU_INDEX","首页")}</a>
-        <a><cite>${lang.get("MENU_PERSONAL_INFO","个人中心")}</cite></a>
+        <a href="${ctxPath}/system/console">首页</a>
+        <a><cite>个人中心</cite></a>
     </span>
 </div>
 
@@ -18,18 +18,18 @@
                         <div class="user-info-head" id="imgHead">
                             <img id="avatarPreview" src="${avatar}"/>
                         </div>
-                        <h2 style="padding-top: 20px;">${name}</h2>
-                        <p style="padding-top: 8px;">${roleName!} ${deptName!}</p>
+                        <h2 style="padding-top: 20px;">${realName!靓仔}</h2>
+                        <p style="padding-top: 8px;">${roleName!角色空} ${orgName!组织机构空}</p>
                     </div>
                     <div class="layui-text" style="padding-top: 30px;">
                         <div class="info-list-item">
                             <i class="layui-icon layui-icon-notice"></i>
-                            <p>${email!}</p>
+                            <p>${email!'sn93@qq.com'}</p>
                         </div>
 
                         <div class="info-list-item">
                             <i class="layui-icon layui-icon-cellphone"></i>
-                            <p>${phone!}</p>
+                            <p>${phone!18200000000}</p>
                         </div>
                         <div class="info-list-item">
                             <i class="layui-icon layui-icon-location"></i>
@@ -52,46 +52,46 @@
 
                     <div class="layui-tab layui-tab-brief" lay-filter="userInfoTab">
                         <ul class="layui-tab-title">
-                            <li class="layui-this">${lang.get("MENU_BASE_INFO","基本信息")}</li>
-                            <li>${lang.get("MENU_OTHER","其他")}</li>
+                            <li class="layui-this">基本信息</li>
+                            <li>其他</li>
                         </ul>
                         <div class="layui-tab-content">
                             <div class="layui-form layui-tab-item layui-show" lay-filter="userInfoForm">
                                 <input type="hidden" name="userId"/>
                                 <div class="layui-form user-info-form" style="max-width: 400px;padding-top: 25px;">
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">${lang.get("FIELD_ACCOUNT","账号")}:</label>
+                                        <label class="layui-form-label">账号:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="account" class="layui-input layui-disabled" lay-verify="required" disabled/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">${lang.get("FIELD_SEX","性别")}:</label>
+                                        <label class="layui-form-label">性别:</label>
                                         <div class="layui-input-block">
                                             <input type="radio" name="sex" value="M" title="男">
                                             <input type="radio" name="sex" value="F" title="女">
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">${lang.get("FIELD_EMAIL","邮箱")}:<span style="color: red;">*</span></label>
+                                        <label class="layui-form-label">邮箱:<span style="color: red;">*</span></label>
                                         <div class="layui-input-block">
                                             <input type="email" name="email" class="layui-input" lay-verify="required|email" required/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">${lang.get("FIELD_NAME","姓名")}:<span style="color: red;">*</span></label>
+                                        <label class="layui-form-label">姓名:<span style="color: red;">*</span></label>
                                         <div class="layui-input-block">
                                             <input type="text" name="name" class="layui-input" lay-verify="required" required/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">${lang.get("FIELD_BIRTHDAY","生日")}:</label>
+                                        <label class="layui-form-label">生日:</label>
                                         <div class="layui-input-block">
                                             <input type="text" id="birthday" name="birthday" class="layui-input"/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">${lang.get("FIELD_PHONE","电话")}:</label>
+                                        <label class="layui-form-label">电话:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="phone" class="layui-input"/>
                                         </div>
@@ -99,7 +99,7 @@
                                     <div class="layui-form-item">
                                         <div class="layui-input-block">
                                             <button class="layui-btn" lay-filter="userInfoSubmit" lay-submit>
-                                                ${lang.get("BTN_UPDATE_INFO","更新基本信息")}
+                                                更新基本信息
                                             </button>
                                         </div>
                                     </div>

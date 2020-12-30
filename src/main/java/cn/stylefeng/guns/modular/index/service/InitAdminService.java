@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.service;
+package cn.stylefeng.guns.modular.index.service;
 
 import cn.stylefeng.guns.core.consts.ProjectConstants;
 import cn.stylefeng.roses.kernel.resource.modular.entity.SysResource;
