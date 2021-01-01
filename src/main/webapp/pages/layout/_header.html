@@ -16,9 +16,9 @@
         @if(objectUtil.isNotEmpty(layuiAppIndexMenus)){
             @for(item in layuiAppIndexMenus) {
                 @if(itemLP.index == 1){
-                <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="${item.appCode}">${item.appCode}</a></li>
+                <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></li>
                 @}else{
-                <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}">${item.appCode}</a></li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></li>
                 @}
             @}
         @}
