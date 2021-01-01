@@ -120,7 +120,7 @@ layui.config({
     selectPlus: '../../expand/module/selectPlus/selectPlus',
     iconPicker: '../../expand/module/iconPicker/iconPicker',
     ztree: '../../expand/module/ztree/ztree-object',
-    ax: '../../expand/module/ax/ax',
+    HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
     func: '../../expand/module/func/func'
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
@@ -136,12 +136,10 @@ layui.config({
     $.ajaxSetup({
         contentType: "application/x-www-form-urlencoded;charset=utf-8",
         complete: function (XMLHttpRequest, textStatus) {
-
             //如果超时就处理 ，指定要跳转的页面
             if (XMLHttpRequest.getResponseHeader("Guns-Session-Timeout") === "true") {
                 window.location = Feng.ctxPath + "/global/sessionError";
             }
-
         }
     });
 
