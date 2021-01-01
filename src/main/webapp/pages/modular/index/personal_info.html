@@ -1,4 +1,4 @@
-@layout("/layout/_container.html", {title:"个人中心", css:["/assets/modular/frame/user_info.css"], js:["/assets/modular/frame/user_info.js"]}){
+@layout("/layout/_container.html", {title:"个人中心", css:["/assets/modular/frame/user_info.css"], js:["/assets/modular/frame/personal_info.js"]}){
 <div class="layui-body-header">
     <span class="layui-body-header-title">个人信息</span>
     <span class="layui-breadcrumb pull-right">
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">性别:</label>
+                                        <label class="layui-form-label">性别:<span style="color: red;">*</span></label>
                                         <div class="layui-input-block">
                                             <input type="radio" name="sex" value="M" title="男">
                                             <input type="radio" name="sex" value="F" title="女">
@@ -81,7 +81,7 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">姓名:<span style="color: red;">*</span></label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="name" class="layui-input" lay-verify="required" required/>
+                                            <input type="text" name="realName" class="layui-input" lay-verify="required" required/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">

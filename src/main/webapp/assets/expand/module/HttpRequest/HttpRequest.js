@@ -107,11 +107,22 @@ layui.define(['jquery'], function (exports) {
          *
          * 此参数组装的是param方式传参的参数，如需传递json请用 setJsonData(data)
          *
+         * 如果只传了一个key，则key可以是object类型，会将object所有属性都set上
+         *
          * @param key    参数的key
          * @param value  参数值
          */
         set: function (key, value) {
-            this.dataObject[key] = (typeof value === "undefined") ? $("#" + key).val() : value;
+            if (typeof key === "object") {
+                // 遍历object的属性
+                for (var item in key) {
+                    if (typeof item != "function") {
+                        this.dataObject[item] = key[item];
+                    }
+                }
+            } else {
+                this.dataObject[key] = (typeof value === "undefined") ? $("#" + key).val() : value;
+            }
             return this;
         },
 

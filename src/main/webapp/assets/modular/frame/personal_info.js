@@ -1,9 +1,9 @@
-layui.use(['form', 'upload', 'element', 'ax', 'laydate'], function () {
+layui.use(['form', 'upload', 'element', 'HttpRequest', 'laydate'], function () {
     var $ = layui.jquery;
     var form = layui.form;
     var upload = layui.upload;
     var element = layui.element;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var laydate = layui.laydate;
 
     //渲染时间选择框
@@ -12,21 +12,21 @@ layui.use(['form', 'upload', 'element', 'ax', 'laydate'], function () {
     });
 
     //获取用户详情
-    var ajax = new $ax(Feng.ctxPath + "/system/currentUserInfo");
-    var result = ajax.start();
+    var request = new HttpRequest(Feng.ctxPath + "/sysUser/currentUserInfo", 'get');
+    var result = request.start();
 
     //用这个方法必须用在class有layui-form的元素上
     form.val('userInfoForm', result.data);
 
     //表单提交事件
     form.on('submit(userInfoSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/mgr/edit", function (data) {
+        var updateUserInfoRequest = new HttpRequest(Feng.ctxPath + "/sysUser/updateInfo", 'post', function (data) {
             Feng.success("修改成功!");
-        }, function (data) {
-            Feng.error("修改失败!" + data.responseJSON.message + "!");
+        }, function (response) {
+            Feng.error("修改失败!" + response.message + "!");
         });
-        ajax.set(data.field);
-        ajax.start();
+        updateUserInfoRequest.set(data.field);
+        updateUserInfoRequest.start(true);
     });
 
     upload.render({
@@ -38,13 +38,13 @@ layui.use(['form', 'upload', 'element', 'ax', 'laydate'], function () {
             });
         }
         , done: function (res) {
-            var ajax = new $ax(Feng.ctxPath + "/system/updateAvatar", function (data) {
+            var updateAvatarRequest = new HttpRequest(Feng.ctxPath + "/system/updateAvatar", function (data) {
                 Feng.success(res.message);
             }, function (data) {
-                Feng.error("修改失败!" + data.responseJSON.message + "!");
+                Feng.error("修改失败!" + data.message + "!");
             });
-            ajax.set("fileId", res.data.fileId);
-            ajax.start();
+            updateAvatarRequest.set("fileId", res.data.fileId);
+            updateAvatarRequest.start();
         }
         , error: function () {
             Feng.error("上传头像失败！");
