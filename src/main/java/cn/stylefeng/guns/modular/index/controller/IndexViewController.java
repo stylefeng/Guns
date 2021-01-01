@@ -1,24 +1,14 @@
 package cn.stylefeng.guns.modular.index.controller;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
+import cn.stylefeng.guns.modular.index.service.IndexService;
 import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
-import cn.stylefeng.roses.kernel.auth.api.pojo.login.LoginUser;
-import cn.stylefeng.roses.kernel.auth.api.pojo.login.basic.SimpleRoleInfo;
-import cn.stylefeng.roses.kernel.auth.api.pojo.login.basic.SimpleUserInfo;
-import cn.stylefeng.roses.kernel.menu.modular.service.SysMenuService;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import cn.stylefeng.roses.kernel.system.modular.organization.entity.HrOrganization;
-import cn.stylefeng.roses.kernel.system.modular.organization.service.HrOrganizationService;
-import cn.stylefeng.roses.kernel.system.modular.user.service.SysUserService;
-import cn.stylefeng.roses.kernel.system.pojo.menu.layui.LayuiAppIndexMenus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 首页相关的界面渲染
@@ -32,13 +22,7 @@ import java.util.List;
 public class IndexViewController {
 
     @Resource
-    private SysMenuService sysMenuService;
-
-    @Resource
-    private SysUserService sysUserService;
-
-    @Resource
-    private HrOrganizationService hrOrganizationService;
+    private IndexService indexService;
 
     /**
      * 首页界面
@@ -51,20 +35,7 @@ public class IndexViewController {
 
         // 当前用户已经登录，跳转到首页
         if (LoginContext.me().hasLogin()) {
-
-            LoginUser loginUser = LoginContext.me().getLoginUser();
-            SimpleUserInfo simpleUserInfo = loginUser.getSimpleUserInfo();
-
-            // 渲染首页的菜单
-            List<LayuiAppIndexMenus> layuiAppIndexMenus = sysMenuService.getLayuiIndexMenus();
-            model.addAttribute("layuiAppIndexMenus", layuiAppIndexMenus);
-
-            // 获取首页的头像
-            model.addAttribute("avatar", sysUserService.getUserAvatarUrl(simpleUserInfo.getAvatar()));
-
-            // 获取人员姓名
-            model.addAttribute("name", simpleUserInfo.getRealName());
-
+            model.addAllAttributes(indexService.createIndexRenderAttributes());
             return "/index.html";
         }
 
@@ -80,29 +51,7 @@ public class IndexViewController {
      */
     @GetResource(name = "个人中心界面", path = "/personal", requiredLogin = false)
     public String personal(Model model) {
-        LoginUser loginUser = LoginContext.me().getLoginUser();
-
-        // 用户基本信息
-        SimpleUserInfo simpleUserInfo = loginUser.getSimpleUserInfo();
-        model.addAllAttributes(BeanUtil.beanToMap(simpleUserInfo));
-
-        // 角色名称
-        List<SimpleRoleInfo> simpleRoleInfoList = loginUser.getSimpleRoleInfoList();
-        if (ObjectUtil.isNotEmpty(simpleRoleInfoList)) {
-            String roleName = simpleRoleInfoList.get(0).getRoleName();
-            model.addAttribute("roleName", roleName);
-        }
-
-        // 组织机构名称
-        Long organizationId = loginUser.getOrganizationId();
-        HrOrganization hrOrganization = hrOrganizationService.getById(organizationId);
-        if (hrOrganization != null) {
-            model.addAttribute("orgName", hrOrganization.getOrgName());
-        }
-
-        // 渲染头像的url
-        model.addAttribute("avatar", sysUserService.getUserAvatarUrl(simpleUserInfo.getAvatar()));
-
+        model.addAllAttributes(indexService.createPersonInfoRenderAttributes());
         return "/modular/index/personal_info.html";
     }
 
