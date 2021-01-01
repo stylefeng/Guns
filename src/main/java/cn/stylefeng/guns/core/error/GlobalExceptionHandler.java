@@ -136,6 +136,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BindException.class)
     @ResponseBody
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponseData bindException(BindException e) {
         String bindingResult = getArgNotValidMessage(e.getBindingResult());
         return renderJson(ValidatorExceptionEnum.VALIDATED_RESULT_ERROR, bindingResult);
@@ -149,6 +150,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ValidationException.class)
     @ResponseBody
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponseData bindException(ValidationException e) {
         if (e.getCause() instanceof ParamValidateException) {
             ParamValidateException paramValidateException = (ParamValidateException) e.getCause();
@@ -164,6 +166,7 @@ public class GlobalExceptionHandler {
      * @date 2020/12/16 15:11
      */
     @ExceptionHandler(ServiceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorResponseData businessError(ServiceException e) {
         log.error("业务异常，具体信息为：{}", e.getMessage());
