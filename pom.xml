@@ -62,12 +62,6 @@
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>jwt-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
             <artifactId>scanner-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>

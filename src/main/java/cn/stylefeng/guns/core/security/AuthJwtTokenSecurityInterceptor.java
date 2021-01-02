@@ -3,7 +3,6 @@ package cn.stylefeng.guns.core.security;
 import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.security.base.BaseSecurityInterceptor;
 import cn.stylefeng.roses.kernel.auth.api.AuthServiceApi;
-import cn.stylefeng.roses.kernel.auth.api.SessionManagerApi;
 import cn.stylefeng.roses.kernel.auth.api.exception.AuthException;
 import cn.stylefeng.roses.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import cn.stylefeng.roses.kernel.resource.api.pojo.resource.ResourceDefinition;
@@ -30,12 +29,6 @@ public class AuthJwtTokenSecurityInterceptor extends BaseSecurityInterceptor {
     @Resource
     private AuthServiceApi authServiceApi;
 
-    /**
-     * 用户会话管理Api
-     */
-    @Resource
-    private SessionManagerApi sessionManagerApi;
-
     @Override
     public void filterAction(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, ResourceDefinition resourceDefinition, String token) {
 
@@ -52,9 +45,6 @@ public class AuthJwtTokenSecurityInterceptor extends BaseSecurityInterceptor {
 
             // 3.校验token和用户会话信息是否正确
             authServiceApi.checkAuth(token, requestURI);
-
-            // 4.刷新用户的session的过期时间
-            sessionManagerApi.refreshSession(token);
         }
     }
 

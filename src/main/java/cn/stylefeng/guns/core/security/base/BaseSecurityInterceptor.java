@@ -1,6 +1,11 @@
 package cn.stylefeng.guns.core.security.base;
 
+import cn.hutool.core.util.StrUtil;
+import cn.stylefeng.roses.kernel.auth.api.AuthServiceApi;
+import cn.stylefeng.roses.kernel.auth.api.SessionManagerApi;
 import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
+import cn.stylefeng.roses.kernel.auth.api.exception.AuthException;
+import cn.stylefeng.roses.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import cn.stylefeng.roses.kernel.auth.api.expander.AuthConfigExpander;
 import cn.stylefeng.roses.kernel.resource.api.pojo.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.resource.api.pojo.resource.ResourceUrlParam;
@@ -25,6 +30,12 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
     @Resource
     private ResourceServiceApi resourceServiceApi;
 
+    @Resource
+    private AuthServiceApi authServiceApi;
+
+    @Resource
+    private SessionManagerApi sessionManagerApi;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
@@ -32,7 +43,7 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
 
         // 2. 不需要权限过滤的资源，直接放行
-        Boolean noneSecurityFlag = AntPathMatcherUtil.getAntMatchFLag(requestURI, AuthConfigExpander.getNoneSecurityConfig());
+        Boolean noneSecurityFlag = AntPathMatcherUtil.getAntMatchFLag(requestURI, request.getContextPath(), AuthConfigExpander.getNoneSecurityConfig());
         if (noneSecurityFlag) {
             return true;
         }
@@ -45,17 +56,32 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
             // 不做处理，因为本接口可能是不需要鉴权
         }
 
-        // 4. 获取ResourceDefinition，可能为null
+        // 4. 如果token不为空，则先判断是否登录过期了，过期了就直接打回，不过期不做处理
+        if (StrUtil.isNotBlank(token)) {
+            try {
+                authServiceApi.validateToken(token);
+            } catch (AuthException authException) {
+                if (AuthExceptionEnum.AUTH_EXPIRED_ERROR.getErrorCode().equals(authException.getErrorCode())) {
+                    sessionManagerApi.destroySessionCookie();
+                    throw authException;
+                }
+            }
+
+            // 5. 刷新用户的session的过期时间
+            sessionManagerApi.refreshSession(token);
+        }
+
+        // 6. 获取ResourceDefinition，可能为null
         ResourceUrlParam resourceUrlParam = new ResourceUrlParam();
         resourceUrlParam.setUrl(requestURI);
         ResourceDefinition resourceDefinition = resourceServiceApi.getResourceByUrl(resourceUrlParam);
 
-        // 5. 资源找不到，则当前url不被权限控制，直接放行
+        // 7. 资源找不到，则当前url不被权限控制，直接放行
         if (resourceDefinition == null) {
             return true;
         }
 
-        // 6.执行真正过滤器业务，如果拦截器执行不成功会抛出异常
+        // 8.执行真正过滤器业务，如果拦截器执行不成功会抛出异常
         this.filterAction(request, response, resourceDefinition, token);
 
         return true;
