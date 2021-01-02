@@ -10,6 +10,16 @@ Feng.success = function (info) {
 Feng.error = function (info) {
     top.layer.msg(info, {icon: 2});
 };
+Feng.dialog = function (info) {
+    top.layer.open({
+        title: '提示', content: info
+    });
+};
+Feng.dialog = function (title, info) {
+    top.layer.open({
+        title: title, content: info
+    });
+};
 Feng.confirm = function (tip, ensure) {
     top.layer.confirm(tip, {
         skin: 'layui-layer-admin'
