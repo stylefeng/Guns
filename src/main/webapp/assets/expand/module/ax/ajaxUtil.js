@@ -5,6 +5,9 @@ layui.define(['jquery'], function (exports) {
         post: function (url, params, suc, err, contentType, async) {
             ajaxUtil.sendAjax(url, params, 'POST', suc, err, contentType, async);
         },
+        post: function (url, params, suc, err) {
+            ajaxUtil.sendAjax(url, params, 'POST', suc, err, null, null);
+        },
         get: function (url, params, suc, err, contentType, async) {
             ajaxUtil.sendAjax(url, params, 'GET', suc, err, contentType, async);
         },
@@ -19,7 +22,7 @@ layui.define(['jquery'], function (exports) {
                 url: url,
                 cache: false,
                 async: async == undefined ? false : async,
-                data: params == undefined ? '' : params,
+                data: params == undefined ? '' : JSON.stringify(params),
                 type: method == undefined ? "POST" : method,
                 contentType: contentType == undefined ? 'application/json; charset=UTF-8' : contentType,
                 dataType: "json",

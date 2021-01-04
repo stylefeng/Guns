@@ -19,40 +19,34 @@ public class PositionViewController {
     private String PREFIX = "/modular/system/position";
 
     /**
-     * 职位管理
+     * 职位管理-首页-视图
      *
-     * @param
-     * @return
      * @author chenjinlong
-     * @date 2020/12/28 9:33
+     * @date 2020/11/04 11:07
      */
-    @GetResource(name = "职位管理", path = "", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "职位管理-首页-视图", path = "", requiredPermission = false, requiredLogin = false)
     public String indexView() {
         return PREFIX + "/position.html";
     }
 
     /**
-     * 职位管理
+     * 职位管理-首页-视图
      *
-     * @param
-     * @return
      * @author chenjinlong
-     * @date 2020/12/28 9:33
+     * @date 2020/11/04 11:07
      */
-    @GetResource(name = "职位管理", path = "/addView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "职位管理-首页-视图", path = "/addView", requiredPermission = false, requiredLogin = false)
     public String addView() {
         return PREFIX + "/position_add.html";
     }
 
     /**
-     * 职位管理
+     * 职位管理-首页-视图
      *
-     * @param
-     * @return
      * @author chenjinlong
-     * @date 2020/12/28 9:33
+     * @date 2020/11/04 11:07
      */
-    @GetResource(name = "职位管理", path = "editView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "职位管理-首页-视图", path = "editView", requiredPermission = false, requiredLogin = false)
     public String editView() {
         return PREFIX + "/position_edit.html";
     }

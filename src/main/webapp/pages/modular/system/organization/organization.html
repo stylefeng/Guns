@@ -1,0 +1,64 @@
+@layout("/layout/_container.html",{js:["/assets/modular/system/organization/organization.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">职位表管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px;">
+                    <!-- 树工具栏 -->
+<!--                    <div class="layui-form toolbar" id="organizationTreeBar">-->
+<!--                        <button id="organizationAddBtn" class="layui-btn layui-btn-sm icon-btn">-->
+<!--                            <i class="layui-icon">&#xe654;</i>添加-->
+<!--                        </button>&nbsp;-->
+<!--                        <button id="organizationEditBtn" class="layui-btn layui-btn-sm layui-btn-warm icon-btn">-->
+<!--                            <i class="layui-icon">&#xe642;</i>修改-->
+<!--                        </button>&nbsp;-->
+<!--                        <button id="organizationDelBtn"-->
+<!--                                class="layui-btn layui-btn-sm layui-btn-danger icon-btn">-->
+<!--                            <i class="layui-icon">&#xe640;</i>删除-->
+<!--                        </button>-->
+<!--                    </div>-->
+                    <!-- 左树 -->
+                    <div id="organizationTree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md9">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px;">
+                    <!-- 数据表格 -->
+                    <table id="organizationUserTable" lay-filter="organizationUserTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    <a class="layui-btn layui-btn-xs" data-dropdown="#userTbDrop{{d.LAY_INDEX}}" no-shade="true">
+        更多<i class="layui-icon layui-icon-drop" style="font-size: 12px;margin-right: 0;"></i></a>
+    <!-- 下拉菜单 -->
+    <ul class="dropdown-menu-nav dropdown-bottom-right layui-hide" id="userTbDrop{{d.LAY_INDEX}}">
+        <div class="dropdown-anchor"></div>
+        <li><a lay-event="lock"><i class="layui-icon layui-icon-password"></i>锁定用户</a></li>
+        <li><a lay-event="reset"><i class="layui-icon layui-icon-key"></i>重置密码</a></li>
+        <li class="have-more show-left">
+            <a><i class="layui-icon layui-icon-upload-drag"></i>上传资料&nbsp;&nbsp;</a>
+            <ul class="dropdown-menu-nav-child">
+                <li><a><i class="layui-icon layui-icon-camera"></i>上传头像</a></li>
+                <li><a><i class="layui-icon layui-icon-picture-fine"></i>上传照片</a></li>
+            </ul>
+        </li>
+    </ul>
+</script>
+
+<script type="text/html" id="statusTpl">
+    <input type="checkbox" lay-filter="status" value="{{d.positionId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}} />
+</script>
+@}
