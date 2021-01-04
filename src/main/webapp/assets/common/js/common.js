@@ -20,6 +20,16 @@ Feng.success = function (info) {
 Feng.error = function (info) {
     top.layer.msg(info, {icon: 2});
 };
+Feng.dialog = function (info) {
+    top.layer.open({
+        title: '提示', content: info
+    });
+};
+Feng.dialog = function (title, info) {
+    top.layer.open({
+        title: title, content: info
+    });
+};
 Feng.confirm = function (tip, ensure) {
     top.layer.confirm(tip, {
         skin: 'layui-layer-admin'
@@ -130,9 +140,8 @@ layui.config({
     selectPlus: '../../expand/module/selectPlus/selectPlus',
     iconPicker: '../../expand/module/iconPicker/iconPicker',
     ztree: '../../expand/module/ztree/ztree-object',
-    ax: '../../expand/module/ax/ax',
-    func: '../../expand/module/func/func',
-    ajaxUtil: '../../expand/module/ax/ajaxUtil'
+    HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
+    func: '../../expand/module/func/func'
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
     var layer = layui.layer;
@@ -147,12 +156,10 @@ layui.config({
     $.ajaxSetup({
         contentType: "application/x-www-form-urlencoded;charset=utf-8",
         complete: function (XMLHttpRequest, textStatus) {
-
             //如果超时就处理 ，指定要跳转的页面
             if (XMLHttpRequest.getResponseHeader("Guns-Session-Timeout") === "true") {
                 window.location = Feng.ctxPath + "/global/sessionError";
             }
-
         }
     });
 

@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.blackboard;
+package cn.stylefeng.guns.modular.dashboard;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Slf4j
 @ApiResource(name = "工作台和分析页面")
-public class BlackboardViewController {
+public class DashboardViewController {
 
     /**
      * 工作台
@@ -22,7 +22,7 @@ public class BlackboardViewController {
      * @author fengshuonan
      * @date 2018/12/24 22:43
      */
-    @GetResource(name = "工作台", path = "/blackboard/platform", requiredPermission = false)
+    @GetResource(name = "工作台", path = "/dashboard/workplace", requiredPermission = false)
     public String platform() {
         return "/modular/blackboard/board_platform.html";
     }
@@ -33,7 +33,7 @@ public class BlackboardViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:27
      */
-    @GetResource(name = "分析页面", path = "/blackboard/analyse", requiredPermission = false)
+    @GetResource(name = "分析页面", path = "/dashboard/analysis", requiredPermission = false)
     public String analyse() {
         return "/modular/blackboard/board_analyse.html";
     }

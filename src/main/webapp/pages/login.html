@@ -163,14 +163,6 @@
 <div class="login-wrapper layui-anim layui-anim-scale layui-hide">
     <div class="layui-form">
         <h2>用户登录</h2>
-        @if(constants.getTenantOpen()){
-        <div class="layui-form-item layui-input-icon-group">
-            <i class="layui-icon layui-icon-username"></i>
-            <select name="tenantCode" id="tenantCode">
-                <option value="">默认租户</option>
-            </select>
-        </div>
-        @}
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-username"></i>
             <input class="layui-input" id="username" name="username" placeholder="请输入登录账号" value="admin" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
@@ -179,20 +171,13 @@
             <i class="layui-icon layui-icon-password"></i>
             <input class="layui-input" id="password" name="password" placeholder="请输入登录密码" value="111111" type="password" lay-verType="tips" lay-verify="required" required/>
         </div>
-        @if(constants.getCaptchaOpen()){
-        <div class="layui-form-item layui-input-icon-group login-captcha-group">
-            <i class="layui-icon layui-icon-auz"></i>
-            <input class="layui-input" id="kaptcha" placeholder="请输入验证码" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
-            <img class="login-captcha" src="${ctxPath}/kaptcha" alt=""/>
-        </div>
-        @}
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-fluid" id="submit">登录</button>
         </div>
         <div class="layui-form-item login-oauth-group text-center">
             <a href="${ctxPath}/oauth/render/qq"><i class="layui-icon layui-icon-login-qq" style="color:#3492ed;"></i></a>&emsp;
             <a href="${ctxPath}/oauth/render/gitee">
-                <img class="layui-icon" style="height: 28px;width: 28px; margin-top: -12px !important;" src="${ctxPath}/assets/expand/images/git.png" />
+                <img class="layui-icon" style="height: 28px;width: 28px; margin-top: -12px !important;" src="${ctxPath}/assets/expand/images/git.png"/>
             </a>
         </div>
     </div>
@@ -211,57 +196,34 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 <script>
-    layui.use(['layer', 'form', 'index', 'ax'], function () {
+    layui.use(['layer', 'form', 'index', 'HttpRequest'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
-        var $ax = layui.ax;
+        var HttpRequest = layui.HttpRequest;
         var index = layui.index;
 
         $('.login-wrapper').removeClass('layui-hide');
-
-        /* 图形验证码 */
-        $('img.login-captcha').click(function () {
-            this.src = this.src + '?t=' + (new Date).getTime();
-        });
 
         var errorMsg = "${tips!}";
         if (errorMsg) {
             layer.msg(errorMsg, {icon: 5, anim: 6});
         }
 
-        @if(constants.getTenantOpen()){
-            //初始化租户列表
-            var ajax = new $ax(Feng.ctxPath + "/tenantInfo/listTenants", function (data) {
-                for (var i = 0; i < data.data.length; i++) {
-                    var name = data.data[i].name;
-                    var code = data.data[i].code;
-                    $("#tenantCode").append('<option value="' + code + '">' + name + '</option>');
-                }
-                form.render();
-            }, function (data) {
-            });
-            ajax.start();
-        @}
-
-        //登录操作
+        // 登录操作
         $('#submit').click(function () {
-            var ajax = new $ax(Feng.ctxPath + "/loginAction", function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/loginAction", 'post', function (data) {
                 Feng.success("登录成功!");
+                // 清除顶部选择应用的缓存
                 index.clearTabCache();
+                // 重定向到首页
                 window.location.href = Feng.ctxPath + "/";
             }, function (data) {
-                layer.msg("登录失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+                Feng.error("登录失败!" + data.message);
             });
-            ajax.set("account", $("#username").val());
-            ajax.set("password", $("#password").val());
-            @if(constants.getTenantOpen()){
-                ajax.set("tenantCode", $("#tenantCode").val());
-            @}
-            @if(constants.getCaptchaOpen()){
-                ajax.set("kaptcha", $("#kaptcha").val());
-            @}
-            ajax.start();
+            request.set("account", $("#username").val());
+            request.set("password", $("#password").val());
+            request.start(true);
         });
 
     });

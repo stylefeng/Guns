@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.config.web;
 
+import cn.stylefeng.guns.core.beetl.CustomBeetlGroupUtilConfiguration;
 import cn.stylefeng.guns.core.error.CustomErrorAttributes;
 import cn.stylefeng.guns.core.error.CustomErrorView;
 import cn.stylefeng.guns.core.security.AuthJwtTokenSecurityInterceptor;
@@ -60,8 +61,11 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      * @date 2020/12/16 15:47
      */
     @Bean("error")
-    public CustomErrorView error() {
-        return new CustomErrorView();
+    public CustomErrorView error(CustomBeetlGroupUtilConfiguration customBeetlGroupUtilConfiguration) {
+        CustomErrorView customErrorView = new CustomErrorView();
+        customErrorView.setUrl("/404.html");
+        customErrorView.setGroupTemplate(customBeetlGroupUtilConfiguration.getGroupTemplate());
+        return customErrorView;
     }
 
     /**

@@ -2,17 +2,21 @@ package cn.stylefeng.guns.core.error;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.stylefeng.roses.kernel.auth.api.exception.AuthException;
+import cn.stylefeng.roses.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.abstracts.AbstractExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
 import cn.stylefeng.roses.kernel.rule.exception.enums.defaults.DefaultBusinessExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.util.ExceptionUtil;
+import cn.stylefeng.roses.kernel.rule.util.ResponseRenderUtil;
 import cn.stylefeng.roses.kernel.system.constants.SymbolConstant;
 import cn.stylefeng.roses.kernel.validator.exception.ParamValidateException;
 import cn.stylefeng.roses.kernel.validator.exception.enums.ValidatorExceptionEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -27,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ValidationException;
 import java.util.List;
 
@@ -136,6 +141,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BindException.class)
     @ResponseBody
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponseData bindException(BindException e) {
         String bindingResult = getArgNotValidMessage(e.getBindingResult());
         return renderJson(ValidatorExceptionEnum.VALIDATED_RESULT_ERROR, bindingResult);
@@ -149,6 +155,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ValidationException.class)
     @ResponseBody
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponseData bindException(ValidationException e) {
         if (e.getCause() instanceof ParamValidateException) {
             ParamValidateException paramValidateException = (ParamValidateException) e.getCause();
@@ -158,12 +165,51 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * 拦截全校校验一类的异常
+     * <p>
+     * 这里重点做一类特殊处理，也就是对过期登录用用户
+     * <p>
+     * 如果用户登录过期，并且为ajax请求，则response的header增加session-timeout的标识
+     * <p>
+     * 如果用户登录过期，不是ajax请求，则直接跳转到登录页面，并提示会话超时
+     *
+     * @author fengshuonan
+     * @date 2020/12/16 15:11
+     */
+    @ExceptionHandler(AuthException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public String authError(AuthException authException, HttpServletRequest request, HttpServletResponse response, Model model) {
+        String errorCode = authException.getErrorCode();
+        if (AuthExceptionEnum.AUTH_EXPIRED_ERROR.getErrorCode().equals(errorCode)) {
+
+            // 如果是普通请求
+            if (request.getContentType() == null
+                    || request.getContentType().toLowerCase().contains("text/html")) {
+                model.addAttribute("tips", AuthExceptionEnum.AUTH_EXPIRED_ERROR.getUserTip());
+                return "/login.html";
+            } else {
+                // 其他请求或者是ajax请求
+                response.setHeader("Guns-Session-Timeout", "true");
+                ErrorResponseData errorResponseData = renderJson(authException);
+                ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
+                return null;
+            }
+        }
+
+        // 默认响应前端json
+        ErrorResponseData errorResponseData = renderJson(authException);
+        ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
+        return null;
+    }
+
+    /**
      * 拦截业务代码抛出的异常
      *
      * @author fengshuonan
      * @date 2020/12/16 15:11
      */
     @ExceptionHandler(ServiceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorResponseData businessError(ServiceException e) {
         log.error("业务异常，具体信息为：{}", e.getMessage());

@@ -16,9 +16,9 @@
         @if(objectUtil.isNotEmpty(layuiAppIndexMenus)){
             @for(item in layuiAppIndexMenus) {
                 @if(itemLP.index == 1){
-                <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="${item.appCode}">${item.appCode}</a></li>
+                <li class="layui-nav-item layui-hide-xs layui-this" lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></li>
                 @}else{
-                <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}">${item.appCode}</a></li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></li>
                 @}
             @}
         @}
@@ -43,8 +43,6 @@
                 <dd lay-unselect>
                     <a id="setPsw">修改密码</a>
                 </dd>
-                <hr>
-                <div id="languageDiv"></div>
                 <hr>
                 <dd lay-unselect>
                     <a id="btnLogout">退出</a>

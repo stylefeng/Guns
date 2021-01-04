@@ -1,23 +1,23 @@
-layui.use(['layer', 'form', 'admin', 'ax'], function () {
+layui.use(['layer', 'form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
     var layer = layui.layer;
     var form = layui.form;
     var admin = layui.admin;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
 
     // 让当前iframe弹层高度适应
     admin.iframeAuto();
 
     // 监听提交
     form.on('submit(submit-psw)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/mgr/changePwd", function (data) {
+        var request = new HttpRequest(Feng.ctxPath + "/sysUser/updatePassword", 'post', function (data) {
             Feng.success("修改成功!");
             admin.closeThisDialog();
-        }, function (data) {
-            Feng.error("修改失败!" + data.responseJSON.message + "!");
+        }, function (response) {
+            Feng.dialog("修改失败", response.message);
         });
-        ajax.setData(data.field);
-        ajax.start();
+        request.set(data.field);
+        request.start(true);
 
         //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         return false;
