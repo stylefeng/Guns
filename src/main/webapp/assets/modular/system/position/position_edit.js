@@ -1,44 +1,26 @@
-/**
- * 详情对话框
- */
-var PositionInfoDlg = {
-    data: {
-        name: "",
-        code: "",
-        sort: "",
-        status: "",
-        remark: "",
-        createTime: "",
-        updateUser: "",
-        updateTime: "",
-        createUser: ""
-    }
-};
-
-layui.use(['form', 'admin', 'ajaxUtil'], function () {
-    var $ = layui.jquery;
-    var $ax = layui.ax;
+layui.use(['form', 'admin', 'HttpRequest'], function () {
     var form = layui.form;
     var admin = layui.admin;
-    var ajaxUtil = layui.ajaxUtil;
+    var HttpRequest = layui.HttpRequest;
     //获取详情信息，填充表单
 
-    ajaxUtil.get("/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"), function (res) {
-        form.val('positionForm', res.data);
-    }, function (res) {
-        admin.closeThisDialog();
-        Feng.error("编辑异常！" + res.responseJSON.message);
-    });
+
+    //获取用户详情
+    var request = new HttpRequest(Feng.ctxPath + "/hrPosition/detail?positionId=" + Feng.getUrlParam("positionId"), 'get');
+    var result = request.start();
+    form.val('positionForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        ajaxUtil.post(Feng.ctxPath + "/hrPosition/edit", data.field, function (res) {
+        var request = new HttpRequest(Feng.ctxPath + "/hrPosition/edit", 'post', function (data) {
             Feng.success("修改成功!");
             admin.putTempData('formOk', true);
             admin.closeThisDialog();
-        }, function (res) {
+        }, function (data) {
             admin.closeThisDialog();
-            Feng.error("修改失败!" + res.responseJSON.message);
+            Feng.error("修改失败!" + data.message);
         });
+        request.set(data.field);
+        request.start(true);
     });
 });

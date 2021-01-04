@@ -4,32 +4,13 @@
  * @author fengshuonan
  * @Date 2019/7/29 21:20
  */
-layui.define(['jquery', 'layer', 'admin', 'table', 'ax', 'form'], function (exports) {
+layui.define(['jquery', 'layer', 'admin', 'table'], function (exports) {
     var $ = layui.$;
     var layer = layui.layer;
     var admin = layui.admin;
     var table = layui.table;
-    var $ax = layui.ax;
-    var form = layui.form;
 
     var func = {
-
-        /**
-         * 拼接下拉字典
-         */
-        initDictSelect: function (url, selectId, optValue, optName) {
-            $("#" + selectId).html('<option value="">请选择</option>');
-            var ajax = new $ax(Feng.ctxPath + url, function (data) {
-                for (var i = 0; i < data.data.length; i++) {
-                    var optionValue = data.data[i][optValue];
-                    var optionName = data.data[i][optName];
-                    $("#" + selectId).append('<option value="' + optionValue + '">' + optionName + '</option>');
-                }
-                form.render();
-            }, function (data) {
-            });
-            ajax.start();
-        },
 
         /**
          * 获取内部高度，返回数值

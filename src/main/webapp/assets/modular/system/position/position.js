@@ -1,9 +1,9 @@
-layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'], function () {
+layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown', 'util'], function () {
     var $ = layui.$;
     var table = layui.table;
     var form = layui.form;
     var func = layui.func;
-    var ajaxUtil = layui.ajaxUtil;
+    var HttpRequest = layui.HttpRequest;
     var dropdown = layui.dropdown;
     var util = layui.util;
 
@@ -20,13 +20,16 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
             {field: 'positionName', sort: true, title: '职位名称'},
             {field: 'positionCode', sort: true, title: '职位编码'},
             {field: 'positionRemark', sort: true, title: '备注'},
-            {field: 'createTime', sort: true, title: '创建时间',templet: function (d) {
-                return util.toDateString(d.createTime);
-            }},
-            {field: 'updateTime', sort: true, title: '更新时间',templet: function (d) {
-                console.log(d.updateTime);
-                return  d.updateTime==null?'': util.toDateString(d.updateTime);
-            }},
+            {
+                field: 'createTime', sort: true, title: '创建时间', templet: function (d) {
+                    return util.toDateString(d.createTime);
+                }
+            },
+            {
+                field: 'updateTime', sort: true, title: '更新时间', templet: function (d) {
+                    return d.updateTime == null ? '' : util.toDateString(d.updateTime);
+                }
+            },
             {field: 'statusFlag', sort: true, templet: '#statusTpl', title: '状态'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
@@ -76,24 +79,28 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
     // 点击删除
     Position.delete = function (data) {
         var operation = function () {
-            ajaxUtil.post(Feng.ctxPath + "/hrPosition/delete", {"positionId":data.positionId},function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(Position.tableId);
-            },function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            }, function (data) {
+                Feng.error("删除失败!" + data.message + "!");
             });
+            httpRequest.set(data);
+            httpRequest.start(true);
         };
         Feng.confirm("是否删除?", operation);
     };
 
     // 修改职位状态
     Position.updateStatus = function (positionId, checked) {
-        ajaxUtil.post(Feng.ctxPath + "/hrPosition/updateStatus", {"positionId":positionId,"statusFlag":checked},function (data) {
+        var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/updateStatus", 'post', function (data) {
             Feng.success("修改成功!");
-        },function (data) {
+        }, function (data) {
             Feng.error("修改失败!" + data.responseJSON.message);
             table.reload(Position.tableId);
         });
+        httpRequest.set({"positionId": positionId, "statusFlag": checked});
+        httpRequest.start(true);
     };
 
     // 渲染表格

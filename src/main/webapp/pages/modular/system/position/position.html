@@ -14,23 +14,23 @@
                             <div class="layui-inline">
                                 <input id="positionName" class="layui-input" type="text" placeholder="职位名称"/>
                             </div>
-<!--                            <div class="layui-inline">-->
-<!--                                <input id="positionCode" class="layui-input" type="text" placeholder="职位编码"/>-->
-<!--                            </div>-->
+                            <!--                            <div class="layui-inline">-->
+                            <!--                                <input id="positionCode" class="layui-input" type="text" placeholder="职位编码"/>-->
+                            <!--                            </div>-->
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
                                 <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
                                 <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
                                 <!-- 下拉按钮 -->
-                                <div class="dropdown-menu dropdown-hover">
-                                    <button class="layui-btn icon-btn" type="button">
-                                        &nbsp;更多 <i class="layui-icon layui-icon-drop"></i></button>
-                                    <ul class="dropdown-menu-nav">
-                                        <li><a><i class="layui-icon layui-icon-edit"></i>test1</a></li>
-                                        <li><a><i class="layui-icon layui-icon-delete"></i>test2</a></li>
-                                        <li><a><i class="layui-icon layui-icon-password"></i>test3</a></li>
-                                    </ul>
-                                </div>
+                                <!--                                <div class="dropdown-menu dropdown-hover">-->
+                                <!--                                    <button class="layui-btn icon-btn" type="button">-->
+                                <!--                                        &nbsp;更多 <i class="layui-icon layui-icon-drop"></i></button>-->
+                                <!--                                    <ul class="dropdown-menu-nav">-->
+                                <!--                                        <li><a><i class="layui-icon layui-icon-edit"></i>test1</a></li>-->
+                                <!--                                        <li><a><i class="layui-icon layui-icon-delete"></i>test2</a></li>-->
+                                <!--                                        <li><a><i class="layui-icon layui-icon-password"></i>test3</a></li>-->
+                                <!--                                    </ul>-->
+                                <!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -44,24 +44,23 @@
 <script type="text/html" id="tableBar">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-    <a class="layui-btn layui-btn-xs" data-dropdown="#userTbDrop{{d.LAY_INDEX}}" no-shade="true">
-        更多<i class="layui-icon layui-icon-drop" style="font-size: 12px;margin-right: 0;"></i></a>
-    <!-- 下拉菜单 -->
-    <ul class="dropdown-menu-nav dropdown-bottom-right layui-hide" id="userTbDrop{{d.LAY_INDEX}}">
-        <div class="dropdown-anchor"></div>
-        <li><a lay-event="lock"><i class="layui-icon layui-icon-password"></i>锁定用户</a></li>
-        <li><a lay-event="reset"><i class="layui-icon layui-icon-key"></i>重置密码</a></li>
-        <li class="have-more show-left">
-            <a><i class="layui-icon layui-icon-upload-drag"></i>上传资料&nbsp;&nbsp;</a>
-            <ul class="dropdown-menu-nav-child">
-                <li><a><i class="layui-icon layui-icon-camera"></i>上传头像</a></li>
-                <li><a><i class="layui-icon layui-icon-picture-fine"></i>上传照片</a></li>
-            </ul>
-        </li>
-    </ul>
+    <!--    <a class="layui-btn layui-btn-xs" data-dropdown="#userTbDrop{{d.LAY_INDEX}}" no-shade="true">更多<i class="layui-icon layui-icon-drop" style="font-size: 12px;margin-right: 0;"></i></a>-->
+    <!--    &lt;!&ndash; 下拉菜单 &ndash;&gt;-->
+    <!--    <ul class="dropdown-menu-nav dropdown-bottom-right layui-hide" id="userTbDrop{{d.LAY_INDEX}}">-->
+    <!--        <div class="dropdown-anchor"></div>-->
+    <!--        <li><a lay-event="lock"><i class="layui-icon layui-icon-password"></i>锁定用户</a></li>-->
+    <!--        <li><a lay-event="reset"><i class="layui-icon layui-icon-key"></i>重置密码</a></li>-->
+    <!--        <li class="have-more show-left">-->
+    <!--            <a><i class="layui-icon layui-icon-upload-drag"></i>上传资料&nbsp;&nbsp;</a>-->
+    <!--            <ul class="dropdown-menu-nav-child">-->
+    <!--                <li><a><i class="layui-icon layui-icon-camera"></i>上传头像</a></li>-->
+    <!--                <li><a><i class="layui-icon layui-icon-picture-fine"></i>上传照片</a></li>-->
+    <!--            </ul>-->
+    <!--        </li>-->
+    <!--    </ul>-->
 </script>
 
 <script type="text/html" id="statusTpl">
-    <input type="checkbox" lay-filter="status" value="{{d.positionId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}} />
+    <input type="checkbox" lay-filter="status" value="{{d.positionId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}}/>
 </script>
 @}
