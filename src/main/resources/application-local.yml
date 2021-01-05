@@ -1,11 +1,44 @@
 # Mysql数据库
 spring:
   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: root
-    password: 123456
-
+    url: jdbc:mysql://192.168.1.114:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
+    username: guest
+    password: p8HMTBEapAPPmXB8!
     # 连接池大小根据实际情况调整
     max-active: 100
     max-pool-prepared-statement-per-connection-size: 100
+    druid:
+      initialSize: 50
+      minIdle: 50
+      maxActive: 200
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      maxEvictableIdleTimeMillis: 900000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: false
+      webStatFilter:
+        enabled: true
+        statViewServlet:
+          enabled: true
+          # 设置白名单，不填则允许所有访问
+          allow:
+          url-pattern: /druid/*
+          # 控制台管理用户名和密码
+          login-username:
+          login-password:
+        filter:
+          stat:
+            enabled: true
+            # 慢SQL记录
+            log-slow-sql: true
+            slow-sql-millis: 1000
+            merge-sql: true
+          wall:
+            config:
+              multi-statement-allow: true
