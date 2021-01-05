@@ -1,25 +1,25 @@
-layui.use(['form', 'admin', 'ajaxUtil'], function () {
+layui.use(['form', 'admin', 'HttpRequest'], function () {
     var form = layui.form;
     var admin = layui.admin;
-    var ajaxUtil = layui.ajaxUtil;
-    //获取详情信息，填充表单
+    var HttpRequest = layui.HttpRequest;
 
-    ajaxUtil.get("/hrOrganization/detail?orgId=" + Feng.getUrlParam("positionId"), function (res) {
-        form.val('positionForm', res.data);
-    }, function (res) {
-        admin.closeThisDialog();
-        Feng.error("编辑异常！" + res.responseJSON.message);
-    });
+    //获取信息详情填充表单
+    var request = new HttpRequest(Feng.ctxPath + "/hrOrganization/detail?orgId=" + Feng.getUrlParam("orgId"), 'get');
+    var result = request.start();
+    console.log(result);
+    form.val('organizationForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        ajaxUtil.post(Feng.ctxPath + "/hrOrganization/edit", data.field, function (res) {
+        var request = new HttpRequest(Feng.ctxPath + "/hrOrganization/edit", 'post', function (data) {
+            admin.closeThisDialog();
             Feng.success("修改成功!");
             admin.putTempData('formOk', true);
+        }, function (data) {
             admin.closeThisDialog();
-        }, function (res) {
-            admin.closeThisDialog();
-            Feng.error("修改失败!" + res.responseJSON.message);
+            Feng.error("修改失败!" + data.message);
         });
+        request.set(data.field);
+        request.start(true);
     });
 });

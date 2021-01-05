@@ -1,10 +1,9 @@
-layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown', 'util'], function () {
+layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     var $ = layui.$;
     var table = layui.table;
     var form = layui.form;
     var func = layui.func;
     var HttpRequest = layui.HttpRequest;
-    var dropdown = layui.dropdown;
     var util = layui.util;
 
     // 职位表管理
