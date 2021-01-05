@@ -30,7 +30,7 @@ public class LogController {
      */
     @GetResource(name="操作日志管理列表", path ="", requiredPermission = false, requiredLogin = false)
     public String indexView(){
-        return PREFIX + "log.html";
+        return PREFIX + "/log.html";
     }
 
 }
