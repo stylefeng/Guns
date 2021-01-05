@@ -22,7 +22,7 @@ public class DashboardViewController {
      * @author fengshuonan
      * @date 2018/12/24 22:43
      */
-    @GetResource(name = "工作台", path = "/dashboard/workplace", requiredPermission = false)
+    @GetResource(name = "工作台", path = "/view/dashboard/workplace", requiredPermission = false)
     public String platform() {
         return "/modular/blackboard/board_platform.html";
     }
@@ -33,7 +33,7 @@ public class DashboardViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:27
      */
-    @GetResource(name = "分析页面", path = "/dashboard/analysis", requiredPermission = false)
+    @GetResource(name = "分析页面", path = "/view/dashboard/analysis", requiredPermission = false)
     public String analyse() {
         return "/modular/blackboard/board_analyse.html";
     }

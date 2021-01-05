@@ -30,7 +30,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/13 17:19
      */
-    @GetResource(name = "首页界面", path = "/", requiredLogin = false, requiredPermission = false)
+    @GetResource(name = "首页界面", path = "/", requiredLogin = false, requiredPermission = false, viewFlag = true)
     public String indexView(Model model) {
 
         // 当前用户已经登录，跳转到首页
@@ -49,7 +49,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:53
      */
-    @GetResource(name = "个人中心界面", path = "/personal", requiredLogin = false)
+    @GetResource(name = "个人中心界面", path = "/view/personal", requiredLogin = false)
     public String personal(Model model) {
         model.addAllAttributes(indexService.createPersonInfoRenderAttributes());
         return "/modular/index/personal_info.html";
@@ -61,7 +61,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:34
      */
-    @GetResource(name = "锁屏界面", path = "/lock", requiredPermission = false)
+    @GetResource(name = "锁屏界面", path = "/view/lock", requiredPermission = false)
     public String lock() {
         return "/modular/index/lock_screen.html";
     }
@@ -72,7 +72,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:42
      */
-    @GetResource(name = "主题切换界面", path = "/theme", requiredPermission = false)
+    @GetResource(name = "主题切换界面", path = "/view/theme", requiredPermission = false)
     public String theme() {
         return "/modular/index/theme.html";
     }
@@ -83,7 +83,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:42
      */
-    @GetResource(name = "修改密码界面", path = "/changePassword", requiredPermission = false)
+    @GetResource(name = "修改密码界面", path = "/view/changePassword", requiredPermission = false)
     public String changePassword() {
         return "/modular/index/change_password.html";
     }

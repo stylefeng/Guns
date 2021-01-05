@@ -37,7 +37,7 @@ public class LoginViewController {
      * @author fengshuonan
      * @date 2020/12/27 17:10
      */
-    @GetResource(name = "登录界面", path = "/login", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "登录界面", path = "/view/login", requiredPermission = false, requiredLogin = false)
     public String login() {
         if (LoginContext.me().hasLogin()) {
             return "redirect:/";
