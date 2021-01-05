@@ -28,7 +28,7 @@ public class LogController {
      * @author TSQ
      * @date 2021/1/5 15:18
      */
-    @GetResource(name="操作日志管理列表" , path = "", requiredPermission = false ,requiredLogin = false)
+    @GetResource(name="操作日志管理列表", path ="", requiredPermission = false, requiredLogin = false)
     public String indexView(){
         return PREFIX + "log.html";
     }
