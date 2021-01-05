@@ -158,7 +158,7 @@ layui.config({
         complete: function (XMLHttpRequest, textStatus) {
             //如果超时就处理 ，指定要跳转的页面
             if (XMLHttpRequest.getResponseHeader("Guns-Session-Timeout") === "true") {
-                window.location = Feng.ctxPath + "/global/sessionError";
+                window.location = Feng.ctxPath + "/view/global/sessionError";
             }
         }
     });

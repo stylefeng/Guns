@@ -21,7 +21,7 @@ public class ErrorViewController {
      * @author fengshuonan
      * @date 2021/1/1 21:21
      */
-    @GetResource(name = "跳转到session超时页面", path = "/global/sessionError", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "跳转到session超时页面", path = "/view/global/sessionError", requiredPermission = false, requiredLogin = false)
     public String errorPageInfo(Model model) {
         model.addAttribute("tips", "登陆超时，请您重新登陆！");
         return "/login.html";
