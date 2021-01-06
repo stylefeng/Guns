@@ -16,7 +16,7 @@ spring:
       max-file-size: 200MB
   jackson:
     time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    date-format: yyyy-MM-dd HH:mm:ss
     locale: zh_CN
     serialization:
       indent_output: false

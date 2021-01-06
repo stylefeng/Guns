@@ -1,0 +1,52 @@
+package cn.stylefeng.guns.modular.menu;
+
+import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
+import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+
+/**
+ * 菜单管理界面
+ *
+ * @author fengshuonan
+ * @date 2021/1/6 16:43
+ */
+@Controller
+@Slf4j
+@ApiResource(name = "菜单管理界面")
+public class MenuViewController {
+
+    /**
+     * 菜单管理首页
+     *
+     * @author fengshuonan
+     * @date 2021/1/6 13:32
+     */
+    @GetResource(name = "菜单管理首页", path = "/view/menu")
+    public String menuIndex() {
+        return "/modular/auth/menu/menu.html";
+    }
+
+    /**
+     * 新增菜单界面
+     *
+     * @author fengshuonan
+     * @date 2021/1/6 13:37
+     */
+    @GetResource(name = "新增菜单界面", path = "/view/menu/add")
+    public String menuAdd() {
+        return "/modular/auth/menu/menu_add.html";
+    }
+
+    /**
+     * 修改菜单界面
+     *
+     * @author fengshuonan
+     * @date 2021/1/6 13:37
+     */
+    @GetResource(name = "修改菜单界面", path = "/view/menu/edit")
+    public String menuEdit() {
+        return "/modular/auth/menu/menu_edit.html";
+    }
+
+}

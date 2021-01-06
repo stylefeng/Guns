@@ -22,3 +22,7 @@
 .layui-card-body {
     padding-right: 55px;
 }
+
+input[readonly]{
+    background-color: #efefef;
+}

@@ -16,11 +16,11 @@
 </div>
 
 <script>
-    layui.use(['util', 'admin', 'ax'], function () {
+    layui.use(['util', 'admin', 'HttpRequest'], function () {
         var $ = layui.jquery;
         var util = layui.util;
         var admin = layui.admin;
-        var $ax = layui.ax;
+        var HttpRequest = layui.HttpRequest;
         var rightPsw = 'e10adc3949ba59abbe56e057f20f883e';  // 正确密码的MD5密文
 
         // 获取各个组件
@@ -36,13 +36,13 @@
             //解锁锁屏
             admin.unlockScreen();
 
-            var ajax = new $ax(Feng.ctxPath + "/logout", function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/logout", 'post', function (data) {
                 Feng.success("退出成功!");
                 location.replace(Feng.ctxPath + "/");
             }, function (data) {
-                layer.msg("退出失败！" + data.responseJSON.message, {icon: 5, anim: 6});
+                layer.msg("退出失败！" + data.message, {icon: 5, anim: 6});
             });
-            ajax.start();
+            request.start();
         });
 
         // 监听enter键
