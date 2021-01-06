@@ -1,8 +1,8 @@
-layui.use(['table', 'ax', 'func'], function () {
+layui.use(['table', 'func'], function () {
     var $ = layui.$;
     var table = layui.table;
-    var $ax = layui.ax;
     var func = layui.func;
+    var HttpRequest = layui.HttpRequest;
 
     /**
      * 字典类型表管理
@@ -74,7 +74,7 @@ layui.use(['table', 'ax', 'func'], function () {
         func.open({
             height: 630,
             title: '添加字典类型',
-            content: Feng.ctxPath + '/dictType/add',
+            content: Feng.ctxPath + '/dictType/addView',
             tableId: DictType.tableId
         });
     };
@@ -88,7 +88,7 @@ layui.use(['table', 'ax', 'func'], function () {
         func.open({
             height: 630,
             title: '修改字典类型',
-            content: Feng.ctxPath + '/dictType/edit?dictTypeId=' + data.dictTypeId,
+            content: Feng.ctxPath + '/dictType/editView?dictTypeId=' + data.dictTypeId,
             tableId: DictType.tableId
         });
     };
@@ -106,14 +106,14 @@ layui.use(['table', 'ax', 'func'], function () {
         }
 
         var operation = function () {
-            var ajax = new $ax(Feng.ctxPath + "/dictType/delete", function (data) {
-                Feng.success("删除成功!");
-                table.reload(DictType.tableId);
-            }, function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
-            });
-            ajax.set("dictTypeId", data.dictTypeId);
-            ajax.start();
+            // var ajax = new $ax(Feng.ctxPath + "/dictType/delete", function (data) {
+            //     Feng.success("删除成功!");
+            //     table.reload(DictType.tableId);
+            // }, function (data) {
+            //     Feng.error("删除失败!" + data.responseJSON.message + "!");
+            // });
+            // ajax.set("dictTypeId", data.dictTypeId);
+            // ajax.start();
         };
 
         Feng.confirm("是否删除?", operation);
@@ -122,7 +122,7 @@ layui.use(['table', 'ax', 'func'], function () {
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + DictType.tableId,
-        url: Feng.ctxPath + '/dictType/list',
+        url: Feng.ctxPath + '/dictType/getDictTypePageList',
         page: true,
         height: "full-98",
         cellMinWidth: 100,
