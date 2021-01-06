@@ -6,31 +6,31 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
- * 操作业务日志管理控制器
+ * 登陆日志管理控制器界面渲染
  *
  * @param
  * @return
  * @author TSQ
- * @date 2021/1/5 14:44
+ * @date 2021/1/5 14:42
  */
 @Controller
 @Slf4j
-@ApiResource(name = "操作日志管理相关的界面渲染", path = "log")
-public class LogController {
+@ApiResource(name = "登陆日志管理相关的界面渲染", path = "loginLog")
+public class LoginLogViewController {
 
     private String PREFIX = "/modular/system/log";
 
     /**
-     * 操作日志管理列表
-     *
-     * @param
-     * @return
+     * 登陆日志管理列表
+     * 
+     * @param 
+     * @return 
      * @author TSQ
-     * @date 2021/1/5 15:18
+     * @date 2021/1/5 15:17
      */
-    @GetResource(name="操作日志管理列表", path ="", requiredPermission = false, requiredLogin = false)
+    @GetResource(name="登陆日志管理列表" , path = "", requiredPermission = false ,requiredLogin = false)
     public String indexView(){
-        return PREFIX + "/log.html";
+        return PREFIX + "/login_log.html";
     }
 
 }
