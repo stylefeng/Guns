@@ -1,4 +1,4 @@
-@layout("/layout/_container.html",{plugins:["ztree"],js:["/assets/modular/system/menu/menu.js"]}){
+@layout("/layout/_container.html",{plugins:["ztree"], js:["/assets/modular/auth/menu/menu.js"]}){
 
 <div class="layui-body-header">
     <span class="layui-body-header-title">菜单管理</span>
@@ -12,16 +12,14 @@
                     <div class="layui-form toolbar">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input id="menuName" class="layui-input" type="text" placeholder="菜单名称/编码"/>
+                                <input id="menuName" class="layui-input" type="text" placeholder="菜单名称"/>
                             </div>
                             <div class="layui-inline">
-                                <input id="level" class="layui-input" type="text" placeholder="层级"/>
+                                <input id="menuCode" class="layui-input" type="text" placeholder="菜单编码"/>
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                @if(shiro.hasPermission("/menu/add")){
                                 <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                @}
                                 <button id="expandAll" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>展开所有</button>
                                 <button id="foldAll" class="layui-btn icon-btn"><i class="layui-icon">&#xe656;</i>折叠所有</button>
                             </div>
@@ -35,12 +33,8 @@
 </div>
 
 <script type="text/html" id="menuTableBar">
-    @if(shiro.hasPermission("/menu/edit")){
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
-    @}
-    @if(shiro.hasPermission("/menu/remove")){
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-    @}
 </script>
 
 @}
