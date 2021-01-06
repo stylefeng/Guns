@@ -1,7 +1,7 @@
-@layout("/layout/_container.html",{plugins:["ztree"],js:["/assets/modular/system/menu/menu.js"]}){
+@layout("/layout/_container.html", {js:["/assets/modular/auth/app/app.js"]}){
 
 <div class="layui-body-header">
-    <span class="layui-body-header-title">菜单管理</span>
+    <span class="layui-body-header-title">应用管理</span>
 </div>
 
 <div class="layui-fluid">
@@ -12,35 +12,33 @@
                     <div class="layui-form toolbar">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input id="menuName" class="layui-input" type="text" placeholder="菜单名称/编码"/>
+                                <input id="appName" class="layui-input" type="text" placeholder="应用名称"/>
                             </div>
                             <div class="layui-inline">
-                                <input id="level" class="layui-input" type="text" placeholder="层级"/>
+                                <input id="appCode" class="layui-input" type="text" placeholder="应用编码"/>
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                @if(shiro.hasPermission("/menu/add")){
                                 <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                @}
-                                <button id="expandAll" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>展开所有</button>
-                                <button id="foldAll" class="layui-btn icon-btn"><i class="layui-icon">&#xe656;</i>折叠所有</button>
                             </div>
                         </div>
                     </div>
-                    <table class="layui-table" id="menuTable"></table>
+                    <table class="layui-table" id="appTable" lay-filter="appTable"></table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/html" id="menuTableBar">
-    @if(shiro.hasPermission("/menu/edit")){
+<script type="text/html" id="tableBar">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
-    @}
-    @if(shiro.hasPermission("/menu/remove")){
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-    @}
 </script>
 
+<script type="text/html" id="activeTpl">
+    <input type="checkbox" lay-filter="activeFilter" value="{{d.appId}}" lay-skin="switch" lay-text="已激活|未激活" {{d.activeFlag=='Y'?'checked':''}}/>
+</script>
+<script type="text/html" id="statusTpl">
+    <input type="checkbox" lay-filter="statusFilter" value="{{d.appId}}" lay-skin="switch" lay-text="启用|禁用" {{d.statusFlag=='1'?'checked':''}}/>
+</script>
 @}

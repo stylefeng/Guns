@@ -1,6 +1,6 @@
 @layout("/layout/_form.html",{js:["/assets/modular/system/organization/organization_add.js"]}){
 
-<form class="layui-form" id="positionForm" lay-filter="positionForm">
+<form class="layui-form" id="organizationForm" lay-filter="organizationForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
         <div class="layui-card">
             <div class="layui-card-header">基本信息</div>
@@ -9,27 +9,27 @@
                     <input name="positionId" type="hidden"/>
 
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">职位名称<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">机构名称<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="positionName" name="positionName" placeholder="请输入职位名称" type="text" class="layui-input" lay-verify="required" required/>
+                            <input id="orgName" name="orgName" placeholder="请输入机构名称" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">职位编码<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">机构编码<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="positionCode" name="positionCode" placeholder="请输入职位编码" type="text" class="layui-input" lay-verify="required" required/>
+                            <input id="orgCode" name="orgCode" placeholder="请输入机构编码" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">顺序<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="positionSort" name="positionSort" placeholder="请输入顺序" type="text" class="layui-input" lay-verify="required" required/>
+                            <input id="orgSort" name="orgSort" placeholder="请输入顺序" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">备注<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <textarea id="positionRemark" name="positionRemark" placeholder="请输入备注" class="layui-textarea" lay-verify="required" required></textarea>
+                            <textarea id="orgRemark" name="orgRemark" placeholder="请输入备注" class="layui-textarea" lay-verify="required" required></textarea>
                         </div>
                     </div>
                 </div>

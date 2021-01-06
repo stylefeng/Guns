@@ -2,158 +2,83 @@
  * 详情对话框
  */
 var SysConfigInfoDlg = {
-    data: {
-        name: "",
-        dictFlag: "",
-        code: "",
-        value: "",
-        remark: "",
-        createTime: "",
-        createUser: "",
-        updateTime: "",
-        updateUser: ""
-    }
+    data: {}
 };
 
-layui.use(['form', 'admin', 'ax'], function () {
+layui.use(['form', 'admin','selectPlus', 'HttpRequest'], function () {
     var $ = layui.jquery;
-    var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
+    var selectPlus = layui.selectPlus;
+    var HttpRequest = layui.HttpRequest;
 
-    //获取详情信息，填充表单
-    var ajax = new $ax(Feng.ctxPath + "/sysConfig/detail?id=" + Feng.getUrlParam("id"));
-    var result = ajax.start();
+    // 获取详情信息，填充表单
+    var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/detail?configId=" + Feng.getUrlParam("configId"),'get');
+    var result = httpRequest.start();
     form.val('sysConfigForm', result.data);
 
-    //初始化字典选择框
-    var activeDictSelect = function () {
-        $("#dictCodeDiv").show();
-        $("#customCodeDiv").hide();
-        status = "dict";
 
-        //初始化所有字典类型
-        $("#dictTypeId").html('<option value="">请选择系统字典类型</option>');
-        var ajax = new $ax(Feng.ctxPath + "/dictType/listTypes", function (data) {
 
-            for (var i = 0; i < data.data.length; i++) {
-                var dictTypeId = data.data[i].dictTypeId;
-                var name = data.data[i].name;
-                var code = data.data[i].code;
-                $("#dictTypeId").append('<option value="' + dictTypeId + '">' + code + '--' + name + '</option>');
-            }
-            form.render();
-
-        }, function (data) {
-        });
-        ajax.start();
-    };
-
-    //初始化非字典选择
-    var activeCustomSelect = function () {
-        $("#dictCodeDiv").hide();
-        $("#customCodeDiv").show();
-        status = "custom";
-    };
-
-    //更新字典详情列表
-    var updateDictDetail = function (dictTypeId, activeCode) {
-        $("#dictDetails").html('');
-        var ajax = new $ax(Feng.ctxPath + "/dict/listDicts", function (data) {
-
-            for (var i = 0; i < data.data.length; i++) {
-                var name = data.data[i].name;
-                var code = data.data[i].code;
-
-                if (activeCode === code) {
-                    $("#dictDetails").append('<input type="radio" name="dictValue" value="' + code + '" title="' + name + '" checked="checked">');
-                } else {
-                    $("#dictDetails").append('<input type="radio" name="dictValue" value="' + code + '" title="' + name + '">');
-                }
-
-            }
-            form.render();
-
-        }, function (data) {
-        });
-        ajax.set("dictTypeId", dictTypeId);
-        ajax.start();
-    };
-
-    //监听单选切换
-    form.on('radio(dictChecked)', function (data) {
-        if (data.value === "Y") {
-            activeDictSelect();
-        } else {
-            activeCustomSelect();
+    // 系统参数样式
+    if(result.data){
+        var mData = result.data;
+        if(mData.sysFlag == 'Y'){
+            $('input[name="sysFlag"]').attr('checked', 'checked');  //改变开关为 开
+        }else{
+            $('input[name="sysFlag"]').removeAttr('checked');  //改变开关为 关
         }
-    });
+        /*改变是否系统参数样式*/
+        $("input[name='sysFlag']").attr("disabled", "true"); form.render(); //系统参数禁用
+        $("input[name='sysFlag']").next().removeClass("layui-form-onswitch"); // 系统参数去掉样式
+    }
+
+    // 初始化所属分类字典下拉
+    var activeDictSelect = function () {
+
+        $("#groupCode").html('<option value="">请选择所属分类</option>');
+        // var httpRequest = new HttpRequest(Feng.ctxPath + "/dictType/dropDown", function (data) {
+        //     var dictTypeList = res.data;
+        //     dictTypeList.forEach(function (v, i) {
+        //         $("#groupCode").append('<option value="' + v.dictCode+ '">' + v.dictName + '</option>');
+        //     })
+        //     form.render();
+        //
+        // }, function (data) {
+        // });
+        // httpRequest.start();
+
+        //要删掉
+        $("#groupCode").append('<option value="sys_config">' + '默认常量' + '</option>');
+        $("#groupCode").val(result.data.groupCode);
+        form.render();
+    };
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
 
-        //如果是选择字典
-        if (status === "dict") {
 
-            var radio = $('input:radio[name="dictValue"]:checked').val();
+        SysConfigInfoDlg.data = $.extend({"sysFlag":data.field.sysFlag?data.field.sysFlag:'N'},data.field)
 
-            if (!$("#dictTypeId").val() || !radio) {
-                Feng.error("请选择具体字典！");
-                return false;
-            }
-        } else {
-            if (!$("#value").val()) {
-                Feng.error("请填写参数值！");
-                return false;
-            }
+        var groupCode = $("#groupCode").find("option:selected").val()
+        if(!groupCode){
+            Feng.error("所属分类不能为空")
+            return false;
         }
+        SysConfigInfoDlg.data = $.extend({"groupCode":groupCode},data.field)
 
-        var ajax = new $ax(Feng.ctxPath + "/sysConfig/editItem", function (data) {
-            Feng.success("更新成功！");
-            window.location.href = Feng.ctxPath + '/sysConfig'
+        var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/edit",'post', function (data) {
+            admin.closeThisDialog();
+            Feng.success("修改成功！");
+            admin.putTempData('formOk', true);
         }, function (data) {
-            Feng.error("更新失败！" + data.responseJSON.message)
+            admin.closeThisDialog();
+            Feng.error("修改失败！" + data.message)
         });
-        ajax.set(data.field);
-        ajax.start();
-
-        return false;
+        httpRequest.set(SysConfigInfoDlg.data);
+        httpRequest.start(true);
     });
 
-    //监听字典选择
-    form.on('select(dictTypeId)', function (data) {
-
-        var dictTypeId = data.value;
-
-        //初始化字典详细列表
-        updateDictDetail(dictTypeId);
-
-    });
-
-    //返回按钮
-    $("#backupPage").click(function () {
-        window.location.href = Feng.ctxPath + '/sysConfig'
-    });
-
-    //如果当前配置是带字典类型，则初始化字典类型选择
-    if (result.data.dictFlag === 'Y') {
-        activeDictSelect();
-
-        //更新选项
-        $("#dictTypeId").val(result.data.dictTypeId);
-        form.render();
-
-        //更新字典类型的详情
-        updateDictDetail(result.data.dictTypeId, result.data.value);
-    } else {
-        activeCustomSelect();
-    }
-
-    //如果是系统类型，则不能改变取值范围和字典类型
-    if(result.data.code.indexOf('GUNS_') === 0){
-        $("[name='dictFlag']").attr("disabled","disabled");
-        $("#dictTypeId").attr("disabled","disabled");
-        form.render();
-    }
+    // 常量所属分类动态赋值
+    activeDictSelect();
 
 });

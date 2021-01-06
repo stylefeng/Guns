@@ -24,7 +24,7 @@ public class DashboardViewController {
      */
     @GetResource(name = "工作台", path = "/view/dashboard/workplace", requiredPermission = false)
     public String platform() {
-        return "/modular/blackboard/board_platform.html";
+        return "/modular/dashboard/board_platform.html";
     }
 
     /**
@@ -35,7 +35,7 @@ public class DashboardViewController {
      */
     @GetResource(name = "分析页面", path = "/view/dashboard/analysis", requiredPermission = false)
     public String analyse() {
-        return "/modular/blackboard/board_analyse.html";
+        return "/modular/dashboard/board_analyse.html";
     }
 
 }

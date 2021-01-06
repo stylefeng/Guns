@@ -1,11 +1,10 @@
-layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'], function () {
+layui.use(['table', 'form', 'func', 'HttpRequest', 'xmSelect', 'util'], function () {
     var $ = layui.$;
     var table = layui.table;
     var form = layui.form;
     var func = layui.func;
-    var ajaxUtil = layui.ajaxUtil;
-    var dropdown = layui.dropdown;
-    var util = layui.util;
+    var HttpRequest = layui.HttpRequest;
+    var xmSelect = layui.xmSelect;
 
     // 职位表管理
     var Organization = {
@@ -16,17 +15,11 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
     Organization.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'positionId', hide: true, title: '主键id'},
-            {field: 'positionName', sort: true, title: '职位名称'},
-            {field: 'positionCode', sort: true, title: '职位编码'},
-            {field: 'positionRemark', sort: true, title: '备注'},
-            {field: 'createTime', sort: true, title: '创建时间',templet: function (d) {
-                return util.toDateString(d.createTime);
-            }},
-            {field: 'updateTime', sort: true, title: '更新时间',templet: function (d) {
-                console.log(d.updateTime);
-                return  d.updateTime==null?'': util.toDateString(d.updateTime);
-            }},
+            {field: 'orgId', hide: true, title: '主键id'},
+            {field: 'orgName', sort: true, title: '机构名称'},
+            {field: 'orgCode', sort: true, title: '机构编码'},
+            {field: 'orgSort', sort: true, title: '排序'},
+            {field: 'orgRemark', sort: true, title: '备注'},
             {field: 'statusFlag', sort: true, templet: '#statusTpl', title: '状态'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
@@ -35,8 +28,7 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
     // 点击查询按钮
     Organization.search = function () {
         var queryData = {};
-        queryData['positionName'] = $("#positionName").val();
-        //queryData['positionCode'] = $("#positionCode").val();
+        queryData['orgName'] = $("#orgName").val();
         table.reload(Organization.tableId, {
             where: queryData,
             page: {curr: 1}
@@ -47,7 +39,7 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
     Organization.openAddDlg = function () {
         func.open({
             height: 800,
-            title: '添加职位',
+            title: '添加机构',
             content: Feng.ctxPath + '/hrOrganization/addView',
             tableId: Organization.tableId
         });
@@ -57,8 +49,8 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
     Organization.openEditDlg = function (data) {
         func.open({
             height: 800,
-            title: '修改职位',
-            content: Feng.ctxPath + '/organization/editView?positionId=' + data.positionId,
+            title: '修改机构',
+            content: Feng.ctxPath + '/organization/editView?orgId=' + data.orgId,
             tableId: Organization.tableId
         });
     };
@@ -76,7 +68,7 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
     // 点击删除
     Organization.delete = function (data) {
         var operation = function () {
-            ajaxUtil.post(Feng.ctxPath + "/hrOrganization/delete", {"positionId":data.positionId},function (data) {
+            ajaxUtil.post(Feng.ctxPath + "/hrOrganization/delete", {"orgId":data.positionId},function (data) {
                 Feng.success("删除成功!");
                 table.reload(Organization.tableId);
             },function (data) {
@@ -88,7 +80,7 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
 
     // 修改职位状态
     Organization.updateStatus = function (positionId, checked) {
-        ajaxUtil.post(Feng.ctxPath + "/hrOrganization/updateStatus", {"positionId":positionId,"statusFlag":checked},function (data) {
+        ajaxUtil.post(Feng.ctxPath + "/hrOrganization/updateStatus", {"orgId":positionId,"statusFlag":checked},function (data) {
             Feng.success("修改成功!");
         },function (data) {
             Feng.error("修改失败!" + data.responseJSON.message);
@@ -132,7 +124,6 @@ layui.use(['table', 'admin', 'ax', 'form', 'func', 'ajaxUtil', 'dropdown','util'
         } else if (event === 'delete') {
             Organization.delete(data);
         }
-        dropdown.hideAll();
     });
 
     // 修改状态
