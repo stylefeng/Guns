@@ -28,7 +28,7 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
             {field: 'appName', align: "center", sort: true, title: '应用名称'},
             {field: 'layuiPath', align: "center", sort: true, title: '请求地址', minWidth: 180},
             {
-                field: 'layuiIcon', align: "center", sort: true, title: '图标', templet: '<p><i class="{{d.layuiIcon}}"></i></p>'
+                field: 'layuiIcon', align: "center", sort: true, title: '图标', templet: '<p><i class="layui-icon {{d.layuiIcon}}"></i></p>'
             },
             {
                 field: 'visible', align: "center", sort: true, title: '是否可见', templet: function (data) {
@@ -70,7 +70,7 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
      */
     Menu.openAddMenu = function () {
         func.open({
-            height: 720,
+            height: 660,
             title: '添加菜单',
             content: Feng.ctxPath + '/view/menu/add',
             tableId: Menu.tableId,
