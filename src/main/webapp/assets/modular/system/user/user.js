@@ -1,14 +1,11 @@
-layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 'tree', 'util'], function () {
+layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest', 'func', 'tree', 'util'], function () {
     var layer = layui.layer;
     var form = layui.form;
     var table = layui.table;
-    var $ZTree = layui.ztree;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var laydate = layui.laydate;
-    var admin = layui.admin;
     var func = layui.func;
     var tree = layui.tree;
-    var util = layui.util;
 
     /**
      * 系统管理--用户管理
@@ -33,14 +30,14 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 
         return [[
             {type: 'checkbox'},
             {field: 'userId', hide: true, sort: true, title: '用户id'},
-            {field: 'account', align: "center", sort: true, title: langs.FIELD_ACCOUNT},
-            {field: 'name', align: "center", sort: true, title: langs.FIELD_NAME},
-            {field: 'deptName', align: "center", sort: true, title: langs.FIELD_DEPT},
-            {field: 'positionName', align: "center", sort: true, title: langs.FIELD_POST},
-            {field: 'phone', align: "center", sort: true, title: langs.FIELD_PHONE, minWidth: 117},
-            {field: 'createTime', align: "center", sort: true, title: langs.FIELD_CREATE_TIME, minWidth: 160},
-            {field: 'status', align: "center", sort: true, templet: '#statusTpl', title: langs.FIELD_STATUS},
-            {align: 'center', toolbar: '#tableBar', title: langs.FIELD_OPERATION, minWidth: 480}
+            {field: 'account', align: "center", sort: true, title: '账号'},
+            {field: 'realName', align: "center", sort: true, title: '姓名'},
+            {field: 'orgId', align: "center", sort: true, title: '机构'},
+            {field: 'positionId', align: "center", sort: true, title: '职务'},
+            {field: 'phone', align: "center", sort: true, title: '电话'},
+            {field: 'createTime', align: "center", sort: true, title: '创建时间', minWidth: 160},
+            {field: 'status', align: "center", sort: true, templet: '#statusTpl', title: '状态'},
+            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 300}
         ]];
     };
 
@@ -65,34 +62,20 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 
         });
     };
 
-    /**
-     * 弹出添加用户对话框
-     */
+    // 添加按钮
     MgrUser.openAddUser = function () {
-
-        //获取多语言
-        var langs = layui.data('system').lang;
-
         func.open({
-            title: langs.TITLE_ADD_USER,
-            content: Feng.ctxPath + '/mgr/user_add',
+            title: '添加用户',
+            content: Feng.ctxPath + '/view/user/addView',
             tableId: MgrUser.tableId
         });
     };
 
-    /**
-     * 点击编辑用户按钮时
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    // 修改按钮
     MgrUser.onEditUser = function (data) {
-
-        //获取多语言
-        var langs = layui.data('system').lang;
-
         func.open({
-            title: langs.TITLE_EDIT_USER,
-            content: Feng.ctxPath + '/mgr/user_edit?userId=' + data.userId,
+            title: '修改用户',
+            content: Feng.ctxPath + '/view/user/editView?userId=' + data.userId,
             tableId: MgrUser.tableId
         });
     };
@@ -134,7 +117,6 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 
      * @param data 点击按钮时候的行数据
      */
     MgrUser.roleAssign = function (data) {
-
         //获取多语言
         var langs = layui.data('system').lang;
 
@@ -197,11 +179,12 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + MgrUser.tableId,
-        url: Feng.ctxPath + '/mgr/list',
+        url: Feng.ctxPath + '/sysUser/page',
         page: true,
         height: "full-98",
         cellMinWidth: 100,
-        cols: MgrUser.initColumn()
+        cols: MgrUser.initColumn(),
+        parseData: Feng.parseData
     });
 
     //渲染时间选择框
@@ -212,16 +195,15 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 
     });
 
     // 初始化部门树
-    var ajax = new $ax(Feng.ctxPath + "/dept/layuiTree", function (data) {
+    var request = new HttpRequest(Feng.ctxPath + '/hrOrganization/treeLayui', 'get', function (data) {
         tree.render({
             elem: '#deptTree',
-            data: data,
+            data: data.data,
             click: MgrUser.onClickDept,
             onlyIconControl: true
         });
-    }, function (data) {
     });
-    ajax.start();
+    request.start();
 
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
@@ -256,10 +238,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax', 'func', 
 
     // 修改user状态
     form.on('switch(status)', function (obj) {
-
         var userId = obj.elem.value;
         var checked = obj.elem.checked ? true : false;
-
         MgrUser.changeUserStatus(userId, checked);
     });
 

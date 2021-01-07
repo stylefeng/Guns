@@ -8,9 +8,9 @@ var UserInfoDlg = {
     }
 };
 
-layui.use(['layer', 'form', 'admin', 'laydate', 'ax', 'formSelects'], function () {
+layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], function () {
     var $ = layui.jquery;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var form = layui.form;
     var admin = layui.admin;
     var laydate = layui.laydate;
