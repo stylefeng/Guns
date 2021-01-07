@@ -50,7 +50,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         func.open({
             height: 800,
             title: '添加职位',
-            content: Feng.ctxPath + '/position/addView',
+            content: Feng.ctxPath + '/view/position/addView',
             tableId: Position.tableId
         });
     };
@@ -60,7 +60,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         func.open({
             height: 800,
             title: '修改职位',
-            content: Feng.ctxPath + '/position/editView?positionId=' + data.positionId,
+            content: Feng.ctxPath + '/view/position/editView?positionId=' + data.positionId,
             tableId: Position.tableId
         });
     };
@@ -139,7 +139,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         } else if (event === 'delete') {
             Position.delete(data);
         }
-        dropdown.hideAll();
     });
 
     // 修改状态

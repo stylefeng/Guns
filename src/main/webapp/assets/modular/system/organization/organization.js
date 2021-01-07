@@ -64,7 +64,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'tree', 'util'], function () 
         func.open({
             height: 800,
             title: '添加机构',
-            content: Feng.ctxPath + '/organization/addView',
+            content: Feng.ctxPath + '/view/organization/addView',
             tableId: Organization.tableId
         });
     };
@@ -74,7 +74,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'tree', 'util'], function () 
         func.open({
             height: 800,
             title: '修改机构',
-            content: Feng.ctxPath + '/organization/editView?orgId=' + data.orgId,
+            content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.orgId,
             tableId: Organization.tableId
         });
     };
