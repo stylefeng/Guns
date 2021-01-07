@@ -10,18 +10,18 @@
             <div class="layui-card">
                 <div class="layui-card-body" style="padding: 10px;">
                     <!-- 树工具栏 -->
-<!--                    <div class="layui-form toolbar" id="organizationTreeBar">-->
-<!--                        <button id="organizationAddBtn" class="layui-btn layui-btn-sm icon-btn">-->
-<!--                            <i class="layui-icon">&#xe654;</i>添加-->
-<!--                        </button>&nbsp;-->
-<!--                        <button id="organizationEditBtn" class="layui-btn layui-btn-sm layui-btn-warm icon-btn">-->
-<!--                            <i class="layui-icon">&#xe642;</i>修改-->
-<!--                        </button>&nbsp;-->
-<!--                        <button id="organizationDelBtn"-->
-<!--                                class="layui-btn layui-btn-sm layui-btn-danger icon-btn">-->
-<!--                            <i class="layui-icon">&#xe640;</i>删除-->
-<!--                        </button>-->
-<!--                    </div>-->
+                    <!--                    <div class="layui-form toolbar" id="organizationTreeBar">-->
+                    <!--                        <button id="organizationAddBtn" class="layui-btn layui-btn-sm icon-btn">-->
+                    <!--                            <i class="layui-icon">&#xe654;</i>添加-->
+                    <!--                        </button>&nbsp;-->
+                    <!--                        <button id="organizationEditBtn" class="layui-btn layui-btn-sm layui-btn-warm icon-btn">-->
+                    <!--                            <i class="layui-icon">&#xe642;</i>修改-->
+                    <!--                        </button>&nbsp;-->
+                    <!--                        <button id="organizationDelBtn"-->
+                    <!--                                class="layui-btn layui-btn-sm layui-btn-danger icon-btn">-->
+                    <!--                            <i class="layui-icon">&#xe640;</i>删除-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
                     <!-- 左树 -->
                     <div id="organizationTree"></div>
                 </div>
@@ -56,6 +56,6 @@
 </script>
 
 <script type="text/html" id="statusTpl">
-    <input type="checkbox" lay-filter="status" value="{{d.positionId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}} />
+    <input type="checkbox" lay-filter="status" value="{{d.orgId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}}/>
 </script>
 @}

@@ -93,10 +93,11 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 修改职位状态
     Position.updateStatus = function (positionId, checked) {
         var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/updateStatus", 'post', function (data) {
+            table.reload(Position.tableId);
             Feng.success("修改成功!");
         }, function (data) {
-            Feng.error("修改失败!" + data.responseJSON.message);
             table.reload(Position.tableId);
+            Feng.error("修改失败!" + data.responseJSON.message);
         });
         httpRequest.set({"positionId": positionId, "statusFlag": checked});
         httpRequest.start(true);
