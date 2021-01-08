@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.NumberUtil;
-import cn.stylefeng.guns.modular.system.model.*;
 import cn.stylefeng.guns.core.util.IpInfoUtils;
+import cn.stylefeng.guns.modular.system.model.*;
 import lombok.Data;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;

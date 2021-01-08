@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 /**
+ * 项目监控
+ *
  * @author chenli
- * @date 2020/12/30 16:40
+ * @Date 2020/12/30 16:40
  */
 @Controller
 @Slf4j
@@ -36,10 +38,11 @@ public class MonitorController {
         return PREFIX+"/systemInfo.html";
     }
 
-    /***
-     * 功能描述:   <br/> durid sql监控页面
-     * 创建时间:  2021/1/4 16:32
-     * @author  chenli
+    /**
+     * durid sql监控页面
+     *
+     * @author chenli
+     * @Date 2021/1/4 16:32
      */
     @GetResource(name = "SQL监控", path = "/monitor/druid", requiredPermission = false,requiredLogin = false)
     public String duridInfo(Model model){
