@@ -95,6 +95,11 @@ layui.use(['table', 'HttpRequest', 'func'], function () {
         cols: Resource.initColumn()
     });
 
+    // 搜索按钮点击事件
+    $('#btnSearch').click(function () {
+        Resource.search();
+    });
+
     // 工具条点击事件
     table.on('tool(' + Resource.tableId + ')', function (obj) {
         var data = obj.data;
