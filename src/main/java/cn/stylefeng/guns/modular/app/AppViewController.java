@@ -28,23 +28,23 @@ public class AppViewController {
     }
 
     /**
-     * 新增角色界面
+     * 新增应用界面
      *
      * @author fengshuonan
      * @date 2021/1/6 13:37
      */
-    @GetResource(name = "新增角色界面", path = "/view/app/add")
+    @GetResource(name = "新增应用界面", path = "/view/app/add")
     public String appAdd() {
         return "/modular/auth/app/app_add.html";
     }
 
     /**
-     * 编辑角色界面
+     * 编辑应用界面
      *
      * @author fengshuonan
      * @date 2021/1/6 13:37
      */
-    @GetResource(name = "编辑角色界面", path = "/view/app/edit")
+    @GetResource(name = "编辑应用界面", path = "/view/app/edit")
     public String appEdit() {
         return "/modular/auth/app/app_edit.html";
     }

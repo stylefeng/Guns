@@ -1,4 +1,4 @@
-@layout("/layout/_form.html",{js:["/assets/modular/system/role/role_edit.js"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/auth/role/role_add.js"]}){
 
 <form class="layui-form" id="roleForm" lay-filter="roleForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
@@ -10,26 +10,25 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">角色名称<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="name" placeholder="请输入角色名称" type="text" class="layui-input" lay-verify="required" required/>
+                            <input name="roleName" placeholder="请输入角色名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">上级名称<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">角色编码<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="pid" name="pid" type="hidden">
-                            <input id="pName" name="pName" placeholder="请输入上级名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                            <input name="roleCode" placeholder="角色编码" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">别名<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">排序<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="description" name="description" placeholder="请输入别名" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                            <input name="roleSort" placeholder="排序" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">排序</label>
+                        <label class="layui-form-label">备注</label>
                         <div class="layui-input-block">
-                            <input name="sort" placeholder="请输入排序" type="text" class="layui-input"/>
+                            <input name="remark" placeholder="请填写备注" type="text" class="layui-input" autocomplete="off"/>
                         </div>
                     </div>
                 </div>

@@ -1,17 +1,14 @@
-layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
+layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function () {
     var $ = layui.$;
-    var layer = layui.layer;
-    var form = layui.form;
     var table = layui.table;
-    var $ax = layui.ax;
-    var admin = layui.admin;
+    var HttpRequest = layui.HttpRequest;
     var func = layui.func;
 
     /**
      * 系统管理--角色管理
      */
     var Role = {
-        tableId: "roleTable",    //表格id
+        tableId: "roleTable",
         condition: {
             roleName: ""
         }
@@ -24,10 +21,42 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'roleId', hide: true, sort: true, title: '角色id'},
-            {field: 'name', align: "center", sort: true, title: '名称'},
-            {field: 'pName', align: "center", sort: true, title: '上级角色'},
-            {field: 'description', align: "center", sort: true, title: '别名'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
+            {field: 'roleName', align: "center", sort: true, title: '角色名称'},
+            {field: 'roleCode', align: "center", sort: true, title: '角色编码'},
+            {field: 'roleSort', align: "center", sort: true, title: '排序'},
+            {
+                field: 'dataScopeType', align: "center", sort: true, title: '数据范围类型', templet: function (data) {
+                    if (data.dataScopeType === 10) {
+                        return "仅本人数据";
+                    }
+                    if (data.dataScopeType === 20) {
+                        return "本部门数据";
+                    }
+                    if (data.dataScopeType === 30) {
+                        return "本部门及以下数据";
+                    }
+                    if (data.dataScopeType === 40) {
+                        return "指定部门数据";
+                    }
+                    if (data.dataScopeType === 50) {
+                        return "全部数据";
+                    }
+                    return "未知";
+                }
+            },
+            {
+                field: 'statusFlag', align: "center", sort: true, title: '状态', templet: function (data) {
+                    if (data.statusFlag === 1) {
+                        return "启用";
+                    }
+                    if (data.statusFlag === 2) {
+                        return "禁用";
+                    }
+                    return "未知";
+                }
+            },
+            {field: 'remark', align: "center", sort: true, title: '备注'},
+            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 300}
         ]];
     };
 
@@ -49,7 +78,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
         func.open({
             height: 470,
             title: '添加角色',
-            content: Feng.ctxPath + '/role/role_add',
+            content: Feng.ctxPath + '/view/role/add',
             tableId: Role.tableId
         });
     };
@@ -63,21 +92,9 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
         func.open({
             height: 470,
             title: '修改角色',
-            content: Feng.ctxPath + "/role/role_edit?roleId=" + data.roleId,
+            content: Feng.ctxPath + "/view/role/edit?roleId=" + data.roleId,
             tableId: Role.tableId
         });
-    };
-
-    /**
-     * 导出excel按钮
-     */
-    Role.exportExcel = function () {
-        var checkRows = table.checkStatus(Role.tableId);
-        if (checkRows.data.length === 0) {
-            Feng.error("请选择要导出的数据");
-        } else {
-            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-        }
     };
 
     /**
@@ -87,16 +104,16 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
      */
     Role.onDeleteRole = function (data) {
         var operation = function () {
-            var ajax = new $ax(Feng.ctxPath + "/role/remove", function () {
+            var request = new HttpRequest(Feng.ctxPath + "/sysRole/delete", 'post', function () {
                 Feng.success("删除成功!");
                 table.reload(Role.tableId);
             }, function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
+                Feng.error("删除失败!" + data.message + "!");
             });
-            ajax.set("roleId", data.roleId);
-            ajax.start();
+            request.set("roleId", data.roleId);
+            request.start(true);
         };
-        Feng.confirm("是否删除角色 " + data.name + "?", operation);
+        Feng.confirm("是否删除角色 " + data.roleName + "?", operation);
     };
 
     /**
@@ -121,10 +138,12 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + Role.tableId,
-        url: Feng.ctxPath + '/role/list',
+        url: Feng.ctxPath + '/sysRole/page',
         page: true,
         height: "full-98",
         cellMinWidth: 100,
+        request: {pageName: 'pageNo', limitName: 'pageSize'},
+        parseData: Feng.parseData,
         cols: Role.initColumn()
     });
 
