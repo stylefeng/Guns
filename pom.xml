@@ -29,6 +29,7 @@
 
     <dependencies>
 
+
         <!-- https://mvnrepository.com/artifact/com.ibeetl/beetl -->
         <dependency>
             <groupId>com.ibeetl</groupId>
@@ -98,6 +99,12 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>log-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>timer-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
 
