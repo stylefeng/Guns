@@ -1,4 +1,4 @@
-@layout("/layout/_container.html",{js:["/assets/modular/system/role/role.js"]}){
+@layout("/layout/_container.html",{js:["/assets/modular/auth/role/role.js"]}){
 
 <div class="layui-body-header">
     <span class="layui-body-header-title">角色管理</span>
@@ -16,10 +16,9 @@
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                @if(shiro.hasPermission("/role/add")){
+                                @if(loginUser.haveButton("BUTTON_ROLE_ADD")){
                                 <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
                                 @}
-                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
                             </div>
                         </div>
                     </div>
@@ -31,14 +30,20 @@
 </div>
 
 <script type="text/html" id="tableBar">
-    @if(shiro.hasPermission("/role/edit")){
+    @if(loginUser.haveButton("BUTTON_ROLE_EDIT")){
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     @}
-    @if(shiro.hasPermission("/role/remove")){
+    @if(loginUser.haveButton("BUTTON_ROLE_EDIT")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="editDataScope">设置数据范围</a>
+    @}
+    @if(loginUser.haveButton("BUTTON_ROLE_DELETE")){
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
     @}
-    @if(shiro.hasPermission("/role/setAuthority")){
-    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="roleAssign">权限配置</a>
+    @if(loginUser.haveButton("BUTTON_ROLE_ASSIGN_MENU_BUTTON")){
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="assignMenu">分配菜单按钮</a>
+    @}
+    @if(loginUser.haveButton("BUTTON_ROLE_ASSIGN_RESOURCE")){
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="assignApi">分配接口</a>
     @}
 </script>
 @}

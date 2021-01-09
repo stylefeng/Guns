@@ -28,7 +28,7 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
             {field: 'appName', align: "center", sort: true, title: '应用名称'},
             {field: 'layuiPath', align: "center", sort: true, title: '请求地址', minWidth: 180},
             {
-                field: 'layuiIcon', align: "center", sort: true, title: '图标', templet: '<p><i class="{{d.layuiIcon}}"></i></p>'
+                field: 'layuiIcon', align: "center", sort: true, title: '图标', templet: '<p><i class="layui-icon {{d.layuiIcon}}"></i></p>'
             },
             {
                 field: 'visible', align: "center", sort: true, title: '是否可见', templet: function (data) {
@@ -51,7 +51,7 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
             },
             {field: 'createTime', align: "center", sort: true, title: '创建时间', minWidth: 120},
             {field: 'updateTime', align: "center", sort: true, title: '更新时间', minWidth: 120},
-            {align: 'center', toolbar: '#menuTableBar', title: '操作', minWidth: 120}
+            {align: 'center', toolbar: '#menuTableBar', title: '操作', minWidth: 145}
         ];
     };
 
@@ -70,7 +70,7 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
      */
     Menu.openAddMenu = function () {
         func.open({
-            height: 720,
+            height: 660,
             title: '添加菜单',
             content: Feng.ctxPath + '/view/menu/add',
             tableId: Menu.tableId,
@@ -115,6 +115,23 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
             request.start(true);
         };
         Feng.confirm("是否删除菜单" + data.menuName + "?", operation);
+    };
+
+    /**
+     * 点击菜单 按钮管理 时
+     *
+     * @param data 点击菜单 按钮管理 时的行数据
+     */
+    Menu.onButtonMenu = function (data) {
+        func.open({
+            height: 720,
+            title: '菜单按钮管理',
+            content: Feng.ctxPath + "/view/menuButton?menuId=" + data.menuId,
+            tableId: Menu.tableId,
+            endCallback: function () {
+                Menu.initTable(Menu.tableId);
+            }
+        });
     };
 
     /**
@@ -175,6 +192,8 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
             Menu.onEditMenu(data);
         } else if (layEvent === 'delete') {
             Menu.onDeleteMenu(data);
+        } else if (layEvent === 'button') {
+            Menu.onButtonMenu(data);
         }
     });
 

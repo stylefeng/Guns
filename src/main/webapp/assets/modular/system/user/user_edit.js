@@ -8,19 +8,20 @@ var UserInfoDlg = {
     }
 };
 
-layui.use(['layer', 'form', 'admin', 'laydate', 'ax', 'formSelects'], function () {
+layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], function () {
     var $ = layui.jquery;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var form = layui.form;
     var admin = layui.admin;
     var laydate = layui.laydate;
     var layer = layui.layer;
     var formSelects = layui.formSelects;
 
-    //获取用户信息
-    var ajax = new $ax(Feng.ctxPath + "/mgr/getUserInfo?userId=" + Feng.getUrlParam("userId"));
-    var result = ajax.start();
+    //获取信息详情填充表单
+    var request = new HttpRequest(Feng.ctxPath + "/sysUser/detail?userId=" + Feng.getUrlParam("userId"), 'get');
+    var result = request.start();
     form.val('userForm', result.data);
+
 
     // 点击部门时
     $('#deptName').click(function () {
@@ -77,9 +78,9 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'ax', 'formSelects'], function (
     });
 
     //初始化所有的职位列表
-    formSelects.config('selPosition', {
-        searchUrl: Feng.ctxPath + "/position/listPositions?userId=" + $("#userId").val(),
-        keyName: 'name',
-        keyVal: 'positionId'
-    });
+    // formSelects.config('selPosition', {
+    //     searchUrl: Feng.ctxPath + "/position/listPositions?userId=" + $("#userId").val(),
+    //     keyName: 'name',
+    //     keyVal: 'positionId'
+    // });
 });

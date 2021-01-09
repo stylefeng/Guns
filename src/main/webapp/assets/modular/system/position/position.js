@@ -50,7 +50,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         func.open({
             height: 800,
             title: '添加职位',
-            content: Feng.ctxPath + '/position/addView',
+            content: Feng.ctxPath + '/view/position/addView',
             tableId: Position.tableId
         });
     };
@@ -60,7 +60,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         func.open({
             height: 800,
             title: '修改职位',
-            content: Feng.ctxPath + '/position/editView?positionId=' + data.positionId,
+            content: Feng.ctxPath + '/view/position/editView?positionId=' + data.positionId,
             tableId: Position.tableId
         });
     };
@@ -93,10 +93,11 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 修改职位状态
     Position.updateStatus = function (positionId, checked) {
         var httpRequest = new HttpRequest(Feng.ctxPath + "/hrPosition/updateStatus", 'post', function (data) {
+            table.reload(Position.tableId);
             Feng.success("修改成功!");
         }, function (data) {
-            Feng.error("修改失败!" + data.responseJSON.message);
             table.reload(Position.tableId);
+            Feng.error("修改失败!" + data.responseJSON.message);
         });
         httpRequest.set({"positionId": positionId, "statusFlag": checked});
         httpRequest.start(true);
@@ -138,7 +139,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         } else if (event === 'delete') {
             Position.delete(data);
         }
-        dropdown.hideAll();
     });
 
     // 修改状态

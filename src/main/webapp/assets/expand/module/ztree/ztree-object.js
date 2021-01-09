@@ -3,28 +3,28 @@ layui.define(['jquery', 'HttpRequest'], function (exports) {
     var $ = layui.$;
     var HttpRequest = layui.HttpRequest;
 
-    var $ZTree = function(id, url) {
+    var $ZTree = function (id, url) {
         this.id = id;
         this.url = url;
         this.onClick = null;
         this.settings = null;
-        this.ondblclick=null;
+        this.ondblclick = null;
     };
 
     $ZTree.prototype = {
         /**
          * 初始化ztree的设置
          */
-        initSetting : function() {
+        initSetting: function () {
             var settings = {
-                view : {
-                    dblClickExpand : true,
-                    selectedMulti : false
+                view: {
+                    dblClickExpand: true,
+                    selectedMulti: false
                 },
-                data : {simpleData : {enable : true}},
-                callback : {
-                    onClick : this.onClick,
-                    onDblClick:this.ondblclick
+                data: {simpleData: {enable: true}},
+                callback: {
+                    onClick: this.onClick,
+                    onDblClick: this.ondblclick
                 }
             };
             return settings;
@@ -33,18 +33,18 @@ layui.define(['jquery', 'HttpRequest'], function (exports) {
         /**
          * 手动设置ztree的设置
          */
-        setSettings : function(val) {
+        setSettings: function (val) {
             this.settings = val;
         },
 
         /**
          * 初始化ztree
          */
-        init : function() {
+        init: function () {
             var zNodeSeting = null;
-            if(this.settings != null){
+            if (this.settings != null) {
                 zNodeSeting = this.settings;
-            }else{
+            } else {
                 zNodeSeting = this.initSetting();
             }
             var zNodes = this.loadNodes();
@@ -54,25 +54,25 @@ layui.define(['jquery', 'HttpRequest'], function (exports) {
         /**
          * 绑定onclick事件
          */
-        bindOnClick : function(func) {
+        bindOnClick: function (func) {
             this.onClick = func;
         },
         /**
          * 绑定双击事件
          */
-        bindOnDblClick : function(func) {
-            this.ondblclick=func;
+        bindOnDblClick: function (func) {
+            this.ondblclick = func;
         },
 
 
         /**
          * 加载节点
          */
-        loadNodes : function() {
+        loadNodes: function () {
             var zNodes = null;
-            var request = new HttpRequest(Feng.ctxPath + this.url, 'get', function(data) {
+            var request = new HttpRequest(Feng.ctxPath + this.url, 'get', function (data) {
                 zNodes = data;
-            }, function(data) {
+            }, function (data) {
                 Feng.error("加载ztree信息失败!");
             });
             request.start();
@@ -82,11 +82,20 @@ layui.define(['jquery', 'HttpRequest'], function (exports) {
         /**
          * 获取选中的值
          */
-        getSelectedVal : function(){
+        getSelectedVal: function () {
             var zTree = $.fn.zTree.getZTreeObj(this.id);
             var nodes = zTree.getSelectedNodes();
             return nodes[0].name;
+        },
+
+        /**
+         * 获取选中的值的集合
+         */
+        getCheckedNodes: function () {
+            var zTree = $.fn.zTree.getZTreeObj(this.id);
+            return zTree.getCheckedNodes();
         }
+
     };
 
     exports('ztree', $ZTree);
