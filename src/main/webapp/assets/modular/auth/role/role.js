@@ -56,7 +56,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
                 }
             },
             {field: 'remark', align: "center", sort: true, title: '备注'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 300}
+            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 400}
         ]];
     };
 
@@ -93,6 +93,20 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
             height: 470,
             title: '修改角色',
             content: Feng.ctxPath + "/view/role/edit?roleId=" + data.roleId,
+            tableId: Role.tableId
+        });
+    };
+
+    /**
+     * 点击编辑数据范围
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Role.onEditDataScope = function (data) {
+        func.open({
+            height: 470,
+            title: '修改数据范围',
+            content: Feng.ctxPath + "/view/role/editDataScope?roleId=" + data.roleId,
             tableId: Role.tableId
         });
     };
@@ -169,6 +183,8 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
 
         if (layEvent === 'edit') {
             Role.onEditRole(data);
+        } else if (layEvent === 'editDataScope') {
+            Role.onEditDataScope(data);
         } else if (layEvent === 'delete') {
             Role.onDeleteRole(data);
         } else if (layEvent === 'roleAssign') {

@@ -49,4 +49,15 @@ public class RoleViewController {
         return "/modular/auth/role/role_edit.html";
     }
 
+    /**
+     * 修改数据范围界面
+     *
+     * @author fengshuonan
+     * @date 2021/1/8 20:57
+     */
+    @GetResource(name = "修改数据范围界面", path = "/view/role/editDataScope")
+    public String roleEditDataScope() {
+        return "/modular/auth/role/role_edit_data_scope.html";
+    }
+
 }
