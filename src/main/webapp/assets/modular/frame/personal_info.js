@@ -31,23 +31,23 @@ layui.use(['form', 'upload', 'element', 'HttpRequest', 'laydate'], function () {
 
     upload.render({
         elem: '#imgHead'
-        , url: Feng.ctxPath + '/system/upload'
+        , url: Feng.ctxPath + '/sysFileInfo/upload?secretFlag=Y'
         , before: function (obj) {
             obj.preview(function (index, file, result) {
                 $('#avatarPreview').attr('src', result);
             });
         }
         , done: function (res) {
-            var updateAvatarRequest = new HttpRequest(Feng.ctxPath + "/system/updateAvatar", function (data) {
-                Feng.success(res.message);
+            var updateAvatarRequest = new HttpRequest(Feng.ctxPath + "/sysUser/updateAvatar", 'post', function (data) {
+                Feng.success("更新头像成功!");
             }, function (data) {
-                Feng.error("修改失败!" + data.message + "!");
+                Feng.error("更新头像失败!" + data.message + "!");
             });
-            updateAvatarRequest.set("fileId", res.data.fileId);
-            updateAvatarRequest.start();
+            updateAvatarRequest.set("avatar", res.data.fileId);
+            updateAvatarRequest.start(true);
         }
         , error: function () {
-            Feng.error("上传头像失败！");
+            Feng.error("更新头像失败！");
         }
     });
 });
