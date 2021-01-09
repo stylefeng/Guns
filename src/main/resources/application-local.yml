@@ -9,16 +9,3 @@ spring:
     # 连接池大小根据实际情况调整
     max-active: 100
     max-pool-prepared-statement-per-connection-size: 100
-    druid:
-      initialSize: 50
-      minIdle: 50
-      maxActive: 200
-      maxWait: 60000
-      timeBetweenEvictionRunsMillis: 60000
-      minEvictableIdleTimeMillis: 300000
-      maxEvictableIdleTimeMillis: 900000
-      validationQuery: SELECT 1 FROM DUAL
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      poolPreparedStatements: false
