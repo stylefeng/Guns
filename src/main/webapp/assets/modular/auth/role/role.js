@@ -131,21 +131,32 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
     };
 
     /**
-     * 分配菜单
+     * 分配菜单和按钮
      *
      * @param data 点击按钮时候的行数据
      */
-    Role.roleAssign = function (data) {
-        parent.layer.open({
-            type: 2,
-            title: '权限配置',
-            area: ['300px', '450px'], //宽高
-            fix: false,
-            maxmin: true,
-            content: Feng.ctxPath + '/role/role_assign/' + data.roleId,
-            end: function () {
-                table.reload(Role.tableId);
-            }
+    Role.assignMenu = function (data) {
+        func.open({
+            height: 650,
+            width: 750,
+            title: '分配菜单',
+            content: Feng.ctxPath + "/view/role/assignMenuAndButtons?roleId=" + data.roleId,
+            tableId: Role.tableId
+        });
+    };
+
+    /**
+     * 分配接口
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Role.assignApi = function (data) {
+        func.open({
+            height: 650,
+            width: 550,
+            title: '分配接口',
+            content: Feng.ctxPath + "/view/role/assignApi?roleId=" + data.roleId,
+            tableId: Role.tableId
         });
     };
 
@@ -187,8 +198,10 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
             Role.onEditDataScope(data);
         } else if (layEvent === 'delete') {
             Role.onDeleteRole(data);
-        } else if (layEvent === 'roleAssign') {
-            Role.roleAssign(data);
+        } else if (layEvent === 'assignMenu') {
+            Role.assignMenu(data);
+        } else if (layEvent === 'assignApi') {
+            Role.assignApi(data);
         }
     });
 });
