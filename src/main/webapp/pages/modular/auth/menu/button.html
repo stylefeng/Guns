@@ -1,7 +1,8 @@
-@layout("/layout/_container.html",{plugins:["ztree"], js:["/assets/modular/auth/menu/menu.js"]}){
+@layout("/layout/_container.html",{js:["/assets/modular/auth/menu/button.js"]}){
+
 
 <div class="layui-body-header">
-    <span class="layui-body-header-title">菜单管理</span>
+    <span class="layui-body-header-title">菜单按钮管理</span>
 </div>
 
 <div class="layui-fluid">
@@ -12,30 +13,24 @@
                     <div class="layui-form toolbar">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input id="menuName" class="layui-input" type="text" placeholder="菜单名称"/>
-                            </div>
-                            <div class="layui-inline">
-                                <input id="menuCode" class="layui-input" type="text" placeholder="菜单编码"/>
+                                <input id="buttonName" class="layui-input" type="text" placeholder="按钮名称"/>
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
                                 <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                <button id="expandAll" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>展开所有</button>
-                                <button id="foldAll" class="layui-btn icon-btn"><i class="layui-icon">&#xe656;</i>折叠所有</button>
+                                <button id="btnBatchDelete" class="layui-btn layui-btn-danger icon-btn"><i class="layui-icon">&#xe640;</i>删除选中</button>
                             </div>
                         </div>
                     </div>
-                    <table class="layui-table" id="menuTable"></table>
+                    <table class="layui-table" id="menuButtonTable" lay-filter="menuButtonTable"></table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/html" id="menuTableBar">
+<script type="text/html" id="tableBar">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-    <a class="layui-btn layui-btn-default layui-btn-xs" lay-event="button">按钮管理</a>
 </script>
-
 @}

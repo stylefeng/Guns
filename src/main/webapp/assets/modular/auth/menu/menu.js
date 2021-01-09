@@ -118,6 +118,23 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
     };
 
     /**
+     * 点击菜单 按钮管理 时
+     *
+     * @param data 点击菜单 按钮管理 时的行数据
+     */
+    Menu.onButtonMenu = function (data) {
+        func.open({
+            height: 720,
+            title: '菜单按钮管理',
+            content: Feng.ctxPath + "/view/menuButton?menuId=" + data.menuId,
+            tableId: Menu.tableId,
+            endCallback: function () {
+                Menu.initTable(Menu.tableId);
+            }
+        });
+    };
+
+    /**
      * 初始化表格
      */
     Menu.initTable = function (menuId, reqData) {
@@ -175,6 +192,8 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
             Menu.onEditMenu(data);
         } else if (layEvent === 'delete') {
             Menu.onDeleteMenu(data);
+        } else if (layEvent === 'button') {
+            Menu.onButtonMenu(data);
         }
     });
 
