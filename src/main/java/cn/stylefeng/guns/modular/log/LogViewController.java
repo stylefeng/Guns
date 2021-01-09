@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @Slf4j
-@ApiResource(name = "操作日志管理相关的界面渲染", path = "log")
+@ApiResource(name = "操作日志管理相关的界面渲染", path = "/view/log")
 public class LogViewController {
 
     private String PREFIX = "/modular/system/log";
