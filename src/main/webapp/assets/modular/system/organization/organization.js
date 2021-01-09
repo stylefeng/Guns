@@ -1,15 +1,39 @@
-layui.use(['table', 'form', 'func', 'HttpRequest', 'xmSelect', 'util'], function () {
+layui.use(['table', 'form', 'func', 'HttpRequest', 'tree', 'util'], function () {
     var $ = layui.$;
     var table = layui.table;
     var form = layui.form;
     var func = layui.func;
     var HttpRequest = layui.HttpRequest;
     var xmSelect = layui.xmSelect;
+    var tree = layui.tree;
 
     // 职位表管理
     var Organization = {
         tableId: "organizationTable"
     };
+
+
+    /* 渲染树形 */
+    function renderTree() {
+        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (data) {
+            tree.render({
+                elem: '#organizationTree',
+                onlyIconControl: true,
+                data: data.data,
+                click: function (rest) {
+                    $('#organizationTree').find('.ew-tree-click').removeClass('ew-tree-click');
+                    $(rest.elem).children('.layui-tree-entry').addClass('ew-tree-click');
+                    table.reload(Organization.tableId, {
+                        where: {organizationId: rest.data.id},
+                        page: {curr: 1}
+                    });
+                }
+            });
+            $('#organizationTree').find('.layui-tree-entry:first>.layui-tree-main>.layui-tree-txt').trigger('click');
+        });
+    }
+
+    renderTree();
 
     // 初始化表格的列
     Organization.initColumn = function () {
@@ -40,7 +64,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'xmSelect', 'util'], function
         func.open({
             height: 800,
             title: '添加机构',
-            content: Feng.ctxPath + '/hrOrganization/addView',
+            content: Feng.ctxPath + '/view/organization/addView',
             tableId: Organization.tableId
         });
     };
@@ -50,7 +74,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'xmSelect', 'util'], function
         func.open({
             height: 800,
             title: '修改机构',
-            content: Feng.ctxPath + '/organization/editView?orgId=' + data.orgId,
+            content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.orgId,
             tableId: Organization.tableId
         });
     };
@@ -68,24 +92,29 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'xmSelect', 'util'], function
     // 点击删除
     Organization.delete = function (data) {
         var operation = function () {
-            ajaxUtil.post(Feng.ctxPath + "/hrOrganization/delete", {"orgId":data.positionId},function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/hrOrganization/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(Organization.tableId);
-            },function (data) {
+            }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
+            httpRequest.set(data);
+            httpRequest.start(true);
         };
         Feng.confirm("是否删除?", operation);
     };
 
     // 修改职位状态
-    Organization.updateStatus = function (positionId, checked) {
-        ajaxUtil.post(Feng.ctxPath + "/hrOrganization/updateStatus", {"orgId":positionId,"statusFlag":checked},function (data) {
-            Feng.success("修改成功!");
-        },function (data) {
-            Feng.error("修改失败!" + data.responseJSON.message);
+    Organization.updateStatus = function (orgId, checked) {
+        var httpRequest = new HttpRequest(Feng.ctxPath + "/hrOrganization/updateStatus", 'post', function (data) {
             table.reload(Organization.tableId);
+            Feng.success("修改成功!");
+        }, function (data) {
+            table.reload(Organization.tableId);
+            Feng.error("修改失败!" + data.responseJSON.message);
         });
+        httpRequest.set({"orgId": orgId, "statusFlag": checked});
+        httpRequest.start(true);
     };
 
     // 渲染表格
@@ -128,8 +157,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'xmSelect', 'util'], function
 
     // 修改状态
     form.on('switch(status)', function (obj) {
-        var positionId = obj.elem.value;
+        var orgId = obj.elem.value;
         var checked = obj.elem.checked ? 1 : 2;
-        Organization.updateStatus(positionId, checked);
+        Organization.updateStatus(orgId, checked);
     });
 });

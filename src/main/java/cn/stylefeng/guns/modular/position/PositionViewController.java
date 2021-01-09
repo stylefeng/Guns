@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @Slf4j
-@ApiResource(name = "职位管理相关的界面渲染", path = "position")
+@ApiResource(name = "职位管理相关的界面渲染", path = "/view/position")
 public class PositionViewController {
 
     private String PREFIX = "/modular/system/position";
@@ -24,7 +24,7 @@ public class PositionViewController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "职位管理-首页-视图", path = "", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "职位管理-首页-视图", path = "")
     public String indexView() {
         return PREFIX + "/position.html";
     }
@@ -35,7 +35,7 @@ public class PositionViewController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "职位管理-首页-视图", path = "/addView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "职位管理-首页-视图", path = "/addView")
     public String addView() {
         return PREFIX + "/position_add.html";
     }
@@ -46,7 +46,7 @@ public class PositionViewController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "职位管理-首页-视图", path = "editView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "职位管理-首页-视图", path = "editView")
     public String editView() {
         return PREFIX + "/position_edit.html";
     }
