@@ -1,9 +1,8 @@
-layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
+layui.use(['table', 'HttpRequest', 'func'], function () {
     var $ = layui.$;
     var table = layui.table;
     var HttpRequest = layui.HttpRequest;
     var func = layui.func;
-    var form = layui.form;
 
     var menuId = Feng.getUrlParam("menuId");
 
@@ -105,7 +104,7 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
         MenuButton.openAddDlg();
     });
 
-    // 添加按钮点击事件
+    // 批量删除按钮点击事件
     $('#btnBatchDelete').click(function () {
         let checkStatus = table.checkStatus(MenuButton.tableId);
         let dataArray = checkStatus.data;
@@ -116,7 +115,7 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
         }
 
         let reqData = [];
-        dataArray.forEach(d=>{
+        dataArray.forEach(d => {
             reqData.push(d.buttonId);
         })
 
