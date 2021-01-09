@@ -1,35 +1,136 @@
-@layout("/layout/_container.html",{js:["/assets/modular/auth/resource/resource.js"]}){
+@layout("/layout/_container.html",{js:["/assets/modular/auth/resource/resource_detail.js"]}){
 
 <div class="layui-body-header">
     <span class="layui-body-header-title">资源管理</span>
 </div>
+<form class="layui-form" id="resourceForm" lay-filter="resourceForm">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-form-item layui-row">
 
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="layui-form toolbar">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <input id="resourceName" class="layui-input" type="text" placeholder="资源名称"/>
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">应用标识</label>
+                                <div class="layui-input-block">
+                                    <input name="appCode" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
                             </div>
-                            <div class="layui-inline">
-                                <input id="url" class="layui-input" type="text" placeholder="资源url"/>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">资源标识</label>
+                                <div class="layui-input-block">
+                                    <input name="resourceCode" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
                             </div>
-                            <div class="layui-inline">
-                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">资源名称</label>
+                                <div class="layui-input-block">
+                                    <input name="resourceName" placeholder="资源名称" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
                             </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">项目编码</label>
+                                <div class="layui-input-block">
+                                    <input name="projectCode" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">控制器类名</label>
+                                <div class="layui-input-block">
+                                    <input name="className" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">方法名称</label>
+                                <div class="layui-input-block">
+                                    <input name="methodName" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">资源所属模块</label>
+                                <div class="layui-input-block">
+                                    <input name="modularCode" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">模块中文名称</label>
+                                <div class="layui-input-block">
+                                    <input name="modularName" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">初始化地址</label>
+                                <div class="layui-input-block">
+                                    <input name="ipAddress" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">是否视图类型</label>
+                                <div class="layui-input-block">
+                                    <input name="viewFlag" type="checkbox" lay-skin="switch" lay-filter="viewFlag" lay-text="是|否" disabled=""/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">请求路径</label>
+                                <div class="layui-input-block">
+                                    <input name="url" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">请求方法</label>
+                                <div class="layui-input-block">
+                                    <input name="httpMethod" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">是否需要登录</label>
+                                <div class="layui-input-block">
+                                    <input name="requiredLoginFlag" type="checkbox" lay-skin="switch" lay-filter="requiredLoginFlag" lay-text="是|否" disabled=""/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">是否需要鉴权</label>
+                                <div class="layui-input-block">
+                                    <input name="requiredPermissionFlag" type="checkbox" lay-skin="switch" lay-filter="requiredPermissionFlag" lay-text="是|否" disabled=""/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">资源添加日期</label>
+                                <div class="layui-input-block">
+                                    <input name="createTime" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline layui-col-md12">
+                                <label class="layui-form-label">创建人</label>
+                                <div class="layui-input-block">
+                                    <input name="createUser" type="text" disabled readonly class="layui-input layui-disabled"/>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <table class="layui-table" id="resourceTable" lay-filter="resourceTable"></table>
                 </div>
             </div>
         </div>
     </div>
+</form>
+<div class="form-group-bottom text-center" style="z-index: 200">
+    <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
 </div>
-
-<script type="text/html" id="tableBar">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详情</a>
-</script>
 @}

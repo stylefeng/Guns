@@ -49,4 +49,26 @@ public class RoleViewController {
         return "/modular/auth/role/role_edit.html";
     }
 
+    /**
+     * 分配接口界面
+     *
+     * @author majianguo
+     * @date 2021/1/9 11:43
+     */
+    @GetResource(name = "分配接口界面", path = "/view/role/assignApi")
+    public String roleAssignApi() {
+        return "/modular/auth/role/role_assign_api.html";
+    }
+
+    /**
+     * 分配菜单和按钮界面
+     *
+     * @author majianguo
+     * @date 2021/1/9 11:45
+     */
+    @GetResource(name = "分配菜单界面", path = "/view/role/assignMenuAndButtons")
+    public String roleAssignMenuButton() {
+        return "/modular/auth/role/role_assign_menu_button.html";
+    }
+
 }
