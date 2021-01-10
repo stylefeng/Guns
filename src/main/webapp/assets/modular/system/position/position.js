@@ -97,7 +97,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
             Feng.success("修改成功!");
         }, function (data) {
             table.reload(Position.tableId);
-            Feng.error("修改失败!" + data.responseJSON.message);
+            Feng.error("修改失败!" + data.message);
         });
         httpRequest.set({"positionId": positionId, "statusFlag": checked});
         httpRequest.start(true);

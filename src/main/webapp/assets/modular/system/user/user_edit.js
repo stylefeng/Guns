@@ -8,7 +8,7 @@ var UserInfoDlg = {
     }
 };
 
-layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], function () {
+layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects', 'xmSelect'], function () {
     var $ = layui.jquery;
     var HttpRequest = layui.HttpRequest;
     var form = layui.form;
@@ -16,31 +16,56 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], f
     var laydate = layui.laydate;
     var layer = layui.layer;
     var formSelects = layui.formSelects;
+    var xmSelect = layui.xmSelect;
+    var insXmSel;
 
     //获取信息详情填充表单
     var request = new HttpRequest(Feng.ctxPath + "/sysUser/detail?userId=" + Feng.getUrlParam("userId"), 'get');
     var result = request.start();
     form.val('userForm', result.data);
-
+    renderTree(result.data.orgId);
 
     // 点击部门时
-    $('#deptName').click(function () {
-        var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
-        var formId = encodeURIComponent("parent.UserInfoDlg.data.deptId");
-        var treeUrl = encodeURIComponent("/dept/tree");
+    // $('#deptName').click(function () {
+    //     var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
+    //     var formId = encodeURIComponent("parent.UserInfoDlg.data.deptId");
+    //     var treeUrl = encodeURIComponent("/dept/tree");
+    //
+    //     layer.open({
+    //         type: 2,
+    //         title: '部门选择',
+    //         area: ['300px', '400px'],
+    //         content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
+    //         end: function () {
+    //             console.log(UserInfoDlg.data);
+    //             $("#deptId").val(UserInfoDlg.data.deptId);
+    //             $("#deptName").val(UserInfoDlg.data.deptName);
+    //         }
+    //     });
+    // });
 
-        layer.open({
-            type: 2,
-            title: '部门选择',
-            area: ['300px', '400px'],
-            content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
-            end: function () {
-                console.log(UserInfoDlg.data);
-                $("#deptId").val(UserInfoDlg.data.deptId);
-                $("#deptName").val(UserInfoDlg.data.deptName);
-            }
+    /* 渲染树形 */
+    function renderTree(orgParentId) {
+        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (data) {
+            insXmSel = xmSelect.render({
+                el: '#organizationEditParentSel',
+                height: '250px',
+                data: data.data,
+                initValue: [orgParentId],
+                model: {label: {type: 'text'}},
+                prop: {name: 'title', value: 'id'},
+                radio: true,
+                clickClose: true,
+                tree: {
+                    show: true,
+                    indent: 15,
+                    strict: false,
+                    expandedKeys: true
+                }
+            });
         });
-    });
+    }
+
 
     // 添加表单验证方法
     form.verify({
@@ -78,9 +103,9 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], f
     });
 
     //初始化所有的职位列表
-    // formSelects.config('selPosition', {
-    //     searchUrl: Feng.ctxPath + "/position/listPositions?userId=" + $("#userId").val(),
-    //     keyName: 'name',
-    //     keyVal: 'positionId'
-    // });
+    formSelects.config('selPosition', {
+        searchUrl: Feng.ctxPath + "/hrPosition/list",
+        keyName: 'positionName',
+        keyVal: 'positionId'
+    });
 });

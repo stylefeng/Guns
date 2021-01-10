@@ -8,7 +8,7 @@ var UserInfoDlg = {
     }
 };
 
-layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], function () {
+layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects', 'xmSelect'], function () {
     var $ = layui.jquery;
     var HttpRequest = layui.HttpRequest;
     var form = layui.form;
@@ -16,7 +16,8 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], f
     var laydate = layui.laydate;
     var layer = layui.layer;
     var formSelects = layui.formSelects;
-
+    var xmSelect = layui.xmSelect;
+    var insXmSel;
     // 点击部门时
     $('#deptName').click(function () {
         var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
@@ -35,6 +36,29 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], f
         });
     });
 
+    /* 渲染树形 */
+    function renderTree() {
+        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (data) {
+            insXmSel = xmSelect.render({
+                el: '#organizationEditParentSel',
+                height: '250px',
+                data: data.data,
+                model: {label: {type: 'text'}},
+                prop: {name: 'title', value: 'id'},
+                radio: true,
+                clickClose: true,
+                tree: {
+                    show: true,
+                    indent: 15,
+                    strict: false,
+                    expandedKeys: true
+                }
+            });
+        });
+    }
+
+    renderTree();
+
     // 添加表单验证方法
     form.verify({
         psw: [/^[\S]{6,12}$/, '密码必须6到12位，且不能出现空格'],
@@ -52,29 +76,26 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects'], f
 
     // 表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/mgr/add", function (data) {
-            Feng.success("添加成功！");
 
-            //传给上个页面，刷新table用
-            admin.putTempData('formOk', true);
+        //获取机构id
+        data.field.orgId = insXmSel.getValue('valueStr');
 
-            //关掉对话框
+        var request = new HttpRequest(Feng.ctxPath + "/sysUser/add", 'post', function (data) {
             admin.closeThisDialog();
-
+            Feng.success("添加成功！");
+            admin.putTempData('formOk', true);
         }, function (data) {
-            Feng.error("添加失败！" + data.responseJSON.message)
+            admin.closeThisDialog();
+            Feng.error("添加失败！" + data.message);
         });
-        ajax.set(data.field);
-        ajax.start();
-
-        //添加 return false 可成功跳转页面
-        return false;
+        request.set(data.field);
+        request.start(true);
     });
 
     //初始化所有的职位列表
     formSelects.config('selPosition', {
-        searchUrl: Feng.ctxPath + "/position/listPositions",
-        keyName: 'name',
+        searchUrl: Feng.ctxPath + "/hrPosition/list",
+        keyName: 'positionName',
         keyVal: 'positionId'
     });
 });

@@ -96,7 +96,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'tree', 'util'], function () 
                 Feng.success("删除成功!");
                 table.reload(Organization.tableId);
             }, function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
+                Feng.error("删除失败!" + data.message + "!");
             });
             httpRequest.set(data);
             httpRequest.start(true);
@@ -111,7 +111,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'tree', 'util'], function () 
             Feng.success("修改成功!");
         }, function (data) {
             table.reload(Organization.tableId);
-            Feng.error("修改失败!" + data.responseJSON.message);
+            Feng.error("修改失败!" + data.message);
         });
         httpRequest.set({"orgId": orgId, "statusFlag": checked});
         httpRequest.start(true);

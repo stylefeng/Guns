@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">出生日期</label>
+                        <label class="layui-form-label">出生日期<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
                             <input id="birthday" name="birthday" placeholder="请输入生日" type="text" class="layui-input date-icon" autocomplete="off"/>
                         </div>
@@ -28,7 +28,7 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">邮箱<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="email" placeholder="请输入邮箱" type="text" class="layui-input" lay-verify="required|email" required />
+                            <input name="email" placeholder="请输入邮箱" type="text" class="layui-input" lay-verify="required|email" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
@@ -39,9 +39,9 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">电话</label>
+                        <label class="layui-form-label">电话<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="phone" placeholder="请输入电话" type="text" class="layui-input"/>
+                            <input name="phone" placeholder="请输入电话" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                 </div>
@@ -52,16 +52,23 @@
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">部门<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">机构<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="deptId" name="deptId" type="hidden">
-                            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                            <div id="organizationEditParentSel" class="ew-xmselect-tree"></div>
                         </div>
                     </div>
+                    <!--                    <div class="layui-inline layui-col-md12">-->
+                    <!--                        <label class="layui-form-label">机构<span style="color: red;">*</span></label>-->
+                    <!--                        <div class="layui-input-block">-->
+                    <!--                            <input id="deptId" name="deptId" type="hidden">-->
+                    <!--                            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">职位<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <select name="position" id="position" xm-select="selPosition" lay-verify="required" required>
+                            <select name="positionId" xm-select="selPosition">
+                                <option value="">请选择职位</option>
                             </select>
                         </div>
                     </div>

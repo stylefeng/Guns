@@ -20,6 +20,7 @@
                         <div class="layui-card-body">
                             <div class="layui-form toolbar">
 
+                                <input id="defaultPassword" class="layui-input" type="hidden" value="${constants.getDefaultPassWord()}"/>
                                 <div class="layui-form-item">
                                     <div class="layui-inline">
                                         <input id="name" class="layui-input" type="text" placeholder=""/>
@@ -51,6 +52,6 @@
 </script>
 
 <script type="text/html" id="statusTpl">
-    <input type="checkbox" lay-filter="status" value="{{d.userId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}} />
+    <input type="checkbox" lay-filter="status" value="{{d.userId}}" lay-skin="switch" lay-text="正常|锁定" {{d.statusFlag=='1'?'checked':''}}/>
 </script>
 @}

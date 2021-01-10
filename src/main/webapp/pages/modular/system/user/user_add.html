@@ -16,13 +16,13 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">姓名<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="name" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
+                            <input name="realName" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">生日</label>
+                        <label class="layui-form-label">生日<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="birthday" name="birthday" placeholder="请输入生日" type="text" class="layui-input date-icon" autocomplete="off"/>
+                            <input id="birthday" name="birthday" placeholder="请输入生日" type="text" class="layui-input date-icon" autocomplete="off" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md6">
@@ -51,9 +51,9 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">电话</label>
+                        <label class="layui-form-label">电话<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="phone" placeholder="请输入电话" type="text" class="layui-input"/>
+                            <input name="phone" placeholder="请输入电话" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                 </div>
@@ -64,16 +64,22 @@
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">部门<span style="color: red;">*</span></label>
-                        <div class="layui-input-block">
-                            <input id="deptId" name="deptId" type="hidden">
-                            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
-                        </div>
-                    </div>
-                    <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">机构<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <select name="position" xm-select="selPosition">
+                            <div id="organizationEditParentSel" class="ew-xmselect-tree"></div>
+                        </div>
+                    </div>
+                    <!--                    <div class="layui-inline layui-col-md12">-->
+                    <!--                        <label class="layui-form-label">机构<span style="color: red;">*</span></label>-->
+                    <!--                        <div class="layui-input-block">-->
+                    <!--                            <input id="deptId" name="deptId" type="hidden">-->
+                    <!--                            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">职位<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <select name="positionId" xm-select="selPosition">
                                 <option value="">请选择职位</option>
                             </select>
                         </div>
