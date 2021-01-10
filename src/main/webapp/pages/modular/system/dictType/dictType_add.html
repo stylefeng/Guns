@@ -14,18 +14,24 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">系统字典<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="dictTypeClass" value="1" title="业务类型" lay-filter="dictTypeClass" checked="">
+                            <input type="radio" name="dictTypeClass" value="2" title="系统类型" lay-filter="dictTypeClass">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">系统类型与代码中枚举关联，添加后不可修改</div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">类型编码<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
                             <input id="dictTypeCode" name="dictTypeCode" placeholder="请输入字典类型编码，例如：STATUS" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">系统字典<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">业务编码</label>
                         <div class="layui-input-block">
-                            <input type="radio" name="dictTypeClass" value="1" title="业务类型">
-                            <input type="radio" name="dictTypeClass" value="2" title="系统类型" checked="">
+                            <input id="dictTypeBusCode" name="dictTypeBusCode" placeholder="请输入字典业务编码" type="text" class="layui-input"/>
                         </div>
-                        <div class="layui-form-mid layui-word-aux">系统字典与代码中枚举关联，添加后不可修改</div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">排序</label>

@@ -1,13 +1,9 @@
-package cn.stylefeng.guns.modular.dict;
+package cn.stylefeng.guns.modular.dict.controller;
 
 
-import cn.stylefeng.roses.kernel.dict.modular.pojo.request.DictTypeRequest;
-import cn.stylefeng.roses.kernel.dict.modular.service.DictTypeService;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -23,9 +19,6 @@ public class DictTypeViewController {
 
     private String PREFIX = "/modular/system/dictType";
 
-    @Autowired
-    private DictTypeService dictTypeService;
-
     /**
      * 字典类型管理-字典类型-视图
      *
@@ -34,7 +27,7 @@ public class DictTypeViewController {
      * @author huangyao
      * @date 2021/1/6 21:08
      */
-    @GetResource(name = "字典类型管理-字典类型-视图", path = "", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "字典类型管理-列表-视图", path = "")
     public String indexView() {
         return PREFIX + "/dictType.html";
     }
@@ -47,7 +40,7 @@ public class DictTypeViewController {
      * @author huangyao
      * @date 2021/1/6 21:25
      */
-    @GetResource(name = "字典类型管理-添加-视图", path = "/addView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "字典类型管理-添加-视图", path = "/addView")
     public String addView() {
         return PREFIX + "/dictType_add.html";
     }
@@ -60,12 +53,9 @@ public class DictTypeViewController {
      * @author huangyao
      * @date 2021/1/6 21:26
      */
-    @GetResource(name = "字典类型管理-编辑-视图", path = "/editView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "字典类型管理-编辑-视图", path = "/editView")
     public String editView() {
         return PREFIX + "/dictType_edit.html";
     }
 
-//    public ResponseData list(DictTypeRequest dictTypeRequest) {
-//        return ResponseData.;
-//    }
 }

@@ -1,49 +1,46 @@
-/**
- * 详情对话框
- */
-var DictTypeInfoDlg = {
-    data: {
-        systemFlag: "",
-        code: "",
-        name: "",
-        description: "",
-        status: "",
-        createTime: "",
-        createUser: "",
-        updateTime: "",
-        updateUser: ""
-    }
-};
-
-layui.use(['form', 'ax', 'admin'], function () {
+layui.use(['form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
-    var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
+    var HttpRequest = layui.HttpRequest;
 
     //获取详情信息，填充表单
-    var ajax = new $ax(Feng.ctxPath + "/dictType/detail?dictTypeId=" + Feng.getUrlParam("dictTypeId"));
-    var result = ajax.start();
-    form.val('dictTypeForm', result.data);
+	var request = new HttpRequest(Feng.ctxPath + "/dictType/getDictDetail?dictTypeId=" + Feng.getUrlParam("dictTypeId"), 'get', function (result) {
+		console.log(result)
+		if(result.data.dictTypeClass === 2){
+			$('input,select,textarea').attr("disabled",true).attr('readonly',true);
+		}
+		form.val('dictTypeForm', result.data);
+	}, function (data) {
+		Feng.error("添加失败！" + data.message);
+	});
+	request.start();
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/dictType/editItem", function (data) {
-            Feng.success("更新成功！");
-
-            //传给上个页面，刷新table用
-            admin.putTempData('formOk', true);
-
-            //关掉对话框
+        var request = new HttpRequest(Feng.ctxPath + "/dictType/updateDictType", 'post', function (data) {
             admin.closeThisDialog();
-
+            Feng.success("更新成功！");
+            admin.putTempData('formOk', true);
         }, function (data) {
-            Feng.error("更新失败！" + data.responseJSON.message)
+            admin.closeThisDialog();
+            Feng.error("更新失败！" + data.message);
         });
-        ajax.set(data.field);
-        ajax.start();
 
-        return false;
+        request.set(data.field);
+        request.start(true);
+    
     });
+	
+	// 编码类型切换事件
+	form.on('radio(dictTypeClass)', function (data) {
+		if ($('input[name="dictTypeClass"]:checked').val() === '1') {
+			$('#dictTypeBusCode').parents('.layui-inline').show();
+		} else {
+			$('#dictTypeBusCode').parents('.layui-inline').hide();
+			$('#dictTypeBusCode').val('');
+		}
+		form.render();
+	});
 
 });

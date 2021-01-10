@@ -1,8 +1,8 @@
-layui.use(['ax', 'treeTable', 'func'], function () {
+layui.use(['treeTable', 'func', 'HttpRequest'], function () {
     var $ = layui.$;
-    var $ax = layui.ax;
     var treeTable = layui.treeTable;
     var func = layui.func;
+    var HttpRequest = layui.HttpRequest;
 
     //table的初始化实例
     var insTb;
@@ -53,7 +53,7 @@ layui.use(['ax', 'treeTable', 'func'], function () {
         func.open({
             height: 650,
             title: '添加字典',
-            content: Feng.ctxPath + '/dict/add?dictTypeId=' + $("#dictTypeId").val(),
+            content: Feng.ctxPath + '/dict/addView?dictTypeId=' + $("#dictTypeId").val(),
             tableId: Dict.tableId,
             endCallback: function () {
                 Dict.initTable(Dict.tableId);
@@ -70,7 +70,7 @@ layui.use(['ax', 'treeTable', 'func'], function () {
         func.open({
             height: 650,
             title: '修改字典',
-            content: Feng.ctxPath + '/dict/edit?dictId=' + data.dictId,
+            content: Feng.ctxPath + '/dict/editView?dictId=' + data.dictId,
             tableId: Dict.tableId,
             endCallback: function () {
                 Dict.initTable(Dict.tableId);
@@ -85,14 +85,14 @@ layui.use(['ax', 'treeTable', 'func'], function () {
      */
     Dict.onDeleteItem = function (data) {
         var operation = function () {
-            var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
-                Feng.success("删除成功!");
-                Dict.search();
-            }, function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
-            });
-            ajax.set("dictId", data.dictId);
-            ajax.start();
+            // var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
+            //     Feng.success("删除成功!");
+            //     Dict.search();
+            // }, function (data) {
+            //     Feng.error("删除失败!" + data.responseJSON.message + "!");
+            // });
+            // ajax.set("dictId", data.dictId);
+            // ajax.start();
         };
         Feng.confirm("是否删除?", operation);
     };
@@ -103,6 +103,7 @@ layui.use(['ax', 'treeTable', 'func'], function () {
     Dict.initTable = function (dictId, data) {
         return treeTable.render({
             elem: '#' + dictId,
+			url: Feng.ctxPath + '/dict/getDictListPage?dictTypeId=' + $("#dictTypeId").val(),
             tree: {
                 iconIndex: 1,           // 折叠图标显示在第几列
                 idName: 'dictId',         // 自定义id字段的名称
@@ -110,16 +111,27 @@ layui.use(['ax', 'treeTable', 'func'], function () {
                 haveChildName: 'haveChild',  // 自定义标识是否还有子节点的字段名称
                 isPidData: true         // 是否是pid形式数据
             },
+			page: true,
+			request: {pageName: 'pageNo', limitName: 'pageSize'}, //自定义分页参数
             height: "full-98",
             cols: Dict.initColumn(),
-            reqData: function (data, callback) {
-                var ajax = new $ax(Feng.ctxPath + '/dict/list?dictTypeId=' + $("#dictTypeId").val(), function (res) {
-                    callback(res.data);
-                }, function (res) {
-                    Feng.error("删除失败!" + res.responseJSON.message + "!");
-                });
-                ajax.start();
-            }
+    //         reqData: function (data, callback) {
+    //             // var ajax = new $ax(Feng.ctxPath + '/dictType/getDictTypePageList?dictTypeId=' + $("#dictTypeId").val(), function (res) {
+    //             //     callback(res.data);
+    //             // }, function (res) {
+    //             //     Feng.error("删除失败!" + res.responseJSON.message + "!");
+    //             // });
+    //             // ajax.start();
+				// var httpRequest = new HttpRequest(Feng.ctxPath + '/dict/getDictListPage?dictTypeId=' + $("#dictTypeId").val(), 'get', function (data) {
+				// 	console.log(res.data)
+				// 	callback(res.data);
+				// }, function (data) {
+				// 	Feng.error("加载失败!" + data.message + "!");
+				// });
+				// httpRequest.set(data);
+				// httpRequest.start(true);
+    //         },
+			parseData: Feng.parseData
         });
     };
 

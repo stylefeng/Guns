@@ -1,20 +1,3 @@
-/**
- * 详情对话框
- */
-var DictTypeInfoDlg = {
-    data: {
-        systemFlag: "",
-        code: "",
-        name: "",
-        description: "",
-        status: "",
-        createTime: "",
-        createUser: "",
-        updateTime: "",
-        updateUser: ""
-    }
-};
-
 layui.use(['form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
     var form = layui.form;
@@ -35,5 +18,16 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         request.set(data.field);
         request.start(true);
     });
+	
+	// 编码类型切换事件
+	form.on('radio(dictTypeClass)', function (data) {
+		if ($('input[name="dictTypeClass"]:checked').val() === '1') {
+			$('#dictTypeBusCode').parents('.layui-inline').show();
+		} else {
+			$('#dictTypeBusCode').parents('.layui-inline').hide();
+			$('#dictTypeBusCode').val('');
+		}
+		form.render();
+	});
 
 });
