@@ -88,4 +88,15 @@ public class IndexViewController {
         return "/modular/index/change_password.html";
     }
 
+
+    /**
+     * 系统消息界面
+     *
+     * @author liuhanqing
+     * @date 2021/1/10 17:42
+     */
+    @GetResource(name = "系统消息界面", path = "/view/message", requiredPermission = false)
+    public String message() {
+        return "/modular/index/message.html";
+    }
 }

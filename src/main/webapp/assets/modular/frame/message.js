@@ -1,21 +1,20 @@
-layui.use(['element'], function () {
+layui.use(['element', 'admin'], function () {
     var $ = layui.jquery;
-    var element = layui.element;
+    var admin = layui.admin;
 
-    // 加载更多按钮点击事件
-    $('#btn-more1').click(function () {
+    /* 加载更多按钮点击事件 */
+    $('#messageMoreBtn2').click(function () {
         var $that = $(this);
-        var str = $that.prev()[0].outerHTML;
-        for (var i = 0; i < 5; i++) {
-            $that.before(str);
-        }
+        admin.btnLoading($that);
+        setTimeout(function () {
+            admin.btnLoading($that, false);
+            $that.before($that.prev()[0].outerHTML);
+        }, 300);
     });
 
-    // 清空消息点击事件
-    $('.message-btn-clear').click(function () {
-        $(this).css('display', 'none');
-        $(this).prev().find('.message-list-item').remove();
-        $(this).prev().find('.message-btn-more').remove();
-        $(this).prev().find('.message-list-empty').css('display', 'block');
+    /* 清空消息点击事件 */
+    $('#messageClearBtn1,#messageClearBtn2,#messageClearBtn3').click(function () {
+        $(this).parents('.layui-tab-item').addClass('show-empty');
     });
+
 });
