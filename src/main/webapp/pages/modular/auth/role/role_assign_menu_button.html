@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>${constants.getSystemName()}</title>
+    <meta name="description" content="${constants.getSystemName()}">
+    <meta name="author" content="stylefeng">
+
+    <link rel="stylesheet" href="${ctxPath}/assets/common/libs/layui/css/layui.css?v=${constants.getReleaseVersion()}"/>
+    <link href="${ctxPath}/assets/expand/plugins/ztree/zTreeStyle.css?v=${constants.getReleaseVersion()}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div id="deptForm" class="layui-fluid">
+    <div class="layui-row" style="margin-top:15px;background: #f2f7f8;padding: 20px;">
+        <ul id="zTree" class="ztree"></ul>
+    </div>
+    <div class="layui-row" style="background: #CFD4D5;padding: 10px;">
+        <div style="text-align: center;">
+            <button class="layui-btn layui-btn-sm" id="saveButton">保存</button>
+            <button class="layui-btn layui-btn-sm layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "${ctxPath}",
+        version: '${constants.getReleaseVersion()}'
+    };
+</script>
+<script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
+
+<!--其他插件js-->
+<script type="text/javascript" src="${ctxPath}/assets/expand/plugins/jquery/jquery-3.2.1.min.js?v=${constants.getReleaseVersion()}"></script>
+<script type="text/javascript" src="${ctxPath}/assets/expand/plugins/ztree/jquery.ztree.all.min.js?v=${constants.getReleaseVersion()}"></script>
+
+<script type="text/javascript">
+
+    layui.use(['ztree', 'admin', 'HttpRequest'], function () {
+        var $ = layui.$;
+        var $ZTree = layui.ztree;
+        var HttpRequest = layui.HttpRequest;
+        var admin = layui.admin;
+
+        $("#saveButton").bind("click", function () {
+
+            var zTree = $.fn.zTree.getZTreeObj("zTree");
+            var nodes = zTree.getCheckedNodes();
+            var menuIds = [];
+            var buttonList = [];
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                // 剔除掉不能被选择的节点（虚拟节点）
+                if (nodes[i].menuFlag) {
+                    menuIds.push(nodes[i].id);
+                } else {
+                    buttonList.push({
+                        "buttonId": nodes[i].id,
+                        "buttonCode": nodes[i].buttonCode
+                    });
+                }
+            }
+
+            var request = new HttpRequest(Feng.ctxPath + "/sysRole/grantMenuAndButton", 'post', function (data) {
+                Feng.success("分配成功!");
+
+                //传给上个页面，刷新table用
+                admin.putTempData('formOk', true);
+
+                //关掉对话框
+                admin.closeThisDialog();
+
+            }, function (data) {
+                Feng.error("分配失败!" + data.message + "!");
+            });
+            request.set("grantMenuIdList", menuIds);
+            request.set("grantMenuButtonIdList", buttonList);
+            request.set("roleId", Feng.getUrlParam("roleId"));
+            request.start(true);
+        });
+
+        var setting = {
+            check: {
+                enable: true,
+                chkboxType: {
+                    "Y": "ps",
+                    "N": "ps"
+                }
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pid",
+                    rootPId: "-1"
+                },
+                key: {
+                    checked: "checked",
+                    name: "name"
+                }
+            }
+        };
+
+        var ztree = new $ZTree("zTree", "/sysMenu/menuAndButtonTree?roleId=" + Feng.getUrlParam("roleId"));
+        ztree.setSettings(setting);
+        ztree.init();
+    });
+
+</script>
+
+</body>
+
+</html>
+

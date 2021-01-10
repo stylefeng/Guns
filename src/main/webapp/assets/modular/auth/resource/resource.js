@@ -76,9 +76,9 @@ layui.use(['table', 'HttpRequest', 'func'], function () {
      */
     Resource.openDetailDlg = function (data) {
         func.open({
-            height: 500,
+            height: 600,
             title: '资源详情',
-            content: Feng.ctxPath + '/view/resource/detail?resourceId=' + data.resourceId,
+            content: Feng.ctxPath + '/view/resource/detail?resourceCode=' + data.resourceCode,
             tableId: Resource.tableId
         });
     };
