@@ -45,7 +45,7 @@ layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown'], functio
         func.open({
             height: 800,
             title: '添加定时任务',
-            content: Feng.ctxPath + '/sysTimers/addView',
+            content: Feng.ctxPath + '/view/sysTimers/addView',
             tableId: Position.tableId
         });
     };
@@ -55,7 +55,7 @@ layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown'], functio
         func.open({
             height: 800,
             title: '修改定时任务',
-            content: Feng.ctxPath + '/sysTimers/editView?timerId=' + data.timerId,
+            content: Feng.ctxPath + '/view/sysTimers/editView?timerId=' + data.timerId,
             tableId: Position.tableId
         });
     };

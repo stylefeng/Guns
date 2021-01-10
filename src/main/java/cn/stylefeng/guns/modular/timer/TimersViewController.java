@@ -13,10 +13,8 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @Slf4j
-@ApiResource(name = "定时管理相关的界面渲染", path = "/sysTimers")
+@ApiResource(name = "定时管理相关的界面渲染")
 public class TimersViewController {
-
-    private String PREFIX = "/modular/system/timers";
 
     /**
      * 定时管理-首页-视图
@@ -24,9 +22,9 @@ public class TimersViewController {
      * @author youyongkun
      * @date 2021/1/6 4:28 下午
      */
-    @GetResource(name = "定时管理-首页-视图", path = "", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "定时管理-首页-视图", path = "/view/sysTimers")
     public String indexView() {
-        return PREFIX + "/timers.html";
+        return "/modular/system/timers/timers.html";
     }
 
     /**
@@ -35,9 +33,9 @@ public class TimersViewController {
      * @author youyongkun
      * @date 2021/1/6 4:28 下午
      */
-    @GetResource(name = "定时管理-添加-视图", path = "/addView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "定时管理-添加-视图", path = "/view/sysTimers/addView")
     public String addView() {
-        return PREFIX + "/timers_add.html";
+        return "/modular/system/timers/timers_add.html";
     }
 
     /**
@@ -46,8 +44,8 @@ public class TimersViewController {
      * @author youyongkun
      * @date 2021/1/6 4:28 下午
      */
-    @GetResource(name = "定时管理-修改-视图", path = "editView", requiredPermission = false, requiredLogin = false)
+    @GetResource(name = "定时管理-修改-视图", path = "/view/sysTimers/editView")
     public String editView() {
-        return PREFIX + "/timers_edit.html";
+        return "/modular/system/timers/timers_edit.html";
     }
 }
