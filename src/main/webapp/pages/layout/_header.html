@@ -24,7 +24,9 @@
         <li class="layui-nav-item" lay-unselect="">
             <a ew-event="message" title="消息" data-url="${ctxPath}/view/message">
                 <i class="layui-icon layui-icon-notice"></i>
-                <span class="layui-badge-dot"></span>
+                @if(msgUnReadCount>0){
+                <span id="msg-dot" class="layui-badge-dot "></span>
+                @}
             </a>
         </li>
         <li class="layui-nav-item layui-hide-xs" lay-unselect>

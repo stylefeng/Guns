@@ -7,6 +7,9 @@ import cn.stylefeng.roses.kernel.auth.api.pojo.login.LoginUser;
 import cn.stylefeng.roses.kernel.auth.api.pojo.login.basic.SimpleRoleInfo;
 import cn.stylefeng.roses.kernel.auth.api.pojo.login.basic.SimpleUserInfo;
 import cn.stylefeng.roses.kernel.menu.modular.service.SysMenuService;
+import cn.stylefeng.roses.kernel.message.api.MessageApi;
+import cn.stylefeng.roses.kernel.message.api.enums.MessageReadFlagEnum;
+import cn.stylefeng.roses.kernel.message.api.pojo.MessageParam;
 import cn.stylefeng.roses.kernel.system.modular.organization.entity.HrOrganization;
 import cn.stylefeng.roses.kernel.system.modular.organization.service.HrOrganizationService;
 import cn.stylefeng.roses.kernel.system.modular.user.service.SysUserService;
@@ -36,6 +39,8 @@ public class IndexService {
     @Resource
     private HrOrganizationService hrOrganizationService;
 
+    @Resource
+    private MessageApi messageApi;
     /**
      * 获取首页需要渲染的参数
      *
@@ -58,6 +63,11 @@ public class IndexService {
 
         // 获取人员姓名
         renderMap.put("name", simpleUserInfo.getRealName());
+
+        // 未读消息数量
+        MessageParam messageParam = new MessageParam();
+        messageParam.setReadFlag(MessageReadFlagEnum.UNREAD.getCode());
+        renderMap.put("msgUnReadCount", messageApi.queryCountCurrentUser(messageParam));
 
         return renderMap;
     }
