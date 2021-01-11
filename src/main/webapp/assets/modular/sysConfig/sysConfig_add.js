@@ -15,35 +15,26 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var activeDictSelect = function () {
 
         $("#groupCode").html('<option value="">请选择所属分类</option>');
-        // var httpRequest = new HttpRequest(Feng.ctxPath + "/dictType/dropDown", function (data) {
-        //     var dictTypeList = res.data;
-        //     dictTypeList.forEach(function (v, i) {
-        //         $("#groupCode").append('<option value="' + v.dictCode+ '">' + v.dictName + '</option>');
-        //     })
-        //     form.render();
-        //
-        // }, function (data) {
-        // });
-        // httpRequest.start();
 
         //要删掉
         $("#groupCode").append('<option value="sys_config">' + '默认常量' + '</option>');
+
         form.render();
     };
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
 
-        SysConfigInfoDlg.data = $.extend({"sysFlag":data.field.sysFlag?data.field.sysFlag:'N'},data.field)
+        SysConfigInfoDlg.data = $.extend({"sysFlag": data.field.sysFlag ? data.field.sysFlag : 'N'}, data.field)
 
         var groupCode = $("#groupCode").find("option:selected").val()
-        if(!groupCode){
+        if (!groupCode) {
             Feng.error("所属分类不能为空")
             return false;
         }
-        SysConfigInfoDlg.data = $.extend({"groupCode":groupCode},data.field)
+        SysConfigInfoDlg.data = $.extend({"groupCode": groupCode}, data.field)
 
-        var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/add",'post', function (data) {
+        var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/add", 'post', function (data) {
             admin.closeThisDialog();
             Feng.success("添加成功！");
             admin.putTempData('formOk', true);

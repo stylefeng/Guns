@@ -18,4 +18,5 @@ layui.use(['element'], function () {
         $(this).prev().find('.message-btn-more').remove();
         $(this).prev().find('.message-list-empty').css('display', 'block');
     });
+
 });

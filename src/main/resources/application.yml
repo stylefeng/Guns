@@ -20,10 +20,10 @@ spring:
     locale: zh_CN
     serialization:
       indent_output: false
-  main:
-    allow-bean-definition-overriding: true
+
 scanner:
   open: true
+
 sys-log:
   # db-数据库，file-文件
   type: db

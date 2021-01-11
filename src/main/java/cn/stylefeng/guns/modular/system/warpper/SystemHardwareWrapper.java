@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.NumberUtil;
-import cn.stylefeng.guns.core.util.IpInfoUtils;
 import cn.stylefeng.guns.modular.system.model.*;
+import cn.stylefeng.roses.kernel.rule.util.IpInfoUtils;
 import lombok.Data;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -23,10 +23,10 @@ import java.util.Properties;
  * 服务器相关信息
  *
  * @author fengshuonan
- * @Date 2019-07-13 13:42
+ * @date 2019-07-13 13:42
  */
 @Data
-public class SystemHardwareWarpper {
+public class SystemHardwareWrapper {
 
     private static final int OSHI_WAIT_SECOND = 1000;
 
