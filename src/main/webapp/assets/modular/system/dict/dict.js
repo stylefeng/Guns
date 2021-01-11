@@ -20,19 +20,18 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
     Dict.initColumn = function () {
         return [
             {type: 'checkbox'},
-            {field: 'name', align: "center", title: '字典名称'},
-            {field: 'code', align: "center", title: '字典编码'},
-            {field: 'description', align: "center", title: '字典的描述'},
+            {field: 'dictName', align: "center", title: '字典名称'},
+            {field: 'dictCode', align: "center", title: '字典编码'},
+            {field: 'dictNamePinYin', align: "center", title: '字典拼音'},
             {
                 field: 'status', align: "center", title: '状态', templet: function (d) {
-                    if (d.status === 'ENABLE') {
+                    if (d.status === 1) {
                         return "启用";
                     } else {
                         return "禁用";
                     }
                 }
             },
-            {field: 'createTime', align: "center", sort: true, title: '创建时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ];
     };
@@ -42,7 +41,8 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
      */
     Dict.search = function () {
         var queryData = {};
-        queryData['condition'] = $("#condition").val();
+        queryData['dictName'] = $("#condition").val();
+        queryData['dictCode'] = $("#condition").val();
         Dict.initTable(Dict.tableId, queryData);
     };
 
@@ -103,7 +103,6 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
     Dict.initTable = function (dictId, data) {
         return treeTable.render({
             elem: '#' + dictId,
-			url: Feng.ctxPath + '/dict/getDictListPage?dictTypeId=' + $("#dictTypeId").val(),
             tree: {
                 iconIndex: 1,           // 折叠图标显示在第几列
                 idName: 'dictId',         // 自定义id字段的名称
@@ -115,23 +114,15 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
 			request: {pageName: 'pageNo', limitName: 'pageSize'}, //自定义分页参数
             height: "full-98",
             cols: Dict.initColumn(),
-    //         reqData: function (data, callback) {
-    //             // var ajax = new $ax(Feng.ctxPath + '/dictType/getDictTypePageList?dictTypeId=' + $("#dictTypeId").val(), function (res) {
-    //             //     callback(res.data);
-    //             // }, function (res) {
-    //             //     Feng.error("删除失败!" + res.responseJSON.message + "!");
-    //             // });
-    //             // ajax.start();
-				// var httpRequest = new HttpRequest(Feng.ctxPath + '/dict/getDictListPage?dictTypeId=' + $("#dictTypeId").val(), 'get', function (data) {
-				// 	console.log(res.data)
-				// 	callback(res.data);
-				// }, function (data) {
-				// 	Feng.error("加载失败!" + data.message + "!");
-				// });
-				// httpRequest.set(data);
-				// httpRequest.start(true);
-    //         },
-			parseData: Feng.parseData
+            reqData: function (d, callback) {
+				var httpRequest = new HttpRequest(Feng.ctxPath + 'dict/getDictTreeList?dictTypeCode=' + $("#dictTypeCode").val(), 'get', function (result) {
+					callback(result.data);
+				}, function (result) {
+					Feng.error("加载失败!" + result.message + "!");
+				});
+				httpRequest.set(data);
+				httpRequest.start();
+            },
         });
     };
 

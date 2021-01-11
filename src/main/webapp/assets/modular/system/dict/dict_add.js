@@ -21,6 +21,7 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
     var form = layui.form;
     var admin = layui.admin;
+    var HttpRequest = layui.HttpRequest;
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
@@ -42,7 +43,6 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         var formName = encodeURIComponent("parent.DictInfoDlg.data.parentName");
         var formId = encodeURIComponent("parent.DictInfoDlg.data.parentId");
         var treeUrl = encodeURIComponent("/dict/zTree?dictTypeId=" + $("#dictTypeId").val());
-        // var treeUrl = encodeURIComponent("/dict/zTree?roleId=1339550467939639303");
 
         layer.open({
             type: 2,

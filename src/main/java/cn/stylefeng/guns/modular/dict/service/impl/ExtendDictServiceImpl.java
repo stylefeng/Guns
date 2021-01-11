@@ -1,13 +1,19 @@
 package cn.stylefeng.guns.modular.dict.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.modular.dict.service.ExtendDictService;
+import cn.stylefeng.roses.kernel.dict.api.exception.DictException;
+import cn.stylefeng.roses.kernel.dict.api.exception.enums.DictExceptionEnum;
 import cn.stylefeng.roses.kernel.dict.modular.entity.SysDict;
+import cn.stylefeng.roses.kernel.dict.modular.entity.SysDictType;
 import cn.stylefeng.roses.kernel.dict.modular.pojo.request.DictRequest;
 import cn.stylefeng.roses.kernel.dict.modular.service.DictService;
+import cn.stylefeng.roses.kernel.dict.modular.service.DictTypeService;
 import cn.stylefeng.roses.kernel.rule.enums.YesOrNotEnum;
 import cn.stylefeng.roses.kernel.system.pojo.ztree.ZTreeNode;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +33,8 @@ public class ExtendDictServiceImpl implements ExtendDictService {
 
     @Autowired
     private DictService dictService;
+    @Autowired
+    private DictTypeService dictTypeService;
 
     @Override
     public List<ZTreeNode> dictZTree(DictRequest dictRequest) {
@@ -45,8 +53,29 @@ public class ExtendDictServiceImpl implements ExtendDictService {
             zTreeNodes.add(zTreeNode);
         }
 
+        ZTreeNode zTreeNode = new ZTreeNode();
+        zTreeNode.setId(-1L);
+        zTreeNode.setpId(0L);
+        zTreeNode.setName("顶级");
+        zTreeNode.setOpen(true);
+        zTreeNodes.add(zTreeNode);
+
+
         // 构建已选中的状态
         return zTreeNodes;
+    }
+
+    @Override
+    public SysDictType getDictTypeByDictId(Long dictId) {
+        SysDict dict = dictService.getById(dictId);
+        // 根据字典类型编码获取字典类型
+        SysDictType dictType = dictTypeService.getOne(new QueryWrapper<SysDictType>().lambda()
+                .eq(SysDictType::getDelFlag, 'N')
+                .eq(SysDictType::getDictTypeCode, dict.getDictTypeCode()));
+        if (ObjectUtil.isEmpty(dictType)) {
+            throw new DictException(DictExceptionEnum.DICT_TYPE_NOT_EXISTED, dictType.getDictTypeCode());
+        }
+        return dictType;
     }
 
     /**

@@ -6,7 +6,6 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
 
     //获取详情信息，填充表单
 	var request = new HttpRequest(Feng.ctxPath + "/dictType/getDictDetail?dictTypeId=" + Feng.getUrlParam("dictTypeId"), 'get', function (result) {
-		console.log(result)
 		if(result.data.dictTypeClass === 2){
 			$('input,select,textarea').attr("disabled",true).attr('readonly',true);
 		}

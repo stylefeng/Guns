@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.dict.service;
 
+import cn.stylefeng.roses.kernel.dict.modular.entity.SysDictType;
 import cn.stylefeng.roses.kernel.dict.modular.pojo.request.DictRequest;
 import cn.stylefeng.roses.kernel.system.pojo.ztree.ZTreeNode;
 
@@ -24,4 +25,14 @@ public interface ExtendDictService {
      * @date 2021/1/10 16:26
      */
     List<ZTreeNode> dictZTree(DictRequest dictRequest);
+
+    /**
+     * 根据字典id获取字典类型
+     *
+     * @param
+     * @return
+     * @author huangyao
+     * @date 2021/1/11 21:39
+     */
+    SysDictType getDictTypeByDictId(Long dictId);
 }

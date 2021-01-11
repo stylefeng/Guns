@@ -9,6 +9,7 @@ import cn.stylefeng.roses.kernel.dict.modular.service.DictTypeService;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
 import cn.stylefeng.roses.kernel.system.pojo.ztree.ZTreeNode;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -84,8 +85,8 @@ public class DictViewController {
      */
     @GetResource(name = "字典管理-编辑-视图", path = "/editView")
     public ModelAndView editView(ModelAndView view, @RequestParam Long dictId) {
-        SysDict dict = dictService.findDetail(dictId);
-        SysDictType dictType = dictTypeService.getById(dict.getDictId());
+        SysDictType dictType = extendDictService.getDictTypeByDictId(dictId);
+
         view.addObject("dictTypeName", dictType.getDictTypeName());
         view.addObject("dictTypeId", dictType.getDictTypeId());
         view.addObject("dictTypeCode", dictType.getDictTypeCode());
