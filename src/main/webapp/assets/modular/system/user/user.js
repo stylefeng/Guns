@@ -13,9 +13,9 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     var MgrUser = {
         tableId: "userTable",    //表格id
         condition: {
-            name: "",
-            deptId: "",
-            timeLimit: ""
+            realName: "",
+            orgId: "",
+            account: ""
         }
     };
 
@@ -25,7 +25,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     MgrUser.initColumn = function () {
 
         //获取多语言
-        var langs = layui.data('system').lang;
+        //var langs = layui.data('system').lang;
 
         return [[
             {type: 'checkbox'},
@@ -45,7 +45,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
      * 选择部门时
      */
     MgrUser.onClickDept = function (obj) {
-        MgrUser.condition.deptId = obj.data.id;
+        console.log(obj);
+        MgrUser.condition.orgId = obj.data.id;
         MgrUser.search();
     };
 
@@ -54,9 +55,9 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
      */
     MgrUser.search = function () {
         var queryData = {};
-        queryData['deptId'] = MgrUser.condition.deptId;
-        queryData['name'] = $("#name").val();
-        queryData['timeLimit'] = $("#timeLimit").val();
+        queryData['orgId'] = MgrUser.condition.orgId;
+        queryData['account'] = $("#account").val();
+        queryData['realName'] = $("#realName").val();
         table.reload(MgrUser.tableId, {
             where: queryData, page: {curr: 1}
         });
@@ -92,88 +93,57 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
         }
     };
 
-    /**
-     * 点击删除用户按钮
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    // 删除用户
     MgrUser.onDeleteUser = function (data) {
         var operation = function () {
-            var ajax = new $ax(Feng.ctxPath + "/mgr/delete", function () {
-                table.reload(MgrUser.tableId);
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/sysUser/delete", 'post', function (data) {
                 Feng.success("删除成功!");
+                table.reload(MgrUser.tableId);
             }, function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
+                Feng.error("删除失败!" + data.message + "!");
             });
-            ajax.set("userId", data.userId);
-            ajax.start();
+            httpRequest.set(data);
+            httpRequest.start(true);
         };
         Feng.confirm("是否删除用户" + data.account + "?", operation);
     };
 
-    /**
-     * 分配角色
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    // 分配角色
     MgrUser.roleAssign = function (data) {
-        //获取多语言
-        var langs = layui.data('system').lang;
-
-        layer.open({
-            type: 2,
-            title: langs.TITLE_ROLE_ASSIGN,
-            area: ['300px', '400px'],
-            content: Feng.ctxPath + '/mgr/role_assign?userId=' + data.userId,
-            end: function () {
-                table.reload(MgrUser.tableId);
-            }
+        func.open({
+            title: '授权角色',
+            height: 470,
+            content: Feng.ctxPath + '/view/user/roleView?userId=' + data.userId,
+            tableId: MgrUser.tableId
         });
     };
 
-    /**
-     * 重置密码
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    // 重置密码
     MgrUser.resetPassword = function (data) {
         Feng.confirm("是否重置密码为" + $("#defaultPassword").val() + "?", function () {
-            var ajax = new $ax(Feng.ctxPath + "/mgr/reset", function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/sysUser/resetPwd", 'post', function (data) {
                 Feng.success("重置密码成功!");
+                table.reload(MgrUser.tableId);
             }, function (data) {
-                Feng.error("重置密码失败!" + data.responseJSON.message + "!");
+                Feng.error("重置密码失败!" + data.message + "!");
             });
-            ajax.set("userId", data.userId);
-            ajax.start();
+            httpRequest.set(data);
+            httpRequest.start(true);
         });
     };
 
-    /**
-     * 修改用户状态
-     *
-     * @param userId 用户id
-     * @param checked 是否选中（true,false），选中就是解锁用户，未选中就是锁定用户
-     */
+    // 修改用户状态
     MgrUser.changeUserStatus = function (userId, checked) {
-        if (checked) {
-            var ajax = new $ax(Feng.ctxPath + "/mgr/unfreeze", function (data) {
-                Feng.success("解除冻结成功!");
-            }, function (data) {
-                Feng.error("解除冻结失败!");
-                table.reload(MgrUser.tableId);
-            });
-            ajax.set("userId", userId);
-            ajax.start();
-        } else {
-            var ajax = new $ax(Feng.ctxPath + "/mgr/freeze", function (data) {
-                Feng.success("冻结成功!");
-            }, function (data) {
-                Feng.error("冻结失败!" + data.responseJSON.message + "!");
-                table.reload(MgrUser.tableId);
-            });
-            ajax.set("userId", userId);
-            ajax.start();
-        }
+
+        var httpRequest = new HttpRequest(Feng.ctxPath + "/sysUser/changeStatus", 'post', function (data) {
+            table.reload(MgrUser.tableId);
+            Feng.success("修改成功!");
+        }, function (data) {
+            table.reload(MgrUser.tableId);
+            Feng.error("修改失败!" + data.message);
+        });
+        httpRequest.set({"userId": userId, "statusFlag": checked});
+        httpRequest.start(true);
     };
 
     // 渲染表格
@@ -239,7 +209,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     // 修改user状态
     form.on('switch(status)', function (obj) {
         var userId = obj.elem.value;
-        var checked = obj.elem.checked ? true : false;
+        var checked = obj.elem.checked ? 1 : 2;
         MgrUser.changeUserStatus(userId, checked);
     });
 
