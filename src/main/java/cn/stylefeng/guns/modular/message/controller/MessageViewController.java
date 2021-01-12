@@ -11,6 +11,7 @@ import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -47,4 +48,28 @@ public class MessageViewController {
         model.addAttribute("msgUnReadList", messageList);
         return "/modular/index/message.html";
     }
+
+    /**
+     * 我的消息界面
+     *
+     * @author liuhanqing
+     * @date 2021/1/12 20:22
+     */
+    @GetResource(name = "操作日志管理列表", path = "/view/message_list")
+    public String indexView() {
+        return "/modular/system/message/message_list.html";
+    }
+
+    /**
+     * 我的消息界面
+     *
+     * @author liuhanqing
+     * @date 2021/1/12 20:22
+     */
+    @GetResource(name = "操作日志管理列表", path = "/view/message_view")
+    public String view(Model model) {
+        model.addAttribute("openType", "view");
+        return "/modular/system/message/message_view.html";
+    }
+
 }
