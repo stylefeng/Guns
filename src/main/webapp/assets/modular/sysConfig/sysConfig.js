@@ -1,10 +1,8 @@
-layui.use(['table', 'admin','func', 'HttpRequest', 'util'], function () {
+layui.use(['table', 'func', 'HttpRequest'], function () {
     var $ = layui.$;
     var table = layui.table;
     var func = layui.func;
     var HttpRequest = layui.HttpRequest;
-    var admin = layui.admin;
-    var util = layui.util;
 
     /**
      * 参数配置管理
@@ -48,7 +46,7 @@ layui.use(['table', 'admin','func', 'HttpRequest', 'util'], function () {
         func.open({
             height: 800,
             title: '添加系统配置',
-            content: Feng.ctxPath + '/config/addView',
+            content: Feng.ctxPath + '/view/config/addView',
             tableId: SysConfig.tableId
         });
     };
@@ -74,7 +72,7 @@ layui.use(['table', 'admin','func', 'HttpRequest', 'util'], function () {
         func.open({
             height: 800,
             title: '修改系统配置',
-            content: Feng.ctxPath + '/config/editView?configId=' + data.configId,
+            content: Feng.ctxPath + '/view/config/editView?configId=' + data.configId,
             tableId: SysConfig.tableId
         });
     };
@@ -86,7 +84,7 @@ layui.use(['table', 'admin','func', 'HttpRequest', 'util'], function () {
      */
     SysConfig.onDeleteItem = function (data) {
         var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/delete",'post', function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(SysConfig.tableId);
             }, function (data) {

@@ -1,0 +1,32 @@
+@layout("/layout/_container.html",{js:["/assets/modular/system/onlineUser/online_user.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">在线用户查看</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="account" class="layui-input" type="text" placeholder="账号"/>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="onlineUserTable" lay-filter="onlineUserTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="offline">强制下线</a>
+</script>
+@}

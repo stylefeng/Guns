@@ -6,17 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
- * 职位管理控制器
+ * 组织机构管理控制器界面
  *
  * @author chenjinlong
  * @date 2020/12/28 9:28
  */
 @Controller
 @Slf4j
-@ApiResource(name = "职位管理相关的界面渲染", path = "/view/organization")
+@ApiResource(name = "组织机构管理控制器界面")
 public class OrganizationViewController {
-
-    private String PREFIX = "/modular/system/organization";
 
     /**
      * 机构管理-首页-视图
@@ -24,9 +22,9 @@ public class OrganizationViewController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "机构管理-首页-视图", path = "")
+    @GetResource(name = "机构管理-首页-视图", path = "/view/organization")
     public String indexView() {
-        return PREFIX + "/organization.html";
+        return "/modular/system/organization/organization.html";
     }
 
     /**
@@ -35,9 +33,9 @@ public class OrganizationViewController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "机构管理—新增-视图", path = "/addView")
+    @GetResource(name = "机构管理—新增-视图", path = "/view/organization/addView")
     public String addView() {
-        return PREFIX + "/organization_add.html";
+        return "/modular/system/organization/organization_add.html";
     }
 
     /**
@@ -46,8 +44,9 @@ public class OrganizationViewController {
      * @author chenjinlong
      * @date 2020/11/04 11:07
      */
-    @GetResource(name = "机构管理-修改-视图", path = "editView")
+    @GetResource(name = "机构管理-修改-视图", path = "/view/organization/editView")
     public String editView() {
-        return PREFIX + "/organization_edit.html";
+        return "/modular/system/organization/organization_edit.html";
     }
+
 }

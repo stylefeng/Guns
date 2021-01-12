@@ -7,10 +7,11 @@ import lombok.Setter;
  * 內存相关信息
  *
  * @author fengshuonan
- * @Date 2019-07-13 13:42
+ * @date 2019-07-13 13:42
  */
 @Setter
 public class MemInfo {
+
     /**
      * 内存总量
      */
@@ -33,7 +34,6 @@ public class MemInfo {
     public double getUsed() {
         return NumberUtil.div(used, (1024 * 1024 * 1024), 2);
     }
-
 
     public double getFree() {
         return NumberUtil.div(free, (1024 * 1024 * 1024), 2);
