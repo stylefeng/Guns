@@ -6,6 +6,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
     var HttpRequest = layui.HttpRequest;
     var util = layui.util;
     var upload = layui.upload;
+    var layer = layui.layer;
+
 
     // 职位表管理
     var FileInfo = {
@@ -100,6 +102,42 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
         }
     }
 
+    // 预览
+    FileInfo.openPreview = function (data) {
+        var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
+
+        // layer.open({
+        //     type: 1,
+        //     title: false,
+        //     closeBtn: 0,
+        //     skin: 'layui-layer-nobg', //没有背景色
+        //     shadeClose: true,
+        //     content: '<div >' +
+        //         '<img src="' +
+        //         Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName+
+        //         '" style="max-width: 100%;">' +
+        //         '</div>  '
+        //     // content: Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName,
+        // });
+        //
+
+        var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
+
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0,
+            area: ['500px', '300px'],
+            shadeClose: true,
+            content: imgUrl
+        })
+
+
+
+
+    };
+
+
 
     // 渲染表格
     var tableResult = table.render({
@@ -129,6 +167,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
             FileInfo.onDeleteFile(data);
         }else if (event === 'download'){
             FileInfo.onFileDownload(data);
+        }else if(event === 'preview'){
+            FileInfo.openPreview(data);
         }
     });
 
