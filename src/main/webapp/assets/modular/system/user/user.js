@@ -13,9 +13,9 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     var MgrUser = {
         tableId: "userTable",    //表格id
         condition: {
-            name: "",
-            deptId: "",
-            timeLimit: ""
+            realName: "",
+            orgId: "",
+            account: ""
         }
     };
 
@@ -25,7 +25,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     MgrUser.initColumn = function () {
 
         //获取多语言
-        var langs = layui.data('system').lang;
+        //var langs = layui.data('system').lang;
 
         return [[
             {type: 'checkbox'},
@@ -45,7 +45,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
      * 选择部门时
      */
     MgrUser.onClickDept = function (obj) {
-        MgrUser.condition.deptId = obj.data.id;
+        console.log(obj);
+        MgrUser.condition.orgId = obj.data.id;
         MgrUser.search();
     };
 
@@ -54,9 +55,9 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
      */
     MgrUser.search = function () {
         var queryData = {};
-        queryData['deptId'] = MgrUser.condition.deptId;
-        queryData['name'] = $("#name").val();
-        queryData['timeLimit'] = $("#timeLimit").val();
+        queryData['orgId'] = MgrUser.condition.orgId;
+        queryData['account'] = $("#account").val();
+        queryData['realName'] = $("#realName").val();
         table.reload(MgrUser.tableId, {
             where: queryData, page: {curr: 1}
         });

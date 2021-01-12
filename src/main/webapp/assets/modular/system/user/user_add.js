@@ -7,23 +7,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
     var xmSelect = layui.xmSelect;
     var organizationXmSel;
     var positionXmSel;
-    // 点击部门时
-    // $('#deptName').click(function () {
-    //     var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
-    //     var formId = encodeURIComponent("parent.UserInfoDlg.data.deptId");
-    //     var treeUrl = encodeURIComponent("/dept/tree");
-    //
-    //     layer.open({
-    //         type: 2,
-    //         title: '部门选择',
-    //         area: ['300px', '400px'],
-    //         content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
-    //         end: function () {
-    //             $("#deptId").val(UserInfoDlg.data.deptId);
-    //             $("#deptName").val(UserInfoDlg.data.deptName);
-    //         }
-    //     });
-    // });
 
     // 初始化组织树
     new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
