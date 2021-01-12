@@ -1,8 +1,8 @@
 var Message = {}
-layui.use(['element', 'admin', 'ax'], function () {
+layui.use(['element', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
     var admin = layui.admin;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
 
     /* 加载更多按钮点击事件 */
     /*$('#messageMoreBtn2').click(function () {
@@ -17,18 +17,27 @@ layui.use(['element', 'admin', 'ax'], function () {
      * 全部标记为已读
      */
     Message.allReadMessage = function () {
-        var ajax = new $ax(Feng.ctxPath + "/sysMessage/allMessageReadFlag", function (data) {
+        var httpRequest = new HttpRequest(Feng.ctxPath + "/sysMessage/allMessageReadFlag", 'get', function (data) {
+            $('#messageClearBtn').parents('.layui-tab-item').addClass('show-empty');
+            $('#msgCount').html(0);
+            Feng.success("标记已读成功!");
+        }, function (data) {
+            Feng.error("标记已读失败!" + data.responseJSON.message);
+        });
+        httpRequest.setAsync(true)
+        httpRequest.start();
+
+      /*  var HttpRequest = new HttpRequest(Feng.ctxPath + "/sysMessage/allMessageReadFlag", 'get', function (data) {
             Feng.success("已读成功!");
         }, function (data) {
             Feng.error("标记已读失败!" + data.responseJSON.message + "!");
         });
-        ajax.setAsync(true)
-        ajax.start();
+        HttpRequest.setAsync(true)
+        HttpRequest.start();*/
     };
     /* 清空消息点击事件 */
     $('#messageClearBtn').click(function () {
-        debugger
-        $(this).parents('.layui-tab-item').addClass('show-empty');
+
         Message.allReadMessage()
     });
 
