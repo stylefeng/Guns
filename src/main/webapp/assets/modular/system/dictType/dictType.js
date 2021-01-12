@@ -21,7 +21,7 @@ layui.use(['table', 'func', 'HttpRequest', 'form'], function () {
             {field: 'dictTypeId', hide: true, title: '字典类型id'},
             {
                 field: 'dictTypeName', align: "center", sort: true, title: '类型名称', templet: function (d) {
-                    var url = Feng.ctxPath + '/dict?dictTypeId=' + d.dictTypeId;
+                    var url = Feng.ctxPath + '/view/dict?dictTypeId=' + d.dictTypeId;
                     return '<a style="color: #01AAED;" href="' + url + '">' + d.dictTypeName + '</a>';
                 }
             },
@@ -63,7 +63,7 @@ layui.use(['table', 'func', 'HttpRequest', 'form'], function () {
         func.open({
             height: 700,
             title: '添加字典类型',
-            content: Feng.ctxPath + '/dictType/addView',
+            content: Feng.ctxPath + '/view/dictType/addView',
             tableId: DictType.tableId
         });
     };
@@ -77,7 +77,7 @@ layui.use(['table', 'func', 'HttpRequest', 'form'], function () {
         func.open({
             height: 700,
             title: '修改字典类型',
-            content: Feng.ctxPath + '/dictType/editView?dictTypeId=' + data.dictTypeId,
+            content: Feng.ctxPath + '/view/dictType/editView?dictTypeId=' + data.dictTypeId,
             tableId: DictType.tableId
         });
     };
@@ -115,7 +115,7 @@ layui.use(['table', 'func', 'HttpRequest', 'form'], function () {
             Feng.success("修改成功!");
         }, function (data) {
             table.reload(DictType.tableId);
-            Feng.error("修改失败!" + data.responseJSON.message);
+            Feng.error("修改失败!" + data.message);
         });
         httpRequest.set({"dictTypeId": dictTypeId, "statusFlag": checked});
         httpRequest.start(true);

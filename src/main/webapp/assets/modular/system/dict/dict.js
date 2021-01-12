@@ -1,6 +1,7 @@
-layui.use(['treeTable', 'func', 'HttpRequest'], function () {
+layui.use(['table', 'treeTable', 'func', 'HttpRequest'], function () {
     var $ = layui.$;
     var treeTable = layui.treeTable;
+    var table = layui.table;
     var func = layui.func;
     var HttpRequest = layui.HttpRequest;
 
@@ -23,15 +24,6 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
             {field: 'dictName', align: "center", title: '字典名称'},
             {field: 'dictCode', align: "center", title: '字典编码'},
             {field: 'dictNamePinYin', align: "center", title: '字典拼音'},
-            {
-                field: 'status', align: "center", title: '状态', templet: function (d) {
-                    if (d.status === 1) {
-                        return "启用";
-                    } else {
-                        return "禁用";
-                    }
-                }
-            },
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ];
     };
@@ -51,9 +43,9 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
      */
     Dict.openAddDlg = function () {
         func.open({
-            height: 650,
+            height: 550,
             title: '添加字典',
-            content: Feng.ctxPath + '/dict/addView?dictTypeId=' + $("#dictTypeId").val(),
+            content: Feng.ctxPath + '/view/dict/addView?dictTypeId=' + $("#dictTypeId").val(),
             tableId: Dict.tableId,
             endCallback: function () {
                 Dict.initTable(Dict.tableId);
@@ -68,9 +60,9 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
      */
     Dict.openEditDlg = function (data) {
         func.open({
-            height: 650,
+            height: 550,
             title: '修改字典',
-            content: Feng.ctxPath + '/dict/editView?dictId=' + data.dictId,
+            content: Feng.ctxPath + '/view/dict/editView?dictId=' + data.dictId,
             tableId: Dict.tableId,
             endCallback: function () {
                 Dict.initTable(Dict.tableId);
@@ -115,7 +107,7 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
             height: "full-98",
             cols: Dict.initColumn(),
             reqData: function (d, callback) {
-				var httpRequest = new HttpRequest(Feng.ctxPath + 'dict/getDictTreeList?dictTypeCode=' + $("#dictTypeCode").val(), 'get', function (result) {
+				var httpRequest = new HttpRequest(Feng.ctxPath + '/dict/getDictTreeList?dictTypeCode=' + $("#dictTypeCode").val(), 'get', function (result) {
 					callback(result.data);
 				}, function (result) {
 					Feng.error("加载失败!" + result.message + "!");
@@ -145,7 +137,7 @@ layui.use(['treeTable', 'func', 'HttpRequest'], function () {
 
     // 关闭页面
     $('#btnBack').click(function () {
-        window.location.href = Feng.ctxPath + "/dictType";
+        window.location.href = Feng.ctxPath + "/view/dictType";
     });
 
     // 工具条点击事件

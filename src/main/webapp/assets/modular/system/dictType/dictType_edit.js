@@ -11,7 +11,7 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
 		}
 		form.val('dictTypeForm', result.data);
 	}, function (data) {
-		Feng.error("添加失败！" + data.message);
+		Feng.error("加载失败！" + data.message);
 	});
 	request.start();
 

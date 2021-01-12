@@ -3,17 +3,8 @@
  */
 var DictInfoDlg = {
     data: {
-        dictTypeId: "",
-        code: "",
-        name: "",
-        parentId: "",
-        parentName: "",
-        status: "",
-        description: "",
-        createTime: "",
-        updateTime: "",
-        createUser: "",
-        updateUser: ""
+        dictParentId: "-1",
+		parentName: "顶级"
     }
 };
 
@@ -41,8 +32,8 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     //父级字典时
     $('#parentName').click(function () {
         var formName = encodeURIComponent("parent.DictInfoDlg.data.parentName");
-        var formId = encodeURIComponent("parent.DictInfoDlg.data.parentId");
-        var treeUrl = encodeURIComponent("/dict/zTree?dictTypeId=" + $("#dictTypeId").val());
+        var formId = encodeURIComponent("parent.DictInfoDlg.data.dictParentId");
+        var treeUrl = encodeURIComponent("/dict/zTree?dictTypeCode=" + $("#dictTypeCode").val());
 
         layer.open({
             type: 2,
@@ -50,7 +41,7 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
             area: ['300px', '400px'],
             content: Feng.ctxPath + '/view/common/tree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
             end: function () {
-                $("#dictParentId").val(DictInfoDlg.data.parentId);
+                $("#dictParentId").val(DictInfoDlg.data.dictParentId);
                 $("#parentName").val(DictInfoDlg.data.parentName);
             }
         });
