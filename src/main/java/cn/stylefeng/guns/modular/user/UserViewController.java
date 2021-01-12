@@ -49,4 +49,15 @@ public class UserViewController {
         return "/modular/system/user/user_edit.html";
     }
 
+    /**
+     * 用户管理-角色-视图
+     *
+     * @author chenjinlong
+     * @date 2021/1/7 19:09
+     */
+    @GetResource(name = "用户管理-角色-视图", path = "/view/user/roleView")
+    public String roleView() {
+        return "/modular/system/user/user_role.html";
+    }
+
 }

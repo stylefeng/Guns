@@ -27,4 +27,15 @@ public class LogViewController {
         return "/modular/system/log/log.html";
     }
 
+    /**
+     * 操作日志管理列表
+     *
+     * @author TSQ
+     * @date 2021/1/5 15:18
+     */
+    @GetResource(name = "日志详情页", path = "/view/logDetail")
+    public String detailView() {
+        return "/modular/system/log/log_detail.html";
+    }
+
 }

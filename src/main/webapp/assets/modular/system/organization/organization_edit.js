@@ -4,41 +4,38 @@ layui.use(['form', 'admin', 'HttpRequest', 'xmSelect'], function () {
     var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
     var xmSelect = layui.xmSelect;
-    var insXmSel;
+    var organizationXmSel;
 
     //获取信息详情填充表单
     var request = new HttpRequest(Feng.ctxPath + "/hrOrganization/detail?orgId=" + Feng.getUrlParam("orgId"), 'get');
     var result = request.start();
 
     form.val('organizationForm', result.data);
-    renderTree(result.data.orgParentId);
 
-    /* 渲染树形 */
-    function renderTree(orgParentId) {
-        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (data) {
-            insXmSel = xmSelect.render({
-                el: '#organizationEditParentSel',
-                height: '250px',
-                data: data.data,
-                initValue: [orgParentId],
-                model: {label: {type: 'text'}},
-                prop: {name: 'title', value: 'id'},
-                radio: true,
-                clickClose: true,
-                tree: {
-                    show: true,
-                    indent: 15,
-                    strict: false,
-                    expandedKeys: true
-                }
-            });
+    // 初始化组织树
+    new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
+        organizationXmSel = xmSelect.render({
+            el: '#organization',
+            data: data.data,
+            initValue: [result.data.orgId],
+            layVerify: 'required',
+            model: {label: {type: 'text'}},
+            prop: {name: 'title', value: 'id'},
+            radio: true,
+            clickClose: true,
+            tree: {
+                show: true,
+                indent: 15,
+                strict: false,
+                expandedKeys: true
+            }
         });
-    }
+    }).start();
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
         //获取机构id
-        data.field.orgParentId = insXmSel.getValue('valueStr');
+        data.field.orgParentId = organizationXmSel.getValue('valueStr');
 
         var request = new HttpRequest(Feng.ctxPath + "/hrOrganization/edit", 'post', function (data) {
             admin.closeThisDialog();
