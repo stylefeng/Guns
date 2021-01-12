@@ -1,63 +1,65 @@
-/**
- * 用户详情对话框
- */
-var UserInfoDlg = {
-    data: {
-        deptId: "",
-        deptName: ""
-    }
-};
-
-layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects', 'xmSelect'], function () {
+layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], function () {
     var $ = layui.jquery;
     var HttpRequest = layui.HttpRequest;
     var form = layui.form;
     var admin = layui.admin;
     var laydate = layui.laydate;
-    var layer = layui.layer;
-    var formSelects = layui.formSelects;
     var xmSelect = layui.xmSelect;
-    var insXmSel;
+    var organizationXmSel;
+    var positionXmSel;
     // 点击部门时
-    $('#deptName').click(function () {
-        var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
-        var formId = encodeURIComponent("parent.UserInfoDlg.data.deptId");
-        var treeUrl = encodeURIComponent("/dept/tree");
+    // $('#deptName').click(function () {
+    //     var formName = encodeURIComponent("parent.UserInfoDlg.data.deptName");
+    //     var formId = encodeURIComponent("parent.UserInfoDlg.data.deptId");
+    //     var treeUrl = encodeURIComponent("/dept/tree");
+    //
+    //     layer.open({
+    //         type: 2,
+    //         title: '部门选择',
+    //         area: ['300px', '400px'],
+    //         content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
+    //         end: function () {
+    //             $("#deptId").val(UserInfoDlg.data.deptId);
+    //             $("#deptName").val(UserInfoDlg.data.deptName);
+    //         }
+    //     });
+    // });
 
-        layer.open({
-            type: 2,
-            title: '部门选择',
-            area: ['300px', '400px'],
-            content: Feng.ctxPath + '/system/commonTree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
-            end: function () {
-                $("#deptId").val(UserInfoDlg.data.deptId);
-                $("#deptName").val(UserInfoDlg.data.deptName);
+    // 初始化组织树
+    new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
+        organizationXmSel = xmSelect.render({
+            el: '#organization',
+            data: data.data,
+            model: {label: {type: 'text'}},
+            prop: {name: 'title', value: 'id'},
+            radio: true,
+            layVerify: 'required',
+            clickClose: true,
+            tree: {
+                show: true,
+                indent: 15,
+                strict: false,
+                expandedKeys: true
             }
         });
-    });
+    }).start();
 
-    /* 渲染树形 */
-    function renderTree() {
-        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (data) {
-            insXmSel = xmSelect.render({
-                el: '#organizationEditParentSel',
-                height: '250px',
-                data: data.data,
-                model: {label: {type: 'text'}},
-                prop: {name: 'title', value: 'id'},
-                radio: true,
-                clickClose: true,
-                tree: {
-                    show: true,
-                    indent: 15,
-                    strict: false,
-                    expandedKeys: true
-                }
-            });
+    // 初始化职位
+    new HttpRequest(Feng.ctxPath + "/hrPosition/list", 'get', function (data) {
+        positionXmSel = xmSelect.render({
+            el: '#position',
+            radio: true,
+            layVerify: 'required',
+            clickClose: true,
+            data: data.data,
+            prop: {name: 'positionName', value: 'positionId'},
         });
-    }
+    }).start();
 
-    renderTree();
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#birthday'
+    });
 
     // 添加表单验证方法
     form.verify({
@@ -69,16 +71,13 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects', 'x
         }
     });
 
-    // 渲染时间选择框
-    laydate.render({
-        elem: '#birthday'
-    });
-
     // 表单提交事件
     form.on('submit(btnSubmit)', function (data) {
 
-        //获取机构id
-        data.field.orgId = insXmSel.getValue('valueStr');
+        // 获取机构id
+        data.field.orgId = organizationXmSel.getValue('valueStr');
+        // 职位id
+        data.field.positionId = positionXmSel.getValue('valueStr');
 
         var request = new HttpRequest(Feng.ctxPath + "/sysUser/add", 'post', function (data) {
             admin.closeThisDialog();
@@ -90,12 +89,5 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'formSelects', 'x
         });
         request.set(data.field);
         request.start(true);
-    });
-
-    //初始化所有的职位列表
-    formSelects.config('selPosition', {
-        searchUrl: Feng.ctxPath + "/hrPosition/list",
-        keyName: 'positionName',
-        keyVal: 'positionId'
     });
 });

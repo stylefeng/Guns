@@ -109,17 +109,11 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
 
     // 分配角色
     MgrUser.roleAssign = function (data) {
-        //获取多语言
-        var langs = layui.data('system').lang;
-
-        layer.open({
-            type: 2,
-            title: langs.TITLE_ROLE_ASSIGN,
-            area: ['300px', '400px'],
-            content: Feng.ctxPath + '/mgr/role_assign?userId=' + data.userId,
-            end: function () {
-                table.reload(MgrUser.tableId);
-            }
+        func.open({
+            title: '授权角色',
+            height: 470,
+            content: Feng.ctxPath + '/view/user/roleView?userId=' + data.userId,
+            tableId: MgrUser.tableId
         });
     };
 
