@@ -14,10 +14,11 @@ layui.use(['form', 'admin', 'HttpRequest', 'xmSelect'], function () {
 
     // 初始化组织树
     new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
+        console.log(result.data);
         organizationXmSel = xmSelect.render({
             el: '#organization',
             data: data.data,
-            initValue: [result.data.orgId],
+            initValue: [result.data.orgParentId],
             layVerify: 'required',
             model: {label: {type: 'text'}},
             prop: {name: 'title', value: 'id'},
