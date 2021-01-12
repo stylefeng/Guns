@@ -37,7 +37,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
             {field: 'phone', align: "center", sort: true, title: '电话'},
             {field: 'createTime', align: "center", sort: true, title: '创建时间', minWidth: 160},
             {field: 'status', align: "center", sort: true, templet: '#statusTpl', title: '状态'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 300}
+            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 350}
         ]];
     };
 
