@@ -1,125 +1,99 @@
-@layout("/layout/_container.html",{js:["/assets/modular/system/log/log_deatil.js"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/system/log/log_detail.js"]}){
 
-<div class="layui-body-header">
-    <span class="layui-body-header-title">日志详情</span>
-</div>
-<form class="layui-form" id="sysLogForm" lay-filter="sysLogForm">
-    <div class="layui-fluid">
-        <div class="layui-row layui-col-space15">
-            <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
-                <div class="layui-card">
-                    <div class="layui-card-body">
-                        <div class="layui-form-item layui-row">
+<form class="layui-form" id="organizationForm" lay-filter="logForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input name="logId" type="hidden"/>
 
-                            <input name="logId" type="hidden" disabled readonly class="layui-input layui-disabled"/>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">日志名称</label>
-                                <div class="layui-input-block">
-                                    <input name="logName" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">具体内容</label>
-                                <div class="layui-input-block">
-                                    <input name="logContent" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">服务器名称</label>
-                                <div class="layui-input-block">
-                                    <input name="appName" placeholder="资源名称" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">请求地址</label>
-                                <div class="layui-input-block">
-                                    <input name="requestUrl" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">请求参数</label>
-                                <div class="layui-input-block">
-                                    <input name="requestParams" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">返回参数</label>
-                                <div class="layui-input-block">
-                                    <input name="requestResult" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">当前服务IP</label>
-                                <div class="layui-input-block">
-                                    <input name="serverIp" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">请求服务器IP</label>
-                                <div class="layui-input-block">
-                                    <input name="clientIp" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">用户ID</label>
-                                <div class="layui-input-block">
-                                    <input name="userId" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">请求Http方式</label>
-                                <div class="layui-input-block">
-                                    <input name="httpMethod" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">浏览器标识</label>
-                                <div class="layui-input-block">
-                                    <input name="clientBrowser" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">客户操作系统</label>
-                                <div class="layui-input-block">
-                                    <input name="clientOs" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">创建时间</label>
-                                <div class="layui-input-block">
-                                    <input name="createTime" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
-                            <div class="layui-inline layui-col-md12">
-                                <label class="layui-form-label">创建人</label>
-                                <div class="layui-input-block">
-                                    <input name="createUser" type="text" disabled readonly class="layui-input layui-disabled"/>
-                                </div>
-                            </div>
-
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">服务名称</label>
+                        <div class="layui-input-block">
+                            <input id="appName" name="appName" placeholder="" type="text" class="layui-input"/>
                         </div>
                     </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">日志名称</label>
+                        <div class="layui-input-block">
+                            <input id="logName" name="logName" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">日志内容</label>
+                        <div class="layui-input-block">
+                            <input id="logContent" name="logContent" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">日志时间</label>
+                        <div class="layui-input-block">
+                            <input id="createTime" name="createTime" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">请求地址</label>
+                        <div class="layui-input-block">
+                            <input id="requestUrl" name="requestUrl" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">请求方式</label>
+                        <div class="layui-input-block">
+                            <input id="httpMethod" name="httpMethod" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">请求参数</label>
+                        <div class="layui-input-block">
+                            <textarea id="requestParams" name="requestParams" placeholder="" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">返回结果</label>
+                        <div class="layui-input-block">
+                            <textarea id="requestResult" name="requestResult" placeholder="" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">服务IP</label>
+                        <div class="layui-input-block">
+                            <input id="serverIp" name="serverIp" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">客户端IP</label>
+                        <div class="layui-input-block">
+                            <input id="clientIp" name="clientIp" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">用户名称</label>
+                        <div class="layui-input-block">
+                            <input id="userId" name="userId" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">浏览器</label>
+                        <div class="layui-input-block">
+                            <input id="clientBrowser" name="clientBrowser" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">操作系统</label>
+                        <div class="layui-input-block">
+                            <input id="clientOs" name="clientOs" placeholder="" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    <div class="form-group-bottom text-center">
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
+    </div>
+
 </form>
-<div class="form-group-bottom text-center" style="z-index: 200">
-    <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
-</div>
+
 @}

@@ -1,4 +1,4 @@
-layui.use(['HttpRequest', 'treeTable', 'laydate', 'func' ,'form'], function () {
+layui.use(['HttpRequest', 'treeTable', 'laydate', 'func', 'form'], function () {
     var $ = layui.$;
     var table = layui.table;
     var HttpRequest = layui.HttpRequest;
@@ -20,12 +20,12 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func' ,'form'], function () {
         return [[
             {type: 'numbers'},
             {field: 'logId', hide: true, sort: true, title: 'id'},
+            /*{field: 'logType', align: "center", sort: true, title: '日志类型'},*/
             {field: 'logName', align: "center", sort: true, title: '日志名称'},
-            {field: 'createUser', align: "center", sort: true, title: '用户名称'},
-            {field: 'appName', align: "center", sort: true, title: '服务器名'},
-            {field: 'clientIp', align: "center", sort: true, title: 'IP'},
-            {field: 'requestUrl', align: "center", sort: true, title: '请求地址'},
-            {field: 'createTime', align: "center", sort: true, title: '创建时间'},
+            {field: 'userId', align: "center", sort: true, title: '用户名称'},
+            {field: 'appName', align: "center", sort: true, title: '服务名称'},
+            {field: 'requestUrl', align: "center", sort: true, title: '方法名'},
+            {field: 'createTime', align: "center", sort: true, title: '时间'},
             {field: 'logContent', align: "center", sort: true, title: '具体消息'},
             {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 100}
         ]];
@@ -36,62 +36,69 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func' ,'form'], function () {
      */
     Log.search = function () {
         var queryData = {};
-        queryData['beginDateTime'] = $("#beginTime").val();
-        queryData['endDateTime'] = $("#endTime").val();
+        queryData['beginDate'] = $("#beginDate").val();
+        queryData['endDate'] = $("#endDate").val();
         queryData['logName'] = $("#logName").val();
+        queryData['appName'] = $("#appName").val();
         // queryData['logType'] = $("#logType").val();
         table.reload(Log.tableId, {
             where: queryData, page: {curr: 1}
         });
     };
 
-    /**
-     * 导出excel按钮
-     */
-    // Log.exportExcel = function () {
-    //     var checkRows = table.checkStatus(Log.tableId);
-    //     if (checkRows.data.length === 0) {
-    //         Feng.error("请选择要导出的数据");
-    //     } else {
-    //         table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-    //     }
-    // };
-
-    /**
-     * 日志详情
-     */
-    Log.logDetail = function (data) {
+    // 点击详情
+    Log.openDetailDlg = function (data) {
         func.open({
             height: 800,
-            title: '查看日志详情',
-            content: Feng.ctxPath + '/view/logDetail?logId='+ data.logId,
+            title: '日志详情',
+            content: Feng.ctxPath + '/view/log/detailView?logId=' + data.logId,
             tableId: Log.tableId
         });
     };
 
     /**
+     * 导出excel按钮
+     */
+    Log.exportExcel = function () {
+        var checkRows = table.checkStatus(Log.tableId);
+        if (checkRows.data.length === 0) {
+            Feng.error("请选择要导出的数据");
+        } else {
+            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
+        }
+    };
+
+    /**
      * 清空日志
      */
-    Log.cleanLog = function (data) {
-        var deleteLog = function () {
-            var dataList = layui.table.cache["logTable"];
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/logManager/delete", 'post', function () {
-                Feng.success("清空日志成功!");
+    Log.cleanLog = function () {
+        var queryData = {};
+        queryData['beginDateTime'] = $("#beginDate").val();
+        queryData['endDateTime'] = $("#endDate").val();
+        queryData['appName'] = $("#appName").val();
+        if (queryData.beginDateTime == "" || queryData.endDateTime == "" || queryData.appName == "") {
+            Feng.error("请选择开始时间、结束时间和服务名称");
+            return false;
+        }
+        var operation = function () {
+            new HttpRequest(Feng.ctxPath + '/logManager/delete', 'post', function (data) {
+                Feng.success("删除日志成功!");
                 table.reload(Log.tableId);
             }, function (data) {
-                Feng.error("清空日志失败!" + data.responseJSON.message + "!");
-            });
-            httpRequest.set("appName",dataList[0].appName);
-            httpRequest.set("beginDateTime",dataList[dataList.length-1].createTime);
-            httpRequest.set("endDateTime",dataList[0].createTime);
-            httpRequest.start(true);
+                Feng.error("删除日志失败!" + data.message + "!");
+            }).set(setData).start(true);
         };
-        Feng.confirm("是否删除?", deleteLog);
+        Feng.confirm("是否删除日志?", operation);
     };
 
     // 渲染时间选择框
     laydate.render({
-        elem: '#createTime'
+        elem: '#beginDate'
+    });
+
+    //渲染时间选择框
+    laydate.render({
+        elem: '#endDate'
     });
 
     // 渲染表格
@@ -111,18 +118,23 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func' ,'form'], function () {
         Log.search();
     });
 
-    //点击清空日志事件
+    // 清空按钮点击事件
     $('#btnClean').click(function () {
         Log.cleanLog();
     });
 
-    // 工具条点击事件
+    // 导出excel
+    $('#btnExp').click(function () {
+        Log.exportExcel();
+    });
+
+
+    //工具条点击事件
     table.on('tool(' + Log.tableId + ')', function (obj) {
         var data = obj.data;
         var layEvent = obj.event;
-
         if (layEvent === 'detail') {
-            Log.logDetail(data);
+            Log.openDetailDlg(data);
         }
     });
 });

@@ -1,7 +1,6 @@
-layui.use(['layer', 'table', 'ax', 'laydate'], function () {
+layui.use(['layer', 'table', 'HttpRequest', 'laydate'], function () {
     var $ = layui.$;
-    var $ax = layui.ax;
-    var layer = layui.layer;
+    var HttpRequest = layui.HttpRequest;
     var table = layui.table;
     var laydate = layui.laydate;
 
@@ -18,12 +17,13 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
     LoginLog.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'menuId',  hide: true, sort: true, title: 'id'},
-            {field: 'logName', align: "center", sort: true, title: '日志名称'},
-            {field: 'userName', align: "center", sort: true, title: '用户名称'},
+            {field: 'menuId', hide: true, sort: true, title: 'id'},
+            {field: 'userId', align: "center", sort: true, title: '用户名'},
+            {field: 'llgName', align: "center", sort: true, title: '日志名称'},
+            {field: 'llgSucceed', align: "center", sort: true, title: '执行结果'},
             {field: 'createTime', align: "center", sort: true, title: '时间'},
-            {field: 'regularMessage', align: "center", sort: true, title: '具体消息'},
-            {field: 'ipAddress', align: "center", sort: true, title: 'ip'}
+            {field: 'llgMessage', align: "center", sort: true, title: '具体消息'},
+            {field: 'llgIpAddress', align: "center", sort: true, title: 'IP'}
         ]];
     };
 
@@ -34,7 +34,9 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
         var queryData = {};
         queryData['beginTime'] = $("#beginTime").val();
         queryData['endTime'] = $("#endTime").val();
-        queryData['logName'] = $("#logName").val();
+        queryData['llgName'] = $("#llgName").val();
+
+        console.log(queryData);
         table.reload(LoginLog.tableId, {
             where: queryData, page: {curr: 1}
         });
@@ -54,15 +56,16 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
 
     //清空日志
     LoginLog.cleanLog = function () {
-        Feng.confirm("是否清空所有日志?", function () {
-            var ajax = new $ax(Feng.ctxPath + "/loginLog/delLoginLog", function (data) {
+        var operation = function () {
+            new HttpRequest(Feng.ctxPath + '/loginLog/deleteAll', 'get', function (data) {
                 Feng.success("清空日志成功!");
-                LoginLog.search();
+                table.reload(LoginLog.tableId);
             }, function (data) {
-                Feng.error("清空日志失败!");
-            });
-            ajax.start();
-        });
+                Feng.error("清空日志失败!" + data.message + "!");
+            }).start();
+        };
+        Feng.confirm("是否清空所有日志?", operation);
+
     };
 
     //渲染时间选择框
@@ -78,11 +81,12 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + LoginLog.tableId,
-        url: Feng.ctxPath + '/loginLog/list',
+        url: Feng.ctxPath + '/loginLog/page',
         page: true,
         height: "full-98",
         cellMinWidth: 100,
-        cols: LoginLog.initColumn()
+        cols: LoginLog.initColumn(),
+        parseData: Feng.parseData
     });
 
     // 搜索按钮点击事件
@@ -90,7 +94,7 @@ layui.use(['layer', 'table', 'ax', 'laydate'], function () {
         LoginLog.search();
     });
 
-    // 搜索按钮点击事件
+    // 清空按钮点击事件
     $('#btnClean').click(function () {
         LoginLog.cleanLog();
     });

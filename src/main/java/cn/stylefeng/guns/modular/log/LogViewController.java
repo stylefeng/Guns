@@ -6,36 +6,43 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
- * 操作业务日志管理控制器界面渲染
+ * 业务日志视图控制器
  *
- * @author TSQ
- * @date 2021/1/5 14:44
+ * @author chenjinlong
+ * @date 2021/1/13 19:45
  */
 @Controller
 @Slf4j
-@ApiResource(name = "操作日志管理相关的界面渲染")
+@ApiResource(name = "操作日志管理相关的界面渲染", path = "/view/log")
 public class LogViewController {
 
-    /**
-     * 操作日志管理列表
-     *
-     * @author TSQ
-     * @date 2021/1/5 15:18
-     */
-    @GetResource(name = "操作日志管理列表", path = "/view/log")
-    public String indexView() {
-        return "/modular/system/log/log.html";
-    }
+    private String PREFIX = "/modular/system/log";
 
     /**
      * 操作日志管理列表
      *
+     * @param
+     * @return
      * @author TSQ
      * @date 2021/1/5 15:18
      */
-    @GetResource(name = "日志详情页", path = "/view/logDetail")
+    @GetResource(name = "操作日志管理列表", path = "")
+    public String indexView() {
+        return PREFIX + "/log.html";
+    }
+
+
+    /**
+     * 业务日志详情-视图
+     *
+     * @param
+     * @return
+     * @author chenjinlong
+     * @date 2021/1/13 19:45
+     */
+    @GetResource(name = "业务日志详情-视图", path = "detailView")
     public String detailView() {
-        return "/modular/system/log/log_detail.html";
+        return PREFIX + "/log_detail.html";
     }
 
 }
