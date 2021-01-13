@@ -10,27 +10,33 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">名称<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input id="name" name="name" placeholder="请输入字典类型名称，例如：状态标识" type="text" class="layui-input" lay-verify="required" required/>
-                        </div>
-                    </div>
-                    <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">类型编码<span style="color: red;">*</span></label>
-                        <div class="layui-input-block">
-                            <input id="code" name="code" type="text" class="layui-input layui-disabled" disabled="disabled" lay-verify="required" required/>
+                            <input id="dictTypeName" name="dictTypeName" placeholder="请输入字典类型名称，例如：状态标识" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">系统字典<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input type="radio" name="systemFlag" value="Y" title="是" disabled>
-                            <input type="radio" name="systemFlag" value="N" title="否" checked="" disabled>
+                            <input type="radio" name="dictTypeClass" value="1" title="业务类型" lay-filter="dictTypeClass" checked="">
+                            <input type="radio" name="dictTypeClass" value="2" title="系统类型" lay-filter="dictTypeClass">
                         </div>
-                        <div class="layui-form-mid layui-word-aux">系统字典与代码中枚举关联，添加后不可修改</div>
+                        <div class="layui-form-mid layui-word-aux">系统类型与代码中枚举关联，添加后不可修改</div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">类型编码<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="dictTypeCode" name="dictTypeCode" placeholder="请输入字典类型编码，例如：STATUS" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">业务编码<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input id="dictTypeBusCode" name="dictTypeBusCode" placeholder="请输入字典业务编码" type="text" class="layui-input"/>
+                        </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">排序</label>
                         <div class="layui-input-block">
-                            <input id="sort" name="sort" placeholder="请输入字典排序" type="text" class="layui-input">
+                            <input id="dictTypeSort" name="dictTypeSort" placeholder="请输入字典排序" type="text" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">

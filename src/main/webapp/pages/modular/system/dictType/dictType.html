@@ -12,27 +12,25 @@
                     <div class="layui-form toolbar">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <input id="condition" class="layui-input" type="text" placeholder="名称/编码" autocomplete="off"/>
+                                <input id="dictTypeName" class="layui-input" type="text" placeholder="名称/编码" autocomplete="off"/>
                             </div>
                             <div class="layui-inline">
-                                <select id="systemFlag">
+                                <select id="dictTypeClass">
                                     <option value="">字典类型</option>
-                                    <option value="Y">系统类型</option>
-                                    <option value="N">非系统类型</option>
+                                    <option value="1">业务类型</option>
+                                    <option value="2">系统类型</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <select id="status">
+                                <select id="statusFlag">
                                     <option value="">状态</option>
-                                    <option value="ENABLE">启用</option>
-                                    <option value="DISABLE">禁用</option>
+                                    <option value="1">启用</option>
+                                    <option value="2">禁用</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
                                 <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                @if(shiro.hasPermission("/dictType/addItem")){
                                 <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加类型</button>
-                                @}
                             </div>
                         </div>
                     </div>
@@ -44,12 +42,12 @@
 </div>
 
 <script type="text/html" id="tableBar">
-    @if(shiro.hasPermission("/dictType/editItem")){
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
-    @}
-    @if(shiro.hasPermission("/dictType/delete")){
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-    @}
+	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+
+<script type="text/html" id="statusFlagTpl">
+    <input type="checkbox" lay-filter="statusFlag" value="{{d.dictTypeId}}" lay-skin="switch" lay-text="正常|禁用" {{d.statusFlag=='1'?'checked':''}}/>
 </script>
 
 @}
