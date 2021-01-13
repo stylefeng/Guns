@@ -3,7 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://114.215.203.183:3306/guns_beetl_dev?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT
-    username: beetl_dev
+    username: root
     password: sksTykzfZeMFbwJf
 
     # 连接池大小根据实际情况调整
