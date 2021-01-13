@@ -51,7 +51,6 @@ layui.use(['table', 'HttpRequest'], function () {
         }, function (data) {
             Feng.error(data.message + "!");
         });
-        console.log(data)
         httpRequest.set('token', data.token);
         httpRequest.start(true);
     };

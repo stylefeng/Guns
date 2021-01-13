@@ -45,7 +45,6 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
      * 选择部门时
      */
     MgrUser.onClickDept = function (obj) {
-        console.log(obj);
         MgrUser.condition.orgId = obj.data.id;
         MgrUser.search();
     };

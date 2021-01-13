@@ -33,7 +33,6 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
 
     // 选择部门时
     Organization.onClickDept = function (obj) {
-        console.log(obj);
         Organization.condition.orgParentId = obj.data.id;
         Organization.search();
     };

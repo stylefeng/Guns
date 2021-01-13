@@ -11,7 +11,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
     var result = request.start();
     form.val('userForm', result.data);
 
-    console.log(result.data.grantRoleIdList);
     // 初始化角色
     new HttpRequest(Feng.ctxPath + "/sysRole/dropDown", 'get', function (data) {
         roleXmSel = xmSelect.render({
@@ -27,7 +26,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
     // 表单提交事件
     form.on('submit(btnSubmit)', function (data) {
         // 角色ids
-        console.log(Feng.getUrlParam("userId"));
         data.field.grantRoleIdList = roleXmSel.getValue('value');
         data.field.userId = Feng.getUrlParam("userId");
 
