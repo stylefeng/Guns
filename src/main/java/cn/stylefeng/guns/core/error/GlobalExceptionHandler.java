@@ -197,7 +197,7 @@ public class GlobalExceptionHandler {
         }
 
         // 默认响应前端json
-        ErrorResponseData errorResponseData = renderJson(authException);
+        ErrorResponseData errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
         ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
         return null;
     }
