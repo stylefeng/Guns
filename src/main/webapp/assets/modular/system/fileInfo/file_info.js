@@ -1,0 +1,181 @@
+layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function () {
+    var $ = layui.$;
+    var table = layui.table;
+    var form = layui.form;
+    var func = layui.func;
+    var HttpRequest = layui.HttpRequest;
+    var util = layui.util;
+    var upload = layui.upload;
+    var layer = layui.layer;
+
+
+    // 职位表管理
+    var FileInfo = {
+        tableId: "fileTable"
+    };
+
+    // 初始化表格的列
+    FileInfo.initColumn = function () {
+        return [[
+            {type: 'checkbox'},
+            {field: 'fileId', hide: true, title: '主键id'},
+            {field: 'fileLocation', sort: true, title: '存储位置'},
+            {field: 'fileOriginName', sort: true, title: '文件名称'},
+            {field: 'secretFlag', sort: true, title: '是否机密'},
+            {field: 'fileSuffix', sort: true, title: '文件后缀'},
+            {field: 'fileSizeInfo', sort: true, title: '文件大小'},
+            {
+                field: 'createTime', sort: true, title: '创建时间', templet: function (d) {
+                    return util.toDateString(d.createTime);
+                }
+            },
+            {field: 'createUserName', sort: true, title: '创建人'},
+            {align: 'center', toolbar: '#tableBar', title: '操作', width: 230}
+        ]];
+    };
+
+
+
+    //上传
+    var uploadInst = upload.render({
+        elem: '#btnUpload' //绑定元素
+        ,url: Feng.ctxPath + '/sysFileInfo/upload?secretFlag=N' //上传接口
+        ,done: function(res){
+            //上传完毕回调
+            Feng.success("上传成功!");
+
+            FileInfo.search();
+        }
+        ,error: function(err){
+            //请求异常回调
+            Feng.error("上传失败！"+ err.message);
+        }
+    });
+
+
+    // 点击查询按钮
+    FileInfo.search = function () {
+        var queryData = {};
+        queryData['fileOriginName'] = $("#fileOriginName").val();
+        //queryData['positionCode'] = $("#positionCode").val();
+        table.reload(FileInfo.tableId, {
+            where: queryData,
+            page: {curr: 1}
+        });
+    };
+
+
+
+    // 点击编辑
+    FileInfo.openEditDlg = function (data) {
+        func.open({
+            height: 800,
+            title: '修改职位',
+            content: Feng.ctxPath + '/position/editView?positionId=' + data.positionId,
+            tableId: FileInfo.tableId
+        });
+    };
+
+
+    // 点击删除
+    FileInfo.onDeleteFile = function (data) {
+        var operation = function () {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/sysFileInfo/deleteReally", 'post', function (data) {
+                Feng.success("删除成功!");
+                table.reload(FileInfo.tableId);
+            }, function (data) {
+                Feng.error("删除失败!" + data.message + "!");
+            });
+            httpRequest.set(data);
+            httpRequest.start(true);
+        };
+        Feng.confirm("是否删除?", operation);
+    };
+
+
+    // 下载
+    FileInfo.onFileDownload = function (data) {
+        if (data.secretFlag === 'Y'){
+            window.location.href = Feng.ctxPath + '/sysFileInfo/privateDownload?fileId='+ data.fileId;
+        }else {
+            window.location.href = Feng.ctxPath + '/sysFileInfo/publicDownload?fileId='+ data.fileId;
+        }
+    }
+
+    // 预览
+    FileInfo.openPreview = function (data) {
+        var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
+
+        // layer.open({
+        //     type: 1,
+        //     title: false,
+        //     closeBtn: 0,
+        //     skin: 'layui-layer-nobg', //没有背景色
+        //     shadeClose: true,
+        //     content: '<div >' +
+        //         '<img src="' +
+        //         Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName+
+        //         '" style="max-width: 100%;">' +
+        //         '</div>  '
+        //     // content: Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName,
+        // });
+        //
+
+        var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
+
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0,
+            area: ['500px', '300px'],
+            shadeClose: true,
+            content: imgUrl
+        })
+
+
+
+
+    };
+
+
+
+    // 渲染表格
+    var tableResult = table.render({
+        elem: '#' + FileInfo.tableId,
+        url: Feng.ctxPath + '/sysFileInfo/fileInfoListPage',
+        page: true,
+        request: {pageName: 'pageNo', limitName: 'pageSize'}, //自定义分页参数
+        height: "full-158",
+        cellMinWidth: 100,
+        cols: FileInfo.initColumn(),
+        parseData: Feng.parseData
+    });
+
+    // 搜索按钮点击事件
+    $('#btnSearch').click(function () {
+        FileInfo.search();
+    });
+
+
+    // 工具条点击事件
+    table.on('tool(' + FileInfo.tableId + ')', function (obj) {
+        var data = obj.data;
+        var event = obj.event;
+        if (event === 'edit') {
+            FileInfo.openEditDlg(data);
+        } else if (event === 'delete') {
+            FileInfo.onDeleteFile(data);
+        }else if (event === 'download'){
+            FileInfo.onFileDownload(data);
+        }else if(event === 'preview'){
+            FileInfo.openPreview(data);
+        }
+    });
+
+    // 修改状态
+    form.on('switch(status)', function (obj) {
+        var fileInfoId = obj.elem.value;
+        var checked = obj.elem.checked ? 1 : 2;
+        FileInfo.updateStatus(fileInfoId, checked);
+    });
+});
