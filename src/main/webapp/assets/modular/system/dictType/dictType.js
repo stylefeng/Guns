@@ -34,7 +34,7 @@ layui.use(['table', 'func', 'HttpRequest', 'form'], function () {
                     }
                 }
             },
-            {field: 'dictTypeNamePinYin', align: "center", sort: true, title: '名词拼音'},
+            {field: 'dictTypeNamePinyin', align: "center", sort: true, title: '名词拼音'},
             {field: 'dictTypeCode', align: "center", sort: true, title: '类型编码', minWidth: 166},
             {field: 'dictTypeBusCode', align: "center", sort: true, title: '业务编码', minWidth: 166},
             {field: 'dictTypeDesc', align: "center", sort: true, title: '字典描述'},

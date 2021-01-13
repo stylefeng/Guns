@@ -23,7 +23,6 @@ layui.use(['table', 'treeTable', 'func', 'HttpRequest'], function () {
             {type: 'checkbox'},
             {field: 'dictName', align: "center", title: '字典名称'},
             {field: 'dictCode', align: "center", title: '字典编码'},
-            {field: 'dictNamePinYin', align: "center", title: '字典拼音'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ];
     };
@@ -43,7 +42,7 @@ layui.use(['table', 'treeTable', 'func', 'HttpRequest'], function () {
      */
     Dict.openAddDlg = function () {
         func.open({
-            height: 550,
+            height: 680,
             title: '添加字典',
             content: Feng.ctxPath + '/view/dict/addView?dictTypeId=' + $("#dictTypeId").val(),
             tableId: Dict.tableId,
@@ -60,7 +59,7 @@ layui.use(['table', 'treeTable', 'func', 'HttpRequest'], function () {
      */
     Dict.openEditDlg = function (data) {
         func.open({
-            height: 550,
+            height: 680,
             title: '修改字典',
             content: Feng.ctxPath + '/view/dict/editView?dictId=' + data.dictId,
             tableId: Dict.tableId,
@@ -77,14 +76,14 @@ layui.use(['table', 'treeTable', 'func', 'HttpRequest'], function () {
      */
     Dict.onDeleteItem = function (data) {
         var operation = function () {
-            // var ajax = new $ax(Feng.ctxPath + "/dict/delete", function (data) {
-            //     Feng.success("删除成功!");
-            //     Dict.search();
-            // }, function (data) {
-            //     Feng.error("删除失败!" + data.responseJSON.message + "!");
-            // });
-            // ajax.set("dictId", data.dictId);
-            // ajax.start();
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/deleteDict", 'post', function (data) {
+                Feng.success("删除成功!");
+                Dict.search();
+            }, function (data) {
+                Feng.error("删除失败!" + data.message + "!");
+            });
+            httpRequest.set(data);
+            httpRequest.start(true);
         };
         Feng.confirm("是否删除?", operation);
     };
