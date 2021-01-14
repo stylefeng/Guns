@@ -73,6 +73,9 @@ ${layoutContent}
     @if(array.contain(plugins,"tinymce")){
     <script src="${ctxPath}/assets/common/libs/tinymce/tinymce.min.js"></script>
     @}
+    @if(array.contain(plugins,"pinyin")){
+    <script type="text/javascript" src="${ctxPath}/assets/common/libs/py/ChinesePY.js"></script>
+    @}
 @}
 
 @if(isNotEmpty(js)){
