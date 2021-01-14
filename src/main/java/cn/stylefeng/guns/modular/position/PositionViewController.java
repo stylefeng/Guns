@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
  * @date 2020/12/28 9:28
  */
 @Controller
-@Slf4j
 @ApiResource(name = "职位管理相关的界面渲染")
 public class PositionViewController {
 
