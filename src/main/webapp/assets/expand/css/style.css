@@ -36,7 +36,7 @@
     border-top: 3px solid #d2d6de;
     margin-bottom: 20px;
     width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1)
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)
 }
 
 .box-main {
@@ -44,5 +44,21 @@
     border: 0;
     padding-top: 2px;
     border-radius: 0;
-    box-shadow: none
+    box-shadow: none;
+    overflow: scroll;
+}
+
+.wide-layui-form-label {
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 130px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+
+.wide-layui-input-block {
+    margin-left: 160px;
+    min-height: 36px;
 }
