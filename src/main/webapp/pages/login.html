@@ -179,7 +179,7 @@
         </div>
         @}
         <div class="layui-form-item">
-            <button class="layui-btn layui-btn-fluid" lay-filter="loginSubmit" lay-submit>登录</button>
+            <button id="loginSubmit" class="layui-btn layui-btn-fluid" lay-filter="loginSubmit" lay-submit>登录</button>
         </div>
         <div class="layui-form-item login-oauth-group text-center">
             <a href="${ctxPath}/oauth/render/qq"><i class="layui-icon layui-icon-login-qq" style="color:#3492ed;"></i></a>&emsp;
@@ -203,13 +203,14 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 <script>
-    layui.use(['layer', 'form', 'index', 'HttpRequest'], function () {
+    layui.use(['layer', 'form', 'index', 'HttpRequest','admin'], function () {
         var layer = layui.layer;
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
         var HttpRequest = layui.HttpRequest;
         var index = layui.index;
+        var admin = layui.admin;
 
         // 点击刷新验证码
         $('img.login-captcha').click(function () {
@@ -225,8 +226,8 @@
 
         // 登录操作
         form.on('submit(loginSubmit)', function (obj){
+            admin.btnLoading('#loginSubmit');
             var request = new HttpRequest(Feng.ctxPath + "/loginAction", 'post', function (data) {
-                Feng.success("登录成功!");
                 // 清除顶部选择应用的缓存
                 index.clearTabCache();
                 // 重定向到首页
@@ -236,6 +237,8 @@
                     //刷新验证码
                     $('img.login-captcha').attr("src", Feng.ctxPath+'/kaptcha?t=' + (new Date).getTime());
                 @}
+                //停止loading
+                admin.btnLoading('#loginSubmit', false);
                 Feng.error("登录失败!" + data.message);
             });
             request.set("account", $("#username").val());
