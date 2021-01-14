@@ -1,4 +1,4 @@
-@layout("/layout/_form.html",{js:["/assets/modular/system/notice/notice_add.js"],plugins:["ue"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/system/notice/notice_add.js"],plugins:["tinymce"]}){
 
 <form class="layui-form" id="noticeForm" lay-filter="noticeForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
@@ -6,17 +6,54 @@
             <div class="layui-card-header">基本信息</div>
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
-                    <input name="roleId" type="hidden"/>
+                    <input name="noticeId" type="hidden"/>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">标题<span style="color: red;">*</span></label>
+                        <label class="layui-form-label">通知标题<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="title" placeholder="请输入标题" type="text" class="layui-input" lay-verify="required" required/>
+                            <input name="noticeTitle" placeholder="请输入通知标题" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">内容</label>
+                        <label class="layui-form-label">通知摘要</label>
                         <div class="layui-input-block">
-                            <script id="container" name="content" type="text/plain"></script>
+                            <input name="noticeSummary" placeholder="请输入通知摘要" type="text" class="layui-input" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">优先级<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <select id="priorityLevel" name="priorityLevel" lay-filter="">
+                                <option value="">请选择通知优先级</option>
+                                <option value="low">低</option>
+                                <option value="middle">中</option>
+                                <option value="high">高</option>
+                            </select>
+<!--                            <input name="priorityLevel" placeholder="请输入通知优先级" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>-->
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">开始时间<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input name="noticeBeginTime" placeholder="请输入开始时间" type="text" class="layui-input date-icon date-input" lay-verify="required" required autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">结束时间<span style="color: red;">*</span></label>
+                        <div class="layui-input-block">
+                            <input name="noticeEndTime" placeholder="请输入结束时间" type="text" class="layui-input date-icon date-input" lay-verify="required" required autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">通知范围</label>
+                        <div class="layui-input-block">
+                            <input name="noticeScope" placeholder="请输入通知范围" type="text" class="layui-input" lay-verify="" />
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">通知内容</label>
+                        <div class="layui-input-block">
+                            <textarea id="noticeContent" name="noticeContent"></textarea>
+<!--                            <script id="container" name="content" type="text/plain"></script>-->
                         </div>
                     </div>
                 </div>
@@ -25,7 +62,7 @@
     </div>
     <div class="form-group-bottom text-center">
         <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
-        <button id="cancel" type="button" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
     </div>
 </form>
 @}

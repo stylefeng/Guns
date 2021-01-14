@@ -70,6 +70,9 @@ ${layoutContent}
     <script src="${ctxPath}/assets/expand/plugins/ueditor/ueditor.config.js"></script>
     <script src="${ctxPath}/assets/expand/plugins/ueditor/ueditor.all.js"></script>
     @}
+    @if(array.contain(plugins,"tinymce")){
+    <script src="${ctxPath}/assets/common/libs/tinymce/tinymce.min.js"></script>
+    @}
 @}
 
 @if(isNotEmpty(js)){

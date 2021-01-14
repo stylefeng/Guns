@@ -1,14 +1,14 @@
-layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
+layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function () {
     var $ = layui.$;
     var layer = layui.layer;
     var form = layui.form;
     var table = layui.table;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var admin = layui.admin;
     var func = layui.func;
 
     /**
-     * 系统管理--消息管理
+     * 系统管理--通知管理
      */
     var Notice = {
         tableId: "noticeTable"    //表格id
@@ -21,9 +21,9 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'noticeId', align: "center", hide: true, sort: true, title: 'id'},
-            {field: 'title', align: "center", sort: true, title: '标题'},
-            {field: 'content', align: "center", sort: true, title: '内容'},
-            {field: 'createrName', align: "center", sort: true, title: '发布者'},
+            {field: 'noticeTitle', align: "center", sort: true, title: '通知标题'},
+            {field: 'priorityLevelValue', align: "center", sort: true, title: '优先级'},
+            {field: 'createUser', align: "center", sort: true, title: '创建人'},
             {field: 'createTime', align: "center", sort: true, title: '创建时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 200}
         ]];
@@ -44,7 +44,11 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
      * 弹出添加通知
      */
     Notice.openAddNotice = function () {
-        window.location.href = Feng.ctxPath + '/notice/notice_add';
+        func.open({
+            title: '添加通知',
+            content: Feng.ctxPath + '/view/notice/add',
+            tableId: Notice.tableId
+        });
     };
 
     /**
@@ -53,7 +57,11 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
      * @param data 点击按钮时候的行数据
      */
     Notice.onEditNotice = function (data) {
-        window.location.href = Feng.ctxPath + "/notice/notice_update?noticeId=" + data.noticeId;
+        func.open({
+            title: '修改通知',
+            content: Feng.ctxPath + "/view/notice/edit?noticeId=" + data.noticeId,
+            tableId: Notice.tableId
+        });
     };
 
     /**
@@ -63,7 +71,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
      */
     Notice.onDeleteNotice = function (data) {
         var operation = function () {
-            var ajax = new $ax(Feng.ctxPath + "/notice/delete", function (data) {
+            var ajax = new HttpRequest(Feng.ctxPath + "/sysNotice/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(Notice.tableId);
             }, function (data) {
@@ -78,10 +86,12 @@ layui.use(['layer', 'form', 'table', 'admin', 'ax', 'func'], function () {
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + Notice.tableId,
-        url: Feng.ctxPath + '/notice/list',
+        url: Feng.ctxPath + '/sysNotice/page',
         page: true,
         height: "full-98",
         cellMinWidth: 100,
+        request: {pageName: 'pageNo', limitName: 'pageSize'},
+        parseData: Feng.parseData,
         cols: Notice.initColumn()
     });
 
