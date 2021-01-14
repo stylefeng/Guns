@@ -174,7 +174,7 @@
         @if(constants.getCaptchaOpen()){
         <div class="layui-form-item layui-input-icon-group login-captcha-group">
             <i class="layui-icon layui-icon-auz"></i>
-            <input class="layui-input" id="kaptcha" name="kaptcha" placeholder="请输入验证码" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
+            <input class="layui-input" id="kaptcha" name="kaptcha" placeholder="请输入验证码" autocomplete="off" lay-verType="tips" maxlength="4" lay-verify="required" required/>
             <img class="login-captcha" alt="" src="${ctxPath}/kaptcha"/>
         </div>
         @}
