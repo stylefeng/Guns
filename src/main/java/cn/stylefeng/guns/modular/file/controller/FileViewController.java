@@ -15,10 +15,31 @@ import org.springframework.stereotype.Controller;
 @ApiResource(name = "文件管理界面")
 public class FileViewController {
 
-    @GetResource(name = "菜单管理首页", path = "/view/file")
+
+
+    /**
+     * 文件管理首页
+     *
+     * @author lgq
+     * @date 2021/1/9
+     */
+    @GetResource(name = "文件管理首页", path = "/view/file")
     public String fileIndex() {
         return "/modular/system/fileInfo/file_info.html";
     }
 
+
+
+    /**
+     *  文件详情页面
+     *
+     * @author lgq
+     * @date 2021/1/12 下午11:11
+     */
+    @GetResource(name = "文件详情页面", path = "/view/fileInfoDetails")
+    public String details(){
+
+        return "/modular/system/fileInfo/file_info_details.html";
+    }
 
 }

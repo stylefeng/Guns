@@ -66,12 +66,12 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
 
 
 
-    // 点击编辑
-    FileInfo.openEditDlg = function (data) {
+    // 点击详情
+    FileInfo.openDetails = function (data) {
         func.open({
             height: 800,
-            title: '修改职位',
-            content: Feng.ctxPath + '/position/editView?positionId=' + data.positionId,
+            title: '详情',
+            content: Feng.ctxPath + '/view/fileInfoDetails?fileId=' + data.fileId,
             tableId: FileInfo.tableId
         });
     };
@@ -121,8 +121,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
         // });
         //
 
-        var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
-
         layer.open({
             type: 2,
             title: false,
@@ -161,8 +159,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
     table.on('tool(' + FileInfo.tableId + ')', function (obj) {
         var data = obj.data;
         var event = obj.event;
-        if (event === 'edit') {
-            FileInfo.openEditDlg(data);
+        if (event === 'details') {
+            FileInfo.openDetails(data);
         } else if (event === 'delete') {
             FileInfo.onDeleteFile(data);
         }else if (event === 'download'){
