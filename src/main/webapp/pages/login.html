@@ -161,11 +161,11 @@
 </head>
 <body>
 <div class="login-wrapper layui-anim layui-anim-scale layui-hide">
-    <div class="layui-form">
+        <form class="layui-form">
         <h2>用户登录</h2>
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-username"></i>
-            <input class="layui-input" id="username" name="username" placeholder="请输入登录账号" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
+            <input class="layui-input" id="account" name="account" placeholder="请输入登录账号" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
         </div>
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-password"></i>
@@ -179,7 +179,7 @@
         </div>
         @}
         <div class="layui-form-item">
-            <input type="checkbox" id="remember" name="remember" title="记住密码" lay-skin="primary" checked>
+            <input type="checkbox" id="rememberMe" name="rememberMe" title="记住密码" lay-skin="primary" checked>
             <a href="${ctxPath}/register" class="layui-link pull-right">注册账号</a>
         </div>
         <div class="layui-form-item">
@@ -191,7 +191,8 @@
                 <img class="layui-icon" style="height: 28px;width: 28px; margin-top: -12px !important;" src="${ctxPath}/assets/expand/images/git.png"/>
             </a>
         </div>
-    </div>
+        </form>
+
 </div>
 <div class="login-copyright">copyright © 2020 stylefeng.cn all rights reserved.</div>
 
@@ -207,14 +208,14 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 <script>
-    layui.use(['layer', 'form', 'index', 'HttpRequest','admin'], function () {
-        var layer = layui.layer;
+    layui.use(['layer', 'form', 'index', 'HttpRequest','admin','notice'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
         var HttpRequest = layui.HttpRequest;
         var index = layui.index;
         var admin = layui.admin;
+        var notice = layui.notice;
 
         // 点击刷新验证码
         $('img.login-captcha').click(function () {
@@ -228,8 +229,10 @@
             layer.msg(errorMsg, {icon: 5, anim: 6});
         }
 
+
+
         // 登录操作
-        form.on('submit(loginSubmit)', function (obj){
+        form.on('submit(loginSubmit)', function (data){
             admin.btnLoading('#loginSubmit',"登录中");
             var request = new HttpRequest(Feng.ctxPath + "/loginAction", 'post', function (data) {
                 // 清除顶部选择应用的缓存
@@ -243,14 +246,12 @@
                 @}
                 //停止loading
                 admin.btnLoading('#loginSubmit', false);
-                Feng.error("登录失败!" + data.message);
+                notice.msg(data.message, {icon: 2});
             });
-            request.set("account", $("#username").val());
-            request.set("password", $("#password").val());
-            request.set("kaptcha", $("#kaptcha").val());
+            data.field.rememberMe=$("#rememberMe").prop("checked");
+            request.set(data.field);
             request.start(true);
         });
-
     });
 </script>
 
