@@ -1,8 +1,8 @@
 var Message = {}
-layui.use(['element', 'admin', 'HttpRequest'], function () {
+layui.use(['element', 'admin', 'HttpRequest', 'func'], function () {
     var $ = layui.jquery;
-    var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
+    var func = layui.func;
 
     /* 加载更多按钮点击事件 */
     /*$('#messageMoreBtn2').click(function () {
@@ -35,6 +35,19 @@ layui.use(['element', 'admin', 'HttpRequest'], function () {
         HttpRequest.setAsync(true)
         HttpRequest.start();*/
     };
+
+    /**
+     * 点击查看
+     */
+    Message.openViewDlg = function (messageId) {
+        func.open({
+            title: '查看消息',
+            height: 540,
+            content: Feng.ctxPath + '/view/message_view?messageId=' + messageId,
+            tableId: Message.tableId
+        });
+    };
+
     /* 清空消息点击事件 */
     $('#messageClearBtn').click(function () {
 

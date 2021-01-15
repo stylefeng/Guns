@@ -380,13 +380,8 @@ Map.prototype.remove = function (key) {
 }
 
 
-layui.use(['form', 'admin', 'ax', 'formSelects'], function () {
+layui.use(['form', 'admin', 'formSelects'], function () {
     var $ = layui.jquery;
     form.formSelects = layui.formSelects;
-    // var $ax = layui.ax;
-   /* var openType = $("#formOpenType_").val();
-    if(openType == "view"){
-        formPriv.doView()
-    }*/
 
 });

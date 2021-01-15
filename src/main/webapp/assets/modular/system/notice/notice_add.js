@@ -1,3 +1,4 @@
+var NoticeDlg = {};
 layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], function () {
     var $ = layui.jquery;
     var HttpRequest = layui.HttpRequest;
@@ -15,7 +16,21 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             , type: 'datetime'
         });
     });
-
+    // 控制用户选择显示隐藏
+    NoticeDlg.userSelectDiv = function(value){
+        if (value === "select") {
+            userSelect.update({
+                layVerify: 'required',
+            })
+            $("#userSelectDiv").show();
+        } else {
+            $("#userSelectDiv").hide();
+            userSelect.setValue([]);
+            userSelect.update({
+                layVerify: '',
+            })
+        }
+    }
     // 渲染富文本编辑器
     tinymce.init({
         selector: '#noticeContent',
@@ -35,30 +50,7 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         }
     });
 
-    /*
-        //实例化编辑器
-        var ue = UE.getEditor('container', {
-            enableAutoSave: false,
-            autoHeightEnabled: true,
-            autoFloatEnabled: false,
-            scaleEnabled: true,         //滚动条
-            initialFrameHeight: 400     //默认的编辑区域高度
-        });
-
-        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-        UE.Editor.prototype.getActionUrl = function (action) {
-            if (action === 'uploadimage' || action === 'uploadscrawl' || action === 'uploadimage') {
-                return Feng.ctxPath + '/ueditor/imgUpdate';
-            } else if (action === 'uploadfile') {
-                return Feng.ctxPath + '/ueditor/uploadfile';
-            } else if (action === 'uploadvideo') {
-                return Feng.ctxPath + '/ueditor/uploadvideo';
-            } else {
-                return this._bkGetActionUrl.call(this, action);
-            }
-        };*/
-
-    $("#test").click(function (){
+    $("#test").click(function () {
         var select = userSelect.getValue('valueStr');
         alert(select)
         console.log(select)
@@ -77,25 +69,35 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             Feng.error("添加失败！" + data.message);
         });
         data.field.noticeContent = tinymce.get('noticeContent').getContent();
+        if (data.field.noticeScope !== "all") {
+            data.field.noticeScope = userSelect.getValue('valueStr');
+        }
         request.set(data.field);
         request.start(true);
         //添加 return false 可成功跳转页面
         return false;
     });
 
+    // 通知范围切换
+    form.on('select(noticeScopeFilter)', function (data) {
+        NoticeDlg.userSelectDiv(data.value);
+    });
 
+
+
+    // 初始化用户选择
     var userSelect = xmSelect.render({
         el: '#userSelect',
         autoRow: true,
         filterable: true,
         filterMethod: function (val, item, index, prop) {
 
-            if (item.name.indexOf(val) != -1) {//名称中包含的搜索出来
+            if (item.name.indexOf(val) !== -1) {//名称中包含的搜索出来
                 return true;
             }
             // 添加拼音检索
             try {
-                if (Pinyin.GetJP(item.name).indexOf(val) != -1 || Pinyin.GetQP(item.name).indexOf(val) != -1) {
+                if (Pinyin.GetJP(item.name).indexOf(val) !== -1 || Pinyin.GetQP(item.name).indexOf(val) !== -1) {
                     return true
                 }
             } catch (e) {
@@ -120,6 +122,7 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         }
     })
 
+    // 查询后台接口加载用户数据
     var userSelectRequest = new HttpRequest(Feng.ctxPath + "/sysUser/getUserSelectTree", 'get', function (res) {
         console.log(res)
         userSelect.update({
@@ -127,7 +130,7 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         })
         userSelect.changeExpandedKeys(true)
     }, function (data) {
-        Feng.error("获取用户选择失败!" + data.message);
+        Feng.error("获取用户数据失败!" + data.message);
     });
     userSelectRequest.start(false);
 

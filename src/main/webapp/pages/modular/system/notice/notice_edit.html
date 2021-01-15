@@ -1,4 +1,4 @@
-@layout("/layout/_form.html",{js:["/assets/modular/system/notice/notice_edit.js"],plugins:["tinymce"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/system/notice/notice_edit.js"],plugins:["tinymce","pinyin"]}){
 
 <form class="layui-form" id="noticeForm" lay-filter="noticeForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
@@ -44,9 +44,18 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">通知范围</label>
+                        <label class="layui-form-label">通知范围<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <input name="noticeScope" placeholder="请输入通知范围" type="text" class="layui-input" lay-verify="" />
+                            <select id="noticeScopeSelect" name="noticeScope" lay-verify="required" lay-filter="noticeScopeFilter">
+                                <option value="all">全部用户</option>
+                                <option value="select">选择用户</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="userSelectDiv" class="layui-inline layui-col-md12" style="display: none;">
+                        <label class="layui-form-label">用户选择</label>
+                        <div class="layui-input-block">
+                            <div id="userSelect" class="xm-select"></div>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
