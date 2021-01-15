@@ -116,30 +116,19 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         },
         height: 'auto',
         data: function () {
-            return [
-                {
-                    name: '销售员', value: -1, disabled: true, children: [
-                        {name: '张三1', value: 1, selected: true, children: []},
-                        {name: '李四1', value: 2, selected: true},
-                        {name: '王五1', value: 3, disabled: true},
-                    ]
-                },
-                {
-                    name: '奖品', value: -2, children: [
-                        {
-                            name: '奖品3', value: -3, children: [
-                                {name: '苹果3', value: 14, selected: true},
-                                {name: '香蕉3', value: 15},
-                                {name: '葡萄3', value: 16},
-                            ]
-                        },
-                        {name: '苹果2', value: 4, selected: true, disabled: true},
-                        {name: '香蕉2', value: 5},
-                        {name: '葡萄2', value: 6},
-                    ]
-                },
-            ]
+            return []
         }
     })
+
+    var userSelectRequest = new HttpRequest(Feng.ctxPath + "/sysUser/getUserSelectTree", 'get', function (res) {
+        console.log(res)
+        userSelect.update({
+            data: res.data
+        })
+        userSelect.changeExpandedKeys(true)
+    }, function (data) {
+        Feng.error("获取用户选择失败!" + data.message);
+    });
+    userSelectRequest.start(false);
 
 });
