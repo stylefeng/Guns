@@ -131,21 +131,21 @@
         }
 
         \@media screen and (min-height: 550px) {
-            .login-wrapper {
-                margin: -250px auto 0;
-                position: absolute;
-                top: 50%;
-                left: 0;
-                right: 0;
-                width: 100%;
-            }
+        .login-wrapper {
+            margin: -250px auto 0;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
 
-            .login-copyright {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                left: 0;
-            }
+        .login-copyright {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
         }
 
         .layui-btn {
@@ -156,6 +156,61 @@
         .layui-link {
             color: #5FB878 !important;
         }
+
+        .login-captcha-btn {
+            line-height: 44px;
+            text-align: center;
+            background-color: transparent;
+            outline: none;
+            color: #666;
+            padding: 0 !important;
+        }
+
+        /** 获取图形验证码弹窗 */
+        .layer-get-code {
+            padding: 25px 25px;
+        }
+
+        .layer-get-code > p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .layer-get-code > .lay-code-group {
+            position: relative;
+            padding-right: 135px;
+            margin: 15px 0;
+        }
+
+        .layer-get-code > .lay-code-group > .layui-input {
+            border-radius: 0;
+            height: 46px;
+            line-height: 46px;
+            background-color: transparent;
+            border-color: rgba(111, 121, 122, 0.3);
+        }
+
+        .layer-get-code > .lay-code-group > img {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 46px;
+            width: 120px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .layer-get-code .layui-btn-fluid {
+            line-height: 50px;
+            height: 50px;
+        }
+
+        /** //获取图形验证码弹窗 */
+
+        .layui-btn-disabled {
+            cursor: not-allowed !important;
+            color: #999 !important;
+        }
     </style>
 </head>
 <body>
@@ -163,28 +218,28 @@
     <form class="layui-form">
         <h2>用户注册</h2>
         <div class="layui-form-item layui-input-icon-group">
-            <i class="layui-icon layui-icon-username"></i>
-            <input class="layui-input" name="username" placeholder="请输入登录账号" autocomplete="off"
-                   lay-verType="tips" lay-verify="required" required/>
+            <i class="layui-icon layui-icon-cellphone-fine"></i>
+            <input class="layui-input" name="phone" placeholder="请输入手机号" autocomplete="off" lay-verType="tips" lay-verify="phoneX|required" required/>
+        </div>
+        <div class="layui-form-item layui-input-icon-group">
+            <i class="layui-icon layui-icon-email"></i>
+            <input class="layui-input" name="email" placeholder="请输入邮箱账号" autocomplete="off" lay-verType="tips" lay-verify="email|required" required/>
         </div>
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-password"></i>
-            <input class="layui-input" name="password" placeholder="请输入登录密码" type="password"
-                   lay-verType="tips" lay-verify="required" required/>
+            <input class="layui-input" name="password" placeholder="请输入新的登录密码" type="password" lay-verType="tips" lay-verify="required|psw" required/>
         </div>
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-key"></i>
-            <input class="layui-input" name="password2" placeholder="请再次输入登录密码" type="password"
-                   lay-verType="tips" lay-verify="equalTo" lay-equalTo="[name=password]" required/>
+            <input class="layui-input" name="password2" placeholder="请再次输入登录密码" type="password" lay-verType="tips" lay-verify="equalTo" lay-equalTo="[name=password]" required/>
         </div>
         <div class="layui-form-item layui-input-icon-group login-captcha-group">
             <i class="layui-icon layui-icon-auz"></i>
-            <input class="layui-input" name="code" placeholder="请输入验证码" autocomplete="off"
-                   lay-verType="tips" lay-verify="required" required/>
-            <img class="login-captcha" alt=""/>
+            <input class="layui-input" name="code" placeholder="请输入验证码" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
+            <button type="button" id="btnGetCode" class="login-captcha login-captcha-btn layui-input">获取验证码</button>
         </div>
         <div class="layui-form-item">
-            <a href="/" class="layui-link">返回登录</a>
+            <a href="${ctxPath}/" class="layui-link">返回登录</a>
             <a href="${ctxPath}/forget" class="layui-link pull-right">忘记密码</a>
         </div>
         <div class="layui-form-item" style="margin-bottom: 20px;">
@@ -206,10 +261,13 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=318"></script>
 <script>
-    layui.use(['layer', 'form', 'formX'], function () {
+    layui.use(['layer', 'form', 'formX', 'HttpRequest','notice'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
+        var HttpRequest = layui.HttpRequest;
+        var notice=layui.notice;
+
         $('.login-wrapper').removeClass('layui-hide');
 
         /* 表单提交 */
@@ -232,11 +290,89 @@
             return false;
         });
 
-        /* 图形验证码 */
-        var captchaUrl = 'http://shiro.easyweb.vip/assets/captcha';
-        $('img.login-captcha').click(function () {
-            this.src = captchaUrl + '?t=' + (new Date).getTime();
-        }).trigger('click');
+        /* 获取验证码 */
+        var captchaUrl = Feng.ctxPath + '/kaptcha';
+        $('#btnGetCode').click(function () {
+            var $btn = $(this);
+            var $inputPhone = $('input[name="phone"]');
+            var phone = $inputPhone.val();
+            if(!phone){
+                layer.tips('请输入手机号', $inputPhone, {tips: [1, '#ff4c4c']});
+                return;
+            }
+            var phoneReg = /^1[3456789]\d{9}$/;
+            if (!phoneReg.test(phone)) {
+                layer.tips('手机号格式不正确', $inputPhone, {tips: [1, '#ff4c4c']});
+                return;
+            }
+            //var $inputEmail = $('input[name="email"]');
+            //var email = $inputEmail.val();
+            //if (!email) {
+            //    layer.tips('请输入邮箱账号', $inputEmail, {tips: [1, '#ff4c4c']});
+            //    return;
+            //}
+            // var emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+\@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            // if (!emailReg.test(email)) {
+            //     layer.tips('邮箱格式不正确', $inputEmail, {tips: [1, '#ff4c4c']});
+            //     return;
+            // }
+            var layIndex = layer.open({
+                type: 1,
+                title: false,
+                shade: .1,
+                content: [
+                    '<div class="layer-get-code">',
+                    '   <p>验证码将发送到您的手机，输入下方图形验证码点击按钮即可发送：</p>',
+                    '   <div class="lay-code-group">',
+                    '      <input id="verCode" name="verCode" placeholder="请输入图形验证码" maxlength="5" class="layui-input"/>',
+                    '      <img class="login-captcha" />',
+                    '      <input id="verKey" name="verKey" type="hidden"/>',
+                    '   </div>',
+                    '   <div><button class="layui-btn layui-btn-fluid">立即发送</button></div>',
+                    '</div>'
+                ].join(''),
+                success: function () {
+                    // 图形验证码
+                    $('.layer-get-code>.lay-code-group>img').click(function () {
+                        getKaptcha();
+                    }).trigger('click');
+                    // 立即发送
+                    $('.layer-get-code .layui-btn-fluid').click(function () {
+                        var $input = $('.layer-get-code>.lay-code-group>input');
+                        var code = $input.val();
+                        if (!code) {
+                            layer.tips('请输入图形验证码', $input, {tips: [3, '#ff4c4c']});
+                            return;
+                        }
+                        layer.close(layIndex);
+
+                        var loadIndex = layer.msg('请求中...', {icon: 16, shade: 0.01, time: false});
+                        var request = new HttpRequest(Feng.ctxPath + "/sms/sendLoginMessage", 'post', function (data) {
+                            layui.formX.startTimer($btn, 60);
+                            notice.msg('发送成功', {icon: 1});
+                            layer.close(layIndex);
+                        },function (data) {
+                            notice.msg(data.message, {icon: 2});
+                        });
+                        request.set("templateCode","SMS_187746216");
+                        request.set("phoneNumber",phone);
+                        request.set("verKey",$("#verKey").val());
+                        request.set("verCode",$("#verCode").val());
+                        request.start(true);
+                        layer.close(loadIndex);
+                    });
+                }, end: function () {
+                    layer.closeAll('tips');
+                }
+            })
+        });
+        // 获取验证码
+        function getKaptcha(){
+            var request = new HttpRequest(Feng.ctxPath + '/kaptcha'+ '?t=' + (new Date).getTime(), 'get');
+            var result = request.start();
+            $("#verKey").val(result.data.verKey)
+            $('.layer-get-code>.lay-code-group>img').attr('src', result.data.verImage);
+        }
 
     });
 </script>
