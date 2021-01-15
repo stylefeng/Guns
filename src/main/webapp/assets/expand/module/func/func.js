@@ -83,7 +83,10 @@ layui.define(['jquery', 'layer', 'admin', 'table'], function (exports) {
                 param.shade = .1;
             }
 
-            var thisIndex = top.layui.layer.open(param);
+            //ifream 内遮罩层
+            //var thisIndex = top.layui.layer.open(param);
+            //ifream 内遮罩层
+            var thisIndex = admin.open(param);
 
             //按键监听esc关闭对话框
             $(window).keydown(function (event) {

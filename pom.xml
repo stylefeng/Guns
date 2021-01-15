@@ -96,6 +96,7 @@
             <artifactId>office-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>log-spring-boot-starter</artifactId>
@@ -105,6 +106,18 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>timer-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>sms-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>message-spring-boot-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
 
@@ -140,7 +153,6 @@
             <artifactId>oshi-core</artifactId>
             <version>${oshi.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

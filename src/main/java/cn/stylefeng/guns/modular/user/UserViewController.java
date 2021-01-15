@@ -60,4 +60,26 @@ public class UserViewController {
         return "/modular/system/user/user_role.html";
     }
 
+    /**
+     * 用户管理-注册-视图
+     *
+     * @author chenjinlong
+     * @date 2021/1/7 19:09
+     */
+    @GetResource(name = "用户管理-注册-视图", path = "/register", requiredPermission = false, requiredLogin = false)
+    public String registerView() {
+        return "register.html";
+    }
+
+    /**
+     * 用户管理-找回密码-视图
+     *
+     * @author chenjinlong
+     * @date 2021/1/7 19:09
+     */
+    @GetResource(name = "用户管理-找回密码-视图", path = "/forget", requiredPermission = false, requiredLogin = false)
+    public String forgetView() {
+        return "forget.html";
+    }
+
 }

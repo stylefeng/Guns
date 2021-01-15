@@ -62,7 +62,7 @@ ${layoutContent}
 
 <!--其他插件js-->
 @if(isNotEmpty(plugins)){
-    @if(array.contain(plugins,"ztree")){
+    @if(array.contain(plugins,"jquery-layout")){
     <script src="${ctxPath}/assets/expand/plugins/jquery-layout/jquery-2.1.4.min.js?v=${constants.getReleaseVersion()}"></script>
     <script type="text/javascript" src="${ctxPath}/assets/expand/plugins/jquery-layout/jquery.layout-latest.js?v=${constants.getReleaseVersion()}"></script>
     @}
