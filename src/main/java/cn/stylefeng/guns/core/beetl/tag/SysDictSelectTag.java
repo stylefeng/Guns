@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.beetl.enums.SelectTagHeadTypeEnum;
 import cn.stylefeng.roses.kernel.dict.modular.entity.SysDict;
 import cn.stylefeng.roses.kernel.dict.modular.entity.SysDictType;
+import cn.stylefeng.roses.kernel.rule.enums.YesOrNotEnum;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -65,11 +66,13 @@ public class SysDictSelectTag extends SysDictBaseTag {
             // 根据字典类型编码去查询字典类型
             LambdaQueryWrapper<SysDictType> dictTypeQueryWrapper = new LambdaQueryWrapper<>();
             dictTypeQueryWrapper.eq(SysDictType::getDictTypeCode, this.getDictTypeCode());
+            dictTypeQueryWrapper.ne(SysDictType::getDelFlag, YesOrNotEnum.Y.getCode());
             SysDictType dictType = dictTypeService.getOne(dictTypeQueryWrapper);
             if (dictType != null) {
                 // 查询字典列表
                 LambdaQueryWrapper<SysDict> dictQueryWrapper = new LambdaQueryWrapper<>();
                 dictQueryWrapper.eq(SysDict::getDictTypeCode, dictType.getDictTypeCode());
+                dictQueryWrapper.ne(SysDict::getDelFlag, YesOrNotEnum.Y.getCode());
                 dictQueryWrapper.orderByAsc(SysDict::getDictSort);
                 List<SysDict> lst = dictService.list(dictQueryWrapper);
                 // 默认选中值
