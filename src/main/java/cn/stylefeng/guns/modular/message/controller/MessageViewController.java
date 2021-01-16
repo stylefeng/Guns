@@ -1,7 +1,5 @@
 package cn.stylefeng.guns.modular.message.controller;
 
-import cn.stylefeng.guns.modular.index.service.IndexService;
-import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
 import cn.stylefeng.roses.kernel.message.api.MessageApi;
 import cn.stylefeng.roses.kernel.message.api.enums.MessageReadFlagEnum;
 import cn.stylefeng.roses.kernel.message.api.pojo.MessageParam;
@@ -11,7 +9,6 @@ import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,8 +26,6 @@ public class MessageViewController {
 
     @Resource
     private MessageApi messageApi;
-
-
 
     /**
      * 系统消息界面

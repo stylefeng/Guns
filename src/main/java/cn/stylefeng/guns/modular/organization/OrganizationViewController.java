@@ -2,7 +2,6 @@ package cn.stylefeng.guns.modular.organization;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
  * @date 2020/12/28 9:28
  */
 @Controller
-@Slf4j
 @ApiResource(name = "组织机构管理控制器界面")
 public class OrganizationViewController {
 

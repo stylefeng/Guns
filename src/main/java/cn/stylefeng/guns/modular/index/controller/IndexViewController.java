@@ -4,7 +4,6 @@ import cn.stylefeng.guns.modular.index.service.IndexService;
 import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -17,7 +16,6 @@ import javax.annotation.Resource;
  * @date 2020/12/27 16:23
  */
 @Controller
-@Slf4j
 @ApiResource(name = "首页相关的界面渲染")
 public class IndexViewController {
 

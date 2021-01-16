@@ -13,36 +13,29 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @Slf4j
-@ApiResource(name = "操作日志管理相关的界面渲染", path = "/view/log")
+@ApiResource(name = "操作日志管理相关的界面渲染")
 public class LogViewController {
-
-    private String PREFIX = "/modular/system/log";
 
     /**
      * 操作日志管理列表
      *
-     * @param
-     * @return
      * @author TSQ
      * @date 2021/1/5 15:18
      */
-    @GetResource(name = "操作日志管理列表", path = "")
+    @GetResource(name = "操作日志管理列表", path = "/view/log")
     public String indexView() {
-        return PREFIX + "/log.html";
+        return "/modular/system/log/log.html";
     }
-
 
     /**
      * 业务日志详情-视图
      *
-     * @param
-     * @return
      * @author chenjinlong
      * @date 2021/1/13 19:45
      */
-    @GetResource(name = "业务日志详情-视图", path = "detailView")
+    @GetResource(name = "业务日志详情-视图", path = "/view/log/detailView")
     public String detailView() {
-        return PREFIX + "/log_detail.html";
+        return "/log_detail.html";
     }
 
 }
