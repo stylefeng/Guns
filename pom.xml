@@ -147,16 +147,18 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
         <!--硬件信息获取-->
         <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
             <version>${oshi.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
-        <finalName>guns-standalone</finalName>
+        <finalName>guns</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
