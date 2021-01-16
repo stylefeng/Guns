@@ -230,6 +230,12 @@
                 <spring.active>dev</spring.active>
             </properties>
         </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <spring.active>prod</spring.active>
+            </properties>
+        </profile>
     </profiles>
 
 </project>
