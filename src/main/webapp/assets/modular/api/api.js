@@ -41,11 +41,7 @@ layui.use(['layer', 'form', 'table', 'HttpRequest', 'func', 'tree'], function ()
             {field: 'chineseName', title: '中文名称', width: 150},
             {field: 'fieldClassType', title: '字段类型', width: 150},
             {field: 'fieldName', title: '字段名称', width: 200},
-            {
-                field: 'groupAnnotations', title: '按校验组分的注解集合', templet: function (data) {
-                    return JSON.stringify(data.groupAnnotations);
-                }
-            }
+            {field: 'validationMessages', title: '校验信息'}
         ]];
 
         // 渲染请求参数列表
