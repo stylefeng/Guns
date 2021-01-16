@@ -21,6 +21,9 @@ spring:
     serialization:
       indent_output: false
 
+beetl:
+  html-tag-flag: 'tag:'
+
 scanner:
   open: true
 
