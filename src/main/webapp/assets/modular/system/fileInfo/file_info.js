@@ -66,12 +66,12 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
 
 
 
-    // 点击编辑
-    FileInfo.openEditDlg = function (data) {
+    // 点击详情
+    FileInfo.openDetails = function (data) {
         func.open({
             height: 800,
-            title: '修改职位',
-            content: Feng.ctxPath + '/position/editView?positionId=' + data.positionId,
+            title: '详情',
+            content: Feng.ctxPath + '/view/fileInfoDetails?fileId=' + data.fileId,
             tableId: FileInfo.tableId
         });
     };
@@ -106,31 +106,10 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
     FileInfo.openPreview = function (data) {
         var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
 
-        // layer.open({
-        //     type: 1,
-        //     title: false,
-        //     closeBtn: 0,
-        //     skin: 'layui-layer-nobg', //没有背景色
-        //     shadeClose: true,
-        //     content: '<div >' +
-        //         '<img src="' +
-        //         Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName+
-        //         '" style="max-width: 100%;">' +
-        //         '</div>  '
-        //     // content: Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName,
-        // });
-        //
-
-        var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
-
-        layer.open({
-            type: 2,
-            title: false,
-            closeBtn: 0,
-            area: ['500px', '300px'],
-            shadeClose: true,
-            content: imgUrl
-        })
+        layer.photos({
+            photos: { "data": [{"src": imgUrl}] }
+            ,anim: 0
+        });
 
 
 
@@ -161,8 +140,8 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
     table.on('tool(' + FileInfo.tableId + ')', function (obj) {
         var data = obj.data;
         var event = obj.event;
-        if (event === 'edit') {
-            FileInfo.openEditDlg(data);
+        if (event === 'details') {
+            FileInfo.openDetails(data);
         } else if (event === 'delete') {
             FileInfo.onDeleteFile(data);
         }else if (event === 'download'){
