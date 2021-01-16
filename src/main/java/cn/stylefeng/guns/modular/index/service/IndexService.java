@@ -41,6 +41,7 @@ public class IndexService {
 
     @Resource
     private MessageApi messageApi;
+
     /**
      * 获取首页需要渲染的参数
      *

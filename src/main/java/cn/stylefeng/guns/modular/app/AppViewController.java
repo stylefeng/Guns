@@ -2,7 +2,6 @@ package cn.stylefeng.guns.modular.app;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
  * @date 2021/1/6 13:32
  */
 @Controller
-@Slf4j
 @ApiResource(name = "应用管理界面")
 public class AppViewController {
 

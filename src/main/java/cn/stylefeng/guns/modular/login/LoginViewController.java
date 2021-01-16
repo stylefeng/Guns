@@ -9,7 +9,6 @@ import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.PostResource;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +23,6 @@ import javax.annotation.Resource;
  * @date 2020/12/27 16:23
  */
 @Controller
-@Slf4j
 @ApiResource(name = "登录相关的接口")
 public class LoginViewController {
 

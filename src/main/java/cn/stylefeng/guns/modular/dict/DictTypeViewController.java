@@ -3,7 +3,6 @@ package cn.stylefeng.guns.modular.dict;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
  * @date 2021/1/6 20:53
  **/
 @Controller
-@Slf4j
 @ApiResource(name = "字典类型管理相关的界面渲染")
 public class DictTypeViewController {
 

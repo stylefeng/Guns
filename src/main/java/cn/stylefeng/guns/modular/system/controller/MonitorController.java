@@ -3,7 +3,6 @@ package cn.stylefeng.guns.modular.system.controller;
 import cn.stylefeng.guns.modular.system.warpper.SystemHardwareWrapper;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
  * @date 2020/12/30 16:40
  */
 @Controller
-@Slf4j
 @ApiResource(name = "项目监控")
 public class MonitorController {
 

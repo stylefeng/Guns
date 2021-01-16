@@ -2,7 +2,6 @@ package cn.stylefeng.guns.modular.config;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
  * @date 2021/1/10 14:28
  */
 @Controller
-@Slf4j
 @ApiResource(name = "系统配置相关页面")
 public class ConfigViewController {
 

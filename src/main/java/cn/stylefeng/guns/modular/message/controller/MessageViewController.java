@@ -6,7 +6,6 @@ import cn.stylefeng.roses.kernel.message.api.pojo.MessageParam;
 import cn.stylefeng.roses.kernel.message.api.pojo.MessageResponse;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -20,7 +19,6 @@ import java.util.List;
  * @date 2021/1/11 19:37
  */
 @Controller
-@Slf4j
 @ApiResource(name = "系统消息相关的界面渲染")
 public class MessageViewController {
 
