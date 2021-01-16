@@ -59,6 +59,7 @@ layui.use(['table', 'HttpRequest'], function () {
     var tableResult = table.render({
         elem: '#' + OnlineUser.tableId,
         url: Feng.ctxPath + '/sysUser/onlineUserList',
+        limit: Number.MAX_VALUE,
         page: false,
         height: "full-158",
         cellMinWidth: 100,

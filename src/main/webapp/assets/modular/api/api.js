@@ -41,13 +41,15 @@ layui.use(['layer', 'form', 'table', 'HttpRequest', 'func', 'tree'], function ()
             {field: 'chineseName', title: '中文名称', width: 150},
             {field: 'fieldClassType', title: '字段类型', width: 150},
             {field: 'fieldName', title: '字段名称', width: 200},
-            {field: 'validationMessages', title: '校验信息'}
+            {field: 'validationMessages', title: '可能出现的参数校验错误提示'}
         ]];
 
         // 渲染请求参数列表
         table.render({
             elem: '#requestParamsTable',
             cols: columns,
+            page: false,
+            limit: Number.MAX_VALUE,
             data: detailResult.data.paramFieldDescriptions,
             even: true
         });
@@ -56,6 +58,8 @@ layui.use(['layer', 'form', 'table', 'HttpRequest', 'func', 'tree'], function ()
         table.render({
             elem: '#responseParamsTable',
             cols: columns,
+            page: false,
+            limit: Number.MAX_VALUE,
             data: detailResult.data.responseFieldDescriptions,
             even: true
         });
