@@ -19,22 +19,16 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
             {field: 'messageTitle', sort: true, title: '消息标题'},
             // {field: 'messageType', sort: true, title: '消息类型'},
             // {field: 'priorityLevelValue', sort: true, title: '优先级'},
-            {field: 'priorityLevel', sort: true, title: '优先级', templet: function (d) {
-                    if (d.priorityLevel === "high") {
-                        return "高";
-                    } else if (d.priorityLevel === "middle") {
-                        return "中";
-                    } else {
-                        return "低";
-                    }
-                }},
-            {field: 'readFlag', sort: true, title: '阅读状态', templet: function (d) {
-                    if (d.readFlag === 0) {
-                        return "未读";
-                    } else {
-                        return "已读";
-                    }
-                }},
+            {field: 'priorityLevelValue', sort: true, title: '优先级'},
+            {field: 'readFlagValue', sort: true, title: '阅读状态'
+                // , templet: function (d) {
+                //     if (d.readFlag === 0) {
+                //         return "未读";
+                //     } else {
+                //         return "已读";
+                //     }
+                // }
+                },
             {field: 'messageSendTime', sort: true, title: '收到时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
@@ -58,7 +52,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     Message.openViewDlg = function (data) {
         func.open({
             title: '查看消息',
-            // height: 900,
+            height: 540,
             content: Feng.ctxPath + '/view/message_view?messageId=' + data.messageId,
             tableId: Message.tableId
         });
