@@ -68,6 +68,7 @@ public class BeetlConfiguration {
         Properties properties = new Properties();
         properties.setProperty("DELIMITER_STATEMENT_START", BeetlConfigExpander.getDelimiterStatementStart());
         properties.setProperty("DELIMITER_STATEMENT_END", BeetlConfigExpander.getDelimiterStatementEnd());
+        properties.setProperty("HTML_TAG_FLAG", BeetlConfigExpander.getHtmlTagFlag());
         properties.setProperty("RESOURCE.tagRoot", BeetlConfigExpander.getResourceTagRoot());
         properties.setProperty("RESOURCE.tagSuffix", BeetlConfigExpander.getResourceTagSuffix());
         properties.setProperty("RESOURCE.autoCheck", BeetlConfigExpander.getResourceAutoCheck());
