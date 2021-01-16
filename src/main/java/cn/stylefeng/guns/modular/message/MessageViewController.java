@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.message.controller;
+package cn.stylefeng.guns.modular.message;
 
 import cn.stylefeng.roses.kernel.message.api.MessageApi;
 import cn.stylefeng.roses.kernel.message.api.enums.MessageReadFlagEnum;

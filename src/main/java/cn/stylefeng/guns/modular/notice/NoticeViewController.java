@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.notice.controller;
+package cn.stylefeng.guns.modular.notice;
 
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
