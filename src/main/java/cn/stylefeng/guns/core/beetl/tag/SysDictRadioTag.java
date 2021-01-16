@@ -26,18 +26,10 @@ public class SysDictRadioTag extends SysDictBaseTag {
         // 当字典类型编码不为空
         if (StrUtil.isNotBlank(this.getDictTypeCode())) {
             // 根据字典类型编码去查询字典类型
-            LambdaQueryWrapper<SysDictType> dictTypeQueryWrapper = new LambdaQueryWrapper<>();
-            dictTypeQueryWrapper.eq(SysDictType::getDictTypeCode, this.getDictTypeCode());
-            dictTypeQueryWrapper.ne(SysDictType::getDelFlag, YesOrNotEnum.Y.getCode());
-            SysDictType dictType = dictTypeService.getOne(dictTypeQueryWrapper);
+            SysDictType dictType = getDictType();
             // 判断字典类型不为空
             if (dictType != null) {
-                // 查询字典列表
-                LambdaQueryWrapper<SysDict> dictQueryWrapper = new LambdaQueryWrapper<>();
-                dictQueryWrapper.eq(SysDict::getDictTypeCode, dictType.getDictTypeCode());
-                dictQueryWrapper.ne(SysDict::getDelFlag, YesOrNotEnum.Y.getCode());
-                dictQueryWrapper.orderByAsc(SysDict::getDictSort);
-                List<SysDict> lst = dictService.list(dictQueryWrapper);
+                List<SysDict> lst = getDictList();
                 // 默认选中值
                 String defaultValue = this.getDefaultValue();
                 int index = 0;

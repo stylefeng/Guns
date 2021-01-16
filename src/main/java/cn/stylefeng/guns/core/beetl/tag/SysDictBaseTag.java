@@ -3,11 +3,16 @@ package cn.stylefeng.guns.core.beetl.tag;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.stylefeng.guns.core.beetl.consts.DictTagConstants;
+import cn.stylefeng.roses.kernel.dict.modular.entity.SysDict;
+import cn.stylefeng.roses.kernel.dict.modular.entity.SysDictType;
 import cn.stylefeng.roses.kernel.dict.modular.service.DictService;
 import cn.stylefeng.roses.kernel.dict.modular.service.DictTypeService;
+import cn.stylefeng.roses.kernel.rule.enums.YesOrNotEnum;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.Data;
 import org.beetl.core.tag.GeneralVarTagBinding;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -73,6 +78,12 @@ public class SysDictBaseTag extends GeneralVarTagBinding {
      */
     public String itemName;
 
+    /**
+     * 初始化绑定属性
+     *
+     * @author liuhanqing
+     * @date 2021/1/16 23:49
+     */
     public void initAttr() {
         Map<String, Object> attrs = this.getAttributes();
         if (attrs.size() > 0) {
@@ -121,5 +132,34 @@ public class SysDictBaseTag extends GeneralVarTagBinding {
     @Override
     public void render() {
 
+    }
+
+    /**
+     * 获取字典类型
+     * @return 字典类型
+     * @author liuhanqing
+     * @date 2021/1/16 23:46
+     */
+    public SysDictType getDictType(){
+        // 根据字典类型编码去查询字典类型
+        LambdaQueryWrapper<SysDictType> dictTypeQueryWrapper = new LambdaQueryWrapper<>();
+        dictTypeQueryWrapper.eq(SysDictType::getDictTypeCode, this.getDictTypeCode());
+        dictTypeQueryWrapper.ne(SysDictType::getDelFlag, YesOrNotEnum.Y.getCode());
+        return dictTypeService.getOne(dictTypeQueryWrapper);
+    }
+    /**
+     *
+     *
+     * @return 根据字典类型返回字典集合
+     * @author liuhanqing
+     * @date 2021/1/16 23:46
+     */
+    public List<SysDict> getDictList(){
+        // 查询字典列表
+        LambdaQueryWrapper<SysDict> dictQueryWrapper = new LambdaQueryWrapper<>();
+        dictQueryWrapper.eq(SysDict::getDictTypeCode, this.getDictTypeCode());
+        dictQueryWrapper.ne(SysDict::getDelFlag, YesOrNotEnum.Y.getCode());
+        dictQueryWrapper.orderByAsc(SysDict::getDictSort);
+        return dictService.list(dictQueryWrapper);
     }
 }
