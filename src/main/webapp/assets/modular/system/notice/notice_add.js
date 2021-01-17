@@ -40,11 +40,12 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         plugins: 'code print preview fullscreen paste searchreplace save autosave link autolink image imagetools media table codesample lists advlist hr charmap emoticons anchor directionality pagebreak quickbars nonbreaking visualblocks visualchars wordcount',
         toolbar: 'fullscreen preview code | undo redo | forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | formatselect fontselect fontsizeselect | link image media emoticons charmap anchor pagebreak codesample | ltr rtl',
         toolbar_drawer: 'sliding',
-        images_upload_url: '../../../json/tinymce-upload-ok.json',
-        file_picker_types: 'media',
-        file_picker_callback: function (callback, value, meta) {
-            layer.msg('演示环境不允许上传', {anim: 6});
-        },
+        images_upload_url: Feng.ctxPath + '/sysFileInfo/tinymceUpload',
+        images_upload_base_path: Feng.ctxPath,
+        file_picker_types: 'file image media',
+        // file_picker_callback: function (callback, value, meta) {
+        //     layer.msg('演示环境不允许上传', {anim: 6});
+        // },
         init_instance_callback: function (editor) {
             console.log(editor);
         }
