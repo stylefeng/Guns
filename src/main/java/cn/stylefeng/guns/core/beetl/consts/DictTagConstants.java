@@ -74,5 +74,4 @@ public interface DictTagConstants {
      */
     String ITEM_NAME = "itemName";
 
-
 }

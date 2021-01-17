@@ -5,7 +5,7 @@
 /* 解析数据表格templet列 */
 Feng.parseData = function (res) {
     return {
-        "code": res.code == "00000" ? "0" : res.code, //解析接口状态
+        "code": res.code === "00000" ? "0" : res.code, //解析接口状态
         "msg": res.message, //解析提示文本
         "count": res.data.totalRows, //解析数据长度
         "data": res.data.rows //解析数据列表
