@@ -36,8 +36,10 @@ public class CustomBeetlGroupUtilConfiguration extends BeetlGroupUtilConfigurati
 
         // 下拉选字典
         groupTemplate.registerTag("dict_select", SysDictSelectTag.class);
+
         // 单选字典
         groupTemplate.registerTag("dict_radio", SysDictRadioTag.class);
+
         // 多选字典
         groupTemplate.registerTag("dict_checkbox", SysDictCheckBoxTag.class);
 
