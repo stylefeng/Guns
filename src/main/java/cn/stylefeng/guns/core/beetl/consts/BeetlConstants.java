@@ -37,4 +37,10 @@ public interface BeetlConstants {
      */
     String DEFAULT_RESOURCE_AUTO_CHECK = "false";
 
+    /**
+     * 默认beetl 支持HTML标签
+     * <p>
+     * beetl默认的是 '#'
+     */
+    String DEFAULT_HTML_TAG_FLAG = "tag:";
 }

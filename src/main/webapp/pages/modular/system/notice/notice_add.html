@@ -22,12 +22,15 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">优先级<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
-                            <select id="priorityLevel" name="priorityLevel" lay-filter="">
+
+                            <tag:dict_select id="priorityLevel" name="priorityLevel" type="select" head-type="2" head-name="" head-value="" default-value="" dict-type-code="priority_level" lay-verify="required" >
+                            </tag:dict_select>
+                           <!-- <select id="priorityLevel" name="priorityLevel" lay-filter="">
                                 <option value="">请选择通知优先级</option>
                                 <option value="low">低</option>
                                 <option value="middle">中</option>
                                 <option value="high">高</option>
-                            </select>
+                            </select>-->
 <!--                            <input name="priorityLevel" placeholder="请输入通知优先级" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>-->
                         </div>
                     </div>

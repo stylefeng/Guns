@@ -60,5 +60,14 @@ public class BeetlConfigExpander {
     public static String getResourceAutoCheck() {
         return ConfigContext.me().getSysConfigValueWithDefault("RESOURCE_AUTO_CHECK", String.class, BeetlConstants.DEFAULT_RESOURCE_AUTO_CHECK);
     }
+    /**
+     * 自定义支持HTML标签
+     *
+     * @author liuhanqing
+     * @date 2021/1/16 21:06
+     */
+    public static String getHtmlTagFlag() {
+        return ConfigContext.me().getSysConfigValueWithDefault("HTML_TAG_FLAG", String.class, BeetlConstants.DEFAULT_HTML_TAG_FLAG);
+    }
 
 }

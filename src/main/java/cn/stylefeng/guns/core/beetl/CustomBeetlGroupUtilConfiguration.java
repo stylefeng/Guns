@@ -1,6 +1,9 @@
 package cn.stylefeng.guns.core.beetl;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.stylefeng.guns.core.beetl.tag.SysDictCheckBoxTag;
+import cn.stylefeng.guns.core.beetl.tag.SysDictRadioTag;
+import cn.stylefeng.guns.core.beetl.tag.SysDictSelectTag;
 import cn.stylefeng.roses.kernel.auth.api.LoginUserApi;
 import cn.stylefeng.roses.kernel.system.expander.SystemConfigExpander;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
@@ -30,6 +33,13 @@ public class CustomBeetlGroupUtilConfiguration extends BeetlGroupUtilConfigurati
 
         // 获取基本信息的工具
         groupTemplate.registerFunctionPackage("constants", SystemConfigExpander.class);
+
+        // 下拉选字典
+        groupTemplate.registerTag("dict_select", SysDictSelectTag.class);
+        // 单选字典
+        groupTemplate.registerTag("dict_radio", SysDictRadioTag.class);
+        // 多选字典
+        groupTemplate.registerTag("dict_checkbox", SysDictCheckBoxTag.class);
 
         // todo 多语言
 //        groupTemplate.registerFunctionPackage("lang", new UserTranslationContext());
