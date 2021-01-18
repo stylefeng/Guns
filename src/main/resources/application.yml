@@ -20,6 +20,12 @@ spring:
     locale: zh_CN
     serialization:
       indent_output: false
+  flyway:
+    locations: classpath:db/migration
+    # 当迁移时发现目标schema非空，而且带有没有元数据的表时，是否自动执行基准迁移
+    baseline-on-migrate: true
+    # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
+    out-of-order: true
 
 scanner:
   open: true
