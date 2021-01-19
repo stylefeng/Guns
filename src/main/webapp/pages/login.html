@@ -15,7 +15,7 @@
     <![endif]-->
     <style>
         body {
-            background-image: url("${ctxPath}/assets/common/images/bg-login.jpg");
+            background-image:linear-gradient(135deg, #168af0 0%, #6eeaa4 100%);
             background-repeat: no-repeat;
             background-size: cover;
             min-height: 100vh;
@@ -157,9 +157,19 @@
         .layui-link {
             color: #5FB878 !important;
         }
+
+        canvas {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
+<canvas id="canvas" width="1920" height="1080"></canvas>
 <div class="login-wrapper layui-anim layui-anim-scale layui-hide">
         <form class="layui-form">
         <h2>用户登录</h2>
@@ -219,8 +229,6 @@
         var admin = layui.admin;
         var notice = layui.notice;
 
-
-
         $('.login-wrapper').removeClass('layui-hide');
 
         var errorMsg = "${tips!}";
@@ -245,6 +253,7 @@
         @if(constants.getCaptchaOpen()){
             getKaptcha();
         @}
+
         // 登录操作
         form.on('submit(loginSubmit)', function (data){
             admin.btnLoading('#loginSubmit',"登录中");
@@ -269,6 +278,81 @@
             request.start(true);
             return false;
         });
+
+        // canvas绘画
+        window.requestAnimationFrame =
+        window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.msRequestAnimationFrame;
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var w = canvas.width = canvas.offsetWidth;
+        var h = canvas.height = canvas.offsetHeight;
+        var circles = [];
+
+        init(180);
+
+        function init(num) {
+            for (var i = 0; i < num; i++) {
+                newobject(Math.random() * w, Math.random() * h);
+            }
+            draw();
+        }
+
+        function newobject(x, y) {
+            var object = new Object();
+            object.x = x;
+            object.y = y;
+            object.r = Math.random() * 3;
+            object._mx = Math.random();
+            object._my = Math.random();
+            circles.push(object);
+        }
+
+        function drawCircle(obj) {
+            ctx.beginPath();
+            ctx.arc(obj.x, obj.y, obj.r, 0, 360);
+            ctx.closePath();
+            ctx.fillStyle = "rgba(204, 204, 204, 0.3)";
+            ctx.fill();
+        }
+
+        function drawLine(obj1, obj) {
+            let dx = obj1.x - obj.x;
+            let dy = obj1.y - obj.y;
+            let d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 60) {
+                ctx.beginPath();
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(obj1.x, obj1.y); //start
+                ctx.lineTo(obj.x, obj.y); //end
+                ctx.closePath();
+                ctx.strokeStyle = "rgba(204, 204, 204, 0.3)";
+                ctx.stroke();
+            }
+        }
+
+        function move(obj) {
+            obj._mx = obj.x < w && obj.x > 0 ? obj._mx : -obj._mx;
+            obj._my = obj.y < h && obj.y > 0 ? obj._my : -obj._my;
+            obj.x += obj._mx / 2;
+            obj.y += obj._my / 2;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            for (let i = 0; i < circles.length; i++) {
+                move.call(circles[i], circles[i]);
+                drawCircle.call(circles[i], circles[i]);
+                for (let j = i + 1; j < circles.length; j++) {
+                    drawLine.call(circles[i], circles[i], circles[j]);
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
     });
 </script>
 
