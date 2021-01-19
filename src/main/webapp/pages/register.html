@@ -243,7 +243,7 @@
             <a href="${ctxPath}/forget" class="layui-link pull-right">忘记密码</a>
         </div>
         <div class="layui-form-item" style="margin-bottom: 20px;">
-            <button class="layui-btn layui-btn-fluid" lay-filter="loginSubmit" lay-submit>注册</button>
+            <button class="layui-btn layui-btn-fluid" lay-filter="registerSubmit" lay-submit>注册</button>
         </div>
     </form>
 </div>
@@ -261,37 +261,45 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=318"></script>
 <script>
-    layui.use(['layer', 'form', 'formX', 'HttpRequest','notice'], function () {
+    layui.use(['layer', 'form', 'formX', 'HttpRequest','notice','admin'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
         var HttpRequest = layui.HttpRequest;
         var notice=layui.notice;
-
+        var admin = layui.admin;
         $('.login-wrapper').removeClass('layui-hide');
 
         /* 表单提交 */
-        form.on('submit(loginSubmit)', function (obj) {
-            // console.log(obj.field);
-            layer.msg('注册成功', {icon: 1, time: 1500}, function () {
-                location.href = 'login.html';
-            });
-            /*var loadIndex = layer.load(2);
-            $.post('reg', obj.field, function (res) {
-                layer.close(loadIndex);
-                if (res.code === 0) {
+        form.on('submit(registerSubmit)', function (formData) {
+            admin.btnLoading('#loginSubmit',"登录中");
+            var request = new HttpRequest(Feng.ctxPath + "/sms/validateMessage", 'post', function (data) {
+                var reg = new HttpRequest(Feng.ctxPath + "/sysUser/register", 'post', function (data) {
                     layer.msg('注册成功', {icon: 1, time: 1500}, function () {
-                        location.href = 'login.html';
+                        location.href = Feng.ctxPath+'/';
                     });
-                } else {
-                    layer.msg(res.msg, {icon: 2, anim: 6});
-                }
-            }, 'json');*/
+                }, function (data) {
+                    //停止loading
+                    admin.btnLoading('#loginSubmit', false);
+                    notice.msg(data.message, {icon: 2});
+                });
+                formData.field.account=formData.field.email;
+                reg.set(formData.field);
+                reg.start(true);
+
+            }, function (data) {
+                //停止loading
+                admin.btnLoading('#loginSubmit', false);
+                notice.msg(data.message, {icon: 2});
+            });
+            request.set("templateCode","SMS_187746216");
+            request.set(formData.field);
+            request.start(true);
             return false;
         });
 
         /* 获取验证码 */
-        var captchaUrl = Feng.ctxPath + '/kaptcha';
+        //var captchaUrl = Feng.ctxPath + '/kaptcha';
         $('#btnGetCode').click(function () {
             var $btn = $(this);
             var $inputPhone = $('input[name="phone"]');
@@ -305,17 +313,6 @@
                 layer.tips('手机号格式不正确', $inputPhone, {tips: [1, '#ff4c4c']});
                 return;
             }
-            //var $inputEmail = $('input[name="email"]');
-            //var email = $inputEmail.val();
-            //if (!email) {
-            //    layer.tips('请输入邮箱账号', $inputEmail, {tips: [1, '#ff4c4c']});
-            //    return;
-            //}
-            // var emailReg = /^([a-zA-Z]|[0-9])(\w|\-)+\@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-            // if (!emailReg.test(email)) {
-            //     layer.tips('邮箱格式不正确', $inputEmail, {tips: [1, '#ff4c4c']});
-            //     return;
-            // }
             var layIndex = layer.open({
                 type: 1,
                 title: false,
@@ -355,7 +352,7 @@
                             notice.msg(data.message, {icon: 2});
                         });
                         request.set("templateCode","SMS_187746216");
-                        request.set("phoneNumber",phone);
+                        request.set("phone",phone);
                         request.set("verKey",$("#verKey").val());
                         request.set("verCode",$("#verCode").val());
                         request.start(true);
