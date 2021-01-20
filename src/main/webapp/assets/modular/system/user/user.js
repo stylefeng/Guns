@@ -7,6 +7,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     var func = layui.func;
     var tree = layui.tree;
 
+    var util=layui.util;
+
     /**
      * 系统管理--用户管理
      */
@@ -156,13 +158,6 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
         cellMinWidth: 100,
         cols: MgrUser.initColumn(),
         parseData: Feng.parseData
-    });
-
-    //渲染时间选择框
-    laydate.render({
-        elem: '#timeLimit',
-        range: true,
-        max: Feng.currentDate()
     });
 
     // 初始化部门树
