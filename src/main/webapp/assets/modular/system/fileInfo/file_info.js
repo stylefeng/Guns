@@ -19,6 +19,12 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
         return [[
             {type: 'checkbox'},
             {field: 'fileId', hide: true, title: '主键id'},
+            {
+                title: '图片', templet: function (d) {
+                    var url = d.imgUrl || Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + d.fileBucket + '&fileObjectName=' + d.fileObjectName;
+                    return '<img data-index="' + (d.LAY_INDEX - 1) + '" src="' + url + '" class="tb-img-circle" tb-img alt=""/>';
+                }, align: 'center', unresize: true
+            },
             {field: 'fileLocation', sort: true, title: '存储位置'},
             {field: 'fileOriginName', sort: true, title: '文件名称'},
             {field: 'secretFlag', sort: true, title: '是否机密'},
@@ -33,22 +39,30 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
             {align: 'center', toolbar: '#tableBar', title: '操作', width: 230}
         ]];
     };
-
-
+    /* 点击图片放大 */
+    $(document).off('click.tbImg').on('click.tbImg', '[tb-img]', function () {
+        var imgList = table.cache[FileInfo.tableId].map(function (d) {
+            return {
+                alt: d.nickName,
+                src: d.imgUrl || Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + d.fileBucket + '&fileObjectName=' + d.fileObjectName
+            }
+        });
+        layer.photos({photos: {data: imgList, start: $(this).data('index')}, shade: .1, closeBtn: true});
+    });
 
     //上传
     var uploadInst = upload.render({
         elem: '#btnUpload' //绑定元素
-        ,url: Feng.ctxPath + '/sysFileInfo/upload?secretFlag=N' //上传接口
-        ,done: function(res){
+        , url: Feng.ctxPath + '/sysFileInfo/upload?secretFlag=N' //上传接口
+        , done: function (res) {
             //上传完毕回调
             Feng.success("上传成功!");
 
             FileInfo.search();
         }
-        ,error: function(err){
+        , error: function (err) {
             //请求异常回调
-            Feng.error("上传失败！"+ err.message);
+            Feng.error("上传失败！" + err.message);
         }
     });
 
@@ -63,7 +77,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
             page: {curr: 1}
         });
     };
-
 
 
     // 点击详情
@@ -95,28 +108,18 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
 
     // 下载
     FileInfo.onFileDownload = function (data) {
-        if (data.secretFlag === 'Y'){
-            window.location.href = Feng.ctxPath + '/sysFileInfo/privateDownload?fileId='+ data.fileId;
-        }else {
-            window.location.href = Feng.ctxPath + '/sysFileInfo/publicDownload?fileId='+ data.fileId;
+        if (data.secretFlag === 'Y') {
+            window.location.href = Feng.ctxPath + '/sysFileInfo/privateDownload?fileId=' + data.fileId;
+        } else {
+            window.location.href = Feng.ctxPath + '/sysFileInfo/publicDownload?fileId=' + data.fileId;
         }
     }
 
     // 预览
     FileInfo.openPreview = function (data) {
         var imgUrl = Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + data.fileBucket + '&fileObjectName=' + data.fileObjectName;
-
-        layer.photos({
-            photos: { "data": [{"src": imgUrl}] }
-            ,anim: 0
-        });
-
-
-
-
+        layer.photos({photos: {"data": [{"src": imgUrl}]}, shade: .1, closeBtn: true});
     };
-
-
 
     // 渲染表格
     var tableResult = table.render({
@@ -144,9 +147,9 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
             FileInfo.openDetails(data);
         } else if (event === 'delete') {
             FileInfo.onDeleteFile(data);
-        }else if (event === 'download'){
+        } else if (event === 'download') {
             FileInfo.onFileDownload(data);
-        }else if(event === 'preview'){
+        } else if (event === 'preview') {
             FileInfo.openPreview(data);
         }
     });
