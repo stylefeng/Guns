@@ -45,6 +45,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
      */
     Notice.openAddNotice = function () {
         func.open({
+            height: 680,
             title: '添加通知',
             content: Feng.ctxPath + '/view/notice/add',
             tableId: Notice.tableId
@@ -58,6 +59,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
      */
     Notice.onEditNotice = function (data) {
         func.open({
+            height: 680,
             title: '修改通知',
             content: Feng.ctxPath + "/view/notice/edit?noticeId=" + data.noticeId,
             tableId: Notice.tableId

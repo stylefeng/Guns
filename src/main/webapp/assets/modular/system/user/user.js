@@ -65,6 +65,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     // 添加按钮
     MgrUser.openAddUser = function () {
         func.open({
+            height: 680,
             title: '添加用户',
             content: Feng.ctxPath + '/view/user/addView',
             tableId: MgrUser.tableId
@@ -74,6 +75,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
     // 修改按钮
     MgrUser.onEditUser = function (data) {
         func.open({
+            height: 680,
             title: '修改用户',
             content: Feng.ctxPath + '/view/user/editView?userId=' + data.userId,
             tableId: MgrUser.tableId

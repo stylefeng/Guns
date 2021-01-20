@@ -3,12 +3,12 @@
 <form class="layui-form" id="fileInfoForm" lay-filter="fileInfoForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
         <div class="layui-card">
-            <div class="layui-card-header">基本信息</div>
-            <div class="layui-card-body" style="padding: 10px 20%">
+            <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
+                    <input name="logId" type="hidden"/>
 
-                    <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">文件存储位置</label>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">存储位置</label>
                         <div class="layui-input-block">
                             <select name="fileLocation" disabled="disabled">
                                 <option value="">存储位置</option>
@@ -19,54 +19,52 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="layui-inline layui-col-md12">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">文件仓库</label>
                         <div class="layui-input-block">
-                            <input name="fileBucket" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="fileBucket" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
-
-                    <div class="layui-inline layui-col-md12">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">文件名称</label>
                         <div class="layui-input-block">
-                            <input name="fileOriginName" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="fileOriginName" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
 
-                    <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">是否为机密文件</label>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">机密文件</label>
                         <div class="layui-input-block">
-                            <input name="secretFlag" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="secretFlag" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
 
 
-                    <div class="layui-inline layui-col-md12">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">文件后缀</label>
                         <div class="layui-input-block">
-                            <input name="fileSuffix" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="fileSuffix" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
 
-                    <div class="layui-inline layui-col-md12">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">文件大小</label>
                         <div class="layui-input-block">
-                            <input name="fileSizeKb" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="fileSizeKb" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
 
-                    <div class="layui-inline layui-col-md12">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">唯一标识</label>
                         <div class="layui-input-block">
-                            <input name="fileObjectName" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="fileObjectName" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
 
-                    <div class="layui-inline layui-col-md12">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">存储路径</label>
                         <div class="layui-input-block">
-                            <input name="filePath" type="text" class="layui-input layui-disabled" autocomplete="off" />
+                            <input name="filePath" type="text" class="layui-input" autocomplete="off" />
                         </div>
                     </div>
 
@@ -76,7 +74,7 @@
     </div>
     <div class="form-group-bottom text-center">
 <!--        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>-->
-        <button id="cancel" type="button" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+        <button id="cancel" type="button" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
     </div>
 </form>
 
