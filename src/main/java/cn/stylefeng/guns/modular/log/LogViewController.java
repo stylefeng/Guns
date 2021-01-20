@@ -33,7 +33,7 @@ public class LogViewController {
      */
     @GetResource(name = "业务日志详情-视图", path = "/view/log/detailView")
     public String detailView() {
-        return "/log_detail.html";
+        return "/modular/system/log/log_detail.html";
     }
 
 }
