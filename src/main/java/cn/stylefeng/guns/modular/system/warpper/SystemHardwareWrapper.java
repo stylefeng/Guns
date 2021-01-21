@@ -178,4 +178,5 @@ public class SystemHardwareWrapper {
             return String.format("%d B", size);
         }
     }
+
 }

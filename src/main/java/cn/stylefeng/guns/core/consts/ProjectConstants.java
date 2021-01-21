@@ -44,6 +44,7 @@ public interface ProjectConstants {
      * prometheus查询区间向量命令
      */
     String PROMETHEUS_QUERY_RANGE = "query_range";
+
     /**
      * prometheus查询开始时间
      */
@@ -58,4 +59,5 @@ public interface ProjectConstants {
      * prometheus查询步长
      */
     String PROMETHEUS_STEP = "step";
+
 }

@@ -25,5 +25,6 @@ public class PromMetricInfo {
      * prometheus任务名称
      */
     private String job;
+
 }
 

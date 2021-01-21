@@ -2,7 +2,7 @@
  * 高频方法集
  *
  * @author fengshuonan
- * @Date 2019/7/29 21:20
+ * @date 2019/7/29 21:20
  */
 layui.define(['jquery', 'layer', 'admin', 'table'], function (exports) {
     var $ = layui.$;

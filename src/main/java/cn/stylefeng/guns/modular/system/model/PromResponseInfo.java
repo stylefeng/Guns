@@ -9,11 +9,12 @@ import lombok.Data;
  * @date 2021/1/10 19:00
  */
 @Data
-public class PromResponceInfo {
+public class PromResponseInfo {
 
     /**
-     * 状态
-     * 成功-- success
+     * 状态:
+     * <p>
+     * 成功-success
      */
     private String status;
 
@@ -21,4 +22,5 @@ public class PromResponceInfo {
      * prometheus指标属性和值
      */
     private PromDataInfo data;
+
 }
