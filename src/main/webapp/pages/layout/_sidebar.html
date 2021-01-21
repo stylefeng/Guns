@@ -3,7 +3,7 @@
     <div class="layui-side-scroll">
 
         @for(item in layuiAppIndexMenus){
-            <ul class="layui-nav layui-nav-tree arrow2" nav-id="${item.appCode}" lay-shrink="all" lay-filter="admin-side-nav" style="margin-top: 15px;">
+            <ul class="layui-nav layui-nav-tree" nav-id="${item.appCode}" lay-shrink="all" lay-filter="admin-side-nav" style="margin: 15px 0;">
             @for(menu in item.layuiIndexMenuTreeNodes) {
                 @if(objectUtil.isEmpty(menu.children)){
                 <li class="layui-nav-item">
