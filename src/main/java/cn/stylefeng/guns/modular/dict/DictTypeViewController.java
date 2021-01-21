@@ -23,7 +23,8 @@ public class DictTypeViewController {
      */
     @GetResource(name = "字典类型管理-列表-视图", path = "/view/dictType")
     public String indexView() {
-        return "/modular/system/dictType/dictType.html";
+        //return "/modular/system/dictType/dictType.html";
+        return "/modular/system/dict/dictionary.html";
     }
 
     /**
@@ -34,7 +35,7 @@ public class DictTypeViewController {
      */
     @GetResource(name = "字典类型管理-添加-视图", path = "/view/dictType/addView")
     public String addView() {
-        return "/modular/system/dictType/dictType_add.html";
+        return "/modular/system/dict/dictType_add.html";
     }
 
     /**
@@ -45,7 +46,7 @@ public class DictTypeViewController {
      */
     @GetResource(name = "字典类型管理-编辑-视图", path = "/view/dictType/editView")
     public String editView() {
-        return "/modular/system/dictType/dictType_edit.html";
+        return "/modular/system/dict/dictType_edit.html";
     }
 
 }
