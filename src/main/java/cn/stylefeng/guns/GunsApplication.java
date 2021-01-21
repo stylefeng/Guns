@@ -1,9 +1,13 @@
 package cn.stylefeng.guns;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 
 /**
  * SpringBoot方式启动类
@@ -19,6 +23,10 @@ public class GunsApplication {
         SpringApplication.run(GunsApplication.class, args);
         log.info(GunsApplication.class.getSimpleName() + " is success!");
     }
-
+    @Bean
+    MeterRegistryCustomizer<MeterRegistry> configurer(
+            @Value("${spring.application.name}") String applicationName) {
+        return (registry) -> registry.config().commonTags("application", applicationName);
+    }
 }
 
