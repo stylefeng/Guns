@@ -1,4 +1,4 @@
-@/* 框架顶部 */
+@/* 头部 */
 <div class="layui-header">
     <div class="layui-logo">
         <!--<img src="${ctxPath}/assets/common/images/logo.png"/>-->
@@ -18,14 +18,25 @@
                 <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></li>
             @}
         @}
-
+        <!-- 小屏幕下变为下拉形式 -->
+        <li class="layui-nav-item layui-hide-sm layui-show-xs-inline-block" lay-unselect>
+            <a>更多</a>
+            <dl class="layui-nav-child">
+                @if(objectUtil.isNotEmpty(layuiAppIndexMenus)){
+                    @for(item in layuiAppIndexMenus) {
+                        <dd lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></dd>
+                    @}
+                @}
+            </dl>
+        </li>
     </ul>
     <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item" lay-unselect="">
             <a ew-event="message" title="消息" data-url="${ctxPath}/view/message">
                 <i class="layui-icon layui-icon-notice"></i>
+                <!-- 未读消息气泡提示 -->
                 @if(msgUnReadCount>0){
-                <span id="msg-dot" class="layui-badge-dot "></span>
+                <span class="layui-badge-dot"></span>
                 @}
             </a>
         </li>
@@ -41,16 +52,10 @@
                 <cite>${name!"用户"}</cite>
             </a>
             <dl class="layui-nav-child">
-                <dd lay-unselect>
-                    <a ew-href="${ctxPath}/view/personal">个人中心</a>
-                </dd>
-                <dd lay-unselect>
-                    <a id="setPsw">修改密码</a>
-                </dd>
+                <dd lay-unselect><a ew-href="${ctxPath}/view/personal">个人中心</a></dd>
+                <dd lay-unselect><a id="setPsw">修改密码</a></dd>
                 <hr>
-                <dd lay-unselect>
-                    <a id="btnLogout">退出</a>
-                </dd>
+                <dd lay-unselect><a id="btnLogout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item" lay-unselect>
