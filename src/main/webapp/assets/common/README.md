@@ -1,0 +1,3 @@
+此目录为easyweb源代码目录
+如需升级，建议购买easyweb源码
+除common.js外其他文件可直接替换
