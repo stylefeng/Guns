@@ -42,7 +42,6 @@ mybatis-plus:
     cache-enabled: true
     lazy-loading-enabled: true
     multiple-result-sets-enabled: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     banner: false
     enable-sql-runner: true
