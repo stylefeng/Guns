@@ -6,7 +6,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
     var func = layui.func;
-    var selObj;  // 左表选中数据
+    var dictTypeObj;  // 左表选中数据
 
     var Dict = {
         tableId: "dictTable",
@@ -64,7 +64,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
 
     /* 字典类型-点击表格头工具栏 */
     table.on('toolbar(dictTypeTable)', function (obj) {
-        var data = obj.data;
+        var data = dictTypeObj.data;
         if (obj.event === 'add') { // 添加
             DictType.openAddDlg();
         } else if (obj.event === 'edit') { // 修改
@@ -95,9 +95,13 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
 
     /* 字典类型-监听行单击事件 */
     table.on('row(dictTypeTable)', function (obj) {
-        selObj = obj;
+        dictTypeObj = obj;
         obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-        dictTable.reload({where: {dictTypeCode: obj.data.dictTypeCode}, page: {curr: 1}, url: Feng.ctxPath + '/dict/page'});
+        dictTable.reload({
+            where: {dictTypeCode: obj.data.dictTypeCode},
+            page: {curr: 1},
+            url: Feng.ctxPath + '/dict/page'
+        });
     });
 
     /* 删除 */
@@ -161,7 +165,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击搜索 */
     form.on('submit(dictTbSearch)', function (data) {
         //赋值左表dictTypeCode
-        data.field.dictTypeCode = selObj.data.dictTypeCode;
+        data.field.dictTypeCode = dictTypeObj.data.dictTypeCode;
         dictTable.reload({where: data.field});
         return false;
     });
@@ -178,14 +182,14 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
 
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
-        Dict.openAddDlg(selObj.data);
+        Dict.openAddDlg(dictTypeObj.data);
         return false;
     });
 
     /* 字典-点击表格头工具栏 */
     // table.on('toolbar(dictTable)', function (obj) {
     //     if (obj.event === 'add') { // 添加
-    //         Dict.openAddDlg(selObj.data);
+    //         Dict.openAddDlg(dictTypeObj.data);
     //     } else if (obj.event === 'del') { // 删除
     //         var checkRows = table.checkStatus('dictTable');
     //         if (checkRows.data.length === 0) {
