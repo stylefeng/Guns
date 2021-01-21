@@ -22,7 +22,7 @@ public class OrganizationViewController {
      */
     @GetResource(name = "机构管理-首页-视图", path = "/view/organization")
     public String indexView() {
-        return "/modular/system/organization/organization.html";
+        return "/modular/system/organization/organization_1.html";
     }
 
     /**
