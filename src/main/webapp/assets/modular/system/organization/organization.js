@@ -1,85 +1,46 @@
-layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest', 'func', 'tree', 'util'], function () {
+layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSelect', 'treeTable', 'func', 'HttpRequest'], function () {
+    var $ = layui.jquery;
+    var layer = layui.layer;
     var form = layui.form;
     var table = layui.table;
-    var HttpRequest = layui.HttpRequest;
-    var func = layui.func;
+    var admin = layui.admin;
     var tree = layui.tree;
+    var func = layui.func;
+    var HttpRequest = layui.HttpRequest;
+    var xmSelect = layui.xmSelect;
+    var selObj, treeData;  // 左树选中数据
 
     /**
      * 系统管理--用户管理
      */
     var Organization = {
-        tableId: "userTable",    //表格id
-        condition: {
-            orgName: "",
-            orgParentId: "",
-            orgCode: ""
-        }
+        tableId: "organizationTable",    //表格id
     };
 
-    // 初始化表格的列
-    Organization.initColumn = function () {
-        return [[
-            {type: 'checkbox'},
-            {field: 'orgId', hide: true, title: '主键id'},
-            {field: 'orgName', sort: true, title: '机构名称'},
-            {field: 'orgCode', sort: true, title: '机构编码'},
-            {field: 'orgSort', sort: true, title: '排序'},
-            {field: 'orgRemark', sort: true, title: '备注'},
-            {field: 'statusFlag', sort: true, templet: '#statusTpl', title: '状态'},
-            {align: 'center', toolbar: '#tableBar', title: '操作'}
-        ]];
-    };
-
-    // 选择部门时
-    Organization.onClickDept = function (obj) {
-        Organization.condition.orgParentId = obj.data.id;
-        Organization.search();
-    };
-
-
-    // 点击查询按钮
-    Organization.search = function () {
-        var queryData = {};
-        queryData['orgParentId'] = Organization.condition.orgParentId;
-        queryData['orgName'] = $("#orgName").val();
-        queryData['orgCode'] = $("#orgCode").val();
-        table.reload(Organization.tableId, {
-            where: queryData, page: {curr: 1}
-        });
-    };
-
-    // 弹出添加对话框
+    /* 点击新增对话框 */
     Organization.openAddDlg = function () {
         func.open({
             height: 800,
             title: '添加机构',
             content: Feng.ctxPath + '/view/organization/addView',
-            tableId: Organization.tableId
+            tableId: Organization.tableId,
+            endCallback: function () {
+                renderTree();
+            }
         });
     };
 
-    // 点击编辑
+    /* 点击编辑对话框 */
     Organization.openEditDlg = function (data) {
         func.open({
             height: 800,
             title: '修改机构',
-            content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.orgId,
+            content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.id,
             tableId: Organization.tableId
         });
     };
 
-    // 导出excel按钮
-    Organization.exportExcel = function () {
-        var checkRows = table.checkStatus(Organization.tableId);
-        if (checkRows.data.length === 0) {
-            Feng.error("请选择要导出的数据");
-        } else {
-            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-        }
-    };
-
-    // 点击删除
+    /* 点击删除 */
     Organization.delete = function (data) {
         var operation = function () {
             var httpRequest = new HttpRequest(Feng.ctxPath + "/hrOrganization/delete", 'post', function (data) {
@@ -94,80 +55,83 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'HttpRequest',
         Feng.confirm("是否删除?", operation);
     };
 
-    // 修改职位状态
-    Organization.updateStatus = function (orgId, checked) {
-        var httpRequest = new HttpRequest(Feng.ctxPath + "/hrOrganization/updateStatus", 'post', function (data) {
-            table.reload(Organization.tableId);
-            Feng.success("修改成功!");
-        }, function (data) {
-            table.reload(Organization.tableId);
-            Feng.error("修改失败!" + data.message);
+    /* 渲染树形 */
+    function renderTree() {
+        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (res) {
+            tree.render({
+                elem: '#organizationTree',
+                onlyIconControl: true,
+                data: res.data,
+                click: function (obj) {
+                    selObj = obj;
+                    $('#organizationTree').find('.ew-tree-click').removeClass('ew-tree-click');
+                    $(obj.elem).children('.layui-tree-entry').addClass('ew-tree-click');
+
+                    console.log(obj.data);
+                    insTb.reload({
+                        where: {orgParentId: obj.data.id},
+                        page: {curr: 1},
+                        url: Feng.ctxPath + '/hrOrganization/page'
+                    });
+                }
+            });
+            $('#organizationTree').find('.layui-tree-entry:first>.layui-tree-main>.layui-tree-txt').trigger('click');
         });
-        httpRequest.set({"orgId": orgId, "statusFlag": checked});
-        httpRequest.start(true);
-    };
+    }
 
-    // 渲染表格
-    var tableResult = table.render({
-        elem: '#' + Organization.tableId,
-        url: Feng.ctxPath + '/hrOrganization/page',
-        page: true,
-        height: "full-98",
-        cellMinWidth: 100,
-        cols: Organization.initColumn(),
-        parseData: Feng.parseData
-    });
+    renderTree();
 
-    // 初始化部门树
-    var request = new HttpRequest(Feng.ctxPath + '/hrOrganization/treeLayui', 'get', function (data) {
-        tree.render({
-            elem: '#deptTree',
-            data: data.data,
-            click: Organization.onClickDept,
-            onlyIconControl: true
-        });
-    });
-    request.start();
-
-    // 搜索按钮点击事件
-    $('#btnSearch').click(function () {
-        Organization.search();
-    });
-
-    // 添加按钮点击事件
-    $('#btnAdd').click(function () {
+    /* 添加 */
+    $('#organizationAddBtn').click(function () {
         Organization.openAddDlg();
     });
 
-    // 导出excel
-    $('#btnExp').click(function () {
-        Organization.exportExcel();
+    /* 修改 */
+    $('#organizationEditBtn').click(function () {
+        if (!selObj) return layer.msg('未选择机构', {icon: 2});
+        Organization.openEditDlg(selObj.data)
     });
 
-    // 工具条点击事件
-    table.on('tool(' + Organization.tableId + ')', function (obj) {
-        var data = obj.data;
-        var event = obj.event;
-        if (event === 'edit') {
-            Organization.openEditDlg(data);
-        } else if (event === 'delete') {
-            Organization.delete(data);
-        }
+    /* 删除 */
+    $('#organizationDelBtn').click(function () {
+        if (!selObj) return layer.msg('未选择机构', {icon: 2});
+        selObj.data.orgId = selObj.data.id;
+        Organization.delete(selObj.data)
+
     });
 
-    // 修改状态
-    form.on('switch(status)', function (obj) {
-        var orgId = obj.elem.value;
-        var checked = obj.elem.checked ? 1 : 2;
-        Organization.updateStatus(orgId, checked);
+
+    /* 渲染表格 */
+    var insTb = table.render({
+        elem: '#organizationTable',
+        data: [],
+        height: 'full-100',
+        page: true,
+        //toolbar: '#organizationUserTbToolBar',
+        cellMinWidth: 100,
+        cols: [[
+            {type: 'checkbox'},
+            {type: 'numbers'},
+            {field: 'orgId', hide: true, title: '主键id'},
+            {field: 'orgName', sort: true, title: '机构名称'},
+            {field: 'orgCode', sort: true, title: '机构编码'},
+            {field: 'orgSort', sort: true, title: '排序'},
+            {field: 'orgRemark', sort: true, title: '备注'}
+        ]],
+        done: function () {
+            // 表格搜索
+            form.on('submit(organizationUserTbSearch)', function (data) {
+                insTb.reload({where: data.field, page: {curr: 1}});
+                return false;
+            });
+        },
+        parseData: Feng.parseData
     });
 
-});
+    /* 点击搜索 */
+    form.on('submit(organizationTbSearch)', function (data) {
+        insTb.reload({where: data.field});
+        return false;
+    });
 
-$(function () {
-    var panehHidden = false;
-    if ($(this).width() < 769) {
-        panehHidden = true;
-    }
-    $('#myContiner').layout({initClosed: panehHidden, west__size: 260});
 });
