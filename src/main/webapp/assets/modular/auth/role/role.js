@@ -204,5 +204,6 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
         } else if (layEvent === 'assignApi') {
             Role.assignApi(data);
         }
+        dropdown.hideAll();
     });
 });
