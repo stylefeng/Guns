@@ -1,8 +1,9 @@
-layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function () {
+layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown'], function () {
     var $ = layui.$;
     var table = layui.table;
     var HttpRequest = layui.HttpRequest;
     var func = layui.func;
+    var dropdown = layui.dropdown;
 
     /**
      * 系统管理--角色管理
@@ -27,36 +28,36 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
             {
                 field: 'dataScopeType', align: "center", sort: true, title: '数据范围类型', templet: function (data) {
                     if (data.dataScopeType === 10) {
-                        return "仅本人数据";
+                        return '<span class="layui-badge layui-badge-green">仅本人数据</span>';
                     }
                     if (data.dataScopeType === 20) {
-                        return "本部门数据";
+                        return '<span class="layui-badge layui-badge-green">本部门数据</span>';
                     }
                     if (data.dataScopeType === 30) {
-                        return "本部门及以下数据";
+                        return '<span class="layui-badge layui-badge-green">本部门及以下数据</span>';
                     }
                     if (data.dataScopeType === 40) {
-                        return "指定部门数据";
+                        return '<span class="layui-badge layui-badge-green">指定部门数据</span>';
                     }
                     if (data.dataScopeType === 50) {
-                        return "全部数据";
+                        return '<span class="layui-badge layui-badge-green">全部数据</span>';
                     }
-                    return "未知";
+                    return '<span class="layui-badge layui-badge-green">未知</span>';
                 }
             },
             {
                 field: 'statusFlag', align: "center", sort: true, title: '状态', templet: function (data) {
                     if (data.statusFlag === 1) {
-                        return "启用";
+                        return '<span class="layui-badge layui-badge-green">启用</span>';
                     }
                     if (data.statusFlag === 2) {
-                        return "禁用";
+                        return '<span class="layui-badge layui-badge-green">禁用</span>';
                     }
-                    return "未知";
+                    return '<span class="layui-badge layui-badge-green">未知</span>';
                 }
             },
             {field: 'remark', align: "center", sort: true, title: '备注'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 400}
+            {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
 
