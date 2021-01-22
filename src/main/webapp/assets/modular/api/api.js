@@ -1,10 +1,11 @@
-layui.use(['layer', 'form', 'table', 'HttpRequest', 'func', 'tree'], function () {
+layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSelect', 'treeTable', 'func', 'HttpRequest'], function () {
     var $ = layui.jquery;
     var form = layui.form;
     var table = layui.table;
-    var HttpRequest = layui.HttpRequest;
-    var func = layui.func;
     var tree = layui.tree;
+    var HttpRequest = layui.HttpRequest;
+    var selObj;
+
 
     /**
      * Api管理的参数
@@ -19,7 +20,6 @@ layui.use(['layer', 'form', 'table', 'HttpRequest', 'func', 'tree'], function ()
     // 选择api树上的接口时
     ApiManager.onClickApi = function (obj) {
         ApiManager.condition.resourceCode = obj.data.id;
-
         // 如果是具体接口，则查看接口详情
         if (obj.data.resourceFlag === true) {
             ApiManager.search();
@@ -67,22 +67,18 @@ layui.use(['layer', 'form', 'table', 'HttpRequest', 'func', 'tree'], function ()
     };
 
     // 初始化api树
-    var request = new HttpRequest(Feng.ctxPath + '/resource/getTree', 'get', function (data) {
+    new HttpRequest(Feng.ctxPath + '/resource/getTree', 'get', function (data) {
         tree.render({
-            elem: '#apiTree',
+            elem: '#organizationTree',
+            onlyIconControl: true,
             data: data.data,
-            click: ApiManager.onClickApi,
-            onlyIconControl: true
+            click: function (obj) {
+                selObj = obj;
+                $('#organizationTree').find('.ew-tree-click').removeClass('ew-tree-click');
+                $(obj.elem).children('.layui-tree-entry').addClass('ew-tree-click');
+                ApiManager.onClickApi(selObj)
+            }
         });
-    });
-    request.start();
-
-});
-
-$(function () {
-    var panehHidden = false;
-    if ($(this).width() < 769) {
-        panehHidden = true;
-    }
-    $('#myContiner').layout({initClosed: panehHidden, west__size: 330});
+        $('#organizationTree').find('.layui-tree-entry:first>.layui-tree-main>.layui-tree-txt').trigger('click');
+    }).start();
 });
