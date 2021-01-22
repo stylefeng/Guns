@@ -1,34 +1,38 @@
-@layout("/layout/_form.html",{js:["/assets/modular/system/dictType/dictType_add.js"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/system/dict/dictType_edit.js"]}){
 
 <form class="layui-form" id="dictTypeForm" lay-filter="dictTypeForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
         <div class="layui-card">
-            <div class="layui-card-header">基本信息</div>
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
                     <input name="dictTypeId" type="hidden"/>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">名称<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">名称</label>
                         <div class="layui-input-block">
                             <input id="dictTypeName" name="dictTypeName" placeholder="请输入字典类型名称，例如：状态标识" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">系统字典<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">系统字典</label>
                         <div class="layui-input-block">
                             <input type="radio" name="dictTypeClass" value="1" title="业务类型" lay-filter="dictTypeClass" checked="">
                             <input type="radio" name="dictTypeClass" value="2" title="系统类型" lay-filter="dictTypeClass">
                         </div>
-                        <div class="layui-form-mid layui-word-aux">系统类型与代码中枚举关联，添加后不可修改</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <blockquote class="layui-elem-quote">系统类型与代码中枚举关联，添加后不可修改</blockquote>
+                        </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">类型编码<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">类型编码</label>
                         <div class="layui-input-block">
                             <input id="dictTypeCode" name="dictTypeCode" placeholder="请输入字典类型编码，例如：STATUS" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">业务编码</label>
+                        <label class="layui-form-label layui-form-required">业务编码</label>
                         <div class="layui-input-block">
                             <input id="dictTypeBusCode" name="dictTypeBusCode" placeholder="请输入字典业务编码" type="text" class="layui-input"/>
                         </div>
@@ -42,7 +46,7 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">字典描述</label>
                         <div class="layui-input-block">
-                            <textarea id="dictTypeDesc" name="dictTypeDesc" placeholder="请输入字典描述" class="layui-textarea"></textarea>
+                            <textarea id="description" name="description" placeholder="请输入字典描述" class="layui-textarea"></textarea>
                         </div>
                     </div>
                 </div>

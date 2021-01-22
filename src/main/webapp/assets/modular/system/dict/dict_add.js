@@ -1,18 +1,13 @@
-/**
- * 详情对话框
- */
-var DictInfoDlg = {
-    data: {
-        dictParentId: "-1",
-		parentName: "顶级"
-    }
-};
-
 layui.use(['form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
     var form = layui.form;
     var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
+
+    //获取信息详情填充表单
+    var request = new HttpRequest(Feng.ctxPath + "/dictType/getDictDetail?dictTypeId=" + Feng.getUrlParam("dictTypeId"), 'get');
+    var result = request.start();
+    form.val('dictForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
@@ -24,26 +19,7 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
 			admin.closeThisDialog();
 			Feng.error("添加失败！" + data.message);
 		});
-	
 		request.set(data.field);
 		request.start(true);
-    });
-
-    //父级字典时
-    $('#parentName').click(function () {
-        var formName = encodeURIComponent("parent.DictInfoDlg.data.parentName");
-        var formId = encodeURIComponent("parent.DictInfoDlg.data.dictParentId");
-        var treeUrl = encodeURIComponent("/dict/zTree?dictTypeCode=" + $("#dictTypeCode").val());
-
-        layer.open({
-            type: 2,
-            title: '父级字典',
-            area: ['300px', '400px'],
-            content: Feng.ctxPath + '/view/common/tree?formName=' + formName + "&formId=" + formId + "&treeUrl=" + treeUrl,
-            end: function () {
-                $("#dictParentId").val(DictInfoDlg.data.dictParentId);
-                $("#parentName").val(DictInfoDlg.data.parentName);
-            }
-        });
     });
 });

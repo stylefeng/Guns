@@ -91,6 +91,7 @@ layui.define(['jquery', 'layer', 'admin', 'table'], function (exports) {
             //按键监听esc关闭对话框
             $(window).keydown(function (event) {
                 if (event.keyCode === 27) {
+                    //admin.closeThisDialog();
                     parent.layer.close(thisIndex)
                 }
             });

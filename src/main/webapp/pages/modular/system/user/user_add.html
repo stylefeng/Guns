@@ -1,4 +1,4 @@
-@layout("/layout/_form.html",{js:["/assets/modular/system/user/user_add.js"],css:["/assets/expand/module/formSelects/formSelects-v4.css"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/system/user/user_add.js"]}){
 
 <form class="layui-form" id="userForm" lay-filter="userForm">
     <div class="layui-fluid" style="padding-bottom: 75px;">
@@ -8,19 +8,19 @@
                 <div class="layui-form-item layui-row">
                     <input name="userId" type="hidden"/>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">账号<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">账号</label>
                         <div class="layui-input-block">
                             <input name="account" placeholder="请输入账号" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md6">
-                        <label class="layui-form-label">密码<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">密码</label>
                         <div class="layui-input-block">
                             <input name="password" placeholder="请输入密码" type="password" class="layui-input" lay-verify="required|psw" autocomplete="new-password" required/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md6">
-                        <label class="layui-form-label">重复密码<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">重复密码</label>
                         <div class="layui-input-block">
                             <input name="rePassword" placeholder="请输入重复密码" type="password" class="layui-input" autocomplete="new-password" lay-verify="required|repsw" required/>
                         </div>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md6">
-                        <label class="layui-form-label">名称<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">名称</label>
                         <div class="layui-input-block">
                             <input name="realName" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
@@ -45,21 +45,21 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">生日<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">生日</label>
                         <div class="layui-input-block">
                             <input id="birthday" name="birthday" placeholder="请输入生日" type="text" class="layui-input date-icon" autocomplete="off" lay-verify="required" required/>
                         </div>
                     </div>
 
                     <div class="layui-inline layui-col-md6">
-                        <label class="layui-form-label">邮件<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">邮件</label>
                         <div class="layui-input-block">
                             <input name="email" placeholder="请输入邮箱" type="text" class="layui-input" lay-verify="required|email" autocomplete="off" required/>
                         </div>
                     </div>
 
                     <div class="layui-inline layui-col-md6">
-                        <label class="layui-form-label">电话<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">电话</label>
                         <div class="layui-input-block">
                             <input name="phone" placeholder="请输入电话" type="text" class="layui-input" lay-verify="required" required/>
                         </div>
@@ -72,20 +72,13 @@
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">机构<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">机构</label>
                         <div class="layui-input-block">
                             <div id="organization" class="ew-xmselect-tree"></div>
                         </div>
                     </div>
-                    <!--                    <div class="layui-inline layui-col-md12">-->
-                    <!--                        <label class="layui-form-label">机构<span style="color: red;">*</span></label>-->
-                    <!--                        <div class="layui-input-block">-->
-                    <!--                            <input id="deptId" name="deptId" type="hidden">-->
-                    <!--                            <input id="deptName" name="deptName" placeholder="请输入部门" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">职位<span style="color: red;">*</span></label>
+                        <label class="layui-form-label layui-form-required">职位</label>
                         <div class="layui-input-block">
                             <div id="position" class="xm-select-demo"></div>
                         </div>
