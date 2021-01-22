@@ -186,23 +186,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         return false;
     });
 
-    /* 字典-点击表格头工具栏 */
-    // table.on('toolbar(dictTable)', function (obj) {
-    //     if (obj.event === 'add') { // 添加
-    //         Dict.openAddDlg(dictTypeObj.data);
-    //     } else if (obj.event === 'del') { // 删除
-    //         var checkRows = table.checkStatus('dictTable');
-    //         if (checkRows.data.length === 0) {
-    //             layer.msg('请选择要删除的数据', {icon: 2});
-    //             return;
-    //         }
-    //         var ids = checkRows.data.map(function (d) {
-    //             return d.dictDataId;
-    //         });
-    //         doDel2({ids: ids});
-    //     }
-    // });
-
     /* 字典-渲染表格 */
     var dictTable = table.render({
         elem: '#dictTable',
