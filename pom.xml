@@ -127,6 +127,13 @@
             <version>1.0.0</version>
         </dependency>
 
+        <!--多数据源配置-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>ds-container-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!--数据库驱动,可根据自己需要自行删减-->
         <dependency>
             <groupId>mysql</groupId>
