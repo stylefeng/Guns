@@ -40,7 +40,7 @@ public class CommonViewController {
             log.error("解析url的参数出错！", e);
             throw new ServiceException("guns-standalone-beetl", DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR);
         }
-        return "/modular/common/tree_dlg.html";
+        return "/component/tree_dlg.html";
     }
 
 }

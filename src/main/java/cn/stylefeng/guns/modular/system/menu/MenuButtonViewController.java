@@ -22,7 +22,7 @@ public class MenuButtonViewController {
      */
     @GetResource(name = "菜单管理首页", path = "/view/menuButton")
     public String menuIndex() {
-        return "/modular/auth/menu/button.html";
+        return "/modular/system/menu/button.html";
     }
 
     /**
@@ -33,7 +33,7 @@ public class MenuButtonViewController {
      */
     @GetResource(name = "新增菜单按钮界面", path = "/view/menuButton/add")
     public String menuAdd() {
-        return "/modular/auth/menu/button_add.html";
+        return "/modular/system/menu/button_add.html";
     }
 
     /**
@@ -44,7 +44,7 @@ public class MenuButtonViewController {
      */
     @GetResource(name = "修改菜单按钮界面", path = "/view/menuButton/edit")
     public String menuEdit() {
-        return "/modular/auth/menu/button_edit.html";
+        return "/modular/system/menu/button_edit.html";
     }
 
 }

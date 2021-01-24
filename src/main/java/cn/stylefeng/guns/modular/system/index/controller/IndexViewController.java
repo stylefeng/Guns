@@ -50,7 +50,7 @@ public class IndexViewController {
     @GetResource(name = "个人中心界面", path = "/view/personal", requiredLogin = false)
     public String personal(Model model) {
         model.addAllAttributes(indexService.createPersonInfoRenderAttributes());
-        return "/modular/index/personal_info.html";
+        return "/modular/system/index/personal_info.html";
     }
 
     /**
@@ -61,7 +61,7 @@ public class IndexViewController {
      */
     @GetResource(name = "锁屏界面", path = "/view/lock", requiredPermission = false)
     public String lock() {
-        return "/modular/index/lock_screen.html";
+        return "/modular/system/index/lock_screen.html";
     }
 
     /**
@@ -72,7 +72,7 @@ public class IndexViewController {
      */
     @GetResource(name = "主题切换界面", path = "/view/theme", requiredPermission = false)
     public String theme() {
-        return "/modular/index/theme.html";
+        return "/modular/system/index/theme.html";
     }
 
     /**
@@ -83,7 +83,7 @@ public class IndexViewController {
      */
     @GetResource(name = "修改密码界面", path = "/view/changePassword", requiredPermission = false)
     public String changePassword() {
-        return "/modular/index/change_password.html";
+        return "/modular/system/index/change_password.html";
     }
 
 }

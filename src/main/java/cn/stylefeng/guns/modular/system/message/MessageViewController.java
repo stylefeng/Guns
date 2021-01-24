@@ -39,7 +39,7 @@ public class MessageViewController {
         List<MessageResponse> messageList = messageApi.queryListCurrentUser(messageParam);
         model.addAttribute("msgUnReadCount", messageCount);
         model.addAttribute("msgUnReadList", messageList);
-        return "/modular/index/message.html";
+        return "/modular/system/index/message.html";
     }
 
     /**

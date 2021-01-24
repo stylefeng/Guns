@@ -53,7 +53,7 @@ public class MonitorController {
         SystemHardwareWrapper systemHardwareWrapper = new SystemHardwareWrapper();
         systemHardwareWrapper.copyTo();
         model.addAttribute("server", systemHardwareWrapper);
-        return "/modular/frame/systemInfo.html";
+        return "/modular/system/monitor/systemInfo.html";
     }
 
     /**
@@ -65,7 +65,7 @@ public class MonitorController {
     @GetResource(name = "SQL监控", path = "/view/monitor/druid")
     public String druidInfo(Model model) {
         model.addAttribute("port", port);
-        return "/modular/frame/druid.html";
+        return "/modular/system/monitor/druid.html";
     }
 
     /**
@@ -77,7 +77,7 @@ public class MonitorController {
     @GetResource(name = "tomcat监控", path = "/view/monitor/tomcatInfo")
     public String tomcatInfo(Model model) {
         getMetricInfos("tomcat_", model);
-        return "/modular/frame/tomcatInfo.html";
+        return "/modular/system/monitor/tomcatInfo.html";
     }
 
     /**
@@ -89,7 +89,7 @@ public class MonitorController {
     @GetResource(name = "jvm监控", path = "/view/monitor/jvmInfo")
     public String jvmInfo(Model model) {
         getMetricInfos("jvm_", model);
-        return "/modular/frame/jvmInfo.html";
+        return "/modular/system/monitor/jvmInfo.html";
     }
 
     /**

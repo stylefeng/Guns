@@ -22,7 +22,7 @@ public class ApiViewController {
      */
     @GetResource(name = "API文档界面", path = "/view/api")
     public String apiIndex() {
-        return "/modular/api/api.html";
+        return "/modular/system/api/api.html";
     }
 
 }

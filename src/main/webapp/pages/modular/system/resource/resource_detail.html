@@ -1,0 +1,105 @@
+@layout("/layout/_form.html",{js:["/assets/modular/system/resource/resource_detail.js"]}){
+
+<form class="layui-form" id="resourceForm" lay-filter="resourceForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">应用标识</label>
+                        <div class="layui-input-block">
+                            <input name="appCode" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">资源标识</label>
+                        <div class="layui-input-block">
+                            <input name="resourceCode" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">资源名称</label>
+                        <div class="layui-input-block">
+                            <input name="resourceName" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">项目编码</label>
+                        <div class="layui-input-block">
+                            <input name="projectCode" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">控制器类名</label>
+                        <div class="layui-input-block">
+                            <input name="className" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">方法名称</label>
+                        <div class="layui-input-block">
+                            <input name="methodName" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">所属模块</label>
+                        <div class="layui-input-block">
+                            <input name="modularCode" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">模块名称</label>
+                        <div class="layui-input-block">
+                            <input name="modularName" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">初始化地址</label>
+                        <div class="layui-input-block">
+                            <input name="ipAddress" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">是否视图</label>
+                        <div class="layui-input-block">
+                            <input name="viewFlag" type="checkbox" lay-skin="switch" lay-filter="viewFlag" lay-text="是|否" disabled=""/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">请求路径</label>
+                        <div class="layui-input-block">
+                            <input name="url" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">请求方法</label>
+                        <div class="layui-input-block">
+                            <input name="httpMethod" type="text" class="layui-input"/>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline layui-col-md6">
+                        <label class="layui-form-label">是否需登录</label>
+                        <div class="layui-input-block">
+                            <input name="requiredLoginFlag" type="checkbox" lay-skin="switch" lay-filter="requiredLoginFlag" lay-text="是|否" disabled=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;关闭&emsp;</button>
+    </div>
+</form>
+
+@}

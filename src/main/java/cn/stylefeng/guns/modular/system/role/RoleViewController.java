@@ -22,7 +22,7 @@ public class RoleViewController {
      */
     @GetResource(name = "应用管理首页", path = "/view/role")
     public String roleIndex() {
-        return "/modular/auth/role/role.html";
+        return "/modular/system/role/role.html";
     }
 
     /**
@@ -33,7 +33,7 @@ public class RoleViewController {
      */
     @GetResource(name = "新增角色界面", path = "/view/role/add")
     public String roleAdd() {
-        return "/modular/auth/role/role_add.html";
+        return "/modular/system/role/role_add.html";
     }
 
     /**
@@ -44,7 +44,7 @@ public class RoleViewController {
      */
     @GetResource(name = "编辑角色界面", path = "/view/role/edit")
     public String roleEdit() {
-        return "/modular/auth/role/role_edit.html";
+        return "/modular/system/role/role_edit.html";
     }
 
     /**
@@ -55,7 +55,7 @@ public class RoleViewController {
      */
     @GetResource(name = "修改数据范围界面", path = "/view/role/editDataScope")
     public String roleEditDataScope() {
-        return "/modular/auth/role/role_edit_data_scope.html";
+        return "/modular/system/role/role_edit_data_scope.html";
     }
 
     /**
@@ -66,7 +66,7 @@ public class RoleViewController {
      */
     @GetResource(name = "分配接口界面", path = "/view/role/assignApi")
     public String roleAssignApi() {
-        return "/modular/auth/role/role_assign_api.html";
+        return "/modular/system/role/role_assign_api.html";
     }
 
     /**
@@ -77,7 +77,7 @@ public class RoleViewController {
      */
     @GetResource(name = "分配菜单界面", path = "/view/role/assignMenuAndButtons")
     public String roleAssignMenuButton() {
-        return "/modular/auth/role/role_assign_menu_button.html";
+        return "/modular/system/role/role_assign_menu_button.html";
     }
 
 }

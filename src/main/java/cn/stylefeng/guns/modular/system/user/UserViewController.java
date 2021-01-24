@@ -66,7 +66,7 @@ public class UserViewController {
      */
     @GetResource(name = "用户管理-注册-视图", path = "/register", requiredPermission = false, requiredLogin = false)
     public String registerView() {
-        return "register.html";
+        return "/register.html";
     }
 
     /**
@@ -77,7 +77,7 @@ public class UserViewController {
      */
     @GetResource(name = "用户管理-找回密码-视图", path = "/forget", requiredPermission = false, requiredLogin = false)
     public String forgetView() {
-        return "forget.html";
+        return "/forget.html";
     }
 
 }

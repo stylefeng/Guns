@@ -22,7 +22,7 @@ public class DataSourceViewController {
      */
     @GetResource(name = "多数据源列表界面", path = "/view/datasource")
     public String indexView() {
-        return "/modular/datasource/datasource.html";
+        return "/modular/system/datasource/datasource.html";
     }
 
     /**
@@ -33,7 +33,7 @@ public class DataSourceViewController {
      */
     @GetResource(name = "多数据源新增界面", path = "/view/datasource/add")
     public String addView() {
-        return "/modular/datasource/datasource_add.html";
+        return "/modular/system/datasource/datasource_add.html";
     }
 
 

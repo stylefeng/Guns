@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 @ApiResource(name = "字典类型管理相关的界面渲染")
 public class DictTypeViewController {
 
-    private String PREFIX = "/modular/system/dict/";
-
     /**
      * 字典管理-视图
      *
@@ -25,7 +23,7 @@ public class DictTypeViewController {
      */
     @GetResource(name = "字典类型管理-列表-视图", path = "/view/dictType")
     public String indexView() {
-        return PREFIX + "dictType.html";
+        return "/modular/system/dict/dictType.html";
     }
 
     /**
@@ -36,9 +34,8 @@ public class DictTypeViewController {
      */
     @GetResource(name = "字典类型管理-添加-视图", path = "/view/dictType/addView")
     public String addView() {
-        return PREFIX + "dictType_add.html";
+        return "/modular/system/dict/dictType_add.html";
     }
-
 
     /**
      * 字典类型管理-编辑-视图
@@ -48,8 +45,7 @@ public class DictTypeViewController {
      */
     @GetResource(name = "字典类型管理-编辑-视图", path = "/view/dictType/editView")
     public String editView() {
-        return PREFIX + "dictType_edit.html";
+        return "/modular/system/dict/dictType_edit.html";
     }
-
 
 }

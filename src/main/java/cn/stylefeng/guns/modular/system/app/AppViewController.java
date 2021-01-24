@@ -22,7 +22,7 @@ public class AppViewController {
      */
     @GetResource(name = "应用管理首页", path = "/view/app")
     public String appIndex() {
-        return "/modular/auth/app/app.html";
+        return "/modular/system/app/app.html";
     }
 
     /**
@@ -33,7 +33,7 @@ public class AppViewController {
      */
     @GetResource(name = "新增应用界面", path = "/view/app/add")
     public String appAdd() {
-        return "/modular/auth/app/app_add.html";
+        return "/modular/system/app/app_add.html";
     }
 
     /**
@@ -44,7 +44,7 @@ public class AppViewController {
      */
     @GetResource(name = "编辑应用界面", path = "/view/app/edit")
     public String appEdit() {
-        return "/modular/auth/app/app_edit.html";
+        return "/modular/system/app/app_edit.html";
     }
 
 }

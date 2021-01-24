@@ -1,0 +1,57 @@
+@layout("/layout/_container.html",{js:["/assets/modular/system/role/role.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">角色管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="roleName" class="layui-input" type="text" placeholder="角色名称"/>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                @if(loginUser.haveButton("BUTTON_ROLE_ADD")){
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                @}
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="roleTable" lay-filter="roleTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    @if(loginUser.haveButton("BUTTON_ROLE_EDIT")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    @}
+    @if(loginUser.haveButton("BUTTON_ROLE_DELETE")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+    @if(loginUser.haveButton("BUTTON_ROLE_EDIT")||loginUser.haveButton("BUTTON_ROLE_ASSIGN_MENU_BUTTON")||loginUser.haveButton("BUTTON_ROLE_ASSIGN_RESOURCE")){
+    <a class="layui-btn layui-btn-xs" data-dropdown="#userTbDrop{{d.LAY_INDEX}}" no-shade="true">
+        更多<i class="layui-icon layui-icon-drop" style="font-size: 12px;margin-right: 0;"></i></a>
+    <!-- 下拉菜单 -->
+    <ul class="dropdown-menu-nav dropdown-bottom-right layui-hide" id="userTbDrop{{d.LAY_INDEX}}">
+        <div class="dropdown-anchor"></div>
+        @if(loginUser.haveButton("BUTTON_ROLE_EDIT")){
+        <li><a lay-event="editDataScope">设置数据范围</a></li>
+        @}
+        @if(loginUser.haveButton("BUTTON_ROLE_ASSIGN_MENU_BUTTON")){
+        <li><a lay-event="assignMenu">分配菜单按钮</a></li>
+        @}
+        @if(loginUser.haveButton("BUTTON_ROLE_ASSIGN_RESOURCE")){
+        <li><a lay-event="assignApi">分配接口</a></li>
+        @}
+    </ul>
+    @}
+</script>
+@}

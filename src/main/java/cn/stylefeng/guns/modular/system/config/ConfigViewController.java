@@ -22,7 +22,7 @@ public class ConfigViewController {
      */
     @GetResource(name = "系统配置-列表-视图", path = "/view/config")
     public String indexView() {
-        return "/modular/sysConfig/sysConfig.html";
+        return "/modular/system/config/sysConfig.html";
     }
 
     /**
@@ -33,7 +33,7 @@ public class ConfigViewController {
      */
     @GetResource(name = "系统配置—新增-视图", path = "/view/config/addView")
     public String addView() {
-        return "/modular/sysConfig/sysConfig_add.html";
+        return "/modular/system/config/sysConfig_add.html";
     }
 
     /**
@@ -44,7 +44,7 @@ public class ConfigViewController {
      */
     @GetResource(name = "系统配置-修改-视图", path = "/view/config/editView")
     public String editView() {
-        return "/modular/sysConfig/sysConfig_edit.html";
+        return "/modular/system/config/sysConfig_edit.html";
     }
 
 }

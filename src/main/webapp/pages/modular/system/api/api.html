@@ -1,0 +1,134 @@
+@layout("/layout/_container.html", {js:["/assets/modular/system/api/api.js"]}){
+<style>
+    /* 左树 */
+    #organizationTreeBar {
+        padding: 10px 15px;
+        border: 1px solid #e6e6e6;
+        background-color: #f2f2f2;
+    }
+
+    #organizationTree {
+        border: 1px solid #e6e6e6;
+        border-top: none;
+        padding: 10px 5px;
+        overflow: auto;
+        height: -webkit-calc(100vh - 125px);
+        height: -moz-calc(100vh - 125px);
+        height: calc(100vh - 125px);
+    }
+
+    .layui-tree-entry .layui-tree-txt {
+        padding: 0 5px;
+        border: 1px transparent solid;
+        text-decoration: none !important;
+    }
+
+    .layui-tree-entry.ew-tree-click .layui-tree-txt {
+        background-color: #fff3e0;
+        border: 1px #FFE6B0 solid;
+    }
+
+    /* 右表搜索表单 */
+    #organizationUserTbSearchForm .layui-form-label {
+        box-sizing: border-box !important;
+        width: 90px !important;
+    }
+
+    #organizationUserTbSearchForm .layui-input-block {
+        margin-left: 90px !important;
+    }
+</style>
+</head>
+<body>
+<!-- 正文开始 -->
+<div class="layui-fluid" style="padding-bottom: 0;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md2">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px;">
+                    <!-- 树工具栏 -->
+                    <div class="layui-form toolbar" id="organizationTreeBar">
+
+                    </div>
+                    <!-- 左树 -->
+                    <div id="organizationTree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md10">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px;">
+                    <div class="layui-form-item layui-row">
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                            <legend>接口详情</legend>
+                        </fieldset>
+                        <form class="layui-form" lay-filter="apiDetailForm">
+                            <div class="layui-row">
+                                <div class="layui-col-xs2">
+                                    <div class="layui-form-item">
+                                        <label class="wide-layui-form-label">http请求方法</label>
+                                        <div class="wide-layui-input-block">
+                                            <input type="text" name="httpMethod" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs10">
+                                    <div class="layui-form-item">
+                                        <label class="wide-layui-form-label">资源的请求路径</label>
+                                        <div class="wide-layui-input-block">
+                                            <input type="text" name="url" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="wide-layui-form-label">API名称</label>
+                                <div class="wide-layui-input-block">
+                                    <input type="text" name="resourceName" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="wide-layui-form-label">控制器类名称</label>
+                                <div class="wide-layui-input-block">
+                                    <input type="text" name="className" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="wide-layui-form-label">控制器中的方法名称</label>
+                                <div class="wide-layui-input-block">
+                                    <input type="text" name="methodName" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="wide-layui-form-label">是否需要登录</label>
+                                <div class="wide-layui-input-block">
+                                    <input type="text" name="requiredLoginFlag" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="wide-layui-form-label">是否需要鉴权</label>
+                                <div class="wide-layui-input-block">
+                                    <input type="text" name="requiredPermissionFlag" autocomplete="off" class="layui-input layui-disabled" disabled="disabled">
+                                </div>
+                            </div>
+                        </form>
+
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                            <legend>请求参数</legend>
+                        </fieldset>
+
+                        <table class="layui-hide" id="requestParamsTable" lay-filter="requestParamsTable"></table>
+
+                        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                            <legend>响应参数</legend>
+                        </fieldset>
+
+                        <table class="layui-hide" id="responseParamsTable" lay-filter="responseParamsTable"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@}

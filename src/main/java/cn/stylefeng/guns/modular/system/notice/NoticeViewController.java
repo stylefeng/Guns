@@ -47,37 +47,4 @@ public class NoticeViewController {
         return "/modular/system/notice/notice_edit.html";
     }
 
-    /**
-     * 修改数据范围界面
-     *
-     * @author liuhanqing
-     * @date 2021/1/8 20:57
-     */
-    @GetResource(name = "修改数据范围界面", path = "/view/notice/editDataScope")
-    public String roleEditDataScope() {
-        return "/modular/system/notice/notice_edit_data_scope.html";
-    }
-
-    /**
-     * 分配接口界面
-     *
-     * @author majianguo
-     * @date 2021/1/9 11:43
-     */
-    @GetResource(name = "分配接口界面", path = "/view/notice/assignApi")
-    public String roleAssignApi() {
-        return "/modular/system/notice/notice_assign_api.html";
-    }
-
-    /**
-     * 分配菜单和按钮界面
-     *
-     * @author majianguo
-     * @date 2021/1/9 11:45
-     */
-    @GetResource(name = "分配菜单界面", path = "/view/notice/assignMenuAndButtons")
-    public String roleAssignMenuButton() {
-        return "/modular/system/notice/notice_assign_menu_button.html";
-    }
-
 }

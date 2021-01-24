@@ -22,7 +22,7 @@ public class ResourceViewController {
      */
     @GetResource(name = "资源管理首页", path = "/view/resource")
     public String resourceIndex() {
-        return "/modular/auth/resource/resource.html";
+        return "/modular/system/resource/resource.html";
     }
 
     /**
@@ -33,7 +33,7 @@ public class ResourceViewController {
      */
     @GetResource(name = "资源管理详情", path = "/view/resource/detail")
     public String resourceDetail() {
-        return "/modular/auth/resource/resource_detail.html";
+        return "/modular/system/resource/resource_detail.html";
     }
 
 }
