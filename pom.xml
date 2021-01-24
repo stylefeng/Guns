@@ -127,6 +127,13 @@
             <version>1.0.0</version>
         </dependency>
 
+        <!--多语言模块-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>i18n-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!--多数据源配置-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
