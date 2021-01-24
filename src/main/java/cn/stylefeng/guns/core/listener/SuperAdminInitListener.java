@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.core.listener;
 
 import cn.stylefeng.guns.core.consts.ProjectConstants;
-import cn.stylefeng.guns.modular.index.service.InitAdminService;
+import cn.stylefeng.guns.modular.system.index.service.InitAdminService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
