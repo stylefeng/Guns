@@ -151,7 +151,8 @@ layui.config({
     HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
     func: '../../expand/module/func/func',
     dict: '../../expand/module/dict/dict',
-    gunsSelect: '../../expand/module/gunsSelect/gunsSelect'
+    gunsSelect: '../../expand/module/gunsSelect/gunsSelect',
+    ws: '../../expand/module/webSocket/webSocket'
 
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
