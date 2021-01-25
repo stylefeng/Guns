@@ -1,3 +1,10 @@
+/**
+ * 基于xmSelect封装字典通用下拉选项
+ * v1.0
+ * @author 陈金龙
+ * @date 2021/1/25 10:59
+ */
+
 layui.define(['jquery', 'HttpRequest', 'xmSelect'], function (exports) {
     "use strict";
     var dict = function () {

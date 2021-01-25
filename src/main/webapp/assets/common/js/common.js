@@ -150,7 +150,9 @@ layui.config({
     ztree: '../../expand/module/ztree/ztree-object',
     HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
     func: '../../expand/module/func/func',
-    dict: '../../expand/module/dict/dict'
+    dict: '../../expand/module/dict/dict',
+    gunsSelect: '../../expand/module/gunsSelect/gunsSelect'
+
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
     var layer = layui.layer;

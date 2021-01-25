@@ -4,8 +4,12 @@
 2.引入layui 模块组件'dict'
 layui.use(['dict'], function () {
 
-3.渲染组件
-dict.render({
-        elem: '#demo2', //控件
-        code: '' //字典dictTypeCode
-});
+    var dict = layui.dict;
+    // 渲染组件
+    dict.render({
+            elem: '#demo2', //控件
+            code: '' //字典dictTypeCode
+    });
+
+}
+
