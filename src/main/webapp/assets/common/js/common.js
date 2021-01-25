@@ -149,7 +149,8 @@ layui.config({
     iconPicker: '../../expand/module/iconPicker/iconPicker',
     ztree: '../../expand/module/ztree/ztree-object',
     HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
-    func: '../../expand/module/func/func'
+    func: '../../expand/module/func/func',
+    dict: '../../expand/module/dict/dict'
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
     var layer = layui.layer;
