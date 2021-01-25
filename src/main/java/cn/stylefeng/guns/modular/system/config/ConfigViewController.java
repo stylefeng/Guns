@@ -22,7 +22,8 @@ public class ConfigViewController {
      */
     @GetResource(name = "系统配置-列表-视图", path = "/view/config")
     public String indexView() {
-        return "/modular/system/config/sysConfig.html";
+        return "/modular/system/config/config.html";
+        //return "/modular/system/config/sysConfig.html";
     }
 
     /**
@@ -34,6 +35,17 @@ public class ConfigViewController {
     @GetResource(name = "系统配置—新增-视图", path = "/view/config/addView")
     public String addView() {
         return "/modular/system/config/sysConfig_add.html";
+    }
+
+    /**
+     * 系统配置—新增-视图
+     *
+     * @author jiawei
+     * @date 2021/1/4 13:34
+     */
+    @GetResource(name = "系统配置—新增-视图", path = "/view/config/addConfigDictView")
+    public String addConfigDictView() {
+        return "/modular/system/config/config_add.html";
     }
 
     /**

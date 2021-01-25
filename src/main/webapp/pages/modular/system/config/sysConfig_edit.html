@@ -3,9 +3,10 @@
 <form class="layui-form" id="sysConfigForm" lay-filter="sysConfigForm" >
     <div class="layui-fluid" style="padding-bottom: 75px;">
         <div class="layui-card">
-            <div class="layui-card-header">基本信息</div>
             <div class="layui-card-body">
+
                 <input name="configId" type="hidden"/>
+                <input name="groupCode" id="groupCode" type="hidden"/>
                 <div class="layui-form-item">
                     <label class="layui-form-label layui-form-required">参数名称</label>
                     <div class="layui-input-block">
@@ -26,19 +27,6 @@
                         <input type="checkbox" name="sysFlag" lay-skin="switch"  lay-text="是|否" value="Y" checked>
                     </div>
                 </div>
-
-                <div id="dictCodeDiv">
-
-                </div>
-
-                <div class="layui-form-item">
-                    <label class="layui-form-label layui-form-required">所属分类</label>
-                    <div class="layui-input-block">
-                        <select name="groupCode" id="groupCode" lay-filter="dictTypeId" disabled="disabled">
-                        </select>
-                    </div>
-                </div>
-
                 <!-- 手动输入 -->
                 <div class="layui-form-item" id="customCodeDiv">
                     <label class="layui-form-label layui-form-required">参数值</label>
@@ -49,7 +37,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">备注</label>
                     <div class="layui-input-block">
-                        <input id="remark" name="remark" placeholder="请输入备注" type="text" autocomplete="off" class="layui-input"/>
+                        <textarea id="remark" name="remark" placeholder="请输入备注" class="layui-textarea"></textarea>
                     </div>
                 </div>
             </div>
