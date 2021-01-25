@@ -86,7 +86,8 @@ layui.use(['layer', 'table', 'HttpRequest', 'laydate'], function () {
         height: "full-98",
         cellMinWidth: 100,
         cols: LoginLog.initColumn(),
-        parseData: Feng.parseData
+        parseData: Feng.parseData,
+        request: Feng.pageRequest
     });
 
     // 搜索按钮点击事件
