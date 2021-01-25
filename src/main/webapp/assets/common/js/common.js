@@ -11,6 +11,9 @@ Feng.parseData = function (res) {
         "data": res.data.rows //解析数据列表
     };
 };
+/* 设置分页请求参数 */
+Feng.pageRequest = {pageName: 'pageNo', limitName: 'pageSize'};
+
 Feng.info = function (info) {
     top.layer.msg(info, {icon: 6});
 };
