@@ -5,7 +5,7 @@ var TranslationInfoDlg = {
     data: {
         tranCode: "",
         tranName: "",
-        languages: "",
+        language: "",
         tranValue: "",
         createTime: "",
         createUser: "",
@@ -14,9 +14,9 @@ var TranslationInfoDlg = {
     }
 };
 
-layui.use(['form', 'admin', 'ax'], function () {
+layui.use(['form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var form = layui.form;
     var admin = layui.admin;
 
@@ -24,13 +24,13 @@ layui.use(['form', 'admin', 'ax'], function () {
     admin.iframeAuto();
 
     //获取详情信息，填充表单
-    var ajax = new $ax(Feng.ctxPath + "/translation/detail?tranId=" + Feng.getUrlParam("tranId"));
-    var result = ajax.start();
+    var request = new HttpRequest(Feng.ctxPath + "/i18n/detail?tranId=" + Feng.getUrlParam("tranId"), 'get');
+    var result = request.start();
     form.val('translationForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/translation/editItem", function (data) {
+        var editRequest = new HttpRequest(Feng.ctxPath + "/i18n/edit", 'post', function (data) {
             Feng.success("更新成功！");
 
             //传给上个页面，刷新table用
@@ -40,10 +40,10 @@ layui.use(['form', 'admin', 'ax'], function () {
             admin.closeThisDialog();
 
         }, function (data) {
-            Feng.error("更新失败！" + data.responseJSON.message)
+            Feng.error("更新失败！" + data.message)
         });
-        ajax.set(data.field);
-        ajax.start();
+        editRequest.set(data.field);
+        editRequest.start(true);
 
         return false;
     });

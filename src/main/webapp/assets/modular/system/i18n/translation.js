@@ -1,7 +1,7 @@
-layui.use(['table', 'admin', 'ax', 'func'], function () {
+layui.use(['table', 'admin', 'HttpRequest', 'func'], function () {
     var $ = layui.$;
     var table = layui.table;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var admin = layui.admin;
     var func = layui.func;
 
@@ -22,10 +22,10 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
             {field: 'tranCode', sort: true, title: '编码'},
             {field: 'tranName', sort: true, title: '名称'},
             {
-                field: 'languages', sort: true, title: '语种', templet: function (d) {
-                    if (d.languages === 1) {
+                field: 'language', sort: true, title: '语种', templet: function (d) {
+                    if (d.language === 1) {
                         return "中文";
-                    } else if (d.languages === 2) {
+                    } else if (d.language === 2) {
                         return "英文";
                     }
                 }
@@ -42,7 +42,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
      */
     Translation.search = function () {
         var queryData = {};
-        queryData['condition'] = $("#condition").val();
+        queryData['tranName'] = $("#tranName").val();
         table.reload(Translation.tableId, {
             where: queryData, page: {curr: 1}
         });
@@ -54,7 +54,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     Translation.openAddDlg = function () {
         func.open({
             title: '添加多语言表',
-            content: Feng.ctxPath + '/translation/add',
+            content: Feng.ctxPath + '/view/i18n/add',
             tableId: Translation.tableId
         });
     };
@@ -67,7 +67,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     Translation.openEditDlg = function (data) {
         func.open({
             title: '修改多语言表',
-            content: Feng.ctxPath + '/translation/edit?tranId=' + data.tranId,
+            content: Feng.ctxPath + '/view/i18n/edit?tranId=' + data.tranId,
             tableId: Translation.tableId
         });
     };
@@ -91,14 +91,14 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
      */
     Translation.onDeleteItem = function (data) {
         var operation = function () {
-            var ajax = new $ax(Feng.ctxPath + "/translation/delete", function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/i18n/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(Translation.tableId);
             }, function (data) {
-                Feng.error("删除失败!" + data.responseJSON.message + "!");
+                Feng.error("删除失败!" + data.message + "!");
             });
-            ajax.set("tranId", data.tranId);
-            ajax.start();
+            request.set("tranId", data.tranId);
+            request.start(true);
         };
         Feng.confirm("是否删除?", operation);
     };
@@ -106,11 +106,13 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + Translation.tableId,
-        url: Feng.ctxPath + '/translation/list',
+        url: Feng.ctxPath + '/i18n/page',
         page: true,
         height: "full-158",
         cellMinWidth: 100,
-        cols: Translation.initColumn()
+        cols: Translation.initColumn(),
+        request: {pageName: 'pageNo', limitName: 'pageSize'},
+        parseData: Feng.parseData
     });
 
     // 搜索按钮点击事件

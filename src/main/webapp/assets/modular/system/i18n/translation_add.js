@@ -5,7 +5,7 @@ var TranslationInfoDlg = {
     data: {
         tranCode: "",
         tranName: "",
-        languages: "",
+        language: "",
         tranValue: "",
         createTime: "",
         createUser: "",
@@ -14,9 +14,9 @@ var TranslationInfoDlg = {
     }
 };
 
-layui.use(['form', 'admin', 'ax'], function () {
+layui.use(['form', 'admin', 'HttpRequest'], function () {
     var $ = layui.jquery;
-    var $ax = layui.ax;
+    var HttpRequest = layui.HttpRequest;
     var form = layui.form;
     var admin = layui.admin;
 
@@ -25,7 +25,7 @@ layui.use(['form', 'admin', 'ax'], function () {
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var ajax = new $ax(Feng.ctxPath + "/translation/addItem", function (data) {
+        var request = new HttpRequest(Feng.ctxPath + "/i18n/add", 'post', function (data) {
             Feng.success("添加成功！");
 
             //传给上个页面，刷新table用
@@ -35,10 +35,10 @@ layui.use(['form', 'admin', 'ax'], function () {
             admin.closeThisDialog();
 
         }, function (data) {
-            Feng.error("添加失败！" + data.responseJSON.message)
+            Feng.error("添加失败！" + data.message)
         });
-        ajax.set(data.field);
-        ajax.start();
+        request.set(data.field);
+        request.start(true);
 
         return false;
     });
