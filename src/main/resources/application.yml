@@ -67,3 +67,6 @@ prometheus:
   url: http://localhost:9090/api/v1/
   # 非必须配置项
   instance:
+web-socket:
+  open: true
+  ws-url: ws://localhost:${server.port}/message/websocket/{userId}
