@@ -11,6 +11,9 @@ Feng.parseData = function (res) {
         "data": res.data.rows //解析数据列表
     };
 };
+/* 设置分页请求参数 */
+Feng.pageRequest = {pageName: 'pageNo', limitName: 'pageSize'};
+
 Feng.info = function (info) {
     top.layer.msg(info, {icon: 6});
 };
@@ -146,7 +149,10 @@ layui.config({
     iconPicker: '../../expand/module/iconPicker/iconPicker',
     ztree: '../../expand/module/ztree/ztree-object',
     HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
-    func: '../../expand/module/func/func'
+    func: '../../expand/module/func/func',
+    dict: '../../expand/module/dict/dict',
+    gunsSelect: '../../expand/module/gunsSelect/gunsSelect'
+
 }).use(['layer', 'admin'], function () {
     var $ = layui.jquery;
     var layer = layui.layer;

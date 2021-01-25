@@ -36,7 +36,10 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
             height: 800,
             title: '修改机构',
             content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.id,
-            tableId: Organization.tableId
+            tableId: Organization.tableId,
+            endCallback: function () {
+                renderTree();
+            }
         });
     };
 
@@ -45,7 +48,10 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
         var operation = function () {
             var httpRequest = new HttpRequest(Feng.ctxPath + "/hrOrganization/delete", 'post', function (data) {
                 Feng.success("删除成功!");
+                //刷新表格
                 table.reload(Organization.tableId);
+                //刷新树
+                renderTree();
             }, function (data) {
                 Feng.error("删除失败!" + data.message + "!");
             });
@@ -66,8 +72,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
                     selObj = obj;
                     $('#organizationTree').find('.ew-tree-click').removeClass('ew-tree-click');
                     $(obj.elem).children('.layui-tree-entry').addClass('ew-tree-click');
-
-                    console.log(obj.data);
                     insTb.reload({
                         where: {orgParentId: obj.data.id},
                         page: {curr: 1},

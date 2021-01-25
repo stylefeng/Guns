@@ -4,20 +4,22 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
 
-
-    $("#groupCode").val(Feng.getUrlParam("groupCode"));
+    //获取信息详情填充表单
+    var request = new HttpRequest(Feng.ctxPath + '/dictType/getConfigDictTypeDetail', 'get');
+    var result = request.start();
+    form.val('dictForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var httpRequest = new HttpRequest(Feng.ctxPath + "/sysConfig/add", 'post', function (data) {
+        var request = new HttpRequest(Feng.ctxPath + "/dict/addDict", 'post', function (data) {
             admin.closeThisDialog();
             Feng.success("添加成功！");
             admin.putTempData('formOk', true);
         }, function (data) {
             admin.closeThisDialog();
-            Feng.error("添加失败！" + data.message)
+            Feng.error("添加失败！" + data.message);
         });
-        httpRequest.set(data.field);
-        httpRequest.start(true);
+        request.set(data.field);
+        request.start(true);
     });
 });
