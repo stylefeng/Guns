@@ -17,6 +17,55 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
         tableId: "userTable",    //表格id
     };
 
+
+    var Organization = {
+
+    };
+
+
+    /* 点击新增对话框 */
+    Organization.openAddDlg = function () {
+        func.open({
+            height: 800,
+            title: '添加机构',
+            content: Feng.ctxPath + '/view/organization/addView',
+            tableId: OrganizationUser.tableId,
+            endCallback: function () {
+                renderTree();
+            }
+        });
+    };
+
+    /* 点击编辑对话框 */
+    Organization.openEditDlg = function (data) {
+        func.open({
+            height: 800,
+            title: '修改机构',
+            content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.id,
+            tableId: OrganizationUser.tableId,
+            endCallback: function () {
+                renderTree();
+            }
+        });
+    };
+
+    /* 点击删除 */
+    Organization.delete = function (data) {
+        var operation = function () {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/hrOrganization/delete", 'post', function (data) {
+                Feng.success("删除成功!");
+                table.reload(OrganizationUser.tableId);
+                //刷新树
+                renderTree();
+            }, function (data) {
+                Feng.error("删除失败!" + data.message + "!");
+            });
+            httpRequest.set(data);
+            httpRequest.start(true);
+        };
+        Feng.confirm("是否删除?", operation);
+    };
+
     /* 点击新增对话框 */
     OrganizationUser.openAddDlg = function () {
         func.open({
@@ -150,6 +199,25 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
     form.on('submit(userTbSearch)', function (data) {
         insTb.reload({where: data.field});
         return false;
+    });
+
+    /* 添加 */
+    $('#organizationAddBtn').click(function () {
+        Organization.openAddDlg();
+    });
+
+    /* 修改 */
+    $('#organizationEditBtn').click(function () {
+        if (!selObj) return layer.msg('未选择机构', {icon: 2});
+        Organization.openEditDlg(selObj.data)
+    });
+
+    /* 删除 */
+    $('#organizationDelBtn').click(function () {
+        if (!selObj) return layer.msg('未选择机构', {icon: 2});
+        selObj.data.orgId = selObj.data.id;
+        Organization.delete(selObj.data)
+
     });
 
     /* 表格工具条点击事件 */
