@@ -107,7 +107,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         func.open({
             height: 680,
             title: '添加字典',
-            content: Feng.ctxPath + '/view/config/addConfigDictView',
+            content: Feng.ctxPath + '/view/dict/addConfigView',
             tableId: DictType.tableId
         });
     };

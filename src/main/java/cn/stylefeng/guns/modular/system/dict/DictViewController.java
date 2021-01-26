@@ -36,6 +36,30 @@ public class DictViewController {
         return "/modular/system/dict/dict_add.html";
     }
 
+
+    /**
+     * 字典管理-添加翻译字典-视图
+     *
+     * @author chenjinlong
+     * @date 2021/1/22 16:09
+     */
+    @GetResource(name = "字典管理-添加翻译字典-视图", path = "/view/dict/addTranslationView")
+    public String addTranslationView() {
+        return "/modular/system/dict/dict_add_translation.html";
+    }
+
+    /**
+     * 字典管理-添加系统配置字典-视图
+     *
+     * @author chenjinlong
+     * @date 2021/1/22 16:09
+     */
+    @GetResource(name = "字典管理-添加系统配置字典-视图", path = "/view/dict/addConfigView")
+    public String addConfigView() {
+        return "/modular/system/dict/dict_add_config.html";
+    }
+
+
     /**
      * 字典管理-编辑-视图
      *
