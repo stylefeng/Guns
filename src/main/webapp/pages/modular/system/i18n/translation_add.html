@@ -7,6 +7,8 @@
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
                     <input name="tranId" type="hidden"/>
+                    <input name="tranLanguageCode" id="tranLanguageCode" type="hidden"/>
+
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">名称<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
@@ -17,15 +19,6 @@
                         <label class="layui-form-label">编码<span style="color: red;">*</span></label>
                         <div class="layui-input-block">
                             <input id="tranCode" name="tranCode" placeholder="请输入编码" type="text" class="layui-input" lay-verify="required" required/>
-                        </div>
-                    </div>
-                    <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">语种<span style="color: red;">*</span></label>
-                        <div class="layui-input-block">
-                            <select name="language" lay-search="">
-                                <option value="1">中文</option>
-                                <option value="2">英语</option>
-                            </select>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">

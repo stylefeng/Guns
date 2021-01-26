@@ -1,144 +1,179 @@
-layui.use(['table', 'admin', 'HttpRequest', 'func'], function () {
-    var $ = layui.$;
+layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], function () {
+    var $ = layui.jquery;
+    var layer = layui.layer;
+    var form = layui.form;
     var table = layui.table;
-    var HttpRequest = layui.HttpRequest;
     var admin = layui.admin;
+    var HttpRequest = layui.HttpRequest;
     var func = layui.func;
+    var dictTypeObj;  // 左表选中数据
 
-    /**
-     * 多语言表管理
-     */
     var Translation = {
         tableId: "translationTable"
     };
 
-    /**
-     * 初始化表格的列
-     */
-    Translation.initColumn = function () {
-        return [[
-            {type: 'checkbox'},
-            {field: 'tranId', hide: true, title: '主键id'},
-            {field: 'tranCode', sort: true, title: '编码'},
-            {field: 'tranName', sort: true, title: '名称'},
-            {
-                field: 'language', sort: true, title: '语种', templet: function (d) {
-                    if (d.language === 1) {
-                        return "中文";
-                    } else if (d.language === 2) {
-                        return "英文";
-                    }
-                }
-            },
-            {field: 'tranValue', sort: true, title: '翻译的值'},
-            {field: 'createTime', sort: true, title: '创建时间'},
-            {field: 'updateTime', sort: true, title: '更新时间'},
-            {align: 'center', toolbar: '#tableBar', title: '操作'}
-        ]];
+    var Dict = {
+        tableId: "dictTable"
     };
 
-    /**
-     * 点击查询按钮
-     */
-    Translation.search = function () {
-        var queryData = {};
-        queryData['tranName'] = $("#tranName").val();
-        table.reload(Translation.tableId, {
-            where: queryData, page: {curr: 1}
+
+    /* 字典类型-渲染表格 */
+    var dictTable = table.render({
+        elem: '#' + Dict.tableId,
+        url: Feng.ctxPath + '/dict/getLanguagesPage',
+        height: 'full-100',
+        toolbar: '#dictHtbBar',
+        defaultToolbar: [], //默认表格头部右侧工具栏
+        cols: [[
+            {type: 'numbers'},
+            {field: 'dictName', title: '类型'},
+            {field: 'dictCode', title: '编码'}
+        ]],
+        done: function (res, curr, count) {
+            //加载后自动选中第一行并出发click事件
+            $('#dictTable+.layui-table-view .layui-table-body tbody>tr:first').trigger('click');
+        },
+        parseData: Feng.parseData //解析成 table 组件所规定的数据格式
+    });
+
+    /* 字典-点击搜索 */
+    form.on('submit(dictSearchBtn)', function (data) {
+        dictTable.reload({where: data.field});
+        return false;
+    });
+
+    /* 字典-监听行单击事件 */
+    table.on('row(' + Dict.tableId + ')', function (obj) {
+        dictTypeObj = obj;
+        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+        translationTable.reload({
+            where: {tranLanguageCode: obj.data.dictCode},
+            page: {curr: 1},
+            url: Feng.ctxPath + '/i18n/page'
+        });
+    });
+
+    /* 字典-监听点击操作工具栏 */
+    table.on('toolbar(' + Dict.tableId + ')', function (obj) {
+        var data = dictTypeObj.data;
+        if (obj.event === 'add') { // 添加
+            Dict.openAddDlg();
+        } else if (obj.event === 'edit') { // 修改
+            Dict.openEditDlg(data);
+        } else if (obj.event === 'del') { // 删除
+            Dict.onDeleteItem(data);
+        }
+    });
+
+    /* 字典-点击新增对话框 */
+    Dict.openAddDlg = function (data) {
+        func.open({
+            title: '添加字典',
+            content: Feng.ctxPath + '/view/dict/addTranslationView',
+            tableId: Dict.tableId
         });
     };
 
-    /**
-     * 弹出添加对话框
-     */
-    Translation.openAddDlg = function () {
+    /* 字典-点击编辑对话框 */
+    Dict.openEditDlg = function (data) {
+        func.open({
+            title: '修改字典',
+            content: Feng.ctxPath + '/view/dict/editView?dictId=' + data.dictId,
+            tableId: Dict.tableId
+        });
+    };
+
+    /* 字典-点击删除 */
+    Dict.onDeleteItem = function (data) {
+        var operation = function () {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/deleteDict", 'post', function (data) {
+                Feng.success("删除成功!");
+                table.reload(Dict.tableId);
+            }, function (data) {
+                Feng.error("删除失败!" + data.message + "!");
+            });
+            httpRequest.set(data);
+            httpRequest.start(true);
+        };
+        Feng.confirm("是否删除?", operation);
+    };
+
+
+    /* 翻译-渲染表格 */
+    var translationTable = table.render({
+        elem: '#' + Translation.tableId,
+        data: [],
+        height: 'full-100',
+        page: true,
+        cellMinWidth: 100,
+        cols: [[
+            {type: 'checkbox'},
+            {field: 'tranId', hide: true, title: '主键id'},
+            {field: 'tranName', sort: true, title: '名称'},
+            {field: 'tranCode', sort: true, title: '编码'},
+            {field: 'tranValue', sort: true, title: '翻译的值'},
+            {align: 'center', toolbar: '#translationTbBar', title: '操作'}
+        ]],
+        parseData: Feng.parseData,
+        request: Feng.pageRequest
+    });
+
+
+    /* 翻译-点击搜索按钮 */
+    form.on('submit(translationSearchBtn)', function (data) {
+        // 赋值左表参数
+        data.field.tranLanguageCode = dictTypeObj.data.dictCode;
+        translationTable.reload({where: data.field});
+        return false;
+    });
+
+    /* 翻译-点击添加按钮 */
+    $('#translationBtnAdd').click(function () {
+        Translation.openAddDlg(dictTypeObj.data);
+        return false;
+    });
+
+    /* 翻译-监听点击操作工具栏 */
+    table.on('tool(' + Translation.tableId + ')', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'edit') { // 修改
+            Translation.openEditDlg(data);
+        } else if (obj.event === 'del') { // 删除
+            Translation.onDeleteItem(data);
+        }
+    });
+
+    /* 字典类型-点击新增对话框 */
+    Translation.openAddDlg = function (data) {
         func.open({
             title: '添加多语言表',
-            content: Feng.ctxPath + '/view/i18n/add',
+            content: Feng.ctxPath + '/view/i18n/add?tranLanguageCode=' + data.dictCode,
             tableId: Translation.tableId
         });
     };
 
-    /**
-     * 点击编辑
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    /* 字典类型-点击编辑对话框 */
     Translation.openEditDlg = function (data) {
         func.open({
-            title: '修改多语言表',
+            height: 680,
+            title: '修改系统配置',
             content: Feng.ctxPath + '/view/i18n/edit?tranId=' + data.tranId,
             tableId: Translation.tableId
         });
     };
 
-    /**
-     * 导出excel按钮
-     */
-    Translation.exportExcel = function () {
-        var checkRows = table.checkStatus(Translation.tableId);
-        if (checkRows.data.length === 0) {
-            Feng.error("请选择要导出的数据");
-        } else {
-            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-        }
-    };
-
-    /**
-     * 点击删除
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    /* 字典类型-点击删除 */
     Translation.onDeleteItem = function (data) {
         var operation = function () {
-            var request = new HttpRequest(Feng.ctxPath + "/i18n/delete", 'post', function (data) {
+            new HttpRequest(Feng.ctxPath + "/i18n/delete", 'post', function (data) {
                 Feng.success("删除成功!");
-                table.reload(Translation.tableId);
+                table.reload(Dict.tableId);
             }, function (data) {
-                Feng.error("删除失败!" + data.message + "!");
-            });
-            request.set("tranId", data.tranId);
-            request.start(true);
+                Feng.error(data.message + "!");
+            }).set(data).start(true);
         };
         Feng.confirm("是否删除?", operation);
     };
 
-    // 渲染表格
-    var tableResult = table.render({
-        elem: '#' + Translation.tableId,
-        url: Feng.ctxPath + '/i18n/page',
-        page: true,
-        height: "full-158",
-        cellMinWidth: 100,
-        cols: Translation.initColumn(),
-        request: {pageName: 'pageNo', limitName: 'pageSize'},
-        parseData: Feng.parseData
-    });
 
-    // 搜索按钮点击事件
-    $('#btnSearch').click(function () {
-        Translation.search();
-    });
-
-    // 添加按钮点击事件
-    $('#btnAdd').click(function () {
-        Translation.openAddDlg();
-    });
-
-    // 导出excel
-    $('#btnExp').click(function () {
-        Translation.exportExcel();
-    });
-
-    // 工具条点击事件
-    table.on('tool(' + Translation.tableId + ')', function (obj) {
-        var data = obj.data;
-        var layEvent = obj.event;
-
-        if (layEvent === 'edit') {
-            Translation.openEditDlg(data);
-        } else if (layEvent === 'delete') {
-            Translation.onDeleteItem(data);
-        }
-    });
 });
