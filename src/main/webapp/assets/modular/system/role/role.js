@@ -77,7 +77,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.openAddRole = function () {
         func.open({
-            height: 470,
+            height: 680,
             title: '添加角色',
             content: Feng.ctxPath + '/view/role/add',
             tableId: Role.tableId
@@ -91,7 +91,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.onEditRole = function (data) {
         func.open({
-            height: 470,
+            height: 680,
             title: '修改角色',
             content: Feng.ctxPath + "/view/role/edit?roleId=" + data.roleId,
             tableId: Role.tableId

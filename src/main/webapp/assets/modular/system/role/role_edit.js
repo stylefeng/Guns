@@ -1,10 +1,20 @@
 /**
  * 角色详情对话框
  */
-layui.use(['form', 'admin', 'HttpRequest'], function () {
+layui.use(['form', 'admin', 'HttpRequest', 'gunsSelect'], function () {
     var HttpRequest = layui.HttpRequest;
     var form = layui.form;
     var admin = layui.admin;
+    var gunsSelect = layui.gunsSelect;
+
+
+    // 角色类型
+    gunsSelect.render({
+        url: Feng.ctxPath + '/dict/getDictList',
+        elem: '#roleType',
+        fields: {name: 'dictName', value: 'dictCode'},
+        where: {dictTypeCode: 'role_type'}
+    });
 
     //初始化角色的详情数据
     var detailRequest = new HttpRequest(Feng.ctxPath + "/sysRole/detail?roleId=" + Feng.getUrlParam("roleId"), 'get');
