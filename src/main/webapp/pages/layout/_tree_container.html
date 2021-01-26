@@ -32,7 +32,7 @@
     @/* 其他业务用的css */
     @if(isNotEmpty(css)){
         @for(item in css){
-            @if(strutil.startWith(item,"/")){
+            @if(strUtil.startWith(item,"/")){
                 @item = ctxPath + item;
             @}
             <link href="${item}?v=${constants.getReleaseVersion()}" rel="stylesheet" type="text/css" />
@@ -70,7 +70,7 @@ ${layoutContent}
 
 @if(isNotEmpty(js)){
     @for(item in js){
-        @if(strutil.startWith(item,"/")){
+        @if(strUtil.startWith(item,"/")){
             @item = ctxPath + item;
         @}
         <script src="${item}?v=${constants.getReleaseVersion()}"></script>
