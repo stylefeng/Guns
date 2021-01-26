@@ -36,7 +36,9 @@
                 <i class="layui-icon layui-icon-notice"></i>
                 <!-- 未读消息气泡提示 -->
                 @if(msgUnReadCount>0){
-                <span class="layui-badge-dot"></span>
+                <span id="messageDot" style="display: block" class="layui-badge-dot"></span>
+                @}else{
+                <span id="messageDot" style="display: none" class="layui-badge-dot"></span>
                 @}
             </a>
         </li>

@@ -20,6 +20,7 @@ layui.use(['element', 'admin', 'HttpRequest', 'func'], function () {
         var httpRequest = new HttpRequest(Feng.ctxPath + "/sysMessage/allMessageReadFlag", 'get', function (data) {
             $('#messageClearBtn').parents('.layui-tab-item').addClass('show-empty');
             $('#msgCount').html(0);
+            $('#messageDot').hide();
             Feng.success("标记已读成功!");
         }, function (data) {
             Feng.error("标记已读失败!" + data.responseJSON.message);
