@@ -47,4 +47,15 @@ public class TranslationViewController {
         return "/modular/system/i18n/translation_edit.html";
     }
 
+    /**
+     * 多语言增加语种界面
+     *
+     * @author chenjinlong
+     * @date 2021/1/22 16:09
+     */
+    @GetResource(name = "多语言增加语种界面", path = "/view/i18n/addTranslationView")
+    public String addTranslationView() {
+        return "/modular/system/i18n/dict_add_translation.html";
+    }
+
 }

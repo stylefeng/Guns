@@ -16,7 +16,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         tableId: "dictTable"
     };
 
-
     /* 字典类型-渲染表格 */
     var dictTable = table.render({
         elem: '#' + Dict.tableId,
@@ -26,7 +25,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         defaultToolbar: [], //默认表格头部右侧工具栏
         cols: [[
             {type: 'numbers'},
-            {field: 'dictName', title: '类型'},
+            {field: 'dictName', title: '语种名称'},
             {field: 'dictCode', title: '编码'}
         ]],
         done: function (res, curr, count) {
@@ -70,17 +69,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         func.open({
             height: 680,
             title: '添加字典',
-            content: Feng.ctxPath + '/view/dict/addTranslationView',
-            tableId: Dict.tableId
-        });
-    };
-
-    /* 字典-点击编辑对话框 */
-    Dict.openEditDlg = function (data) {
-        func.open({
-            height: 680,
-            title: '修改字典',
-            content: Feng.ctxPath + '/view/dict/editView?dictId=' + data.dictId,
+            content: Feng.ctxPath + '/view/i18n/addTranslationView',
             tableId: Dict.tableId
         });
     };
@@ -99,7 +88,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         };
         Feng.confirm("是否删除?", operation);
     };
-
 
     /* 翻译-渲染表格 */
     var translationTable = table.render({

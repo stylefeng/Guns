@@ -32,12 +32,8 @@
                     <form class="layui-form toolbar">
                         <div class="layui-form-item">
                             <div class="layui-inline" style="max-width: 140px;">
-                                <input name="dictName" class="layui-input" type="text" placeholder="类型" autocomplete="off"/>
+                                <input name="dictName" class="layui-input" type="text" placeholder="语种名称" autocomplete="off"/>
                             </div>
-                            <!--
-                            <div class="layui-inline" style="max-width: 140px;">
-                                <input name="dictTypeCode" class="layui-input" type="text" placeholder="编码" autocomplete="off"/>
-                            </div>-->
                             <div class="layui-inline">
                                 <button class="layui-btn icon-btn" lay-filter="dictSearchBtn" lay-submit>
                                     <i class="layui-icon">&#xe615;</i>搜索
@@ -83,7 +79,6 @@
 <!-- 表格头部操作列 -->
 <script type="text/html" id="dictHtbBar">
     <button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-    <!--<button lay-event="edit" class="layui-btn layui-btn-sm layui-btn-warm icon-btn"><i class="layui-icon">&#xe642;</i>修改</button>-->
     <button lay-event="del" class="layui-btn layui-btn-sm layui-btn-danger icon-btn"><i class="layui-icon">&#xe640;</i>删除</button>
 </script>
 
@@ -93,7 +88,5 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <!-- 表格操作列结束 -->
-
-
 
 @}

@@ -1,0 +1,40 @@
+@layout("/layout/_form.html",{js:["/assets/modular/system/i18n/dict_add_translation.js"]}){
+
+<form class="layui-form" id="dictForm" lay-filter="dictForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input id="dictTypeId" name="dictTypeId" type="hidden"/>
+                    <input id="dictTypeCode" name="dictTypeCode" type="hidden"/>
+                    <input id="dictTypeName" name="dictTypeName" type="hidden"/>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">语种名称</label>
+                        <div class="layui-input-block">
+                            <input id="dictName" name="dictName" placeholder="请输入语种名称（例如：中文）" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">语种编码</label>
+                        <div class="layui-input-block">
+                            <input id="dictCode" name="dictCode" placeholder="请输入语种编码（例如：chinese）" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">排序</label>
+                        <div class="layui-input-block">
+                            <input id="dictSort" name="dictSort" placeholder="请输入字典排序" type="text" class="layui-input" lay-verify="required" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+
+@}
