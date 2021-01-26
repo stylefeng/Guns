@@ -68,6 +68,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击新增对话框 */
     Dict.openAddDlg = function (data) {
         func.open({
+            height: 680,
             title: '添加字典',
             content: Feng.ctxPath + '/view/dict/addTranslationView',
             tableId: Dict.tableId
@@ -77,6 +78,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击编辑对话框 */
     Dict.openEditDlg = function (data) {
         func.open({
+            height: 680,
             title: '修改字典',
             content: Feng.ctxPath + '/view/dict/editView?dictId=' + data.dictId,
             tableId: Dict.tableId
