@@ -1,7 +1,6 @@
 package cn.stylefeng.guns.core.beetl;
 
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.beetl.tag.SysDictCheckBoxTag;
 import cn.stylefeng.guns.core.beetl.tag.SysDictRadioTag;
 import cn.stylefeng.guns.core.beetl.tag.SysDictSelectTag;
@@ -31,9 +30,6 @@ public class CustomBeetlGroupUtilConfiguration extends BeetlGroupUtilConfigurati
 
         // 对象工具类
         groupTemplate.registerFunctionPackage("objectUtil", ObjectUtil.class);
-
-        // 字符串处理工具类
-        groupTemplate.registerTag("strUtil", StrUtil.class);
 
         // 获取基本信息的工具
         groupTemplate.registerFunctionPackage("constants", SystemConfigExpander.class);

@@ -36,7 +36,7 @@
     <!--业务css-->
     @if(isNotEmpty(css)){
         @for(item in css){
-            @if(strUtil.startWith(item,"/")){
+            @if(strutil.startWith(item,"/")){
                 @item = ctxPath + item;
             @}
             <link href="${item}?v=${constants.getReleaseVersion()}" rel="stylesheet" type="text/css" />
@@ -83,7 +83,7 @@ ${layoutContent}
 <!-- 业务js -->
 @if(isNotEmpty(js)){
     @for(item in js){
-        @if(strUtil.startWith(item,"/")){
+        @if(strutil.startWith(item,"/")){
             @item = ctxPath + item;
         @}
         <script src="${item}?v=${constants.getReleaseVersion()}"></script>
