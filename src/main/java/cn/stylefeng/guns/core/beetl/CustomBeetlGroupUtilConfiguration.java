@@ -28,7 +28,7 @@ public class CustomBeetlGroupUtilConfiguration extends BeetlGroupUtilConfigurati
         // 获取当前用户的接口
         groupTemplate.registerFunctionPackage("loginUser", loginUserApi);
 
-        // 字符串处理工具类
+        // 对象工具类
         groupTemplate.registerFunctionPackage("objectUtil", ObjectUtil.class);
 
         // 获取基本信息的工具
