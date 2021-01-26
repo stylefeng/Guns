@@ -11,7 +11,7 @@ layui.use(['form', 'admin', 'HttpRequest', 'gunsSelect'], function () {
     // 角色类型
     gunsSelect.render({
         url: Feng.ctxPath + '/dict/getDictList',
-        elem: '#roleType',
+        elem: '#roleTypeCode',
         fields: {name: 'dictName', value: 'dictCode'},
         where: {dictTypeCode: 'role_type'}
     });

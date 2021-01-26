@@ -26,6 +26,28 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
             {field: 'roleCode', align: "center", sort: true, title: '角色编码'},
             {field: 'roleSort', align: "center", sort: true, title: '排序'},
             {
+                field: 'roleSystemFlag', align: "center", sort: true, title: '角色级别', templet: function (data) {
+                    if (data.roleSystemFlag === 'Y') {
+                        return '<span class="layui-badge layui-badge-red">系统角色</span>';
+                    } else {
+                        return '<span class="layui-badge layui-badge-green">普通角色</span>';
+                    }
+                }
+            },
+            {
+                field: 'roleTypeCode', align: "center", sort: true, title: '角色类型', templet: function (data) {
+                    if (data.roleTypeCode === 'role_system') {
+                        return '<span class="layui-badge layui-badge-red">系统</span>';
+                    } else if(data.roleTypeCode === 'role_c'){
+                        return '<span class="layui-badge layui-badge-green">C端</span>';
+                    }else if(data.roleTypeCode === 'role_b'){
+                        return '<span class="layui-badge layui-badge-green">B端</span>';
+                    }
+                    return '<span class="layui-badge layui-badge-green">未知</span>';
+                }
+            },
+
+            {
                 field: 'dataScopeType', align: "center", sort: true, title: '数据范围类型', templet: function (data) {
                     if (data.dataScopeType === 10) {
                         return '<span class="layui-badge layui-badge-green">仅本人数据</span>';
@@ -40,7 +62,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
                         return '<span class="layui-badge layui-badge-green">指定部门数据</span>';
                     }
                     if (data.dataScopeType === 50) {
-                        return '<span class="layui-badge layui-badge-green">全部数据</span>';
+                        return '<span class="layui-badge layui-badge-red">全部数据</span>';
                     }
                     return '<span class="layui-badge layui-badge-green">未知</span>';
                 }
