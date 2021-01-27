@@ -42,7 +42,8 @@ layui.use(['table', 'HttpRequest', 'func'], function () {
      */
     MenuButton.openAddDlg = function () {
         func.open({
-            height: 500,
+            height: '350px',
+            width: '500px',
             title: '添加菜单按钮',
             content: Feng.ctxPath + '/view/menuButton/add?menuId=' + menuId,
             tableId: MenuButton.tableId
@@ -56,7 +57,8 @@ layui.use(['table', 'HttpRequest', 'func'], function () {
      */
     MenuButton.openEditDlg = function (data) {
         func.open({
-            height: 500,
+            height: '350px',
+            width: '500px',
             title: '修改菜单按钮',
             content: Feng.ctxPath + '/view/menuButton/edit?buttonId=' + data.buttonId,
             tableId: MenuButton.tableId
@@ -82,6 +84,23 @@ layui.use(['table', 'HttpRequest', 'func'], function () {
         Feng.confirm("是否删除?", operation);
     };
 
+    /**
+     * 点击意见添加系统默认按钮
+     */
+    MenuButton.onAddDefaultItem = function () {
+        var operation = function () {
+            var request = new HttpRequest(Feng.ctxPath + "/sysMenuButton/addSystemDefaultButton", 'post', function (data) {
+                Feng.success("添加成功!");
+                table.reload(MenuButton.tableId);
+            }, function (data) {
+                Feng.error("添加失败!" + data.message + "!");
+            });
+            request.set("menuId", menuId);
+            request.start(true);
+        };
+        Feng.confirm("是否一键添加系统默认CRUD操作按钮?", operation);
+    };
+
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + MenuButton.tableId,
@@ -102,6 +121,11 @@ layui.use(['table', 'HttpRequest', 'func'], function () {
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
         MenuButton.openAddDlg();
+    });
+
+    // 一键添加按钮点击事件
+    $('#defaultBtnAdd').click(function () {
+        MenuButton.onAddDefaultItem();
     });
 
     // 批量删除按钮点击事件

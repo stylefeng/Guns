@@ -42,7 +42,6 @@ layui.use(['element', 'admin', 'HttpRequest', 'func'], function () {
     Message.openViewDlg = function (messageId) {
         func.open({
             title: '查看消息',
-            height: 540,
             content: Feng.ctxPath + '/view/message_view?messageId=' + messageId,
             tableId: Message.tableId
         });

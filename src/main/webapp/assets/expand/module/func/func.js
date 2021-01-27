@@ -36,27 +36,14 @@ layui.define(['jquery', 'layer', 'admin', 'table'], function (exports) {
          * 打开表单的弹框
          */
         open: function (param) {
+            //默认宽度
+            const width = param.width || '1000px';
+            //默认高度
+            const height = param.height || '700px';
 
-            //宽度计算
-            var width = '1000px';
-            if (param.width) {
-                width = param.width;
-            }
-
-            //计算高度
-            var clientHeight = func.getClientHeight();
-            if (param.height) {
-                if (clientHeight < param.height) {
-                    param.area = [width, clientHeight + "px"];
-                } else {
-                    param.area = [width, param.height + "px"];
-                }
-            } else {
-                param.area = [width, clientHeight + "px"];
-            }
-
+            param.area = [width, height];
             param.skin = 'layui-layer-admin';
-            param.offset = '35px';
+            param.offset = '70px';
             param.type = 2;
 
             admin.putTempData('formOk', false);

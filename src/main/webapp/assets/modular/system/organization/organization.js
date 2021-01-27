@@ -20,7 +20,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
     /* 点击新增对话框 */
     Organization.openAddDlg = function () {
         func.open({
-            height: 800,
             title: '添加机构',
             content: Feng.ctxPath + '/view/organization/addView',
             tableId: Organization.tableId,
@@ -33,7 +32,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
     /* 点击编辑对话框 */
     Organization.openEditDlg = function (data) {
         func.open({
-            height: 800,
             title: '修改机构',
             content: Feng.ctxPath + '/view/organization/editView?orgId=' + data.id,
             tableId: Organization.tableId,

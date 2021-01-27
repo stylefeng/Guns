@@ -46,7 +46,6 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
      */
     App.openAddDlg = function () {
         func.open({
-            height: 500,
             title: '添加应用',
             content: Feng.ctxPath + '/view/app/add',
             tableId: App.tableId
@@ -60,7 +59,6 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
      */
     App.openEditDlg = function (data) {
         func.open({
-            height: 500,
             title: '修改应用',
             content: Feng.ctxPath + '/view/app/edit?appId=' + data.appId,
             tableId: App.tableId

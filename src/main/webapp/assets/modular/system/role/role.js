@@ -99,7 +99,6 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.openAddRole = function () {
         func.open({
-            height: 680,
             title: '添加角色',
             content: Feng.ctxPath + '/view/role/add',
             tableId: Role.tableId
@@ -113,7 +112,6 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.onEditRole = function (data) {
         func.open({
-            height: 680,
             title: '修改角色',
             content: Feng.ctxPath + "/view/role/edit?roleId=" + data.roleId,
             tableId: Role.tableId
@@ -127,7 +125,6 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.onEditDataScope = function (data) {
         func.open({
-            height: 470,
             title: '修改数据范围',
             content: Feng.ctxPath + "/view/role/editDataScope?roleId=" + data.roleId,
             tableId: Role.tableId
@@ -160,8 +157,6 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.assignMenu = function (data) {
         func.open({
-            height: 650,
-            width: 750,
             title: '分配菜单',
             content: Feng.ctxPath + "/view/role/assignMenuAndButtons?roleId=" + data.roleId,
             tableId: Role.tableId
@@ -175,8 +170,6 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func', 'dropdown']
      */
     Role.assignApi = function (data) {
         func.open({
-            height: 650,
-            width: 550,
             title: '分配接口',
             content: Feng.ctxPath + "/view/role/assignApi?roleId=" + data.roleId,
             tableId: Role.tableId

@@ -46,7 +46,6 @@ layui.use(['table', 'admin', 'HttpRequest', 'func'], function () {
    */
   DatabaseInfo.openAddDlg = function () {
     func.open({
-      height: 680,
       title: '添加数据源',
       content: Feng.ctxPath + '/view/datasource/add',
       tableId: DatabaseInfo.tableId

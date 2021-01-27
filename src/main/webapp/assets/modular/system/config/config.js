@@ -21,7 +21,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     DictType.openAddDlg = function (data) {
         console.log(data);
         func.open({
-            height: 680,
             title: '添加系统配置',
             content: Feng.ctxPath + '/view/config/addView?groupCode=' + data.dictCode,
             tableId: Dict.tableId
@@ -31,7 +30,6 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典类型-点击编辑对话框 */
     DictType.openEditDlg = function (data) {
         func.open({
-            height: 680,
             title: '修改系统配置',
             content: Feng.ctxPath + '/view/config/editView?configId=' + data.configId,
             tableId: Dict.tableId
@@ -105,8 +103,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击新增对话框 */
     Dict.openAddDlg = function (data) {
         func.open({
-            height: 680,
-            title: '添加字典',
+            title: '添加配置类型',
             content: Feng.ctxPath + '/view/dict/addConfigView',
             tableId: DictType.tableId
         });
@@ -115,8 +112,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击编辑对话框 */
     Dict.openEditDlg = function (data) {
         func.open({
-            height: 680,
-            title: '修改字典',
+            title: '修改配置类型',
             content: Feng.ctxPath + '/view/dict/editView?dictId=' + data.dictId,
             tableId: Dict.tableId
         });

@@ -44,7 +44,6 @@ layui.use(['table', 'func', 'HttpRequest'], function () {
      */
     SysConfig.openAddDlg = function () {
         func.open({
-            height: 680,
             title: '添加系统配置',
             content: Feng.ctxPath + '/view/config/addView',
             tableId: SysConfig.tableId
@@ -70,7 +69,6 @@ layui.use(['table', 'func', 'HttpRequest'], function () {
      */
     SysConfig.openEditDlg = function (data) {
         func.open({
-            height: 680,
             title: '修改系统配置',
             content: Feng.ctxPath + '/view/config/editView?configId=' + data.configId,
             tableId: SysConfig.tableId

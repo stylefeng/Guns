@@ -5,8 +5,6 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var admin = layui.admin;
 
     $("#tranLanguageCode").val(Feng.getUrlParam("tranLanguageCode"));
-    //让当前iframe弹层高度适应
-    admin.iframeAuto();
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {

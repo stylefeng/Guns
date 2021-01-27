@@ -82,7 +82,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
     // 点击详情
     FileInfo.openDetails = function (data) {
         func.open({
-            height: 800,
             title: '详情',
             content: Feng.ctxPath + '/view/fileInfoDetails?fileId=' + data.fileId,
             tableId: FileInfo.tableId

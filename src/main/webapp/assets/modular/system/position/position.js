@@ -48,7 +48,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 弹出添加对话框
     Position.openAddDlg = function () {
         func.open({
-            height: 800,
             title: '添加职位',
             content: Feng.ctxPath + '/view/position/addView',
             tableId: Position.tableId
@@ -58,7 +57,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
     // 点击编辑
     Position.openEditDlg = function (data) {
         func.open({
-            height: 800,
             title: '修改职位',
             content: Feng.ctxPath + '/view/position/editView?positionId=' + data.positionId,
             tableId: Position.tableId

@@ -70,7 +70,6 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
      */
     Menu.openAddMenu = function () {
         func.open({
-            height: 660,
             title: '添加菜单',
             content: Feng.ctxPath + '/view/menu/add',
             tableId: Menu.tableId,
@@ -87,7 +86,6 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
      */
     Menu.onEditMenu = function (data) {
         func.open({
-            height: 720,
             title: '修改菜单',
             content: Feng.ctxPath + "/view/menu/edit?menuId=" + data.menuId,
             tableId: Menu.tableId,
@@ -124,7 +122,6 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
      */
     Menu.onButtonMenu = function (data) {
         func.open({
-            height: 720,
             title: '菜单按钮管理',
             content: Feng.ctxPath + "/view/menuButton?menuId=" + data.menuId,
             tableId: Menu.tableId,

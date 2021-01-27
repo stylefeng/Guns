@@ -57,7 +57,6 @@ layui.use(['table', 'admin', 'ax', 'ztree', 'func', 'tree'], function () {
      */
     Dept.openAddDept = function () {
         func.open({
-            height: 530,
             title: '添加部门',
             content: Feng.ctxPath + '/dept/dept_add',
             tableId: Dept.tableId,
@@ -74,7 +73,6 @@ layui.use(['table', 'admin', 'ax', 'ztree', 'func', 'tree'], function () {
      */
     Dept.onEditDept = function (data) {
         func.open({
-            height: 530,
             title: '编辑部门',
             content: Feng.ctxPath + "/dept/dept_update?deptId=" + data.deptId,
             tableId: Dept.tableId,

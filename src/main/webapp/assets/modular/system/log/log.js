@@ -49,7 +49,6 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func', 'form'], function () {
     // 点击详情
     Log.openDetailDlg = function (data) {
         func.open({
-            height: 800,
             title: '日志详情',
             content: Feng.ctxPath + '/view/log/detailView?logId=' + data.logId,
             tableId: Log.tableId

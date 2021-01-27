@@ -43,7 +43,6 @@ layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown'], functio
     // 弹出添加对话框
     Position.openAddDlg = function () {
         func.open({
-            height: 800,
             title: '添加定时任务',
             content: Feng.ctxPath + '/view/sysTimers/addView',
             tableId: Position.tableId
@@ -53,7 +52,6 @@ layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown'], functio
     // 点击编辑
     Position.openEditDlg = function (data) {
         func.open({
-            height: 800,
             title: '修改定时任务',
             content: Feng.ctxPath + '/view/sysTimers/editView?timerId=' + data.timerId,
             tableId: Position.tableId
