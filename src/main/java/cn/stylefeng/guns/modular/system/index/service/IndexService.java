@@ -65,6 +65,9 @@ public class IndexService {
         // 获取人员姓名
         renderMap.put("name", simpleUserInfo.getRealName());
 
+        // 获取登录用户ws-url
+        renderMap.put("wsUrl", loginUser.getWsUrl());
+
         // 未读消息数量
         MessageParam messageParam = new MessageParam();
         messageParam.setReadFlag(MessageReadFlagEnum.UNREAD.getCode());
