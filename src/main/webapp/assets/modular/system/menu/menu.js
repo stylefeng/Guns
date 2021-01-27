@@ -49,8 +49,8 @@ layui.use(['HttpRequest', 'treeTable', 'func'], function () {
                     }
                 }
             },
-            {field: 'createTime', align: "center", sort: true, title: '创建时间', minWidth: 120},
-            {field: 'updateTime', align: "center", sort: true, title: '更新时间', minWidth: 120},
+            //{field: 'createTime', align: "center", sort: true, title: '创建时间', minWidth: 120},
+            //{field: 'updateTime', align: "center", sort: true, title: '更新时间', minWidth: 120},
             {align: 'center', toolbar: '#menuTableBar', title: '操作', minWidth: 145}
         ];
     };
