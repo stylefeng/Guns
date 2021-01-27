@@ -10,6 +10,69 @@
     <link rel="stylesheet" href="${ctxPath}/assets/expand/css/style.css?v=${constants.getReleaseVersion()}" media="all"/>
 
     <style>
+        /** 应用快捷块样式 */
+        .console-app-group {
+            padding: 16px;
+            border-radius: 4px;
+            text-align: center;
+            background-color: #fff;
+            cursor: pointer;
+            display: block;
+        }
+
+        .console-app-group .console-app-icon {
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            margin-bottom: 6px;
+            display: inline-block;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 32px;
+            color: #69c0ff;
+        }
+
+        .console-app-group:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, .08);
+        }
+
+        /** //应用快捷块样式 */
+
+        /** 小组成员 */
+        .console-user-group {
+            position: relative;
+            padding: 10px 0 10px 60px;
+        }
+
+        .console-user-group .console-user-group-head {
+            width: 32px;
+            height: 32px;
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            margin-top: -16px;
+            border-radius: 50%;
+        }
+
+        .console-user-group .layui-badge {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            margin-top: -10px;
+        }
+
+        .console-user-group .console-user-group-name {
+            line-height: 1.2;
+        }
+
+        .console-user-group .console-user-group-desc {
+            color: #8c8c8c;
+            line-height: 1;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
         /** 卡片轮播图样式 */
         .admin-carousel .layui-carousel-ind {
             position: absolute;
@@ -36,10 +99,52 @@
 
         .admin-news a {
             display: block;
-            line-height: 60px;
+            line-height: 70px;
             text-align: center;
         }
 
+        /** 最新动态时间线 */
+        .layui-timeline-dynamic .layui-timeline-item {
+            padding-bottom: 0;
+        }
+
+        .layui-timeline-dynamic .layui-timeline-item:before {
+            top: 16px;
+        }
+
+        .layui-timeline-dynamic .layui-timeline-axis {
+            width: 9px;
+            height: 9px;
+            left: 1px;
+            top: 7px;
+            background-color: #cbd0db;
+        }
+
+        .layui-timeline-dynamic .layui-timeline-axis.active {
+            background-color: #0c64eb;
+            box-shadow: 0 0 0 2px rgba(12, 100, 235, .3);
+        }
+
+        .dynamic-card-body {
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .dynamic-card-body:hover {
+            overflow-y: auto;
+            padding-right: 9px;
+        }
+
+        /** 优先级徽章 */
+        .layui-badge-priority {
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            line-height: 18px;
+            border-width: 2px;
+            font-weight: 600;
+        }
     </style>
 </head>
 
@@ -58,44 +163,111 @@
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    访问量(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                    访问量<span class="layui-badge layui-badge-green pull-right">日</span>
                 </div>
                 <div class="layui-card-body">
-                    <p class="lay-big-font">12,500</p>
-                    <p>总计访问量<span class="pull-right">32万+ <i class="layui-icon layui-icon-flag"></i></span></p>
+                    <p class="lay-big-font">25,848</p>
+                    <p>总访问量<span class="pull-right">280 万</span></p>
                 </div>
             </div>
         </div>
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    下载量(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                    销售额<span class="layui-badge layui-badge-blue pull-right">月</span>
                 </div>
                 <div class="layui-card-body">
-                    <p class="lay-big-font">2,400</p>
-                    <p>总下载<span class="pull-right">5万+ <i class="layui-icon layui-icon-note"></i></span></p>
+                    <p class="lay-big-font"><span style="font-size: 26px;line-height: 1;">¥</span>12,000</p>
+                    <p>总销售额<span class="pull-right">68 万</span></p>
                 </div>
             </div>
         </div>
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    GIT PULL(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                    订单量<span class="layui-badge layui-badge-red pull-right">周</span>
                 </div>
                 <div class="layui-card-body">
-                    <p class="lay-big-font">1,500</p>
-                    <p>总PULL数<span class="pull-right">5万+ <i class="layui-icon layui-icon-notice"></i></span></p>
+                    <p class="lay-big-font">1,680</p>
+                    <p>转化率<span class="pull-right">60%</span></p>
                 </div>
             </div>
         </div>
         <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
             <div class="layui-card">
                 <div class="layui-card-header">
-                    GIT PUSH(来自码云)<span class="layui-badge layui-bg-black pull-right">月</span>
+                    新增用户
+                    <span class="icon-text pull-right" lay-tips="指标说明" lay-direction="4" lay-offset="5px,5px">
+                        <i class="layui-icon layui-icon-tips"></i>
+                    </span>
                 </div>
                 <div class="layui-card-body">
-                    <p class="lay-big-font">100</p>
-                    <p>总PUSH数<span class="pull-right">1066 <i class="layui-icon layui-icon-diamond"></i></span></p>
+                    <p class="lay-big-font">128 <span style="font-size: 24px;line-height: 1;">位</span></p>
+                    <p>总用户<span class="pull-right">10800 人</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 快捷方式 -->
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm6" style="padding-bottom: 0;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group" ew-href="/view/user" ew-title="用户管理">
+                        <i class="console-app-icon layui-icon layui-icon-group"
+                           style="font-size: 26px;padding-top: 3px;margin-right: 6px;"></i>
+                        <div class="console-app-name">用户</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-chart" style="color: #95de64;"></i>
+                        <div class="console-app-name">分析</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-cart" style="color: #ff9c6e;"></i>
+                        <div class="console-app-name">商品</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-form"
+                           style="color: #b37feb;font-size: 30px;"></i>
+                        <div class="console-app-name">订单</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6" style="padding-bottom: 0;">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-layer"
+                           style="color: #ffd666;font-size: 34px;"></i>
+                        <div class="console-app-name">票据</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-email"
+                           style="color: #5cdbd3;font-size: 36px;"></i>
+                        <div class="console-app-name">消息</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-note"
+                           style="color: #ff85c0;font-size: 28px;"></i>
+                        <div class="console-app-name">标签</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm3">
+                    <div class="console-app-group">
+                        <i class="console-app-icon layui-icon layui-icon-slider" style="color: #ffc069;"></i>
+                        <div class="console-app-name">配置</div>
+                    </div>
                 </div>
             </div>
         </div>
