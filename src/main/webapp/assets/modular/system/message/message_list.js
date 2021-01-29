@@ -16,8 +16,9 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'messageId', hide: true, title: '主键id'},
+            {field: 'businessTypeValue', sort: true, title: '业务类型'},
             {field: 'messageTitle', sort: true, title: '消息标题'},
-            // {field: 'messageType', sort: true, title: '消息类型'},
+            {field: 'messageType', sort: true, title: '消息类型'},
             // {field: 'priorityLevelValue', sort: true, title: '优先级'},
             {field: 'priorityLevelValue', sort: true, title: '优先级'},
             {field: 'readFlagValue', sort: true, title: '阅读状态'

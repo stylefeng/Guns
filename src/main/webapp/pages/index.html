@@ -126,11 +126,11 @@
                 try {
                     let msg = JSON.parse(data)
                     notice.info({
-                        title: msg.messageTitle,
+                        title: '['+msg.businessTypeValue+']'+msg.messageTitle,
                         message: msg.messageContent,
                         timeout: false
                     });
-                    $('#messageDot').hide();
+                    $('#messageDot').show();
                 } catch (e) {
                 }
             },
