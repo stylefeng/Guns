@@ -45,7 +45,7 @@
 
 <script>
     var wsInst = null
-    layui.use(['layer', 'element', 'admin', 'index', 'HttpRequest', 'ws', 'notice'], function () {
+    layui.use(['layer', 'element', 'admin', 'index', 'HttpRequest', 'ws', 'notice', 'i18n'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var admin = layui.admin;
@@ -53,31 +53,25 @@
         var HttpRequest = layui.HttpRequest;
         var ws = layui.ws;
         var notice = layui.notice;
+        var i18n = layui.i18n;
 
         //获取支持的语言列表
-        var languageRequest = new HttpRequest(Feng.ctxPath + "/i18n/getAllLanguages", 'get', function (data) {
-            for (var i = 0; i < data.data.length; i++) {
-                var code = data.data[i].code;
-                var description = data.data[i].name;
-                $("#languageDiv").append('<dd lay-unselect><a id="tran-' + code + '" href="javascript:;">' + description + '</a></dd>');
+        let languageTypes = i18n.getLanguageTypes();
+        for (var i = 0; i < languageTypes.length; i++) {
+            var code = languageTypes[i].code;
+            var description = languageTypes[i].name;
+            $("#languageDiv").append('<dd lay-unselect><a id="tran-' + code + '" href="javascript:;">' + description + '</a></dd>');
 
-                //设置监听事件，设置点击按钮切换当前系统语言
-                (function (code) {
-                    $('#tran-' + code).click(function () {
-                        var changeLanguageRequest = new HttpRequest(Feng.ctxPath + "/i18n/changeUserTranslation", 'post', function (data) {
-                            window.location.href = Feng.ctxPath + "/";
-                        }, function (data) {
-                            layer.msg("切换多语言失败！" + data.message, {icon: 5, anim: 6});
-                        });
-                        changeLanguageRequest.set("tranLanguageCode", code);
-                        changeLanguageRequest.start(true);
-                    });
-                })(code);
-            }
-        }, function (data) {
-            layer.msg("获取语言列表失败！" + data.responseJSON.message, {icon: 5, anim: 6});
-        });
-        languageRequest.start();
+            //设置监听事件，设置点击按钮切换当前系统语言
+            (function (code) {
+                $('#tran-' + code).click(function () {
+                    i18n.changeUserTranslation(code);
+                });
+            })(code);
+        }
+
+        // 记载并缓存翻译的字典
+        i18n.loadAndCacheTranslation();
 
         // 默认加载主页
         index.loadHome({
@@ -126,7 +120,7 @@
                 try {
                     let msg = JSON.parse(data)
                     notice.info({
-                        title: '['+msg.businessTypeValue+']'+msg.messageTitle,
+                        title: '[' + msg.businessTypeValue + ']' + msg.messageTitle,
                         message: msg.messageContent,
                         timeout: false
                     });
