@@ -54,13 +54,14 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
 
     /* 字典-监听点击操作工具栏 */
     table.on('toolbar(' + Dict.tableId + ')', function (obj) {
-        var data = dictTypeObj.data;
         if (obj.event === 'add') { // 添加
             Dict.openAddDlg();
         } else if (obj.event === 'edit') { // 修改
-            Dict.openEditDlg(data);
+            var editData = dictTypeObj.data;
+            Dict.openEditDlg(editData);
         } else if (obj.event === 'del') { // 删除
-            Dict.onDeleteItem(data);
+            var deleteData = dictTypeObj.data;
+            Dict.onDeleteItem(deleteData);
         }
     });
 
@@ -76,13 +77,14 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击删除 */
     Dict.onDeleteItem = function (data) {
         var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/deleteDict", 'post', function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/i18n/deleteTranLanguage", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(Dict.tableId);
             }, function (data) {
                 Feng.error("删除失败!" + data.message + "!");
             });
-            httpRequest.set(data);
+            httpRequest.set("dictId", data.dictId);
+            httpRequest.set("tranLanguageCode", data.dictCode);
             httpRequest.start(true);
         };
         Feng.confirm("是否删除?", operation);
