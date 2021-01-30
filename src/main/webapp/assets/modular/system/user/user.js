@@ -177,7 +177,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
             {field: 'positionId', align: "center", sort: true, title: '职务'},
             {field: 'phone', align: "center", sort: true, title: '电话'},
             {field: 'status', align: "center", templet: '#statusTpl', title: '状态'},
-            {title: '操作', toolbar: '#userTbBar'}
+            {title: '操作', toolbar: '#userTbBar', width: 300}
 
         ]],
         done: function () {
