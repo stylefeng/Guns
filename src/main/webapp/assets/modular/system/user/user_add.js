@@ -14,7 +14,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             el: '#organization',
             data: data.data,
             model: {label: {type: 'text'}},
-            prop: {name: 'title', value: 'id'},
             radio: true,
             layVerify: 'required',
             clickClose: true,
@@ -34,8 +33,7 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             radio: true,
             layVerify: 'required',
             clickClose: true,
-            data: data.data,
-            prop: {name: 'positionName', value: 'positionId'},
+            data: data.data
         });
     }).start();
 

@@ -21,11 +21,9 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             clickClose: true,
             layVerify: 'required',
             data: data.data,
-            initValue: [result.data.positionId],
-            prop: {name: 'positionName', value: 'positionId'},
+            initValue: [result.data.positionId]
         });
     }).start();
-
 
     // 初始化组织树
     new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
@@ -35,7 +33,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             initValue: [result.data.orgId],
             layVerify: 'required',
             model: {label: {type: 'text'}},
-            prop: {name: 'title', value: 'id'},
             radio: true,
             clickClose: true,
             tree: {
@@ -46,7 +43,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             }
         });
     }).start();
-
 
     // 添加表单验证方法
     form.verify({
