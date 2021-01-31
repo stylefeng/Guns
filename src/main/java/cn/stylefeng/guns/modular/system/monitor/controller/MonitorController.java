@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.guns.core.consts.ProjectConstants;
 import cn.stylefeng.guns.modular.system.monitor.model.PromResultInfo;
 import cn.stylefeng.guns.modular.system.monitor.service.MetricService;
-import cn.stylefeng.guns.modular.system.monitor.warpper.SystemHardwareWrapper;
+import cn.stylefeng.guns.modular.system.monitor.timer.SystemHardwareInfoHolder;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
 import com.alibaba.fastjson.JSON;
@@ -42,6 +42,9 @@ public class MonitorController {
     @Resource
     private MetricService service;
 
+    @Resource
+    private SystemHardwareInfoHolder systemHardwareInfoHolder;
+
     /**
      * 系统硬件信息页面
      *
@@ -50,9 +53,7 @@ public class MonitorController {
      */
     @GetResource(name = "服务器监控", path = "/view/monitor/systemInfo")
     public String systemInfo(Model model) {
-        SystemHardwareWrapper systemHardwareWrapper = new SystemHardwareWrapper();
-        systemHardwareWrapper.copyTo();
-        model.addAttribute("server", systemHardwareWrapper);
+        model.addAttribute("server", systemHardwareInfoHolder.getSystemHardwareInfo());
         return "/modular/system/monitor/systemInfo.html";
     }
 
