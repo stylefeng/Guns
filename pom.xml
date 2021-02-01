@@ -165,9 +165,9 @@
 
         <!--硬件信息获取-->
         <dependency>
-            <groupId>com.github.oshi</groupId>
-            <artifactId>oshi-core</artifactId>
-            <version>${oshi.version}</version>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>monitor-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <!-- actuator monitor -->
