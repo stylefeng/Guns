@@ -36,8 +36,8 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func', 'form'], function () {
      */
     Log.search = function () {
         var queryData = {};
-        queryData['beginDate'] = $("#beginDate").val();
-        queryData['endDate'] = $("#endDate").val();
+        queryData['beginDateTime'] = $("#beginDateTime").val();
+        queryData['endDateTime'] = $("#endDateTime").val();
         queryData['logName'] = $("#logName").val();
         queryData['appName'] = $("#appName").val();
         // queryData['logType'] = $("#logType").val();
@@ -85,19 +85,19 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func', 'form'], function () {
                 table.reload(Log.tableId);
             }, function (data) {
                 Feng.error("删除日志失败!" + data.message + "!");
-            }).set(setData).start(true);
+            }).set(queryData).start(true);
         };
         Feng.confirm("是否删除日志?", operation);
     };
 
     // 渲染时间选择框
     laydate.render({
-        elem: '#beginDate'
+        elem: '#beginDateTime'
     });
 
     //渲染时间选择框
     laydate.render({
-        elem: '#endDate'
+        elem: '#endDateTime'
     });
 
     // 渲染表格
