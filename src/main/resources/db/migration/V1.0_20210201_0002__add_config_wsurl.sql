@@ -1,0 +1,2 @@
+delete from sys_config where config_code = 'WEB_SOCKET_WS_URL';
+INSERT INTO `sys_config`(`config_id`, `config_name`, `config_code`, `config_value`, `sys_flag`, `remark`, `status_flag`, `group_code`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1356246056131649538, 'websocket的ws-url', 'WEB_SOCKET_WS_URL', 'ws://localhost:8080/message/websocket/{userId}', 'Y', '', 1, 'sys_config', 'N', '2021-02-01 22:20:32', 1339550467939639299, NULL, NULL);
