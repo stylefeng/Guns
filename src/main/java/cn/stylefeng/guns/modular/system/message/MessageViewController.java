@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.system.message;
 
 import cn.stylefeng.roses.kernel.message.api.MessageApi;
 import cn.stylefeng.roses.kernel.message.api.enums.MessageReadFlagEnum;
-import cn.stylefeng.roses.kernel.message.api.pojo.MessageParam;
-import cn.stylefeng.roses.kernel.message.api.pojo.MessageResponse;
+import cn.stylefeng.roses.kernel.message.api.pojo.request.MessageRequest;
+import cn.stylefeng.roses.kernel.message.api.pojo.response.MessageResponse;
 import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
 import org.springframework.stereotype.Controller;
@@ -33,10 +33,10 @@ public class MessageViewController {
      */
     @GetResource(name = "系统消息界面", path = "/view/message", requiredPermission = false)
     public String message(Model model) {
-        MessageParam messageParam = new MessageParam();
-        messageParam.setReadFlag(MessageReadFlagEnum.UNREAD.getCode());
-        Integer messageCount = messageApi.queryCountCurrentUser(messageParam);
-        List<MessageResponse> messageList = messageApi.queryListCurrentUser(messageParam);
+        MessageRequest messageRequest = new MessageRequest();
+        messageRequest.setReadFlag(MessageReadFlagEnum.UNREAD.getCode());
+        Integer messageCount = messageApi.queryCountCurrentUser(messageRequest);
+        List<MessageResponse> messageList = messageApi.queryListCurrentUser(messageRequest);
         model.addAttribute("msgUnReadCount", messageCount);
         model.addAttribute("msgUnReadList", messageList);
         return "/modular/system/index/message.html";
