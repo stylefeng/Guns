@@ -12,7 +12,7 @@
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns-standalone-beetl</artifactId>
-    <version>1.0.0</version>
+    <version>7.0.0</version>
 
     <name>guns-standalone-beetl</name>
     <description>单体前后端不分离，基于beetl模板引擎</description>
@@ -26,10 +26,10 @@
         <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
         <docker.img.version>latest</docker.img.version>
         <oshi.version>3.9.1</oshi.version>
+        <roses.kernel.version>7.0.0</roses.kernel.version>
     </properties>
 
     <dependencies>
-
 
         <!-- https://mvnrepository.com/artifact/com.ibeetl/beetl -->
         <dependency>
@@ -40,105 +40,105 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>auth-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>config-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>db-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>file-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>scanner-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>pinyin-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>validator-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>dict-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>system-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>office-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>log-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>timer-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>sms-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>message-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>wrapper-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <!--多语言模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>i18n-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <!--多数据源配置-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>ds-container-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <!--数据库驱动,可根据自己需要自行删减-->
@@ -167,7 +167,7 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>monitor-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>${roses.kernel.version}</version>
         </dependency>
 
         <!-- actuator monitor -->
