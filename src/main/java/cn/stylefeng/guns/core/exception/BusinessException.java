@@ -1,6 +1,6 @@
 package cn.stylefeng.guns.core.exception;
 
-import cn.stylefeng.roses.kernel.rule.abstracts.AbstractExceptionEnum;
+import cn.stylefeng.roses.kernel.rule.exception.AbstractExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
 
 import static cn.stylefeng.guns.core.consts.ProjectConstants.PROJECT_MODULE_NAME;
