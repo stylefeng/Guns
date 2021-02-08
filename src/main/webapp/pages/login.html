@@ -238,7 +238,7 @@
 
         // 获取验证码
         function getKaptcha(){
-            var request = new HttpRequest(Feng.ctxPath + '/kaptcha'+ '?t=' + (new Date).getTime(), 'get');
+            var request = new HttpRequest(Feng.ctxPath + '/captcha'+ '?t=' + (new Date).getTime(), 'get');
             var result = request.start();
             $("#verKey").val(result.data.verKey)
             $('img.login-captcha').attr('src', result.data.verImage);
