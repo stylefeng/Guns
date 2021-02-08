@@ -13,7 +13,7 @@ import cn.stylefeng.roses.kernel.message.api.pojo.request.MessageRequest;
 import cn.stylefeng.roses.kernel.system.modular.organization.entity.HrOrganization;
 import cn.stylefeng.roses.kernel.system.modular.organization.service.HrOrganizationService;
 import cn.stylefeng.roses.kernel.system.modular.user.service.SysUserService;
-import cn.stylefeng.roses.kernel.system.pojo.menu.layui.LayuiAppIndexMenus;
+import cn.stylefeng.roses.kernel.system.pojo.menu.layui.LayuiAppIndexMenusVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,7 +56,7 @@ public class IndexService {
         SimpleUserInfo simpleUserInfo = loginUser.getSimpleUserInfo();
 
         // 渲染首页的菜单
-        List<LayuiAppIndexMenus> layuiAppIndexMenus = sysMenuService.getLayuiIndexMenus();
+        List<LayuiAppIndexMenusVO> layuiAppIndexMenus = sysMenuService.getLayuiIndexMenus();
         renderMap.put("layuiAppIndexMenus", layuiAppIndexMenus);
 
         // 获取首页的头像
