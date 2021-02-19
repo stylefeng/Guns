@@ -98,7 +98,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         dictTable.reload({
             where: {dictTypeCode: obj.data.dictTypeCode},
             page: {curr: 1},
-            url: Feng.ctxPath + '/dict/page'
+            url: Feng.ctxPath + '/dict/getDictListPage'
         });
     });
 
