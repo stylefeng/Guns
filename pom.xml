@@ -26,101 +26,111 @@
         <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
         <docker.img.version>latest</docker.img.version>
         <oshi.version>3.9.1</oshi.version>
+        <beetl.version>3.3.1.RELEASE</beetl.version>
         <roses.kernel.version>7.0.0</roses.kernel.version>
     </properties>
 
     <dependencies>
 
-        <!-- https://mvnrepository.com/artifact/com.ibeetl/beetl -->
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-            <version>3.3.1.RELEASE</version>
-        </dependency>
+        <!--认证和鉴权模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>auth-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--系统配置-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>config-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--数据源连接和dao框架-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>db-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--文件管理-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>file-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--资源扫描-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>scanner-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--pinyin工具类-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>pinyin-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--参数校验模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>validator-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--字典业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>dict-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--系统管理基础业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>system-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--办公处理-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>office-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--日志模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>log-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--定时任务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>timer-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--短信模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>sms-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--消息通知-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>message-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--wrapper工具-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>wrapper-spring-boot-starter</artifactId>
@@ -141,11 +151,25 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--硬件信息获取-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>monitor-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--数据库驱动,可根据自己需要自行删减-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <!-- beet模板引擎 -->
+        <dependency>
+            <groupId>com.ibeetl</groupId>
+            <artifactId>beetl</artifactId>
+            <version>${beetl.version}</version>
         </dependency>
 
         <dependency>
@@ -161,13 +185,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <!--硬件信息获取-->
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>monitor-spring-boot-starter</artifactId>
-            <version>${roses.kernel.version}</version>
         </dependency>
 
         <!-- actuator monitor -->
