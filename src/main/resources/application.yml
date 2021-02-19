@@ -50,25 +50,6 @@ mybatis-plus:
       id-type: assign_id
       table-underline: true
 
-# prometheus监控
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  metrics:
-    tags:
-      application: ${spring.application.name}
-    export:
-      prometheus:
-        enabled: true
-      jmx:
-        enabled: true
-prometheus:
-  url: http://localhost:9090/api/v1/
-  # 非必须配置项
-  instance:
-
 # 是否开启websocket推送消息
 web-socket:
   open: true

@@ -16,29 +16,8 @@
       "description": "Description for sys-log.file-save-path."
     },
     {
-      "name": "spring.datasource.max-active",
-      "type": "java.lang.String",
-      "description": "Description for spring.datasource.max-active."
-    },
-    {
-      "name": "spring.datasource.max-pool-prepared-statement-per-connection-size",
-      "type": "java.lang.String",
-      "description": "Description for spring.datasource.max-pool-prepared-statement-per-connection-size."
-    },
-    {
       "name": "web-socket.open",
       "type": "java.lang.String",
       "description": "Description for web-socket.open."
-    },
-    {
-      "name": "prometheus.url",
-      "type": "java.lang.String",
-      "description": "Description for prometheus.url."
-    },
-    {
-      "name": "prometheus.instance",
-      "type": "java.lang.String",
-      "description": "Description for prometheus.instance."
     }
-  ]
-}
+  ] }
