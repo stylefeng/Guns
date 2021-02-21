@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>cn.stylefeng</groupId>
-    <artifactId>guns-standalone-beetl</artifactId>
+    <artifactId>guns</artifactId>
     <version>7.0.0</version>
 
-    <name>guns-standalone-beetl</name>
+    <name>guns</name>
     <description>单体前后端不分离，基于beetl模板引擎</description>
 
     <packaging>jar</packaging>
