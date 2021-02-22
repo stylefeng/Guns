@@ -10,6 +10,7 @@ import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
 import cn.stylefeng.roses.kernel.rule.exception.enums.defaults.DefaultBusinessExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.util.ExceptionUtil;
+import cn.stylefeng.roses.kernel.rule.util.HttpServletUtil;
 import cn.stylefeng.roses.kernel.rule.util.ResponseRenderUtil;
 import cn.stylefeng.roses.kernel.validator.exception.ParamValidateException;
 import cn.stylefeng.roses.kernel.validator.exception.enums.ValidatorExceptionEnum;
@@ -180,11 +181,12 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String authError(AuthException authException, HttpServletRequest request, HttpServletResponse response, Model model) {
         String errorCode = authException.getErrorCode();
+
+        // 如果是会话过期或超时
         if (AuthExceptionEnum.AUTH_EXPIRED_ERROR.getErrorCode().equals(errorCode)) {
 
             // 如果是普通请求
-            if (request.getContentType() == null
-                    || request.getContentType().toLowerCase().contains("text/html")) {
+            if (HttpServletUtil.getNormalRequestFlag(request)) {
                 model.addAttribute("tips", AuthExceptionEnum.AUTH_EXPIRED_ERROR.getUserTip());
                 return "/login.html";
             } else {
@@ -193,6 +195,14 @@ public class GlobalExceptionHandler {
                 ErrorResponseData errorResponseData = renderJson(authException);
                 ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
                 return null;
+            }
+        }
+
+        // 如果是没带token访问页面，则返回到登录界面
+        if (AuthExceptionEnum.TOKEN_GET_ERROR.getErrorCode().equals(errorCode)) {
+            if (HttpServletUtil.getNormalRequestFlag(request)) {
+                model.addAttribute("tips", AuthExceptionEnum.AUTH_EXPIRED_ERROR.getUserTip());
+                return "/login.html";
             }
         }
 
