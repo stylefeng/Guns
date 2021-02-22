@@ -48,7 +48,7 @@ public class MessageViewController {
      * @author liuhanqing
      * @date 2021/1/12 20:22
      */
-    @GetResource(name = "操作日志管理列表", path = "/view/message_list")
+    @GetResource(name = "我的消息界面", path = "/view/message_list", requiredPermission = false)
     public String indexView() {
         return "/modular/system/message/message_list.html";
     }
@@ -59,7 +59,7 @@ public class MessageViewController {
      * @author liuhanqing
      * @date 2021/1/12 20:22
      */
-    @GetResource(name = "操作日志管理列表", path = "/view/message_view")
+    @GetResource(name = "我的消息界面", path = "/view/message_view", requiredPermission = false)
     public String view(Model model) {
         model.addAttribute("openType", "view");
         return "/modular/system/message/message_view.html";

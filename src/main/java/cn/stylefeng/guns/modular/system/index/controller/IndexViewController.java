@@ -47,7 +47,7 @@ public class IndexViewController {
      * @author fengshuonan
      * @date 2020/12/29 21:53
      */
-    @GetResource(name = "个人中心界面", path = "/view/personal", requiredLogin = false)
+    @GetResource(name = "个人中心界面", path = "/view/personal", requiredPermission = false)
     public String personal(Model model) {
         model.addAllAttributes(indexService.createPersonInfoRenderAttributes());
         return "/modular/system/index/personal_info.html";
