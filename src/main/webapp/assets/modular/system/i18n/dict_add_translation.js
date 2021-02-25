@@ -11,7 +11,7 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var request = new HttpRequest(Feng.ctxPath + "/dict/addDict", 'post', function (data) {
+        var request = new HttpRequest(Feng.ctxPath + "/dict/add", 'post', function (data) {
             admin.closeThisDialog();
             Feng.success("添加成功！");
             admin.putTempData('formOk', true);

@@ -16,7 +16,7 @@ layui.define(['jquery', 'HttpRequest', 'xmSelect'], function (exports) {
 
     dict.prototype.render = function (options) {
         var opts = options,
-            url = opts.url || Feng.ctxPath + '/dict/getDictList',
+            url = opts.url || Feng.ctxPath + '/dict/list',
             method = opts.method || 'get',
             code = opts.code,
             elem = opts.elem;

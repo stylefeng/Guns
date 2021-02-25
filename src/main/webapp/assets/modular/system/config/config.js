@@ -121,7 +121,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击删除 */
     Dict.onDeleteItem = function (data) {
         var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/deleteDict", 'post', function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(DictType.tableId);
             }, function (data) {

@@ -42,7 +42,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
             return;
         }
         var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/dictType/deleteDictType", 'post', function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/dictType/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(DictType.tableId);
             }, function (data) {
@@ -75,7 +75,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典类型-渲染表格 */
     var dictTypeTable = table.render({
         elem: '#dictTypeTable',
-        url: Feng.ctxPath + '/dictType/getDictTypePageList',
+        url: Feng.ctxPath + '/dictType/page',
         height: 'full-100',
         toolbar: '#dictTypeHtbBar',
         defaultToolbar: [], //默认表格头部右侧工具栏
@@ -98,7 +98,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
         dictTable.reload({
             where: {dictTypeCode: obj.data.dictTypeCode},
             page: {curr: 1},
-            url: Feng.ctxPath + '/dict/getDictListPage'
+            url: Feng.ctxPath + '/dict/page'
         });
     });
 
@@ -146,7 +146,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'func', 'HttpRequest'], fu
     /* 字典-点击删除 */
     Dict.onDeleteItem = function (data) {
         var operation = function () {
-            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/deleteDict", 'post', function (data) {
+            var httpRequest = new HttpRequest(Feng.ctxPath + "/dict/delete", 'post', function (data) {
                 Feng.success("删除成功!");
                 table.reload(Dict.tableId);
             }, function (data) {

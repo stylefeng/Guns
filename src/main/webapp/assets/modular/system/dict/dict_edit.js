@@ -4,13 +4,13 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var HttpRequest = layui.HttpRequest;
 
     //获取详情信息，填充表单
-	var request = new HttpRequest(Feng.ctxPath + "/dict/getDictDetail?dictId=" + Feng.getUrlParam("dictId"), 'get');
+	var request = new HttpRequest(Feng.ctxPath + "/dict/detail?dictId=" + Feng.getUrlParam("dictId"), 'get');
     var result = request.start();
     form.val('dictForm', result.data);
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-        var request = new HttpRequest(Feng.ctxPath + "/dict/updateDict", 'post', function (data) {
+        var request = new HttpRequest(Feng.ctxPath + "/dict/edit", 'post', function (data) {
             admin.closeThisDialog();
             Feng.success("修改成功！");
             admin.putTempData('formOk', true);
