@@ -18,13 +18,9 @@ layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown'], functio
             {field: 'timerId', hide: true, title: '主键id'},
             {field: 'timerName', sort: true, title: '任务名称'},
             {field: 'cron', sort: true, title: 'cron表达式'},
-            {field: 'jobStatus', sort: true, templet: '#statusTpl', title: '状态'},
             {field: 'actionClass', sort: true, title: '任务class'},
             {field: 'remark', sort: true, title: '备注信息'},
-            {field: 'createUser', sort: true, title: '创建人'},
-            {field: 'updateUser', sort: true, title: '修改人'},
-            {field: 'createTime', sort: true, title: '创建时间'},
-            {field: 'updateTime', sort: true, title: '修改时间'},
+            {field: 'jobStatus', sort: true, templet: '#statusTpl', title: '状态'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };

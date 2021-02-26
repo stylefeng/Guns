@@ -23,8 +23,6 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
             {field: 'appCode', sort: true, align: "center", title: '应用编码'},
             {field: 'activeFlag', sort: true, align: "center", title: '是否激活', templet: '#activeTpl'},
             {field: 'statusFlag', sort: true, align: "center", title: '是否启用', templet: '#statusTpl'},
-            {field: 'createTime', sort: true, align: "center", title: '创建时间'},
-            {field: 'updateTime', sort: true, align: "center", title: '更新时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };

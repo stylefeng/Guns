@@ -19,16 +19,6 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util'], function () {
             {field: 'positionName', sort: true, title: '职位名称'},
             {field: 'positionCode', sort: true, title: '职位编码'},
             {field: 'positionRemark', sort: true, title: '备注'},
-            {
-                field: 'createTime', sort: true, title: '创建时间', templet: function (d) {
-                    return util.toDateString(d.createTime);
-                }
-            },
-            {
-                field: 'updateTime', sort: true, title: '更新时间', templet: function (d) {
-                    return d.updateTime == null ? '' : util.toDateString(d.updateTime);
-                }
-            },
             {field: 'statusFlag', sort: true, templet: '#statusTpl', title: '状态'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
