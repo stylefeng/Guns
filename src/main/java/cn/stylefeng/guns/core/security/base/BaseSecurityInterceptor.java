@@ -10,7 +10,7 @@ import cn.stylefeng.roses.kernel.auth.api.expander.AuthConfigExpander;
 import cn.stylefeng.roses.kernel.resource.api.pojo.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.resource.api.pojo.resource.ResourceUrlParam;
 import cn.stylefeng.roses.kernel.rule.util.AntPathMatcherUtil;
-import cn.stylefeng.roses.kernel.system.ResourceServiceApi;
+import cn.stylefeng.roses.kernel.system.api.ResourceServiceApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 

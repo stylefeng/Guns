@@ -1,12 +1,12 @@
 package cn.stylefeng.guns.modular.system.index.service;
 
 import cn.stylefeng.guns.core.consts.ProjectConstants;
-import cn.stylefeng.roses.kernel.resource.modular.entity.SysResource;
-import cn.stylefeng.roses.kernel.resource.modular.service.SysResourceService;
-import cn.stylefeng.roses.kernel.role.modular.entity.SysRole;
-import cn.stylefeng.roses.kernel.role.modular.entity.SysRoleResource;
-import cn.stylefeng.roses.kernel.role.modular.service.SysRoleResourceService;
-import cn.stylefeng.roses.kernel.role.modular.service.SysRoleService;
+import cn.stylefeng.roses.kernel.system.modular.resource.entity.SysResource;
+import cn.stylefeng.roses.kernel.system.modular.resource.service.SysResourceService;
+import cn.stylefeng.roses.kernel.system.modular.role.entity.SysRole;
+import cn.stylefeng.roses.kernel.system.modular.role.entity.SysRoleResource;
+import cn.stylefeng.roses.kernel.system.modular.role.service.SysRoleResourceService;
+import cn.stylefeng.roses.kernel.system.modular.role.service.SysRoleService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import org.springframework.stereotype.Service;

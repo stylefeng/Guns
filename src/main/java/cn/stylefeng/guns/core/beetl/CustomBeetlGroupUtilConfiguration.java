@@ -6,7 +6,7 @@ import cn.stylefeng.guns.core.beetl.tag.SysDictRadioTag;
 import cn.stylefeng.guns.core.beetl.tag.SysDictSelectTag;
 import cn.stylefeng.roses.kernel.auth.api.LoginUserApi;
 import cn.stylefeng.roses.kernel.i18n.util.QuickTranslateUtil;
-import cn.stylefeng.roses.kernel.system.expander.SystemConfigExpander;
+import cn.stylefeng.roses.kernel.system.api.expander.SystemConfigExpander;
 import org.beetl.ext.spring.BeetlGroupUtilConfiguration;
 
 /**
