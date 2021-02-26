@@ -5,7 +5,7 @@ import cn.stylefeng.guns.core.security.base.BaseSecurityInterceptor;
 import cn.stylefeng.roses.kernel.auth.api.PermissionServiceApi;
 import cn.stylefeng.roses.kernel.auth.api.exception.AuthException;
 import cn.stylefeng.roses.kernel.auth.api.exception.enums.AuthExceptionEnum;
-import cn.stylefeng.roses.kernel.resource.api.pojo.resource.ResourceDefinition;
+import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceDefinition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

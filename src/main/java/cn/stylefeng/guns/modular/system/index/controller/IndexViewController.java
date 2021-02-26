@@ -2,8 +2,8 @@ package cn.stylefeng.guns.modular.system.index.controller;
 
 import cn.stylefeng.guns.modular.system.index.service.IndexService;
 import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
-import cn.stylefeng.roses.kernel.resource.api.annotation.ApiResource;
-import cn.stylefeng.roses.kernel.resource.api.annotation.GetResource;
+import cn.stylefeng.roses.kernel.scanner.api.annotation.ApiResource;
+import cn.stylefeng.roses.kernel.scanner.api.annotation.GetResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 

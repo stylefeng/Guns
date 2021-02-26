@@ -5,7 +5,7 @@ import cn.hutool.http.HttpStatus;
 import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
 import cn.stylefeng.roses.kernel.rule.exception.enums.defaults.DefaultBusinessExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
-import cn.stylefeng.roses.kernel.validator.exception.enums.ValidatorExceptionEnum;
+import cn.stylefeng.roses.kernel.validator.api.exception.enums.ValidatorExceptionEnum;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.web.context.request.WebRequest;
