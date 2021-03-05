@@ -12,10 +12,79 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15" >
-        <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
+        <div class="layui-col-lg4">
             <div class="layui-card">
                 <div class="layui-card-body">
-                    <div id="edenSpace" style="width: 100%;min-height:300px"></div>
+                    <div id="PS Eden Space" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="PS Old Gen" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="PS Survivor Space" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15" >
+        <div class="layui-col-lg4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="Code Cache" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="Compressed Class Space" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg4">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="Metaspace" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15" >
+        <div class="layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="Classes Loaded" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="mapped" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15" >
+        <div class="layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="direct" style="width: 100%;min-height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-lg6">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="Threads" style="width: 100%;min-height:300px"></div>
                 </div>
             </div>
         </div>
@@ -33,27 +102,121 @@
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 <script src="${ctxPath}/assets/common/libs/echarts/echarts.min.js?v=${constants.getReleaseVersion()}"></script>
 <script src="${ctxPath}/assets/common/libs/echarts/echartsTheme.js?v=${constants.getReleaseVersion()}"></script>
+<script src="${ctxPath}/assets/common/js/echartInit.js?v=${constants.getReleaseVersion()}"></script>
 <script>
-    layui.use(['layer'], function () {
+    layui.use(['layer','HttpRequest'], function () {
         const $ = layui.jquery;
-        initEdenSpace();
-        function initEdenSpace(){
-            const edenSpace = echarts.init(document.getElementById('edenSpace'), myEchartsTheme);
-            let edenSpaceData = ${jvm_memory_used_bytes};
-            const option = {
-                title: { text: 'Eden SpaceData', x: 'center' },
-                tooltip: { trigger: 'axis' },
-                xAxis: {
-                    type: 'time'
-                },
-                yAxis: {
-                    type: 'value',
-                    scale: true
-                },
-                series: [{type : 'line', name : 'Eden SpaceData', data: edenSpaceData, showSymbol: true}]
-            };
-            edenSpace.setOption(option);
+        let HttpRequest = layui.HttpRequest;
+        const ids = ["PS Eden Space","PS Old Gen","PS Survivor Space","Code Cache","Compressed Class Space","Metaspace"]
+        const baseUrl = "/view/monitor/getJvmInfo";
+         // heap&nonheap echarts series
+        for (let i=0;i<ids.length;i++){
+            let id = ids[i];
+            let heapParams;
+            if (i>2) {
+                heapParams = {
+                    dataObj: {
+                        'id':id,
+                        'area': 'nonheap'
+                    }
+                }
+            } else {
+                heapParams = {
+                    dataObj: {
+                        'id':id,
+                        'area': 'heap'
+                    }
+                }
+            }
+            let request = new HttpRequest(baseUrl, 'get',function (data){
+                let echartsParams={
+                    id : id,
+                    title : id,
+                    metric : {
+                        metric1: {
+                            name: 'Used',
+                            value: data.jvm_memory_used_bytes
+                        },
+                        metric2: {
+                            name: 'Committed',
+                            value: data.jvm_memory_committed_bytes
+                        },
+                        metric3: {
+                            name: 'Max',
+                            value: data.jvm_memory_max_bytes
+                        }
+                    },
+                    unit: 'MB'
+                }
+                initMultiGraph(echartsParams);
+            })
+            request.dataObject = heapParams.dataObj;
+            request.setAsync(true);
+            request.start();
         }
+        let clazzLoadRequest = new HttpRequest(baseUrl, 'get',function (clazzLoadData) {
+            let clazzLoadParams = {
+                id: 'Classes Loaded',
+                metric: clazzLoadData.jvm_classes_loaded_classes
+            }
+            initGraph(clazzLoadParams);
+        })
+        clazzLoadRequest.setAsync(true);
+        clazzLoadRequest.start();
+        const bfIds = ['mapped','direct'];
+        for (let i=0;i<bfIds.length;i++){
+            let id = bfIds[i];
+            let bfRequest = new HttpRequest(baseUrl, 'get',function (bfData) {
+                let bfParams = {
+                    id: id,
+                    title: id+' Buffers',
+                    metric : {
+                        metric1: {
+                            name: 'Used Bytes',
+                            value: bfData.jvm_buffer_memory_used_bytes
+                        },
+                        metric2: {
+                            name: 'Capacity Bytes',
+                            value: bfData.jvm_buffer_total_capacity_bytes
+                        },
+                        metric3: {
+                            name: '',
+                            value: []
+                        },
+                        unit: 'MB'
+                    }
+                }
+                initMultiGraph(bfParams);
+            })
+            bfRequest.dataObject = {
+                'id': id
+            };
+            bfRequest.setAsync(true);
+            bfRequest.start();
+        }
+        let threadRequest = new HttpRequest(baseUrl, 'get',function (threadData) {
+            let threadParams = {
+                id: 'Threads',
+                title: 'Threads',
+                metric: {
+                    metric1: {
+                        name: 'Daemon',
+                        value: threadData.jvm_threads_daemon_threads
+                    },
+                    metric2: {
+                        name: 'Live',
+                        value: threadData.jvm_threads_live_threads
+                    },
+                    metric3: {
+                        name: 'Peak',
+                        value: threadData.jvm_threads_peak_threads
+                    }
+                }
+            }
+            initMultiGraph(threadParams)
+        })
+        threadRequest.setAsync(true);
+        threadRequest.start();
     });
 </script>
 </body>

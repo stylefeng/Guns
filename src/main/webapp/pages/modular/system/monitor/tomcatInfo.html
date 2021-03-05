@@ -70,116 +70,116 @@
     <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
     <script src="${ctxPath}/assets/common/libs/echarts/echarts.min.js?v=${constants.getReleaseVersion()}"></script>
     <script src="${ctxPath}/assets/common/libs/echarts/echartsTheme.js?v=${constants.getReleaseVersion()}"></script>
+    <script src="${ctxPath}/assets/common/js/echartInit.js?v=${constants.getReleaseVersion()}"></script>
     <script>
-        layui.use(['layer'], function () {
+        layui.use(['layer','HttpRequest'], function () {
             const $ = layui.jquery;
-            initCurrentSession();
-            initMaxSession();
-            initMaxSeconds();
-            initCreateTotal();
-            initRejectTotal();
-            initExpiredTotal();
-            function initCurrentSession(){
-                const currentSession = echarts.init(document.getElementById('currentSession'), myEchartsTheme);
-                let currentSessionData = ${tomcat_sessions_active_current_sessions};
+            let HttpRequest = layui.HttpRequest;
+            const tomcatBaseUrl = "/view/monitor/getTomcatInfo";
+            let tomcatRequest = new HttpRequest(tomcatBaseUrl, 'get',function (data) {
+                console.log(data)
+                let currentParams = {
+                    id: 'currentSession',
+                    title : 'Current Sessions',
+                    metric: data.tomcat_sessions_active_current_sessions
+                }
+                initGraph1(currentParams);
+                let maxParams = {
+                    id: 'maxSession',
+                    title : 'Max Sessions',
+                    metric: data.tomcat_sessions_active_max_sessions
+                }
+                initGraph1(maxParams);
+                let msParams = {
+                    id: 'maxSeconds',
+                    title : 'Max Seconds',
+                    metric: data.tomcat_sessions_alive_max_seconds
+                }
+                initGraph1(msParams);
+                let ctParams = {
+                    id: 'createTotal',
+                    title : 'Total Create',
+                    metric: data.tomcat_sessions_created_sessions_total
+                }
+                initGraph1(ctParams);
+                let rtParams = {
+                    id: 'rejectTotal',
+                    title : 'Total Reject',
+                    metric: data.tomcat_sessions_rejected_sessions_total
+                }
+                initGraph1(rtParams);
+                let exParams = {
+                    id: 'expiredTotal',
+                    title : 'Total Expired',
+                    metric: data.tomcat_sessions_expired_sessions_total
+                }
+                initGraph1(exParams);
+            })
+            tomcatRequest.setAsync(true);
+            tomcatRequest.start();
+
+            function initGraph1(params) {
+                const paramsId = echarts.init(document.getElementById(params.id), myEchartsTheme);
+                let metricData = params.metric;
                 const option = {
-                    title: { text: 'Current Sessions', x: 'center' },
-                    tooltip: { trigger: 'axis' },
+                    title: {
+                        text: params.id,
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        formatter: function (datas){
+                            let res;
+                            datas.map(function (e,i) {
+                                if (res == undefined){
+                                    let datetime = new Date(e.value[0]*1000);
+                                    res = datetime.getUTCFullYear().toString()+'-'+datetime.getUTCMonth().toString()+'-'+datetime.getUTCDate().toString()+' '+datetime.getHours().toString()+':'+ datetime.getMinutes().toString() + ':' + datetime.getSeconds().toString() + '<br/>'
+                                }
+                                if (params.unit === 'MB' && e.value[1]>0){
+                                    res += e.marker +" " + e.seriesName + ' : ' + (e.value[1]/1000/1000).toFixed(2) + params.unit + '<br/>'
+                                }              else {
+                                    res += e.marker +" " + e.seriesName + ' : ' + e.value[1] + '<br/>'
+                                }
+                            })
+                            return res;
+                        }
+                    },
                     xAxis: {
-                        type: 'time'
+                        type: 'time',
+                        axisLabel: {
+                            formatter: function(value,index){
+                                let datetime = new Date(value*1000)
+                                return datetime.getHours().toString()+':'+ datetime.getMinutes().toString()
+                            }
+                        }
                     },
                     yAxis: {
+                        name: params.unit,
                         type: 'value',
-                        scale: true
+                        scale: true,
+                        axisLabel: {
+                            formatter: function(value,index){
+                                if (params.unit == 'MB' && value>0){
+                                    return value/1000/1000
+                                } else {
+                                    return value
+                                }
+                            }
+                        }
                     },
-                    series: [{type : 'line', name : 'Current Sessions', data: currentSessionData, showSymbol: true}]
+                    series: [{type : 'line',
+                        smooth: true,
+                        animationDuration: 2000,
+                        animationEasing: 'quadraticOut',
+                        name : params.id,
+                        data: metricData,
+                        areaStyle: {            // 折现下是否填充
+                            color: this.color,
+                            opacity: 0.6
+                        },
+                        showSymbol: false}],
                 };
-                currentSession.setOption(option);
-            }
-            function initMaxSession(){
-                const maxSession = echarts.init(document.getElementById('maxSession'), myEchartsTheme);
-                let maxSessionData = ${tomcat_sessions_active_max_sessions};
-                const option = {
-                    title: { text: 'Max Sessions', x: 'center' },
-                    tooltip: { trigger: 'axis' },
-                    xAxis: {
-                        type: 'time'
-                    },
-                    yAxis: {
-                        type: 'value',
-                        scale: true
-                    },
-                    series: [{type : 'line', name : 'Max Sessions', data: maxSessionData, showSymbol: true}]
-                };
-                maxSession.setOption(option);
-            }
-            function initMaxSeconds(){
-                const maxSeconds = echarts.init(document.getElementById('maxSeconds'), myEchartsTheme);
-                const maxSecondsData = ${tomcat_sessions_alive_max_seconds};
-                const option = {
-                    title: { text: 'Max Seconds', x: 'center' },
-                    tooltip: { trigger: 'axis' },
-                    xAxis: {
-                        type: 'time'
-                    },
-                    yAxis: {
-                        type: 'value',
-                        scale: true
-                    },
-                    series: [{type : 'line', name : 'Max Seconds', data: maxSecondsData, showSymbol: true}]
-                };
-                maxSeconds.setOption(option);
-            }
-            function initCreateTotal(){
-                const createTotal = echarts.init(document.getElementById('createTotal'), myEchartsTheme);
-                const createTotalData = ${tomcat_sessions_created_sessions_total};
-                const option = {
-                    title: { text: 'Total Create', x: 'center' },
-                    tooltip: { trigger: 'axis' },
-                    xAxis: {
-                        type: 'time'
-                    },
-                    yAxis: {
-                        type: 'value',
-                        scale: true
-                    },
-                    series: [{type : 'line', name : 'Total Create', data: createTotalData, showSymbol: true}]
-                };
-                createTotal.setOption(option);
-            }
-            function initRejectTotal(){
-                const rejectTotal = echarts.init(document.getElementById('rejectTotal'), myEchartsTheme);
-                const rejectTotalData = ${tomcat_sessions_rejected_sessions_total};
-                const option = {
-                    title: { text: 'Total Reject', x: 'center' },
-                    tooltip: { trigger: 'axis' },
-                    xAxis: {
-                        type: 'time'
-                    },
-                    yAxis: {
-                        type: 'value',
-                        scale: true
-                    },
-                    series: [{type : 'line', name : 'Total Reject', data: rejectTotalData, showSymbol: true}]
-                };
-                rejectTotal.setOption(option);
-            }
-            function initExpiredTotal(){
-                const expiredTotal = echarts.init(document.getElementById('expiredTotal'), myEchartsTheme);
-                const expiredTotalData = ${tomcat_sessions_expired_sessions_total};
-                const option = {
-                    title: { text: 'Total Expired', x: 'center' },
-                    tooltip: { trigger: 'axis' },
-                    xAxis: {
-                        type: 'time'
-                    },
-                    yAxis: {
-                        type: 'value',
-                        scale: true
-                    },
-                    series: [{type : 'line', name : 'Total Expired', data: expiredTotalData, showSymbol: true}]
-                };
-                expiredTotal.setOption(option);
+                paramsId.setOption(option);
             }
         });
     </script>
