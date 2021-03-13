@@ -24,9 +24,10 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         });
         request.set(data.field);
         request.start(true);
-    
+
+        return false;
     });
-	
+
 	// 编码类型切换事件
 	form.on('radio(dictTypeClass)', function (data) {
 		if ($('input[name="dictTypeClass"]:checked').val() === '1') {

@@ -21,6 +21,8 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
 
         request.set(data.field);
         request.start(true);
+
+        return false;
     });
 
 
