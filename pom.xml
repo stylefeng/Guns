@@ -80,13 +80,6 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
-        <!--参数校验模块-->
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>validator-spring-boot-starter</artifactId>
-            <version>${roses.kernel.version}</version>
-        </dependency>
-
         <!--字典业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
