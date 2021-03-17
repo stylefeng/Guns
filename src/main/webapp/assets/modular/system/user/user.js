@@ -132,7 +132,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
 
     /* 渲染树形 */
     function renderTree() {
-        $.get(Feng.ctxPath + '/hrOrganization/treeLayui', function (res) {
+        $.get(Feng.ctxPath + '/hrOrganization/tree', function (res) {
             tree.render({
                 elem: '#organizationTree',
                 onlyIconControl: true,

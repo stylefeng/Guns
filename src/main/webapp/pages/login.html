@@ -257,7 +257,7 @@
         // 登录操作
         form.on('submit(loginSubmit)', function (data){
             admin.btnLoading('#loginSubmit',"登录中");
-            var request = new HttpRequest(Feng.ctxPath + "/loginAction", 'post', function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/login", 'post', function (data) {
                 // 清除顶部选择应用的缓存
                 index.clearTabCache();
                 // 重定向到首页

@@ -26,7 +26,7 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
     }).start();
 
     // 初始化组织树
-    new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
+    new HttpRequest(Feng.ctxPath + "/hrOrganization/tree", 'get', function (data) {
         organizationXmSel = xmSelect.render({
             el: '#organization',
             data: data.data,
