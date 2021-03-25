@@ -174,7 +174,7 @@ layui.use(['layer', 'form', 'table', 'util', 'admin', 'tree', 'dropdown', 'xmSel
             {field: 'userId', hide: true, sort: true, title: '用户id'},
             {field: 'account', align: "center", sort: true, title: '账号'},
             {field: 'realName', align: "center", sort: true, title: '姓名'},
-            {field: 'positionId', align: "center", sort: true, title: '职务'},
+            {field: 'positionName', align: "center", sort: true, title: '职务'},
             {field: 'phone', align: "center", sort: true, title: '电话'},
             {field: 'status', align: "center", templet: '#statusTpl', title: '状态'},
             {title: '操作', toolbar: '#userTbBar', width: 300}

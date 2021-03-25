@@ -14,7 +14,6 @@ layui.use(['form', 'admin', 'HttpRequest', 'xmSelect'], function () {
 
     // 初始化组织树
     new HttpRequest(Feng.ctxPath + "/hrOrganization/tree", 'get', function (data) {
-        console.log(result.data);
         organizationXmSel = xmSelect.render({
             el: '#organization',
             data: data.data,
@@ -33,11 +32,23 @@ layui.use(['form', 'admin', 'HttpRequest', 'xmSelect'], function () {
         });
     }).start();
 
+    var pId = organizationXmSel.getValue('valueStr');
+    if (!pId) {
+        $("#parentId").remove();
+    }
+
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
         //获取机构id
-        data.field.orgParentId = organizationXmSel.getValue('valueStr');
-
+        if (!pId) {
+            data.field.orgParentId = "-1";
+        }else {
+            data.field.orgParentId = organizationXmSel.getValue('valueStr');
+        }
+        var orgId = $("[name = 'orgId']").val();
+        if (orgId == data.field.orgParentId) {
+            return Feng.error("不能选择本机构作为上级机构！");
+        }
         var request = new HttpRequest(Feng.ctxPath + "/hrOrganization/edit", 'post', function (data) {
             admin.closeThisDialog();
             Feng.success("修改成功!");

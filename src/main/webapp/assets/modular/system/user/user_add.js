@@ -31,7 +31,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         positionXmSel = xmSelect.render({
             el: '#position',
             radio: true,
-            layVerify: 'required',
             clickClose: true,
             data: data.data
         });
@@ -65,10 +64,10 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             Feng.success("添加成功！");
             admin.putTempData('formOk', true);
         }, function (data) {
-            admin.closeThisDialog();
             Feng.error("添加失败！" + data.message);
         });
         request.set(data.field);
         request.start(true);
+        return false;
     });
 });
