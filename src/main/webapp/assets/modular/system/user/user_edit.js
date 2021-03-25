@@ -15,14 +15,24 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
 
     // 初始化职位
     new HttpRequest(Feng.ctxPath + "/hrPosition/list", 'get', function (data) {
-        positionXmSel = xmSelect.render({
-            el: '#position',
-            radio: true,
-            clickClose: true,
-            layVerify: 'required',
-            data: data.data,
-            initValue: [result.data.positionId]
-        });
+        let positionId = result.data.positionId;
+        if (positionId) {
+            positionXmSel = xmSelect.render({
+                el: '#position',
+                radio: true,
+                clickClose: true,
+                data: data.data,
+                initValue: [positionId]
+            });
+        } else {
+            positionXmSel = xmSelect.render({
+                el: '#position',
+                radio: true,
+                clickClose: true,
+                data: data.data,
+            });
+        }
+
     }).start();
 
     // 初始化组织树
@@ -71,11 +81,11 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             Feng.success("修改成功！");
             admin.putTempData('formOk', true);
         }, function (data) {
-            admin.closeThisDialog();
             Feng.error("修改失败！" + data.message);
         });
         request.set(data.field);
         request.start(true);
+        return false;
     });
 
 

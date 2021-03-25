@@ -1380,7 +1380,7 @@ CREATE TABLE `sys_user_org`  (
   `user_org_id` bigint(20) NOT NULL COMMENT '企业员工主键id',
   `user_id` bigint(20) NOT NULL COMMENT '用户id',
   `org_id` bigint(20) NOT NULL COMMENT '所属机构id',
-  `position_id` bigint(20) NOT NULL COMMENT '职位id',
+  `position_id` bigint(20) NULL COMMENT '职位id',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '添加时间',
   `create_user` bigint(20) NULL DEFAULT NULL COMMENT '添加人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
