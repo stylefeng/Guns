@@ -110,17 +110,13 @@ layui.define(['jquery'], function (exports) {
      * });
      * request.start();
      */
-    var HttpEncryptionRequest = function (url, method, successCallback, errorCallback) {
+    var HttpEncryptionRequest = function (url, successCallback, errorCallback) {
 
         // 请求的url，一般传参时候需要带上contextPath
         this.url = url;
 
-        // http请求的方法，默认不传为post，一般传 'get' 或 'post'
-        if (method === "" || method == null) {
-            this.method = "post";
-        } else {
-            this.method = method;
-        }
+        // http请求的方法
+        this.method = "post";
 
         // 请求成功的回调
         this.successCallback = successCallback;
@@ -145,17 +141,13 @@ layui.define(['jquery'], function (exports) {
 
         /**
          * 执行http请求
-         *
-         * @param parseJsonFlag 是否在请求时，参数转化为json，如果传 true 就是
          */
-        start: function (parseJsonFlag) {
+        start: function () {
             var me = this;
-            var result = "";
+            var result = {};
 
-            // 如果请求需要转化为json则将data转为json
-            if (parseJsonFlag === true) {
-                me.dataObject = JSON.stringify(me.dataObject);
-            }
+            // 将data转为json字符串
+            me.dataObject = JSON.stringify(me.dataObject);
 
             // 防止http请求缓存
             if (this.url.indexOf("?") === -1) {
