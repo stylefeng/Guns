@@ -22,7 +22,7 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func', 'form'], function () {
             {field: 'logId', hide: true, sort: true, title: 'id'},
             /*{field: 'logType', align: "center", sort: true, title: '日志类型'},*/
             {field: 'logName', align: "center", sort: true, title: '日志名称'},
-            {field: 'userId', align: "center", sort: true, title: '用户名称'},
+            {field: 'realName', align: "center", sort: true, title: '用户名称'},
             {field: 'appName', align: "center", sort: true, title: '服务名称'},
             {field: 'requestUrl', align: "center", sort: true, title: '方法名'},
             {field: 'createTime', align: "center", sort: true, title: '时间'},
