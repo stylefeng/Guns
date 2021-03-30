@@ -149,6 +149,7 @@ layui.config({
     iconPicker: '../../expand/module/iconPicker/iconPicker',
     ztree: '../../expand/module/ztree/ztree-object',
     HttpRequest: '../../expand/module/HttpRequest/HttpRequest',
+    HttpEncryptionRequest: '../../expand/module/HttpRequest/HttpEncryptionRequest',
     func: '../../expand/module/func/func',
     dict: '../../expand/module/dict/dict',
     gunsSelect: '../../expand/module/gunsSelect/gunsSelect',
