@@ -192,7 +192,7 @@ public class GlobalExceptionHandler {
             } else {
                 // 其他请求或者是ajax请求
                 response.setHeader("Guns-Session-Timeout", "true");
-                ErrorResponseData errorResponseData = renderJson(authException);
+                ErrorResponseData errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
                 ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
                 return null;
             }
