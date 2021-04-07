@@ -18,7 +18,7 @@ layui.use(['layer', 'table', 'HttpRequest', 'laydate'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'menuId', hide: true, sort: true, title: 'id'},
-            {field: 'userId', align: "center", sort: true, title: '用户名'},
+            {field: 'userName', align: "center", sort: true, title: '用户名'},
             {field: 'llgName', align: "center", sort: true, title: '日志名称'},
             {field: 'llgSucceed', align: "center", sort: true, title: '执行结果'},
             {field: 'createTime', align: "center", sort: true, title: '时间'},

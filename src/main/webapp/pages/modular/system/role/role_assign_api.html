@@ -99,7 +99,7 @@
             }
         };
 
-        var ztree = new $ZTree("zTree", "/resource/getLateralTree?roleId=" + Feng.getUrlParam("roleId"));
+        var ztree = new $ZTree("zTree", "/resource/getRoleResourceTree?roleId=" + Feng.getUrlParam("roleId"));
         ztree.setSettings(setting);
         ztree.init();
     });

@@ -25,39 +25,4 @@ public interface ProjectConstants {
      */
     String ROOT_PACKAGE_NAME = GunsApplication.class.getPackage().getName();
 
-    /**
-     * 超级管理员的角色编码
-     */
-    String SUPER_ADMIN_ROLE_CODE = "superAdmin";
-
-    /**
-     * 初始化超级管理员的监听器顺序
-     */
-    Integer SUPER_ADMIN_INIT_LISTENER_SORT = 400;
-
-    /**
-     * prometheus查询命令
-     */
-    String PROMETHEUS_QUERY = "query";
-
-    /**
-     * prometheus查询区间向量命令
-     */
-    String PROMETHEUS_QUERY_RANGE = "query_range";
-
-    /**
-     * prometheus查询开始时间
-     */
-    String PROMETHEUS_START = "start";
-
-    /**
-     * prometheus查询结束时间
-     */
-    String PROMETHEUS_END = "end";
-
-    /**
-     * prometheus查询步长
-     */
-    String PROMETHEUS_STEP = "step";
-
 }

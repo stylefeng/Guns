@@ -9,7 +9,7 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
     var positionXmSel;
 
     // 初始化组织树
-    new HttpRequest(Feng.ctxPath + "/hrOrganization/treeLayui", 'get', function (data) {
+    new HttpRequest(Feng.ctxPath + "/hrOrganization/tree", 'get', function (data) {
         organizationXmSel = xmSelect.render({
             el: '#organization',
             data: data.data,
@@ -31,7 +31,6 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
         positionXmSel = xmSelect.render({
             el: '#position',
             radio: true,
-            layVerify: 'required',
             clickClose: true,
             data: data.data
         });
@@ -65,10 +64,10 @@ layui.use(['layer', 'form', 'admin', 'laydate', 'HttpRequest', 'xmSelect'], func
             Feng.success("添加成功！");
             admin.putTempData('formOk', true);
         }, function (data) {
-            admin.closeThisDialog();
             Feng.error("添加失败！" + data.message);
         });
         request.set(data.field);
         request.start(true);
+        return false;
     });
 });

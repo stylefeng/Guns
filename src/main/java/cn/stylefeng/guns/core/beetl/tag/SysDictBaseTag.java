@@ -10,6 +10,7 @@ import cn.stylefeng.roses.kernel.dict.modular.service.DictTypeService;
 import cn.stylefeng.roses.kernel.rule.enums.YesOrNotEnum;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.beetl.core.tag.GeneralVarTagBinding;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Map;
  * @author liuhanqing
  * @date 2021/1/16 18:45
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class SysDictBaseTag extends GeneralVarTagBinding {
 

@@ -42,7 +42,7 @@ layui.use(['form', 'admin', 'HttpRequest', 'ztree'], function () {
     form.render();
 
     // 初始化选择组织机构的界面
-    var ztree = new $ZTree("deptTree", Feng.ctxPath + "/hrOrganization/zTree?roleId=" + result.data.roleId);
+    var ztree = new $ZTree("deptTree", Feng.ctxPath + "/hrOrganization/roleBindOrgScope?roleId=" + result.data.roleId);
     ztree.setSettings(setting);
     ztree.init();
 
