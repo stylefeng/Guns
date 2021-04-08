@@ -1,0 +1,1 @@
+ALTER TABLE `hr_position` DROP INDEX `CODE_UNI`;
