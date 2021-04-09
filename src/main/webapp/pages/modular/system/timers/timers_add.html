@@ -22,9 +22,15 @@
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label layui-form-required">cron</label>
-<!--                       http://89tool.com/cron -->
+                        <!--                       http://89tool.com/cron -->
                         <div class="layui-input-block" style="width: auto">
                             <input id="cron" name="cron" placeholder="请输入cron表达式" type="text" class="layui-input" lay-verify="required" required/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">任务参数</label>
+                        <div class="layui-input-block">
+                            <textarea id="params" name="params" placeholder="请输入任务参数" class="layui-textarea"></textarea>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
