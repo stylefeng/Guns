@@ -3,7 +3,6 @@ package cn.stylefeng.guns.config.web;
 import cn.stylefeng.guns.core.beetl.CustomBeetlGroupUtilConfiguration;
 import cn.stylefeng.guns.core.beetl.expander.BeetlConfigExpander;
 import cn.stylefeng.roses.kernel.auth.api.LoginUserApi;
-import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
 import org.beetl.core.resource.ClasspathResourceLoader;
 import org.beetl.ext.spring.BeetlSpringViewResolver;
 import org.springframework.beans.factory.annotation.Value;
