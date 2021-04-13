@@ -32,6 +32,9 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     @Resource
     private PermissionSecurityInterceptor permissionSecurityInterceptor;
 
+    @Resource
+    private OptionsSecurityInterceptor optionsSecurityInterceptor;
+
     /**
      * 重写系统的默认错误提示
      *
@@ -78,6 +81,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authJwtTokenSecurityInterceptor);
         registry.addInterceptor(permissionSecurityInterceptor);
+        registry.addInterceptor(optionsSecurityInterceptor);
     }
 
     /**
