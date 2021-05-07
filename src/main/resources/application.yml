@@ -27,6 +27,8 @@ spring:
     baseline-on-migrate: true
     # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
     out-of-order: true
+    # 关闭占位符替换，因为插入的sql里边可能包含${}关键字
+    placeholder-replacement: false
 
 scanner:
   open: true
