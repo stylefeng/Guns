@@ -72,8 +72,8 @@ layui.use(['HttpRequest', 'treeTable', 'laydate', 'func', 'form'], function () {
      */
     Log.cleanLog = function () {
         var queryData = {};
-        queryData['beginDateTime'] = $("#beginDate").val();
-        queryData['endDateTime'] = $("#endDate").val();
+        queryData['beginDateTime'] = $("#beginDateTime").val();
+        queryData['endDateTime'] = $("#endDateTime").val();
         queryData['appName'] = $("#appName").val();
         if (queryData.beginDateTime == "" || queryData.endDateTime == "" || queryData.appName == "") {
             Feng.error("请选择开始时间、结束时间和服务名称");
