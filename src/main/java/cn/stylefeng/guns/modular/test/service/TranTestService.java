@@ -1,8 +1,6 @@
 package cn.stylefeng.guns.modular.test.service;
 
-import cn.stylefeng.roses.kernel.system.integration.modular.system.datasource.test.factory.NormalUserFactory;
-import cn.stylefeng.roses.kernel.system.integration.modular.system.datasource.test.service.GunsDbService;
-import cn.stylefeng.roses.kernel.system.integration.modular.system.datasource.test.service.OtherDbService;
+import cn.stylefeng.guns.modular.test.factory.NormalUserFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

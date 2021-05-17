@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.modular.test.service;
 
+import cn.stylefeng.guns.modular.test.factory.NormalUserFactory;
 import cn.stylefeng.roses.kernel.dsctn.api.annotation.DataSource;
-import cn.stylefeng.roses.kernel.system.integration.modular.system.datasource.test.factory.NormalUserFactory;
 import cn.stylefeng.roses.kernel.system.modular.user.entity.SysUser;
 import cn.stylefeng.roses.kernel.system.modular.user.mapper.SysUserMapper;
 import cn.stylefeng.roses.kernel.system.modular.user.service.SysUserService;
