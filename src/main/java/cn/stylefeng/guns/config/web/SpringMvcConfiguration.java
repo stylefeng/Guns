@@ -1,10 +1,6 @@
 package cn.stylefeng.guns.config.web;
 
-import cn.stylefeng.guns.core.beetl.CustomBeetlGroupUtilConfiguration;
 import cn.stylefeng.guns.core.error.CustomErrorAttributes;
-import cn.stylefeng.guns.core.error.CustomErrorView;
-import cn.stylefeng.guns.core.security.AuthJwtTokenSecurityInterceptor;
-import cn.stylefeng.guns.core.security.PermissionSecurityInterceptor;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -44,20 +40,6 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     @Bean
     public CustomErrorAttributes gunsErrorAttributes() {
         return new CustomErrorAttributes();
-    }
-
-    /**
-     * 默认错误页面，返回json
-     *
-     * @author fengshuonan
-     * @date 2020/12/16 15:47
-     */
-    @Bean("error")
-    public CustomErrorView error(CustomBeetlGroupUtilConfiguration customBeetlGroupUtilConfiguration) {
-        CustomErrorView customErrorView = new CustomErrorView();
-        customErrorView.setUrl("/404.html");
-        customErrorView.setGroupTemplate(customBeetlGroupUtilConfiguration.getGroupTemplate());
-        return customErrorView;
     }
 
     /**

@@ -97,7 +97,7 @@
         <!--系统管理基础业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>system-spring-boot-starter</artifactId>
+            <artifactId>system-integration-beetl</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
@@ -169,13 +169,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
-        </dependency>
-
-        <!-- beet模板引擎 -->
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-            <version>${beetl.version}</version>
         </dependency>
 
         <dependency>
