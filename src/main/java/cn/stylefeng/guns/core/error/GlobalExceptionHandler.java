@@ -11,6 +11,7 @@ import cn.stylefeng.roses.kernel.rule.exception.enums.defaults.DefaultBusinessEx
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.util.ExceptionUtil;
 import cn.stylefeng.roses.kernel.rule.util.HttpServletUtil;
+import cn.stylefeng.roses.kernel.rule.util.ProjectUtil;
 import cn.stylefeng.roses.kernel.rule.util.ResponseRenderUtil;
 import cn.stylefeng.roses.kernel.validator.api.exception.ParamValidateException;
 import cn.stylefeng.roses.kernel.validator.api.exception.enums.ValidatorExceptionEnum;
@@ -187,8 +188,8 @@ public class GlobalExceptionHandler {
 
             // 如果是普通请求
             if (HttpServletUtil.getNormalRequestFlag(request)) {
-                model.addAttribute("tips", AuthExceptionEnum.AUTH_EXPIRED_ERROR.getUserTip());
-                return "/login.html";
+                // 根据是否是前后端分离项目，进行结果响应
+                return this.renderLoginResult(response, authException, model);
             } else {
                 // 其他请求或者是ajax请求
                 response.setHeader("Guns-Session-Timeout", "true");
@@ -201,8 +202,8 @@ public class GlobalExceptionHandler {
         // 如果是没带token访问页面，则返回到登录界面
         if (AuthExceptionEnum.TOKEN_GET_ERROR.getErrorCode().equals(errorCode)) {
             if (HttpServletUtil.getNormalRequestFlag(request)) {
-                model.addAttribute("tips", AuthExceptionEnum.AUTH_EXPIRED_ERROR.getUserTip());
-                return "/login.html";
+                // 根据是否是前后端分离项目，进行结果响应
+                return this.renderLoginResult(response, authException, model);
             }
         }
 
@@ -320,6 +321,29 @@ public class GlobalExceptionHandler {
 
         //最终把首部的逗号去掉
         return StrUtil.removePrefix(stringBuilder.toString(), SymbolConstant.COMMA);
+    }
+
+    /**
+     * 渲染登录界面，分两种情况
+     * <p>
+     * 第一种，如果是前后端不分离，则渲染登录界面即可
+     * <p>
+     * 第二种，如果是前后端分离项目，则渲染Json结果
+     *
+     * @author fengshuonan
+     * @date 2021/5/18 10:48
+     */
+    private String renderLoginResult(HttpServletResponse response, AuthException authException, Model model) {
+
+        if (ProjectUtil.getSeparationFlag()) {
+            response.setHeader("Guns-Session-Timeout", "true");
+            ErrorResponseData errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
+            ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
+            return null;
+        }
+
+        model.addAttribute("tips", authException.getUserTip());
+        return "/login.html";
     }
 
 }
