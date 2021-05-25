@@ -30,9 +30,11 @@ spring:
     # 关闭占位符替换，因为插入的sql里边可能包含${}关键字
     placeholder-replacement: false
 
+# 资源扫描
 scanner:
   open: true
 
+# 日志记录
 sys-log:
   # db-数据库，file-文件
   type: db
@@ -55,3 +57,7 @@ mybatis-plus:
 # 是否开启websocket推送消息
 web-socket:
   open: true
+
+# 单点登录开关
+sso:
+  openFlag: true
