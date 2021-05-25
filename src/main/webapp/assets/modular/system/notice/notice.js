@@ -78,7 +78,7 @@ layui.use(['layer', 'form', 'table', 'admin', 'HttpRequest', 'func'], function (
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
             ajax.set("noticeId", data.noticeId);
-            ajax.start();
+            ajax.start(true);
         };
         Feng.confirm("是否删除通知 " + data.title + "?", operation);
     };
