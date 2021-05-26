@@ -60,4 +60,4 @@ web-socket:
 
 # 单点登录开关
 sso:
-  openFlag: true
+  openFlag: false
