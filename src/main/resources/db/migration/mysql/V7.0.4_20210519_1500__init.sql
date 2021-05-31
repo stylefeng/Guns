@@ -1,26 +1,9 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost
- Source Server Type    : MySQL
- Source Server Version : 50732
- Source Host           : localhost:3306
- Source Schema         : guns
-
- Target Server Type    : MySQL
- Target Server Version : 50732
- File Encoding         : 65001
-
- Date: 19/05/2021 15:01:46
-*/
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for hr_organization
 -- ----------------------------
-DROP TABLE IF EXISTS `hr_organization`;
 CREATE TABLE `hr_organization`  (
   `org_id` bigint(20) NOT NULL COMMENT '主键',
   `org_parent_id` bigint(20) NOT NULL COMMENT '父id，一级节点父id是0',
@@ -48,7 +31,6 @@ INSERT INTO `hr_organization` VALUES (1339554696976781409, 1339554696976781408, 
 -- ----------------------------
 -- Table structure for hr_position
 -- ----------------------------
-DROP TABLE IF EXISTS `hr_position`;
 CREATE TABLE `hr_position`  (
   `position_id` bigint(20) NOT NULL COMMENT '主键',
   `position_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '职位名称',
@@ -74,7 +56,6 @@ INSERT INTO `hr_position` VALUES (1339554696976781334, '董事长', 'dsz', 3.00,
 -- ----------------------------
 -- Table structure for sys_app
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_app`;
 CREATE TABLE `sys_app`  (
   `app_id` bigint(20) NOT NULL COMMENT '主键id',
   `app_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '应用名称',
@@ -99,7 +80,6 @@ INSERT INTO `sys_app` VALUES (1265476890672672823, '业务应用', 'business', '
 -- ----------------------------
 -- Table structure for sys_config
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE `sys_config`  (
   `config_id` bigint(20) NOT NULL COMMENT '主键',
   `config_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '名称',
@@ -176,7 +156,6 @@ INSERT INTO `sys_config` VALUES (1367119662306942977, 'Socket连接超时值，�
 -- ----------------------------
 -- Table structure for sys_database_info
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_database_info`;
 CREATE TABLE `sys_database_info`  (
   `db_id` bigint(20) NOT NULL COMMENT '主键',
   `db_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '数据库名称（英文名称）',
@@ -204,7 +183,6 @@ INSERT INTO `sys_database_info` VALUES (1394888639499182082, 'master', 'com.mysq
 -- ----------------------------
 -- Table structure for sys_dict
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_dict`;
 CREATE TABLE `sys_dict`  (
   `dict_id` bigint(20) NOT NULL COMMENT '字典id',
   `dict_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '字典编码',
@@ -253,7 +231,6 @@ INSERT INTO `sys_dict` VALUES (1365252384094728193, 'com.mysql.cj.jdbc.Driver', 
 -- ----------------------------
 -- Table structure for sys_dict_type
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_dict_type`;
 CREATE TABLE `sys_dict_type`  (
   `dict_type_id` bigint(20) NOT NULL COMMENT '字典类型id',
   `dict_type_class` int(11) NULL DEFAULT NULL COMMENT '字典类型： 1-业务类型，2-系统类型，参考 DictTypeClassEnum',
@@ -287,7 +264,6 @@ INSERT INTO `sys_dict_type` VALUES (1365252142779641858, 1, NULL, 'jdbc_type', '
 -- ----------------------------
 -- Table structure for sys_file_info
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_file_info`;
 CREATE TABLE `sys_file_info`  (
   `file_id` bigint(20) NOT NULL COMMENT '文件主键id',
   `file_code` bigint(20) NOT NULL COMMENT '文件编码，本号升级的依据，解决一个文件多个版本问题，多次上传文件编码不变',
@@ -318,7 +294,6 @@ INSERT INTO `sys_file_info` VALUES (10000, -1, 1, '1', 4, 'defaultBucket', 'defa
 -- ----------------------------
 -- Table structure for sys_log
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_log`;
 CREATE TABLE `sys_log`  (
   `log_id` bigint(20) NOT NULL COMMENT '主键',
   `log_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '日志的名称，一般为业务名称',
@@ -343,7 +318,6 @@ CREATE TABLE `sys_log`  (
 -- ----------------------------
 -- Table structure for sys_login_log
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_login_log`;
 CREATE TABLE `sys_login_log`  (
   `llg_id` bigint(20) NOT NULL COMMENT '主键',
   `llg_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '日志名称',
@@ -358,7 +332,6 @@ CREATE TABLE `sys_login_log`  (
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
   `menu_id` bigint(20) NOT NULL COMMENT '主键',
   `menu_parent_id` bigint(20) NOT NULL COMMENT '父id，顶级节点的父id是-1',
@@ -422,7 +395,6 @@ INSERT INTO `sys_menu` VALUES (1339550467939639390, -1, '[-1],', '个人信息',
 -- ----------------------------
 -- Table structure for sys_menu_button
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_menu_button`;
 CREATE TABLE `sys_menu_button`  (
   `button_id` bigint(20) NOT NULL COMMENT '主键',
   `menu_id` bigint(20) NOT NULL COMMENT '菜单id，按钮需要挂在菜单下',
@@ -448,7 +420,6 @@ INSERT INTO `sys_menu_button` VALUES (1347753823522807842, 1339550467939639311, 
 -- ----------------------------
 -- Table structure for sys_message
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_message`;
 CREATE TABLE `sys_message`  (
   `message_id` bigint(20) NOT NULL COMMENT '主键',
   `receive_user_id` bigint(20) NULL DEFAULT NULL COMMENT '接收用户id',
@@ -472,7 +443,6 @@ CREATE TABLE `sys_message`  (
 -- ----------------------------
 -- Table structure for sys_notice
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_notice`;
 CREATE TABLE `sys_notice`  (
   `notice_id` bigint(20) NOT NULL COMMENT '主键',
   `notice_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '通知标题',
@@ -493,7 +463,6 @@ CREATE TABLE `sys_notice`  (
 -- ----------------------------
 -- Table structure for sys_resource
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_resource`;
 CREATE TABLE `sys_resource`  (
   `resource_id` bigint(20) NOT NULL COMMENT '资源id',
   `app_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应用编码',
@@ -788,7 +757,6 @@ INSERT INTO `sys_resource` VALUES (1394888674945245187, 'guns', 'guns$sys_notice
 -- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
   `role_id` bigint(20) NOT NULL COMMENT '主键id',
   `role_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
@@ -818,7 +786,6 @@ INSERT INTO `sys_role` VALUES (1339550467939639306, 'B端人员', 'b', 4.00, 10,
 -- ----------------------------
 -- Table structure for sys_role_data_scope
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_role_data_scope`;
 CREATE TABLE `sys_role_data_scope`  (
   `role_data_scope_id` bigint(20) NOT NULL COMMENT '主键',
   `role_id` bigint(20) NOT NULL COMMENT '角色id',
@@ -833,7 +800,6 @@ CREATE TABLE `sys_role_data_scope`  (
 -- ----------------------------
 -- Table structure for sys_role_menu
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu`  (
   `role_menu_id` bigint(20) NOT NULL COMMENT '主键',
   `role_id` bigint(20) NOT NULL COMMENT '角色id',
@@ -886,7 +852,6 @@ INSERT INTO `sys_role_menu` VALUES (1377572412753907725, 1339550467939639303, 13
 -- ----------------------------
 -- Table structure for sys_role_menu_button
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_role_menu_button`;
 CREATE TABLE `sys_role_menu_button`  (
   `role_button_id` bigint(20) NOT NULL COMMENT '主键',
   `role_id` bigint(20) NOT NULL COMMENT '角色id',
@@ -911,7 +876,6 @@ INSERT INTO `sys_role_menu_button` VALUES (1348235720933785604, 1339550467939639
 -- ----------------------------
 -- Table structure for sys_role_resource
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_role_resource`;
 CREATE TABLE `sys_role_resource`  (
   `role_resource_id` bigint(20) NOT NULL COMMENT '主键',
   `role_id` bigint(20) NOT NULL COMMENT '角色id',
@@ -1210,7 +1174,6 @@ INSERT INTO `sys_role_resource` VALUES (1394888675687637007, 1339550467939639303
 -- ----------------------------
 -- Table structure for sys_sms
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_sms`;
 CREATE TABLE `sys_sms`  (
   `sms_id` bigint(20) NOT NULL COMMENT '主键',
   `phone_number` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '手机号',
@@ -1230,7 +1193,6 @@ CREATE TABLE `sys_sms`  (
 -- ----------------------------
 -- Table structure for sys_timers
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_timers`;
 CREATE TABLE `sys_timers`  (
   `timer_id` bigint(20) NOT NULL COMMENT '定时器id',
   `timer_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '任务名称',
@@ -1256,7 +1218,6 @@ INSERT INTO `sys_timers` VALUES (1385068954897223681, '定时检测数据源的�
 -- ----------------------------
 -- Table structure for sys_translation
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_translation`;
 CREATE TABLE `sys_translation`  (
   `tran_id` bigint(20) NOT NULL COMMENT '主键id',
   `tran_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编码',
@@ -1373,7 +1334,6 @@ INSERT INTO `sys_translation` VALUES (1355392385093332994, 'BTN_CANCEL', '按钮
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
   `user_id` bigint(20) NOT NULL COMMENT '主键',
   `real_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
@@ -1406,7 +1366,6 @@ INSERT INTO `sys_user` VALUES (1339550467939639299, '管理员', '超管', 'admi
 -- ----------------------------
 -- Table structure for sys_user_data_scope
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_user_data_scope`;
 CREATE TABLE `sys_user_data_scope`  (
   `user_data_scope_id` bigint(20) NOT NULL COMMENT '主键',
   `user_id` bigint(20) NOT NULL COMMENT '用户id',
@@ -1421,7 +1380,6 @@ CREATE TABLE `sys_user_data_scope`  (
 -- ----------------------------
 -- Table structure for sys_user_org
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_user_org`;
 CREATE TABLE `sys_user_org`  (
   `user_org_id` bigint(20) NOT NULL COMMENT '企业员工主键id',
   `user_id` bigint(20) NOT NULL COMMENT '用户id',
@@ -1442,7 +1400,6 @@ INSERT INTO `sys_user_org` VALUES (1339554696976781405, 1339550467939639299, 133
 -- ----------------------------
 -- Table structure for sys_user_role
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role`  (
   `user_role_id` bigint(20) NOT NULL COMMENT '主键',
   `user_id` bigint(20) NOT NULL COMMENT '用户id',
