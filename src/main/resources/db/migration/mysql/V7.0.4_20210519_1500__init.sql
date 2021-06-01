@@ -2,6 +2,220 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for api_group
+-- ----------------------------
+CREATE TABLE `api_group`  (
+  `group_id` bigint(20) NOT NULL COMMENT '资源分组主键',
+  `group_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '分组名称',
+  `group_pid` bigint(20) NULL DEFAULT NULL COMMENT '分组父ID',
+  `group_pids` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '分组父ID集合',
+  `group_sort` decimal(56, 2) NULL DEFAULT 99999.00 COMMENT '分组排序',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`group_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '接口分组' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of api_group
+-- ----------------------------
+INSERT INTO `api_group` VALUES (1000000000000000000, '顶级节点', -1, '[-1]', 0.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_group` VALUES (1399204023990620161, '用户管理', 1000000000000000000, '[-1],[1000000000000000000]', 0.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_group` VALUES (1399204049806561282, '授权角色界面用的', 1399204023990620161, '[-1],[1000000000000000000],[1399204023990620161]', 1.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_group` VALUES (1399204090214486017, '授权数据用的接口', 1399204023990620161, '[-1],[1000000000000000000],[1399204023990620161]', 2.00, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for api_resource
+-- ----------------------------
+CREATE TABLE `api_resource`  (
+  `api_resource_id` bigint(20) NOT NULL COMMENT '接口信息主键',
+  `group_id` bigint(20) NOT NULL COMMENT '资源分组数据主键',
+  `request_method` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '请求方式：GET，POST',
+  `api_alias` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '接口自定义名称，区别于sys_resource表的名称',
+  `resource_code` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '资源唯一编码,关联sys_resource表的code',
+  `last_request_header` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '上次接口调用的头信息',
+  `last_request_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '上次接口调用的参数内容',
+  `last_response_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '上次接口调用的响应内容',
+  `resource_sort` decimal(56, 2) NULL DEFAULT 99999.00 COMMENT '资源排序',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建用户',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '修改用户',
+  PRIMARY KEY (`api_resource_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '接口信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of api_resource
+-- ----------------------------
+INSERT INTO `api_resource` VALUES (1399204183298674690, 1399204049806561282, 'POST', '授权角色', 'guns$sys_user$grant_role', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiI2OGUxYTBkNi1jNzA5LTQyNGQtOGQ3ZC0wMWY0MDIzY2ExNDMiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMxMTU5ODQxNDksImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjUxMTE4NCwiZXhwIjoxNjIzMTE1OTg0fQ.aDiwLDu_i9_FkC2OPMG23Ip1SdQlE9L5mFQ7a30dhyL-tzneiO-5OqLmRfjMi6C4on-Tn1CW_FHTQvkbdEO-2g\"}', '{&quot;grantRoleIdList&quot;:&quot;1&quot;,&quot;userId&quot;:&quot;1&quot;}', '{\"success\":false,\"code\":\"A1502\",\"message\":\"请求Json数据格式错误或Json字段格式转化问题\",\"data\":null,\"exceptionClazz\":null,\"exceptionTip\":null,\"exceptionPlace\":null}', 3.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399204183655190530, 1399204023990620161, 'POST', '用户管理-修改用户', 'guns$sys_user$edit', NULL, NULL, NULL, 9.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399204183705522178, 1399204023990620161, 'POST', '用户管理-修改用户状态', 'guns$sys_user$change_status', NULL, NULL, NULL, 10.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399204183814574082, 1399204090214486017, 'POST', '授权数据范围', 'guns$sys_user$grant_data', NULL, NULL, NULL, 2.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399204183860711425, 1399204023990620161, 'POST', '用户管理-重置密码', 'guns$sys_user$reset_pwd', NULL, NULL, NULL, 11.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399204184158507009, 1399204023990620161, 'POST', '用户管理-删除', 'guns$sys_user$delete', NULL, NULL, NULL, 12.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399204184200450049, 1399204049806561282, 'GET', '查询用户的所有角色（也可从登录接口获取角色）', 'guns$sys_user$own_role', NULL, NULL, NULL, 2.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399206240776753153, 1399204049806561282, 'GET', '获取所有角色列表', 'guns$sys_role$drop_down', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIwZjllMWJlNS04MjVjLTQ5ZTQtOTM5Ni02YzVkNWQ0Y2MwM2QiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk3NzcyMjMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDk3NywiZXhwIjoxNjIzMDQ5Nzc3fQ.EK8txKDowuLvsqJzmiCvRPOsjgfsvDuIJhJHk3fObwehfxXzgXkb3vF6VcLVCSk-LvHrXNOxzLlqWQ0ZqV7RrA\"}', '{}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":[{\"id\":\"1339550467939639303\",\"name\":\"超级管理员\",\"code\":\"superAdmin\"},{\"id\":\"1339550467939639304\",\"name\":\"普通人员\",\"code\":\"normal\"},{\"id\":\"1339550467939639305\",\"name\":\"C端人员\",\"code\":\"c\"},{\"id\":\"1339550467939639306\",\"name\":\"B端人员\",\"code\":\"b\"}]}', 1.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399206928151875586, 1399204090214486017, 'GET', '获取授权数据列表', 'guns$hr_organization$user_bind_org_scope', NULL, NULL, NULL, 1.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399207529036255234, 1399204023990620161, 'GET', '左侧组织机构-获取组织机构树列表', 'guns$hr_organization$organization_tree', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiI0OWEwODgxOS05Y2UzLTQ5YTItYTZmZC00MDUyZjIzMmFhODkiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk2MTEyMjUsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDgxMSwiZXhwIjoxNjIzMDQ5NjExfQ.Drgga3AmQ4382wlUOyihdXUbqYCQ-fipD7oVCjgadW48Ljjuq9IxbBe1gj7m_aGbtCWMNuaU1rNcIlnFgLNmAg\"}', '{}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":[{\"parentId\":\"-1\",\"title\":\"Guns总公司\",\"id\":\"1339554696976781407\",\"spread\":true,\"selected\":false,\"children\":[{\"parentId\":\"1339554696976781407\",\"title\":\"北京分公司\",\"id\":\"1339554696976781408\",\"spread\":true,\"selected\":false,\"children\":[{\"parentId\":\"1339554696976781408\",\"title\":\"北京东直门分公司\",\"id\":\"1339554696976781409\",\"spread\":true,\"selected\":false,\"children\":[],\"name\":\"北京东直门分公司\",\"value\":\"1339554696976781409\",\"nodeId\":\"1339554696976781409\",\"nodeParentId\":\"1339554696976781408\",\"disabled\":false}],\"name\":\"北京分公司\",\"value\":\"1339554696976781408\",\"nodeId\":\"1339554696976781408\",\"nodeParentId\":\"1339554696976781407\",\"disabled\":false}],\"name\":\"Guns总公司\",\"value\":\"1339554696976781407\",\"nodeId\":\"1339554696976781407\",\"nodeParentId\":\"-1\",\"disabled\":false}]}', 3.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399207670321385474, 1399204023990620161, 'POST', '左侧组织架构-新增', 'guns$hr_organization$add', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiI0OWEwODgxOS05Y2UzLTQ5YTItYTZmZC00MDUyZjIzMmFhODkiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk2MTEyMjUsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDgxMSwiZXhwIjoxNjIzMDQ5NjExfQ.Drgga3AmQ4382wlUOyihdXUbqYCQ-fipD7oVCjgadW48Ljjuq9IxbBe1gj7m_aGbtCWMNuaU1rNcIlnFgLNmAg\"}', '{\"orgRemark\":\"1\",\"orgCode\":\"2\",\"orgSort\":\"3\",\"orgName\":\"4\",\"orgParentId\":\"5\"}', '{\"success\":false,\"code\":\"A1856\",\"message\":\"查询不到组织机构，错误的组织机构ID：5\",\"data\":null,\"exceptionClazz\":\"SystemModularException\",\"exceptionTip\":\"查询不到组织机构，错误的组织机构ID：5\",\"exceptionPlace\":\"cn.stylefeng.roses.kernel.system.modular.organization.service.impl.HrOrganizationServiceImpl.queryOrganization(HrOrganizationServiceImpl.java:390)\"}', 4.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399207702105821186, 1399204023990620161, 'POST', '左侧组织架构-删除', 'guns$hr_organization$delete', NULL, NULL, NULL, 6.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399207733097533442, 1399204023990620161, 'POST', '左侧组织架构-修改', 'guns$hr_organization$edit', NULL, NULL, NULL, 5.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399209982771204097, 1399204023990620161, 'GET', '用户管理-获取用户列表', 'guns$sys_user$page', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIwZjllMWJlNS04MjVjLTQ5ZTQtOTM5Ni02YzVkNWQ0Y2MwM2QiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk3NzcyMjMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDk3NywiZXhwIjoxNjIzMDQ5Nzc3fQ.EK8txKDowuLvsqJzmiCvRPOsjgfsvDuIJhJHk3fObwehfxXzgXkb3vF6VcLVCSk-LvHrXNOxzLlqWQ0ZqV7RrA\"}', '{\"account\":\"\",\"statusFlag\":\"\",\"realName\":\"\"}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":{\"pageNo\":1,\"pageSize\":20,\"totalPage\":1,\"totalRows\":1,\"rows\":[{\"userId\":\"1339550467939639299\",\"account\":\"admin\",\"nickName\":\"超管\",\"realName\":\"管理员\",\"avatar\":\"10000\",\"birthday\":\"2020-12-01\",\"sex\":\"M\",\"email\":\"sn93@qq.com\",\"phone\":\"18200000000\",\"password\":null,\"tel\":\"123456\",\"orgId\":\"1339554696976781407\",\"positionId\":\"1339554696976781332\",\"positionName\":\"总监\",\"statusFlag\":1,\"grantRoleIdList\":null,\"superAdminFlag\":null}]}}', 7.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399210244432859137, 1399204023990620161, 'POST', '用户管理-添加用户', 'guns$sys_user$add', NULL, NULL, NULL, 8.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1399211324021542914, 1399204023990620161, 'GET', '用户管理-职位信息下拉', 'guns$hr_position$list', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIwZjllMWJlNS04MjVjLTQ5ZTQtOTM5Ni02YzVkNWQ0Y2MwM2QiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk3NzcyMjMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDk3NywiZXhwIjoxNjIzMDQ5Nzc3fQ.EK8txKDowuLvsqJzmiCvRPOsjgfsvDuIJhJHk3fObwehfxXzgXkb3vF6VcLVCSk-LvHrXNOxzLlqWQ0ZqV7RrA\"}', '{}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":[{\"createTime\":\"2020-12-16 13:35:58\",\"createUser\":\"-1\",\"updateTime\":null,\"updateUser\":null,\"positionId\":\"1339554696976781332\",\"positionName\":\"总监\",\"positionCode\":\"zg\",\"positionSort\":1.00,\"statusFlag\":1,\"positionRemark\":\"\",\"delFlag\":\"N\",\"name\":\"总监\",\"value\":\"1339554696976781332\",\"children\":null,\"selected\":false,\"disabled\":false},{\"createTime\":\"2020-12-17 19:21:47\",\"createUser\":\"-1\",\"updateTime\":\"2020-12-17 20:45:43\",\"updateUser\":\"-1\",\"positionId\":\"1339554696976781333\",\"positionName\":\"总经理\",\"positionCode\":\"zjl\",\"positionSort\":2.00,\"statusFlag\":1,\"positionRemark\":\"\",\"delFlag\":\"N\",\"name\":\"总经理\",\"value\":\"1339554696976781333\",\"children\":null,\"selected\":false,\"disabled\":false},{\"createTime\":\"2020-12-17 20:02:16\",\"createUser\":\"-1\",\"updateTime\":null,\"updateUser\":null,\"positionId\":\"1339554696976781334\",\"positionName\":\"董事长\",\"positionCode\":\"dsz\",\"positionSort\":3.00,\"statusFlag\":1,\"positionRemark\":\"\",\"delFlag\":\"N\",\"name\":\"董事长\",\"value\":\"1339554696976781334\",\"children\":null,\"selected\":false,\"disabled\":false}]}', 13.00, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for api_resource_field
+-- ----------------------------
+CREATE TABLE `api_resource_field`  (
+  `field_id` bigint(20) NOT NULL COMMENT '字段主键',
+  `api_resource_id` bigint(20) NOT NULL COMMENT '资源主键',
+  `field_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '参数位置：request-请求参数，response-响应参数',
+  `field_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段名称，例如：邮箱',
+  `field_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段编码，例如：email',
+  `field_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段类型：string或file',
+  `field_required` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '是否必填：Y-是，N-否',
+  `field_validation_msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段其他校验信息，后端校验注解内容',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`field_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '接口字段信息' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of api_resource_field
+-- ----------------------------
+INSERT INTO `api_resource_field` VALUES (1399243144142512130, 1399204184200450049, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243144142512137, 1399204184200450049, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243144146706433, 1399204184200450049, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243144146706434, 1399204184200450049, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243144146706435, 1399204184200450049, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243485386891265, 1399204183298674690, 'request', '授权角色，角色id集合', 'grantRoleIdList', 'string', 'Y', '授权角色不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243485386891266, 1399204183298674690, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243485386891275, 1399204183298674690, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243485391085570, 1399204183298674690, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243485391085571, 1399204183298674690, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243485391085572, 1399204183298674690, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243524414889986, 1399206240776753153, 'response', NULL, 'name', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243524419084289, 1399206240776753153, 'response', NULL, 'id', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243524419084290, 1399206240776753153, 'response', NULL, 'code', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691155251203, 1399206928151875586, 'request', '用户id（作为查询条件）', 'userId', 'string', 'Y', '用户id不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691155251210, 1399206928151875586, 'response', '父id，一级节点父id是0', 'parentId', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691155251211, 1399206928151875586, 'response', '是否展开状态 不展开-false 展开-true', 'spread', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691155251212, 1399206928151875586, 'response', '节点值', 'id', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691155251213, 1399206928151875586, 'response', '是否选中', 'selected', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691155251214, 1399206928151875586, 'response', '节点名称', 'title', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243691159445506, 1399206928151875586, 'response', '子节点的集合', 'children', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243776136044547, 1399204183814574082, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243776136044553, 1399204183814574082, 'request', '授权数据范围，组织机构id集合', 'grantOrgIdList', 'string', 'Y', '授权数据不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243776136044559, 1399204183814574082, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243776140238850, 1399204183814574082, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243776140238851, 1399204183814574082, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243776140238852, 1399204183814574082, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243963394940932, 1399207529036255234, 'response', '是否选中', 'selected', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243963394940933, 1399207529036255234, 'response', '节点名称', 'title', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243963394940934, 1399207529036255234, 'response', '是否展开状态 不展开-false 展开-true', 'spread', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243963394940935, 1399207529036255234, 'response', '父id，一级节点父id是0', 'parentId', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243963394940936, 1399207529036255234, 'response', '节点值', 'id', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399243963394940937, 1399207529036255234, 'response', '子节点的集合', 'children', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954911301634, 1399207670321385474, 'request', '描述', 'orgRemark', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954915495938, 1399207670321385474, 'request', '组织编码', 'orgCode', 'string', 'Y', '组织编码不能为空，组织编码存在重复', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954915495940, 1399207670321385474, 'request', '排序', 'orgSort', 'string', 'Y', '排序不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954915495942, 1399207670321385474, 'request', '组织名称', 'orgName', 'string', 'Y', '组织名称不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954919690242, 1399207670321385474, 'request', '父id', 'orgParentId', 'string', 'Y', '父id不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954919690243, 1399207670321385474, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954919690244, 1399207670321385474, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954919690245, 1399207670321385474, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399251954923884546, 1399207670321385474, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196289302530, 1399207733097533442, 'request', '父id', 'orgParentId', 'string', 'Y', '父id不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196293496833, 1399207733097533442, 'request', '组织编码', 'orgCode', 'string', 'Y', '组织编码不能为空，组织编码存在重复', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196293496836, 1399207733097533442, 'request', '主键', 'orgId', 'string', 'Y', '主键不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196293496837, 1399207733097533442, 'request', '排序', 'orgSort', 'string', 'Y', '排序不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196293496840, 1399207733097533442, 'request', '描述', 'orgRemark', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196293496841, 1399207733097533442, 'request', '组织名称', 'orgName', 'string', 'Y', '组织名称不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196297691137, 1399207733097533442, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196297691138, 1399207733097533442, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196297691139, 1399207733097533442, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399252196297691140, 1399207733097533442, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253302490845188, 1399207702105821186, 'request', '主键', 'orgId', 'string', 'Y', '主键不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253302495039494, 1399207702105821186, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253302495039495, 1399207702105821186, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253302495039496, 1399207702105821186, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253302499233794, 1399207702105821186, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472750227458, 1399209982771204097, 'request', '账号', 'account', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472750227464, 1399209982771204097, 'request', '状态（字典 1正常 2冻结）', 'statusFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472754421763, 1399209982771204097, 'request', '姓名', 'realName', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472754421769, 1399209982771204097, 'response', '姓名', 'realName', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472754421770, 1399209982771204097, 'response', '生日', 'birthday', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472754421771, 1399209982771204097, 'response', '用户所属机构的职务', 'positionId', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472754421772, 1399209982771204097, 'response', '性别（M-男，F-女）', 'sex', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472754421773, 1399209982771204097, 'response', '邮箱', 'email', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616065, 1399209982771204097, 'response', '手机', 'phone', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616066, 1399209982771204097, 'response', '主键', 'userId', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616067, 1399209982771204097, 'response', '职务名称', 'positionName', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616068, 1399209982771204097, 'response', '用户角色id', 'grantRoleIdList', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616069, 1399209982771204097, 'response', '账号', 'account', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616070, 1399209982771204097, 'response', '头像', 'avatar', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616071, 1399209982771204097, 'response', '密码', 'password', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616072, 1399209982771204097, 'response', '昵称', 'nickName', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616073, 1399209982771204097, 'response', '用户所属机构', 'orgId', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616074, 1399209982771204097, 'response', '电话', 'tel', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616075, 1399209982771204097, 'response', '状态', 'statusFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253472758616076, 1399209982771204097, 'response', '是否是超级管理员，超级管理员可以拥有所有权限（Y-是，N-否）', 'superAdminFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864703741953, 1399210244432859137, 'request', '姓名', 'realName', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864703741955, 1399210244432859137, 'request', '账号', 'account', 'string', 'Y', '账号不能为空，账号存在重复', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864707936258, 1399210244432859137, 'request', '生日', 'birthday', 'string', 'N', '生日格式不正确', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864712130561, 1399210244432859137, 'request', '邮箱', 'email', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864712130563, 1399210244432859137, 'request', '用户所属机构的职务', 'positionId', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864716324865, 1399210244432859137, 'request', '性别（M-男，F-女）', 'sex', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864716324866, 1399210244432859137, 'request', '昵称', 'nickName', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864716324871, 1399210244432859137, 'request', '用户所属机构', 'orgId', 'string', 'Y', '用户所属机构不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864716324872, 1399210244432859137, 'request', '手机', 'phone', 'string', 'N', '手机号码格式错误', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864720519172, 1399210244432859137, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864720519173, 1399210244432859137, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864724713473, 1399210244432859137, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399253864724713474, 1399210244432859137, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346453110785, 1399204183655190530, 'request', '邮箱', 'email', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346453110790, 1399204183655190530, 'request', '生日', 'birthday', 'string', 'N', '生日格式不正确', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346453110791, 1399204183655190530, 'request', '昵称', 'nickName', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346453110792, 1399204183655190530, 'request', '手机', 'phone', 'string', 'N', '手机号码格式错误', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305091, 1399204183655190530, 'request', '姓名', 'realName', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305092, 1399204183655190530, 'request', '账号', 'account', 'string', 'Y', '账号不能为空，账号存在重复', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305093, 1399204183655190530, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305095, 1399204183655190530, 'request', '用户所属机构的职务', 'positionId', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305097, 1399204183655190530, 'request', '性别（M-男，F-女）', 'sex', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305098, 1399204183655190530, 'request', '用户所属机构', 'orgId', 'string', 'Y', '用户所属机构不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346457305100, 1399204183655190530, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346461499393, 1399204183655190530, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346461499394, 1399204183655190530, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399254346461499395, 1399204183655190530, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256493915787267, 1399204183705522178, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256493915787271, 1399204183705522178, 'request', '状态（字典 1正常 2冻结）', 'statusFlag', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256493919981573, 1399204183705522178, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256493919981574, 1399204183705522178, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256493919981575, 1399204183705522178, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256493919981576, 1399204183705522178, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256655631372295, 1399204183860711425, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256655635566603, 1399204183860711425, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256655639760898, 1399204183860711425, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256655639760899, 1399204183860711425, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399256655639760900, 1399204183860711425, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257163305734148, 1399204184158507009, 'request', '主键', 'userId', 'string', 'Y', 'userId不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257163305734154, 1399204184158507009, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257163305734155, 1399204184158507009, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257163305734156, 1399204184158507009, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257163305734157, 1399204184158507009, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252166258695, 1399211324021542914, 'response', '职位编码', 'positionCode', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252166258696, 1399211324021542914, 'response', '职位备注', 'positionRemark', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252166258697, 1399211324021542914, 'response', '排序', 'positionSort', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252166258698, 1399211324021542914, 'response', '职位名称', 'positionName', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252166258699, 1399211324021542914, 'response', '删除标记：Y-已删除，N-未删除', 'delFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252170452994, 1399211324021542914, 'response', '主键', 'positionId', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1399257252170452995, 1399211324021542914, 'response', '状态：1-启用，2-禁用', 'statusFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+
+-- ----------------------------
 -- Table structure for hr_organization
 -- ----------------------------
 CREATE TABLE `hr_organization`  (
