@@ -135,6 +135,13 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--Socket模块-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>socket-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--wrapper工具-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>

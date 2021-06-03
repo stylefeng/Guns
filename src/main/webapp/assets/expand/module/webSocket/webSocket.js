@@ -50,7 +50,11 @@ layui.define(['jquery', 'layer'], function (exports) {
             _self.heartCheckHandler = setTimeout(function () {
                 try {
                     // 发送心跳检测
-                    _self.send("&")
+                    let heartMsg = {
+                        "type": "299999",
+                        "data": new Date().getMilliseconds()
+                    };
+                    _self.send(JSON.stringify(heartMsg))
                 } catch (e) {
                     (param.connectErr || emptyFun)(e);
                     _self.lockReconnect = false;

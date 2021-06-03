@@ -2,6 +2,11 @@ server:
   port: 8080
   max-http-header-size: 10240
 
+logging:
+  level:
+    root: error
+    cn.stylefeng: debug
+
 spring:
   application:
     name: guns
@@ -53,10 +58,6 @@ mybatis-plus:
     db-config:
       id-type: assign_id
       table-underline: true
-
-# 是否开启websocket推送消息
-web-socket:
-  open: true
 
 # 单点登录开关
 sso:
