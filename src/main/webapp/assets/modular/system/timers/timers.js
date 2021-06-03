@@ -22,6 +22,7 @@ layui.use(['table', 'admin', 'form', 'func', 'HttpRequest', 'dropdown'], functio
             {field: 'actionClass', sort: true, title: '任务class'},
             {field: 'remark', sort: true, title: '备注信息'},
             {field: 'jobStatus', sort: true, templet: '#statusTpl', title: '状态'},
+            {field: 'createUserName', title: '创建人'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
