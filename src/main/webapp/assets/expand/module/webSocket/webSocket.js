@@ -51,8 +51,8 @@ layui.define(['jquery', 'layer'], function (exports) {
                 try {
                     // 发送心跳检测
                     let heartMsg = {
-                        "type": "299999",
-                        "data": new Date().getMilliseconds()
+                        "clientMsgType": "299999",
+                        "data": new Date().getTime()
                     };
                     _self.send(JSON.stringify(heartMsg))
                 } catch (e) {
