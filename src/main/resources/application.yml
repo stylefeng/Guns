@@ -2,11 +2,6 @@ server:
   port: 8080
   max-http-header-size: 10240
 
-logging:
-  level:
-    root: error
-    cn.stylefeng: debug
-
 spring:
   application:
     name: guns
