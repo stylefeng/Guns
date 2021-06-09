@@ -1440,7 +1440,6 @@ INSERT INTO `sys_user_role` VALUES (1339554696976781379, 1339550467939639299, 13
 -- ----------------------------
 -- Table structure for toc_customer
 -- ----------------------------
-DROP TABLE IF EXISTS `toc_customer`;
 CREATE TABLE `toc_customer`  (
   `customer_id` bigint(20) NOT NULL COMMENT '主键id',
   `account` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
