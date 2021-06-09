@@ -409,6 +409,7 @@ INSERT INTO `sys_config` VALUES (1367119457260003329, 'SSL安全连接', 'SYS_EM
 INSERT INTO `sys_config` VALUES (1367119505888763905, '指定的端口连接到在使用指定的套接字工厂', 'SYS_EMAIL_SOCKET_FACTORY_PORT', '465', 'Y', '', 1, 'java_mail_config', 'N', '2021-03-03 22:27:45', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1367119568455196674, 'SMTP超时时长，单位毫秒', 'SYS_EMAIL_SMTP_TIMEOUT', '10000', 'N', '', 1, 'java_mail_config', 'N', '2021-03-03 22:28:00', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1367119662306942977, 'Socket连接超时值，单位毫秒，缺省值不超时', 'SYS_EMAIL_CONNECTION_TIMEOUT', '10000', 'N', 'Socket连接超时值，单位毫秒，缺省值不超时', 1, 'java_mail_config', 'N', '2021-03-03 22:28:22', 1339550467939639299, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610114, 'smtp服务器地址', 'SYS_EMAIL_SMTP_HOST', 'smtp.126.com', 'N', NULL, 1, 'java_mail_config', 'N', '2021-06-09 16:55:01', 1339550467939639299, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_database_info
@@ -484,6 +485,7 @@ INSERT INTO `sys_dict` VALUES (1354041049981771778, 'role_b', 'B端角色', 'Bdj
 INSERT INTO `sys_dict` VALUES (1365251792270045186, 'Y', '是', 's', NULL, 'yn', NULL, NULL, -1, 1, 1.00, '[-1],', 'N', '2021-02-26 18:46:07', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_dict` VALUES (1365251827812577282, 'N', '否', 'f', NULL, 'yn', NULL, NULL, -1, 1, 2.00, '[-1],', 'N', '2021-02-26 18:46:16', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_dict` VALUES (1365252384094728193, 'com.mysql.cj.jdbc.Driver', 'com.mysql.cj.jdbc.Driver', 'com.mysql.cj.jdbc.Driver', NULL, 'jdbc_type', NULL, NULL, -1, 1, 1.00, '[-1],', 'N', '2021-02-26 18:48:28', 1339550467939639299, '2021-02-26 18:53:48', 1339550467939639299);
+INSERT INTO `sys_dict` VALUES (1402549554864427010, 'java_mail_config', 'java邮件配置', 'javayjpz', NULL, 'config_group', NULL, NULL, -1, 1, 50.00, '[-1],', 'N', '2021-06-09 16:54:07', 1339550467939639299, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_dict_type
