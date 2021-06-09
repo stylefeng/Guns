@@ -354,9 +354,9 @@ INSERT INTO `sys_config` VALUES (43, 'druid web url统计的是否开启监控�
 INSERT INTO `sys_config` VALUES (44, '阿里云短信的accessKeyId', 'SYS_ALIYUN_SMS_ACCESS_KEY_ID', '你的accessKeyId', 'Y', NULL, 1, 'sms_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (45, '阿里云短信的accessKeySecret', 'SYS_ALIYUN_SMS_ACCESS_KEY_SECRET', '你的secret', 'Y', NULL, 1, 'sms_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (46, '阿里云短信的签名', 'SYS_ALIYUN_SMS_SIGN_NAME', '签名名称', 'Y', NULL, 1, 'sms_config', 'N', NULL, NULL, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1350666094452482049, '获取XSS排除过滤的url范围', 'SYS_XSS_URL_EXCLUSIONS', '/sysNotice/add,/sysNotice/edit,/databaseInfo/add', 'Y', '', 1, 'sys_config', 'N', '2021-01-17 12:47:46', 1339550467939639299, '2021-03-04 22:14:14', 1339550467939639299);
+INSERT INTO `sys_config` VALUES (1350666094452482049, '获取XSS排除过滤的url范围', 'SYS_XSS_URL_EXCLUSIONS', '/sysNotice/add,/sysNotice/edit,/databaseInfo/add,/apiResource/record', 'Y', '', 1, 'sys_config', 'N', '2021-01-17 12:47:46', 1339550467939639299, '2021-03-04 22:14:14', 1339550467939639299);
 INSERT INTO `sys_config` VALUES (1350666483050553346, 'beetl自定义支持HTML标签', 'HTML_TAG_FLAG', 'tag:', 'Y', '', 1, 'sys_config', 'N', '2021-01-17 12:49:18', 1339550467939639299, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1356246056131649538, 'websocket的ws-url', 'WEB_SOCKET_WS_URL', 'ws://localhost:8080/message/websocket/{userId}', 'Y', '', 1, 'sys_config', 'N', '2021-02-01 22:20:32', 1339550467939639299, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1356246056131649538, 'websocket的ws-url', 'WEB_SOCKET_WS_URL', 'ws://localhost:{port}/{userId}', 'Y', '', 1, 'sys_config', 'N', '2021-02-01 22:20:32', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1367118984192843778, '邮件是否启用账号密码验证', 'SYS_EMAIL_ENABLE_AUTH', 'true', 'N', '', 1, 'java_mail_config', 'N', '2021-03-03 22:25:40', 1339550467939639299, '2021-03-03 22:25:43', 1339550467939639299);
 INSERT INTO `sys_config` VALUES (1367119064924807169, '邮箱的账号', 'SYS_EMAIL_ACCOUNT', 'xxx@126.com', 'N', '', 1, 'java_mail_config', 'N', '2021-03-03 22:26:00', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1367119226749444098, '邮箱的密码或者授权码', 'SYS_EMAIL_PASSWORD', 'xxx', 'N', '', 1, 'java_mail_config', 'N', '2021-03-03 22:26:38', 1339550467939639299, NULL, NULL);
@@ -1193,7 +1193,7 @@ CREATE TABLE `sys_timers`  (
 -- ----------------------------
 INSERT INTO `sys_timers` VALUES (1355878268976271362, '定时刷新服务器状态', 'cn.stylefeng.roses.kernel.monitor.system.holder.SystemHardwareInfoHolder', '0 0/1 * * * ? ', NULL, 1, '每1分钟执行一次，刷新服务器状态', 'N', '2021-01-31 21:59:05', 1339550467939639299, '2021-01-31 22:00:23', 1339550467939639299);
 INSERT INTO `sys_timers` VALUES (1385068954897223681, '定时检测数据源的链接状态', 'cn.stylefeng.roses.kernel.dsctn.modular.timer.DataSourceStatusCheckTimer', '0/30 * * * * ? ', '', 1, '', 'N', '2021-04-22 11:12:27', 1339550467939639299, NULL, NULL);
-
+INSERT INTO `sys_timers` VALUES (1402503612214747137, '主机状态检测', 'cn.stylefeng.roses.kernel.devops.business.websocket.listening.HostMachineStatusListening', '0 0/3 * * * ?', NULL, 1, NULL, 'N', '2021-06-09 13:51:33', 1339550467939639299, NULL, NULL);
 -- ----------------------------
 -- Table structure for sys_translation
 -- ----------------------------
