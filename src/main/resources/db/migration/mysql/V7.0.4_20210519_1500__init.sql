@@ -24,6 +24,7 @@ INSERT INTO `api_group` VALUES (1000000000000000000, '顶级节点', -1, '[-1]',
 INSERT INTO `api_group` VALUES (1399204023990620161, '用户管理', 1000000000000000000, '[-1],[1000000000000000000]', 0.00, NULL, NULL, NULL, NULL);
 INSERT INTO `api_group` VALUES (1399204049806561282, '授权角色界面用的', 1399204023990620161, '[-1],[1000000000000000000],[1399204023990620161]', 1.00, NULL, NULL, NULL, NULL);
 INSERT INTO `api_group` VALUES (1399204090214486017, '授权数据用的接口', 1399204023990620161, '[-1],[1000000000000000000],[1399204023990620161]', 2.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_group` VALUES (1401840671212630017, 'C端用户', 1000000000000000000, '[-1],[1000000000000000000]', 10.00, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for api_resource
@@ -64,6 +65,12 @@ INSERT INTO `api_resource` VALUES (1399207733097533442, 1399204023990620161, 'PO
 INSERT INTO `api_resource` VALUES (1399209982771204097, 1399204023990620161, 'GET', '用户管理-获取用户列表', 'guns$sys_user$page', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIwZjllMWJlNS04MjVjLTQ5ZTQtOTM5Ni02YzVkNWQ0Y2MwM2QiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk3NzcyMjMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDk3NywiZXhwIjoxNjIzMDQ5Nzc3fQ.EK8txKDowuLvsqJzmiCvRPOsjgfsvDuIJhJHk3fObwehfxXzgXkb3vF6VcLVCSk-LvHrXNOxzLlqWQ0ZqV7RrA\"}', '{\"account\":\"\",\"statusFlag\":\"\",\"realName\":\"\"}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":{\"pageNo\":1,\"pageSize\":20,\"totalPage\":1,\"totalRows\":1,\"rows\":[{\"userId\":\"1339550467939639299\",\"account\":\"admin\",\"nickName\":\"超管\",\"realName\":\"管理员\",\"avatar\":\"10000\",\"birthday\":\"2020-12-01\",\"sex\":\"M\",\"email\":\"sn93@qq.com\",\"phone\":\"18200000000\",\"password\":null,\"tel\":\"123456\",\"orgId\":\"1339554696976781407\",\"positionId\":\"1339554696976781332\",\"positionName\":\"总监\",\"statusFlag\":1,\"grantRoleIdList\":null,\"superAdminFlag\":null}]}}', 7.00, NULL, NULL, NULL, NULL);
 INSERT INTO `api_resource` VALUES (1399210244432859137, 1399204023990620161, 'POST', '用户管理-添加用户', 'guns$sys_user$add', NULL, NULL, NULL, 8.00, NULL, NULL, NULL, NULL);
 INSERT INTO `api_resource` VALUES (1399211324021542914, 1399204023990620161, 'GET', '用户管理-职位信息下拉', 'guns$hr_position$list', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIwZjllMWJlNS04MjVjLTQ5ZTQtOTM5Ni02YzVkNWQ0Y2MwM2QiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjMwNDk3NzcyMjMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMjQ0NDk3NywiZXhwIjoxNjIzMDQ5Nzc3fQ.EK8txKDowuLvsqJzmiCvRPOsjgfsvDuIJhJHk3fObwehfxXzgXkb3vF6VcLVCSk-LvHrXNOxzLlqWQ0ZqV7RrA\"}', '{}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":[{\"createTime\":\"2020-12-16 13:35:58\",\"createUser\":\"-1\",\"updateTime\":null,\"updateUser\":null,\"positionId\":\"1339554696976781332\",\"positionName\":\"总监\",\"positionCode\":\"zg\",\"positionSort\":1.00,\"statusFlag\":1,\"positionRemark\":\"\",\"delFlag\":\"N\",\"name\":\"总监\",\"value\":\"1339554696976781332\",\"children\":null,\"selected\":false,\"disabled\":false},{\"createTime\":\"2020-12-17 19:21:47\",\"createUser\":\"-1\",\"updateTime\":\"2020-12-17 20:45:43\",\"updateUser\":\"-1\",\"positionId\":\"1339554696976781333\",\"positionName\":\"总经理\",\"positionCode\":\"zjl\",\"positionSort\":2.00,\"statusFlag\":1,\"positionRemark\":\"\",\"delFlag\":\"N\",\"name\":\"总经理\",\"value\":\"1339554696976781333\",\"children\":null,\"selected\":false,\"disabled\":false},{\"createTime\":\"2020-12-17 20:02:16\",\"createUser\":\"-1\",\"updateTime\":null,\"updateUser\":null,\"positionId\":\"1339554696976781334\",\"positionName\":\"董事长\",\"positionCode\":\"dsz\",\"positionSort\":3.00,\"statusFlag\":1,\"positionRemark\":\"\",\"delFlag\":\"N\",\"name\":\"董事长\",\"value\":\"1339554696976781334\",\"children\":null,\"selected\":false,\"disabled\":false}]}', 13.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1402073728229052417, 1401840671212630017, 'POST', '重置密码', 'guns$customer$reset_password', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiJhYTNlMTgyMy0zNzNjLTQ1MWItYTZlNS04OWI5ODE1NTIwZTUiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjM3MjA3ODI2MTMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMzExNTk4MiwiZXhwIjoxNjIzNzIwNzgyfQ.EP6HDALsFKQIfP92NHMlOOUPvVDk7OX7vka_E7sHWjwg9Z7k-HaQMS_wtCep5Psn2Nyy-BbBby9GqVclpPXT8A\"}', '{\"password\":\"123456\",\"verifyCode\":\"430706\",\"email\":\"sn93@qq.com\"}', '{\"success\":false,\"code\":\"B3106\",\"message\":\"邮箱验证码错误，请重新输入邮箱验证码\",\"data\":null,\"exceptionClazz\":\"CustomerException\",\"exceptionTip\":\"邮箱验证码错误，请重新输入邮箱验证码\",\"exceptionPlace\":\"cn.stylefeng.roses.kernel.customer.modular.service.impl.CustomerServiceImpl.resetPassword(CustomerServiceImpl.java:205)\"}', 5.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1402073683941396481, 1401840671212630017, 'POST', '找回密码-发送邮件', 'guns$customer$send_reset_pwd_email', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiI0YzFlMzYxZC1kMTBiLTRiMjYtYTkxNS0zMzQ1NWNhNGZkNmYiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjM4Mjk0NTQwNzQsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMzIyNDY1NCwiZXhwIjoxNjIzODI5NDU0fQ.bw_GRVQ_1TVcKnW54WA9LT6Q37AvV0uK5q8ZvKVFcW-xQj5b_kZFnaLBFHkZhtxJlVRpmswb4cqrqT1dX8sN0A\"}', '{\"email\":\"！！！！\"}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":null}', 4.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1401840767337689089, 1401840671212630017, 'GET', '激活用户', 'guns$customer$active', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiJhYTNlMTgyMy0zNzNjLTQ1MWItYTZlNS04OWI5ODE1NTIwZTUiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjM3MjA3ODI2MTMsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMzExNTk4MiwiZXhwIjoxNjIzNzIwNzgyfQ.EP6HDALsFKQIfP92NHMlOOUPvVDk7OX7vka_E7sHWjwg9Z7k-HaQMS_wtCep5Psn2Nyy-BbBby9GqVclpPXT8A\"}', '{\"verifyCode\":\"S4YF9QQACEDYGDEE7G3U49DCAAO1I\"}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":null}', 2.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1401840751835541505, 1401840671212630017, 'POST', '注册', 'guns$customer$reg', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIzZmI4ODA5OC1kMzRkLTRiOWYtOTVhYy0yZGU3MTc4N2JhZWQiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjM4MDYwODczMTEsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMzIwMTI4NywiZXhwIjoxNjIzODA2MDg3fQ.7kCWIwDZw_Uo3PDTB3-ciU4eslnHkkfB-mm4MMp7q1CGMSpwJONZHcpTlq-n0Hy3_W3VHVVCDka87378WmI1rw\"}', '{\"nickName\":\"嘎嘎\",\"account\":\"abcd\",\"password\":\"123456\",\"email\":\"sn93@qq.com\"}', '{\"success\":false,\"code\":\"B3104\",\"message\":\"账号重复，请更换账号\",\"data\":null,\"exceptionClazz\":\"CustomerException\",\"exceptionTip\":\"账号重复，请更换账号\",\"exceptionPlace\":\"cn.stylefeng.roses.kernel.customer.modular.service.impl.CustomerServiceImpl.validateRepeat(CustomerServiceImpl.java:311)\"}', 1.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1402074659867856898, 1401840671212630017, 'POST', '删除注册用户', 'guns$customer_manage$delete', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiIzZmI4ODA5OC1kMzRkLTRiOWYtOTVhYy0yZGU3MTc4N2JhZWQiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjM4MDYwODczMTEsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMzIwMTI4NywiZXhwIjoxNjIzODA2MDg3fQ.7kCWIwDZw_Uo3PDTB3-ciU4eslnHkkfB-mm4MMp7q1CGMSpwJONZHcpTlq-n0Hy3_W3VHVVCDka87378WmI1rw\"}', '{\"customerId\":\"1402465414545412098\"}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":null}', 6.00, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource` VALUES (1401840787965276162, 1401840671212630017, 'POST', '登录', 'guns$customer$login', '{\"Authorization\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjEzMzk1NTA0Njc5Mzk2MzkyOTksImFjY291bnQiOiJhZG1pbiIsInV1aWQiOiI1MjBlOGJhMC04YzMzLTRkYWYtYmM5MC1kM2M5MTA1YWYxMzkiLCJyZW1lbWJlck1lIjpmYWxzZSwiZXhwaXJhdGlvbkRhdGUiOjE2MjM4Mjg5NDEyNTcsImNhVG9rZW4iOm51bGwsIm90aGVycyI6bnVsbCwic3ViIjoiMTMzOTU1MDQ2NzkzOTYzOTI5OSIsImlhdCI6MTYyMzIyNDE0MSwiZXhwIjoxNjIzODI4OTQxfQ.Yn5xYYwqVtvXIjzmkNc5J8y6vzT34obr_bsKyoN9cfXIXCut4qhq55s80BSvI320YfuXGyByofSejIr-wOJ2uA\"}', '{\"account\":\"sudie\",\"password\":\"123456\"}', '{\"success\":true,\"code\":\"00000\",\"message\":\"请求成功\",\"data\":{\"loginUser\":{\"userId\":\"1402467874357907457\",\"account\":\"sudie\",\"superAdmin\":null,\"simpleUserInfo\":{\"nickName\":\"sudie\",\"realName\":null,\"avatar\":\"10000\",\"birthday\":null,\"sex\":null,\"email\":\"suewangyihe0@163.com\",\"phone\":null,\"tel\":null},\"simpleRoleInfoList\":null,\"organizationId\":null,\"positionId\":null,\"dataScopeTypeEnums\":null,\"dataScopeUserIds\":null,\"dataScopeOrganizationIds\":null,\"resourceUrls\":null,\"buttonCodes\":null,\"loginTime\":\"2021-06-09 15:35:52\",\"token\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjE0MDI0Njc4NzQzNTc5MDc0NTcsImFjY291bnQiOiJzdWRpZSIsInV1aWQiOiJiZDVmODBjMy1hZWIzLTQ5YjctYWI3YS04M2U0MTU1NjAyZjYiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTYyMzgyODk1MjMyMiwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIxNDAyNDY3ODc0MzU3OTA3NDU3IiwiaWF0IjoxNjIzMjI0MTUyLCJleHAiOjE2MjM4Mjg5NTJ9.dmn_SMEc08hepTlnODaVvHs02l-s1ztmn5E1r7b-kVAh2AyiAAo90wXqKYc1hcqgWVJZ12opWHRxlC8Ki6c44g\",\"otherInfos\":null,\"wsUrl\":\"\",\"tranLanguageCode\":\"chinese\",\"tenantCode\":null},\"token\":\"eyJhbGciOiJIUzUxMiJ9.eyJ1c2VySWQiOjE0MDI0Njc4NzQzNTc5MDc0NTcsImFjY291bnQiOiJzdWRpZSIsInV1aWQiOiJiZDVmODBjMy1hZWIzLTQ5YjctYWI3YS04M2U0MTU1NjAyZjYiLCJyZW1lbWJlck1lIjp0cnVlLCJleHBpcmF0aW9uRGF0ZSI6MTYyMzgyODk1MjMyMiwiY2FUb2tlbiI6bnVsbCwib3RoZXJzIjpudWxsLCJzdWIiOiIxNDAyNDY3ODc0MzU3OTA3NDU3IiwiaWF0IjoxNjIzMjI0MTUyLCJleHAiOjE2MjM4Mjg5NTJ9.dmn_SMEc08hepTlnODaVvHs02l-s1ztmn5E1r7b-kVAh2AyiAAo90wXqKYc1hcqgWVJZ12opWHRxlC8Ki6c44g\",\"expireAt\":\"1623828952322\",\"ssoLogin\":null,\"ssoLoginCode\":null}}', 3.00, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for api_resource_field
@@ -214,6 +221,42 @@ INSERT INTO `api_resource_field` VALUES (1399257252166258698, 139921132402154291
 INSERT INTO `api_resource_field` VALUES (1399257252166258699, 1399211324021542914, 'response', '删除标记：Y-已删除，N-未删除', 'delFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `api_resource_field` VALUES (1399257252170452994, 1399211324021542914, 'response', '主键', 'positionId', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `api_resource_field` VALUES (1399257252170452995, 1399211324021542914, 'response', '状态：1-启用，2-禁用', 'statusFlag', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728233246722, 1402073728229052417, 'request', '密码', 'password', 'string', 'Y', '密码，BCrypt不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728233246724, 1402073728229052417, 'request', '邮箱或手机验证码', 'verifyCode', 'string', 'Y', '激活码不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728233246725, 1402073728229052417, 'request', '邮箱', 'email', 'string', 'Y', '邮箱不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728245829636, 1402073728229052417, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728250023937, 1402073728229052417, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728250023938, 1402073728229052417, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073728250023939, 1402073728229052417, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073683966562307, 1402073683941396481, 'request', '邮箱', 'email', 'string', 'Y', '邮箱不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073683966562315, 1402073683941396481, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073683966562316, 1402073683941396481, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073683966562317, 1402073683941396481, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073683966562318, 1402073683941396481, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073545764245516, 1401840767337689089, 'request', '邮箱或手机验证码', 'verifyCode', 'string', 'Y', '激活码不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073545764245517, 1401840767337689089, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073545764245518, 1401840767337689089, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073545764245519, 1401840767337689089, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073545768439809, 1401840767337689089, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699972, 1401840751835541505, 'request', '昵称', 'nickName', 'string', 'Y', '昵称（显示名称）不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699973, 1401840751835541505, 'request', '账号', 'account', 'string', 'Y', '账号不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699974, 1401840751835541505, 'request', '密码', 'password', 'string', 'Y', '密码，BCrypt不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699978, 1401840751835541505, 'request', '邮箱', 'email', 'string', 'Y', '邮箱不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699981, 1401840751835541505, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699982, 1401840751835541505, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699983, 1401840751835541505, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073494031699984, 1401840751835541505, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402074659876245507, 1402074659867856898, 'request', '主键id', 'customerId', 'string', 'Y', '主键id不能为空', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402074659876245518, 1402074659867856898, 'response', NULL, 'code', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402074659880439809, 1402074659867856898, 'response', NULL, 'success', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402074659880439810, 1402074659867856898, 'response', NULL, 'data', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402074659880439811, 1402074659867856898, 'response', NULL, 'message', 'string', 'N', '', NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073607345016836, 1401840787965276162, 'request', '账号', 'account', 'string', 'Y', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073607345016839, 1401840787965276162, 'request', '密码', 'password', 'string', 'Y', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073607345016841, 1401840787965276162, 'response', NULL, 'data', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073607345016842, 1401840787965276162, 'response', NULL, 'message', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073607345016843, 1401840787965276162, 'response', NULL, 'success', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `api_resource_field` VALUES (1402073607345016844, 1401840787965276162, 'response', NULL, 'code', 'string', 'N', NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for hr_organization
@@ -1393,5 +1436,31 @@ CREATE TABLE `sys_user_role`  (
 -- Records of sys_user_role
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES (1339554696976781379, 1339550467939639299, 1339550467939639303, '2020-12-17 20:57:31', NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for toc_customer
+-- ----------------------------
+DROP TABLE IF EXISTS `toc_customer`;
+CREATE TABLE `toc_customer`  (
+  `customer_id` bigint(20) NOT NULL COMMENT '主键id',
+  `account` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
+  `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码，BCrypt',
+  `nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '昵称（显示名称）',
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+  `telephone` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机',
+  `verify_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '邮箱或手机验证码',
+  `verified_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'N' COMMENT '是否已经邮箱或手机验证通过：Y-通过，N-未通过',
+  `avatar` bigint(20) NULL DEFAULT NULL COMMENT '用户头像（文件表id）',
+  `avatar_object_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户头像的文件全名',
+  `score` int(11) NULL DEFAULT NULL COMMENT '用户积分',
+  `status_flag` tinyint(4) NULL DEFAULT NULL COMMENT '用户状态：1-启用，2-禁用',
+  `last_login_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '上次登录ip',
+  `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '上次登录时间',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
+  PRIMARY KEY (`customer_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin COMMENT = 'C端用户表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
