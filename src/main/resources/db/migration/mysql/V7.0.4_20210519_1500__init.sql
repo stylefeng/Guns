@@ -1193,7 +1193,6 @@ CREATE TABLE `sys_timers`  (
 -- ----------------------------
 INSERT INTO `sys_timers` VALUES (1355878268976271362, '定时刷新服务器状态', 'cn.stylefeng.roses.kernel.monitor.system.holder.SystemHardwareInfoHolder', '0 0/1 * * * ? ', NULL, 1, '每1分钟执行一次，刷新服务器状态', 'N', '2021-01-31 21:59:05', 1339550467939639299, '2021-01-31 22:00:23', 1339550467939639299);
 INSERT INTO `sys_timers` VALUES (1385068954897223681, '定时检测数据源的链接状态', 'cn.stylefeng.roses.kernel.dsctn.modular.timer.DataSourceStatusCheckTimer', '0/30 * * * * ? ', '', 1, '', 'N', '2021-04-22 11:12:27', 1339550467939639299, NULL, NULL);
-INSERT INTO `sys_timers` VALUES (1402503612214747137, '主机状态检测', 'cn.stylefeng.roses.kernel.devops.business.websocket.listening.HostMachineStatusListening', '0 0/3 * * * ?', NULL, 1, NULL, 'N', '2021-06-09 13:51:33', 1339550467939639299, NULL, NULL);
 -- ----------------------------
 -- Table structure for sys_translation
 -- ----------------------------
