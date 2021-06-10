@@ -12,7 +12,7 @@
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
-    <version>7.0.1</version>
+    <version>7.0.4</version>
 
     <name>guns</name>
     <description>单体前后端不分离，基于beetl模板引擎</description>
@@ -29,6 +29,18 @@
     </properties>
 
     <dependencies>
+
+<!--        <dependency>-->
+<!--            <groupId>cn.stylefeng.roses</groupId>-->
+<!--            <artifactId>devops-spring-boot-starter</artifactId>-->
+<!--            <version>${roses.kernel.version}</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>forum-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
 
         <!--认证和鉴权模块-->
         <dependency>
