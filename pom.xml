@@ -30,18 +30,6 @@
 
     <dependencies>
 
-<!--        <dependency>-->
-<!--            <groupId>cn.stylefeng.roses</groupId>-->
-<!--            <artifactId>devops-spring-boot-starter</artifactId>-->
-<!--            <version>${roses.kernel.version}</version>-->
-<!--        </dependency>-->
-
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>forum-spring-boot-starter</artifactId>
-            <version>${roses.kernel.version}</version>
-        </dependency>
-
         <!--认证和鉴权模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
