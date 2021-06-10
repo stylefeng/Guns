@@ -100,6 +100,13 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--c端用户-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>customer-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--办公处理-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
@@ -187,6 +194,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
