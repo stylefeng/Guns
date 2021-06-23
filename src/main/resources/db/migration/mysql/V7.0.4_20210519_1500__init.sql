@@ -89,6 +89,7 @@ CREATE TABLE `api_resource_field`  (
   `field_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段类型：string或file',
   `field_required` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '是否必填：Y-是，N-否',
   `field_validation_msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段其他校验信息，后端校验注解内容',
+  `field_sub_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '字段子字段信息(Object和List会用到)',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
