@@ -437,6 +437,7 @@ INSERT INTO `sys_config` VALUES (1367119505888763905, '指定的端口连接到�
 INSERT INTO `sys_config` VALUES (1367119568455196674, 'SMTP超时时长，单位毫秒', 'SYS_EMAIL_SMTP_TIMEOUT', '10000', 'N', '', 1, 'java_mail_config', 'N', '2021-03-03 22:28:00', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1367119662306942977, 'Socket连接超时值，单位毫秒，缺省值不超时', 'SYS_EMAIL_CONNECTION_TIMEOUT', '10000', 'N', 'Socket连接超时值，单位毫秒，缺省值不超时', 1, 'java_mail_config', 'N', '2021-03-03 22:28:22', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1402549781675610114, 'smtp服务器地址', 'SYS_EMAIL_SMTP_HOST', 'smtp.126.com', 'N', NULL, 1, 'java_mail_config', 'N', '2021-06-09 16:55:01', 1339550467939639299, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610125, '拖拽验证码开关', 'SYS_DRAG_CAPTCHA_OPEN', 'false', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_database_info
