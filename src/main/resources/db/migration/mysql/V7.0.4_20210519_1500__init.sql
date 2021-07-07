@@ -438,6 +438,33 @@ INSERT INTO `sys_config` VALUES (1367119568455196674, 'SMTP超时时长，单位
 INSERT INTO `sys_config` VALUES (1367119662306942977, 'Socket连接超时值，单位毫秒，缺省值不超时', 'SYS_EMAIL_CONNECTION_TIMEOUT', '10000', 'N', 'Socket连接超时值，单位毫秒，缺省值不超时', 1, 'java_mail_config', 'N', '2021-03-03 22:28:22', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1402549781675610114, 'smtp服务器地址', 'SYS_EMAIL_SMTP_HOST', 'smtp.126.com', 'N', NULL, 1, 'java_mail_config', 'N', '2021-06-09 16:55:01', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1402549781675610125, '拖拽验证码开关', 'SYS_DRAG_CAPTCHA_OPEN', 'false', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610115, 'smtp服务端口', 'SYS_EMAIL_SMTP_PORT', '465', 'Y', NULL, 1, 'java_mail_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1350666094452482050, '获取XSS过滤的url范围', 'SYS_XSS_URL_INCLUDES', '/*', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (47, '短信发送验证码失效时间', 'SYS_SMS_VALIDATE_EXPIRED_SECONDS', '300', 'Y', NULL, 1, 'sms_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610200, 'auth认证用的jwt秘钥，用于校验登录token', 'SYS_AUTH_JWT_SECRET', 'hxim2q05g6wg6llsp24z', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610205, '解析sso传过来的token', 'SYS_AUTH_SSO_JWT_SECRET', 'aabbccdd', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610210, '解析sso加密的数据的秘钥，解密sso单点中jwt中payload的秘钥', 'SYS_AUTH_SSO_DECRYPT_DATA_SECRET', 'EDPpR/BQfEFJiXKgxN8Uno4OnNMGcIJW1F777yySCPA=', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610215, '获取是否开启sso远程会话校验', 'SYS_AUTH_SSO_SESSION_VALIDATE_SWITCH', 'false', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610220, 'sso会话校验，redis的host', 'SYS_AUTH_SSO_SESSION_VALIDATE_REDIS_HOST', 'localhost', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610225, 'sso会话校验，redis的port', 'SYS_AUTH_SSO_SESSION_VALIDATE_REDIS_PORT', '6379', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610230, 'sso会话校验，redis的密码', 'SYS_AUTH_SSO_SESSION_VALIDATE_REDIS_PASSWORD', '', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610235, 'sso会话校验，redis的数据库序号', 'SYS_AUTH_SSO_SESSION_VALIDATE_REDIS_DB_INDEX', '2', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610240, 'sso会话校验，redis的缓存前缀', 'SYS_AUTH_SSO_SESSION_VALIDATE_REDIS_CACHE_PREFIX', 'CA:USER:TOKEN:', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610245, 'sso服务器地址', 'SYS_AUTH_SSO_HOST', 'http://localhost:8888', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610300, 'C端用户，注册邮件标题', 'CUSTOMER_REG_EMAIL_TITLE', '用户注册', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610305, '获取注册邮件的内容模板', 'CUSTOMER_REG_EMAIL_CONTENT', '感谢您注册Guns官方论坛，请点击此激活链接激活您的账户：<a href=\"http://localhost:8080/customer/active?verifyCode={}\">http://localhost:8080/customer/active?verifyCode={} </a>', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610310, '获取重置密码的邮件标题', 'CUSTOMER_RESET_PWD_EMAIL_TITLE', '用户校验', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610315, '获取重置密码的邮件内容', 'CUSTOMER_RESET_PWD_EMAIL_CONTENT', '您的验证码是【{}】，此验证码用于修改登录密码，请不要泄露给他人，如果不是您本人操作，请忽略此邮件。', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610320, '存放用户头像的bucket的名称', 'CUSTOMER_FILE_BUCKET', 'customer-bucket', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610325, '存放用户头像的bucket的名称的过期时间', 'CUSTOMER_FILE_BUCKET_EXPIRED_SECONDS', '600', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610330, '获取c端用户缓存的过期时间，用在加快获取速度', 'CUSTOMER_CACHE_EXPIRED_SECONDS', '3600', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610335, '是否开启旧版密码校验', 'CUSTOMER_OPEN_OLD_PASSWORD_VALIDATE', 'false', 'Y', NULL, 1, 'customer_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610400, '是否开启demo演示', 'SYS_DEMO_ENV_FLAG', 'false', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610405, '默认存储文件的bucket名称', 'SYS_FILE_DEFAULT_BUCKET', 'defaultBucket', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610410, '用于专门给文件鉴权用的jwt的密钥', 'SYS_DEFAULT_FILE_AUTH_JWT_SECRET', 'hxim2q05g6wg6llsp245', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610415, '日志记录的文件存储的位置（windows服务器）', 'SYS_LOG_FILE_SAVE_PATH_WINDOWS', 'd:/logfiles', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610420, '日志记录的文件存储的位置（linux和mac服务器）', 'SYS_LOG_FILE_SAVE_PATH_LINUX', '/tmp/logfiles', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1402549781675610500, 'AES秘钥，用在数据库数据加密', 'SYS_ENCRYPT_SECRET_KEY', 'Ux1dqQ22KxVjSYootgzMe776em8vWEGE', 'Y', NULL, 1, 'security_config', 'N', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_database_info
@@ -514,6 +541,7 @@ INSERT INTO `sys_dict` VALUES (1365251792270045186, 'Y', '是', 's', NULL, 'yn',
 INSERT INTO `sys_dict` VALUES (1365251827812577282, 'N', '否', 'f', NULL, 'yn', NULL, NULL, -1, 1, 2.00, '[-1],', 'N', '2021-02-26 18:46:16', 1339550467939639299, NULL, NULL);
 INSERT INTO `sys_dict` VALUES (1365252384094728193, 'com.mysql.cj.jdbc.Driver', 'com.mysql.cj.jdbc.Driver', 'com.mysql.cj.jdbc.Driver', NULL, 'jdbc_type', NULL, NULL, -1, 1, 1.00, '[-1],', 'N', '2021-02-26 18:48:28', 1339550467939639299, '2021-02-26 18:53:48', 1339550467939639299);
 INSERT INTO `sys_dict` VALUES (1402549554864427010, 'java_mail_config', 'java邮件配置', 'javayjpz', NULL, 'config_group', NULL, NULL, -1, 1, 50.00, '[-1],', 'N', '2021-06-09 16:54:07', 1339550467939639299, NULL, NULL);
+INSERT INTO `sys_dict` VALUES (1402549554864427020, 'customer_config', 'C端用户配置', 'cdyhpz', NULL, 'config_group', NULL, NULL, -1, 1, 60.00, '[-1],', 'N', '2021-07-07 16:54:07', 1339550467939639299, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_dict_type
