@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true
-    username: root
-    password: 123456
+    url: jdbc:mysql://${DEVOPS_MYSQL_HOST}:${DEVOPS_MYSQL_PORT}/${DEVOPS_MYSQL_DATABASE_NAME}?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true
+    username: ${DEVOPS_MYSQL_USERNAME}
+    password: ${DEVOPS_MYSQL_PASSWORD}
 
     # 连接池大小根据实际情况调整
     max-active: 100
