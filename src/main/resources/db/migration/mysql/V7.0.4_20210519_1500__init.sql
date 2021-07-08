@@ -386,6 +386,7 @@ CREATE TABLE `sys_config`  (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
+INSERT INTO `sys_config` VALUES (1, '系统配置是否已经初始化的标识', 'SYS_CONFIG_INIT_FLAG', 'false', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (2, 'JWT安全码', 'SYS_JWT_SECRET', '1928374650abcdef', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (3, 'JWT过期时间', 'SYS_JWT_TIMEOUT_SECONDS', '259200', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (4, 'Linux本地文件保存路径', 'SYS_LOCAL_FILE_SAVE_PATH_LINUX', '/tmp/tempFilePath', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, NULL, NULL);
