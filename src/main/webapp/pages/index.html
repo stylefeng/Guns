@@ -115,7 +115,7 @@
 
         // 退出登录点击事件
         $('#btnLogout').click(function () {
-            var request = new HttpRequest(Feng.ctxPath + "/logout", 'post', function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/logoutAction", 'post', function (data) {
                 Feng.success("退出成功!");
                 window.location.href = Feng.ctxPath + "/";
             }, function (data) {

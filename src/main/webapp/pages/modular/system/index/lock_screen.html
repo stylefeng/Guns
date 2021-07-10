@@ -36,7 +36,7 @@
             //解锁锁屏
             admin.unlockScreen();
 
-            var request = new HttpRequest(Feng.ctxPath + "/logout", 'post', function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/logoutAction", 'post', function (data) {
                 Feng.success("退出成功!");
                 location.replace(Feng.ctxPath + "/");
             }, function (data) {
