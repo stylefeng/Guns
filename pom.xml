@@ -184,6 +184,13 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--演示环境api-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>demo-api</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--数据库驱动,可根据自己需要自行删减-->
         <dependency>
             <groupId>mysql</groupId>
