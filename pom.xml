@@ -142,6 +142,13 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--数据备份和迁移模块-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>migration-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--Socket模块-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
