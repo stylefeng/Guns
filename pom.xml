@@ -191,6 +191,14 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--演示环境的业务，可选依赖-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>demo-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!--数据库驱动,可根据自己需要自行删减-->
         <dependency>
             <groupId>mysql</groupId>
