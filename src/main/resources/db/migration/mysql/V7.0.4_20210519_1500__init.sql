@@ -1514,6 +1514,7 @@ CREATE TABLE `toc_customer`  (
   `avatar_object_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户头像的文件全名',
   `score` int(11) NULL DEFAULT NULL COMMENT '用户积分',
   `status_flag` tinyint(4) NULL DEFAULT NULL COMMENT '用户状态：1-启用，2-禁用',
+  `member_expire_time` datetime(0) NULL DEFAULT NULL COMMENT '会员截止日期，到期时间',
   `last_login_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '上次登录ip',
   `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '上次登录时间',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
