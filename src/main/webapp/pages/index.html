@@ -37,14 +37,37 @@
     var Feng = {
         ctxPath: "${ctxPath}",
         version: '${constants.getReleaseVersion()}',
-        wsUrl: '${wsUrl}'
+        wsUrl: '${wsUrl}',
+        userId: '${userId}'
     };
 </script>
 <script type="text/javascript" src="${ctxPath}/assets/common/libs/layui/layui.js?v=${constants.getReleaseVersion()}"></script>
 <script type="text/javascript" src="${ctxPath}/assets/common/js/common.js?v=${constants.getReleaseVersion()}"></script>
 
 <script>
-    var wsInst = null
+    // 全局消息类型声明
+    window.WEB_SOCKET_MSG_TYPE = {
+        SERVER: {
+            SYS_NOTICE_MSG_TYPE: "100001"
+        },
+        CLIENT: {
+            USER_ADD_MSG_TYPE: "200001"
+        }
+    }
+
+    // 全局消息类型和回调函数维护中心
+    window.msgTypeCallBackMap = new Map()
+
+    // 新增一个回调
+    window.insertCallback = (msgType, func) => {
+        msgTypeCallBackMap.set(msgType, func)
+    }
+
+    // 删除一个回调
+    window.deleteCallback = (msgType) => {
+        msgTypeCallBackMap.delete(msgType)
+    }
+
     layui.use(['layer', 'element', 'admin', 'index', 'HttpRequest', 'ws', 'notice', 'i18n'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
@@ -92,7 +115,7 @@
 
         // 退出登录点击事件
         $('#btnLogout').click(function () {
-            var request = new HttpRequest(Feng.ctxPath + "/logout", 'post', function (data) {
+            var request = new HttpRequest(Feng.ctxPath + "/logoutAction", 'post', function (data) {
                 Feng.success("退出成功!");
                 window.location.href = Feng.ctxPath + "/";
             }, function (data) {
@@ -100,50 +123,58 @@
             });
             request.start();
         });
-        wsInst = ws.render({
+
+        // 全局WebSocket加载
+        window.wsInst = ws.render({
             wsUrl: Feng.wsUrl, //WebSocket的地址
-            connectErr: function (event) {
+            connectErr: (event) => {
                 console.log(event)
                 //如果不支持websocket 回调
             },
-            onWsError: function (event) {
+            onWsError: (event) => {
                 //发生连接错误回调
             },
-            onWsOpen: function (event) {
-                //连接成功回调
-                console.log("Socket 已打开");
-                wsInst.send("消息发送测试(From Client)");
+            onWsOpen: (event) => {
+                // 绑定用户
+                let initMsg = {
+                    "clientMsgType": WEB_SOCKET_MSG_TYPE.CLIENT.USER_ADD_MSG_TYPE,
+                    "formUserId": Feng.userId,
+                    "data": WEB_SOCKET_MSG_TYPE.SERVER.SYS_NOTICE_MSG_TYPE
+                };
+                wsInst.send(JSON.stringify(initMsg));
             },
-            onWsMessage: function (event) {
+            onWsMessage: (event) => {
                 //服务器发送消息回调
                 let data = event.data;
                 try {
-                    let msg = JSON.parse(data)
-                    notice.info({
-                        title: '[' + msg.businessTypeValue + ']' + msg.messageTitle,
-                        message: msg.messageContent,
-                        timeout: false
-                    });
-                    $('#messageDot').show();
+                    let originalData = JSON.parse(data)
+                    let func = msgTypeCallBackMap.get(originalData.serverMsgType);
+                    if (func) {
+                        eval(func(originalData));
+                    }
                 } catch (e) {
                 }
             },
-            onWsClose: function (event) {
+            onWsClose: (event) => {
                 //关闭连接回调
             },
 
-            wsSend: function (event) {
+            wsSend: (event) => {
                 //发送成功后的回调
             },
-
         })
-    });
 
-    window.unload = function () {
-        if (wsInst) {
-            wsInst.close();
-        }
-    };
+        // 注册系统消息监听
+        window.insertCallback(window.WEB_SOCKET_MSG_TYPE.SERVER.SYS_NOTICE_MSG_TYPE, (massage) => {
+            notice.info({
+                title: '[' + massage.data.businessTypeValue + ']' + massage.data.messageTitle,
+                message: massage.data.messageContent,
+                timeout: false
+            });
+            $('#messageDot').show();
+        })
+
+    });
 </script>
 </body>
 

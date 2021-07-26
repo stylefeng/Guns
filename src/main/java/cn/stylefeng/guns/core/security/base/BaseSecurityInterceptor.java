@@ -41,6 +41,7 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
 
         // 1. 获取当前请求的路径
         String requestURI = request.getRequestURI();
+        requestURI = requestURI.replaceAll("/+", "/");
 
         // 2. 不需要权限过滤的资源，直接放行
         Boolean noneSecurityFlag = AntPathMatcherUtil.getAntMatchFLag(requestURI, request.getContextPath(), AuthConfigExpander.getNoneSecurityConfig());

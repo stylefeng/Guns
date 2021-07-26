@@ -22,7 +22,7 @@ spring:
       indent_output: false
   flyway:
     enabled: true
-    locations: classpath:db/migration
+    locations: classpath:db/migration/mysql
     # 当迁移时发现目标schema非空，而且带有没有元数据的表时，是否自动执行基准迁移
     baseline-on-migrate: true
     # 是否允许无序的迁移 开发环境最好开启, 生产环境关闭
@@ -30,9 +30,11 @@ spring:
     # 关闭占位符替换，因为插入的sql里边可能包含${}关键字
     placeholder-replacement: false
 
+# 资源扫描
 scanner:
   open: true
 
+# 日志记录
 sys-log:
   # db-数据库，file-文件
   type: db
@@ -52,6 +54,6 @@ mybatis-plus:
       id-type: assign_id
       table-underline: true
 
-# 是否开启websocket推送消息
-web-socket:
-  open: true
+# 单点登录开关
+sso:
+  openFlag: false

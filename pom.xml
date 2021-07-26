@@ -7,12 +7,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.5.RELEASE</version>
+        <version>2.4.2</version>
     </parent>
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
-    <version>7.0.1</version>
+    <version>7.1.0.Final</version>
 
     <name>guns</name>
     <description>单体前后端不分离，基于beetl模板引擎</description>
@@ -24,8 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
-        <beetl.version>3.3.2.RELEASE</beetl.version>
-        <roses.kernel.version>7.0.3</roses.kernel.version>
+        <roses.kernel.version>7.1.0.Final</roses.kernel.version>
         <docker.img.version>latest</docker.img.version>
     </properties>
 
@@ -97,7 +96,14 @@
         <!--系统管理基础业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>system-spring-boot-starter</artifactId>
+            <artifactId>system-integration-beetl</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
+        <!--c端用户-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>customer-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
@@ -136,6 +142,20 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--数据备份和迁移模块-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>migration-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
+        <!--Socket模块-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>socket-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--wrapper工具-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
@@ -164,18 +184,26 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--演示环境api-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>demo-api</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
+        <!--演示环境的业务，可选依赖-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>demo-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!--数据库驱动,可根据自己需要自行删减-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
-        </dependency>
-
-        <!-- beet模板引擎 -->
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-            <version>${beetl.version}</version>
         </dependency>
 
         <dependency>
@@ -188,6 +216,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -25,7 +25,21 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
                     return '<img data-index="' + (d.LAY_INDEX - 1) + '" src="' + url + '" class="tb-img-circle" tb-img alt=""/>';
                 }, align: 'center', unresize: true
             },
-            {field: 'fileLocation', sort: true, title: '存储位置'},
+            {
+                field: 'fileLocation', sort: true, title: '存储位置', templet: function (data) {
+                    if (data.fileLocation === 1) {
+                        return '阿里云';
+                    } else if (data.fileLocation === 2) {
+                        return '腾讯云';
+                    } else if (data.fileLocation === 3) {
+                        return 'minio';
+                    } else if (data.fileLocation === 4) {
+                        return '本地';
+                    } else {
+                        return '未知';
+                    }
+                }
+            },
             {field: 'fileOriginName', sort: true, title: '文件名称'},
             {field: 'secretFlag', sort: true, title: '是否机密'},
             {field: 'fileSuffix', sort: true, title: '文件后缀'},
@@ -71,7 +85,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
     FileInfo.search = function () {
         var queryData = {};
         queryData['fileOriginName'] = $("#fileOriginName").val();
-        //queryData['positionCode'] = $("#positionCode").val();
+        queryData['fileLocation'] = $("#fileLocation").val();
         table.reload(FileInfo.tableId, {
             where: queryData,
             page: {curr: 1}

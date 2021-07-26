@@ -181,7 +181,7 @@
             <i class="layui-icon layui-icon-password"></i>
             <input class="layui-input" id="password" name="password" placeholder="请输入登录密码" type="password" lay-verType="tips" lay-verify="required" required/>
         </div>
-        @if(constants.getCaptchaOpen()){
+        @if(security.getCaptchaOpen()){
         <div class="layui-form-item layui-input-icon-group login-captcha-group">
             <i class="layui-icon layui-icon-auz"></i>
             <input id="verKey" name="verKey" type="hidden"/>
@@ -250,7 +250,7 @@
         });
 
         // 开启验证码
-        @if(constants.getCaptchaOpen()){
+        @if(security.getCaptchaOpen()){
             getKaptcha();
         @}
 
@@ -263,7 +263,7 @@
                 // 重定向到首页
                 window.location.href = Feng.ctxPath + "/";
             }, function (data) {
-                @if(constants.getCaptchaOpen()){
+                @if(security.getCaptchaOpen()){
                     //清空输入框
                     $("#verCode").val('');
                     //刷新验证码
