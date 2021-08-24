@@ -1,0 +1,1 @@
+ALTER TABLE `sys_app` ADD COLUMN `app_icon` varchar(100) NOT NULL COMMENT '应用图标' AFTER `app_code`;
