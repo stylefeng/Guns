@@ -12,7 +12,7 @@
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
-    <version>7.1.1</version>
+    <version>7.1.2</version>
 
     <name>guns</name>
     <description>单体前后端不分离，基于beetl模板引擎</description>
