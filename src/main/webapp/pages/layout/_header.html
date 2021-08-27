@@ -15,7 +15,7 @@
 
         @if(objectUtil.isNotEmpty(layuiAppIndexMenus)){
             @for(item in layuiAppIndexMenus) {
-                <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}">${item.appName}</a></li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect><a nav-bind="${item.appCode}"><i class="layui-icon ${item.appIcon}"></i>${item.appName}</a></li>
             @}
         @}
         <!-- 小屏幕下变为下拉形式 -->
