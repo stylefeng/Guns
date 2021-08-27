@@ -1,10 +1,11 @@
 /**
  * 添加应用
  */
-layui.use(['form', 'admin', 'HttpRequest'], function () {
+layui.use(['form', 'admin', 'HttpRequest', 'iconPicker'], function () {
     var form = layui.form;
     var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
+    var iconPicker = layui.iconPicker;
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
@@ -18,6 +19,17 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         });
         request.set(data.field);
         request.start(true);
+    });
+
+    //初始化图标选择
+    iconPicker.render({
+        elem: '#appIcon',
+        type: 'fontClass',
+        search: true,
+        page: true,
+        limit: 12,
+        click: function (data) {
+        }
     });
 
 });

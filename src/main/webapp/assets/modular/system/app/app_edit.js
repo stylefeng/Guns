@@ -1,10 +1,11 @@
 /**
  * 编辑应用
  */
-layui.use(['form', 'admin', 'HttpRequest'], function () {
+layui.use(['form', 'admin', 'HttpRequest', 'iconPicker'], function () {
     var form = layui.form;
     var admin = layui.admin;
     var HttpRequest = layui.HttpRequest;
+    var iconPicker = layui.iconPicker;
 
     // 获取应用详情
     var request = new HttpRequest(Feng.ctxPath + "/sysApp/detail?appId=" + Feng.getUrlParam("appId"), 'get');
@@ -25,5 +26,18 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         request.set(data.field);
         request.start(true);
     });
+
+    //初始化图标选择
+    iconPicker.render({
+        elem: '#appIcon',
+        type: 'fontClass',
+        search: true,
+        page: true,
+        limit: 12,
+        click: function (data) {
+        }
+    });
+
+    iconPicker.checkIcon('iconPicker', result.data.appIcon);
 
 });
