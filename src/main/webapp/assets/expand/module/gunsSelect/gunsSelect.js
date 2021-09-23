@@ -29,7 +29,7 @@ layui.define(['jquery', 'HttpRequest', 'xmSelect', 'form'], function (exports) {
 
         var a = {
             init: function () {
-                console.log(JSON.stringify(where));
+                //console.log(JSON.stringify(where));
                 new HttpRequest(url, method, function (obj) {
                     for (var i = 0; i < obj.data.length; i++) {
                         $(elem).append('<option value="' + common.get(obj.data[i], fields.value) + '">' + common.get(obj.data[i], fields.name) + '</option>');
