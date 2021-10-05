@@ -1,0 +1,1 @@
+ALTER TABLE `sys_log` MODIFY COLUMN `request_params` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT 'http或方法的请求参数体' AFTER `request_url`;
