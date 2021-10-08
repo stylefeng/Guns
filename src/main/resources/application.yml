@@ -12,8 +12,8 @@ spring:
       prefix: /pages
   servlet:
     multipart:
-      max-request-size: 200MB
-      max-file-size: 200MB
+      max-request-size: 8GB
+      max-file-size: 8GB
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
