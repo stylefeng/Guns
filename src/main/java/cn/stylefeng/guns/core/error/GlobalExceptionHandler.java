@@ -242,7 +242,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MyBatisSystemException.class)
     @ResponseBody
     public ErrorResponseData persistenceException(MyBatisSystemException e) {
-        log.error(">>> mybatis操作出现异常，具体信息为：{}", e.getMessage());
+        log.error(">>> mybatis操作出现异常,", e);
         Throwable cause = e.getCause();
         if (cause instanceof PersistenceException) {
             Throwable secondCause = cause.getCause();
