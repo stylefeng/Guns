@@ -22,7 +22,7 @@ layui.use(['table', 'form', 'func', 'HttpRequest', 'util', 'upload'], function (
             {
                 title: '图片', templet: function (d) {
                     var url = d.imgUrl || Feng.ctxPath + '/sysFileInfo/previewByObjectName?fileBucket=' + d.fileBucket + '&fileObjectName=' + d.fileObjectName;
-                    return '<img data-index="' + (d.LAY_TABLE_INDEX - 1) + '" src="' + url + '" class="tb-img-circle" tb-img alt=""/>';
+                    return '<img data-index="' + (d.LAY_TABLE_INDEX) + '" src="' + url + '" class="tb-img-circle" tb-img alt=""/>';
                 }, align: 'center', unresize: true
             },
             {
