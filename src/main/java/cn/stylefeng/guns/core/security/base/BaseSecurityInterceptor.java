@@ -77,9 +77,9 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
         resourceUrlParam.setUrl(requestURI);
         ResourceDefinition resourceDefinition = resourceServiceApi.getResourceByUrl(resourceUrlParam);
 
-        // 7. 资源找不到，则当前url不被权限控制，直接放行
+        // 7. 资源找不到，则当前url不被权限控制，直接打回
         if (resourceDefinition == null) {
-            return true;
+            throw new AuthException(AuthExceptionEnum.CANT_REQUEST_UN_OPEN_API, requestURI);
         }
 
         // 8.执行真正过滤器业务，如果拦截器执行不成功会抛出异常
