@@ -1,0 +1,1 @@
+ALTER TABLE `api_resource` ADD COLUMN `current_system_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y' COMMENT '是否是当前系统资源：Y-是，N-否' AFTER `api_alias`;
