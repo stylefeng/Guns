@@ -36,7 +36,7 @@
 
 ### 配套手册
 
-[https://www.stylefeng.cn/](https://www.stylefeng.cn/)
+[https://www.stylefeng.top/](https://www.stylefeng.top/)
 
 ### 快速启动
 
