@@ -36,7 +36,7 @@
 
 ### 配套手册
 
-[https://www.stylefeng.top/](https://www.stylefeng.top/)
+[https://www.javaguns.com/](https://www.javaguns.com/)
 
 ### 快速启动
 
