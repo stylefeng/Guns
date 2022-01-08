@@ -17,7 +17,7 @@ CREATE TABLE `sys_theme`  (
 -- ----------------------------
 -- Records of sys_theme
 -- ----------------------------
-INSERT INTO `sys_theme` VALUES (1477272515573542913, 'Guns后台管理系统默认主题', '{\"themeId\":\"1477272515573542913\",\"themeName\":\"Guns后台管理系统默认主题\",\"templateId\":\"1477171926286020610\",\"GUNS_MGR_LOGIN_BACKGROUND_IMG\":\"1477299110732410882\",\"GUNS_MGR_BEI_URL\":\"https://beian.miit.gov.cn/\",\"GUNS_MGR_LOGO\":\"1477299084648034305\",\"GUNS_MGR_NAME\":\"Guns Tech.\",\"GUNS_MGR_FAVICON\":\"1477299098258550786\",\"GUNS_MGR_FOOTER_TEXT\":\"stylefeng开源技术 javaguns.com\",\"GUNS_MGR_BEI_NO\":\"京ICP备001-1\"}', '1477171926286020610', 'Y', '2022-01-01 21:36:29', 1339550467939639299, '2022-01-01 23:22:12', 1339550467939639299);
+INSERT INTO `sys_theme`(`theme_id`, `theme_name`, `theme_value`, `template_id`, `status_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1477272515573542913, 'Guns后台管理系统默认主题', '{\"themeId\":\"1477272515573542913\",\"themeName\":\"Guns后台管理系统默认主题\",\"templateId\":\"1477171926286020610\",\"GUNS_MGR_LOGIN_BACKGROUND_IMG\":\"1479751422149074948\",\"GUNS_MGR_BEI_URL\":\"https://beian.miit.gov.cn/\",\"GUNS_MGR_LOGO\":\"1479753047148322818\",\"GUNS_MGR_NAME\":\"Guns Tech.\",\"GUNS_MGR_FAVICON\":\"1479753047148322818\",\"GUNS_MGR_FOOTER_TEXT\":\"stylefeng开源技术 javaguns.com\",\"GUNS_MGR_BEI_NO\":\"京ICP备001-1\"}', '1477171926286020610', 'Y', '2022-01-01 21:36:29', 1339550467939639299, '2022-01-01 23:22:12', 1339550467939639299);
 
 -- ----------------------------
 -- Table structure for sys_theme_template
