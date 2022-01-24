@@ -57,3 +57,7 @@ mybatis-plus:
 # 单点登录开关
 sso:
   openFlag: false
+
+# 帐号错误检测开关
+login:
+  enable: true
