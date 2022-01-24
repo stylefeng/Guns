@@ -60,4 +60,4 @@ sso:
 
 # 帐号错误检测开关
 login:
-  enable: true
+  enable: false
