@@ -58,6 +58,3 @@ mybatis-plus:
 sso:
   openFlag: false
 
-# 帐号错误检测开关
-login:
-  enable: false
