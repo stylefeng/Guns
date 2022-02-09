@@ -241,6 +241,29 @@
                     <!-- 如果没有该项配置，则devtools不会起作用，即应用不会restart -->
                     <fork>true</fork>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework.boot.experimental</groupId>
+                        <artifactId>spring-boot-thin-layout</artifactId>
+                        <version>1.0.28.RELEASE</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- 加入该配置，maven package执行时会在target目录整理好依赖包 -->
+            <plugin>
+                <groupId>org.springframework.boot.experimental</groupId>
+                <artifactId>spring-boot-thin-maven-plugin</artifactId>
+                <version>1.0.28.RELEASE</version>
+                <executions>
+                    <execution>
+                        <!-- Download the dependencies at build time -->
+                        <id>resolve</id>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                        <inherited>false</inherited>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
