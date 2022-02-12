@@ -22,7 +22,7 @@ CREATE TABLE `sys_statistics_count`  (
 CREATE TABLE `sys_statistics_url`  (
   `stat_url_id` bigint(20) NOT NULL COMMENT '主键ID',
   `stat_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被统计名称',
-  `stat_menu_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被统计菜单ID',
+  `stat_menu_id` bigint(20) NULL DEFAULT NULL COMMENT '被统计菜单ID',
   `stat_url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被统计的URL',
   `always_show` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否常驻显示，Y-是，N-否',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
