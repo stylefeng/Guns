@@ -1,0 +1,1 @@
+INSERT INTO `sys_config`(`config_id`, `config_name`, `config_code`, `config_value`, `sys_flag`, `remark`, `status_flag`, `group_code`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1402549781675610505, '开发模式开关', 'DEVOPS_DEV_SWITCH_STATUS', 'true', 'Y', '在开发模式下，允许devops平台访问某些系统接口', 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
