@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.test;
 
 import cn.stylefeng.guns.modular.test.service.TranTestService;
+import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
 import cn.stylefeng.roses.kernel.scanner.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.scanner.api.annotation.GetResource;
@@ -22,15 +23,15 @@ public class TestSingleTranController {
     private TranTestService testMultiDbService;
 
     @GetResource(name = "测试单数据源事务成功", path = "/tran/single/success")
-    public Object testSuccess() {
+    public ResponseData<Object> testSuccess() {
         testMultiDbService.testSingleSuccess();
-        return new SuccessResponseData();
+        return new SuccessResponseData<>();
     }
 
     @GetResource(name = "测试单数据源事务失败", path = "/tran/single/fail")
-    public Object testFail() {
+    public ResponseData<Object> testFail() {
         testMultiDbService.testSingleFail();
-        return new SuccessResponseData();
+        return new SuccessResponseData<>();
     }
 
 }

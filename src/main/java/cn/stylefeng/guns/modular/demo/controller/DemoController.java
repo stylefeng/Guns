@@ -32,9 +32,9 @@ public class DemoController {
      * @date 2021/1/24 10:59
      */
     @GetResource(name = "示例方法", path = "/json/success")
-    public ResponseData renderSuccess() {
+    public ResponseData<?> renderSuccess() {
         demoService.demoService();
-        return new SuccessResponseData();
+        return new SuccessResponseData<>();
     }
 
     /**
@@ -47,8 +47,8 @@ public class DemoController {
      * @date 2021/1/24 10:59
      */
     @PostResource(name = "示例加密方法", path = "/encode", requiredPermission = false, requiredLogin = false, requiredEncryption = true)
-    public ResponseData encode(@RequestBody Dict dict) {
-        return new SuccessResponseData(dict);
+    public ResponseData<Dict> encode(@RequestBody Dict dict) {
+        return new SuccessResponseData<>(dict);
     }
 
 }

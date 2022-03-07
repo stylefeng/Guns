@@ -1,0 +1,1 @@
+INSERT INTO `sys_config` VALUES (1481244035229200999, '帐号密码错误次数校验开关', 'ACCOUNT_ERROR_DETECTION', 'false', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);

@@ -62,7 +62,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData missingParam(MissingServletRequestParameterException missingServletRequestParameterException) {
+    public ErrorResponseData<?> missingParam(MissingServletRequestParameterException missingServletRequestParameterException) {
         String parameterName = missingServletRequestParameterException.getParameterName();
         String parameterType = missingServletRequestParameterException.getParameterType();
         return renderJson(ValidatorExceptionEnum.MISSING_SERVLET_REQUEST_PARAMETER_EXCEPTION, parameterName, parameterType);
@@ -77,7 +77,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData httpMessageNotReadable(HttpMessageNotReadableException httpMessageNotReadableException) {
+    public ErrorResponseData<?> httpMessageNotReadable(HttpMessageNotReadableException httpMessageNotReadableException) {
         log.error("参数格式传递异常，具体信息为：{}", httpMessageNotReadableException.getMessage());
         return renderJson(ValidatorExceptionEnum.HTTP_MESSAGE_CONVERTER_ERROR);
     }
@@ -91,7 +91,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData httpMediaTypeNotSupport(HttpMediaTypeNotSupportedException httpMediaTypeNotSupportedException) {
+    public ErrorResponseData<?> httpMediaTypeNotSupport(HttpMediaTypeNotSupportedException httpMediaTypeNotSupportedException) {
         log.error("参数格式传递异常，具体信息为：{}", httpMediaTypeNotSupportedException.getMessage());
         return renderJson(ValidatorExceptionEnum.HTTP_MEDIA_TYPE_NOT_SUPPORT);
     }
@@ -105,7 +105,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData methodNotSupport(HttpServletRequest request) {
+    public ErrorResponseData<?> methodNotSupport(HttpServletRequest request) {
         String httpMethod = request.getMethod().toUpperCase();
         return renderJson(ValidatorExceptionEnum.HTTP_METHOD_NOT_SUPPORT, httpMethod);
     }
@@ -119,7 +119,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData notFound(NoHandlerFoundException e) {
+    public ErrorResponseData<?> notFound(NoHandlerFoundException e) {
         return renderJson(ValidatorExceptionEnum.NOT_FOUND);
     }
 
@@ -132,7 +132,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData methodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public ErrorResponseData<?> methodArgumentNotValidException(MethodArgumentNotValidException e) {
         String bindingResult = getArgNotValidMessage(e.getBindingResult());
         return renderJson(ValidatorExceptionEnum.VALIDATED_RESULT_ERROR, bindingResult);
     }
@@ -148,7 +148,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BindException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData bindException(BindException e) {
+    public ErrorResponseData<?> bindException(BindException e) {
         String bindingResult = getArgNotValidMessage(e.getBindingResult());
         return renderJson(ValidatorExceptionEnum.VALIDATED_RESULT_ERROR, bindingResult);
     }
@@ -162,7 +162,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ValidationException.class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponseData bindException(ValidationException e) {
+    public ErrorResponseData<?> bindException(ValidationException e) {
         if (e.getCause() instanceof ParamValidateException) {
             ParamValidateException paramValidateException = (ParamValidateException) e.getCause();
             return renderJson(paramValidateException.getErrorCode(), paramValidateException.getUserTip());
@@ -197,7 +197,7 @@ public class GlobalExceptionHandler {
             } else {
                 // 其他请求或者是ajax请求
                 response.setHeader("Guns-Session-Timeout", "true");
-                ErrorResponseData errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
+                ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
                 ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
                 return null;
             }
@@ -212,7 +212,7 @@ public class GlobalExceptionHandler {
         }
 
         // 默认响应前端json
-        ErrorResponseData errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
+        ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
         ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
         return null;
     }
@@ -226,8 +226,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorResponseData businessError(ServiceException e) {
-        log.error("业务异常，具体信息为：{}", e.getMessage());
+    public ErrorResponseData<?> businessError(ServiceException e) {
+        log.error("业务异常。", e);
         return renderJson(e.getErrorCode(), e.getUserTip(), e);
     }
 
@@ -241,7 +241,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MyBatisSystemException.class)
     @ResponseBody
-    public ErrorResponseData persistenceException(MyBatisSystemException e) {
+    public ErrorResponseData<?> persistenceException(MyBatisSystemException e) {
         log.error(">>> mybatis操作出现异常,", e);
         Throwable cause = e.getCause();
         if (cause instanceof PersistenceException) {
@@ -262,7 +262,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorResponseData serverError(Throwable e) {
+    public ErrorResponseData<?> serverError(Throwable e) {
         log.error("服务器运行异常", e);
         return renderJson(e);
     }
@@ -273,7 +273,7 @@ public class GlobalExceptionHandler {
      * @author fengshuonan
      * @date 2020/5/5 16:22
      */
-    private ErrorResponseData renderJson(String code, String message) {
+    private ErrorResponseData<?> renderJson(String code, String message) {
         return renderJson(code, message, null);
     }
 
@@ -283,7 +283,7 @@ public class GlobalExceptionHandler {
      * @author fengshuonan
      * @date 2020/5/5 16:22
      */
-    private ErrorResponseData renderJson(AbstractExceptionEnum exception, Object... params) {
+    private ErrorResponseData<?> renderJson(AbstractExceptionEnum exception, Object... params) {
         return renderJson(exception.getErrorCode(), StrUtil.format(exception.getUserTip(), params), null);
     }
 
@@ -293,7 +293,7 @@ public class GlobalExceptionHandler {
      * @author fengshuonan
      * @date 2020/5/5 16:22
      */
-    private ErrorResponseData renderJson(AbstractExceptionEnum abstractExceptionEnum) {
+    private ErrorResponseData<?> renderJson(AbstractExceptionEnum abstractExceptionEnum) {
         return renderJson(abstractExceptionEnum.getErrorCode(), abstractExceptionEnum.getUserTip(), null);
     }
 
@@ -303,7 +303,7 @@ public class GlobalExceptionHandler {
      * @author fengshuonan
      * @date 2020/5/5 16:22
      */
-    private ErrorResponseData renderJson(Throwable throwable) {
+    private ErrorResponseData<?> renderJson(Throwable throwable) {
         return renderJson(DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getErrorCode(), DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getUserTip(), throwable);
     }
 
@@ -315,13 +315,13 @@ public class GlobalExceptionHandler {
      * @author stylefeng
      * @date 2020/5/5 16:22
      */
-    private ErrorResponseData renderJson(String code, String message, Throwable throwable) {
+    private ErrorResponseData<?> renderJson(String code, String message, Throwable throwable) {
         if (ObjectUtil.isNotNull(throwable)) {
-            ErrorResponseData errorResponseData = new ErrorResponseData(code, message);
+            ErrorResponseData<?> errorResponseData = new ErrorResponseData<>(code, message);
             ExceptionUtil.fillErrorResponseData(errorResponseData, throwable, ROOT_PACKAGE_NAME);
             return errorResponseData;
         } else {
-            return new ErrorResponseData(code, message);
+            return new ErrorResponseData<>(code, message);
         }
     }
 
@@ -363,7 +363,7 @@ public class GlobalExceptionHandler {
 
         if (ProjectUtil.getSeparationFlag()) {
             response.setHeader("Guns-Session-Timeout", "true");
-            ErrorResponseData errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
+            ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
             ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
             return null;
         }
