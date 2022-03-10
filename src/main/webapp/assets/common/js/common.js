@@ -2,7 +2,7 @@
 
 // 用common.js必须加上Feng.addCtx("${ctxPath}");
 
-/* 解析数据表格templet列 */
+/* 解析数据表格template列 */
 Feng.parseData = function (res) {
     return {
         "code": res.code === "00000" ? "0" : res.code, //解析接口状态
