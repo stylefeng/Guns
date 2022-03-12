@@ -51,7 +51,7 @@
 
 Guns是一个**完全开源**的项目，源代码全部托管在Gitee上，项目源码和核心插件源码分别放在 [https://gitee.com/stylefeng/guns](https://gitee.com/stylefeng/guns) 和 [https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)。
 
-![输入图片说明](image.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2022/0312/120202_10e297a6_551203.png)
 
 ## Guns优势
 
@@ -112,9 +112,9 @@ Guns默认封装了很多功能插件，引用这些插件并使用相关接口�
 
 Guns历史版本有基于Bootstrap编写的，可以在Gitee的Tags中找到，具体地址如下：[https://gitee.com/stylefeng/guns/tags](https://gitee.com/stylefeng/guns/tags)
 
-![1-2](https://javaguns-images.oss-cn-beijing.aliyuncs.com/1-2.png)
+![1-2](https://images.gitee.com/uploads/images/2022/0312/120216_f515a89a_551203.png)
 
-![1-3](https://javaguns-images.oss-cn-beijing.aliyuncs.com/1-3.png)
+![1-3](https://images.gitee.com/uploads/images/2022/0312/120222_56739b86_551203.png)
 
 ## Guns曾获荣誉
 
@@ -130,9 +130,7 @@ Guns历史版本有基于Bootstrap编写的，可以在Gitee的Tags中找到，�
 
 *2021“科创中国”开源创新榜－－年度优秀开源产品。*
 
-![1-4](https://javaguns-images.oss-cn-beijing.aliyuncs.com/1-4.png)
-
-![1-5](https://javaguns-images.oss-cn-beijing.aliyuncs.com/1-5.png)
+![1-5](https://images.gitee.com/uploads/images/2022/0312/120246_eddacd26_551203.png)
 
 
 
