@@ -30,10 +30,6 @@
 
 -----------------------------------------------------------------------------------------------
 
-### 更新说明
-
-最新Guns 7.0已全面升级，整体模块化重构，功能更加丰富，细化。
-
 ### 配套手册
 
 [https://www.javaguns.com/](https://www.javaguns.com/)
@@ -57,8 +53,6 @@
 </table>
 
 ### Guns介绍
-
-Guns是一个**现代化的Java应用开发框架**，基于主流技术**Spring Boot2**，Guns的核心理念是**提高开发人员开发效率**，降低企业信息化系统的开发成本，提高企业整体开发水平。
 
 Guns是一个**完全开源**的项目，源代码全部托管在Gitee上，项目源码和核心插件源码分别放在 [https://gitee.com/stylefeng/guns](https://gitee.com/stylefeng/guns) 和 [https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)。
 
