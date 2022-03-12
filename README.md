@@ -51,7 +51,7 @@
 
 Guns是一个**完全开源**的项目，源代码全部托管在Gitee上，项目源码和核心插件源码分别放在 [https://gitee.com/stylefeng/guns](https://gitee.com/stylefeng/guns) 和 [https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)。
 
-![](https://javaguns-images.oss-cn-beijing.aliyuncs.com/59d05993.png)
+![输入图片说明](image.png)
 
 ## Guns优势
 
