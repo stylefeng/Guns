@@ -4,13 +4,6 @@
     <br>      
     <p align="center">
         Guns是一个现代化的Java应用开发框架，基于主流技术Spring Boot2，Guns的核心理念是提高开发人员开发效率，降低企业信息化系统的开发成本，提高企业整体开发水平。
-        <br>      
-        <br>      
-        <span>
-            <span>
-                 Guns官方交流群：(QQ群将迁移至微信群，请扫下方二维码加官方微信群)
-            </span>
-        </span>
         <br>
         <br>
         <a href="http://spring.io/projects/spring-boot">
