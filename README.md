@@ -27,6 +27,12 @@
 
 [https://www.javaguns.com/](https://www.javaguns.com/)
 
+## 直播间地址
+
+[http://live.bilibili.com/24024441](http://live.bilibili.com/24024441)
+
+2022年3月14日晚8点  Guns-DevOps
+
 ## 快速启动
 
 1. 在mysql数据库中创建guns数据库，推荐mysql 5.7版本。
