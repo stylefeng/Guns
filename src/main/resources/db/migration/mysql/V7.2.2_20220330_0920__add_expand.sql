@@ -24,6 +24,7 @@ CREATE TABLE `sys_expand`  (
 -- Records of sys_expand
 -- ----------------------------
 INSERT INTO `sys_expand` VALUES (100, '系统用户', 'user_expand', 1, 'sys_user', 'user_id', 'userId', NULL, NULL, '2022-03-30 10:52:41', 1339550467939639299);
+INSERT INTO `sys_expand` VALUES (1509151239135424513, '组织机构', 'org_expand', 1, 'hr_organization', 'org_id', 'orgId', '2022-03-30 20:51:09', 1339550467939639299, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_expand_data
@@ -58,6 +59,7 @@ CREATE TABLE `sys_expand_field`  (
   `field_type` tinyint(4) NULL DEFAULT NULL COMMENT '字段类型：1-字符串类型，2-数字类型，3-字典类型',
   `field_required` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否必填：Y-必填，N-非必填',
   `field_length` int(11) NULL DEFAULT NULL COMMENT '属性值长度，用于数字类型',
+  `field_dict_type_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '字典类型编码，用于字典类型',
   `list_show_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '列表是否显示：Y-显示，N-不显示',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
@@ -69,7 +71,7 @@ CREATE TABLE `sys_expand_field`  (
 -- ----------------------------
 -- Records of sys_expand_field
 -- ----------------------------
-INSERT INTO `sys_expand_field` VALUES (10001, 100, '身份证', 'idCard', 1, 'Y', 20, 'Y', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_expand_field` VALUES (10001, 100, '身份证', 'idCard', 1, 'Y', 20, NULL, 'Y', NULL, NULL, NULL, NULL);
 
 -- 添加数据拓展应用
 INSERT INTO `sys_app`(`app_id`, `app_name`, `app_code`, `app_icon`, `active_flag`, `status_flag`, `app_sort`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1508982167982678018, '字段拓展', 'fieldExpand', 'PlusSquareOutlined', 'N', 1, 999, 'N', '2022-03-30 09:39:19', 1339550467939639299, NULL, NULL);
