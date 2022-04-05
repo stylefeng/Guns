@@ -71,7 +71,7 @@ INSERT INTO `sys_expand_field` VALUES (1509776920974225409, 1509151239135424513,
 INSERT INTO `sys_expand_field` VALUES (1509776979216330753, 1509775027464073218, '身份证号', 'idCard', 1, 'N', NULL, NULL, 'Y', '2022-04-01 14:17:37', 1339550467939639299, NULL, NULL);
 
 -- 添加数据拓展应用
-INSERT INTO `sys_app`(`app_id`, `app_name`, `app_code`, `app_icon`, `active_flag`, `status_flag`, `app_sort`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1508982167982678018, '字段拓展', 'fieldExpand', 'PlusSquareOutlined', 'N', 1, 999, 'N', '2022-03-30 09:39:19', 1339550467939639299, NULL, NULL);
+INSERT INTO `sys_app`(`app_id`, `app_name`, `app_code`, `app_icon`, `active_flag`, `status_flag`, `app_sort`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1508982167982678018, '字段拓展', 'fieldExpand', 'BarsOutlined', 'N', 1, 999, 'N', '2022-03-30 09:39:19', 1339550467939639299, NULL, NULL);
 
 -- 添加菜单
 INSERT INTO `sys_menu`(`menu_id`, `menu_parent_id`, `menu_pids`, `menu_name`, `menu_code`, `app_code`, `menu_sort`, `status_flag`, `remark`, `layui_path`, `layui_icon`, `layui_visible`, `antdv_router`, `antdv_icon`, `antdv_component`, `antdv_link_open_type`, `antdv_link_url`, `antdv_active_url`, `antdv_visible`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1508982886328541185, -1, '[-1],', '数据设计', 'data_design', 'fieldExpand', 10.00, 1, NULL, NULL, NULL, 'N', '/expand/data/design', 'RadarChartOutlined', '', 0, NULL, NULL, 'Y', 'N', '2022-03-30 09:42:10', 1339550467939639299, '2022-03-30 09:48:17', 1339550467939639299);
