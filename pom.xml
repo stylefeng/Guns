@@ -191,13 +191,6 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
-        <!--拓展字段相关配置-->
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>expand-spring-boot-starter</artifactId>
-            <version>${roses.kernel.version}</version>
-        </dependency>
-
         <!--演示环境的业务，可选依赖-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
