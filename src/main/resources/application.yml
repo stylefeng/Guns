@@ -57,4 +57,5 @@ mybatis-plus:
 # 单点登录开关
 sso:
   openFlag: false
+  sso-client-type: server
 
