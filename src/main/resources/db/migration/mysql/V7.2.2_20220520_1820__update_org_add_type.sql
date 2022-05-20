@@ -1,0 +1,1 @@
+ALTER TABLE `hr_organization` ADD COLUMN `org_type` tinyint(4) NULL DEFAULT 1 COMMENT '组织机构类型：1-公司，2-部门' AFTER `status_flag`;
