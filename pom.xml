@@ -12,7 +12,7 @@
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
-    <version>7.2.2</version>
+    <version>7.2.3</version>
 
     <name>guns</name>
     <description>单体前后端不分离，基于beetl模板引擎</description>
@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
-        <roses.kernel.version>7.2.2</roses.kernel.version>
+        <roses.kernel.version>7.2.3</roses.kernel.version>
         <docker.img.version>latest</docker.img.version>
     </properties>
 
