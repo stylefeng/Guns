@@ -30,17 +30,19 @@ public class CustomErrorAttributes extends DefaultErrorAttributes {
         Throwable throwable = this.getError(webRequest);
         if (throwable instanceof ServiceException) {
             ServiceException serviceException = (ServiceException) throwable;
-            return BeanUtil.beanToMap(new ErrorResponseData(serviceException.getErrorCode(), serviceException.getUserTip()));
+            return BeanUtil.beanToMap(new ErrorResponseData<>(serviceException.getErrorCode(), serviceException.getUserTip()));
         }
 
         // 3.如果返回的是404 http状态码
         Integer status = (Integer) defaultErrorAttributes.get("status");
         if (status.equals(HttpStatus.HTTP_NOT_FOUND)) {
-            return BeanUtil.beanToMap(new ErrorResponseData(ValidatorExceptionEnum.NOT_FOUND.getErrorCode(), ValidatorExceptionEnum.NOT_FOUND.getUserTip()));
+            Map<String, Object> customAttrs = BeanUtil.beanToMap(new ErrorResponseData<>(ValidatorExceptionEnum.NOT_FOUND.getErrorCode(), ValidatorExceptionEnum.NOT_FOUND.getUserTip()));
+            customAttrs.putAll(defaultErrorAttributes);
+            return customAttrs;
         }
 
         // 4.无法确定的返回服务器异常
-        return BeanUtil.beanToMap(new ErrorResponseData(DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getErrorCode(), DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getUserTip()));
+        return BeanUtil.beanToMap(new ErrorResponseData<>(DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getErrorCode(), DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getUserTip()));
     }
 
 }
