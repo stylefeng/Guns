@@ -191,6 +191,13 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
+        <!--默认增加内存缓存-->
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>memory-cache-spring-boot-starter</artifactId>
+            <version>${roses.kernel.version}</version>
+        </dependency>
+
         <!--演示环境的业务，可选依赖-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
