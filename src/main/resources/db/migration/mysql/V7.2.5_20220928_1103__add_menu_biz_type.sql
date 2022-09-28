@@ -1,1 +1,1 @@
-ALTER TABLE `sys_resource` ADD COLUMN `resource_biz_type` tinyint NULL DEFAULT 2 COMMENT '资源的业务类型：1-系统类，2-业务类' AFTER `http_method`;
+ALTER TABLE `sys_resource` ADD COLUMN `resource_biz_type` tinyint NULL DEFAULT 1 COMMENT '资源的业务类型：1-业务类，2-系统类' AFTER `http_method`;
