@@ -1,0 +1,1 @@
+ALTER TABLE `sys_menu` ADD COLUMN `menu_biz_type` tinyint NULL COMMENT '菜单的业务类型：1-系统类型，2-业务类型' AFTER `remark`;
