@@ -3,6 +3,7 @@ INSERT INTO `sys_menu`(`menu_id`, `menu_parent_id`, `menu_pids`, `menu_name`, `m
 UPDATE `sys_menu` SET `menu_name` = '前台权限' WHERE `menu_id` = 1538775070967664642;
 
 UPDATE `sys_menu` SET `antdv_front_type` = 2 WHERE `app_code` = 'systemApp';
+UPDATE `sys_menu` SET `antdv_front_type` = 2 WHERE `app_code` = 'fieldExpand';
 UPDATE `sys_menu` SET `antdv_front_type` = 1 WHERE `menu_id` = 1339550467939639301;
 UPDATE `sys_menu` SET `antdv_front_type` = 1 WHERE `menu_id` = 1339550467939639302;
 UPDATE `sys_menu` SET `antdv_front_type` = 1 WHERE `menu_id` = 1339550467939639303;
