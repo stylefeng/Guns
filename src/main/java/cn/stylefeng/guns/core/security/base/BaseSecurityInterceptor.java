@@ -7,6 +7,7 @@ import cn.stylefeng.roses.kernel.auth.api.context.LoginContext;
 import cn.stylefeng.roses.kernel.auth.api.exception.AuthException;
 import cn.stylefeng.roses.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import cn.stylefeng.roses.kernel.auth.api.expander.AuthConfigExpander;
+import cn.stylefeng.roses.kernel.jwt.api.pojo.payload.DefaultJwtPayload;
 import cn.stylefeng.roses.kernel.rule.util.AntPathMatcherUtil;
 import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceUrlParam;
@@ -59,8 +60,9 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
 
         // 4. 如果token不为空，则先判断是否登录过期了，过期了就直接打回，不过期不做处理
         if (StrUtil.isNotBlank(token)) {
+            DefaultJwtPayload defaultJwtPayload = null;
             try {
-                authServiceApi.validateToken(token);
+                defaultJwtPayload = authServiceApi.validateToken(token);
             } catch (AuthException authException) {
                 if (AuthExceptionEnum.AUTH_EXPIRED_ERROR.getErrorCode().equals(authException.getErrorCode())) {
                     sessionManagerApi.destroySessionCookie();
@@ -70,6 +72,11 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
 
             // 5. 刷新用户的session的过期时间
             sessionManagerApi.refreshSession(token);
+
+            // 5.1 token没过期，但是session过期了，则从新进行会话创建操作，因为只有开启remember的用户才有这种情况
+            if (defaultJwtPayload != null && !sessionManagerApi.haveSession(token)) {
+                authServiceApi.createNewLoginInfo(token, defaultJwtPayload.getAccount());
+            }
         }
 
         // 6. 获取ResourceDefinition，可能为null
