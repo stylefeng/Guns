@@ -15,7 +15,7 @@
     <version>7.2.5</version>
 
     <name>guns</name>
-    <description>单体前后端不分离，基于beetl模板引擎</description>
+    <description>Guns主项目</description>
 
     <packaging>jar</packaging>
 
@@ -96,7 +96,7 @@
         <!--系统管理基础业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>system-integration-beetl</artifactId>
+            <artifactId>system-integration-rest</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
