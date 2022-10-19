@@ -1,1 +1,0 @@
-ALTER TABLE `hr_organization` ADD COLUMN `tax_no` VARCHAR ( 30 ) NULL COMMENT '税号' AFTER `org_type`;

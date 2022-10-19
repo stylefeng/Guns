@@ -1,1 +1,0 @@
-INSERT INTO `sys_config`(`config_id`, `config_name`, `config_code`, `config_value`, `sys_flag`, `remark`, `status_flag`, `group_code`, `del_flag`, `create_time`, `create_user`, `update_time`, `update_user`) VALUES (1581687626275000321, '登录密码是否进行RSA加密校验，false为关闭', 'SYS_AUTH_PASSWORD_RSA_VALIDATE', 'true', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);

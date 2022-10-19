@@ -1,1 +1,0 @@
-UPDATE `sys_menu` SET `layui_visible` = 'N' WHERE `menu_code` like 'theme%'
