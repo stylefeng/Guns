@@ -205,7 +205,7 @@ INSERT INTO `sys_config` VALUES (1402549781675610500, 'AES秘钥，用在数据�
 INSERT INTO `sys_config` VALUES (1402549781675610505, '开发模式开关', 'DEVOPS_DEV_SWITCH_STATUS', 'true', 'Y', '在开发模式下，允许devops平台访问某些系统接口', 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1481244035229200386, '全局日志记录，如果开启则所有请求都将记录日志', 'SYS_LOG_GLOBAL_FLAG', 'false', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, NULL, NULL);
 INSERT INTO `sys_config` VALUES (1481244035229200999, '帐号密码错误次数校验开关', 'ACCOUNT_ERROR_DETECTION', 'false', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
-INSERT INTO `sys_config` VALUES (1581687626275000321, '登录密码是否进行RSA加密校验，false为关闭', 'SYS_AUTH_PASSWORD_RSA_VALIDATE', 'true', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
+INSERT INTO `sys_config` VALUES (1581687626275000321, '登录密码是否进行RSA加密校验，false为关闭', 'SYS_AUTH_PASSWORD_RSA_VALIDATE', 'false', 'Y', NULL, 1, 'auth_config', 'N', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_database_info
