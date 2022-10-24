@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * 其他数据库操作
  *
  * @author fengshuonan
- * @date 2021/1/23 23:30
+ * @since 2021/1/23 23:30
  */
 @Service
 public class OtherDbService extends ServiceImpl<SysUserMapper, SysUser> {

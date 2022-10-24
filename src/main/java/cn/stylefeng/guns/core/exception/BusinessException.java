@@ -9,7 +9,7 @@ import static cn.stylefeng.guns.core.consts.ProjectConstants.PROJECT_MODULE_NAME
  * 业务异常
  *
  * @author fengshuonan
- * @date 2020/12/16 14:26
+ * @since 2020/12/16 14:26
  */
 public class BusinessException extends ServiceException {
 

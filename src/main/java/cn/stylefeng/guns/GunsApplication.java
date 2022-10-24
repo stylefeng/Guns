@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
  * SpringBoot方式启动类
  *
  * @author fengshuonan
- * @date 2020/12/1 17:50
+ * @since 2020/12/1 17:50
  */
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"cn.stylefeng"}, exclude = {FlywayAutoConfiguration.class, GunsDataSourceAutoConfiguration.class})

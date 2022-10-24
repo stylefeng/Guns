@@ -47,7 +47,7 @@ import static cn.stylefeng.guns.core.consts.ProjectConstants.ROOT_PACKAGE_NAME;
  * 全局异常处理器，拦截控制器层的异常
  *
  * @author fengshuonan
- * @date 2020/12/16 14:20
+ * @since 2020/12/16 14:20
  */
 @ControllerAdvice
 @Slf4j
@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
      * 请求参数缺失异常
      *
      * @author fengshuonan
-     * @date 2020/12/16 14:20
+     * @since 2020/12/16 14:20
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseBody
@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
      * HttpMessageConverter转化异常，一般为json解析异常
      *
      * @author fengshuonan
-     * @date 2020/12/16 14:21
+     * @since 2020/12/16 14:21
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseBody
@@ -86,7 +86,7 @@ public class GlobalExceptionHandler {
      * 拦截不支持媒体类型异常
      *
      * @author fengshuonan
-     * @date 2020/12/16 14:26
+     * @since 2020/12/16 14:26
      */
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     @ResponseBody
@@ -100,7 +100,7 @@ public class GlobalExceptionHandler {
      * 不受支持的http method
      *
      * @author fengshuonan
-     * @date 2020/12/16 14:56
+     * @since 2020/12/16 14:56
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseBody
@@ -114,7 +114,7 @@ public class GlobalExceptionHandler {
      * 404找不到资源
      *
      * @author fengshuonan
-     * @date 2020/12/16 14:58
+     * @since 2020/12/16 14:58
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseBody
@@ -127,7 +127,7 @@ public class GlobalExceptionHandler {
      * 请求参数校验失败，拦截 @Valid 校验失败的情况
      *
      * @author fengshuonan
-     * @date 2020/12/16 14:59
+     * @since 2020/12/16 14:59
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
@@ -143,7 +143,7 @@ public class GlobalExceptionHandler {
      * 两个注解 @Valid 和 @Validated 区别是后者可以加分组校验，前者没有分组校验
      *
      * @author fengshuonan
-     * @date 2020/12/16 15:08
+     * @since 2020/12/16 15:08
      */
     @ExceptionHandler(BindException.class)
     @ResponseBody
@@ -157,7 +157,7 @@ public class GlobalExceptionHandler {
      * 拦截 @TableUniqueValue 里抛出的异常
      *
      * @author fengshuonan
-     * @date 2020/12/26 14:05
+     * @since 2020/12/26 14:05
      */
     @ExceptionHandler(ValidationException.class)
     @ResponseBody
@@ -180,7 +180,7 @@ public class GlobalExceptionHandler {
      * 如果用户登录过期，不是ajax请求，则直接跳转到登录页面，并提示会话超时
      *
      * @author fengshuonan
-     * @date 2020/12/16 15:11
+     * @since 2020/12/16 15:11
      */
     @ExceptionHandler(AuthException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -221,7 +221,7 @@ public class GlobalExceptionHandler {
      * 拦截业务代码抛出的异常
      *
      * @author fengshuonan
-     * @date 2020/12/16 15:11
+     * @since 2020/12/16 15:11
      */
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -237,7 +237,7 @@ public class GlobalExceptionHandler {
      * 用在demo模式，拦截DemoException
      *
      * @author stylefeng
-     * @date 2020/5/5 15:19
+     * @since 2020/5/5 15:19
      */
     @ExceptionHandler(MyBatisSystemException.class)
     @ResponseBody
@@ -257,7 +257,7 @@ public class GlobalExceptionHandler {
      * 拦截未知的运行时异常
      *
      * @author fengshuonan
-     * @date 2020/12/16 15:12
+     * @since 2020/12/16 15:12
      */
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -271,7 +271,7 @@ public class GlobalExceptionHandler {
      * 渲染异常json
      *
      * @author fengshuonan
-     * @date 2020/5/5 16:22
+     * @since 2020/5/5 16:22
      */
     private ErrorResponseData<?> renderJson(String code, String message) {
         return renderJson(code, message, null);
@@ -281,7 +281,7 @@ public class GlobalExceptionHandler {
      * 渲染异常json
      *
      * @author fengshuonan
-     * @date 2020/5/5 16:22
+     * @since 2020/5/5 16:22
      */
     private ErrorResponseData<?> renderJson(AbstractExceptionEnum exception, Object... params) {
         return renderJson(exception.getErrorCode(), StrUtil.format(exception.getUserTip(), params), null);
@@ -291,7 +291,7 @@ public class GlobalExceptionHandler {
      * 渲染异常json
      *
      * @author fengshuonan
-     * @date 2020/5/5 16:22
+     * @since 2020/5/5 16:22
      */
     private ErrorResponseData<?> renderJson(AbstractExceptionEnum abstractExceptionEnum) {
         return renderJson(abstractExceptionEnum.getErrorCode(), abstractExceptionEnum.getUserTip(), null);
@@ -301,7 +301,7 @@ public class GlobalExceptionHandler {
      * 渲染异常json
      *
      * @author fengshuonan
-     * @date 2020/5/5 16:22
+     * @since 2020/5/5 16:22
      */
     private ErrorResponseData<?> renderJson(Throwable throwable) {
         return renderJson(DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getErrorCode(), DefaultBusinessExceptionEnum.SYSTEM_RUNTIME_ERROR.getUserTip(), throwable);
@@ -313,7 +313,7 @@ public class GlobalExceptionHandler {
      * 根据异常枚举和Throwable异常响应，异常信息响应堆栈第一行
      *
      * @author stylefeng
-     * @date 2020/5/5 16:22
+     * @since 2020/5/5 16:22
      */
     private ErrorResponseData<?> renderJson(String code, String message, Throwable throwable) {
         if (ObjectUtil.isNotNull(throwable)) {
@@ -331,7 +331,7 @@ public class GlobalExceptionHandler {
      * 多个信息，拼接成用逗号分隔的形式
      *
      * @author stylefeng
-     * @date 2020/5/5 16:50
+     * @since 2020/5/5 16:50
      */
     private String getArgNotValidMessage(BindingResult bindingResult) {
         if (bindingResult == null) {
@@ -357,7 +357,7 @@ public class GlobalExceptionHandler {
      * 第二种，如果是前后端分离项目，则渲染Json结果
      *
      * @author fengshuonan
-     * @date 2021/5/18 10:48
+     * @since 2021/5/18 10:48
      */
     private String renderLoginResult(HttpServletResponse response, AuthException authException, Model model) {
 

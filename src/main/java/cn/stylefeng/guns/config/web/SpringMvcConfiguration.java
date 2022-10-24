@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * spring mvc的配置
  *
  * @author fengshuonan
- * @date 2020/4/11 10:23
+ * @since 2020/4/11 10:23
  */
 @Configuration
 @Import({cn.hutool.extra.spring.SpringUtil.class, CorsFilterConfiguration.class})
@@ -36,7 +36,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      * 重写系统的默认错误提示
      *
      * @author fengshuonan
-     * @date 2020/12/16 15:36
+     * @since 2020/12/16 15:36
      */
     @Bean
     public CustomErrorAttributes gunsErrorAttributes() {
@@ -47,7 +47,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      * json自定义序列化工具,long转string
      *
      * @author fengshuonan
-     * @date 2020/12/13 17:16
+     * @since 2020/12/13 17:16
      */
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
@@ -61,7 +61,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      * 配置项目拦截器
      *
      * @author fengshuonan
-     * @date 2020/12/18 9:43
+     * @since 2020/12/18 9:43
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -73,7 +73,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      * 静态资源映射
      *
      * @author fengshuonan
-     * @date 2021/1/16 21:45
+     * @since 2021/1/16 21:45
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

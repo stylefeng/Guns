@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * 基础的Filter，一般用在权限过滤
  *
  * @author fengshuonan
- * @date 2020/12/15 22:50
+ * @since 2020/12/15 22:50
  */
 @Slf4j
 public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
@@ -99,7 +99,7 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
      * 过滤器的具体业务执行逻辑
      *
      * @author fengshuonan
-     * @date 2020/12/15 22:52
+     * @since 2020/12/15 22:52
      */
     public abstract void filterAction(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, ResourceDefinition resourceDefinition, String token);
 

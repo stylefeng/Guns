@@ -9,7 +9,7 @@ import java.util.Date;
  * 创建一个用于测试数据源的用户
  *
  * @author fengshuonan
- * @date 2021/1/23 23:29
+ * @since 2021/1/23 23:29
  */
 public class NormalUserFactory {
 
@@ -17,7 +17,7 @@ public class NormalUserFactory {
      * 创建一个用于测试数据源的用户
      *
      * @author fengshuonan
-     * @date 2021/1/23 23:29
+     * @since 2021/1/23 23:29
      */
     public static SysUser createAnUser() {
         SysUser user = new SysUser();

@@ -6,7 +6,7 @@ import cn.stylefeng.guns.GunsApplication;
  * 项目的常量
  *
  * @author fengshuonan
- * @date 2020/12/16 14:28
+ * @since 2020/12/16 14:28
  */
 public interface ProjectConstants {
 
