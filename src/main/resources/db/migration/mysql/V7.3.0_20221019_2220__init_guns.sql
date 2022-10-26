@@ -29,7 +29,7 @@ CREATE TABLE `hr_organization`  (
   `org_sort` decimal(10, 2) NOT NULL COMMENT '排序',
   `status_flag` tinyint(4) NOT NULL COMMENT '状态：1-启用，2-禁用',
   `org_type` tinyint(4) NULL DEFAULT 1 COMMENT '组织机构类型：1-公司，2-部门',
-  `tax_no` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '税号',
+  `tax_no` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '税号',
   `org_remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '描述',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '删除标记：Y-已删除，N-未删除',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -78,11 +78,11 @@ CREATE TABLE `sys_app`  (
   `app_id` bigint(20) NOT NULL COMMENT '主键id',
   `app_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '应用名称',
   `app_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编码',
-  `app_icon` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '应用图标',
+  `app_icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '应用图标',
   `active_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '是否默认激活：Y-是，N-否，激活的应用下的菜单会在首页默认展开',
   `status_flag` tinyint(4) NOT NULL COMMENT '状态：1-启用，2-禁用',
   `app_sort` int(11) NULL DEFAULT NULL COMMENT '排序',
-  `devops_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT 'N' COMMENT '是否是devops应用：Y-是，N-否',
+  `devops_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'N' COMMENT '是否是devops应用：Y-是，N-否',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '是否删除：Y-已删除，N-未删除',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
@@ -351,7 +351,7 @@ CREATE TABLE `sys_expand`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`expand_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '业务拓展' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '业务拓展' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_expand
@@ -372,7 +372,7 @@ CREATE TABLE `sys_expand_data`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`expand_data_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '业务拓展-具体数据' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '业务拓展-具体数据' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_expand_data
@@ -396,7 +396,7 @@ CREATE TABLE `sys_expand_field`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`field_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '业务拓展-字段信息' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '业务拓展-字段信息' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_expand_field
@@ -467,7 +467,7 @@ CREATE TABLE `sys_group`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`group_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '业务分组' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '业务分组' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_group
@@ -508,7 +508,7 @@ CREATE TABLE `sys_login_log`  (
   `llg_id` bigint(20) NOT NULL COMMENT '主键',
   `llg_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '日志名称',
   `llg_succeed` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否执行成功',
-  `llg_message` text CHARACTER SET utf8 COLLATE utf8_bin NULL COMMENT '具体消息',
+  `llg_message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '具体消息',
   `llg_ip_address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '登录ip',
   `user_id` bigint(20) NULL DEFAULT NULL COMMENT '用户id',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -534,7 +534,7 @@ CREATE TABLE `sys_menu`  (
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
   `layui_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单的路径，适用于layui-beetl版本',
   `layui_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '菜单的图标，适用于layui-beetl版本',
-  `layui_visible` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT 'Y' COMMENT '是否可见(layui版用)：Y-是，N-否',
+  `layui_visible` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'Y' COMMENT '是否可见(layui版用)：Y-是，N-否',
   `antdv_router` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '路由地址，浏览器显示的URL，例如/menu，适用于antdvue版本',
   `antdv_icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'icon-default' COMMENT '图标，适用于antdvue版本',
   `antdv_component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '前端组件名，适用于antdvue版本',
@@ -1060,7 +1060,7 @@ CREATE TABLE `sys_role`  (
   `data_scope_type` tinyint(4) NOT NULL DEFAULT 1 COMMENT '数据范围类型：10-仅本人数据，20-本部门数据，30-本部门及以下数据，40-指定部门数据，50-全部数据',
   `status_flag` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态：1-启用，2-禁用',
   `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `admin_flag` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否是管理员角色，管理员角色只能管理后台相关菜单',
+  `admin_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否是管理员角色，管理员角色只能管理后台相关菜单',
   `role_system_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '是否是系统角色：Y-是，N-否。系统角色不能删除',
   `role_type_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '字典:角色类型',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'N' COMMENT '是否删除：Y-已删除，N-未删除',
@@ -1259,7 +1259,7 @@ CREATE TABLE `sys_statistics_count`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`stat_count_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '常用功能的统计次数' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '常用功能的统计次数' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_statistics_count
@@ -1279,7 +1279,7 @@ CREATE TABLE `sys_statistics_url`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`stat_url_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '常用功能列表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '常用功能列表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_statistics_url
@@ -1315,7 +1315,7 @@ CREATE TABLE `sys_theme`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`theme_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统主题' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统主题' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_theme
@@ -1336,7 +1336,7 @@ CREATE TABLE `sys_theme_template`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`template_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统主题-模板' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统主题-模板' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_theme_template
@@ -1359,7 +1359,7 @@ CREATE TABLE `sys_theme_template_field`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`field_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统主题-模板属性' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统主题-模板属性' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_theme_template_field
@@ -1384,7 +1384,7 @@ CREATE TABLE `sys_theme_template_rel`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `update_user` bigint(20) NULL DEFAULT NULL COMMENT '修改人',
   PRIMARY KEY (`relation_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统主题-模板配置关联关系' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统主题-模板配置关联关系' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_theme_template_rel
@@ -1674,20 +1674,20 @@ CREATE TABLE `toc_customer`  (
   `customer_id` bigint(20) NOT NULL COMMENT '主键id',
   `account` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '账号',
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码，BCrypt',
-  `old_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '旧密码',
-  `old_password_salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '旧的密码盐',
+  `old_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '旧密码',
+  `old_password_salt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '旧的密码盐',
   `nick_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '昵称（显示名称）',
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮箱',
   `telephone` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '手机',
-  `verify_code` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '邮箱或手机验证码',
+  `verify_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '邮箱或手机验证码',
   `verified_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'N' COMMENT '是否已经邮箱或手机验证通过：Y-通过，N-未通过',
   `avatar` bigint(20) NULL DEFAULT NULL COMMENT '用户头像（文件表id）',
   `avatar_object_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户头像的文件全名',
   `score` int(11) NULL DEFAULT NULL COMMENT '用户积分',
   `status_flag` tinyint(4) NULL DEFAULT NULL COMMENT '用户状态：1-启用，2-禁用',
-  `secret_key` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户秘钥，用在调用会员校验等',
+  `secret_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户秘钥，用在调用会员校验等',
   `member_expire_time` datetime(0) NULL DEFAULT NULL COMMENT '会员截止日期，到期时间',
-  `last_login_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '上次登录ip',
+  `last_login_ip` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '上次登录ip',
   `last_login_time` datetime(0) NULL DEFAULT NULL COMMENT '上次登录时间',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人',
