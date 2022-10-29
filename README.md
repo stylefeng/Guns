@@ -29,6 +29,10 @@
 
 ## 快速启动
 
+Guns v7.3.0前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin](https://gitee.com/stylefeng/guns-vue3-admin)
+
+以下为后台启动的过程：
+
 1. 在mysql数据库中创建guns数据库，推荐mysql 5.7或8版本。
 
 2. 修改`application-local.yml`中的数据库连接配置连接到您的数据库。
@@ -47,6 +51,45 @@
     </tr>
 </table>
 
+## 更新日志
+
+### v7.3.0
+
+最新v7.3.0版本，有两个大的新特性：
+
+1. 移除前后端不分离Layui的前端界面，提供Vue版本的前端集成。从v7.3.0起，将不再支持Layui版本的更新（如需旧版本可以在Gitee Tag中找到历史版本）。
+
+2. 提供对Guns-DevOps的快速集成方式。之前DevOps平台仅支持CentOS的一键部署，现在使用v7.3.0可以通过pom集成的方式，直接启动Guns项目就可以启动Guns-DevOps平台，但仍需配置秘钥。
+
+#### devops集成指南
+
+devops功能以Jar包集成的方式集成到项目，Guns-DevOps功能不开放源码。
+
+1. 下载[Guns私服库的maven settings.xml](https://gitee.com/stylefeng/guns/blob/master/_devops/settings.xml) 替换掉你的本地的maven配置文件。
+
+2. 在Guns项目的pom.xml中引入如下模块
+
+```xml
+<!--Guns-DevOps集成-->
+<dependency>
+    <groupId>cn.stylefeng.roses</groupId>
+    <artifactId>kernel-s-devops-integration</artifactId>
+    <version>${roses.kernel.version}</version>
+</dependency>
+```
+
+3. **关键**，在[https://javaguns.com/](https://javaguns.com/) 官网注册一个号，在官网右上角个人信息，申请一个平台秘钥，并在`application.yml`中配置`user.key`
+
+```shell
+# Guns-DevOps平台秘钥
+user:
+  key: xxxxxxxx
+```
+
+4. 启动项目后，界面上点击右上角，即可跳转到Guns-DevOps平台
+
+5. 项目上线后，再把Guns-DevOps相关依赖删掉，以减轻Jar包的重量
+
 ## Guns介绍
 
 Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boot2 + Vue3 + Antd Vue**，Guns基于**插件化架构**，通过灵活组装插件，可以进行集成和拓展相关功能。
@@ -61,42 +104,15 @@ Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boo
 
 经过多年发展，Guns已在业界具有一定影响力。Guns技术架构可以直接应用到任何软件产品和技术公司自身的技术体系建设中，帮助企业解决**规范问题**，解决**复用问题**，解决**架构问题**。
 
-![](https://javaguns-images.oss-cn-beijing.aliyuncs.com/4e63346d.png)
+![](.README_images/114c7bb4.png)
 
-![](https://javaguns-images.oss-cn-beijing.aliyuncs.com/223a7ade.png)
+![](.README_images/4e63346d.png)
 
-![](https://javaguns-images.oss-cn-beijing.aliyuncs.com/9f05f0d3.png)
+![](.README_images/223a7ade.png)
 
-![](https://javaguns-images.oss-cn-beijing.aliyuncs.com/49e229cb.png)
+![](.README_images/9f05f0d3.png)
 
-## 更新日志
-
-### v7.3.0
-
-最新v7.3.0版本，有两个大的新特性：
-
-1. 移除前后端不分离Layui的前端界面，提供Vue版本的前端集成。从v7.3.0起，将不再支持Layui版本的更新（如需旧版本可以在Gitee Tag中找到历史版本）。
-
-2. 提供对Guns-DevOps的快速集成方式。之前DevOps平台仅支持CentOS的一键部署，现在使用v7.3.0可以通过pom集成的方式，直接启动Guns项目就可以启动Guns-DevOps平台，但仍需配置秘钥。
-
-#### devops集成指南
-
-1. 下载[Guns私服库的maven settings.xml](https://gitee.com/stylefeng/guns/blob/dev-7.3.0/_devops/settings.xml)，替换掉你的本地maven配置文件。
-
-2. pom.xml中引入如下模块
-
-```xml
-<!--Guns-DevOps集成-->
-<dependency>
-    <groupId>cn.stylefeng.roses</groupId>
-    <artifactId>kernel-s-devops-integration</artifactId>
-    <version>${roses.kernel.version}</version>
-</dependency>
-```
-
-3. 启动项目后，前端点击右上角，即可跳转到Guns-DevOps界面
-
-4. 项目上线后，可删掉相关依赖，减轻Jar包的重量
+![](.README_images/49e229cb.png)
 
 ## Guns功能列表
 
@@ -159,6 +175,6 @@ Guns默认封装了很多功能插件，引用这些插件并使用相关接口�
 
 *2021“科创中国”开源创新榜－－年度优秀开源产品。*
 
-![1-4](https://javaguns-images.oss-cn-beijing.aliyuncs.com/1-4.png)
+![1-4](.README_images/1-4.png)
 
-![1-5](https://javaguns-images.oss-cn-beijing.aliyuncs.com/1-5.png)
+![1-5](.README_images/1-5.png)
