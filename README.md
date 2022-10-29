@@ -23,7 +23,7 @@
 
 -----------------------------------------------------------------------------------------------
 
-## 配套手册
+## 官方网站
 
 [https://www.javaguns.com/](https://www.javaguns.com/)
 
@@ -78,6 +78,25 @@ Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boo
 1. 移除前后端不分离Layui的前端界面，提供Vue版本的前端集成。从v7.3.0起，将不再支持Layui版本的更新（如需旧版本可以在Gitee Tag中找到历史版本）。
 
 2. 提供对Guns-DevOps的快速集成方式。之前DevOps平台仅支持CentOS的一键部署，现在使用v7.3.0可以通过pom集成的方式，直接启动Guns项目就可以启动Guns-DevOps平台，但仍需配置秘钥。
+
+#### devops集成指南
+
+1. 下载[Guns私服库的maven settings.xml](https://gitee.com/stylefeng/guns/blob/dev-7.3.0/_devops/settings.xml)，替换掉你的本地maven配置文件。
+
+2. pom.xml中引入如下模块
+
+```xml
+<!--Guns-DevOps集成-->
+<dependency>
+    <groupId>cn.stylefeng.roses</groupId>
+    <artifactId>kernel-s-devops-integration</artifactId>
+    <version>${roses.kernel.version}</version>
+</dependency>
+```
+
+3. 启动项目后，前端点击右上角，即可跳转到Guns-DevOps界面
+
+4. 项目上线后，可删掉相关依赖，减轻Jar包的重量
 
 ## Guns功能列表
 
