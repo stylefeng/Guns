@@ -81,12 +81,14 @@ devops功能以Jar包集成的方式集成到项目，Guns-DevOps功能不开放
 3. **关键**，在[https://javaguns.com/](https://javaguns.com/) 官网注册一个号，在官网右上角个人信息，申请一个平台秘钥，并在`application.yml`中配置`user.key`
 
 ```shell
-# Guns-DevOps平台秘钥
+# yml配置文件中加入如下配置
 user:
   key: xxxxxxxx
 ```
 
 4. 启动项目后，界面上点击右上角，即可跳转到Guns-DevOps平台
+
+![](.README_images/1ae18fee.png)
 
 5. 项目上线后，再把Guns-DevOps相关依赖删掉，以减轻Jar包的重量
 
