@@ -65,7 +65,7 @@ Guns v7.3.0前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin]
 
 devops功能以Jar包集成的方式集成到项目，Guns-DevOps功能不开放源码。
 
-1. 下载[Guns私服库的maven settings.xml](https://gitee.com/stylefeng/guns/blob/master/_devops/settings.xml) 替换掉你的本地的maven配置文件。
+1. [点此下载Guns私服库的maven settings.xml](https://gitee.com/stylefeng/guns/blob/master/_devops/settings.xml) 替换掉你的本地的maven配置文件。
 
 2. 在Guns项目的pom.xml中引入如下模块
 
@@ -103,8 +103,6 @@ Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boo
 核心包：[https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)
 
 经过多年发展，Guns已在业界具有一定影响力。Guns技术架构可以直接应用到任何软件产品和技术公司自身的技术体系建设中，帮助企业解决**规范问题**，解决**复用问题**，解决**架构问题**。
-
-![](.README_images/114c7bb4.png)
 
 ![](.README_images/4e63346d.png)
 
