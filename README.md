@@ -82,7 +82,7 @@ devops功能以Jar包集成的方式集成到项目，Guns-DevOps功能不开放
 </dependency>
 ```
 
-3. **关键**，在[https://javaguns.com/](https://javaguns.com/) 官网注册一个号，在官网右上角个人信息，申请一个平台秘钥，并在`application.yml`中配置`user.key`
+3. **关键步骤**，在[https://javaguns.com/](https://javaguns.com/) 官网注册一个号，在官网右上角个人信息，申请一个平台秘钥，并在`application.yml`中配置`user.key`
 
 ```shell
 # yml配置文件中加入如下配置
