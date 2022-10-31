@@ -33,7 +33,7 @@ Guns v7.3.0前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin]
 
 以下为后台启动的过程：
 
-**启动前注意事项，最新v7.3.0的核心包同步到中央仓库失败，再次同步会有延迟，请先手动下载Roses项目，并本地install一下Roses核心包到本地Maven仓库**
+**启动前注意事项，最新v7.3.0的核心包同步到中央仓库失败，再次同步需要等待几天，请先手动下载Roses项目，并本地install一下Roses核心包到本地Maven仓库**
 
 Roses项目的地址，下载master分支即可：[https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)
 
@@ -57,7 +57,7 @@ Roses项目的地址，下载master分支即可：[https://gitee.com/stylefeng/r
 
 ## 更新日志
 
-### v7.3.0
+### v7.3.0-2022年10月31日
 
 最新v7.3.0版本，有两个大的新特性：
 
