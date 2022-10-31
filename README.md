@@ -33,6 +33,10 @@ Guns v7.3.0前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin]
 
 以下为后台启动的过程：
 
+**启动前注意事项，最新v7.3.0的核心包同步到中央仓库失败，再次同步会有延迟，请先手动下载Roses项目，并本地install一下Roses核心包到本地Maven仓库**
+
+Roses项目的地址，下载master分支即可：[https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)
+
 1. 在mysql数据库中创建guns数据库，推荐mysql 5.7或8版本。
 
 2. 修改`application-local.yml`中的数据库连接配置连接到您的数据库。
