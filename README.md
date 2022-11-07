@@ -29,13 +29,9 @@
 
 ## 快速启动
 
-Guns v7.3.0前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin](https://gitee.com/stylefeng/guns-vue3-admin)
+Guns v7.3.1前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin](https://gitee.com/stylefeng/guns-vue3-admin)
 
 以下为后台启动的过程：
-
-**启动前注意事项，最新v7.3.0的核心包同步到中央仓库失败，再次同步需要等待几天，请先手动下载Roses项目，并本地install一下Roses核心包到本地Maven仓库**
-
-Roses项目的地址，下载master分支即可：[https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)
 
 1. 在mysql数据库中创建guns数据库，推荐mysql 5.7或8版本。
 
@@ -56,6 +52,10 @@ Roses项目的地址，下载master分支即可：[https://gitee.com/stylefeng/r
 </table>
 
 ## 更新日志
+
+### v7.3.1-2022年11月7日
+
+更新7.3.1版本的核心包，Roses核心包已经推送至中央仓库，无需手动本地install roses模块即可启动。
 
 ### v7.3.0-2022年10月31日
 
@@ -100,7 +100,7 @@ user:
 
 Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boot2 + Vue3 + Antd Vue**，Guns基于**插件化架构**，通过灵活组装插件，可以进行集成和拓展相关功能。
 
-**Guns v7.3.0**已经发布，前后端代码以及核心包源码，均可在如下Gitee仓库可找到：
+**Guns v7.3.1**已经发布，前后端代码以及核心包源码，均可在如下Gitee仓库可找到：
 
 前端代码：[https://gitee.com/stylefeng/guns-vue3-admin](https://gitee.com/stylefeng/guns-vue3-admin)
 
