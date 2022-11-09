@@ -75,7 +75,7 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
 
             // 5.1 token没过期，但是session过期了，则从新进行会话创建操作，因为只有开启remember的用户才有这种情况
             if (defaultJwtPayload != null && !sessionManagerApi.haveSession(token)) {
-                authServiceApi.createNewLoginInfo(token, defaultJwtPayload.getAccount());
+                authServiceApi.createNewLoginInfo(token, defaultJwtPayload);
             }
         }
 
