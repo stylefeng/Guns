@@ -1,5 +1,6 @@
 CREATE TABLE `sys_file_business`  (
   `file_business_id` bigint(20) NOT NULL COMMENT '主键id',
+  `business_code` varchar(255) NULL DEFAULT NULL COMMENT '业务的编码，业务自定义',
   `business_id` bigint(20) NULL DEFAULT NULL COMMENT '业务主键id',
   `file_id` bigint(20) NULL DEFAULT NULL COMMENT '关联文件表的id',
   `download_count` int(11) NULL DEFAULT 0 COMMENT '下载次数',
