@@ -7,12 +7,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.2</version>
+        <version>2.6.14</version>
     </parent>
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
-    <version>7.3.4</version>
+    <version>7.4.0</version>
 
     <name>guns</name>
     <description>Guns主项目</description>
@@ -24,8 +24,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
-        <roses.kernel.version>7.3.4</roses.kernel.version>
+        <roses.kernel.version>7.4.0</roses.kernel.version>
         <docker.img.version>latest</docker.img.version>
+        <flyway.version>7.1.1</flyway.version>
     </properties>
 
     <dependencies>
@@ -56,6 +57,17 @@
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>db-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>flyway-core</artifactId>
+                    <groupId>org.flywaydb</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
         </dependency>
 
         <!--文件管理-->
