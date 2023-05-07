@@ -1,6 +1,6 @@
 package cn.stylefeng.guns.core.consts;
 
-import cn.stylefeng.guns.GunsApplication;
+import cn.stylefeng.guns.ProjectStartApplication;
 
 /**
  * 项目的常量
@@ -23,6 +23,6 @@ public interface ProjectConstants {
     /**
      * 项目的包名，例如cn.stylefeng.guns
      */
-    String ROOT_PACKAGE_NAME = GunsApplication.class.getPackage().getName();
+    String ROOT_PACKAGE_NAME = ProjectStartApplication.class.getPackage().getName();
 
 }
