@@ -13,7 +13,6 @@ import cn.stylefeng.roses.kernel.rule.exception.enums.defaults.DefaultBusinessEx
 import cn.stylefeng.roses.kernel.rule.pojo.response.ErrorResponseData;
 import cn.stylefeng.roses.kernel.rule.util.ExceptionUtil;
 import cn.stylefeng.roses.kernel.rule.util.HttpServletUtil;
-import cn.stylefeng.roses.kernel.rule.util.ProjectUtil;
 import cn.stylefeng.roses.kernel.rule.util.ResponseRenderUtil;
 import cn.stylefeng.roses.kernel.validator.api.exception.ParamValidateException;
 import cn.stylefeng.roses.kernel.validator.api.exception.enums.ValidatorExceptionEnum;
@@ -360,16 +359,10 @@ public class GlobalExceptionHandler {
      * @since 2021/5/18 10:48
      */
     private String renderLoginResult(HttpServletResponse response, AuthException authException, Model model) {
-
-        if (ProjectUtil.getSeparationFlag()) {
-            response.setHeader("Guns-Session-Timeout", "true");
-            ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
-            ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
-            return null;
-        }
-
-        model.addAttribute("tips", authException.getUserTip());
-        return "/login.html";
+        response.setHeader("Guns-Session-Timeout", "true");
+        ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
+        ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
+        return null;
     }
 
 }
