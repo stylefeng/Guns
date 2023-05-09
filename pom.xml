@@ -45,10 +45,10 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
-        <!--系统配置-->
+        <!--系统配置，采用内存缓存实现-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>config-spring-boot-starter</artifactId>
+            <artifactId>config-spring-boot-starter-memory</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
@@ -108,7 +108,7 @@
         <!--系统管理基础业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>system-integration-rest</artifactId>
+            <artifactId>system-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
@@ -151,13 +151,6 @@
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
             <artifactId>message-spring-boot-starter</artifactId>
-            <version>${roses.kernel.version}</version>
-        </dependency>
-
-        <!--数据备份和迁移模块-->
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>migration-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
