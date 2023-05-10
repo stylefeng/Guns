@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class TranTestService {
 
     @Resource
-    private GunsDbService gunsDbService;
+    private MasterDbService gunsDbService;
 
     @Resource
     private OtherDbService otherDbService;

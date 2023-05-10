@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @since 2021/1/23 23:29
  */
 @Service
-public class GunsDbService extends ServiceImpl<SysUserMapper, SysUser> {
+public class MasterDbService extends ServiceImpl<SysUserMapper, SysUser> {
 
     @Resource
     private SysUserService sysUserService;
