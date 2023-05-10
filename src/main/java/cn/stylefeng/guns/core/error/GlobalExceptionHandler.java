@@ -195,7 +195,6 @@ public class GlobalExceptionHandler {
                 return this.renderLoginResult(response, authException, model);
             } else {
                 // 其他请求或者是ajax请求
-                response.setHeader("Guns-Session-Timeout", "true");
                 ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
                 ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
                 return null;
@@ -359,7 +358,6 @@ public class GlobalExceptionHandler {
      * @since 2021/5/18 10:48
      */
     private String renderLoginResult(HttpServletResponse response, AuthException authException, Model model) {
-        response.setHeader("Guns-Session-Timeout", "true");
         ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
         ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
         return null;
