@@ -1,6 +1,6 @@
 package cn.stylefeng.guns;
 
-import cn.stylefeng.roses.kernel.db.starter.GunsDataSourceAutoConfiguration;
+import cn.stylefeng.roses.kernel.db.starter.SingleDataSourceAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
  * @since 2020/12/1 17:50
  */
 @Slf4j
-@SpringBootApplication(scanBasePackages = {"cn.stylefeng"}, exclude = {FlywayAutoConfiguration.class, GunsDataSourceAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = {"cn.stylefeng"}, exclude = {FlywayAutoConfiguration.class, SingleDataSourceAutoConfiguration.class})
 public class ProjectStartApplication {
 
     public static void main(String[] args) {
