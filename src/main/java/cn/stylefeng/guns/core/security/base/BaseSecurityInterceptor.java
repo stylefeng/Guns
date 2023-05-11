@@ -65,7 +65,6 @@ public abstract class BaseSecurityInterceptor implements HandlerInterceptor {
                 defaultJwtPayload = authServiceApi.validateToken(token);
             } catch (AuthException authException) {
                 if (AuthExceptionEnum.AUTH_EXPIRED_ERROR.getErrorCode().equals(authException.getErrorCode())) {
-                    sessionManagerApi.destroySessionCookie();
                     throw authException;
                 }
             }
