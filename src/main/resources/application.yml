@@ -37,12 +37,6 @@ scanner:
   open: true
   entity-scan-package: cn.stylefeng
 
-# 日志记录
-sys-log:
-  # db-数据库，file-文件
-  type: db
-  file-save-path: _sys_logs
-
 mybatis-plus:
   mapper-locations: classpath*:cn/stylefeng/**/mapping/*.xml
   configuration:
