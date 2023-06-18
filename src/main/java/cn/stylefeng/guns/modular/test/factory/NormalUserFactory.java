@@ -1,7 +1,7 @@
 package cn.stylefeng.guns.modular.test.factory;
 
 import cn.hutool.core.util.RandomUtil;
-import cn.stylefeng.roses.kernel.system.modular.user.entity.SysUser;
+import cn.stylefeng.roses.kernel.sys.modular.user.entity.SysUser;
 
 import java.util.Date;
 

@@ -11,7 +11,7 @@ import cn.stylefeng.roses.kernel.auth.api.pojo.payload.DefaultJwtPayload;
 import cn.stylefeng.roses.kernel.rule.util.AntPathMatcherUtil;
 import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceUrlParam;
-import cn.stylefeng.roses.kernel.system.api.ResourceServiceApi;
+import cn.stylefeng.roses.kernel.sys.api.ResourceServiceApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
