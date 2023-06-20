@@ -1,8 +1,7 @@
 package cn.stylefeng.guns.config.web;
 
 import cn.stylefeng.guns.core.error.CustomErrorAttributes;
-import cn.stylefeng.guns.core.security.AuthJwtTokenSecurityInterceptor;
-import cn.stylefeng.guns.core.security.PermissionSecurityInterceptor;
+import cn.stylefeng.guns.core.security.TokenAndPermissionInterceptor;
 import cn.stylefeng.roses.kernel.wrapper.field.jackson.CustomJacksonIntrospector;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
@@ -26,10 +25,7 @@ import javax.annotation.Resource;
 public class SpringMvcConfiguration implements WebMvcConfigurer {
 
     @Resource
-    private AuthJwtTokenSecurityInterceptor authJwtTokenSecurityInterceptor;
-
-    @Resource
-    private PermissionSecurityInterceptor permissionSecurityInterceptor;
+    private TokenAndPermissionInterceptor tokenAndPermissionInterceptor;
 
     /**
      * 重写系统的默认错误提示
@@ -51,7 +47,8 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
         return jacksonObjectMapperBuilder -> {
-            jacksonObjectMapperBuilder.serializerByType(Long.class, ToStringSerializer.instance).serializerByType(Long.TYPE, ToStringSerializer.instance);
+            jacksonObjectMapperBuilder.serializerByType(Long.class, ToStringSerializer.instance)
+                    .serializerByType(Long.TYPE, ToStringSerializer.instance);
             jacksonObjectMapperBuilder.annotationIntrospector(new CustomJacksonIntrospector());
         };
     }
@@ -64,8 +61,7 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authJwtTokenSecurityInterceptor);
-        registry.addInterceptor(permissionSecurityInterceptor);
+        registry.addInterceptor(tokenAndPermissionInterceptor);
     }
 
     /**
