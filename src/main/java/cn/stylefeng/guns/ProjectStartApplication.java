@@ -1,7 +1,6 @@
 package cn.stylefeng.guns;
 
 import cn.stylefeng.roses.kernel.db.starter.SingleDataSourceAutoConfiguration;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
