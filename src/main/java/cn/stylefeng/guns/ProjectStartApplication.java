@@ -21,18 +21,6 @@ public class ProjectStartApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProjectStartApplication.class, args);
         log.info(ProjectStartApplication.class.getSimpleName() + " is success!");
-
-        // 等上线去掉
-        while (true) {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            System.out.println(IdWorker.getId());
-        }
-
     }
 
 }
