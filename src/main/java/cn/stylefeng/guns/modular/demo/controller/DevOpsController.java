@@ -6,11 +6,13 @@ import cn.stylefeng.roses.kernel.auth.api.pojo.auth.LoginRequest;
 import cn.stylefeng.roses.kernel.auth.api.pojo.auth.LoginResponse;
 import cn.stylefeng.roses.kernel.rule.enums.StatusEnum;
 import cn.stylefeng.roses.kernel.rule.enums.YesOrNotEnum;
+import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
 import cn.stylefeng.roses.kernel.scanner.api.annotation.ApiResource;
 import cn.stylefeng.roses.kernel.scanner.api.annotation.GetResource;
 import cn.stylefeng.roses.kernel.scanner.api.annotation.PostResource;
+import cn.stylefeng.roses.kernel.sys.api.exception.enums.UserExceptionEnum;
 import cn.stylefeng.roses.kernel.sys.modular.user.entity.SysUser;
 import cn.stylefeng.roses.kernel.sys.modular.user.pojo.request.SysUserRequest;
 import cn.stylefeng.roses.kernel.sys.modular.user.service.SysUserService;
@@ -77,6 +79,22 @@ public class DevOpsController {
         List<SysUser> list = this.sysUserService.list(userLambdaQueryWrapper);
         List<SysUserRequest> collect = list.stream().map(item -> BeanUtil.toBean(item, SysUserRequest.class)).collect(Collectors.toList());
         return new SuccessResponseData<>(collect);
+    }
+
+    /**
+     * 根据用户主键获取用户对应的token
+     *
+     * @author majianguo
+     * @since 2022/1/17 14:24
+     **/
+    @GetResource(name = "根据用户主键获取用户对应的token", path = "/sysUser/getTokenByUserId")
+    public ResponseData<String> getTokenByUserId(Long userId) {
+        SysUser sysUser = this.sysUserService.getById(userId);
+        if (sysUser == null) {
+            throw new ServiceException(UserExceptionEnum.REQUEST_USER_STATUS_EMPTY);
+        }
+        LoginResponse loginResponse = authServiceApi.loginWithUserName(sysUser.getAccount());
+        return new SuccessResponseData<>(loginResponse.getToken());
     }
 
 }
