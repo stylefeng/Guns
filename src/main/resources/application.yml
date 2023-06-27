@@ -50,6 +50,9 @@ mybatis-plus:
     db-config:
       id-type: assign_id
       table-underline: true
+      logic-delete-field: del_flag
+      logic-delete-value: Y
+      logic-not-delete-value: N
 
 # 单点登录开关
 sso:
