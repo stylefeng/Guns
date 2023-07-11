@@ -158,7 +158,7 @@ CREATE TABLE `sys_config`  (
   UNIQUE INDEX `code_unique`(`config_code`) USING BTREE COMMENT '配置编码唯一索引'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '参数配置' ROW_FORMAT = Dynamic;
 
-INSERT INTO `sys_config` VALUES (1, '系统配置是否已经初始化的标识', 'SYS_CONFIG_INIT_FLAG', 'true', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, '2023-05-11 11:10:28', 1339550467939639299);
+INSERT INTO `sys_config` VALUES (1, '系统配置是否已经初始化的标识', 'SYS_CONFIG_INIT_FLAG', 'false', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, '2023-05-11 11:10:28', 1339550467939639299);
 INSERT INTO `sys_config` VALUES (4, 'Linux本地文件保存路径', 'SYS_LOCAL_FILE_SAVE_PATH_LINUX', '/tmp/tempFilePath', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, '2023-05-11 11:10:28', 1339550467939639299);
 INSERT INTO `sys_config` VALUES (5, 'Windows本地文件保存路径', 'SYS_LOCAL_FILE_SAVE_PATH_WINDOWS', 'D:\\tempFilePath', 'Y', NULL, 1, 'file_config', 'N', NULL, NULL, '2023-05-11 11:10:28', 1339550467939639299);
 INSERT INTO `sys_config` VALUES (6, '不需要过滤的url', 'SYS_NONE_SECURITY_URLS', '/assets/**,/login,/swagger-ui.html,/favicon.ico,/swagger-ui/**,/error,/webSocket/*,/guns-devops/**,', 'Y', NULL, 1, 'sys_config', 'N', NULL, NULL, NULL, NULL);
