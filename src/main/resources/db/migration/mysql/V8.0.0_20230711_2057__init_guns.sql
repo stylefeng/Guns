@@ -992,3 +992,22 @@ CREATE TABLE `toc_customer`  (
   `update_user` bigint NULL DEFAULT NULL COMMENT '更新人',
   PRIMARY KEY (`customer_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = 'C端用户表' ROW_FORMAT = Dynamic;
+
+CREATE TABLE `sys_area`  (
+  `area_id` bigint NOT NULL COMMENT '区域id',
+  `area_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '区域编码',
+  `area_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '区域全称',
+  `parent_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '上级区域编码',
+  `area_level` int NULL DEFAULT NULL COMMENT '区域级别',
+  `area_sort` decimal(20, 2) NULL DEFAULT 9999.00 COMMENT '排序码',
+  `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT 'N' COMMENT '是否删除',
+  `area_pids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所有的上级区域编码,用逗号分隔',
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `create_user` bigint NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  `update_user` bigint NULL DEFAULT NULL,
+  PRIMARY KEY (`area_id`) USING BTREE,
+  INDEX `area_code`(`area_code`) USING BTREE,
+  INDEX `area_name`(`area_name`) USING BTREE,
+  INDEX `parent_id`(`parent_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '行政区域表' ROW_FORMAT = Dynamic;
