@@ -34,7 +34,7 @@
         <!--系统管理基础业务-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>sys-spring-boot-starter</artifactId>
+            <artifactId>system-spring-boot-starter</artifactId>
             <version>${roses.kernel.version}</version>
         </dependency>
 
