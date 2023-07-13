@@ -14,3 +14,7 @@ devops:
   serverHost: http://192.168.31.58:12909
   project-unique-code: Y4JdNfsfS2tjAQouFm1t035IAnsjSKG3
   project-interaction-secret-key: QBAttyH2ZkolwtkDcn0Y5b8HLGHEtOHC
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
