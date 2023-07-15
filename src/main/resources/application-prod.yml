@@ -7,5 +7,5 @@ spring:
     password: ${DEVOPS_MYSQL_PASSWORD}
 
     # 连接池大小根据实际情况调整
-    max-active: 100
-    max-pool-prepared-statement-per-connection-size: 100
+    maxActive: 100
+    maxPoolPreparedStatementPerConnectionSize: 100
