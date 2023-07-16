@@ -1001,7 +1001,7 @@ CREATE TABLE `sys_area`  (
   `area_level` int NULL DEFAULT NULL COMMENT '区域级别',
   `area_sort` decimal(20, 2) NULL DEFAULT 9999.00 COMMENT '排序码',
   `del_flag` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT 'N' COMMENT '是否删除',
-  `area_pids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所有的上级区域编码,用逗号分隔',
+  `area_pids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '所有的上级区域编码,用逗号分隔',
   `create_time` datetime(0) NULL DEFAULT NULL,
   `create_user` bigint NULL DEFAULT NULL,
   `update_time` datetime(0) NULL DEFAULT NULL,
