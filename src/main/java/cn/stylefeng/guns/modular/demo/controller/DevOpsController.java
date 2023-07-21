@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.roses.kernel.auth.api.AuthServiceApi;
 import cn.stylefeng.roses.kernel.auth.api.pojo.auth.LoginRequest;
 import cn.stylefeng.roses.kernel.auth.api.pojo.auth.LoginResponse;
+import cn.stylefeng.roses.kernel.db.api.factory.PageFactory;
 import cn.stylefeng.roses.kernel.rule.enums.StatusEnum;
 import cn.stylefeng.roses.kernel.rule.enums.YesOrNotEnum;
 import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
@@ -17,6 +18,7 @@ import cn.stylefeng.roses.kernel.sys.modular.user.entity.SysUser;
 import cn.stylefeng.roses.kernel.sys.modular.user.pojo.request.SysUserRequest;
 import cn.stylefeng.roses.kernel.sys.modular.user.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,7 +78,12 @@ public class DevOpsController {
         userLambdaQueryWrapper.select(SysUser::getUserId, SysUser::getAccount);
         userLambdaQueryWrapper.eq(SysUser::getStatusFlag, StatusEnum.ENABLE.getCode());
         userLambdaQueryWrapper.ne(SysUser::getDelFlag, YesOrNotEnum.Y.getCode());
-        List<SysUser> list = this.sysUserService.list(userLambdaQueryWrapper);
+        userLambdaQueryWrapper.orderByAsc(SysUser::getUserId);
+
+        // 只获取前20个用户
+        Page<SysUser> page = this.sysUserService.page(PageFactory.defaultPage(), userLambdaQueryWrapper);
+        List<SysUser> list = page.getRecords();
+
         List<SysUserRequest> collect = list.stream().map(item -> BeanUtil.toBean(item, SysUserRequest.class)).collect(Collectors.toList());
         return new SuccessResponseData<>(collect);
     }
