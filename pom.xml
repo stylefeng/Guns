@@ -37,13 +37,6 @@
             <version>${roses.kernel.version}</version>
         </dependency>
 
-        <!--系统配置，采用内存缓存实现-->
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>config-spring-boot-starter-memory</artifactId>
-            <version>${roses.kernel.version}</version>
-        </dependency>
-
         <!--缓存，默认增加内存缓存-->
         <dependency>
             <groupId>cn.stylefeng.roses</groupId>
