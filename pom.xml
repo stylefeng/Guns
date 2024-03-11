@@ -12,7 +12,7 @@
 
     <groupId>cn.stylefeng</groupId>
     <artifactId>guns</artifactId>
-    <version>8.1.1</version>
+    <version>8.1.2</version>
 
     <name>guns</name>
     <description>Guns主项目</description>
@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mysql-connector-java.version>8.0.21</mysql-connector-java.version>
-        <roses.kernel.version>8.1.1</roses.kernel.version>
+        <roses.kernel.version>8.1.2</roses.kernel.version>
         <flyway.version>7.1.1</flyway.version>
     </properties>
 
