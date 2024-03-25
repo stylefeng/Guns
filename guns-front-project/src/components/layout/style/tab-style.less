@@ -1,0 +1,79 @@
+@import './themes/default.less';
+
+/* 页签圆点风格 */
+.guns-admin-tab-dot .guns-admin-tabs {
+  & > .ant-tabs > .ant-tabs-nav .ant-tabs-tab {
+    .guns-admin-tab-title {
+      padding-left: @padding-sm;
+
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: @margin-xs;
+        background: @border-color-base;
+        transition: background-color 0.3s;
+        display: inline-block;
+        vertical-align: 1px;
+      }
+    }
+
+    &.ant-tabs-tab-active .guns-admin-tab-title::before {
+      background: @primary-color;
+    }
+  }
+
+  .guns-tab-tool::after,
+  & > .ant-tabs > .ant-tabs-nav .ant-tabs-tab::after {
+    display: none;
+  }
+}
+
+/* 页签卡片风格 */
+.guns-admin-tab-card .guns-admin-tabs {
+  padding-right: @padding-md;
+  padding-top: @tabs-card-padding;
+  background: @layout-body-background;
+  box-shadow: 0 @tabs-card-padding 0 @layout-body-background;
+
+  .guns-tab-tool,
+  .ant-tabs-nav-operations .ant-tabs-nav-more,
+  & > .ant-tabs > .ant-tabs-nav .ant-tabs-tab {
+    height: calc(@tabs-height - @tabs-card-padding);
+    line-height: calc(@tabs-height - @tabs-card-padding);
+    border-radius: (@border-radius-sm * 2);
+    background: @component-background;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  & > .ant-tabs > .ant-tabs-nav {
+    .ant-tabs-nav-list {
+      padding-left: @tabs-card-padding;
+    }
+
+    .ant-tabs-tab + .ant-tabs-tab {
+      margin-left: @tabs-card-padding;
+    }
+  }
+
+  &.is-show-arrow > .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list {
+    padding-left: 0;
+  }
+
+  .guns-tab-arrow,
+  .ant-tabs-nav-operations .ant-tabs-nav-more {
+    background: none;
+  }
+
+  & + .guns-admin-content {
+    margin-top: @tabs-card-padding;
+
+    & > .guns-admin-content-view > .guns-body:first-child {
+      padding-top: 0;
+    }
+  }
+}

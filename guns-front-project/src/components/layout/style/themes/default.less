@@ -1,0 +1,152 @@
+/** 默认主题 */
+@import 'ant-design-vue/es/style/themes/default.less';
+
+/* Menu */
+@menu-dark-color: fade(@white, 85%);
+
+/* Modal */
+@modal-header-padding: 16px 24px;
+@modal-close-x-height: 54px;
+@modal-close-x-width: 54px;
+
+/* 滚动条 */
+// 滑块颜色
+@scrollbar-thumb-color: #cfcfcf;
+// 滑块 hover 颜色
+@scrollbar-thumb-hover-color: #b6b6b6;
+// 滑块大小
+@scrollbar-thumb-size: 12px;
+// 滑块边框大小
+@scrollbar-thumb-border-size: 2px;
+// 小型滚动条滑块大小
+@scrollbar-mini-thumb-size: 8px;
+// 轨道颜色
+@scrollbar-track-color: transparent;
+
+/* Layout */
+// 布局最小 z-index (页签栏[最小]->「顶栏|侧栏」[+2|+3|+1]->移动端遮罩层[+3])
+@layout-z-index: 99;
+// 主体内容定宽
+@body-limit-width: 1160px;
+// 关闭响应式布局后的最大宽度
+@body-max-width: 1400px;
+// 暗黑模式 class
+@dark-class: guns-admin-theme-dark;
+
+/* 侧栏 */
+// 侧栏宽度
+@sidebar-width: 210px;
+// 侧栏折叠后宽度
+@sidebar-collapse-width: 60px;
+// 侧栏背景
+@sidebar-background: @layout-sider-background;
+// 侧栏亮色背景
+@sidebar-light-background: @component-background;
+// 侧栏亮色阴影
+@sidebar-light-shadow: 1px 3px 3px rgba(0, 21, 41, 0.08);
+// 侧栏暗色阴影
+@sidebar-dark-shadow: 0 4px 4px rgba(0, 0, 0, 0.35);
+// 侧栏过渡动画
+@sidebar-transition-anim: 0.3s cubic-bezier(0.2, 0, 0, 1) 0s;
+// 侧栏过渡效果
+@sidebar-transition: width @sidebar-transition-anim,
+  left @sidebar-transition-anim, box-shadow @sidebar-transition-anim;
+// 双侧栏一级宽度
+@sidebar-nav-width: 80px;
+// 双侧栏一级内间距
+@sidebar-nav-padding: 0 @padding-xs;
+// 双侧栏一级折叠后内间距
+@sidebar-collapse-nav-padding: 0 @padding-xss;
+// 双侧栏一级 pop 菜单的左右 margin
+@sidebar-nav-pop-menu-margin: @padding-xs;
+// 双侧栏一级菜单字体大小
+@sidebar-nav-font-size: @font-size-sm;
+// 双侧栏一级菜单图标字体大小
+@sidebar-nav-icon-font-size: @font-size-lg;
+// 双侧栏一级菜单 item 内间距
+@sidebar-nav-item-padding: @padding-sm 0;
+// 双侧栏一级折叠后菜单 item 内间距
+@sidebar-collapse-nav-item-padding: @padding-sm 0;
+// 双侧栏一级菜单 item 标题外间距
+@sidebar-nav-item-title-margin: (@padding-sm / 2) 0 0 0;
+// 双侧栏一级菜单 item 外间距
+@sidebar-nav-item-margin: @padding-xss 0 @padding-xs 0;
+// 双侧栏一级折叠后菜单 item 外间距
+@sidebar-collapse-nav-item-margin: @padding-xss 0 @padding-xs 0;
+// 侧栏固定时的 z-index
+@sidebar-fixed-z-index: (@zindex-modal + 1001);
+// 侧栏滚动条滑块颜色
+@sidebar-scrollbar-thumb-color: tint(@layout-sider-background, 30%);
+// 侧栏滚动条滑块 hover 颜色
+@sidebar-scrollbar-thumb-hover-color: tint(@layout-sider-background, 30%);
+// 侧栏滚动条轨道颜色
+@sidebar-scrollbar-track-color: transparent;
+// 侧栏亮色滚动条滑块颜色
+@sidebar-light-scrollbar-thumb-color: @scrollbar-thumb-color;
+// 侧栏亮色滚动条滑块 hover 颜色
+@sidebar-light-scrollbar-thumb-hover-color: @scrollbar-thumb-hover-color;
+// 侧栏亮色滚动条轨道颜色
+@sidebar-light-scrollbar-track-color: transparent;
+
+/* 顶栏 */
+// 顶栏高度
+@header-height: 52px;
+// 顶栏背景
+@header-background: @layout-sider-background;
+// 顶栏亮色背景
+@header-light-background: @component-background;
+// 顶栏亮色阴影
+@header-light-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+// 顶栏暗色阴影
+@header-dark-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+// 顶栏头像大小
+@header-avatar-size: 28px;
+// 顶栏工具按钮 hover 背景
+@header-tool-hover-bg: rgba(0, 0, 0, 0.025);
+// 顶栏暗色工具按钮 hover 背景
+@header-dark-tool-hover-bg: rgba(255, 255, 255, 0.05);
+
+/* logo */
+// logo 大小
+@logo-size: 30px;
+// logo 文字大小
+@logo-font-size: @font-size-lg + 2px;
+// logo 字体粗度
+@logo-font-weight: 600;
+// logo 亮色文字颜色
+@logo-light-color: @heading-color;
+// logo 暗色文字颜色
+@logo-dark-color: @menu-dark-selected-item-text-color;
+// logo 亮色阴影
+@logo-light-shadow: 1px 2px 3px rgba(0, 21, 41, 0.08);
+// logo 暗色阴影
+@logo-dark-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+// logo 字体
+@logo-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+/* 页签栏 */
+// 页签栏高度
+@tabs-height: 40px;
+// 页签栏卡片式间距
+@tabs-card-padding: @padding-xs;
+
+/* 返回顶部位置 */
+@layout-back-top-right: 30px;
+@layout-back-top-bottom: 60px;
+
+/* FileList */
+@file-list-selector-z-index: 999;
+@file-list-selector-border-color: #0078d7;
+@file-list-selector-background: rgba(0, 120, 215, 0.2);
+@file-list-item-active-border-color: @primary-3;
+@file-list-item-active-background: @item-active-bg;
+@file-list-table-sort-color: hsla(0, 0%, 60%, 0.6);
+@file-list-table-sort-active-color: @primary-color;
+
+/* Table Tool */
+@table-tool-column-width: 220px;
+@table-tool-column-max-height: 480px;
+// 菜单贵大
+@menu-icon-size-lg: 24px;

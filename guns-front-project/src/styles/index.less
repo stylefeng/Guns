@@ -1,0 +1,124 @@
+// ant全局样式
+@import 'ant-design-vue/dist/antd.less';
+@import '../components/layout/style/index.less';
+@import '../components/layout/style/themes/dynamic.less';
+@import './gunsLayout.less';
+@import './shortcut.less';
+@import '../assets/iconfont/iconfont.css';
+/** 全局样式 */
+@import 'ant-design-vue/es/message/style/index.less';
+
+/* 需要覆盖框架样式变量写最下面, 具体请到文档查看 */
+
+// 内容高度
+.guns-admin-content-view {
+  height: 100%;
+}
+
+// 默认样式
+.guns-body {
+  padding: 10px;
+  height: 100%;
+
+  .ant-row {
+    height: 100%;
+    overflow: hidden;
+
+    .ant-col {
+      height: 100%;
+    }
+  }
+}
+
+// 弹框设置
+.common-modal {
+  top: 20px;
+
+  .ant-modal-body {
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+// 弹框设置
+.fix-modal {
+  top: 50px;
+  .ant-modal-body {
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+// 覆盖默认antd vue菜单的font大小
+.ant-menu-item-icon {
+  font-size: 24px !important;
+}
+
+.ant-dropdown-menu-title-content {
+  display: flex;
+  align-items: center;
+}
+
+// a-spin组件高度
+.ant-spin-nested-loading {
+  height: 100%;
+}
+.ant-spin-container {
+  height: 100%;
+}
+.guns-admin-sidebar + .guns-admin-body {
+  overflow: hidden;
+}
+.ant-pagination-item {
+  border-radius: 5px;
+}
+
+// tab
+.ant-tabs-tab + .ant-tabs-tab {
+  margin: 0px !important;
+}
+
+.ant-tabs-tab {
+  padding: 12px 15px !important;
+}
+.guns-modal-movable .ant-modal-header {
+  cursor: move;
+}
+.ant-table-thead > tr > th {
+  background-color: #fff !important;
+}
+.ant-table-tbody > tr > td {
+  --border-color-split: #e8eced !important;
+}
+
+.search,
+.header-content {
+  .ant-input-affix-wrapper {
+    height: 36px;
+  }
+}
+
+.ant-menu-title-content {
+  display: flex;
+  align-items: center;
+}
+
+.ant-table.ant-table-small .ant-table-thead > tr {
+  height: 54px;
+}
+.ant-table
+  .ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+  width: 0px;
+}
+
+.ant-tag {
+  padding: 3px 10px !important;
+  border-radius: 5px !important;
+  min-width: 60px;
+  text-align: center;
+  border: 0 !important;
+}

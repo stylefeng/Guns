@@ -1,0 +1,88 @@
+@import './themes/default.less';
+
+/* 折叠侧栏 */
+.guns-admin-collapse {
+  .guns-admin-logo > span {
+    display: none;
+  }
+
+  &:not(.guns-admin-side-mix) {
+    .guns-admin-logo,
+    .guns-admin-sidebar {
+      width: @sidebar-collapse-width;
+    }
+  }
+
+  .guns-admin-sidebar .ant-menu-inline-collapsed {
+    width: 100%;
+  }
+
+  .guns-admin-sidebar .ant-menu > .ant-menu-item,
+  .guns-admin-sidebar .ant-menu > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0 calc(calc(@sidebar-collapse-width - @menu-icon-size-lg) / 2) !important;
+  }
+
+  &.guns-admin-side-mix .guns-admin-sidebar-nav {
+    box-shadow: @sidebar-light-shadow;
+
+    & + .guns-admin-sidebar {
+      width: 0;
+    }
+  }
+
+  .guns-admin-sidebar + .guns-admin-body {
+    width: calc(100% - @sidebar-collapse-width);
+  }
+
+  &.guns-admin-side-mix:not(.guns-admin-nav-collapse) {
+    .guns-admin-sidebar + .guns-admin-body {
+      width: calc(100% - @sidebar-nav-width);
+    }
+  }
+}
+
+/* 折叠一级侧栏 */
+.guns-admin-nav-collapse.guns-admin-side-mix {
+  .guns-admin-logo {
+    width: @sidebar-collapse-width;
+  }
+
+  .guns-admin-sidebar-nav {
+    width: @sidebar-collapse-width;
+
+    & > .guns-admin-sidebar-nav-menu {
+      padding: @sidebar-collapse-nav-padding;
+
+      & > .ant-menu {
+        & > .ant-menu-item,
+        & > .ant-menu-submenu {
+          margin: @sidebar-collapse-nav-item-margin;
+        }
+
+        & > .ant-menu-item,
+        & > .ant-menu-submenu > .ant-menu-submenu-title {
+          padding: @sidebar-collapse-nav-item-padding !important;
+
+          & > .ant-menu-item-icon {
+            font-size: @menu-icon-size-lg;
+          }
+
+          & > .ant-menu-title-content > span {
+            margin: 0;
+            max-height: 0;
+            transform: scale(0);
+            visibility: hidden;
+          }
+        }
+      }
+    }
+  }
+
+  .guns-admin-body {
+    width: calc(100% - @sidebar-collapse-width);
+  }
+
+  &:not(.guns-admin-collapse) .guns-admin-sidebar + .guns-admin-body {
+    width: calc(100% - @sidebar-width);
+  }
+}

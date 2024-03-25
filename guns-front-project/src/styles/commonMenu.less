@@ -1,0 +1,59 @@
+:deep(.ant-menu-inline) {
+  border-right: 0;
+}
+:deep(.ant-menu) {
+  --component-background: #fbfbfb;
+}
+:deep(.ant-menu-inline .ant-menu-item::after) {
+  border-right: 0;
+}
+:deep(.ant-menu-submenu-selected) {
+  color: #999;
+}
+:deep(.ant-menu-submenu-title) {
+  font-size: 14px;
+  padding-left: 10px !important;
+  color: #60666b;
+  &:hover {
+    color: #60666b;
+  }
+}
+:deep(.ant-menu-item-selected) {
+  color: #0f56d7 !important;
+  border-radius: 4px;
+  font-weight: 500 !important;
+  background: rgba(207, 221, 247, 0.35) !important;
+  .iconfont {
+    color: #0f56d7 !important;
+  }
+}
+:deep(.ant-menu-item:active) {
+  color: #0f56d7 !important;
+  border-radius: 4px;
+  font-weight: 500 !important;
+  background: rgba(207, 221, 247, 0.35) !important;
+  .iconfont {
+    color: #0f56d7 !important;
+  }
+}
+:deep(.ant-menu-item:hover) {
+  background: #f3f3f3;
+  border-radius: 4px;
+}
+:deep(.ant-menu-item) {
+  font-weight: 400;
+  color: #43505e;
+  padding-left: 20px !important;
+}
+:deep(.ant-menu-submenu) {
+  border-top: 1px solid #eee;
+}
+:deep(.ant-menu-submenu:first-child) {
+  border-top: 1px solid #fbfbfb;
+}
+:deep(.ant-menu-submenu-title:active) {
+  background: #fbfbfb !important;
+}
+:deep(.ant-menu-submenu-arrow) {
+  display: none;
+}

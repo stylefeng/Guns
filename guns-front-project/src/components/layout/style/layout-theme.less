@@ -1,0 +1,127 @@
+@import './themes/default.less';
+
+/* 暗色顶栏 */
+.guns-admin-head-dark .guns-admin-header {
+  color: @menu-dark-color;
+  box-shadow: @header-dark-shadow;
+  background: @header-background;
+
+  .guns-admin-header-tool .guns-admin-header-tool-item:hover {
+    color: @menu-dark-selected-item-text-color;
+    background: @header-dark-tool-hover-bg;
+  }
+
+  .ant-breadcrumb,
+  .ant-breadcrumb-separator,
+  .ant-breadcrumb a {
+    color: @menu-dark-color;
+  }
+
+  .ant-breadcrumb a:hover {
+    color: @menu-dark-selected-item-text-color;
+  }
+
+  .ant-breadcrumb > span:last-child {
+    color: @menu-dark-color;
+  }
+
+  // 主色顶栏
+  &.guns-admin-header-primary {
+    background-color: @primary-color;
+  }
+
+  // 主色顶栏 menu
+  .ant-menu-light {
+    color: @menu-dark-color;
+
+    & > .ant-menu-item:hover,
+    & > .ant-menu-item-active,
+    & > .ant-menu-item-selected,
+    & > .ant-menu-submenu-active,
+    & > .ant-menu-submenu-open,
+    & > .ant-menu-submenu-selected,
+    & > .ant-menu-submenu > .ant-menu-submenu-title:hover {
+      color: @menu-dark-selected-item-text-color;
+    }
+
+    & > .ant-menu-item:hover:after,
+    & > .ant-menu-submenu:hover:after,
+    & > .ant-menu-item-active:after,
+    & > .ant-menu-submenu-active:after,
+    & > .ant-menu-item-open:after,
+    & > .ant-menu-submenu-open:after,
+    & > .ant-menu-item-selected:after,
+    & > .ant-menu-submenu-selected:after {
+      border-bottom-color: @menu-dark-selected-item-text-color;
+    }
+    .menu-title, .company-name {
+      color: @menu-dark-selected-item-text-color;
+    }
+  }
+}
+.guns-admin-side-dark .guns-admin-sidebar > .guns-admin-sidebar-tool-item .guns-admin-sidebar-tool-item-icon {
+  color: @menu-dark-selected-item-text-color;
+}
+
+.ant-menu-horizontal > .ant-menu-item::after,
+.ant-menu-horizontal > .ant-menu-submenu::after {
+  right: 2px !important;
+  left: 2px !important;
+}
+
+.ant-menu-vertical > .ant-menu-item {
+  height: 48px;
+  line-height: 48px;
+}
+
+/* 暗色侧栏 */
+.guns-admin-side-dark {
+  .guns-admin-logo {
+    color: @logo-dark-color;
+    box-shadow: @logo-dark-shadow;
+    background: @sidebar-background;
+  }
+
+  .guns-admin-sidebar {
+    box-shadow: @sidebar-dark-shadow;
+    background: @sidebar-background;
+  }
+
+  &.guns-admin-side-mix {
+    &:not(.guns-admin-collapse) {
+      .guns-admin-logo,
+      .guns-admin-sidebar-nav {
+        box-shadow: none;
+      }
+    }
+
+    .guns-admin-sidebar-nav {
+      background: @sidebar-background;
+
+      & > .guns-admin-sidebar-nav-menu > .ant-menu {
+        & > .ant-menu-item:not(.ant-menu-item-selected):hover {
+          background: @header-dark-tool-hover-bg;
+        }
+
+        & > .ant-menu-submenu {
+          &:not(.ant-menu-submenu-selected) > .ant-menu-submenu-title:hover {
+            background: @header-dark-tool-hover-bg;
+          }
+
+          &.ant-menu-submenu-selected > .ant-menu-submenu-title {
+            background: @primary-color;
+            color: @menu-dark-selected-item-text-color;
+          }
+        }
+      }
+
+      .guns-admin-sidebar-nav-tool-item {
+        color: @menu-dark-color;
+
+        &:hover {
+          color: @menu-dark-selected-item-text-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guns Tech.</title>
+    <style>
+      .global-loading {
+        width: 36px;
+        font-size: 0;
+        display: inline-block;
+        transform: rotate(45deg);
+        animation: loadingRotate 1.2s infinite linear;
+        position: relative;
+        top: calc(50% - 18px);
+        left: calc(50% - 18px);
+      }
+
+      .global-loading span {
+        width: 10px;
+        height: 10px;
+        margin: 4px;
+        border-radius: 50%;
+        background: #1890ff;
+        display: inline-block;
+        opacity: 0.9;
+      }
+
+      .global-loading span:nth-child(2) {
+        opacity: 0.7;
+      }
+
+      .global-loading span:nth-child(3) {
+        opacity: 0.5;
+      }
+
+      .global-loading span:nth-child(4) {
+        opacity: 0.3;
+      }
+
+      @keyframes loadingRotate {
+        to {
+          transform: rotate(405deg);
+        }
+      }
+
+      #app > .global-loading {
+        position: fixed;
+      }
+      #app {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="global-loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

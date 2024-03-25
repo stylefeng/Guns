@@ -1,0 +1,384 @@
+@import './default.less';
+
+.@{dark-class} {
+  --blue-1: #111d2c;
+  --blue-2: #112a45;
+  --blue-3: #15395b;
+  --blue-4: #164c7e;
+  --blue-5: #1765ad;
+  --blue-6: #177ddc;
+  --blue-7: #3c9ae8;
+  --blue-8: #65b7f3;
+  --blue-9: #8dcff8;
+  --blue-10: #b7e3fa;
+
+  --purple-1: #1a1325;
+  --purple-2: #24163a;
+  --purple-3: #301c4d;
+  --purple-4: #3e2069;
+  --purple-5: #51258f;
+  --purple-6: #642ab5;
+  --purple-7: #854eca;
+  --purple-8: #ab7ae0;
+  --purple-9: #cda8f0;
+  --purple-10: #ebd7fa;
+
+  --cyan-1: #112123;
+  --cyan-2: #113536;
+  --cyan-3: #144848;
+  --cyan-4: #146262;
+  --cyan-5: #138585;
+  --cyan-6: #13a8a8;
+  --cyan-7: #33bcb7;
+  --cyan-8: #58d1c9;
+  --cyan-9: #84e2d8;
+  --cyan-10: #b2f1e8;
+
+  --green-1: #162312;
+  --green-2: #1d3712;
+  --green-3: #274916;
+  --green-4: #306317;
+  --green-5: #3c8618;
+  --green-6: #49aa19;
+  --green-7: #6abe39;
+  --green-8: #8fd460;
+  --green-9: #b2e58b;
+  --green-10: #d5f2bb;
+
+  --pink-1: #291321;
+  --pink-2: #40162f;
+  --pink-3: #551c3b;
+  --pink-4: #75204f;
+  --pink-5: #a02669;
+  --pink-6: #cb2b83;
+  --pink-7: #e0529c;
+  --pink-8: #f37fb7;
+  --pink-9: #f8a8cc;
+  --pink-10: #fad2e3;
+
+  --red-1: #2a1215;
+  --red-2: #431418;
+  --red-3: #58181c;
+  --red-4: #791a1f;
+  --red-5: #a61d24;
+  --red-6: #f5222d;
+  --red-7: #e84749;
+  --red-8: #f37370;
+  --red-9: #f89f9a;
+  --red-10: #fac8c3;
+
+  --orange-1: #2b1d11;
+  --orange-2: #442a11;
+  --orange-3: #593815;
+  --orange-4: #7c4a15;
+  --orange-5: #aa6215;
+  --orange-6: #d87a16;
+  --orange-7: #e89a3c;
+  --orange-8: #f3b765;
+  --orange-9: #f8cf8d;
+  --orange-10: #fae3b7;
+
+  --gold-1: #2b2111;
+  --gold-2: #443111;
+  --gold-3: #594214;
+  --gold-4: #7c5914;
+  --gold-5: #aa7714;
+  --gold-6: #d89614;
+  --gold-7: #e8b339;
+  --gold-8: #f3cc62;
+  --gold-9: #f8df8b;
+  --gold-10: #faedb5;
+
+  --primary-1: var(--blue-1);
+  --primary-2: var(--blue-2);
+  --primary-3: var(--blue-3);
+  --primary-4: var(--blue-4);
+  --primary-5: var(--blue-5);
+  --primary-6: var(--blue-6);
+  --primary-7: var(--blue-7);
+  --primary-8: var(--blue-8);
+  --primary-9: var(--blue-9);
+  --primary-10: var(--blue-10);
+
+  --primary-color: var(--primary-6);
+  --primary-color-hover: var(--primary-5);
+  --primary-color-active: var(--primary-7);
+  --primary-color-outline: var(--primary-2);
+
+  --info-color: var(--primary-color);
+
+  --success-color: var(--green-6);
+  --success-color-hover: var(--green-5);
+  --success-color-active: var(--green-7);
+  --success-color-outline: var(--green-2);
+
+  --warning-color: var(--gold-6);
+  --warning-color-hover: var(--gold-5);
+  --warning-color-active: var(--gold-7);
+  --warning-color-outline: var(--gold-2);
+
+  --error-color: var(--red-5);
+  --error-color-hover: var(--red-4);
+  --error-color-active: var(--red-7);
+  --error-color-outline: var(--red-2);
+
+  --highlight-color: var(--red-5);
+  --processing-color: var(--blue-6);
+
+  --body-background: @black;
+  --component-background: #141414;
+  --popover-background: #1f1f1f;
+  --popover-customize-border-color: #3a3a3a;
+
+  --text-color: fade(@white, 85%);
+  --text-color-secondary: fade(@white, 45%);
+  --text-color-inverse: @white;
+  --icon-color-hover: fade(@white, 75%);
+  --heading-color: fade(@white, 85%);
+
+  --item-hover-bg: fade(@white, 8%);
+
+  // Border color
+  --border-color-base: #434343;
+  --border-color-split: #303030;
+
+  //
+  --background-color-light: fade(@white, 4%);
+  --background-color-base: fade(@white, 8%);
+
+  // Disabled states
+  --disabled-color: fade(@white, 30%);
+  --disabled-bg: @background-color-base;
+  --disabled-color-dark: fade(@white, 30%);
+
+  // Shadow
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --shadow-color-inverse: @component-background;
+  --box-shadow-base: @shadow-2;
+  --shadow-1-up: 0 -6px 16px -8px rgba(0, 0, 0, 0.32),
+    0 -9px 28px 0 rgba(0, 0, 0, 0.2), 0 -12px 48px 16px rgba(0, 0, 0, 0.12);
+  --shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.32),
+    0 9px 28px 0 rgba(0, 0, 0, 0.2), 0 12px 48px 16px rgba(0, 0, 0, 0.12);
+  --shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.32),
+    9px 0 28px 0 rgba(0, 0, 0, 0.2), 12px 0 48px 16px rgba(0, 0, 0, 0.12);
+  --shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.48),
+    0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+
+  // Buttons
+  --btn-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  --btn-primary-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+  --btn-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+  --btn-default-bg: transparent;
+  --btn-default-ghost-color: @text-color;
+  --btn-default-ghost-border: fade(@white, 25%);
+  --btn-text-hover-bg: rgba(255, 255, 255, 0.03);
+  --btn-text-active-bg: rgba(255, 255, 255, 0.04);
+
+  // Checkbox
+  --checkbox-check-bg: transparent;
+
+  // Descriptions
+  --descriptions-bg: @background-color-light;
+
+  // Divider
+  --divider-color: rgba(255, 255, 255, 12%);
+
+  // Dropdown
+  --dropdown-menu-submenu-disabled-bg: transparent;
+
+  // Radio
+  --radio-dot-disabled-color: fade(@white, 20%);
+  --radio-solid-checked-color: @white;
+
+  // Radio buttons
+  --radio-disabled-button-checked-bg: fade(@white, 20%);
+  --radio-disabled-button-checked-color: @disabled-color;
+
+  // Layout
+  --layout-body-background: @body-background;
+  --layout-header-background: @popover-background;
+  --layout-trigger-background: #262626;
+
+  // Dropdown
+  --dropdown-menu-bg: @popover-background;
+
+  // Input
+  --input-placeholder-color: fade(@white, 30%);
+  --input-icon-color: fade(@white, 30%);
+  --input-bg: transparent;
+  --input-number-handler-active-bg: @item-hover-bg;
+  --input-icon-hover-color: fade(@white, 85%);
+
+  // Mentions
+  --mentions-dropdown-bg: @popover-background;
+
+  // Select
+  --select-dropdown-bg: @popover-background;
+  --select-background: transparent;
+  --select-clear-background: @component-background;
+  --select-selection-item-bg: fade(@white, 8);
+  --select-selection-item-border-color: @border-color-split;
+  --select-multiple-disabled-background: @component-background;
+  --select-multiple-item-disabled-color: #595959;
+  --select-multiple-item-disabled-border-color: @popover-background;
+
+  // Cascader
+  --cascader-bg: transparent;
+  --cascader-menu-bg: @popover-background;
+  --cascader-menu-border-color-split: @border-color-split;
+
+  // Tooltip
+  --tooltip-bg: #434343;
+
+  // Popover
+  --popover-bg: @popover-background;
+
+  // Modal
+  --modal-header-bg: @popover-background;
+  --modal-header-border-color-split: @border-color-split;
+  --modal-content-bg: @popover-background;
+  --modal-footer-border-color-split: @border-color-split;
+
+  // Progress
+  --progress-steps-item-bg: fade(@white, 8%);
+
+  // Menu
+  --menu-popup-bg: @popover-background;
+  --menu-dark-bg: @popover-background;
+  --menu-dark-inline-submenu-bg: @component-background;
+
+  // Table
+  --table-header-bg: #1d1d1d;
+  --table-header-sort-bg: #262626;
+  --table-body-sort-bg: fade(@white, 1%);
+  --table-row-hover-bg: #262626;
+  --table-expanded-row-bg: @table-header-bg;
+  --table-header-cell-split-color: fade(@white, 8%);
+  --table-header-sort-active-bg: #303030;
+  --table-fixed-header-sort-active-bg: #222;
+  --table-header-filter-active-bg: #434343;
+  --table-filter-btns-bg: @popover-background;
+  --table-filter-dropdown-bg: @popover-background;
+  --table-expand-icon-bg: transparent;
+
+  // TimePicker
+  --picker-bg: transparent;
+  --picker-basic-cell-disabled-bg: #303030;
+  --picker-border-color: @border-color-split;
+
+  // Calendar
+  --calendar-bg: @popover-background;
+  --calendar-input-bg: @calendar-bg;
+  --calendar-border-color: transparent;
+  --calendar-full-bg: @component-background;
+
+  // Badge
+  --badge-text-color: @white;
+
+  // Rate
+  --rate-star-bg: fade(@white, 12%);
+
+  // Card
+  --card-actions-background: @component-background;
+  --card-skeleton-bg: #303030;
+  --card-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.64),
+    0 3px 6px 0 rgba(0, 0, 0, 0.48), 0 5px 12px 4px rgba(0, 0, 0, 0.36);
+
+  // Comment
+  --comment-bg: transparent;
+  --comment-author-time-color: fade(@white, 30%);
+  --comment-action-hover-color: fade(@white, 65%);
+
+  // BackTop
+  --back-top-bg: var(--tooltip-bg);
+  --back-top-hover-bg: var(--border-color-split);
+
+  // Avatar
+  --avatar-bg: fade(@white, 30%);
+
+  // Switch
+  --switch-bg: @white;
+
+  // Pagination
+  --pagination-item-bg: transparent;
+  --pagination-item-bg-active: transparent;
+  --pagination-item-link-bg: transparent;
+  --pagination-item-disabled-color-active: @black;
+  --pagination-item-disabled-bg-active: fade(@white, 25%);
+  --pagination-item-input-bg: @pagination-item-bg;
+
+  // PageHeader
+  --page-header-back-color: @icon-color;
+  --page-header-ghost-bg: transparent;
+
+  // Slider
+  --slider-rail-background-color: #262626;
+  --slider-rail-background-color-hover: @border-color-base;
+  --slider-dot-border-color: @border-color-split;
+  --slider-dot-border-color-active: @primary-4;
+
+  // Tree
+  --tree-bg: transparent;
+
+  // Skeleton
+  --skeleton-to-color: fade(@white, 16%);
+
+  // Transfer
+  --transfer-item-hover-bg: #262626;
+
+  // Message
+  --message-notice-content-bg: @popover-background;
+
+  // List
+  --list-customize-card-bg: transparent;
+
+  // Drawer
+  --drawer-bg: @popover-background;
+
+  // Timeline
+  --timeline-color: @border-color-split;
+  --timeline-dot-color: @primary-color;
+
+  // Steps
+  --steps-nav-arrow-color: fade(@white, 20%);
+  --steps-background: transparent;
+
+  // Notification
+  --notification-bg: @popover-background;
+
+  // Image
+  --image-preview-operation-disabled-color: rgba(255, 255, 255, 0.45);
+
+  //
+  --gradient-min: fade(#303030, 20%);
+  --gradient-max: fade(#303030, 40%);
+
+  // 滚动条
+  --scrollbar-thumb-color: #484848;
+  --scrollbar-thumb-hover-color: #5b5b5b;
+  --scrollbar-track-color: transparent;
+
+  // 侧栏
+  --sidebar-background: @layout-sider-background;
+  --sidebar-light-background: @component-background;
+  --sidebar-light-shadow: 0 4px 4px rgba(0, 0, 0, 0.6);
+  --sidebar-dark-shadow: 0 4px 4px rgba(0, 0, 0, 0.6);
+  --sidebar-scrollbar-thumb-color: tint(#1f1f1f, 30%);
+  --sidebar-scrollbar-thumb-hover-color: tint(#1f1f1f, 40%);
+  --sidebar-scrollbar-track-color: transparent;
+  --sidebar-light-scrollbar-thumb-color: @scrollbar-thumb-color;
+  --sidebar-light-scrollbar-thumb-hover-color: @scrollbar-thumb-hover-color;
+  --sidebar-light-scrollbar-track-color: transparent;
+
+  // 顶栏
+  --header-background: @layout-sider-background;
+  --header-light-background: @component-background;
+  --header-light-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  --header-dark-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  --header-tool-hover-bg: rgba(255, 255, 255, 0.05);
+  --header-dark-tool-hover-bg: rgba(255, 255, 255, 0.05);
+
+  // logo
+  --logo-light-shadow: 0 3px 4px rgba(0, 0, 0, 0.6);
+  --logo-dark-shadow: 0 3px 4px rgba(0, 0, 0, 0.6);
+}

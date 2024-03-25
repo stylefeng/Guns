@@ -1,0 +1,217 @@
+@import './variables.less';
+@import './animation.less';
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+// captcha
+@ym-captcha: ~'@{ym-prefix}captcha';
+@ym-icon: ~'@{ym-prefix}icon';
+
+.@{ym-captcha} {
+    width: 100%;
+    .properties(height, 42);
+    font-family: @ym-font-family;
+
+    &-content {
+		width: 100%;
+		height: 100%;
+		position: relative;
+    }
+
+    &-radar {
+        .flex(center, flex-start);
+		height: 100%;
+        width: 100%;
+        .linear-gradient-background();
+        border: 1px solid var(--ym-theme, @ym-theme);
+        box-shadow: 0 0 4px var(--ym-theme, @ym-theme);
+        cursor: pointer;
+        .properties(min-width, 160);
+        position: relative;
+
+        &-ready,
+		&-scan,
+		&-being,
+		&-success {
+            .flex();
+            flex-wrap: nowrap;
+            position: relative;
+			transition: all @ym-anim-duration ease;
+			.properties(width, 30);
+			.properties(height, 30);
+			.properties(margin, 6);
+        }
+
+        &-ring,
+		&-dot {
+			position: absolute;
+			.border-radius-circle();
+			transform: scale(.4);
+			width: 100%;
+			height: 100%;
+			box-shadow: inset 0 0 0 1px var(--ym-theme, @ym-theme);
+			background-image: linear-gradient(0, rgba(0, 0, 0, 0) 50%, #fff 50%), linear-gradient(0, #fff 50%, rgba(0, 0, 0, 0) 50%);
+        }
+
+        &-dot {
+            background: var(--ym-theme, @ym-theme);
+        }
+
+        &-ring {
+			animation: ym-anim-wait 1s infinite;
+			transform: scale(1);
+        }
+
+        &-scan {
+            .double-ring {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                transform: translateZ(0) scale(1);
+                backface-visibility: hidden;
+                transform-origin: 0 0;
+
+                > div {
+                    position: absolute;
+                    .properties(width, 24);
+                    .properties(height, 24);
+                    .properties(top, 3);
+                    .properties(left, 3);
+                    .border-radius-circle();
+                    border: 3px solid var(--ym-ink, @ym-ink);
+                    border-color: var(--ym-theme, @ym-theme) transparent var(--ym-theme, @ym-theme) transparent;
+                    animation: ym-anim-rotate .8s linear infinite;
+                }
+
+                > div:nth-child(2) {
+                    .properties(width, 14);
+                    .properties(height, 14);
+                    .properties(top, 8);
+                    .properties(left, 8);
+                    border-color: transparent var(--ym-theme, @ym-theme) transparent var(--ym-theme, @ym-theme);
+                    animation: ym-anim-rotate .5s linear infinite reverse;
+                }
+            }
+        }
+
+        &-being {
+            .flex();
+            .properties(font-size, 14);
+            font-weight: 600;
+            color: var(--ym-font, @ym-font);
+            text-align: center;
+        }
+
+        &-success {
+			.flex();
+			cursor: default;
+
+			&-icon {
+                color: var(--ym-theme, @ym-theme);
+				animation-name: ym-captcha-success;
+				animation-timing-function: ease;
+				animation-iteration-count: 1;
+				animation-delay: .5s;
+				animation-duration: @ym-anim-duration;
+			}
+		}
+
+        &-tip {
+            .flex(center, flex-start);
+			.properties(height, 42);
+			.properties(padding-left, 2);
+			.properties(font-size, @ym-font-size-normal);
+			color: var(--ym-font, @ym-font);
+			.text-ellipsis();
+			text-align: left;
+
+			&-error {
+				color: var(--ym-danger, @ym-danger);
+			}
+        }
+        
+        &-pass &-tip {
+            color: var(--ym-theme, @ym-theme);
+        }
+
+        &-logo {
+            position: absolute;
+            .properties(right);
+            .properties(top, 10);
+			.properties(width, 20);
+			.properties(height, 20);
+            border: 1px solid var(--ym-theme, @ym-theme);
+            .linear-gradient-background();
+            .border-radius-circle();
+            overflow: hidden;
+
+            > a {
+                .flex();
+            }
+
+			img {
+                width: 100%;
+                height: 100%;
+                transform: scale(1.1);
+			}
+		}
+    }
+
+    &-success {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+        width: 0;
+        box-shadow: 0 0 4px var(--ym-captcha-success-bg, @ym-captcha-success-bg);
+		cursor: default;
+		transition: width @ym-anim-duration ease;
+        overflow: hidden;
+
+		&-show{
+			background: var(--ym-captcha-success-bg, @ym-captcha-success-bg);
+			width: 100%;
+		}
+	}
+
+    &-message {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: @ym-z-index-modal;
+
+        &-content {
+            .linear-gradient-background();
+            .border-radius(32);
+            border: 1px solid var(--ym-theme, @ym-theme);
+            color: var(--ym-danger, @ym-danger);
+            .properties(padding-top);
+            .properties(padding-bottom);
+            .properties(padding-left, 16);
+            .properties(padding-right, 16);
+            .flex();
+            .properties(line-height, 22);
+            animation-name: ym-captcha-downtip;
+            animation-duration: @ym-anim-duration;
+            animation-timing-function: ease;
+            animation-fill-mode: forwards;
+        }
+    }
+}
+
+.ant-form-item-has-error {
+    .@{ym-captcha} {
+        &-radar {
+            border-color: var(--ym-error, @ym-error);
+        }
+    }
+}
+
+@import './modal.less';

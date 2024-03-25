@@ -1,0 +1,90 @@
+@import './themes/default.less';
+
+.guns-admin-layout {
+  background: @layout-body-background;
+}
+
+/* Main */
+.guns-admin-main {
+  display: flex;
+}
+
+/* 主体部分 */
+.guns-admin-body {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - @header-height);
+  box-sizing: border-box;
+  width: 100%;
+
+  .guns-admin-content {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    .guns-admin-content-view {
+      flex: auto;
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* 主体的 iframe 组件 */
+.guns-admin-iframe {
+  width: 100%;
+  height: calc(100vh - @header-height);
+  box-sizing: border-box;
+  display: block;
+  border: none;
+}
+
+.guns-admin-show-tabs .guns-admin-iframe {
+  height: calc(100vh - @header-height - @tabs-height);
+}
+
+.guns-admin-fixed-body.guns-admin-show-tabs.guns-admin-tab-card {
+  .guns-admin-iframe {
+    height: calc(100vh - @header-height - @tabs-height - @tabs-card-padding);
+  }
+}
+
+/* 小屏幕遮罩层 */
+.guns-admin-shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: @sidebar-fixed-z-index;
+  transition: background-color @sidebar-transition-anim,
+    left @sidebar-transition-anim;
+  visibility: hidden;
+}
+
+/* 返回顶部 */
+.guns-admin-layout > .ant-back-top {
+  right: @layout-back-top-right;
+  bottom: @layout-back-top-bottom;
+}
+
+/* 色弱模式 */
+.guns-admin-weak {
+  filter: invert(0.8);
+  background: @heading-color;
+  overflow-x: hidden;
+}
+
+/* 切换布局时关闭过渡效果 */
+body.guns-transition-disabled {
+  .guns-admin-header,
+  .guns-admin-logo,
+  .guns-admin-sidebar,
+  .guns-admin-sidebar-nav,
+  .guns-admin-body,
+  .guns-admin-tabs,
+  .guns-admin-content,
+  .guns-modal-inner {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,103 @@
+/* 主题风格 */
+@import './themes/default.less';
+
+/* 固定主体 */
+.guns-admin-fixed-body {
+  .guns-admin-content {
+    height: calc(100vh - @header-height);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .guns-admin-sidebar,
+  .guns-admin-sidebar-nav {
+    height: calc(100vh - @header-height);
+  }
+
+  &.guns-admin-show-tabs {
+    .guns-admin-content {
+      height: calc(100vh - @header-height - @tabs-height);
+    }
+
+    &.guns-admin-tab-card .guns-admin-content {
+      height: calc(100vh - @header-height - @tabs-height - @tabs-card-padding);
+    }
+  }
+}
+
+/* 全屏内容区域 */
+.guns-admin-body-fullscreen {
+  padding-top: 0 !important;
+
+  .guns-admin-header,
+  .guns-admin-sidebar,
+  .guns-admin-sidebar-nav {
+    display: none;
+  }
+
+  .guns-admin-body {
+    min-height: 100vh;
+    padding-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .guns-admin-tabs {
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  &.guns-admin-fixed-body {
+    .guns-admin-content {
+      height: 100vh !important;
+    }
+
+    &.guns-admin-show-tabs:not(.guns-admin-content-fullscreen) {
+      .guns-admin-content {
+        height: calc(100vh - @tabs-height) !important;
+      }
+
+      &.guns-admin-tab-card .guns-admin-content {
+        height: calc(100vh - @tabs-height - @tabs-card-padding) !important;
+      }
+    }
+  }
+
+  &.guns-admin-content-fullscreen {
+    .guns-admin-body {
+      padding-top: 0 !important;
+    }
+
+    .guns-admin-tabs {
+      display: none;
+    }
+  }
+}
+
+/* logo 宽度自适应 */
+.guns-admin-logo-auto.guns-admin-layout {
+  .guns-admin-logo {
+    width: auto;
+    padding: 0 @padding-sm 0 @padding-lg;
+    color: @logo-light-color;
+    background: none;
+    box-shadow: none;
+    transition: none;
+
+    & > span {
+      display: inline;
+    }
+
+    & + .guns-admin-header-nav {
+      margin-left: @padding-sm;
+    }
+  }
+
+  .guns-admin-sidebar,
+  .guns-admin-sidebar-nav {
+    z-index: calc(@layout-z-index + 1);
+  }
+
+  &.guns-admin-head-dark .guns-admin-logo {
+    color: @logo-dark-color;
+  }
+}

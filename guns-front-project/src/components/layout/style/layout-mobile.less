@@ -1,0 +1,63 @@
+@import './themes/default.less';
+
+/* 小屏幕样式 */
+@media screen and (max-width: 768px) {
+  .guns-admin-responsive {
+    .guns-admin-logo,
+    .guns-admin-sidebar {
+      position: fixed !important;
+      left: 0 !important;
+      width: @sidebar-width !important;
+      z-index: calc(@sidebar-fixed-z-index + 1) !important;
+    }
+
+    .guns-admin-sidebar {
+      top: @header-height !important;
+    }
+
+    .guns-admin-logo > span {
+      display: inline !important;
+    }
+
+    .guns-admin-body,
+    .guns-admin-header {
+      padding-left: 0 !important;
+      width: 100% !important;
+    }
+
+    .guns-admin-tabs {
+      left: 0 !important;
+    }
+
+    .guns-admin-breadcrumb,
+    .guns-admin-sidebar-nav {
+      display: none;
+    }
+
+    &:not(.guns-admin-collapse) {
+      .guns-admin-shade {
+        left: @sidebar-width;
+        background: @modal-mask-bg;
+        visibility: visible;
+      }
+
+      .guns-admin-header {
+        z-index: auto;
+      }
+    }
+
+    &.guns-admin-collapse {
+      .guns-admin-sidebar,
+      .guns-admin-logo {
+        left: calc(0px - @sidebar-width) !important;
+        box-shadow: none !important;
+      }
+    }
+
+    &.guns-admin-show-tabs:not(.guns-admin-tab-card):not(.guns-admin-head-dark) {
+      .guns-admin-header {
+        box-shadow: 0 -1px 0 @border-color-split inset !important;
+      }
+    }
+  }
+}

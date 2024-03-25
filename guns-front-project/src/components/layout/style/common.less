@@ -1,0 +1,693 @@
+/** 全局样式及辅助类 */
+@import './themes/default.less';
+
+html {
+  overflow: auto;
+  overflow: overlay;
+}
+
+/* 辅助类 */
+body {
+  overflow-x: hidden;
+  position: relative;
+
+  &.guns-body-limit-width {
+    min-width: @body-max-width;
+
+    .ant-form-item .ant-form-item-label {
+      padding: 0;
+      line-height: inherit;
+      white-space: nowrap;
+      text-align: right;
+
+      & > label:after {
+        display: block;
+      }
+    }
+  }
+
+  // 标题
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-weight: normal;
+    font-size: @font-size-lg;
+  }
+
+  h5 {
+    font-size: (@font-size-lg + 2px);
+  }
+
+  h4 {
+    font-size: (@font-size-lg + 4px);
+  }
+
+  h3 {
+    font-size: (@font-size-lg + 6px);
+  }
+
+  h2 {
+    font-size: (@font-size-lg + 8px);
+  }
+
+  h1 {
+    font-size: (@font-size-lg + 10px);
+  }
+
+  // 文字
+  .guns-text {
+    color: @text-color;
+  }
+
+  .guns-text-heading {
+    color: @heading-color;
+  }
+
+  .guns-text-secondary {
+    color: @text-color-secondary;
+  }
+
+  .guns-text-placeholder {
+    color: @input-placeholder-color;
+  }
+
+  a.guns-text,
+  a.guns-text-heading,
+  a.guns-text-secondary,
+  a.guns-text-placeholder {
+    &:hover {
+      color: ~`colorPalette('@{primary-color}', 5) `;
+    }
+  }
+
+  .guns-text-primary {
+    color: @primary-color;
+  }
+
+  .guns-text-success,
+  .guns-text-success:hover {
+    color: @success-color;
+  }
+
+  a.guns-text-success:hover {
+    color: ~`colorPalette('@{success-color}', 5) `;
+  }
+
+  a.guns-text-success:active {
+    color: ~`colorPalette('@{success-color}', 7) `;
+  }
+
+  .guns-text-warning,
+  .guns-text-warning:hover {
+    color: @warning-color;
+  }
+
+  a.guns-text-warning:hover {
+    color: ~`colorPalette('@{warning-color}', 5) `;
+  }
+
+  a.guns-text-warning:active {
+    color: ~`colorPalette('@{warning-color}', 7) `;
+  }
+
+  .guns-text-danger,
+  .guns-text-danger:hover {
+    color: @error-color;
+  }
+
+  a.guns-text-danger:hover {
+    color: ~`colorPalette('@{error-color}', 5) `;
+  }
+
+  a.guns-text-danger:active {
+    color: ~`colorPalette('@{error-color}', 7) `;
+  }
+
+  .guns-text-info,
+  a.guns-text-info:hover,
+  a.guns-text-info:active {
+    color: @normal-color;
+  }
+
+  .guns-text-delete {
+    text-decoration: line-through;
+  }
+
+  .guns-text-small {
+    font-size: @font-size-sm !important;
+  }
+
+  // 背景和边框
+  .guns-bg-base {
+    background-color: @layout-body-background !important;
+  }
+
+  .guns-bg-primary {
+    background-color: @primary-color !important;
+  }
+
+  .guns-bg-success {
+    background-color: @success-color !important;
+  }
+
+  .guns-bg-warning {
+    background-color: @warning-color !important;
+  }
+
+  .guns-bg-danger {
+    background-color: @error-color !important;
+  }
+
+  .guns-bg-info {
+    background-color: @normal-color !important;
+  }
+
+  .guns-bg-white {
+    background-color: @component-background !important;
+  }
+
+  .guns-border-primary {
+    border-color: @primary-color !important;
+  }
+
+  .guns-border-success {
+    border-color: @success-color !important;
+  }
+
+  .guns-border-warning {
+    border-color: @warning-color !important;
+  }
+
+  .guns-border-danger {
+    border-color: @error-color !important;
+  }
+
+  .guns-border-info {
+    border-color: @normal-color !important;
+  }
+
+  .guns-border-base {
+    border-color: @border-color-base !important;
+  }
+
+  .guns-border-split {
+    border-color: @border-color-split !important;
+  }
+
+  // 浮动
+  .guns-pull-left {
+    float: left;
+  }
+
+  .guns-pull-right {
+    float: right;
+  }
+
+  .guns-clear {
+    clear: both;
+  }
+
+  .guns-clear-after:after {
+    content: '';
+    clear: both;
+    display: block;
+  }
+
+  // 对齐方式
+  .guns-text-center {
+    text-align: center;
+  }
+
+  .guns-text-left {
+    text-align: left;
+  }
+
+  .guns-text-right {
+    text-align: right;
+  }
+
+  .guns-fluid {
+    width: 100% !important;
+  }
+
+  .guns-block {
+    display: block;
+  }
+
+  .guns-inline-block {
+    display: inline-block;
+  }
+
+  .guns-inline {
+    display: inline;
+  }
+
+  // 占位元素
+  em:not([class]) {
+    padding: 0 0.5em;
+    font-style: normal;
+  }
+
+  s:not([class]) {
+    padding: 0 0.125em;
+    font-style: normal;
+  }
+}
+
+/* 文字省略 */
+.guns-elip {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+
+/* 单元格 */
+.guns-cell {
+  display: flex;
+
+  &:not(.guns-cell-align-top) {
+    align-items: center;
+  }
+
+  &.guns-cell-align-bottom {
+    align-items: flex-end;
+  }
+
+  & > .guns-cell-content {
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  & > * + .guns-cell-content {
+    padding-left: @padding-sm;
+  }
+
+  .guns-cell-title {
+    color: @heading-color;
+    font-size: @font-size-base + 1px;
+  }
+
+  .guns-cell-desc {
+    color: @text-color-secondary;
+    font-size: @font-size-base - 1px;
+    margin-top: (@padding-xs / 2);
+  }
+}
+
+/* 页面容器 */
+.guns-body {
+  padding: @padding-md;
+
+  &.guns-body-card {
+    padding-bottom: 0;
+
+    .ant-card {
+      margin-bottom: @padding-md;
+    }
+  }
+}
+
+/* 底部工具栏 */
+.guns-bottom-tool {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: @shadow-1-up;
+  padding: @padding-xs @padding-md;
+  background: @component-background;
+  transition: padding-left @sidebar-transition-anim;
+  z-index: (@layout-z-index - 1);
+
+  .guns-bottom-tool-actions {
+    flex: 1;
+    text-align: right;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .guns-admin-sidebar + .guns-admin-body .guns-bottom-tool {
+    padding-left: (@sidebar-width + @padding-md);
+  }
+
+  .guns-layout-collapse .guns-admin-sidebar + .guns-admin-body .guns-bottom-tool {
+    padding-left: (@sidebar-collapse-width + @padding-md);
+  }
+}
+
+/* 静态表格 */
+.guns-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background: @component-background;
+
+  thead tr {
+    th,
+    td {
+      background: @table-header-bg;
+      transition: background-color 0.25s ease;
+    }
+  }
+
+  tbody tr {
+    th,
+    td {
+      background: @component-background;
+      transition: background-color 0.25s ease;
+    }
+  }
+
+  tbody tr:hover,
+  &.guns-table-stripe tr:nth-child(even) {
+    th,
+    td {
+      background: @table-row-hover-bg;
+    }
+  }
+
+  tbody tr.guns-table-active {
+    th,
+    td {
+      background: @table-selected-row-bg;
+    }
+  }
+
+  th,
+  td {
+    font-weight: normal;
+    line-height: 23px;
+    padding: 12px 10px;
+    border-width: 0;
+    border-style: solid;
+    border-color: @table-border-color;
+    border-bottom-width: 1px;
+    text-align: left;
+  }
+
+  th {
+    color: @table-header-color;
+  }
+
+  // 显示边框
+  &.guns-table-border {
+    th,
+    td {
+      border-width: 1px;
+    }
+  }
+
+  // 尺寸控制
+  &.guns-table-medium {
+    th,
+    td {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  &.guns-table-small {
+    th,
+    td {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-size: 12px;
+    }
+  }
+
+  &.guns-table-mini {
+    th,
+    td {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 12px;
+    }
+  }
+
+  // 表头分割线
+  &:not(.guns-table-border) thead > tr > th {
+    position: relative;
+
+    &:not(:last-child):before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 1.6em;
+      background-color: @table-header-cell-split-color;
+      transform: translateY(-50%);
+      transition: background-color 0.3s;
+      content: '';
+    }
+  }
+}
+
+/* antd 组件样式调整 */
+body {
+  // 分割线
+  .ant-divider {
+    margin: 0;
+  }
+
+  // modal 标题高度
+  .ant-modal-header {
+    padding: @modal-header-padding;
+
+    & > .ant-modal-title > div {
+      padding-right: calc(@modal-close-x-width - 20px);
+    }
+  }
+
+  .ant-modal-close-x {
+    width: @modal-close-x-width;
+    height: @modal-close-x-height;
+    line-height: @modal-close-x-height;
+  }
+}
+
+// 按钮加图标减少间距
+.guns-btn-icon:not(.ant-btn-sm) {
+  padding-left: (@padding-sm - 2px);
+  padding-right: (@padding-sm - 2px);
+
+  & > .anticon + span {
+    margin-left: @margin-xss;
+    margin-right: 2px;
+  }
+}
+
+// 表单详情
+.guns-form-detail .ant-form-item {
+  margin-bottom: 0;
+}
+
+@media (max-width: 575px) {
+  .guns-form-detail .ant-form-item-label {
+    line-height: @input-height-lg - 0.0001px;
+    padding-bottom: 0;
+
+    & > label:after {
+      display: inherit;
+    }
+  }
+}
+
+// 级联选择器增加高度
+.guns-pop-wrap-higher .ant-cascader-menu {
+  height: 280px;
+}
+
+/* 加载框 */
+.ant-message-notice.guns-message-loading {
+  animation: none !important;
+  transition: opacity 0.2s, margin 0.3s;
+  position: relative;
+
+  & > .ant-message-notice-content {
+    &::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    & > .ant-message-loading {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &.ant-move-up-enter.ant-move-up-enter-active,
+  &.ant-move-up-leave.ant-move-up-leave-active {
+    margin-top: -58px;
+    opacity: 0;
+  }
+
+  // 遮罩
+  &.guns-message-mask > .ant-message-notice-content {
+    box-shadow: @shadow-2, 0 0 0 1000vw @modal-mask-bg;
+  }
+
+  // 居中
+  &.guns-message-center {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// 虚拟滚动条样式优化
+.rc-virtual-list-scrollbar-thumb,
+.ant-select-tree-list-scrollbar-thumb {
+  background: @scrollbar-thumb-color !important;
+
+  &:hover {
+    background: @scrollbar-thumb-hover-color !important;
+  }
+}
+
+// table 有滚动条时加边框
+.ant-table-bordered div.ant-table-body {
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: @border-color-split;
+    z-index: 2;
+  }
+
+  &:before {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+  }
+
+  &:after {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+  }
+}
+
+/* echarts 提示框圆点 */
+.guns-chart-dot {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #5b8ff9;
+}
+
+.echarts > div {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: @scrollbar-thumb-size;
+  height: @scrollbar-thumb-size;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: (@scrollbar-thumb-size / 2);
+  border: @scrollbar-thumb-border-size solid transparent;
+  background-color: @scrollbar-thumb-color;
+  background-clip: padding-box;
+
+  &:hover {
+    background-color: @scrollbar-thumb-hover-color;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: @scrollbar-track-color;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+// 小型滚动条
+.guns-scrollbar-mini {
+  &::-webkit-scrollbar {
+    width: @scrollbar-mini-thumb-size;
+    height: @scrollbar-mini-thumb-size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: (@scrollbar-mini-thumb-size / 2);
+  }
+}
+
+// 隐藏滚动条
+.guns-scrollbar-hide::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.guns-scrollbar-hide,
+.guns-scrollbar-hover {
+  overflow: auto;
+  overflow: overlay;
+}
+
+// 鼠标滑入才显示滚动条
+@media (hover: hover) and (pointer: fine) {
+  .guns-scrollbar-hover {
+    &::-webkit-scrollbar,
+    &.guns-scrollbar-mini::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar {
+        width: @scrollbar-thumb-size;
+        height: @scrollbar-thumb-size;
+      }
+
+      &.guns-scrollbar-mini::-webkit-scrollbar {
+        width: @scrollbar-mini-thumb-size;
+        height: @scrollbar-mini-thumb-size;
+      }
+    }
+  }
+}
+
+// 小尺寸设备
+@media only screen and (max-width: 768px) {
+  ::-webkit-scrollbar,
+  .guns-scrollbar-hover:hover::-webkit-scrollbar {
+    width: @scrollbar-mini-thumb-size;
+    height: @scrollbar-mini-thumb-size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: (@scrollbar-mini-thumb-size / 2);
+  }
+}
+
+// 兼容火狐浏览器
+* {
+  scrollbar-width: thin;
+  scrollbar-color: @scrollbar-thumb-color transparent;
+}

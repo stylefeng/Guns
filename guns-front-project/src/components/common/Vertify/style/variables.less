@@ -1,0 +1,156 @@
+// prefix.
+@ym-prefix: ym-;
+@ym-lang-en: ~'@{ym-prefix}lang-en-us';
+
+// font-size.
+@ym-font-size: 1rem;
+@ym-font-size-sm: 12px;
+@ym-font-size-normal: 14px;
+@ym-font-size-base: 16px;
+
+// gap.
+@ym-gap: 8px;
+
+// animation duration
+@ym-anim-duration: .4s;
+
+@ym-z-index: 20220511;
+@ym-z-index-top: 20220602;
+@ym-z-index-mask: 20220614;
+@ym-z-index-modal: 20220620;
+
+@ym-overflow-extend: 21px;
+
+// color.
+@ym-white: #fff;
+@ym-black: #000;
+
+// side menu.
+@ym-side-width: (@ym-gap * 32 / @ym-font-size-base) * @ym-font-size;
+@ym-side-height: (@ym-gap * 16 / @ym-font-size-base) * @ym-font-size;
+@ym-side-large-height: (@ym-gap * 24 / @ym-font-size-base) * @ym-font-size;
+@ym-side-width-scroll: ((@ym-gap * 34 + 1) / @ym-font-size-base) * @ym-font-size;
+@ym-side-width-sm: (@ym-gap * 10 / @ym-font-size-base) * @ym-font-size;
+@ym-side-width-sm-scroll: ((@ym-gap * 12 + 1) / @ym-font-size-base) * @ym-font-size;
+@ym-side-width-margin: (@ym-gap * 2 / @ym-font-size-base) * @ym-font-size;
+@ym-side-item-height: (@ym-gap * 6.25 / @ym-font-size-base) * @ym-font-size;
+@ym-side-logo-size: (@ym-gap * 4 / @ym-font-size-base) * @ym-font-size;
+@ym-side-logo-large-size: (@ym-gap * 8 / @ym-font-size-base) * @ym-font-size;
+
+// header.
+@ym-header-height: (@ym-gap * 6 / @ym-font-size-base) * @ym-font-size;
+@ym-header-avatar-size: (@ym-gap * 3 / @ym-font-size-base) * @ym-font-size;
+
+// content
+@ym-content-padding-top: (@ym-gap * 15 / @ym-font-size-base) * @ym-font-size;
+
+// font.
+@ym-font-color: #333;
+@ym-font-family: "Pingfang SC", "Microsoft YaHei", "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@ym-code-family: Lucida Console, Consolas, "Courier New", "Source Code Pro", "Miscrosoft Yahei", "Segoe UI", "Lucida Grande", Helvetica, Arial, FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", sans-serif;
+
+// flex.
+.flex(@align: center, @justify: center, @direction: row) {
+    display: flex;
+    align-items: @align;
+    justify-content: @justify;
+    flex-direction: @direction;
+}
+
+// border raiuds.
+.border-radius(@raduis: 4) {
+    border-radius: (@raduis / @ym-font-size-base) * @ym-font-size;
+}
+
+.border-radius-circle() {
+    border-radius: 50%;
+}
+
+.linear-gradient-background() {
+    background-color: var(--ym-dark, @ym-dark);
+    background-image: linear-gradient(315deg, var(--ym-black, @ym-black) 0%, var(--ym-pre-dark, @ym-pre-dark) 74%);
+}
+
+.linear-gradient-background-theme() {
+    background-color: var(--ym-theme, @ym-theme);
+    background-image: linear-gradient(127deg, var(--ym-gradient-s, @ym-gradient-s) 0%, var(--ym-gradient-m, @ym-gradient-m) 52%, var(--ym-gradient-e, @ym-gradient-e) 100%);
+}
+
+.linear-gradient-text() {
+    background: transparent linear-gradient(127deg, var(--ym-gradient-s, @ym-gradient-s) 0%, var(--ym-gradient-m, @ym-gradient-m) 52%, var(--ym-gradient-e, @ym-gradient-e) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+// font size
+.font-size(@size: @ym-font-size-normal) {
+    font-size: (@size / @ym-font-size-base) * @ym-font-size;
+    line-height: ((@size + 4) / @ym-font-size-base) * @ym-font-size;
+}
+
+// linear-gradient
+.linear-gradient() {
+    background: linear-gradient(127deg, var(--ym-gradient-s, @ym-gradient-s) 0%, var(--ym-gradient-m, @ym-gradient-m) 52%, var(--ym-gradient-e, @ym-gradient-e) 100%);
+    color: linear-gradient(127deg, var(--ym-gradient-s, @ym-gradient-s) 0%, var(--ym-gradient-m, @ym-gradient-m) 52%, var(--ym-gradient-e, @ym-gradient-e) 100%);
+}
+
+// properties
+.properties(@key, @value: @ym-gap) {
+    @{key}: (@value / @ym-font-size-base) * @ym-font-size;
+}
+
+// text overflow ellipsis.
+.text-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// letter spacing.
+.letter-spacing(@value: 2) {
+    .properties(letter-spacing, @value);
+}
+
+// tag
+.tag(@bgColor: #ff5500, @txtColor: @ym-white) {
+    background: @bgColor;
+    margin-right: 0;
+    .border-radius(16);
+    color: @txtColor;
+    .properties(line-height, 18);
+    .properties(max-width, 64);
+    .text-ellipsis();
+    .properties(padding-left);
+    .properties(padding-right);
+    .properties(font-size, 12);
+    .properties(height, 20);
+}
+
+@ym-theme: #f6ca9d;
+@ym-primary: @ym-theme;
+@ym-subsidiary: #808695;
+@ym-success: #2F9688;
+@ym-error: #ff4d4f;
+@ym-danger: #ed4014;
+@ym-warning: #ff9900;
+@ym-info: #2db7f5;
+@ym-selection: fade(@ym-theme, 80%);
+@ym-link: @ym-primary;
+@ym-font: @ym-white;
+@ym-ink: @ym-black;
+@ym-dark: #1d1e23;
+@ym-deep: #2d2f32;
+@ym-night: #3e3e3e;
+@ym-dawn: #4c4c4c;
+@ym-dark-grey: #333;
+@ym-light-grey: #949494;
+@ym-pre-dark: #434343;
+@ym-light-purple: #5a72af;
+@ym-light-blue: #8da6b8;
+@ym-gradient-s: #d2b27d;
+@ym-gradient-m: #f4d5a9;
+@ym-gradient-e: #d1a466;
+
+// captcha
+@ym-captcha-success-bg: fade(@ym-theme, 20%);

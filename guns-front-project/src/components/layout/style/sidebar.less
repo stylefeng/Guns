@@ -1,0 +1,240 @@
+@import './themes/default.less';
+
+/* 侧栏 */
+.guns-admin-sidebar {
+  flex-shrink: 0;
+  width: @sidebar-width;
+  min-height: calc(100vh - @header-height);
+  z-index: calc(@layout-z-index + 3);
+  background: @sidebar-light-background;
+  box-shadow: @sidebar-light-shadow;
+  transition: @sidebar-transition;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  & > .guns-admin-sidebar-menus {
+    flex: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    & > .ant-menu {
+      border: none;
+      background: none;
+      transition: none;
+
+      .ant-menu-item,
+      .ant-menu-submenu-title {
+        width: 100%;
+      }
+
+      .ant-menu-item-icon {
+        margin-top: 2px;
+      }
+
+      .ant-menu-submenu .ant-menu-sub {
+        transition: none;
+      }
+    }
+  }
+
+  & > .guns-admin-sidebar-tool-item {
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .guns-admin-sidebar-tool-item-icon {
+      font-size: 20px !important;
+      color: #000;
+    }
+  }
+
+  & + .guns-admin-body {
+    width: calc(100% - @sidebar-width);
+    transition: width @sidebar-transition-anim;
+  }
+}
+
+/* 双侧栏一级 */
+.guns-admin-sidebar-nav {
+  flex-shrink: 0;
+  width: @sidebar-nav-width;
+  min-height: calc(100vh - @header-height);
+  box-shadow: -1px 0 0 @border-color-split inset;
+  transition:
+    width @sidebar-transition-anim,
+    left @sidebar-transition-anim,
+    padding @sidebar-transition-anim,
+    box-shadow @sidebar-transition-anim;
+  z-index: calc(@layout-z-index + 3);
+  background: @component-background;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  & > .guns-admin-sidebar-nav-menu {
+    flex: auto;
+    position: relative;
+    box-sizing: border-box;
+    padding: @sidebar-nav-padding;
+    transition: padding @sidebar-transition-anim;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    & > .ant-menu {
+      border: none;
+      background: none;
+      width: auto;
+
+      & > .ant-menu-item,
+      & > .ant-menu-submenu {
+        margin: @sidebar-nav-item-margin;
+        border-radius: @border-radius-base;
+      }
+
+      & > .ant-menu-item {
+        transition:
+          color 0.3s @ease-in-out,
+          background-color 0.3s @ease-in-out,
+          margin 0.3s @ease-in-out;
+      }
+
+      & > .ant-menu-submenu {
+        transition: margin 0.3s @ease-in-out;
+      }
+
+      & > .ant-menu-submenu > .ant-menu-submenu-title {
+        margin: 0;
+      }
+
+      & > .ant-menu-item,
+      & > .ant-menu-submenu > .ant-menu-submenu-title {
+        width: 100%;
+        height: auto;
+        line-height: 0;
+        display: block;
+        text-align: center;
+        border-radius: @border-radius-base;
+        padding: @sidebar-nav-item-padding !important;
+        transition:
+          color 0.3s @ease-in-out,
+          background-color 0.3s @ease-in-out,
+          padding 0.3s @ease-in-out;
+
+        & > .ant-menu-item-icon {
+          margin: 0;
+          line-height: 0;
+          font-size: @sidebar-nav-icon-font-size;
+          transition: font-size 0.3s @ease-in-out;
+        }
+
+        & > .ant-menu-title-content {
+          margin: 0;
+          opacity: 1;
+          display: block;
+          transition: none;
+        }
+
+        & > .ant-menu-title-content > span {
+          width: auto;
+          height: auto;
+          display: block;
+          line-height: 1;
+          font-size: @sidebar-nav-font-size;
+          max-height: @sidebar-nav-font-size;
+          margin: @sidebar-nav-item-title-margin;
+          transition:
+            transform 0.3s @ease-in-out,
+            max-height 0.3s @ease-in-out,
+            margin 0.3s @ease-in-out,
+            visibility 0.3s @ease-in-out;
+          overflow: hidden;
+          white-space: nowrap;
+          word-break: break-all;
+          text-overflow: ellipsis;
+          visibility: visible;
+          transform: scale(1);
+          max-width: none;
+          opacity: 1;
+        }
+
+        &:after {
+          display: none;
+        }
+      }
+
+      & > .ant-menu-item:not(.ant-menu-item-selected):hover {
+        background: @header-tool-hover-bg;
+      }
+
+      & > .ant-menu-submenu:not(.ant-menu-submenu-selected) {
+        & > .ant-menu-submenu-title:not(:active):hover {
+          background: @header-tool-hover-bg;
+        }
+      }
+
+      & > .ant-menu-submenu.ant-menu-submenu-selected {
+        & > .ant-menu-submenu-title {
+          background: @item-active-bg;
+        }
+      }
+    }
+  }
+
+  .guns-admin-sidebar-nav-tool-item {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: @text-color;
+    font-size: @font-size-lg;
+    transition:
+      color 0.3s @ease-in-out,
+      background-color 0.3s @ease-in-out,
+      padding 0.3s @ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+}
+
+.guns-admin-sidebar-nav-menu-pop > .ant-menu {
+  margin-left: @sidebar-nav-pop-menu-margin;
+}
+
+/* 侧栏双菜单 */
+.guns-admin-side-mix {
+  .guns-admin-logo {
+    width: @sidebar-nav-width;
+
+    & > span {
+      display: none;
+    }
+  }
+
+  &:not(.guns-admin-collapse) .guns-admin-logo {
+    box-shadow: -1px 0 0 @border-color-split inset;
+  }
+
+  .guns-admin-sidebar-nav + .guns-admin-sidebar {
+    background: @component-background;
+    box-shadow: @sidebar-light-shadow;
+    width: calc(@sidebar-width - @sidebar-collapse-width);
+    z-index: calc(@layout-z-index + 1);
+  }
+
+  .guns-admin-body {
+    width: calc(100% - @sidebar-nav-width);
+  }
+
+  .guns-admin-sidebar + .guns-admin-body {
+    width: calc(100% - @sidebar-width + @sidebar-collapse-width - @sidebar-nav-width);
+  }
+}

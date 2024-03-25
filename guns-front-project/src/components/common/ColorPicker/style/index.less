@@ -1,0 +1,242 @@
+@import '../../../layout/style/themes/default.less';
+
+/* trigger */
+.guns-color-picker-trigger {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 2px;
+  border: 1px solid @border-color-split;
+  background: @component-background;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+
+  .guns-color-picker-trigger-inner {
+    height: 100%;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px @border-color-split;
+    overflow: hidden;
+
+    &:not(.is-empty) {
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+    }
+
+    & > div {
+      height: 100%;
+    }
+  }
+
+  .guns-color-picker-trigger-arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -6px auto auto -6px;
+    line-height: 0;
+    font-size: 12px;
+    color: @text-color-secondary;
+
+    & > .anticon:not(.anticon-close) {
+      color: #fff;
+    }
+  }
+
+  // 禁用状态
+  &.is-disabled {
+    cursor: not-allowed;
+
+    .guns-color-picker-trigger-inner {
+      opacity: 0.6;
+    }
+  }
+
+  // 尺寸控制
+  &.guns-color-picker-large {
+    width: 40px;
+    height: 40px;
+  }
+
+  &.guns-color-picker-small {
+    width: 24px;
+    height: 24px;
+    padding: 3px;
+  }
+}
+
+/* picker */
+.guns-color-picker.ant-dropdown-menu {
+  width: 300px;
+  padding: 12px;
+  box-sizing: content-box;
+}
+
+/* footer */
+.guns-color-picker .guns-color-picker-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+
+  .guns-color-picker-value {
+    width: 140px;
+  }
+
+  .guns-color-picker-value > .ant-input {
+    height: 36px;
+    line-height: 1;
+    padding: 0 4px;
+    font-size: 12px;
+    display: block;
+  }
+
+  .ant-btn + .ant-btn {
+    margin-left: 8px;
+  }
+}
+
+/* alpha slider */
+.guns-color-picker .guns-color-alpha-slider {
+  height: 12px;
+  margin-top: 12px;
+  position: relative;
+  box-sizing: border-box;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+
+  .guns-color-alpha-slider-bar {
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    position: relative;
+    cursor: pointer;
+  }
+
+  .guns-color-alpha-slider-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    border: 1px solid #f0f0f0;
+    border-radius: 1px;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+/* hue slider */
+.guns-color-picker .guns-color-hue-slider {
+  height: 12px;
+  padding: 0 2px;
+  margin-top: 12px;
+  position: relative;
+  box-sizing: border-box;
+
+  .guns-color-hue-slider-bar {
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      #f00 0%,
+      #ff0 17%,
+      #0f0 33%,
+      #0ff 50%,
+      #00f 67%,
+      #f0f 83%,
+      #f00 100%
+    );
+    position: relative;
+    cursor: pointer;
+  }
+
+  .guns-color-hue-slider-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+    border: 1px solid #f0f0f0;
+    border-radius: 1px;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+/* predefine */
+.guns-color-picker .guns-color-predefine {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4px;
+
+  .guns-color-predefine-item {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    margin: 8px 0 0 8px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    & > div {
+      height: 100%;
+    }
+
+    &:nth-child(10n + 1) {
+      margin-left: 4px;
+    }
+
+    & > .anticon {
+      color: #fff;
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -6px auto auto -6px;
+    }
+  }
+}
+
+/* sv panel */
+.guns-color-picker .guns-color-svpanel {
+  height: 180px;
+  position: relative;
+  cursor: pointer;
+
+  .guns-color-svpanel-white,
+  .guns-color-svpanel-black {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .guns-color-svpanel-white {
+    background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+  }
+
+  .guns-color-svpanel-black {
+    background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+  }
+
+  .guns-color-svpanel-cursor {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0, 0, 0, 0.3),
+      0 0 1px 2px rgba(0, 0, 0, 0.4);
+    transform: translate(-2px, -2px);
+    cursor: pointer;
+  }
+}

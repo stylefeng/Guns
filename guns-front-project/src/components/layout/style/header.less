@@ -1,0 +1,156 @@
+@import './themes/default.less';
+
+/* header */
+.guns-admin-header {
+  display: flex;
+  align-items: center;
+  height: @header-height;
+  line-height: @header-height;
+  box-shadow: @header-light-shadow;
+  background: @header-light-background;
+  z-index: calc(@layout-z-index + 2);
+  box-sizing: border-box;
+  position: relative;
+
+  // logo
+  .guns-admin-logo {
+    width: @sidebar-width;
+    height: @header-height;
+    box-shadow: @logo-light-shadow;
+    background: @header-light-background;
+    transition: @sidebar-transition;
+    font-weight: @logo-font-weight;
+    font-family: @logo-font-family;
+    font-size: @logo-font-size;
+    color: @logo-light-color;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    & > img {
+      width: @logo-size;
+      height: @logo-size;
+
+      & + span {
+        margin-left: @padding-sm;
+      }
+    }
+  }
+
+  .ant-menu-title-content {
+    font-size: 15px;
+  }
+
+  .guns-admin-header-line {
+    border-left: 1px solid #ddd;
+    position: relative;
+    display: inline-block;
+    height: 1rem;
+    margin: 0 10px;
+    vertical-align: middle;
+    border-top: 0;
+  }
+
+  // 面包屑
+  .guns-admin-breadcrumb {
+    flex-shrink: 0;
+  }
+
+  // nav
+  .guns-admin-header-nav {
+    flex: 1;
+    overflow: hidden;
+
+    & > .ant-menu {
+      border: none;
+      background: none;
+      line-height: @header-height;
+
+      .ant-menu-item,
+      .ant-menu-submenu {
+        top: auto;
+        margin-top: 0;
+      }
+    }
+  }
+
+  // 操作按钮
+  .guns-admin-header-tool {
+    display: flex;
+    flex-shrink: 0;
+    padding: 0 @padding-sm;
+
+    .guns-admin-header-tool-item {
+      padding: 0 @padding-sm;
+      font-size: @font-size-base;
+      transition:
+        color 0.2s,
+        background-color 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background: @header-tool-hover-bg;
+      }
+
+      .anticon-menu-fold,
+      .anticon-menu-unfold,
+      .anticon-more,
+      .anticon-bell,
+      .anticon-fullscreen,
+      .anticon-fullscreen-exit {
+        transform: scale(1.15);
+      }
+    }
+    .guns-admin-header-tool-title {
+      padding: 0 @padding-sm;
+      font-size: @font-size-base;
+      transition:
+        color 0.2s,
+        background-color 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      .anticon-menu-fold,
+      .anticon-menu-unfold,
+      .anticon-more,
+      .anticon-bell,
+      .anticon-fullscreen,
+      .anticon-fullscreen-exit {
+        transform: scale(1.15);
+      }
+      .menu-title {
+        margin-left: 10px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
+    }
+  }
+
+  // 用户信息
+  .guns-admin-header-avatar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+
+    .ant-avatar {
+      width: @header-avatar-size;
+      height: @header-avatar-size;
+      line-height: @header-avatar-size;
+
+      & + span {
+        padding-left: @padding-xs;
+      }
+    }
+  }
+}

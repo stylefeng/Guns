@@ -1,0 +1,220 @@
+@import './themes/default.less';
+
+/* 页签栏 */
+.guns-admin-tabs {
+  display: flex;
+  align-items: center;
+  padding-left: @padding-md;
+  background: @component-background;
+  box-shadow: @header-light-shadow;
+  z-index: @layout-z-index;
+
+  & > .ant-tabs {
+    background: none;
+    flex: 1;
+
+    & > .ant-tabs-nav {
+      margin-bottom: 0;
+
+      // 页签
+      .ant-tabs-tab {
+        background: none;
+        height: @tabs-height;
+        line-height: @tabs-height;
+        transition: background-color 0.3s, color 0.3s;
+        border-radius: 0;
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        .ant-tabs-tab-btn {
+          transition: none;
+        }
+
+        &::after {
+          content: '';
+          width: 0;
+          height: 2px;
+          background: @primary-color;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+
+        // 选中
+        &.ant-tabs-tab-active {
+          background: @item-active-bg;
+
+          &::after {
+            width: 100%;
+          }
+        }
+
+        // 可关闭
+        &.ant-tabs-tab-with-remove .guns-admin-tab-title {
+          padding-right: 0;
+        }
+
+        .ant-tabs-tab-remove {
+          margin: 0;
+          padding: 0 (@padding-sm - 2px) 0 (@padding-xs - 2px);
+        }
+
+        // 拖动
+        &.sortable-ghost {
+          opacity: 0;
+        }
+      }
+
+      .ant-tabs-extra-content {
+        display: flex;
+      }
+    }
+
+    .ant-tabs-ink-bar,
+    .ant-tabs-nav::before,
+    .ant-tabs-content-holder {
+      display: none;
+    }
+
+    .ant-tabs-nav-operations .ant-tabs-nav-more .anticon {
+      font-size: @font-size-base;
+      vertical-align: -2px;
+    }
+  }
+}
+
+/* 页签标题 */
+.guns-admin-tab-title {
+  padding: 0 @padding-md;
+}
+
+/* 页签操作按钮 */
+.guns-tab-tool,
+.guns-admin-tabs .ant-tabs-nav-operations .ant-tabs-nav-more {
+  padding: 0;
+  flex-shrink: 0;
+  width: auto;
+  min-width: @tabs-height;
+  height: @tabs-height;
+  line-height: @tabs-height;
+  transition: background-color 0.3s, color 0.3s;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.guns-tab-tool {
+  .anticon,
+  .ant-dropdown-trigger .anticon {
+    font-size: @font-size-sm;
+    vertical-align: -1px;
+  }
+
+  // 模拟页签
+  &.is-tab {
+    &:hover {
+      color: @primary-color;
+    }
+
+    &::after {
+      content: '';
+      width: 0;
+      height: 2px;
+      background: @primary-color;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &.is-active {
+      color: @primary-color;
+      background: @item-active-bg;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* 页签下拉框 */
+.guns-admin-tabs-drop-popper,
+.guns-admin-tab-context-menu {
+  min-width: 116px !important;
+}
+
+.guns-admin-tabs-drop-popper {
+  left: auto !important;
+  right: 6px !important;
+}
+
+.guns-dropdown-item {
+  display: flex;
+  align-items: center;
+
+  .guns-dropdown-item-label {
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  & > * + .guns-dropdown-item-label {
+    padding-left: @padding-sm;
+  }
+}
+
+/* 页签折叠下拉框 */
+.ant-tabs-dropdown {
+  min-width: 140px !important;
+
+  & > .ant-tabs-dropdown-content {
+    background: @dropdown-menu-bg;
+    border-radius: @border-radius-base;
+  }
+
+  .ant-tabs-dropdown-menu-item {
+    padding-right: 6px;
+
+    & > span {
+      display: flex;
+
+      & > span {
+        flex: 1;
+      }
+    }
+  }
+
+  .ant-tabs-dropdown-menu-item-remove {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    margin-left: 2px;
+  }
+}
+
+/* 开启页签栏后顶栏阴影调整 */
+.guns-admin-show-tabs:not(.guns-admin-tab-card):not(.guns-admin-head-dark) {
+  .guns-admin-header {
+    box-shadow: @sidebar-width -1px 0 @border-color-split inset;
+    transition: padding-left @sidebar-transition-anim,
+      box-shadow @sidebar-transition-anim;
+  }
+
+  &.guns-admin-collapse .guns-admin-header {
+    box-shadow: @sidebar-collapse-width -1px 0 @border-color-split inset;
+  }
+
+  &.guns-admin-side-mix {
+    .guns-admin-header {
+      box-shadow: @sidebar-nav-width -1px 0 @border-color-split inset;
+    }
+
+    &.guns-admin-nav-collapse:not(.guns-admin-logo-auto) .guns-admin-header {
+      box-shadow: @sidebar-collapse-width -1px 0 @border-color-split inset;
+    }
+  }
+
+  &.guns-admin-logo-auto .guns-admin-header {
+    box-shadow: 0 -1px 0 @border-color-split inset;
+  }
+}

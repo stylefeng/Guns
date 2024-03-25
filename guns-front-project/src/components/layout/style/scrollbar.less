@@ -1,0 +1,77 @@
+@import './themes/default.less';
+
+/* 侧栏滚动条样式 */
+.guns-admin-sidebar,
+.guns-admin-sidebar > .guns-admin-sidebar-menus,
+.guns-admin-sidebar-nav,
+.guns-admin-sidebar-nav > .guns-admin-sidebar-nav-menu,
+.ant-menu-submenu-popup > .ant-menu.ant-menu-vertical {
+  overflow-y: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: @sidebar-light-scrollbar-thumb-color transparent;
+
+  &::-webkit-scrollbar {
+    width: @scrollbar-mini-thumb-size;
+    height: @scrollbar-mini-thumb-size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: (@scrollbar-mini-thumb-size / 2);
+    border: @scrollbar-thumb-border-size solid transparent;
+    background-color: @sidebar-light-scrollbar-thumb-color;
+    background-clip: padding-box;
+
+    &:hover {
+      background-color: @sidebar-light-scrollbar-thumb-hover-color;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: @sidebar-light-scrollbar-track-color;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .guns-admin-sidebar,
+  .guns-admin-sidebar > .guns-admin-sidebar-menus,
+  .guns-admin-sidebar-nav,
+  .guns-admin-sidebar-nav > .guns-admin-sidebar-nav-menu,
+  .ant-menu-submenu-popup > .ant-menu.ant-menu-vertical {
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    &:hover::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+  }
+}
+
+/* 暗色侧栏滚动条样式 */
+.guns-admin-side-dark:not(.guns-admin-side-mix) > .guns-admin-sidebar,
+.guns-admin-side-dark:not(.guns-admin-side-mix)
+  .guns-admin-sidebar
+  > .guns-admin-sidebar-menus,
+.guns-admin-side-dark .guns-admin-sidebar-nav,
+.guns-admin-side-dark .guns-admin-sidebar-nav > .guns-admin-sidebar-nav-menu,
+.ant-menu-submenu-popup.ant-menu-dark > .ant-menu.ant-menu-vertical {
+  scrollbar-color: @sidebar-scrollbar-thumb-color transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: @sidebar-scrollbar-thumb-color;
+
+    &:hover {
+      background-color: @sidebar-scrollbar-thumb-hover-color;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: @sidebar-scrollbar-track-color;
+  }
+}
