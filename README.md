@@ -29,7 +29,22 @@
 
 ## 快速启动
 
-Guns v7.3.1前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin](https://gitee.com/stylefeng/guns-vue3-admin)
+### Guns v8前端启动
+
+前端需要使用**Node 18**，请先安装node18，推荐使用yarn启动，具体启动方法如下：
+
+```shell
+# 安装依赖
+yarn
+
+# 启动前端项目
+yarn run dev
+
+# 打包
+npm run build
+```
+
+### Guns v8后端启动
 
 以下为后台启动的过程：
 
@@ -37,7 +52,7 @@ Guns v7.3.1前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin]
 
 2. 修改`application-local.yml`中的数据库连接配置连接到您的数据库。
 
-3. 打开`GunsApplication`运行main方法即可启动，注：新版无需运行sql初始化文件，因为集成了flyway会自动初始化表。
+3. 打开`ProjectStartApplication`运行main方法即可启动，注：新版无需运行sql初始化文件，因为集成了flyway会自动初始化表。
 
 4. 初始化账号密码：admin/123456
 
@@ -53,70 +68,21 @@ Guns v7.3.1前端启动详情见：[https://gitee.com/stylefeng/guns-vue3-admin]
 
 ## 更新日志
 
-### v7.3.1-2022年11月7日
+### v8.1.2-2024年3月25日
 
-更新7.3.1版本的核心包，Roses核心包已经推送至中央仓库，无需手动本地install roses模块即可启动。
-
-### v7.3.0-2022年10月31日
-
-最新v7.3.0版本，有两个大的新特性：
-
-1. 移除前后端不分离Layui的前端界面，提供Vue版本的前端集成。从v7.3.0起，将不再支持Layui版本的更新（如需旧版本可以在Gitee Tag中找到历史版本）。
-
-2. 提供对Guns-DevOps的快速集成方式。之前DevOps平台仅支持CentOS的一键部署，现在使用v7.3.0可以通过pom集成的方式，直接启动Guns项目就可以启动Guns-DevOps平台，但仍需配置秘钥。
-
-#### devops集成指南
-
-devops功能以Jar包集成的方式集成到项目，Guns-DevOps功能不开放源码。
-
-1. [点此下载Guns私服库的maven settings.xml](https://gitee.com/stylefeng/guns/blob/master/_devops/settings.xml) 替换掉你的本地的maven配置文件。
-
-2. 在Guns项目的pom.xml中引入如下模块
-
-```xml
-<!--Guns-DevOps集成-->
-<dependency>
-    <groupId>cn.stylefeng.roses</groupId>
-    <artifactId>kernel-s-devops-integration</artifactId>
-    <version>${roses.kernel.version}</version>
-</dependency>
-```
-
-3. **关键步骤**，在[https://javaguns.com/](https://javaguns.com/) 官网注册一个号，在官网右上角个人信息，申请一个平台秘钥，并在`application.yml`中配置`user.key`
-
-```shell
-# yml配置文件中加入如下配置
-user:
-  key: xxxxxxxx
-```
-
-4. 启动项目后，界面上点击右上角，即可跳转到Guns-DevOps平台
-
-![](.README_images/1ae18fee.png)
-
-5. 项目上线后，再把Guns-DevOps相关依赖删掉，以减轻Jar包的重量
+改动比较大，待更新说明文档，有问题可以交流群讨论。
 
 ## Guns介绍
 
 Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boot2 + Vue3 + Antd Vue**，Guns基于**插件化架构**，通过灵活组装插件，可以进行集成和拓展相关功能。
 
-**Guns v7.3.1**已经发布，前后端代码以及核心包源码，均可在如下Gitee仓库可找到：
+**Guns v8**已经发布，前后端代码以及核心包源码，均可在如下Gitee仓库可找到：
 
-前端代码：[https://gitee.com/stylefeng/guns-vue3-admin](https://gitee.com/stylefeng/guns-vue3-admin)
-
-后端代码：[https://gitee.com/stylefeng/guns](https://gitee.com/stylefeng/guns)
+主项目：[https://gitee.com/stylefeng/guns](https://gitee.com/stylefeng/guns)
 
 核心包：[https://gitee.com/stylefeng/roses](https://gitee.com/stylefeng/roses)
 
 经过多年发展，Guns已在业界具有一定影响力。Guns技术架构可以直接应用到任何软件产品和技术公司自身的技术体系建设中，帮助企业解决**规范问题**，解决**复用问题**，解决**架构问题**。
-
-![](.README_images/4e63346d.png)
-
-![](.README_images/223a7ade.png)
-
-![](.README_images/9f05f0d3.png)
-
-![](.README_images/49e229cb.png)
 
 ## Guns功能列表
 
