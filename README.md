@@ -7,13 +7,13 @@
         <br>
         <br>
         <a href="http://spring.io/projects/spring-boot">
-            <img src="https://img.shields.io/badge/spring--boot-2.4.2-green.svg" alt="spring-boot">
+            <img src="https://img.shields.io/badge/spring--boot-2.6.14-green.svg" alt="spring-boot">
         </a>
         <a href="http://mp.baomidou.com">
-            <img src="https://img.shields.io/badge/mybatis--plus-3.4.0-blue.svg" alt="mybatis-plus">
+            <img src="https://img.shields.io/badge/mybatis--plus-3.5.3.1-blue.svg" alt="mybatis-plus">
         </a>  
         <a href="https://www.hutool.cn/">
-            <img src="https://img.shields.io/badge/hutool-5.4.4-blue.svg" alt="hutool">
+            <img src="https://img.shields.io/badge/hutool-5.8.16-blue.svg" alt="hutool">
         </a>
         <a href="http://ibeetl.com/">
             <img src="https://img.shields.io/badge/beetl-3.3.1-yellow.svg" alt="beetl">
