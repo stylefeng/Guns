@@ -84,6 +84,22 @@ Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boo
 
 经过多年发展，Guns已在业界具有一定影响力。Guns技术架构可以直接应用到任何软件产品和技术公司自身的技术体系建设中，帮助企业解决**规范问题**，解决**复用问题**，解决**架构问题**。
 
+![](.README_images/1b1ba389.png)
+
+![](.README_images/52c5b334.png)
+
+![](.README_images/9e8549ed.png)
+
+![](.README_images/636236e9.png)
+
+![](.README_images/053a51ab.png)
+
+![](.README_images/ec1cdbcb.png)
+
+![](.README_images/654b121c.png)
+
+
+
 ## Guns功能列表
 
 - 1.控制面板
