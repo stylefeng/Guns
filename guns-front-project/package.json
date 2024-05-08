@@ -22,7 +22,7 @@
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
-    "tinymce": "^5.10.7",
+    "tinymce": "^7.0.0",
     "vue": "^3.3.4",
     "vue-clipboard3": "^2.0.0",
     "vue-echarts": "^6.5.4",
