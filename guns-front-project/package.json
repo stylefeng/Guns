@@ -47,7 +47,7 @@
     "prettier": "^3.0.3",
     "terser": "^5.16.9",
     "unplugin-vue-components": "^0.24.1",
-    "vite": "^4.4.11",
+    "vite": "^4.5.3",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-style-import": "^2.0.0",
     "vitest": "^0.34.6",
