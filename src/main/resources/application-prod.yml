@@ -2,7 +2,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DEVOPS_MYSQL_HOST}:${DEVOPS_MYSQL_PORT}/${DEVOPS_MYSQL_DATABASE_NAME}?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true
+    url: jdbc:mysql://${DEVOPS_MYSQL_HOST}:${DEVOPS_MYSQL_PORT}/${DEVOPS_MYSQL_DATABASE_NAME}?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
     username: ${DEVOPS_MYSQL_USERNAME}
     password: ${DEVOPS_MYSQL_PASSWORD}
 

@@ -2,19 +2,10 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true
+    url: jdbc:mysql://localhost:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
     username: root
     password: root
 
     # 连接池大小根据实际情况调整
     max-active: 100
     max-pool-prepared-statement-per-connection-size: 100
-
-devops:
-  serverHost: http://192.168.31.58:12909
-  project-unique-code: Y4JdNfsfS2tjAQouFm1t035IAnsjSKG3
-  project-interaction-secret-key: QBAttyH2ZkolwtkDcn0Y5b8HLGHEtOHC
-
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
