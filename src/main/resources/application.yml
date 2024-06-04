@@ -18,7 +18,7 @@ spring:
       max-file-size: 8GB
   jackson:
     time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: cn.stylefeng.roses.kernel.rule.date.CustomDateFormat
     locale: zh_CN
     serialization:
       indent_output: false
