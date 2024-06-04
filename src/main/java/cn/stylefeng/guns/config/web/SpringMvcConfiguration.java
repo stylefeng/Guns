@@ -5,6 +5,7 @@ import cn.stylefeng.guns.core.security.TokenAndPermissionInterceptor;
 import cn.stylefeng.roses.kernel.wrapper.field.jackson.CustomJacksonIntrospector;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -74,6 +75,20 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
         registry.addResourceHandler("/guns-devops/**").addResourceLocations("classpath:/guns-devops/");
+    }
+
+    /**
+     * 资源样式为空的过滤器
+     *
+     * @author fengshuonan
+     * @since 2024-04-23 16:12
+     */
+    @Bean
+    public FilterRegistrationBean<EmptyResourceFilter> filterRegistrationBean() {
+        FilterRegistrationBean<EmptyResourceFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new EmptyResourceFilter());
+        registrationBean.addUrlPatterns(EmptyResourceFilter.GUNS_DEVOPS_ASSETS_PREFIX + "/*");
+        return registrationBean;
     }
 
 }
