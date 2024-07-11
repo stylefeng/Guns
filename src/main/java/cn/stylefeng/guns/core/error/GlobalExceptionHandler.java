@@ -2,10 +2,14 @@ package cn.stylefeng.guns.core.error;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.http.useragent.UserAgent;
 import cn.stylefeng.roses.kernel.auth.api.exception.AuthException;
 import cn.stylefeng.roses.kernel.auth.api.exception.enums.AuthExceptionEnum;
 import cn.stylefeng.roses.kernel.demo.exception.DemoException;
 import cn.stylefeng.roses.kernel.demo.exception.enums.DemoExceptionEnum;
+import cn.stylefeng.roses.kernel.log.api.context.ServerInfoContext;
+import cn.stylefeng.roses.kernel.log.api.pojo.security.LogSecurityRequest;
+import cn.stylefeng.roses.kernel.log.api.schedule.AsyncLogManager;
 import cn.stylefeng.roses.kernel.rule.constants.SymbolConstant;
 import cn.stylefeng.roses.kernel.rule.exception.AbstractExceptionEnum;
 import cn.stylefeng.roses.kernel.rule.exception.base.ServiceException;
@@ -184,6 +188,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AuthException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String authError(AuthException authException, HttpServletRequest request, HttpServletResponse response, Model model) {
+
+        // 记录日志
+        this.asyncRecordSecurityLog(authException, request);
+
         String errorCode = authException.getErrorCode();
 
         // 如果是会话过期或超时
@@ -361,6 +369,52 @@ public class GlobalExceptionHandler {
         ErrorResponseData<?> errorResponseData = renderJson(authException.getErrorCode(), authException.getUserTip(), authException);
         ResponseRenderUtil.renderJsonResponse(response, errorResponseData);
         return null;
+    }
+
+    /**
+     * 异步记录安全日志
+     *
+     * @author fengshuonan
+     * @since 2024/7/11 18:39
+     */
+    private void asyncRecordSecurityLog(AuthException authException, HttpServletRequest request) {
+        LogSecurityRequest logSecurityRequest = new LogSecurityRequest();
+
+        // 设置请求地址
+        logSecurityRequest.setRequestUrl(request.getServletPath());
+
+        // 设置http的请求参数
+        logSecurityRequest.setRequestParams("");
+
+        // 设置服务端IP
+        logSecurityRequest.setServerIp(ServerInfoContext.getServerIp());
+
+        // 设置客户端IP
+        logSecurityRequest.setClientIp(HttpServletUtil.getRequestClientIp(request));
+
+        // 设置请求的http方法
+        logSecurityRequest.setHttpMethod(request.getMethod());
+
+        // 解析http头，获取userAgent信息
+        UserAgent userAgent = HttpServletUtil.getUserAgent(request);
+        if (userAgent == null) {
+            return;
+        }
+        // 设置浏览器标识
+        if (ObjectUtil.isNotEmpty(userAgent.getBrowser())) {
+            logSecurityRequest.setClientBrowser(userAgent.getBrowser().getName());
+        }
+        // 设置浏览器操作系统
+        if (ObjectUtil.isNotEmpty(userAgent.getOs())) {
+            logSecurityRequest.setClientOs(userAgent.getOs().getName());
+        }
+
+        // 设置安全日志内容
+        logSecurityRequest.setLogContent(authException.getUserTip());
+
+        // 记录日志
+        AsyncLogManager.getInstance().recordSecurityLog(logSecurityRequest);
+
     }
 
 }
