@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.config.web;
 
 import cn.stylefeng.guns.core.error.CustomErrorAttributes;
+import cn.stylefeng.guns.core.security.BlackWhiteInterceptor;
 import cn.stylefeng.guns.core.security.TokenAndPermissionInterceptor;
 import cn.stylefeng.roses.kernel.wrapper.field.jackson.CustomJacksonIntrospector;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -27,6 +28,9 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
 
     @Resource
     private TokenAndPermissionInterceptor tokenAndPermissionInterceptor;
+
+    @Resource
+    private BlackWhiteInterceptor blackWhiteInterceptor;
 
     /**
      * 重写系统的默认错误提示
@@ -62,7 +66,8 @@ public class SpringMvcConfiguration implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenAndPermissionInterceptor);
+        registry.addInterceptor(blackWhiteInterceptor).order(100);
+        registry.addInterceptor(tokenAndPermissionInterceptor).order(200);
     }
 
     /**
