@@ -5,6 +5,7 @@ import cn.stylefeng.guns.core.security.BlackWhiteInterceptor;
 import cn.stylefeng.guns.core.security.TokenAndPermissionInterceptor;
 import cn.stylefeng.roses.kernel.wrapper.field.jackson.CustomJacksonIntrospector;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +14,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import javax.annotation.Resource;
 
 /**
  * spring mvc的配置

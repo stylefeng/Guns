@@ -20,6 +20,9 @@ import cn.stylefeng.roses.kernel.rule.util.HttpServletUtil;
 import cn.stylefeng.roses.kernel.rule.util.ResponseRenderUtil;
 import cn.stylefeng.roses.kernel.validator.api.exception.ParamValidateException;
 import cn.stylefeng.roses.kernel.validator.api.exception.enums.ValidatorExceptionEnum;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.mybatis.spring.MyBatisSystemException;
@@ -39,9 +42,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ValidationException;
 import java.util.List;
 
 import static cn.stylefeng.guns.core.consts.ProjectConstants.ROOT_PACKAGE_NAME;

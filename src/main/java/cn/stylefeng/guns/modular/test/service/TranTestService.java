@@ -1,10 +1,9 @@
 package cn.stylefeng.guns.modular.test.service;
 
 import cn.stylefeng.guns.modular.test.factory.NormalUserFactory;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
 
 /**
  * 测试多数据源操作

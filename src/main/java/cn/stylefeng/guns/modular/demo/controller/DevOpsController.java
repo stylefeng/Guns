@@ -19,11 +19,11 @@ import cn.stylefeng.roses.kernel.sys.modular.user.pojo.request.SysUserRequest;
 import cn.stylefeng.roses.kernel.sys.modular.user.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 

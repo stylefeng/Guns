@@ -13,13 +13,12 @@ import cn.stylefeng.roses.kernel.rule.util.AntPathMatcherUtil;
 import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.api.pojo.resource.ResourceUrlParam;
 import cn.stylefeng.roses.kernel.sys.api.ResourceServiceApi;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Token和权限校验的综合过滤器
