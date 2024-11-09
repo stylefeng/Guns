@@ -85,7 +85,7 @@ npm run build
 
 ## Guns介绍
 
-Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boot2 + Vue3 + Antd Vue**，Guns基于**插件化架构**，通过灵活组装插件，可以进行集成和拓展相关功能。
+Guns是一个现代化的Java应用开发框架，基于主流技术**Spring Boot3 + Vue3 + Antd Vue**，Guns基于**插件化架构**，通过灵活组装插件，可以进行集成和拓展相关功能。
 
 **Guns v8**已经发布，前后端代码以及核心包源码，均可在如下Gitee仓库可找到：
 
