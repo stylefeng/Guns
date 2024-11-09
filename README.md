@@ -45,11 +45,13 @@ npm run build
 
 以下为后台启动的过程：
 
+**重要 重要 重要**，不要手动初始化sql，因为集成了flyway会自动初始化表，准备空库即可。
+
 1. 在mysql数据库中创建guns数据库，推荐mysql 5.7或8版本。
 
 2. 修改`application-local.yml`中的数据库连接配置连接到您的数据库。
 
-3. 打开`ProjectStartApplication`运行main方法即可启动，注：新版无需运行sql初始化文件，因为集成了flyway会自动初始化表。
+3. 打开`ProjectStartApplication`运行main方法即可启动。
 
 4. 初始化账号密码：admin/123456
 
