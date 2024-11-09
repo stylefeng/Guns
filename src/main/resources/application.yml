@@ -1,6 +1,6 @@
 server:
   port: 8080
-  max-http-header-size: 10240
+  max-http-request-header-size: 10240
 
 spring:
   application:
