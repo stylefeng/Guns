@@ -3,21 +3,18 @@
     <br>      
     <br>      
     <p align="center">
-        Guns是一个现代化的Java应用开发框架，基于主流技术Spring Boot2 + Vue3，Guns的核心理念是提高开发人员开发效率，降低企业信息化系统的开发成本。
+        Guns是一个现代化的Java应用开发框架，基于主流技术Spring Boot3 + Vue3 + JDK17，Guns的核心理念是提高开发人员开发效率，降低企业信息化系统的开发成本。
         <br>
         <br>
         <a href="http://spring.io/projects/spring-boot">
-            <img src="https://img.shields.io/badge/spring--boot-2.6.14-green.svg" alt="spring-boot">
+            <img src="https://img.shields.io/badge/spring--boot-3.3.2-green.svg" alt="spring-boot">
         </a>
         <a href="http://mp.baomidou.com">
-            <img src="https://img.shields.io/badge/mybatis--plus-3.5.3.1-blue.svg" alt="mybatis-plus">
+            <img src="https://img.shields.io/badge/mybatis--plus-3.5.7-blue.svg" alt="mybatis-plus">
         </a>  
         <a href="https://www.hutool.cn/">
-            <img src="https://img.shields.io/badge/hutool-5.8.16-blue.svg" alt="hutool">
+            <img src="https://img.shields.io/badge/hutool-5.8.29-blue.svg" alt="hutool">
         </a>
-        <a href="http://ibeetl.com/">
-            <img src="https://img.shields.io/badge/beetl-3.3.1-yellow.svg" alt="beetl">
-        </a>  
     </p>
 </p>
 
@@ -31,7 +28,7 @@
 
 ### Guns v8前端启动
 
-前端需要使用**Node 18**，请先安装node18，推荐使用yarn启动，具体启动方法如下：
+前端需要使用**Node 20**，请先安装node20，请使用yarn启动，具体启动方法如下：
 
 ```shell
 # 安装依赖
