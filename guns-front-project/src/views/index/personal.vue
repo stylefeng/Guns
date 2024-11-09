@@ -22,8 +22,7 @@
             <span>{{ item.title }}</span>
           </div>
         </div>
-
-        <div class="guns-card">
+        <div class="guns-card right">
           <div class="right-body">
             <!--修改基本信息-->
             <update-user-info v-if="activationKey === 'base' && userInfo.account" :data="userInfo"></update-user-info>
@@ -112,9 +111,7 @@ watch(
 
 .body {
   width: 1200px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 1em;
+  display: flex;
 }
 
 .avatar {
@@ -157,6 +154,12 @@ watch(
   color: #2a82e4;
 }
 
+.right {
+  width: calc(100% - 300px);
+  margin-left: 10px;
+  height: 100%;
+}
+
 .right-body {
   width: 100%;
   height: 100%;
@@ -178,8 +181,26 @@ watch(
 }
 
 .column-flex {
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .body {
+    width: 340px;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .right,
+  .column-flex {
+    width: 100%;
+  }
+
+  .right {
+    margin-left: 0;
+  }
 }
 </style>

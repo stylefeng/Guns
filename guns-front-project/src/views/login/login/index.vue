@@ -1,19 +1,17 @@
 <template>
   <div :class="['login-wrapper', { 'login-wrapper-responsive': styleResponsive }]" ref="loginPage">
+    <div class="login-info" v-if="!isMinWidth">
+      <h1 class="login-title">{{ themeInfo.gunsMgrName }}</h1>
+      <h4 class="login-subtitle">{{ themeInfo.gunsSubTitle }}</h4>
+    </div>
     <a-card class="login-card" :bordered="false">
       <div class="login-cover">
-        <h1 class="login-title">{{ themeInfo.gunsMgrName }}</h1>
-        <h4 class="login-subtitle">{{ themeInfo.gunsSubTitle }}</h4>
+        <h1 class="login-title" v-if="isMinWidth">{{ themeInfo.gunsMgrName }}</h1>
+        <h4 class="login-subtitle" v-if="isMinWidth">{{ themeInfo.gunsSubTitle }}</h4>
       </div>
       <div class="login-body">
-        <h4 style="font-size: 24px; margin-bottom: 18px; font-weight: bold">{{ t('login.title') }}</h4>
-        <a-radio-group
-          v-model:value="tabActive"
-          size="default"
-          class="radio-group"
-          v-show="false"
-        >
-          <div class="tab-active tab1"></div>
+        <h4 style="font-size: 32px; margin-bottom: 32px; font-weight: bold">{{ t('login.title') }}</h4>
+        <a-radio-group v-model:value="tabActive" size="default" class="radio-group" v-show="false">
           <a-radio-button value="1">密码登录</a-radio-button>
         </a-radio-group>
         <!-- 登录 -->
@@ -52,7 +50,15 @@
             </div>
           </a-form-item>
           <a-form-item>
-            <a-button block size="large" type="primary" :loading="loading" @click="logoClick" class="border-radius">
+            <a-button
+              block
+              size="large"
+              type="primary"
+              :loading="loading"
+              @click="logoClick"
+              class="border-radius"
+              style="height: 40px; margin-top: 20px"
+            >
               {{ loading ? t('login.loading') : t('login.login') }}
             </a-button>
           </a-form-item>
@@ -86,7 +92,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref, unref } from 'vue';
+import { computed, onMounted, onUnmounted, reactive, ref, unref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import { Form, message } from 'ant-design-vue';
@@ -94,7 +100,7 @@ import { LockOutlined, SafetyCertificateOutlined, UserOutlined } from '@ant-desi
 import { getToken, setToken } from '@/utils/token-util';
 import { cleanPageTabs, goHomeRoute } from '@/utils/page-tab-util';
 import { LoginApi } from '@/views/login/login/api/LoginApi';
-import { CAPTCHA_FLAG, SSO_CLIENT_ID, SSO_FLAG, IS_NEED_RSA, DRAW_CAPTCHA_FLAG } from '@/config/setting';
+import { CAPTCHA_FLAG, SSO_CLIENT_ID, SSO_FLAG, IS_NEED_RSA, DRAW_CAPTCHA_FLAG, CUSTOM_LOGIN_BACKGROUND_ENABLE } from '@/config/setting';
 import { useSystemStore } from '@/store/modules/system';
 import { SsoUtil } from '@/utils/common/sso-util';
 import { RsaEncry } from '@/utils/common/util';
@@ -189,12 +195,33 @@ let systemStore = useSystemStore();
 // 当前登录方式
 const tabActive = ref('1');
 
+// 是否是最小宽度
+const isMinWidth = ref(false);
+
 /* 页面加载完成 */
 onMounted(async () => {
+  resizeChange();
+  window.addEventListener('resize', resizeChange);
   let result = await systemStore.loadThemeInfo();
   themeInfo.value = result;
   // 动态设置登录页面的背景
-  loginPage.value.style.setProperty('--customBackground', `url(${result.gunsMgrLoginBackgroundImg})`);
+  if (CUSTOM_LOGIN_BACKGROUND_ENABLE) {
+    loginPage.value.style.setProperty('--customBackground', `url(${result.gunsMgrLoginBackgroundImg})`);
+  }
+});
+
+// 屏幕大小改变
+const resizeChange = () => {
+  const width = window.innerWidth;
+  if (width <= 680) {
+    isMinWidth.value = true;
+  } else {
+    isMinWidth.value = false;
+  }
+};
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeChange);
 });
 
 /* 跳转到首页 */
@@ -276,12 +303,14 @@ if (getToken()) {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 body {
   /*自定义背景图片*/
-  --customBackground: url('@/assets/bg-login.png');
+  --customBackground: url('@/assets/bg-login1.png');
 }
+</style>
 
+<style lang="less" scoped>
 .login-wrapper {
   min-height: 100vh;
   box-sizing: border-box;
@@ -293,18 +322,24 @@ body {
   background-image: var(--customBackground);
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  position: relative;
+}
+
+.login-info {
+  position: absolute;
+  top: 8%;
+  left: 6%;
 }
 
 .login-card {
-  width: 920px;
+  width: 80%;
   max-width: 100%;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  background-color: transparent;
   :deep(.ant-card-body) {
     display: flex;
     padding: 0;
-    min-height: 462px;
   }
 }
 
@@ -312,8 +347,6 @@ body {
   flex: 1;
   padding: 36px 8px;
   box-sizing: border-box;
-  background-color: #1681fd;
-  background-image: url('@/assets/logo.png');
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
@@ -325,8 +358,8 @@ body {
 
 // 标题
 .login-title {
-  color: rgba(255, 255, 255, 0.98);
-  font-size: 26px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 52px;
   margin: 0 0 6px 0;
   font-weight: normal;
   font-family: 'AliPuHui';
@@ -334,8 +367,8 @@ body {
 }
 
 .login-subtitle {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 16px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 32px;
   margin: 0;
   font-weight: normal;
   font-family: 'AliPuHui';
@@ -343,16 +376,19 @@ body {
 }
 
 .login-body {
+  min-height: 450px;
   width: 400px;
+  background-color: #fff;
   flex-shrink: 0;
-  padding: 32px 48px 0 48px;
+  padding: 32px 48px 32px 48px;
   box-sizing: border-box;
-  height: 100%;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: -6px 6px 10px 0px rgba(51, 65, 86, 0.15);
 }
 
 .login-form {
-  margin-top: 50px;
-  height: calc(100% - 120px);
+  height: calc(100% - 90px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -364,9 +400,8 @@ body {
 
 .radio-group {
   position: relative;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
   padding: 3px;
-  background: #f5f5f5;
   border-radius: 5px;
   :deep(.ant-radio-button-input) {
     display: none;
@@ -375,13 +410,15 @@ body {
     display: none;
   }
   .ant-radio-button-wrapper {
-    background: #f5f5f5;
+    font-size: 24px;
     border: 0;
+    text-align: left;
+    padding: 0;
+    font-weight: 500;
+    padding-bottom: 38px;
     color: rgba(0, 0, 0, 0.6);
-    &:hover {
-      background: #ebebeb;
-      border-radius: 3px;
-      color: black;
+    &:not(:last-child) {
+      margin-right: 30px;
     }
   }
   .ant-radio-button-wrapper-checked {
@@ -400,23 +437,8 @@ body {
     display: none;
   }
 
-  .tab-active {
-    width: calc(50% - 6px);
-    position: absolute;
-    top: 3px;
-    height: 32px;
-    z-index: 2;
-    background: #fff;
-    border-radius: 3px;
-    box-sizing: content-box;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
-    transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  }
-  .tab1 {
-    transform: translateX(2px);
-  }
-  .tab2 {
-    transform: translateX(88px);
+  :deep(.ant-radio-button-checked) {
+    border-bottom: 4px solid #1890ff;
   }
 }
 
@@ -442,10 +464,29 @@ body {
     .login-cover {
       padding: 24px 12px 100px 12px;
       background-size: auto 100px;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-image: var(--customBackground);
+
+      .login-title, .login-subtitle {
+        text-shadow:
+          0 0 10px #fff,
+          /* 白色主发光 */ 0 0 20px #fff,
+          /* 白色次发光 */ 0 0 30px #fff,
+          /* 白色再次发光 */ 0 0 40px var(--primary-color),
+          /* 粉色发光 */ 0 0 50px var(--primary-color),
+          /* 粉色发光 */ 0 0 60px var(--primary-color),
+          /* 粉色发光 */ 0 0 70px var(--primary-color); /* 粉色发光 */
+      }
     }
 
     .login-body {
       width: 100%;
+      box-shadow: none;
+
+      .radio-group {
+        margin-bottom: 32px;
+      }
     }
   }
 }

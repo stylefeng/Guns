@@ -86,6 +86,10 @@ import { ref, onMounted } from 'vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 import { message } from 'ant-design-vue/es';
 
+defineOptions({
+  name: 'Online',
+})
+
 // 表格配置
 const columns = ref([
   {

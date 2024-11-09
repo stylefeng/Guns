@@ -57,7 +57,7 @@ export function getMenuRoutes(menus, homePath, isNeedMenuTree = true) {
   ];
   // 路由铺平处理
   eachTreeData(menuToRoutes(menus, getComponent), (route) => {
-    routes.push({ ...route, children: void 0 });
+    routes.push(Object.assign({}, route, { children: void 0 }));
   });
   return {
     path: LAYOUT_PATH,

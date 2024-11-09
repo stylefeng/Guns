@@ -1,7 +1,7 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="24">
+      <a-col :xs='24' :sm='24' :md='24'>
         <a-form-item label="选择应用:" name="appId">
           <div class="list">
             <div
@@ -17,22 +17,22 @@
           </div>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="菜单名称:" name="menuName">
           <a-input v-model:value="form.menuName" allow-clear placeholder="请输入菜单名称" @change="menuNameBlur" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="菜单编码:" name="menuCode">
           <a-input v-model:value="form.menuCode" allow-clear placeholder="请输入菜单编码" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="上级菜单：" name="menuParentName">
           <a-input v-model:value="form.menuParentName" allow-clear placeholder="请输入上机菜单" disabled />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="排序:" name="menuSort">
           <a-input-number
             v-model:value="form.menuSort"
@@ -44,12 +44,12 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="菜单图标:" name="antdvIcon">
           <icon-select v-model:value="form.antdvIcon" placeholder="请选择图标"></icon-select>
         </a-form-item>
       </a-col>
-      <a-col :span="24">
+      <a-col :xs='24' :sm='24' :md='24'>
         <a-form-item label="菜单类型:" name="menuType">
           <div class="list">
             <div
@@ -75,10 +75,10 @@
           </div>
         </a-form-item>
       </a-col>
-      <a-col :span="24">
+      <a-col :xs='24' :sm='24' :md='24'>
         <div class="card-title">Vue前端组件配置</div>
       </a-col>
-      <a-col :span="12" v-if="props.form.menuType != 40">
+      <a-col :xs='24' :sm='24' :md='12' v-if="props.form.menuType != 40">
         <a-form-item name="antdvRouter">
           <template #label>
             <span style="margin-right: 10px">路由地址:</span>
@@ -90,7 +90,7 @@
           <a-input v-model:value="form.antdvRouter" allow-clear placeholder="请输入路由地址" />
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="props.form.menuType == 40">
+      <a-col :xs='24' :sm='24' :md='12' v-if="props.form.menuType == 40">
         <a-form-item name="antdvRouter">
           <template #label>
             <span style="margin-right: 10px">链接地址:</span>
@@ -102,7 +102,7 @@
           <a-input v-model:value="form.antdvRouter" allow-clear placeholder="请输入链接地址" />
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="[10, 20].includes(props.form.menuType)">
+      <a-col :xs='24' :sm='24' :md='12' v-if="[10, 20].includes(props.form.menuType)">
         <a-form-item name="antdvComponent">
           <template #label>
             <span style="margin-right: 10px">组件代码路径:</span>
@@ -114,7 +114,7 @@
           <a-input v-model:value="form.antdvComponent" allow-clear placeholder="请输入组件代码路径" />
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="props.form.menuType == 30">
+      <a-col :xs='24' :sm='24' :md='12' v-if="props.form.menuType == 30">
         <a-form-item name="antdvComponent">
           <template #label>
             <span style="margin-right: 10px">链接地址:</span>
@@ -126,7 +126,7 @@
           <a-input v-model:value="form.antdvComponent" allow-clear placeholder="请输入组件代码路径" />
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="[10, 20].includes(props.form.menuType)">
+      <a-col :xs='24' :sm='24' :md='12' v-if="[10, 20].includes(props.form.menuType)">
         <a-form-item name="antdvVisible">
           <template #label>
             <span style="margin-right: 10px">是否显示:</span>
@@ -138,7 +138,7 @@
           <vxe-switch v-model="form.antdvVisible" open-value="Y" close-value="N"></vxe-switch>
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="props.form.menuType == 10">
+      <a-col :xs='24' :sm='24' :md='12' v-if="props.form.menuType == 10">
         <a-form-item name="antdvActiveUrl">
           <template #label>
             <span style="margin-right: 10px">激活地址:</span>

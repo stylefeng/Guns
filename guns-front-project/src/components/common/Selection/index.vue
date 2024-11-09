@@ -9,6 +9,7 @@
     @cancel="updateVisible(false)"
     :footer="footer"
     :maskClosable="false"
+    wrapClassName="selection-modal"
     v-if="visible"
   >
     <div class="box">
@@ -401,6 +402,20 @@ watch(
   .box-content {
     width: 100%;
     height: calc(100% - 121px);
+  }
+}
+</style>
+
+<style lang="less">
+@media screen and (max-width: 768px) {
+  .selection-modal {
+    .ant-modal {
+      width: 100% !important;
+      top: 20px;
+    }
+    .user-select {
+      overflow-y: auto !important;
+    }
   }
 }
 </style>

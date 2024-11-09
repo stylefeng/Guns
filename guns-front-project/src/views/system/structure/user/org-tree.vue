@@ -119,7 +119,9 @@ const getOrgTreeData = () => {
   apiLoading.value = true;
   OrgApi.tree({ searchText: searchText.value })
     .then(res => {
-      expandedKeys.value = res.data.expandOrgIdList;
+      if (searchText.value) {
+        expandedKeys.value = res.data.expandOrgIdList;
+      }
       const arr = setIsLeaf(res.data.orgTreeList);
       treeData.value = arr;
     })

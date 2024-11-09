@@ -5,15 +5,18 @@
     :collapse="collapse"
     :side-nav-collapse="sideNavCollapse"
     :body-fullscreen="bodyFullscreen"
+    :show-tabs="showTabs"
     :show-footer="showFooter"
     :head-style="headStyle"
     :side-style="sideStyle"
     :layout-style="layoutStyle"
     :side-menu-style="sideMenuStyle"
+    :tab-style="tabStyle"
     :fixed-body="fixedBody"
     :body-full="bodyFull"
     :logo-auto-size="logoAutoSize"
     :side-unique-open="sideUniqueOpen"
+    :side-init-open-all="sideInitOpenAll"
     :project-name="projectName"
     :hide-footers="HIDE_FOOTERS"
     :hide-sidebars="HIDE_SIDEBARS"
@@ -56,8 +59,8 @@
       </div>
     </template>
     <!-- 顶栏右侧区域 -->
-    <template #right>
-      <header-tools />
+    <template #right="rightProp">
+      <header-tools :is-mobile="rightProp.isMobile"/>
     </template>
     <!-- 全局页脚 -->
     <template #footer>
@@ -142,13 +145,16 @@ const {
   bodyFullscreen,
   showFooter,
   headStyle,
+  showTabs,
   sideStyle,
   layoutStyle,
   sideMenuStyle,
+  tabStyle,
   fixedBody,
   bodyFull,
   logoAutoSize,
-  sideUniqueOpen
+  sideUniqueOpen,
+  sideInitOpenAll
 } = storeToRefs(themeStore);
 
 // 当前菜单数据

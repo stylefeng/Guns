@@ -49,7 +49,9 @@ export default {
     },
     // 传递进来的字典值
     value: {
-      required: true
+      type: [String, Array],
+      required: true,
+      default: ''
     },
     // 传递进来的值是字典编码还是字典id
     valueType: {
@@ -72,6 +74,11 @@ export default {
       type: String,
       required: true,
       default: '请选择'
+    },
+    // 是否正常保存，不是转json格式
+    normal: {
+      type: Boolean,
+      default: true
     }
   },
   setup(props, context) {
@@ -81,7 +88,7 @@ export default {
     });
 
     onMounted(async () => {
-      data.modelValue = props.value;
+      setModelValue();
       // 如果传递了字典编码，则根据字典编码查询
       if (props.dictTypeCode) {
         data.dictList = await SysDictTypeApi.getDictListByParams({ dictTypeCode: props.dictTypeCode });
@@ -93,20 +100,27 @@ export default {
       }
     });
 
+    // 设置值
+    const setModelValue = () => {
+      data.modelValue = props.normal ? props.value : props.multiple && props.value ? JSON.parse(props.value) : props.value || [];
+    };
+
     const selectOption = value => {
-      context.emit('update:value', value);
-      context.emit('change', value);
+      let valueData = props.normal ? value : props.multiple ? JSON.stringify(value) : value;
+      context.emit('update:value', valueData);
+      context.emit('change', valueData);
     };
 
     const changeOption = value => {
-      context.emit('update:value', value);
-      context.emit('change', value);
+      let valueData = props.normal ? value : props.multiple ? JSON.stringify(value) : value;
+      context.emit('update:value', valueData);
+      context.emit('change', valueData);
     };
 
     watch(
       () => props.value,
       val => {
-        data.modelValue = val;
+        setModelValue();
       },
       { deep: true }
     );
@@ -135,7 +149,8 @@ export default {
     return {
       ...toRefs(data),
       selectOption,
-      changeOption
+      changeOption,
+      setModelValue
     };
   }
 };

@@ -1,11 +1,11 @@
 <template>
   <a-row class="user-select" :gutter="16">
     <!-- 公司部门选择 -->
-    <a-col :span="6" class="height100">
+    <a-col :xs='24' :sm='24' :md='6' class="height100">
       <SelectionOrgTree @treeSelect="treeSelect"></SelectionOrgTree>
     </a-col>
     <!-- 人员表格 -->
-    <a-col :span="12" class="height100">
+    <a-col :xs='24' :sm='24' :md='12' class="height100">
       <a-card :bordered="false" style="height: 100%">
         <!-- 搜索 -->
         <div class="search">
@@ -45,7 +45,7 @@
       </a-card>
     </a-col>
     <!-- 已选列表 -->
-    <a-col :span="6" class="height100">
+    <a-col :xs='24' :sm='24' :md='6' class="height100">
       <selected-list v-model:list="deptList" @delete="deleteUser" @deleteAll="deleteAll" />
     </a-col>
   </a-row>

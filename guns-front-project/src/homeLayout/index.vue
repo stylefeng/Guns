@@ -17,8 +17,8 @@
       <img :src="logo" alt="logo" />
     </template>
     <!-- 顶栏右侧区域 -->
-    <template #right>
-      <header-tools />
+    <template  #right="rightProp">
+      <header-tools :is-mobile="rightProp.isMobile"/>
     </template>
     <!-- 全局页脚 -->
     <template #footer>

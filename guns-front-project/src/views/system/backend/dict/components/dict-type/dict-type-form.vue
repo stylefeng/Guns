@@ -1,17 +1,17 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典类型名称:" name="dictTypeName">
           <a-input v-model:value="form.dictTypeName" allow-clear placeholder="请输入字典类型名称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典类型编码:" name="dictTypeCode">
           <a-input v-model:value="form.dictTypeCode" allow-clear placeholder="请输入字典类型编码" :disabled="props.isUpdate" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典类型:" name="dictTypeClass">
           <a-radio-group v-model:value="form.dictTypeClass">
             <a-radio :value="1">系统类型</a-radio>
@@ -19,7 +19,7 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典类型状态:" name="statusFlag">
           <a-radio-group v-model:value="form.statusFlag">
             <a-radio :value="1">启用</a-radio>
@@ -27,7 +27,7 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="排序:" name="dictTypeSort">
           <a-input-number
             v-model:value="form.dictTypeSort"
@@ -39,7 +39,7 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="form.dictTypeClass == 2">
+      <a-col :xs='24' :sm='24' :md='12' v-if="form.dictTypeClass == 2">
         <a-form-item label="业务编码:" name="dictTypeBusCode">
           <a-input v-model:value="form.dictTypeBusCode" allow-clear placeholder="请输入业务编码" />
         </a-form-item>

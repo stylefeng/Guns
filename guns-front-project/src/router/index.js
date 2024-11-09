@@ -83,8 +83,8 @@ router.beforeEach(async (to, from) => {
       // 需要左侧菜单
       if (needMenus) {
         router.addRoute(getMenuRoutes(needMenus, homePath));
-        return { ...to, replace: true };
       }
+      return { ...to, replace: true };
     } else {
       let currentApp = {};
       userStore.appList.forEach(item => {

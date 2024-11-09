@@ -1,17 +1,17 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="角色名称:" name="roleName">
           <a-input v-model:value="form.roleName" allow-clear placeholder="请输入角色名称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="角色编码:" name="roleCode">
           <a-input v-model:value="form.roleCode" allow-clear placeholder="请输入角色编码" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="排序:" name="roleSort">
           <a-input-number
             v-model:value="form.roleSort"
@@ -23,7 +23,7 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="状态:" name="statusFlag">
           <a-radio-group v-model:value="form.statusFlag">
             <a-radio :value="1">启用</a-radio>
@@ -31,7 +31,7 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="角色类型:" name="roleType">
           <a-radio-group v-model:value="form.roleType" @change="roleTypeChange">
             <a-radio :value="10" v-if="props.superAdminFlag">系统角色</a-radio>
@@ -40,7 +40,7 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="form.roleType == 20">
+      <a-col :xs='24' :sm='24' :md='12' v-if="form.roleType == 20">
         <a-form-item label="所属公司:" name="roleCompanyIdWrapper">
           <a-input
             v-model:value="form.roleCompanyIdWrapper"

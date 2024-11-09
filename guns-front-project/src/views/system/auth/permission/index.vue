@@ -257,6 +257,10 @@ import { ref, onMounted, reactive, computed } from 'vue';
 import { PermissionApi } from './api/PermissionApi';
 import { useUserStore } from '@/store/modules/user';
 
+defineOptions({
+  name: 'Premission',
+})
+
 // 角色列表
 const roleList = ref([]);
 
@@ -847,5 +851,20 @@ const dataScopeTypeChange = ({ target }) => {
 }
 .ant-input-affix-wrapper-focused {
   box-shadow: 0 0 0 0px var(--primary-color-outline);
+}
+
+@media screen and (max-width: 768px) {
+  .permission {
+    flex-direction: column;
+  }
+  .permission-left {
+    margin-bottom: 10px;
+  }
+  .permission-left, .permission-right {
+    width: 100%;
+  }
+  .ant-checkbox-wrapper + .ant-checkbox-wrapper{
+    margin-left: 0px;
+  }
 }
 </style>

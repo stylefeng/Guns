@@ -1,0 +1,259 @@
+@import '../../../layout/style/themes/default.less';
+
+/* 支持拖拽 */
+.ant-modal-wrap.guns-modal-movable > .ant-modal {
+  padding-bottom: 0;
+
+  & > .ant-modal-content > .ant-modal-header {
+    cursor: move;
+    user-select: none;
+  }
+}
+
+/* 支持拉伸 */
+.ant-modal-wrap.guns-modal-resizable > .ant-modal > .ant-modal-content:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  cursor: se-resize;
+  background-image: linear-gradient(
+    135deg,
+    transparent 45%,
+    @input-placeholder-color 0,
+    @input-placeholder-color 55%,
+    transparent 0,
+    transparent 75%,
+    @input-placeholder-color 0,
+    @input-placeholder-color 85%,
+    transparent 0
+  );
+  background-size: 10px 10px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.ant-modal-wrap.guns-modal-resizable-horizontal
+  > .ant-modal
+  > .ant-modal-content:after {
+  cursor: e-resize;
+}
+
+.ant-modal-wrap.guns-modal-resizable-vertical
+  > .ant-modal
+  > .ant-modal-content:after {
+  cursor: s-resize;
+}
+
+.ant-modal-wrap.guns-modal-resizable > .ant-modal,
+.ant-modal-wrap.guns-modal-wrap-fullscreen > .ant-modal {
+  padding-bottom: 0;
+
+  & > .ant-modal-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    & > .ant-modal-body {
+      flex: auto;
+      overflow: auto;
+    }
+  }
+}
+
+/* 全屏 */
+.ant-modal-wrap.guns-modal-wrap-fullscreen {
+  overflow: hidden;
+
+  & > .ant-modal {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: inherit !important;
+    min-width: inherit !important;
+    max-height: inherit !important;
+    min-height: inherit !important;
+    margin: 0 !important;
+    transform-origin: center !important;
+    border: 1px solid @border-color-split;
+
+    & > .ant-modal-content {
+      border-radius: 0;
+
+      & > .ant-modal-header {
+        cursor: default !important;
+      }
+
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.ant-modal .guns-modal-icon-fullscreen {
+  cursor: pointer;
+  font-size: @font-size-base;
+  color: @text-color-secondary;
+
+  &:hover {
+    color: @icon-color-hover;
+  }
+}
+
+.ant-modal .guns-modal-title-group {
+  display: flex;
+  align-items: center;
+
+  & > .guns-modal-title-label {
+    flex: 1;
+    box-sizing: border-box;
+  }
+}
+
+/* 支持打开多个 */
+.guns-modal-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: @zindex-modal;
+  --modal-multiple-z-index: @zindex-modal;
+}
+
+.ant-modal-wrap.guns-modal-multiple {
+  pointer-events: none;
+  overflow: hidden;
+  z-index: var(--modal-multiple-z-index) !important;
+}
+
+/* 关闭响应式 */
+.ant-modal-wrap.guns-modal-no-responsive {
+  position: absolute;
+
+  .ant-modal {
+    max-width: none;
+  }
+}
+
+/* 限制在内部区域, 适配各种布局状态 */
+.guns-modal-hide {
+  display: none !important;
+}
+
+.ant-modal-wrap.guns-modal-inner,
+.ant-modal-mask.guns-modal-inner {
+  top: @header-height;
+  left: @sidebar-width;
+  transition: @sidebar-transition;
+}
+
+.guns-state-show-tabs.guns-modal-inner {
+  top: calc(@header-height + @tabs-height);
+}
+
+.guns-state-collapse.guns-modal-inner {
+  left: @sidebar-collapse-width;
+}
+
+.guns-state-side-mix.guns-modal-inner {
+  left: calc(@sidebar-nav-width + @sidebar-width - @sidebar-collapse-width);
+
+  &.guns-state-collapse {
+    left: @sidebar-nav-width;
+  }
+
+  &.guns-state-side-mix-single {
+    left: @sidebar-nav-width;
+  }
+}
+
+.guns-state-nav-collapse.guns-modal-inner {
+  left: @sidebar-width;
+
+  &.guns-state-side-mix-single {
+    left: @sidebar-collapse-width;
+  }
+
+  &.guns-state-collapse {
+    left: @sidebar-collapse-width;
+  }
+}
+
+.guns-state-layout-top.guns-modal-inner {
+  left: 0;
+}
+
+.guns-state-body-fullscreen.guns-modal-inner {
+  top: @tabs-height;
+  left: 0 !important;
+}
+
+.guns-state-content-fullscreen.guns-modal-inner {
+  top: 0 !important;
+}
+
+.guns-state-mobile.guns-modal-inner {
+  left: 0 !important;
+}
+
+/* 适配垂直居中 */
+.guns-modal-movable.ant-modal-centered,
+.guns-modal-resizable.ant-modal-centered {
+  text-align: left;
+  --modal-centered-left: auto;
+
+  & > .ant-modal {
+    left: var(--modal-centered-left);
+  }
+}
+
+.project-modal {
+  .ant-modal-content {
+    border-radius: 8px;
+  }
+  .ant-modal-title {
+    color: #262626;
+    font-size: 18px !important;
+    font-style: normal;
+    font-weight: 500;
+  }
+  .ant-modal-close-icon {
+    width: 20px;
+    height: 20px;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .guns-modal-icon-fullscreen {
+    font-size: 17px;
+  }
+  .ant-modal-close-x {
+    margin-top: 10px;
+  }
+  .ant-modal-header {
+    border-radius: 8px 8px 0 0;
+    border-bottom: 0px !important;
+    padding: 24px 24px 0px 24px !important;
+  }
+  .ant-modal-footer {
+    padding: 6px 16px !important;
+    border-top: 0px !important;
+    border-radius: 0 0 8px 8px;
+  }
+  .ant-modal-footer .ant-btn + .ant-btn:not(.ant-dropdown-trigger) {
+    margin-bottom: 20px;
+  }
+}
+.project-modal:not(.guns-modal-wrap-fullscreen) {
+  .ant-modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+}

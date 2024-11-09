@@ -1,7 +1,7 @@
 <template>
   <div class="guns-layout">
-    <div class="guns-layout" v-show="!showImport">
-      <div class="guns-layout-sidebar p-t-12 bgColor" style="width: 292px">
+    <div class="guns-layout" v-show="!showImport" :class="[{ 'guns-collapse': !isCollapse }]">
+      <div class="guns-layout-sidebar p-t-12 bgColor">
         <div class="sidebar-content">
           <org-tree
             @treeSelect="treeSelect"
@@ -12,8 +12,15 @@
             @editOrg="editOrg"
           ></org-tree>
         </div>
+
+        <!-- 折叠按钮 -->
+        <div class="collapse-btn" @click="toggleCollapse()">
+          <CaretRightOutlined v-if="isCollapse" />
+          <CaretLeftOutlined v-else />
+        </div>
       </div>
-      <div class="guns-layout-content" style="width: calc(100% - 292px)">
+      <div class="collapse-mask" @click="toggleCollapse()"></div>
+      <div class="guns-layout-content">
         <div class="guns-layout">
           <div class="guns-layout-content-application">
             <div class="content-mian">
@@ -169,6 +176,10 @@ import ImportExportOrg from './components/import-export-org.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 
+defineOptions({
+  name: 'Organization',
+})
+
 // 状态列表
 const statusList = ref([
   {
@@ -269,6 +280,8 @@ const fieldBusinessCode = ref('ORG_TABLE');
 const isShowApprover = ref(false);
 // 是否显示导入导出
 const showImport = ref(false);
+// 是否显示折叠按钮
+const isCollapse = ref(false);
 
 onMounted(() => {
   getColumnData();
@@ -281,6 +294,10 @@ const getColumnData = () => {
       columns.value = JSON.parse(res.tableWidthJson);
     }
   });
+};
+
+const toggleCollapse = () => {
+  isCollapse.value = !isCollapse.value;
 };
 
 // 左侧树选中
@@ -407,4 +424,9 @@ const backReload = () => {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.guns-layout-sidebar {
+  width: v-bind('isCollapse ? 0 : "292px"');
+  padding: v-bind('isCollapse ? 0 : "12px"');
+}
+</style>

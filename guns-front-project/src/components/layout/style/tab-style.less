@@ -1,5 +1,81 @@
 @import './themes/default.less';
 
+/* 页签默认风格 */
+.guns-admin-tab-default,
+.guns-admin-tab-dot {
+  .guns-admin-tabs {
+    .ant-tabs-tab-active,
+    .is-active {
+      border-radius: 8px 8px 0 0 !important;
+      position: relative;
+      &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        display: block;
+        transition: all 0.2s;
+        pointer-events: none;
+        position: absolute;
+        bottom: -2px;
+        left: -7px;
+        background: radial-gradient(circle at left top, transparent 50%, var(--primary-1) 0);
+      }
+      &::after {
+        content: '';
+        left: auto !important;
+        bottom: -2px !important;
+        right: -7px !important;
+        width: 10px !important;
+        height: 10px !important;
+        display: block !important;
+        position: absolute;
+        background: radial-gradient(circle at right top, transparent 50%, var(--primary-1) 0) !important;
+      }
+    }
+
+    .ant-tabs-tab:not(.ant-tabs-tab-active):hover,
+    .is-tab:not(.is-active):hover {
+      border-radius: 8px 8px 0 0 !important;
+      position: relative;
+      background-color: #eeeeee63 !important;
+      &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        display: block;
+        transition: all 0.2s;
+        pointer-events: none;
+        position: absolute;
+        bottom: -2px;
+        left: -7px;
+        background: radial-gradient(circle at left top, transparent 50%, #eeeeee63 0);
+      }
+      &::after {
+        content: '';
+        left: auto !important;
+        bottom: -2px !important;
+        right: -7px !important;
+        width: 10px !important;
+        height: 10px !important;
+        display: block !important;
+        position: absolute;
+        background: radial-gradient(circle at right top, transparent 50%, #eeeeee63 0) !important;
+      }
+    }
+    .ant-tabs-nav-wrap {
+      padding: 0 10px;
+    }
+
+    .is-tab {
+      margin-right: -10px;
+    }
+
+    .ant-tabs-tab-remove {
+      margin-left: 10px !important;
+    }
+  }
+}
+
 /* 页签圆点风格 */
 .guns-admin-tab-dot .guns-admin-tabs {
   & > .ant-tabs > .ant-tabs-nav .ant-tabs-tab {
@@ -56,7 +132,7 @@
     }
 
     .ant-tabs-tab + .ant-tabs-tab {
-      margin-left: @tabs-card-padding;
+      margin-left: @tabs-card-padding !important;
     }
   }
 
@@ -67,6 +143,10 @@
   .guns-tab-arrow,
   .ant-tabs-nav-operations .ant-tabs-nav-more {
     background: none;
+  }
+
+  .ant-tabs-tab-remove {
+    margin-left: 10px !important;
   }
 
   & + .guns-admin-content {

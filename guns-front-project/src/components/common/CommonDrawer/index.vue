@@ -1,5 +1,5 @@
 <template>
-  <a-drawer v-bind="props" @close="close" @afterVisibleChange="afterVisibleChange">
+  <a-drawer v-bind="props" @close="close" @afterVisibleChange="afterVisibleChange" :width="isMobile ? 340 : props.width">
     <!-- 抽屉右上角的操作区域 -->
     <template #extra v-if="slots.extra">
       <slot name="extra"></slot>
@@ -31,14 +31,14 @@
     </a-tabs>
     <!-- 内容 -->
     <slot></slot>
-
     <!-- 关闭按钮 -->
     <div class="close-button" @click="close" v-if="visible"><close-outlined /></div>
   </a-drawer>
 </template>
 
 <script setup name="CommonDrawer">
-import { useSlots, watch, ref } from 'vue';
+import { useSlots, watch, ref, inject } from 'vue';
+import { LAYOUT_KEY, screenWidth } from '../../layout/util';
 
 const slots = useSlots();
 const props = defineProps({
@@ -176,6 +176,20 @@ const props = defineProps({
 const emit = defineEmits(['close', 'afterVisibleChange', 'tabChange']);
 // 当前默认选中
 const currentActive = ref('1');
+
+// 布局状态
+const layoutProvide = inject(LAYOUT_KEY, ref({ isMobile: screenWidth() < 768 }));
+
+const isMobile = ref(false);
+
+watch(
+  () => layoutProvide.value,
+  val => {
+    isMobile.value = val.isMobile;
+  },
+  { deep: true, immediate: true }
+);
+
 // 关闭抽屉
 const close = e => {
   emit('close', e);
@@ -210,11 +224,14 @@ watch(
   width: 40px;
   height: 40px;
   font-size: 22px;
-  background: #7127de;
+  background: #6F9AE7;
   text-align: center;
   line-height: 40px;
   cursor: pointer;
   color: #fff;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  box-shadow: -2px 0px 4px 3px #0000001F;
 }
 :deep(.ant-drawer-content) {
   overflow: visible;

@@ -1,17 +1,17 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="配置名称:" name="configName">
           <a-input v-model:value="form.configName" allow-clear placeholder="请输入配置名称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="配置编码:" name="configCode">
           <a-input v-model:value="form.configCode" allow-clear placeholder="请输入配置编码" :disabled="props.isUpdate" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="是否是系统配置:" name="sysFlag">
           <a-radio-group v-model:value="form.sysFlag">
             <a-radio value="Y">是</a-radio>

@@ -1,6 +1,6 @@
 <template>
   <a-row class="user-select" :gutter="16">
-    <a-col :span="6" class="height100">
+    <a-col :xs='24' :sm='24' :md='6' class="height100">
       <common-table
         :columns="typeColumns"
         bordered
@@ -15,7 +15,7 @@
       ></common-table>
     </a-col>
     <!-- 字典选择 -->
-    <a-col :span="12" class="height100">
+    <a-col :xs='24' :sm='24' :md='12' class="height100">
       <common-table
         :columns="columns"
         :where="where"
@@ -33,7 +33,7 @@
       ></common-table>
     </a-col>
     <!-- 已选列表 -->
-    <a-col :span="6" class="height100">
+    <a-col :xs='24' :sm='24' :md='6' class="height100">
       <selected-list v-model:list="dictList" @delete="deleteRelation" @deleteAll="deleteAll"></selected-list>
     </a-col>
   </a-row>

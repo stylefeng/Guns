@@ -7,7 +7,7 @@
     :confirm-loading="loading"
     :forceRender="true"
     :title="isUpdate ? '编辑配置' : '新建配置'"
-    :body-style="{ paddingBottom: '8px', height: '500px' }"
+    :body-style="{ paddingBottom: '8px', height: '500px', overflowY: 'auto' }"
     @update:visible="updateVisible"
     @ok="save"
     @close="updateVisible(false)"

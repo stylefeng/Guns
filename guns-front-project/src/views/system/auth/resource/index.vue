@@ -84,6 +84,10 @@
 import { ref, onMounted } from 'vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 
+defineOptions({
+  name: 'AuthResource',
+})
+
 // 表格配置
 const columns = ref([
   {

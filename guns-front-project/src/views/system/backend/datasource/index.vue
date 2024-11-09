@@ -102,6 +102,10 @@ import DatasourceAddEdit from './components/datasource-add-edit.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 
+defineOptions({
+  name: 'Position',
+})
+
 // 表格配置
 const columns = ref([
   {

@@ -1,17 +1,17 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="姓名:" name="realName">
           <a-input v-model:value="form.realName" allow-clear placeholder="请输入姓名" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="账号:" name="account">
           <a-input v-model:value="form.account" allow-clear placeholder="请输入账号" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="性别:" name="sex">
           <a-radio-group v-model:value="form.sex">
             <a-radio value="M">男</a-radio>
@@ -19,7 +19,7 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="props.superAdminFlag">
+      <a-col :xs='24' :sm='24' :md='12' v-if="props.superAdminFlag">
         <a-form-item label="是否是超级管理员:" name="superAdminFlag">
           <a-radio-group v-model:value="form.superAdminFlag">
             <a-radio value="Y">是</a-radio>
@@ -27,12 +27,12 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12" v-if="!isUpdate">
+      <a-col :xs='24' :sm='24' :md='12' v-if="!isUpdate">
         <a-form-item label="密码:" name="password">
           <a-input-password v-model:value="form.password" placeholder="请输入密码" autocomplete="new-password"> </a-input-password>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="用户状态:" name="statusFlag">
           <a-radio-group v-model:value="form.statusFlag">
             <a-radio :value="1">启用</a-radio>
@@ -40,27 +40,27 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="用户排序:" name="userSort">
           <a-input-number v-model:value="form.userSort" placeholder="请输入排序" allow-clear autocomplete="off" style="width: 100%" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="手机号:" name="phone">
           <a-input v-model:value="form.phone" allow-clear placeholder="请输入手机号" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="邮箱:" name="email">
           <a-input v-model:value="form.email" allow-clear placeholder="请输入邮箱" autocomplete="new-password" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="出生日期:" name="birthday">
           <a-date-picker v-model:value="form.birthday" value-format="YYYY-MM-DD" placeholder="请选择出生日期" style="width: 100%" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="人员工号:" name="employeeNumber">
           <a-input v-model:value="form.employeeNumber" allow-clear placeholder="请输入人员工号" />
         </a-form-item>
@@ -84,7 +84,7 @@
           ref="xTableRef"
         >
           <vxe-column type="seq" width="60" title="序号" align="center"></vxe-column>
-          <vxe-column field="orgName" title="机构名称" align="center">
+          <vxe-column field="orgName" title="机构名称" min-width="150" align="center">
             <template #default="{ row, rowIndex }">
               <vxe-input v-model="row.orgName" type="text" @focus="orgNameFocus(row, rowIndex)"></vxe-input>
             </template>
@@ -458,7 +458,10 @@ const deleteFile = row => {
 
 // 预览
 const prewiew = row => {
-  window.open(row.attachmentUrl);
+  const { href } = router.resolve({
+    path: record.attachmentUrl
+  });
+  window.open(href, '_blank');
 };
 
 defineExpose({

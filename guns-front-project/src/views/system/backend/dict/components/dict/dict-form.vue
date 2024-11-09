@@ -1,22 +1,22 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="24">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="所属字典类型:" name="dictTypeName">
           <a-input v-model:value="form.dictTypeName" allow-clear placeholder="请输入所属字典类型" disabled />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典名称:" name="dictName">
           <a-input v-model:value="form.dictName" allow-clear placeholder="请输入字典名称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典编码(字典值):" name="dictCode">
           <a-input v-model:value="form.dictCode" allow-clear placeholder="请输入字典编码" :disabled="props.isUpdate" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="上级字典:" name="dictParentId">
           <a-tree-select
             v-model:value="form.dictParentId"
@@ -33,7 +33,7 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="排序:" name="dictSort">
           <a-input-number
             v-model:value="form.dictSort"
@@ -45,17 +45,17 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典简称:" name="dictShortName">
           <a-input v-model:value="form.dictShortName" allow-clear placeholder="请输入字典简称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典简要编码:" name="dictShortCode">
           <a-input v-model:value="form.dictShortCode" allow-clear placeholder="请输入字典简要编码" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="字典状态:" name="statusFlag">
           <a-radio-group v-model:value="form.statusFlag">
             <a-radio :value="1">启用</a-radio>

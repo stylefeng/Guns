@@ -9,15 +9,13 @@
     :tabList="tabList"
     @tabChange="tabChange"
   >
+    <a-button type="primary" class="border-radius edit-btn" @click="editClick" v-if="activeKey == '1'">编辑</a-button>
     <div class="content">
-      <div style="margin-bottom: 10px">
-        <a-button type="primary" class="border-radius" @click="editClick" v-if="activeKey == '1'">编辑</a-button>
-      </div>
       <!-- 基本信息 -->
       <div class="content-item" v-show="activeKey == '1'">
-        <a-form ref="formRef" :model="form" :label-col="{ span: 2 }">
+        <a-form ref="formRef" :model="form" :label-col="{ span: 6 }">
           <a-row :gutter="16">
-            <a-col :span="24" v-for="(item, index) in baseColumn" :key="index">
+            <a-col :span="12" v-for="(item, index) in baseColumn" :key="index">
               <a-form-item :label="item.name">
                 <span v-if="item.value == 'templateType'">{{ form[item.value] == 1 ? '系统类型' : '业务类型' }}</span>
                 <span v-else>{{ form[item.value] }}</span>
@@ -132,35 +130,31 @@ const editClick = () => {
 </script>
 
 <style scoped lang="less">
-:deep(.ant-drawer-header) {
-  background: rgba(250, 134, 53, 1);
-}
 :deep(.ant-drawer-title) {
-  color: #fff;
+  color: #262626;
+  font-size: 18px;
+  font-weight: 500;
 }
-.top {
-  height: 40px;
-  line-height: 40px;
-  margin-bottom: 14px;
-  .img {
-    width: 40px;
-    height: 100%;
-  }
-  .username {
-    margin-left: 20px;
-    font-size: 22px;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 1);
-  }
+.edit-btn {
+  position: absolute;
+  right: 24px;
+  top: 87px;
 }
 .content {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
   .content-item {
     width: 100%;
     height: 100%;
   }
+}
+:deep(.ant-form-item-label > label) {
+  color: #60666b;
+}
+:deep(.ant-form-item) {
+  color: #60666b;
 }
 :deep(.ant-checkbox-wrapper-checked .ant-checkbox-disabled .ant-checkbox-inner) {
   --disabled-bg: var(--primary-color);

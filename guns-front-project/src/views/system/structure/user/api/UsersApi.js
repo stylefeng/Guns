@@ -79,7 +79,7 @@ export class UsersApi {
   static updateStatus(params) {
     return Request.post('/sysUser/updateStatus', params);
   }
-  
+
   /**
    * 绑定用户角色
    * @param {*} params
@@ -88,7 +88,7 @@ export class UsersApi {
   static bindRoles(params) {
     return Request.post('/sysUser/bindRoles', params);
   }
-  
+
   /**
    * 角色列表
    * @param {*} params
@@ -104,7 +104,7 @@ export class UsersApi {
    * @returns
    */
   static ExportUser(params) {
-    return Request.downLoad('/api/user/ExportUser', params);
+    return Request.downLoad('/user/ExportUser', params);
   }
 
   /**
@@ -113,7 +113,7 @@ export class UsersApi {
    * @returns
    */
   static getExcelTemplate(params) {
-    return Request.downLoad('/api/userImport/getExcelTemplate', params);
+    return Request.downLoad('/userImport/getExcelTemplate', params);
   }
 
   /**

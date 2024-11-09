@@ -5,10 +5,12 @@
   flex: auto;
   height: 100%;
   min-height: 0px;
+  position: relative;
 }
+@collapse-transition: cubic-bezier(0.4, 0, 0.2, 1);
 .guns-layout-sidebar {
   padding: 0 12px 12px 12px;
-  background: #fbfbfb;
+  background: #fff;
   flex: 0 0 auto;
   position: relative;
   transition: width 0.2s;
@@ -18,6 +20,7 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  position: relative;
   .sidebar-content {
     width: 100%;
     flex: auto;
@@ -27,6 +30,7 @@
   }
 }
 .guns-layout-content {
+  position: relative;
   min-width: 0px;
   flex: auto;
   display: flex;
@@ -55,7 +59,8 @@
       justify-content: space-between;
       height: 30px;
       margin-bottom: 16px;
-      span {
+
+      &:nth-child(1) {
         font-weight: 600;
       }
     }
@@ -71,26 +76,63 @@
       .content-mian {
         flex: auto;
         display: flex;
+        width: 100%;
         flex-direction: column;
-        overflow-y: auto;
         .content-mian-header {
-          display: flex;
-          flex-direction: row;
+          width: 100%;
+          .search-input {
+            width: 324px;
+            border-radius: 4px;
+          }
+          .search-date {
+            width: 100%;
+            height: 36px;
+            border-radius: 4px;
+          }
+          .search-select {
+            width: 100%;
+            border-radius: 4px;
+            .ant-select-selector {
+              height: 36px !important;
+              input {
+                height: 36px;
+              }
+            }
+            .ant-select-selection-item {
+              line-height: 34px;
+            }
+            .ant-select-selection-placeholder {
+              line-height: 36px;
+            }
+          }
           .header-content {
             display: flex;
             width: 100%;
             flex-direction: row;
             align-items: center;
-            margin-bottom: 16px;
-            .search-input {
-              width: 324px;
-              border-radius: 4px;
-            }
+            margin-bottom: 10px;
+
             .header-content-left {
               display: flex;
               flex-wrap: wrap;
               width: 70%;
-              overflow: hidden;
+
+              .fold-btn {
+                position: relative;
+
+                &::before {
+                  content: '';
+                  position: absolute;
+                  bottom: -20px;
+                  left: 50%;
+                  transform: translateX(-50%); /* 让三角形水平居中 */
+                  width: 0;
+                  height: 0;
+                  border-left: 8px solid transparent; /* 左边透明 */
+                  border-right: 8px solid transparent; /* 右边透明 */
+                  border-bottom: 14px solid #f8f8f8; /* 顶部为红色，可以调整高度和颜色 */
+                }
+              }
             }
             .header-content-right {
               width: 30%;
@@ -103,12 +145,15 @@
           flex-direction: column;
           flex: auto;
           .table-content {
-            height: calc(100% - 10px);
+            height: 100%;
           }
         }
       }
     }
   }
+}
+.width-100 {
+  width: 100% !important;
 }
 .ant-btn {
   height: 36px;
@@ -133,4 +178,160 @@
 }
 .surely-table-header-cell {
   --surely-table-background-color: #fff;
+}
+
+.super-search-right {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  .super-search-right-tags {
+    max-width: calc(100% - 40px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: flex;
+
+    .super-search-right-tags-item {
+      display: flex;
+      align-items: center;
+      display: flex;
+      padding: 4px 16px;
+      border-radius: 4px;
+      background: #f7f7f9;
+      color: #60666b;
+      margin-right: 16px;
+
+      .close-btn {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .super-search-right-btns {
+    text-align: right;
+    width: 40px;
+  }
+}
+
+.super-search {
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  padding: 16px 16px 0 16px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+
+  .ant-btn {
+    height: 32px;
+    line-height: 10px;
+    font-size: 16px !important;
+    padding: 4px 16px !important;
+    font-weight: 500 !important;
+  }
+
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+
+  .not-label {
+    .ant-form-item-label > label::after {
+      content: '';
+    }
+  }
+}
+
+.collapse-btn {
+  height: 40px;
+  line-height: 40px;
+  width: 12px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  font-size: 12px;
+  color: @text-color-secondary;
+  background: @border-color-split;
+  border-radius: 0 4px 4px 0;
+  transition:
+    left 0.3s @collapse-transition,
+    background-color @collapse-transition;
+  cursor: pointer;
+  z-index: 3;
+  right: -12px;
+
+  &:hover {
+    background: @border-color-base;
+  }
+}
+
+.collapse-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: transparent;
+  transition: background-color 0.3s @collapse-transition;
+  pointer-events: none;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .guns-layout-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+  .guns-layout {
+    .collapse-mask {
+      display: block;
+    }
+  }
+
+  .content-mian {
+    display: block !important;
+  }
+
+  .content-mian-body {
+    height: 400px;
+  }
+
+  .guns-collapse {
+    .collapse-mask {
+      background: @modal-mask-bg;
+      pointer-events: all;
+    }
+  }
+
+  .header-content {
+    height: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .header-content-left,
+  .header-content-right {
+    width: 100% !important;
+
+    .ant-space {
+      flex-wrap: wrap;
+    }
+  }
+
+  .fold-btn::before {
+    display: none;
+  }
+
+  .header-content-right {
+    margin-top: 16px;
+    text-align: left !important;
+  }
+}
+.ant-table-pagination.ant-pagination {
+  margin: 12px 0 !important;
 }

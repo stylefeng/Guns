@@ -88,6 +88,49 @@
           <a-switch size="small" :checked="weakMode" @change="updateWeakMode" />
         </div>
       </div>
+
+      <!-- 侧栏排他展开 -->
+      <div class="guns-setting-item">
+        <div class="setting-item-title">{{ t('layout.setting.sideUniqueOpen') }}</div>
+        <div class="setting-item-control">
+          <a-switch size="small" :checked="sideUniqueOpen" @change="updateSideUniqueOpen" />
+        </div>
+      </div>
+      <!-- 默认展开所有侧栏 -->
+      <div class="guns-setting-item">
+        <div class="setting-item-title">{{ t('layout.setting.sideInitOpenAll') }}</div>
+        <div class="setting-item-control">
+          <a-switch size="small" :checked="sideInitOpenAll" :disabled="sideUniqueOpen" @change="updateSideInitOpenAll" />
+        </div>
+      </div>
+      <a-divider class="hidden-xs-only" />
+      <div class="guns-setting-title guns-text-secondary">
+        {{ t('layout.setting.tabsConfig') }}
+      </div>
+      <!-- 页签 -->
+      <div class="guns-setting-item">
+        <div class="setting-item-title">{{ t('layout.setting.showTabs') }}</div>
+        <div class="setting-item-control">
+          <a-switch size="small" :checked="showTabs" @change="updateShowTabs" />
+        </div>
+      </div>
+      <!-- 页签风格 -->
+      <div v-if="showTabs" class="guns-setting-item">
+        <div class="setting-item-title">{{ t('layout.setting.tabStyle') }}</div>
+        <div class="setting-item-control">
+          <a-select size="small" :value="tabStyle" style="width: 80px" @change="updateTabStyle">
+            <a-select-option value="default">
+              {{ t('layout.setting.tabStyles.default') }}
+            </a-select-option>
+            <a-select-option value="dot">
+              {{ t('layout.setting.tabStyles.dot') }}
+            </a-select-option>
+            <a-select-option value="card">
+              {{ t('layout.setting.tabStyles.card') }}
+            </a-select-option>
+          </a-select>
+        </div>
+      </div>
       <!-- 提示 -->
       <a-divider />
       <a-alert show-icon type="warning" :message="t('layout.setting.tips')">
@@ -122,7 +165,8 @@ const emit = defineEmits(['update:visible']);
 const { t } = useI18n();
 const themeStore = useThemeStore();
 
-const { showFooter, sideStyle, layoutStyle, weakMode, darkMode, color } = storeToRefs(themeStore);
+const { showTabs, tabStyle, showFooter, sideStyle, layoutStyle, weakMode, darkMode, color, sideUniqueOpen, sideInitOpenAll } =
+  storeToRefs(themeStore);
 
 // 主题列表
 const themes = ref([
@@ -166,6 +210,10 @@ const updateVisible = value => {
   emit('update:visible', value);
 };
 
+const updateShowTabs = value => {
+  themeStore.setShowTabs(value);
+};
+
 const updateShowFooter = value => {
   themeStore.setShowFooter(value);
 };
@@ -178,9 +226,25 @@ const updateLayoutStyle = value => {
   themeStore.setLayoutStyle(value);
 };
 
+const updateTabStyle = value => {
+  themeStore.setTabStyle(value);
+};
+
 const updateWeakMode = value => {
   themeStore.setWeakMode(value);
 };
+
+const updateSideUniqueOpen = value => {
+  themeStore.setSideUniqueOpen(value);
+  if (value) {
+    themeStore.setSideInitOpenAll(false);
+  }
+};
+
+const updateSideInitOpenAll = value => {
+  themeStore.setSideInitOpenAll(value);
+};
+
 const updateColor = value => {
   doWithLoading(() => themeStore.setColor(value));
 };

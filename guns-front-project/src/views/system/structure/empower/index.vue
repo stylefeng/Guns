@@ -2,11 +2,11 @@
   <div class="guns-body">
     <a-row :gutter="12">
       <!-- 组织 -->
-      <a-col style="width: 300px">
+      <a-col class="power-org">
         <org-tree @treeSelect="treeSelect" ref="orgTreeRef" :isSetWidth="false" style="padding: 12px"></org-tree>
       </a-col>
       <!-- 人员 -->
-      <a-col style="width: 300px">
+      <a-col class="power-user">
         <div class="box bgColor box-shadow">
           <!-- 搜索框-->
           <div class="search">
@@ -53,7 +53,7 @@
         </div>
       </a-col>
       <!-- 权限 -->
-      <a-col style="width: calc(100% - 600px)">
+      <a-col class="power-content">
         <a-spin tip="Loading..." :spinning="powerLoading" :delay="100" style="width: 100%">
           <div class="box bgColor box-shadow power-data" v-show="currentUserId">
             <div class="power-header">
@@ -118,6 +118,10 @@ import { UsersApi } from '../user/api/UsersApi';
 import { EmpowerApi } from './api/EmpowerApi';
 import AddOrg from './components/add-org.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+
+defineOptions({
+  name: 'StructureEmpower',
+})
 
 // 用户搜索条件
 const where = ref({
@@ -380,5 +384,26 @@ const powerAdd = () => {
 .plus-outlined {
   color: #fff;
   font-size: 33px;
+}
+.power-org,
+.power-user {
+  width: 300px;
+}
+.power-content {
+  width: calc(100% - 600px);
+}
+
+@media screen and (max-width: 768px) {
+  .guns-body .ant-row {
+    overflow-y: auto;
+  }
+  .power-org,
+  .power-user,
+  .power-content {
+    width: 100%;
+  }
+  .power-card {
+    width: 320px;
+  }
 }
 </style>

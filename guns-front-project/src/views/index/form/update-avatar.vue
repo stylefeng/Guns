@@ -1,25 +1,21 @@
 <template>
   <div class="form">
     <a-row>
-      <a-col :span="6" style="display: flex;justify-content: right;align-items: center">
+      <a-col :md="6" :xs="24" :sm="24" style="display: flex; align-items: center">
         <div class="label">
           <span>头像：</span>
         </div>
       </a-col>
-      <a-col :span="18" style="display: flex;align-items: center">
+      <a-col :md="18" :xs="24" :sm="24" style="display: flex; align-items: center">
         <div class="avatar">
-
           <div class="user-info-avatar-group" @click="showCropper = true">
-            <a-avatar :size="110" :src="avatarUrl"/>
-            <upload-outlined class="user-info-avatar-icon"/>
+            <a-avatar :size="110" :src="avatarUrl" />
+            <upload-outlined class="user-info-avatar-icon" />
           </div>
-
           <!-- 头像裁剪弹窗 -->
-          <cropper-modal :mask-closable="false" v-model:visible="showCropper" :src="avatarUrl"
-                             :to-blob="true" @done="onCrop"/>
+          <cropper-modal :mask-closable="false" v-model:visible="showCropper" :src="avatarUrl" :to-blob="true" @done="onCrop" />
         </div>
         <div class="upload-btn">
-
           <a-upload
             v-model:file-list="avatarList"
             name="file"
@@ -30,26 +26,24 @@
             :max-count="1"
           >
             <a-button type="primary">
-              <cloud-upload-outlined/>
+              <cloud-upload-outlined />
               上传头像
             </a-button>
           </a-upload>
-
         </div>
       </a-col>
     </a-row>
   </div>
-
 </template>
 
 <script setup name="PersonalUpdatePassword">
-import {ref, reactive} from 'vue';
-import {useUserStore} from "@/store/modules/user";
-import {API_BASE_PREFIX} from '@/config/setting';
-import {FileApi, FileUploadUrl as fileUploadUrlPrefix} from '@/views/system/backend/file/api/FileApi';
-import {PersonInfoApi} from "@/views/index/api/PersonInfoApi";
-import {message} from "ant-design-vue";
-import {getToken} from '@/utils/token-util';
+import { ref, reactive } from 'vue';
+import { useUserStore } from '@/store/modules/user';
+import { API_BASE_PREFIX } from '@/config/setting';
+import { FileApi, FileUploadUrl as fileUploadUrlPrefix } from '@/views/system/backend/file/api/FileApi';
+import { PersonInfoApi } from '@/views/index/api/PersonInfoApi';
+import { message } from 'ant-design-vue';
+import { getToken } from '@/utils/token-util';
 
 // 用户信息
 const userStore = useUserStore();
@@ -75,18 +69,17 @@ const avatar = reactive({
 });
 
 // 上传成功
-const handleFileChange = async (info) => {
+const handleFileChange = async info => {
   if (info.file.status === 'done') {
     let responseData = info.file.response.data;
     avatarUrl.value = responseData.fileUrl;
     // 设置临时fileList的值
     avatarList.value = [info.file];
 
-    const result = await PersonInfoApi.updateAvatar({avatar: responseData.fileId});
+    const result = await PersonInfoApi.updateAvatar({ avatar: responseData.fileId });
     message.success(result.message, 0.5).then(() => {
       window.location.reload();
     });
-
   } else if (info.file.status === 'error') {
     message.error(`头像上传失败`);
   }
@@ -97,7 +90,7 @@ const handleFileChange = async (info) => {
  * @param blob
  * @returns {Promise<void>}
  */
-const onCrop = async (blob) => {
+const onCrop = async blob => {
   // 关闭剪裁窗口
   showCropper.value = false;
 
@@ -107,13 +100,12 @@ const onCrop = async (blob) => {
 
   // 更新头像
   const uploadResult = await FileApi.commonUpload('N', formData);
-  const result = await PersonInfoApi.updateAvatar({avatar: uploadResult.data.fileId});
+  const result = await PersonInfoApi.updateAvatar({ avatar: uploadResult.data.fileId });
 
   message.success(result.message, 0.5).then(() => {
     window.location.reload();
-  })
-}
-
+  });
+};
 </script>
 
 <style scoped lang="less">
@@ -164,4 +156,9 @@ const onCrop = async (blob) => {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+@media screen and (max-width: 768px) {
+  .form {
+    width: 100%;
+  }
+}
 </style>

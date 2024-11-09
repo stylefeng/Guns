@@ -55,7 +55,7 @@ export default defineComponent({
 
     // 下拉点击
     const dropClick = ({ key }) => {
-      data.downName = props.list.filter(item => item[props.keyValue] == key)[0].name;
+      data.downName = props.list.filter(item => item[props.keyValue] == key)[0][props.keyName];
       context.emit('dropClick', key);
     };
 
@@ -92,6 +92,7 @@ export default defineComponent({
   border-radius: 4px;
   color: #60666B;
   font-size: 16px;
+  font-weight: normal;
   border: 1px solid rgba(197, 207, 209, 0.60);
 }
 :deep(.ant-dropdown-content) {

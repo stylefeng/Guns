@@ -1,17 +1,17 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="职位名称:" name="positionName">
           <a-input v-model:value="form.positionName" allow-clear placeholder="请输入职位名称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="职位编码:" name="positionCode">
           <a-input v-model:value="form.positionCode" allow-clear placeholder="请输入职位编码" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="排序:" name="positionSort">
           <a-input-number
             v-model:value="form.positionSort"

@@ -105,13 +105,17 @@
   </div>
 </template>
 
-<script setup name="Timer">
+<script setup name="SystemTimer">
 import { SysTimerApi } from './api/SysTimerApi';
 import { ref, createVNode, onMounted } from 'vue';
 import { message, Modal } from 'ant-design-vue/es';
 import TimerAddEdit from './components/timer-add-edit.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
+
+defineOptions({
+  name: 'SystemTimer',
+})
 
 // 表格配置
 const columns = ref([
@@ -121,13 +125,11 @@ const columns = ref([
     width: 48,
     align: 'center',
     isShow: true,
-    fixed: 'left',
     hideInSetting: true
   },
   {
     dataIndex: 'timerName',
     title: '任务名称',
-    fixed: 'left',
     ellipsis: true,
     width: 200,
     isShow: true
@@ -169,7 +171,6 @@ const columns = ref([
     key: 'action',
     title: '操作',
     width: 80,
-    fixed: 'right',
     isShow: true
   }
 ]);

@@ -8,12 +8,12 @@
     </a-row>
     <!-- 通知内容 -->
     <a-row :gutter="20" v-show="activeKey == '1'">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="通知标题:" name="noticeTitle">
           <a-input v-model:value="form.noticeTitle" allow-clear placeholder="请输入通知标题" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="优先级" name="priorityLevel">
           <a-radio-group v-model:value="form.priorityLevel" name="sex">
             <a-radio value="high">高</a-radio>
@@ -22,7 +22,7 @@
           </a-radio-group>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="开始日期:" name="noticeBeginTime">
           <a-date-picker
             v-model:value="form.noticeBeginTime"
@@ -32,7 +32,7 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="结束日期:" name="noticeEndTime">
           <a-date-picker
             v-model:value="form.noticeEndTime"
@@ -44,7 +44,7 @@
       </a-col>
       <a-col :span="24">
         <a-form-item label="通知内容" name="noticeContent">
-          <tinymce v-model:value="form.noticeContent" />
+          <a-textarea v-model:value="form.noticeContent" :rows="4"></a-textarea>
         </a-form-item>
       </a-col>
     </a-row>
@@ -109,7 +109,6 @@
 
 <script setup name="NoticeForm">
 import { reactive, ref } from 'vue';
-import Tinymce from '@/components/TinymceEditor/index.vue';
 
 const props = defineProps({
   // 表单数据

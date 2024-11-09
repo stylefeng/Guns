@@ -12,6 +12,7 @@ import {
   nextTick
 } from 'vue';
 import { PROVIDE_KEY } from '@/components/layout/util'
+import defaultLocale from '@/components/layout/lang/zh_CN';
 
 /**
  * 创建 iframe 组件
@@ -97,4 +98,19 @@ export function createIframeComponent(name, url) {
  */
 export function useReceiver() {
   return inject(PROVIDE_KEY, {});
+}
+
+/**
+ * 国际化 hook
+ */
+export function useLocale(options, props) {
+  const globalConfig = useReceiver();
+  const locale = computed(() => {
+    const temp = globalConfig.locale ?? defaultLocale;
+    if (options.name) {
+      return Object.assign(temp[options.name] ?? {}, props?.locale);
+    }
+    return temp;
+  });
+  return { locale, globalConfig };
 }

@@ -70,10 +70,16 @@ const changeApp = item => {
     if (item.menuList && item.menuList.length) {
       setPath(item.menuList);
       if (isNewTab.value) {
-        window.open(path.value, '_blank');
+        const { href } = router.resolve({
+          path: path.value
+        });
+        window.open(href, '_blank');
       } else {
         if (isExternalLink(path.value)) {
-          window.open(path.value, '_blank');
+          const { href } = router.resolve({
+            path: path.value
+          });
+          window.open(href, '_blank');
         } else {
           router.push(path.value);
         }
@@ -149,10 +155,10 @@ onUnmounted(() => {
     .app-item-name {
       font-size: 18px;
       font-weight: bold;
-      color: #1B2C45;
+      color: #1b2c45;
     }
     .app-item-remark {
-      color: #898E91;
+      color: #898e91;
       font-size: 16px;
       font-weight: 400;
       width: 100%;

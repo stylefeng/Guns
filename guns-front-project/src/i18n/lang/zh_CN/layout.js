@@ -55,9 +55,11 @@ export default {
     styleResponsive: '移动端响应式',
     colorfulIcon: '侧栏彩色图标',
     sideUniqueOpen: '侧栏排他展开',
+    sideInitOpenAll: '默认展开所有侧栏',
     weakMode: '开启色弱模式',
     showFooter: '开启全局页脚',
     showTabs: '开启多页签栏',
+    tabsConfig: '多页签配置',
     tabStyle: '页签显示风格',
     tabStyles: {
       default: '默认',

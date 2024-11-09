@@ -15,6 +15,10 @@ export const SHOW_I18n = true;
 
 //  是否使用图形验证码
 export const DRAW_CAPTCHA_FLAG = false;
+
+// 是否开启自定义登录背景
+export const CUSTOM_LOGIN_BACKGROUND_ENABLE = false;
+
 // SQL监控地址
 export const SQL_MONITOR_URL = 'http://localhost:8080/druid';
 
@@ -101,5 +105,6 @@ export const WEBSOCKET_MESSAGE_TYPE = {
 
 // 登录接口-是否需要rsa加密
 export const IS_NEED_RSA = false;
-// 是否显示新的流程设计
-export const SHOW_NEW_FLOW_DESIGN = false;
+
+// 需要加密的接口
+export const NEED_ENCRYPT_API = [];

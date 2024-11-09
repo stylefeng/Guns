@@ -55,9 +55,11 @@ export default {
     styleResponsive: '移動端響應式',
     colorfulIcon: '側欄彩色圖標',
     sideUniqueOpen: '側欄排他展開',
+    sideInitOpenAll: '默認展開所有側欄',
     weakMode: '開啟色弱模式',
     showFooter: '開啟全域頁腳',
     showTabs: '開啟多頁簽欄',
+    tabsConfig: '多頁簽配寘',
     tabStyle: '頁簽顯示風格',
     tabStyles: {
       default: '默認',

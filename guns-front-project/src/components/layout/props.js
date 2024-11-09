@@ -24,6 +24,11 @@ export default {
     type: Boolean,
     default: true
   },
+  // 是否开启页签栏
+  showTabs: {
+    type: Boolean,
+    default: true
+  },
   // 是否显示刷新按钮
   showRefresh: {
     type: Boolean,
@@ -45,7 +50,7 @@ export default {
   headStyle: {
     type: String,
     default: 'light',
-    validator: (value) => {
+    validator: value => {
       return ['light', 'dark', 'primary'].includes(value);
     }
   },
@@ -53,7 +58,7 @@ export default {
   sideStyle: {
     type: String,
     default: 'dark',
-    validator: (value) => {
+    validator: value => {
       return ['light', 'dark'].includes(value);
     }
   },
@@ -61,7 +66,7 @@ export default {
   layoutStyle: {
     type: String,
     default: 'side',
-    validator: (value) => {
+    validator: value => {
       return ['side', 'top', 'mix'].includes(value);
     }
   },
@@ -69,8 +74,16 @@ export default {
   sideMenuStyle: {
     type: String,
     default: 'default',
-    validator: (value) => {
+    validator: value => {
       return ['default', 'mix'].includes(value);
+    }
+  },
+  // 标签页风格, default | dot | card
+  tabStyle: {
+    type: String,
+    default: 'default',
+    validator: (value) => {
+      return ['default', 'dot', 'card'].includes(value);
     }
   },
   // 是否固定主体
@@ -84,6 +97,11 @@ export default {
   logoAutoSize: Boolean,
   // 侧栏是否只保持一个子菜单展开
   sideUniqueOpen: {
+    type: Boolean,
+    default: true
+  },
+  // 默认展开所有侧栏
+  sideInitOpenAll: {
     type: Boolean,
     default: true
   },

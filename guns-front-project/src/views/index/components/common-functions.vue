@@ -32,7 +32,7 @@
 
     <!--弹窗 选择常用功能-->
     <a-modal
-      width="50%"
+      :width="760"
       v-model:visible="showVisible"
       title="选择常用功能"
       @cancel="updateShowVisible(false)"
@@ -44,10 +44,9 @@
           <a-radio-group
             class="common-function-header-left"
             v-model:value="tabClickAppId"
-            :style="{ marginBottom: '8px' }"
             @change="tabAppIdChange"
           >
-            <a-radio-button v-for="item in userAppInfoList" :key="item.appId" :value="item.appId">{{ item.appName }} </a-radio-button>
+            <a-radio-button style="min-width: 120px; text-align: center;" v-for="item in userAppInfoList" :key="item.appId" :value="item.appId">{{ item.appName }} </a-radio-button>
           </a-radio-group>
 
           <a-input v-model:value="keyword" class="common-function-header-right" allow-clear placeholder="菜单名称（回车搜索）">
@@ -377,7 +376,7 @@ watch(
 
 .app-list-item {
   cursor: pointer;
-  width: calc((100% - 80px) / 10);
+  min-width: 80px;
   height: calc(100% / 2);
   display: flex;
   flex-direction: column;
@@ -411,7 +410,7 @@ watch(
 }
 
 .common-function-header-right {
-  width: 280px;
+  width: 220px;
   line-height: 40px;
   height: 40px;
 }

@@ -16,16 +16,7 @@
       </a-space>
     </div>
     <div class="my-notice-body">
-      <common-table
-        :columns="columns"
-        :rowSelection="false"
-        :scroll="{ y: '100%' }"
-        :where="where"
-        bordered
-        rowId="noticeId"
-        ref="tableRef"
-        url="/sysMessage/page"
-      >
+      <common-table :columns="columns" :rowSelection="false" :where="where" bordered rowId="noticeId" ref="tableRef" url="/sysMessage/page">
         <template #bodyCell="{ column, record }">
           <!-- 姓名 -->
           <template v-if="column.dataIndex == 'messageTitle'">
@@ -262,10 +253,25 @@ const readAll = () => {
   justify-content: space-between;
 }
 .my-notice-body {
-  flex: auto;
+  width: 100%;
+  height: calc(100% - 46px);
+  overflow: hidden;
 }
 .check-outlined {
   cursor: pointer;
   color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .my-notice-header {
+    height: auto;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    :deep(.ant-space) {
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+  }
 }
 </style>

@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "41324355",
+      "name": "项目管理-菜单",
+      "font_class": "icon-menu-project",
+      "unicode": "e758",
+      "unicode_decimal": 59224
+    },
+    {
+      "icon_id": "41324356",
+      "name": "项目管理-菜单",
+      "font_class": "icon-menu-project-p",
+      "unicode": "e759",
+      "unicode_decimal": 59225
+    },
+    {
+      "icon_id": "41260383",
+      "name": "待办项目",
+      "font_class": "daibanxiangmu1",
+      "unicode": "e750",
+      "unicode_decimal": 59216
+    },
+    {
+      "icon_id": "41260384",
+      "name": "全部项目",
+      "font_class": "quanbuxiangmu1",
+      "unicode": "e751",
+      "unicode_decimal": 59217
+    },
+    {
+      "icon_id": "41260385",
+      "name": "任务",
+      "font_class": "renwu",
+      "unicode": "e752",
+      "unicode_decimal": 59218
+    },
+    {
+      "icon_id": "41260386",
+      "name": "问题",
+      "font_class": "wenti",
+      "unicode": "e753",
+      "unicode_decimal": 59219
+    },
+    {
+      "icon_id": "41260387",
+      "name": "我参与的",
+      "font_class": "wocanyude",
+      "unicode": "e754",
+      "unicode_decimal": 59220
+    },
+    {
+      "icon_id": "41260388",
+      "name": "我收藏的",
+      "font_class": "woshoucangde1",
+      "unicode": "e755",
+      "unicode_decimal": 59221
+    },
+    {
+      "icon_id": "41260389",
+      "name": "需求",
+      "font_class": "xuqiu",
+      "unicode": "e756",
+      "unicode_decimal": 59222
+    },
+    {
+      "icon_id": "41260390",
+      "name": "我负责的",
+      "font_class": "wofuzede",
+      "unicode": "e757",
+      "unicode_decimal": 59223
+    },
+    {
       "icon_id": "39574651",
       "name": "菜单-安全操作",
       "font_class": "menu-anquancaozuo-p",

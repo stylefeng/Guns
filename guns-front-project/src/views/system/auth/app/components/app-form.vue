@@ -1,17 +1,17 @@
 <template>
   <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
     <a-row :gutter="20">
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="应用名称:" name="appName">
           <a-input v-model:value="form.appName" allow-clear placeholder="请输入应用名称" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="应用编码:" name="appCode">
           <a-input v-model:value="form.appCode" allow-clear placeholder="请输入应用编码" />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="应用图标:" name="iconList">
           <a-upload
             name="file"
@@ -35,7 +35,7 @@
           </a-upload>
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="排序:" name="appSort">
           <a-input-number
             v-model:value="form.appSort"
@@ -47,7 +47,7 @@
           />
         </a-form-item>
       </a-col>
-      <a-col :span="12">
+      <a-col :xs='24' :sm='24' :md='12'>
         <a-form-item label="状态:" name="statusFlag">
           <a-radio-group v-model:value="form.statusFlag">
             <a-radio :value="1">启用</a-radio>
@@ -74,7 +74,7 @@ import { reactive, ref } from 'vue';
 import { getToken } from '@/utils/token-util';
 import { API_BASE_PREFIX } from '@/config/setting';
 import { FileApi, FileUploadUrl as fileUploadUrlPrefix } from '@/views/system/backend/file/api/FileApi';
-import { message } from 'ant-design-vue/es';
+import { message, Upload } from 'ant-design-vue/es';
 
 const props = defineProps({
   // 表单数据

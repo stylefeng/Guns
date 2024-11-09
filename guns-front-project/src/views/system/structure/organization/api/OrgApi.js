@@ -69,7 +69,7 @@ export class OrgApi {
    * @returns
    */
   static exportOrg(params) {
-    return Request.downLoad('/api/org/exportOrg', params);
+    return Request.downLoad('/org/exportOrg', params);
   }
 
   /**
@@ -78,7 +78,7 @@ export class OrgApi {
    * @returns
    */
   static getExcelTemplate(params) {
-    return Request.downLoad('/api/orgImport/getExcelTemplate', params);
+    return Request.downLoad('/orgImport/getExcelTemplate', params);
   }
 
   /**

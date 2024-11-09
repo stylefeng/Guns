@@ -3,6 +3,7 @@
   <div :class="layoutClass">
     <!-- 顶栏 -->
     <LayoutHeader
+      :is-mobile="isMobile"
       :levels="levelData"
       :collapse="collapse"
       :menus="headMenuData"
@@ -44,6 +45,34 @@
       </LayoutSidebar>
       <!-- 主体 -->
       <div class="guns-admin-body">
+        <!-- 页签栏 -->
+        <LayoutTabs
+          v-if="showTabs"
+          :tabs="tabData"
+          :active="tabActive"
+          :home-path="homePath"
+          :home-title="homeRouteTitle"
+          :click-reload="clickReload"
+          :show-refresh="showTabRefresh"
+          :body-fullscreen="bodyFullscreen"
+          :tab-context-menu="tabContextMenu"
+          :tabArrow="tabArrow"
+          :tabSortable="tabSortable"
+          @tab-change="onTabChange"
+          @tab-remove="onTabRemove"
+          @tab-remove-all="onTabRemoveAll"
+          @tab-remove-left="onTabRemoveLeft"
+          @tab-remove-right="onTabRemoveRight"
+          @tab-remove-other="onTabRemoveOther"
+          @fullscreen-body="updateBodyFullscreen"
+          @context-menu="onTabContextMenu"
+          @tabSortChange="onTabSortChange"
+          @reload-page="reloadPage"
+        >
+          <template v-for="name in Object.keys($slots)" #[name]="props">
+            <slot :name="name" v-bind="props || {}"></slot>
+          </template>
+        </LayoutTabs>
         <!-- 内容区域 -->
         <div ref="contentRef" class="guns-admin-content">
           <div class="guns-admin-content-view">
@@ -81,6 +110,7 @@ import {
 import { LAYOUT_KEY } from './util';
 import LayoutHeader from './components/layout-header.vue';
 import LayoutSidebar from './components/layout-sidebar.vue';
+import LayoutTabs from './components/layout-tabs.vue';
 import props from './props';
 
 export default defineComponent({
@@ -88,6 +118,7 @@ export default defineComponent({
   components: {
     LayoutHeader,
     LayoutSidebar,
+    LayoutTabs
   },
   props,
   emits: [
@@ -118,6 +149,8 @@ export default defineComponent({
     const screenIsMobile = () => {
       return props.styleResponsive ? screenWidth() < 768 : false;
     };
+
+    const isInit = ref(true);
 
     // 内容区域 ref
     const contentRef = ref(null);
@@ -195,6 +228,14 @@ export default defineComponent({
         {
           'guns-admin-logo-auto': (props.logoAutoSize || !showSidebar.value) && !isMobile.value
         },
+        // 开启页签栏
+        { 'guns-admin-show-tabs': props.showTabs },
+        // 圆点默认页签
+        { 'guns-admin-tab-default': props.tabStyle === 'default' },
+        // 圆点风格页签
+        { 'guns-admin-tab-dot': props.tabStyle === 'dot' },
+        // 卡片风格页签
+        { 'guns-admin-tab-card': props.tabStyle === 'card' },
         // 内容区域全屏
         { 'guns-admin-body-fullscreen': props.bodyFullscreen },
         // 内容区域全屏不显示页签栏
@@ -208,7 +249,7 @@ export default defineComponent({
 
     // 是否折叠侧栏菜单
     const sideMenuCollapse = computed(() => {
-      return isMobile.value || props.collapse;
+      return isMobile.value ? false : props.collapse;
     });
 
     // 双侧栏一级菜单主题
@@ -445,6 +486,9 @@ export default defineComponent({
         sideMenuActive.value = [active].concat(openKeys);
       }
 
+      if (isMobile.value) {
+        sideMenuActive.value = [active].concat(openKeys);
+      }
       if (props.sideUniqueOpen) {
         sideMenuOpen.value = openKeys;
       } else {
@@ -621,7 +665,10 @@ export default defineComponent({
     watch(
       () => props.sideDefaultOpeneds,
       openeds => {
-        sideMenuOpen.value = openeds ? openeds.slice() : [];
+        if (isInit.value && props.sideInitOpenAll) {
+          sideMenuOpen.value = openeds ? openeds.slice() : [];
+        }
+        isInit.value = false;
       },
       {
         deep: true,
@@ -676,7 +723,7 @@ export default defineComponent({
         isMixSideMenu: false,
         bodyFullscreen: props.bodyFullscreen,
         contentFullscreen: props.contentFullscreen,
-        showTabs: false,
+        showTabs: props.showTabs,
         haveSideMenuData: !!sideMenuData.value.length,
         styleResponsive: props.styleResponsive
       };
@@ -684,7 +731,9 @@ export default defineComponent({
     provide(LAYOUT_KEY, layoutProvide);
 
     return {
+      isMobile,
       tabData,
+      isInit,
       levelData,
       sideNavData,
       sideMenuData,

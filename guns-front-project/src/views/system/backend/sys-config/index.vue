@@ -1,11 +1,17 @@
 <template>
-  <div class="guns-layout">
-    <div class="guns-layout-sidebar p-t-12 bgColor" style="width: 292px">
+  <div class="guns-layout" :class="[{ 'guns-collapse': !isCollapse }]">
+    <div class="guns-layout-sidebar p-t-12 bgColor">
       <div class="sidebar-content">
         <config-type @defaultSelect="defaultSelect" @treeSelect="treeSelect"></config-type>
       </div>
+      <!-- 折叠按钮 -->
+      <div class="collapse-btn" @click="toggleCollapse()">
+        <CaretRightOutlined v-if="isCollapse" />
+        <CaretLeftOutlined v-else />
+      </div>
     </div>
-    <div class="guns-layout-content" style="width: calc(100% - 292px)">
+    <div class="collapse-mask" @click="toggleCollapse()"></div>
+    <div class="guns-layout-content">
       <div class="guns-layout">
         <div class="guns-layout-content-application">
           <div class="content-mian">
@@ -122,6 +128,10 @@ import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 import ConfigAddEdit from './components/config/config-add-edit.vue';
 
+defineOptions({
+  name: 'SysConfig',
+})
+
 // 表格配置
 const columns = ref([
   {
@@ -181,6 +191,8 @@ const current = ref(null);
 const showEdit = ref(false);
 // 业务标识的编码
 const fieldBusinessCode = ref('SYS_CONFIG_TABLE');
+// 是否显示折叠按钮
+const isCollapse = ref(false);
 
 onMounted(() => {
   getColumnData();
@@ -193,6 +205,10 @@ const getColumnData = () => {
       columns.value = JSON.parse(res.tableWidthJson);
     }
   });
+};
+
+const toggleCollapse = () => {
+  isCollapse.value = !isCollapse.value;
 };
 
 // 默认选中分类
@@ -267,4 +283,9 @@ const batchDelete = () => {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.guns-layout-sidebar {
+  width: v-bind('isCollapse ? 0 : "292px"');
+  padding: v-bind('isCollapse ? 0 : "12px"');
+}
+</style>

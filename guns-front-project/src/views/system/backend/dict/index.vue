@@ -1,11 +1,17 @@
 <template>
-  <div class="guns-layout">
-    <div class="guns-layout-sidebar p-t-12 bgColor" style="width: 292px">
+  <div class="guns-layout" :class="[{ 'guns-collapse': !isCollapse }]">
+    <div class="guns-layout-sidebar p-t-12 bgColor">
       <div class="sidebar-content">
         <dict-type @defaultSelect="defaultSelect" @treeSelect="treeSelect"></dict-type>
       </div>
+      <!-- 折叠按钮 -->
+      <div class="collapse-btn" @click="toggleCollapse()">
+        <CaretRightOutlined v-if="isCollapse" />
+        <CaretLeftOutlined v-else />
+      </div>
     </div>
-    <div class="guns-layout-content" style="width: calc(100% - 292px)">
+    <div class="collapse-mask" @click="toggleCollapse()"></div>
+    <div class="guns-layout-content">
       <div class="guns-layout">
         <div class="guns-layout-content-application">
           <div class="content-mian">
@@ -144,6 +150,10 @@ import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 import DictAddEdit from './components/dict/dict-add-edit.vue';
 import UpdateStructure from './components/update-structure.vue';
 
+defineOptions({
+  name: 'SysDict',
+})
+
 // 表格配置
 const columns = ref([
   {
@@ -199,6 +209,8 @@ const showEdit = ref(false);
 const showUpdate = ref(false);
 // 业务标识的编码
 const fieldBusinessCode = ref('SYS_DICT_TABLE');
+// 是否显示折叠按钮
+const isCollapse = ref(false);
 
 onMounted(() => {
   getColumnData();
@@ -211,6 +223,10 @@ const getColumnData = () => {
       columns.value = JSON.parse(res.tableWidthJson);
     }
   });
+};
+
+const toggleCollapse = () => {
+  isCollapse.value = !isCollapse.value;
 };
 
 // 默认选中分类
@@ -292,4 +308,9 @@ const updateStructure = () => {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.guns-layout-sidebar {
+  width: v-bind('isCollapse ? 0 : "292px"');
+  padding: v-bind('isCollapse ? 0 : "12px"');
+}
+</style>

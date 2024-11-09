@@ -18,14 +18,6 @@
         </template>
       </LayoutMenus>
     </div>
-    <div
-      v-if="showCollapse && collapse"
-      class="guns-admin-sidebar-tool-item"
-      @click="toggleCollapse"
-    >
-      <MenuUnfoldOutlined v-if="collapse"  class="guns-admin-sidebar-tool-item-icon"/>
-      <!-- <MenuFoldOutlined v-else  class="guns-admin-sidebar-tool-item-icon"/> -->
-    </div>
     <slot name="bottom"></slot>
   </div>
 </template>
@@ -58,8 +50,6 @@ export default defineComponent({
     theme: String,
     // 是否折叠
     collapse: Boolean,
-    // 是否显示折叠按钮
-    showCollapse: Boolean,
     // 是否只保持一个子菜单展开
     uniqueOpen: Boolean,
     // 菜单缩进

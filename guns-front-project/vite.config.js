@@ -9,6 +9,7 @@ import { VxeTableResolve } from 'vite-plugin-style-import';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import { DynamicAntdLess } from './src/utils/dynamic-theme';
 import { styleDeps } from './src/utils/resolvers';
+import viteImagemin from 'vite-plugin-imagemin'
 
 export default defineConfig(({ mode, command }) => {
   const isBuild = command === 'build';
@@ -50,6 +51,34 @@ export default defineConfig(({ mode, command }) => {
         algorithm: 'gzip',
         ext: '.gz'
       }),
+      // 图片压缩
+      viteImagemin({
+        gifsicle: {
+          optimizationLevel: 7,
+          interlaced: false
+        },
+        optipng: {
+          optimizationLevel: 7
+        },
+        mozjpeg: {
+          quality: 20
+        },
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4
+        },
+        svgo: {
+          plugins: [
+            {
+              name: 'removeViewBox'
+            },
+            {
+              name: 'removeEmptyAttrs',
+              active: false
+            }
+          ]
+        }
+      }),
       // 兼容低版本浏览器
       legacy({
         targets: ['Chrome 63'],
@@ -75,7 +104,6 @@ export default defineConfig(({ mode, command }) => {
         ...styleDeps,
         'lodash-es',
         'cropperjs',
-        'tinymce/tinymce',
         'ant-design-vue',
         'ant-design-vue/es',
         '@ant-design/icons-vue',
@@ -86,14 +114,18 @@ export default defineConfig(({ mode, command }) => {
         'echarts/renderers',
         'echarts/components',
         'vue-echarts',
-        'xlsx'
+        'xlsx',
+        'js-base64',
+        'gm-crypto',
+        '@amap/amap-jsapi-loader',
+        'moment'
       ]
     },
     esbuild: {
       charset: 'ascii'
     },
     build: {
-      target: 'chrome63'
+      target: 'chrome63',
     }
   };
 });

@@ -1,0 +1,93 @@
+@border-radius: 4px;
+@input-disabled-color: #60666b;
+@input-disabled-border-color: transparent;
+@input-disabled-background: #f5f7f9;
+
+.ant-input {
+  border-radius: @border-radius;
+}
+// input
+.ant-input-affix-wrapper {
+  border-radius: @border-radius;
+}
+.ant-input[disabled] {
+  color: @input-disabled-color !important;
+}
+.ant-input-affix-wrapper-disabled {
+  background-color: @input-disabled-background !important;
+}
+// number
+.ant-input-number {
+  border-radius: @border-radius !important;
+}
+.ant-input-number-disabled {
+  color: @input-disabled-color !important;
+  background-color: @input-disabled-background !important;
+}
+// select
+.ant-select-selector {
+  border-radius: @border-radius !important;
+}
+.ant-select-disabled .ant-select-selector {
+  color: @input-disabled-color !important;
+}
+.ant-select-disabled.ant-select-multiple .ant-select-selection-item {
+  color: @input-disabled-color !important;
+}
+
+.border-background-disabled {
+  // border-color: @input-disabled-border-color;
+  background-color: @input-disabled-background;
+}
+// date
+.ant-picker-input > input[disabled] {
+  color: @input-disabled-color !important;
+}
+
+.ant-picker.ant-picker-disabled {
+  border-radius: @border-radius;
+  background-color: @input-disabled-background !important;
+  &:extend(.border-background-disabled);
+  &:hover {
+    border-color: @input-disabled-border-color;
+  }
+}
+
+.ant-radio-disabled .ant-radio-inner {
+  &:extend(.border-background-disabled);
+  &:hover {
+    border-color: @input-disabled-border-color;
+  }
+}
+.ant-radio-disabled + span {
+  color: @input-disabled-color;
+}
+.ant-radio-disabled .ant-radio-inner::after {
+  background-color: var(--primary-color);
+}
+.ant-checkbox-disabled .ant-checkbox-inner {
+  &:extend(.border-background-disabled);
+  &:hover {
+    border-color: @input-disabled-border-color;
+  }
+}
+.ant-checkbox-disabled + span {
+  color: @input-disabled-color;
+}
+.ant-checkbox-disabled.ant-checkbox-checked .ant-checkbox-inner::after {
+  border-color: var(--primary-color);
+}
+.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  &:extend(.border-background-disabled);
+  color: @input-disabled-color;
+}
+
+.guns-modal-title-label {
+  font-weight: bold;
+}
+.ant-modal-title {
+  font-weight: bold;
+}
+.ant-drawer-title {
+  font-weight: bold !important;
+}

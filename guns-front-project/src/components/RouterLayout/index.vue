@@ -10,16 +10,16 @@
 </template>
 
 <script>
-  import { storeToRefs } from 'pinia';
-  import { useThemeStore } from '@/store/modules/theme';
+import { storeToRefs } from 'pinia';
+import { useThemeStore } from '@/store/modules/theme';
 
-  export default {
-    name: 'RouterLayout',
-    setup() {
-      const themeStore = useThemeStore();
-      const { keepAliveInclude, transitionName } = storeToRefs(themeStore);
+export default {
+  name: 'RouterLayout',
+  setup() {
+    const themeStore = useThemeStore();
+    const { keepAliveInclude, transitionName } = storeToRefs(themeStore);
 
-      return { keepAliveInclude, transitionName };
-    }
-  };
+    return { keepAliveInclude, transitionName };
+  }
+};
 </script>

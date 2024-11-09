@@ -11,19 +11,21 @@
   >
     <template #top>
       <div class="top">
-        <span class="orgName">{{ form.orgName }}</span>
-        <span v-if="form.orgShortName" class="short-name">({{ form.orgShortName }})</span>
+        <div class="top-left">
+          <span class="orgName">{{ form.orgName }}</span>
+          <span v-if="form.orgShortName" class="short-name">({{ form.orgShortName }})</span>
+        </div>
+        <div class="top-right">
+          <a-button type="primary" class="border-radius" @click="editClick" v-if="activeKey == '1'">编辑</a-button>
+        </div>
       </div>
     </template>
     <div class="content">
-      <div style="margin-bottom: 10px" v-if="activeKey == '1'">
-        <a-button type="primary" class="border-radius" @click="editClick">编辑</a-button>
-      </div>
       <!-- 基本信息 -->
       <div class="content-item" v-show="activeKey == '1'">
-        <a-form ref="formRef" :model="form" :label-col="{ span: 3 }">
+        <a-form ref="formRef" :model="form" :label-col="{ span: 6 }">
           <a-row :gutter="16">
-            <a-col :span="24" v-for="(item, index) in baseColumn" :key="index">
+            <a-col :span="12" v-for="(item, index) in baseColumn" :key="index">
               <a-form-item :label="item.name">
                 <span v-if="item.value == 'orgType'">{{ form[item.value] == 1 ? '公司' : '部门' }}</span>
                 <span v-else-if="item.value == 'statusFlag'">{{ form[item.value] == 1 ? '启用' : '禁用' }}</span>
@@ -169,13 +171,15 @@ const editClick = () => {
 </script>
 
 <style scoped lang="less">
-:deep(.ant-drawer-header) {
-  background: rgba(250, 134, 53, 1);
-}
 :deep(.ant-drawer-title) {
-  color: #fff;
+  color: #262626;
+  font-size: 18px;
+  font-weight: 500;
 }
 .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 40px;
   line-height: 40px;
   margin-bottom: 14px;
@@ -199,5 +203,11 @@ const editClick = () => {
     width: 100%;
     height: calc(100% - 100px);
   }
+}
+:deep(.ant-form-item-label > label) {
+  color: #60666b;
+}
+:deep(.ant-form-item) {
+  color: #60666b;
 }
 </style>

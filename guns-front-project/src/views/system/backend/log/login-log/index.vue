@@ -13,6 +13,9 @@
                         <icon-font iconClass="icon-opt-search"></icon-font>
                       </template>
                     </a-input>
+                    <a-range-picker v-model:value="dateRange" class="search-date" value-format="YYYY-MM-DD" @change="reload" />
+                    <a-input v-model:value="where.userName" placeholder="请选择用户" class="search-date" @focus="selectUser"></a-input>
+                    <a-button class="border-radius" @click="reload" type="primary">查询</a-button>
                     <a-button class="border-radius" @click="clear">重置</a-button>
                   </a-space>
                 </div>
@@ -76,6 +79,17 @@
       @done="val => (columns = val)"
       :fieldBusinessCode="fieldBusinessCode"
     />
+
+    <!-- 选择用户 -->
+    <Selection
+      v-model:visible="visibleSelection"
+      v-if="visibleSelection"
+      :data="selectedData"
+      :showTab="['user']"
+      :changeHeight="true"
+      title="人员选择"
+      @done="closeSelection"
+    ></Selection>
   </div>
 </template>
 
@@ -95,9 +109,16 @@ const columns = ref([
     isShow: true
   },
   {
-    dataIndex: 'userName',
+    dataIndex: 'userIdWrapper',
     title: '用户名',
-    isShow: true
+    isShow: true,
+    width: 100,
+  },
+  {
+    dataIndex: 'account',
+    title: '账号',
+    isShow: true,
+    width: 100,
   },
   {
     dataIndex: 'llgName',
@@ -127,15 +148,29 @@ const columns = ref([
 ]);
 // ref
 const tableRef = ref(null);
+// 时间范围
+const dateRange = ref(null);
 
 // 搜索条件
 const where = ref({
+  beginTime: null,
+  endTime: null,
+  userId: '',
+  userName: '',
   llgName: ''
 });
 // 是否显示自定义列
 const isShowCustom = ref(false);
 // 业务标识的编码
 const fieldBusinessCode = ref('LOGIN_LOG_TABLE');
+
+// 是否显示选择人员弹框
+const visibleSelection = ref(false);
+
+// 选择弹框总数据
+const selectedData = ref({
+  selectUserList: []
+});
 
 onMounted(() => {
   getColumnData();
@@ -159,12 +194,22 @@ const moreClick = ({ key }) => {
 
 // 点击搜索
 const reload = () => {
+  const [beginTime, endTime] = dateRange.value || [null, null];
+  where.value.beginTime = beginTime;
+  where.value.endTime = endTime;
   tableRef.value.reload();
 };
 
 // 清除搜索条件
 const clear = () => {
-  where.value.llgName = '';
+  dateRange.value = null;
+  where.value = {
+    beginTime: null,
+    endTime: null,
+    userId: '',
+    userName: '',
+    llgName: ''
+  };
   reload();
 };
 
@@ -177,6 +222,23 @@ const clear = () => {
 const cleanAllLoginLog = async () => {
   const result = await LoginLogApi.deleteAll(where.value);
   message.success(result.message);
+  reload();
+};
+
+// 选择用户
+const selectUser = () => {
+  const { userName, userId } = where.value;
+  if (userName && userId) {
+    selectedData.value.selectUserList = [{ bizId: userId, name: userName }];
+  }
+  visibleSelection.value = true;
+};
+
+// 关闭选择用户
+const closeSelection = data => {
+  const { bizId, name } = data.selectUserList[0] || { bizId: '', name: '' };
+  where.value.userName = name;
+  where.value.userId = bizId;
   reload();
 };
 </script>

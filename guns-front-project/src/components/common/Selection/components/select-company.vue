@@ -2,12 +2,12 @@
 <template>
   <a-row class="user-select" :gutter="16">
     <!-- 公司选择 -->
-    <a-col :span="12" class="height100">
+    <a-col :xs='24' :sm='24' :md='12' class="height100">
       <SelectionOrgTree @treeSelect="treeSelect" :company-search-flag="true" ref="selectionOrgTreeRef"></SelectionOrgTree>
     </a-col>
 
     <!-- 已选列表 -->
-    <a-col :span="12" class="common-height paddingTop10">
+    <a-col :xs='24' :sm='24' :md='12' class="common-height paddingTop10">
       <selected-list v-model:list="companyList" @delete="deleteCompany" @deleteAll="deleteAll" />
     </a-col>
   </a-row>

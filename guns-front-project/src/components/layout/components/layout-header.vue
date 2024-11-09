@@ -8,14 +8,15 @@
     </div>
     <!-- 左侧功能区 -->
     <div class="guns-admin-header-tool" v-if="showLeftTool">
-      <div v-if="showCollapse && !collapse" class="guns-admin-header-tool-item" @click="toggleCollapse">
-        <MenuFoldOutlined v-if="!collapse" />
+      <div v-if="showCollapse" class="guns-admin-header-tool-item" @click="toggleCollapse">
+        <MenuUnfoldOutlined v-if="collapse" />
+        <MenuFoldOutlined v-else />
       </div>
       <div v-if="showRefresh" class="guns-admin-header-tool-item" @click="reloadPage">
         <ReloadOutlined />
       </div>
       <!-- 自定义左侧功能 -->
-      <slot name="left"></slot>
+      <slot name="left" v-if="!isMobile"></slot>
     </div>
     <!-- 面包屑导航 -->
     <div v-if="showBreadcrumb" class="guns-admin-breadcrumb">
@@ -48,7 +49,7 @@
       </LayoutMenus>
     </div>
     <!-- 右侧功能区 -->
-    <slot name="right"></slot>
+    <slot name="right" :isMobile="isMobile"></slot>
   </div>
 </template>
 
@@ -56,6 +57,7 @@
 import { defineComponent, computed } from 'vue';
 import { Breadcrumb as ABreadcrumb, BreadcrumbItem as ABreadcrumbItem, message } from 'ant-design-vue/es';
 import LayoutMenus from './layout-menus';
+import props from '../props';
 
 export default defineComponent({
   name: 'LayoutHeader',
@@ -95,7 +97,8 @@ export default defineComponent({
     // 是否显示面包屑导航
     showBreadcrumb: Boolean,
     // 面包屑导航分隔符
-    breadcrumbSeparator: String
+    breadcrumbSeparator: String,
+    isMobile: Boolean,
   },
   emits: ['logo-click', 'reload-page', 'toggle-collapse', 'title-click'],
   setup(props, { emit }) {

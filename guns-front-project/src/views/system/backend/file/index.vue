@@ -163,6 +163,10 @@ import FileDetail from './components/file-detail.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 
+defineOptions({
+  name: 'File',
+})
+
 // 表格配置
 const columns = ref([
   {
@@ -177,7 +181,6 @@ const columns = ref([
   {
     dataIndex: 'fileId',
     title: '文件id',
-    fixed: 'left',
     ellipsis: true,
     width: 150,
     isShow: true

@@ -11,20 +11,23 @@
   >
     <template #top>
       <div class="top">
-        <img :src="form.avatarWrapper" alt="" class="img" v-if="form.avatarWrapper" />
-        <img src="@/assets/avatar.png" alt="" class="img" v-else />
-        <span class="username">{{ form.realName }}</span>
+        <div class="top-left">
+          <a-avatar style="background-color: #6f9ae7">
+            {{ setName(form.realName) }}
+          </a-avatar>
+          <span class="username">{{ form.realName }}</span>
+        </div>
+        <div class="top-right">
+          <a-button type="primary" class="border-radius" @click="editClick" v-permission="['EDIT_USER']">编辑</a-button>
+        </div>
       </div>
     </template>
     <div class="content">
-      <div style="margin-bottom: 10px">
-        <a-button type="primary" class="border-radius" @click="editClick" v-permission="['EDIT_USER']">编辑</a-button>
-      </div>
       <!-- 基本信息 -->
       <div class="content-item" v-show="activeKey == '1'">
-        <a-form ref="formRef" :model="form" :label-col="{ span: 3 }">
+        <a-form ref="formRef" :model="form" :label-col="{ span: 6 }">
           <a-row :gutter="16">
-            <a-col :span="24" v-for="(item, index) in baseColumn" :key="index">
+            <a-col :span="12" v-for="(item, index) in baseColumn" :key="index">
               <a-form-item :label="item.name">
                 <span v-if="item.value == 'superAdminFlag'">{{ form[item.value] == 'Y' ? '是' : '否' }}</span>
                 <span v-else-if="item.value == 'statusFlag'">{{ form[item.value] == 1 ? '启用' : '禁用' }}</span>
@@ -37,7 +40,15 @@
       </div>
       <!-- 组织机构 -->
       <div class="content-item" v-show="activeKey == '2'">
-        <a-table :dataSource="form.userOrgList" bordered size="small" :columns="orgColumns" :pagination="false" ref="tableRef">
+        <a-table
+          :dataSource="form.userOrgList"
+          bordered
+          size="small"
+          :scroll="{ x: 'max-content' }"
+          :columns="orgColumns"
+          :pagination="false"
+          ref="tableRef"
+        >
           <template #bodyCell="{ column, record }">
             <template v-if="column.dataIndex == 'mainFlag'">
               <span v-if="record.mainFlag == 'Y'">是</span>
@@ -53,7 +64,7 @@
       <!-- 角色信息 -->
       <div class="content-item" v-show="activeKey == '3'">
         <a-form ref="formRef" :model="form" :label-col="{ span: 3 }">
-          <a-row :gutter="16">
+          <a-row>
             <a-form-item label="角色信息" style="width: 100%">
               <a-checkbox-group v-model:value="form.roleIdList" disabled>
                 <a-checkbox :value="roItem.roleId" name="type" v-for="roItem in roleList" :key="roItem.roleId">{{
@@ -66,7 +77,14 @@
       </div>
       <!-- 证书信息 -->
       <div class="content-item" v-show="activeKey == '4'">
-        <a-table :dataSource="form.userCertificateList" size="small" bordered :columns="certificateColumns" :pagination="false">
+        <a-table
+          :dataSource="form.userCertificateList"
+          :scroll="{ x: 'max-content' }"
+          size="small"
+          bordered
+          :columns="certificateColumns"
+          :pagination="false"
+        >
           <template #bodyCell="{ column, record }">
             <template v-if="column.dataIndex == 'certificateType'">
               {{ getTypeName(record.certificateType) }}
@@ -241,7 +259,7 @@ const orgColumns = ref([
     title: '是否启用',
     align: 'center',
     dataIndex: 'statusFlag'
-  },
+  }
 ]);
 
 // 工号表格配置
@@ -367,7 +385,10 @@ const tabChange = key => {
 
 // 预览
 const prewiew = record => {
-  window.open(record.attachmentUrl);
+  const { href } = router.resolve({
+    path: record.attachmentUrl
+  });
+  window.open(href, '_blank');
 };
 
 // 点击编辑
@@ -378,28 +399,39 @@ const editClick = () => {
     showEdit.value = true;
   }
 };
+
+// 设置名称
+const setName = realName => {
+  let name = realName;
+  if (realName && realName.length > 2) {
+    name = realName.substr(0, 1);
+  }
+  return name;
+};
 </script>
 
 <style scoped lang="less">
-:deep(.ant-drawer-header) {
-  background: rgba(250, 134, 53, 1);
-}
 :deep(.ant-drawer-title) {
-  color: #fff;
+  color: #262626;
+  font-size: 18px;
+  font-weight: 500;
 }
 .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 40px;
   line-height: 40px;
   margin-bottom: 14px;
-  .img {
-    width: 40px;
-    height: 100%;
+  .top-left {
+    display: flex;
+    align-items: center;
   }
   .username {
-    margin-left: 20px;
-    font-size: 22px;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 1);
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #43505e;
   }
 }
 .content {
@@ -410,6 +442,12 @@ const editClick = () => {
     width: 100%;
     height: 100%;
   }
+}
+:deep(.ant-form-item-label > label) {
+  color: #60666b;
+}
+:deep(.ant-form-item) {
+  color: #60666b;
 }
 :deep(.ant-checkbox-wrapper-checked .ant-checkbox-disabled .ant-checkbox-inner) {
   --disabled-bg: var(--primary-color);

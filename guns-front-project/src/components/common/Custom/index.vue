@@ -1,12 +1,12 @@
 <template>
-  <a-modal
-    :width="526"
+  <common-modal
+    :width="600"
     :visible="props.visible"
     :confirm-loading="loading"
     :title="'自定义显示列'"
     :body-style="{ padding: '16px 24px' }"
     @ok="save"
-    wrapClassName="custom-modal"
+    wrapClassName="project-modal"
     :maskClosable="false"
     @cancel="cancel"
   >
@@ -27,44 +27,65 @@
               <icon-font iconClass="icon-opt-zidingyilie" color="#60666b" fontSize="20px"></icon-font>
             </td>
             <!-- 名称 -->
-            <td style="text-align: left; width: 260px" class="">
+            <td style="text-align: left; width: 260px">
               {{ element.title }}
             </td>
             <!-- 是否显示 -->
-            <td style="text-align: center; padding: 8px" class="">
-              <a-switch v-model:checked="element.isShow" :disabled="element.title == '序号'" />
+            <td style="text-align: center; padding: 8px">
+              <a-switch
+                :checked="checkedIds.includes(element.id)"
+                :disabled="element.title == '序号'"
+                @change="showChange($event, element)"
+              />
             </td>
             <!-- 是否显示 -->
-            <td style="text-align: center; padding: 8px 8px 8px 32px" class="">
+            <td style="text-align: center; padding: 8px 8px 8px 32px; width: 150px">
               <a-input v-model:value="element.width"></a-input>
+            </td>
+            <td
+              :class="[
+                'table-tool-fixed-item',
+                {
+                  active: element.fixed === true || element.fixed === 'left'
+                }
+              ]"
+              @click="onItemFixedLeft(element)"
+            >
+              <ATooltip title="固定在左侧">
+                <VerticalRightOutlined />
+              </ATooltip>
+            </td>
+            <td
+              :class="[
+                'table-tool-fixed-item',
+                {
+                  active: element.fixed === 'right'
+                }
+              ]"
+              @click="onItemFixedRight(element)"
+            >
+              <ATooltip title="固定在右侧">
+                <VerticalLeftOutlined />
+              </ATooltip>
             </td>
           </tr>
         </template>
       </draggable>
     </div>
     <template #footer>
-      <div class="footer">
-        <div>
-          <vxe-switch v-model="fieldType" :open-value="1" :close-value="2" :disabled="isDisabled"></vxe-switch>是否同步全体员工
-          <a-tooltip>
-            <template #title>只有管理员才能操作</template>
-            <question-circle-outlined />
-          </a-tooltip>
-        </div>
-        <a-space>
-          <a-button @click="cancel" :loading="loading">取消</a-button>
-          <a-button type="primary" @click="save" :loading="loading">确定</a-button>
-        </a-space>
-      </div>
+      <a-space>
+        <a-button @click="cancel" class="border-radius grey" type="link" :loading="loading">取消</a-button>
+        <a-button type="primary" @click="save" class="border-radius" :loading="loading">确定</a-button>
+      </a-space>
     </template>
-  </a-modal>
+  </common-modal>
 </template>
 
 <script setup name="Custom">
 import draggable from 'vuedraggable';
 import { CustomApi } from './api/CustomApi';
-import { computed, onMounted, ref } from 'vue';
-import { useUserStore } from '@/store/modules/user';
+import { onMounted, ref } from 'vue';
+import { getSettingCols, getCheckedColumns, getInitColumnsAndCache } from '@/components/common/CommonTable/util';
 
 const props = defineProps({
   // 弹窗是否打开
@@ -76,20 +97,12 @@ const props = defineProps({
   // 业务标识的编码
   fieldBusinessCode: {
     type: String,
-    default: 'PROJECT_TABLE'
-  }
+    default: ''
+  },
+  cacheKey: String,
+  untitledText: String
 });
 const emits = defineEmits(['update:visible', 'done']);
-
-// store
-const userStore = useUserStore();
-// 是否禁用同步全体员工
-const isDisabled = computed(() => {
-  if (userStore.authorities && userStore.authorities.find(item => item == 'SYS_CONFIG')) {
-    return false;
-  }
-  return true;
-});
 
 // 提交状态
 const loading = ref(false);
@@ -97,30 +110,53 @@ const loading = ref(false);
 const columns = ref([]);
 // 是否同步全体员工
 const fieldType = ref(2);
+// 选中列表
+const checkedIds = ref([]);
 
 onMounted(() => {
   if (props.data) {
-    columns.value = deepClone(props.data);
+    let arr = props.data;
+    const hasCheckedField = props.data.some(item => 'checked' in item);
+    if (!hasCheckedField) {
+      arr = getInitColumnsAndCache(props.data, props.cacheKey, true);
+    }
+    const result = getSettingCols(arr, props.untitledText, props.cacheKey);
+    columns.value = result.data;
+    checkedIds.value = result.checkedIds;
   }
 });
 
-const deepClone = obj => {
-  let result;
-  if (Array.isArray(obj)) {
-    result = [];
-  } else if (typeof obj === 'object' && obj !== null) {
-    result = {};
+const showChange = (e, element) => {
+  if (e) {
+    checkedIds.value.push(element.id);
   } else {
-    return obj;
+    checkedIds.value.splice(
+      checkedIds.value.findIndex(c => c === element.id),
+      1
+    );
   }
-  Object.keys(obj).forEach(key => {
-    if (typeof obj[key] === 'object' && obj[key] !== null) {
-      result[key] = deepClone(obj[key]);
-    } else {
-      result[key] = obj[key];
-    }
+
+  columns.value.forEach(d => {
+    d.checked = checkedIds.value.includes(d.id);
   });
-  return result;
+};
+
+/* 固定列左侧 */
+const onItemFixedLeft = col => {
+  col.fixed = col.fixed === true || col.fixed === 'left' ? false : 'left';
+  onColumnSortChange();
+};
+
+/* 固定列右侧 */
+const onItemFixedRight = col => {
+  col.fixed = col.fixed === 'right' ? false : 'right';
+  onColumnSortChange();
+};
+
+/* 列配置拖动改变顺序 */
+const onColumnSortChange = () => {
+  const newColumns = getCheckedColumns(columns.value, columns.value, checkedIds.value, true);
+  columns.value = newColumns;
 };
 
 /**
@@ -136,24 +172,27 @@ const save = () => {
     if (item.width) item.width = Number(item.width);
   });
 
-  let params = {
-    fieldBusinessCode: props.fieldBusinessCode,
-    fieldType: fieldType.value,
-    tableWidthJson: JSON.stringify(columns.value)
-  };
-  CustomApi.setTableWidth(params)
-    .then(res => {
-      // 移除加载框
-      loading.value = false;
+  const newColumns = getCheckedColumns(columns.value, columns.value, checkedIds.value, false);
 
-      // 关闭弹框，通过控制visible的值，传递给父组件
-      updateVisible(false);
-      // 触发父组件done事件
-      emits('done', columns.value);
-    })
-    .catch(() => {
-      loading.value = false;
-    });
+  if (props.fieldBusinessCode) {
+    let params = {
+      fieldBusinessCode: props.fieldBusinessCode,
+      fieldType: fieldType.value,
+      tableWidthJson: JSON.stringify(newColumns)
+    };
+    CustomApi.setTableWidth(params)
+      .then(res => {
+        loading.value = false;
+        updateVisible(false);
+        emits('done', columns.value);
+      })
+      .catch(() => {
+        loading.value = false;
+      });
+  } else {
+    updateVisible(false);
+    emits('done', newColumns);
+  }
 };
 
 const updateVisible = value => {
@@ -179,47 +218,31 @@ const cancel = () => {
     border-radius: 5px;
   }
 }
-.footer {
-  display: flex;
-  justify-content: space-between;
-}
 :deep(.ant-input) {
   background: rgba(197, 207, 209, 0.2) !important;
 }
-</style>
-<style lang="less">
-.custom-modal {
-  .ant-modal-title {
-    color: #262626;
-    font-size: 18px !important;
-    font-style: normal;
-    font-weight: 500;
+.table-tool-fixed-item {
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  margin-left: 4px;
+  color: var(--text-color-secondary);
+  transition: color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-color);
   }
-  .ant-modal-close-icon {
-    width: 20px;
-    height: 20px;
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-  .ant-modal-header {
-    border-bottom: 0px !important;
-    padding: 16px 24px 0px 24px !important;
-  }
-  .ant-modal-footer {
-    padding: 0px 16px 16px 16px !important;
-    border-top: 0px !important;
+
+  &.active {
+    color: var(--primary-color);
   }
 }
+</style>
+<style lang="less">
 .outlined {
   .iconfont {
     cursor: move !important;
   }
-}
-</style>
-<style scoped>
-.ant-btn {
-  border-radius: 4px !important;
 }
 </style>

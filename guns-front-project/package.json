@@ -11,25 +11,28 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@ant-design/icons-vue": "^7.0.1",
     "ant-design-vue": "^3.2.17",
     "axios": "^1.6.0",
     "cropperjs": "^1.5.12",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.2",
+    "gm-crypto": "^0.1.12",
+    "js-base64": "^3.7.7",
     "jsencrypt": "^3.3.2",
     "less": "^4.2.0",
     "lodash-es": "^4.17.21",
+    "moment": "^2.30.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
-    "tinymce": "^5.10.7",
-    "vue": "^3.3.4",
+    "vue": "3.3.4",
     "vue-clipboard3": "^2.0.0",
     "vue-echarts": "^6.5.4",
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.2.5",
     "vuedraggable": "^4.1.0",
-    "vxe-table": "^4.4.2",
+    "vxe-table": "4.6.17",
     "xe-utils": "^3.5.14",
     "xlsx": "^0.18.5"
   },
@@ -49,8 +52,12 @@
     "unplugin-vue-components": "^0.24.1",
     "vite": "^4.4.11",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-style-import": "^2.0.0",
     "vitest": "^0.34.6",
     "vue-eslint-parser": "^9.1.1"
+  },
+  "resolutions": {
+    "bin-wrapper": "npm:bin-wrapper-china"
   }
 }

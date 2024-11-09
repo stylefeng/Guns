@@ -1,12 +1,19 @@
 <template>
   <div class="guns-layout">
-    <div class="guns-layout" v-show="!showImport">
-      <div class="guns-layout-sidebar p-t-12 bgColor" style="width: 292px">
+    <div class="guns-layout" v-show="!showImport" :class="[{ 'guns-collapse': !isCollapse }]">
+      <div class="guns-layout-sidebar p-t-12 bgColor">
         <div class="sidebar-content">
           <org-tree @treeSelect="treeSelect" ref="orgTreeRef"></org-tree>
         </div>
+
+        <!-- 折叠按钮 -->
+        <div class="collapse-btn" @click="toggleCollapse()">
+          <CaretRightOutlined v-if="isCollapse" />
+          <CaretLeftOutlined v-else />
+        </div>
       </div>
-      <div class="guns-layout-content" style="width: calc(100% - 292px)">
+      <div class="collapse-mask" @click="toggleCollapse()"></div>
+      <div class="guns-layout-content">
         <div class="guns-layout">
           <div class="guns-layout-content-application">
             <div class="content-mian">
@@ -184,6 +191,10 @@ import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 import ImportExportUser from './components/import-export-user.vue';
 
+defineOptions({
+  name: 'BackEndUser',
+})
+
 // 状态列表
 const statusList = ref([
   {
@@ -300,6 +311,8 @@ const showRole = ref(false);
 const showImport = ref(false);
 // 业务标识的编码
 const fieldBusinessCode = ref('USER_TABLE');
+// 是否显示折叠按钮
+const isCollapse = ref(false);
 // 是否禁用
 const disabled = computed(() => {
   if (userStore.authorities.find(item => item == 'UPDATE_USER_STATUS')) {
@@ -319,6 +332,10 @@ const getColumnData = () => {
       columns.value = JSON.parse(res.tableWidthJson);
     }
   });
+};
+
+const toggleCollapse = () => {
+  isCollapse.value = !isCollapse.value;
 };
 
 // 左侧树选中
@@ -440,4 +457,9 @@ const backReload = () => {
 };
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.guns-layout-sidebar {
+  width: v-bind('isCollapse ? 0 : "292px"');
+  padding: v-bind('isCollapse ? 0 : "12px"');
+}
+</style>

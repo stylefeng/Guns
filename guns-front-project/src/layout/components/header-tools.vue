@@ -2,7 +2,7 @@
 <template>
   <div class="guns-admin-header-tool">
     <!-- 公司切换 -->
-    <div class="guns-admin-header-tool-item" v-if="companyData?.companyName" @click="switchCompany">
+    <div class="guns-admin-header-tool-item" v-if="companyData?.companyName && !isMobile" @click="switchCompany">
       <i class="iconfont icon-nav-gongsi f-s-24"></i>
       <span class="company-name">{{ companyData?.companyName }}</span>
     </div>
@@ -93,6 +93,13 @@ import AppSwitchModal from './app-switch-modal.vue';
 import SwitchCompany from '@/views/index/components/switch-company.vue';
 import { Modal } from 'ant-design-vue';
 
+const props = defineProps({
+  isMobile: {
+    type: Boolean,
+    default: false
+  }
+});
+
 const { push, resolve } = useRouter();
 const { t } = useI18n();
 const userStore = useUserStore();
@@ -144,13 +151,11 @@ const onUserDropClick = ({ key }) => {
           removeToken();
           // 调用sso退出接口
           SsoUtil.ssoLogoutRedirect();
-          clearLocalStorage();
         } else {
           // 调用退出接口
           await LoginApi.logout();
           // 清除缓存token并退出
           logout();
-          clearLocalStorage();
         }
       }
     });
@@ -179,15 +184,6 @@ const setName = realName => {
     name = realName.substr(0, 2);
   }
   return name;
-};
-// 清除本地缓存
-const clearLocalStorage = () => {
-  const collapse = localStorage.getItem('collapse');
-  localStorage.clear();
-  // 保留菜单折叠
-  if (collapse) {
-    localStorage.setItem('collapse', collapse);
-  }
 };
 </script>
 

@@ -55,9 +55,11 @@ export default {
     styleResponsive: 'Responsive',
     colorfulIcon: 'Colorful Icon',
     sideUniqueOpen: 'Menu Unique Open',
+    sideInitOpenAll: 'Menu Default Open All',
     weakMode: 'Weak Mode',
     showFooter: 'Show Footer',
     showTabs: 'Show Tabs',
+    tabsConfig: 'Tabs Config',
     tabStyle: 'Tab Style',
     tabStyles: {
       default: 'Default',

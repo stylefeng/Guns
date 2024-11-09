@@ -7,12 +7,12 @@
             <div class="content-mian-body">
               <div class="table-content">
                 <a-row class="bottom-1">
-                  <a-col :span="12" class="block-space-right">
+                  <a-col :xs="24" :sm="24" :md="12" class="block-space-right">
                     <a-card title="CPU信息" class="card-width" :bordered="false">
                       <a-table row-key="key" :columns="data.cpuColumns" :data-source="data.cpuData" :pagination="false" />
                     </a-card>
                   </a-col>
-                  <a-col :span="12" class="block-space-left">
+                  <a-col :xs="24" :sm="24" :md="12" class="block-space-left">
                     <a-card title="内存信息" class="card-width" :bordered="false">
                       <a-table row-key="key" :columns="data.memoryColumns" :data-source="data.memoryData" :pagination="false" />
                     </a-card>
@@ -47,7 +47,13 @@
                 <a-row class="bottom-1">
                   <a-col :span="24" class="block-space-top">
                     <a-card title="磁盘信息" class="card-width" :bordered="false">
-                      <a-table row-key="dirName" :columns="data.diskColumns" :data-source="data.systemInfo.sysFiles" :pagination="false" />
+                      <a-table
+                        row-key="dirName"
+                        :columns="data.diskColumns"
+                        :scroll="{ x: 'max-content' }"
+                        :data-source="data.systemInfo.sysFiles"
+                        :pagination="false"
+                      />
                     </a-card>
                   </a-col>
                 </a-row>
@@ -195,5 +201,14 @@ onMounted(async () => {
 }
 :deep(.b-r-1) {
   border-right: 1px solid rgba(197, 207, 209, 0.6) !important;
+}
+
+@media screen and (max-width: 768px) {
+  :deep(.ant-descriptions-item-container) {
+    flex-direction: column;
+  }
+  :deep(.b-r-1) {
+    border-right-width: 0 !important;
+  }
 }
 </style>

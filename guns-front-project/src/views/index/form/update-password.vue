@@ -138,4 +138,10 @@ const save = () => {
     content: '';
   }
 }
+
+@media screen and (max-width: 768px) {
+  .form {
+    width: 100%;
+  }
+}
 </style>

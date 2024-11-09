@@ -24,6 +24,10 @@ const DEFAULT_STATE = Object.freeze({
   collapse: localStorage.getItem('collapse') !== 'false',
   // 是否开启页脚
   showFooter: false,
+  // 是否开启页签栏
+  showTabs: true,
+  // 内容区域是否全屏
+  bodyFullscreen: false,
   // 顶栏风格: light(亮色), dark(暗色), primary(主色)
   headStyle: 'light',
   // 侧栏风格: light(亮色), dark(暗色)
@@ -32,14 +36,20 @@ const DEFAULT_STATE = Object.freeze({
   layoutStyle: 'mix',
   // 侧栏菜单风格: default(默认), mix(双排侧栏)
   sideMenuStyle: 'default',
+  // 页签风格: default(默认), dot(圆点), card(卡片)
+  tabStyle: 'default',
   // 是否固定主体
   fixedBody: true,
   // 侧栏是否只保持一个子菜单展开
   sideUniqueOpen: false,
+  // 侧栏初始时，是否展开全部
+  sideInitOpenAll: true,
   // 是否是色弱模式
   weakMode: false,
   // 主题色
   color: null,
+  // 暗黑模式
+  darkMode: false,
   // 主页的组件名称
   homeComponents: [],
   // 刷新路由时的参数
@@ -142,7 +152,7 @@ export const useThemeStore = defineStore({
   getters: {
     // 需要 keep-alive 的组件
     keepAliveInclude() {
-      if (!TAB_KEEP_ALIVE) {
+      if (!TAB_KEEP_ALIVE || !this.showTabs) {
         return [];
       }
       const components = new Set();
@@ -183,6 +193,11 @@ export const useThemeStore = defineStore({
       cacheSetting('showFooter', value);
       this.delayUpdateContentSize();
     },
+    setShowTabs(value) {
+      this.showTabs = value;
+      cacheSetting('showTabs', value);
+      this.delayUpdateContentSize();
+    },
     setHeadStyle(value) {
       this.headStyle = value;
       cacheSetting('headStyle', value);
@@ -203,6 +218,15 @@ export const useThemeStore = defineStore({
       cacheSetting('sideMenuStyle', value);
       this.delayUpdateContentSize();
     },
+    setTabStyle(value) {
+      this.tabStyle = value;
+      cacheSetting('tabStyle', value);
+    },
+    setBodyFullscreen(value) {
+      disableTransition();
+      this.bodyFullscreen = value;
+      this.delayUpdateContentSize(800);
+    },
     setFixedBody(value) {
       disableTransition();
       this.fixedBody = value;
@@ -211,6 +235,10 @@ export const useThemeStore = defineStore({
     setSideUniqueOpen(value) {
       this.sideUniqueOpen = value;
       cacheSetting('sideUniqueOpen', value);
+    },
+    setSideInitOpenAll(value) {
+      this.sideInitOpenAll = value;
+      cacheSetting('sideInitOpenAll', value);
     },
     setStyleResponsive(value) {
       changeStyleResponsive(value);
@@ -291,6 +319,7 @@ export const useThemeStore = defineStore({
     resetSetting() {
       return new Promise((resolve, reject) => {
         disableTransition();
+        this.showTabs = DEFAULT_STATE.showTabs;
         this.showFooter = DEFAULT_STATE.showFooter;
         this.headStyle = DEFAULT_STATE.headStyle;
         this.sideStyle = DEFAULT_STATE.sideStyle;
@@ -298,6 +327,7 @@ export const useThemeStore = defineStore({
         this.sideMenuStyle = DEFAULT_STATE.sideMenuStyle;
         this.fixedBody = DEFAULT_STATE.fixedBody;
         this.sideUniqueOpen = DEFAULT_STATE.sideUniqueOpen;
+        this.sideInitOpenAll = DEFAULT_STATE.sideInitOpenAll;
         this.styleResponsive = DEFAULT_STATE.styleResponsive;
         this.weakMode = DEFAULT_STATE.weakMode;
         this.color = DEFAULT_STATE.color;

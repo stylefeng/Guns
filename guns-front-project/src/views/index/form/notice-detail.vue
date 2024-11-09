@@ -1,6 +1,6 @@
 <template>
   <!-- 新增编辑 -->
-  <a-modal
+  <common-modal
     :width="1000"
     :maskClosable="false"
     :visible="props.visible"
@@ -16,12 +16,12 @@
     <a-form ref="formRef" :model="form" layout="vertical">
       <!-- 通知内容 -->
       <a-row :gutter="20">
-        <a-col :span="12">
+        <a-col :xs='24' :sm='24' :md='12'>
           <a-form-item label="通知标题:" name="messageTitle">
             <a-input v-model:value="form.messageTitle" allow-clear placeholder="请输入通知标题" :disabled="true" />
           </a-form-item>
         </a-col>
-        <a-col :span="12">
+        <a-col :xs='24' :sm='24' :md='12'>
           <a-form-item label="优先级" name="priorityLevel">
             <a-radio-group v-model:value="form.priorityLevel" name="sex" :disabled="true">
               <a-radio value="high">高</a-radio>
@@ -32,18 +32,17 @@
         </a-col>
         <a-col :span="24">
           <a-form-item label="通知内容" name="messageContent">
-            <tinymce v-model:value="form.messageContent" :disabled="true" />
+            <a-textarea v-model:value="form.messageContent" :rows="4" disabled></a-textarea>
           </a-form-item>
         </a-col>
       </a-row>
     </a-form>
-  </a-modal>
+  </common-modal>
 </template>
 
 <script setup name="NoticeDetail">
 import { ref, onMounted } from 'vue';
 import { MyNoticeApi } from '../api/MyNoticeApi';
-import Tinymce from '@/components/TinymceEditor/index.vue';
 
 const props = defineProps({
   visible: Boolean,

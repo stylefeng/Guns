@@ -116,6 +116,10 @@ import RoleAddEdit from './components/role-add-edit.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
 
+defineOptions({
+  name: 'AuthRole',
+})
+
 // 表格配置
 const columns = ref([
   {

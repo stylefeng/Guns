@@ -191,6 +191,10 @@ import UseStand from './components/use-stand.vue';
 import MenuAddEdit from './components/menu-add-edit.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 
+defineOptions({
+  name: 'AuthMenu',
+})
+
 // 搜索条件
 const where = ref({
   searchText: ''
@@ -652,5 +656,12 @@ const onDrop = (appItem, info) => {
 }
 .content-mian-body {
   height: calc(100% - 52px) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-item {
+    width: 340px;
+    margin-right: 0;
+  }
 }
 </style>

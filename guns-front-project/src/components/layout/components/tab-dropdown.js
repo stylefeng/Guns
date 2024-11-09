@@ -13,7 +13,7 @@ import CloseCircleOutlined from '@ant-design/icons-vue/es/icons/CloseCircleOutli
 import ExpandOutlined from '@ant-design/icons-vue/es/icons/ExpandOutlined';
 import CompressOutlined from '@ant-design/icons-vue/es/icons/CompressOutlined';
 import MinusCircleOutlined from '@ant-design/icons-vue/es/icons/MinusCircleOutlined';
-import { useLocale } from '@/i18n/use-locale';
+import { useLocale } from '@/utils/common/iframe-component';
 
 export default defineComponent({
   name: 'LayoutTabDropdown',

@@ -119,13 +119,17 @@
   </div>
 </template>
 
-<script setup name="Position">
+<script setup name="BackendNotice">
 import { NoticeApi } from './api/NoticeApi';
 import { ref, createVNode, onMounted } from 'vue';
 import { message, Modal } from 'ant-design-vue/es';
 import NoticeAddEdit from './components/notice-add-edit.vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { CustomApi } from '@/components/common/Custom/api/CustomApi';
+
+defineOptions({
+  name: 'BackendNotice',
+})
 
 // 表格配置
 const columns = ref([
